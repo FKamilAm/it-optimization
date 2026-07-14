@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Menu, X } from "lucide-react";
 import { FullscreenMenu } from "@/components/layout/fullscreen-menu";
@@ -13,20 +14,17 @@ import { cn } from "@/lib/utils";
 
 interface HeaderProps {
   companyName: string;
+  /**
+   * Prefix for section anchor links. Empty on the homepage (smooth-scroll to
+   * "#services"); "/" on subpages so links become "/#services" and navigate home.
+   */
+  sectionPrefix?: string;
 }
 
-export function Header({ companyName }: HeaderProps) {
+export function Header({ companyName, sectionPrefix = "" }: HeaderProps) {
   const t = useTranslations();
   const { openContactModal } = useContactModal();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflowY = menuOpen ? "hidden" : "";
@@ -39,49 +37,69 @@ export function Header({ companyName }: HeaderProps) {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 transition-[background-color,backdrop-filter] duration-500",
-          menuOpen ? "z-[110]" : "z-50",
-          scrolled && !menuOpen
-            ? "bg-background/85 backdrop-blur-xl"
-            : "bg-transparent",
+          "fixed inset-x-0 top-0 transition-colors duration-500 ease-out",
+          menuOpen ? "z-[110] bg-surface" : "z-50 bg-background",
         )}
       >
         <div className="container-premium relative flex h-[72px] items-center md:h-20">
           <AnchorLink
-            href="#home"
-            className={cn(
-              "relative z-10 shrink-0",
-              menuOpen && "pointer-events-none invisible",
-            )}
+            href={sectionPrefix ? "/" : "#home"}
+            className="relative z-10 shrink-0"
             aria-label={t("a11y.logo")}
+            onClick={() => setMenuOpen(false)}
           >
-            <Logo companyName={companyName} />
+            <Logo
+              companyName={companyName}
+              className={cn(
+                "transition-[filter] duration-500",
+                menuOpen && "brightness-0 invert",
+              )}
+            />
           </AnchorLink>
 
           <nav
-            className={cn(
-              "absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 xl:flex",
-              menuOpen && "pointer-events-none invisible",
-            )}
+            className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 xl:flex"
             aria-label={t("a11y.mainNav")}
           >
-            {NAV_ITEMS.slice(1, 5).map((item) => (
+            {[NAV_ITEMS[1], NAV_ITEMS[2]].map((item) => (
               <AnchorLink
                 key={item.key}
-                href={item.href}
-                className="cursor-pointer text-base text-muted-foreground transition-colors duration-300 hover:text-foreground"
+                href={`${sectionPrefix}${item.href}`}
+                onClick={() => setMenuOpen(false)}
+                className={cn(
+                  "cursor-pointer text-base transition-colors duration-300",
+                  menuOpen
+                    ? "text-white/70 hover:text-white"
+                    : "text-muted-foreground hover:text-foreground",
+                )}
               >
                 {t(`nav.${item.key}`)}
               </AnchorLink>
             ))}
+            <Link
+              href="/proekty/"
+              onClick={() => setMenuOpen(false)}
+              className={cn(
+                "cursor-pointer text-base transition-colors duration-300",
+                menuOpen
+                  ? "text-white/70 hover:text-white"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              {t("nav.projects")}
+            </Link>
           </nav>
 
           <div className="relative z-10 ml-auto flex items-center gap-3 md:gap-4">
             <Button
-              variant="primary"
+              variant={menuOpen ? "inverse" : "primary"}
               size="sm"
-              className={cn("hidden md:inline-flex", menuOpen && "pointer-events-none invisible")}
-              onClick={() => openContactModal()}
+              showArrow
+              className="hidden md:inline-flex"
+              onClick={() => {
+                setMenuOpen(false);
+                openContactModal();
+              }}
             >
               {t("nav.cta")}
             </Button>
@@ -106,6 +124,7 @@ export function Header({ companyName }: HeaderProps) {
         open={menuOpen}
         onClose={() => setMenuOpen(false)}
         companyName={companyName}
+        sectionPrefix={sectionPrefix}
       />
     </>
   );

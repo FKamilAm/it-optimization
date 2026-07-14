@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   // Static export → produces an `out/` folder with plain HTML/CSS/JS that can be
   // uploaded to any shared hosting (reg.ru «Обычный хостинг»). No Node.js required.
   output: "export",
+  // Each route becomes a folder with index.html (e.g. /uslugi/x/index.html) so the
+  // clean URL /uslugi/x resolves without .htaccess rewrites on Apache/nginx.
+  trailingSlash: true,
   devIndicators: false,
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],

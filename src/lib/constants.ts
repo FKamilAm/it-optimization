@@ -68,6 +68,19 @@ export const TECHNOLOGIES = [
   "Framer Motion",
 ] as const;
 
+// Service key → dedicated SEO page slug (under /uslugi/…). Every service has its
+// own page, so cards link straight to these pages.
+export const SERVICE_PAGES: Record<string, string> = {
+  platforms: "razrabotka-crm",
+  websites: "razrabotka-sajtov",
+  telegram: "razrabotka-telegram-botov",
+  mobile: "razrabotka-mobilnyh-prilozhenij",
+  ai: "vnedrenie-ai",
+  integrations: "parsing-i-integracii",
+  blockchain: "blockchain-razrabotka",
+  support: "it-soprovozhdenie",
+};
+
 export const NAV_ITEMS = [
   { key: "home", href: "#home" },
   { key: "process", href: "#process" },

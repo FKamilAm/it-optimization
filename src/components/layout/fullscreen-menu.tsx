@@ -8,15 +8,22 @@ import { Logo } from "@/components/layout/logo";
 import { useContactModal } from "@/components/providers/contact-modal-provider";
 import { Button } from "@/components/ui/button";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
-import { NAV_ITEMS, SITE } from "@/lib/constants";
+import { SITE } from "@/lib/constants";
 
 interface FullscreenMenuProps {
   open: boolean;
   onClose: () => void;
   companyName: string;
+  /** "" on the homepage (smooth-scroll); "/" on subpages (navigate home + anchor). */
+  sectionPrefix?: string;
 }
 
-export function FullscreenMenu({ open, onClose, companyName }: FullscreenMenuProps) {
+export function FullscreenMenu({
+  open,
+  onClose,
+  companyName,
+  sectionPrefix = "",
+}: FullscreenMenuProps) {
   const t = useTranslations();
   const { scrollToSection } = useSmoothScroll();
   const { openContactModal } = useContactModal();
@@ -53,6 +60,16 @@ export function FullscreenMenu({ open, onClose, companyName }: FullscreenMenuPro
     window.setTimeout(() => scrollToSection(href), 450);
   };
 
+  // Section anchors + the dedicated Projects page (replaces industries/solutions).
+  const menuItems = [
+    { key: "home", href: `${sectionPrefix}#home`, page: false },
+    { key: "process", href: `${sectionPrefix}#process`, page: false },
+    { key: "services", href: `${sectionPrefix}#services`, page: false },
+    { key: "projects", href: "/proekty/", page: true },
+    { key: "faq", href: `${sectionPrefix}#faq`, page: false },
+    { key: "contact", href: `${sectionPrefix}#contact`, page: false },
+  ];
+
   return (
     <AnimatePresence>
       {open && (
@@ -79,19 +96,27 @@ export function FullscreenMenu({ open, onClose, companyName }: FullscreenMenuPro
                 exit="exit"
                 className="flex flex-col gap-2 md:gap-3"
               >
-                {NAV_ITEMS.map((item) => (
+                {menuItems.map((item, index) => (
                   <motion.a
                     key={item.key}
                     href={item.href}
                     variants={itemVariants}
                     onClick={(e) => {
+                      if (item.page) {
+                        onClose();
+                        return;
+                      }
+                      if (sectionPrefix) {
+                        onClose();
+                        return;
+                      }
                       e.preventDefault();
                       handleNavClick(item.href);
                     }}
                     className="group inline-flex cursor-pointer items-center gap-4 text-[clamp(2rem,5vw,4.5rem)] font-semibold leading-none tracking-[-0.03em] transition-colors duration-300 hover:text-accent"
                   >
                     <span className="text-base font-normal uppercase tracking-[0.2em] text-white/30 transition-colors group-hover:text-accent/60">
-                      {String(NAV_ITEMS.indexOf(item) + 1).padStart(2, "0")}
+                      {String(index + 1).padStart(2, "0")}
                     </span>
                     {t(`nav.${item.key}`)}
                   </motion.a>

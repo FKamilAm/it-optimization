@@ -488,3 +488,41 @@
     }
   }
 }
+
+/* Mobile hero-logo fallback: gentle float + a slow chrome "sheen" so the static
+   silver mark feels alive without loading any WebGL. */
+@keyframes heroMarkFloat {
+  0%,
+  100% {
+    transform: translateY(2.2%) rotate(-1.4deg);
+  }
+  50% {
+    transform: translateY(-2.2%) rotate(1.4deg);
+  }
+}
+
+@keyframes heroMarkSheen {
+  0%,
+  100% {
+    filter: brightness(1) drop-shadow(0 28px 55px rgba(15, 23, 42, 0.26));
+  }
+  50% {
+    filter: brightness(1.14) drop-shadow(0 32px 62px rgba(15, 23, 42, 0.3));
+  }
+}
+
+.hero-mark-anim {
+  animation: heroMarkFloat 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.hero-mark-anim svg {
+  animation: heroMarkSheen 4.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mark-anim,
+  .hero-mark-anim svg {
+    animation: none;
+  }
+}

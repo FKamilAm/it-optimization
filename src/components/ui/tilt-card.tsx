@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 interface TiltCardProps extends HTMLAttributes<HTMLElement> {
   as?: ElementType;
   max?: number;
+  /** Present when the card renders as an anchor (as="a"). */
+  href?: string;
 }
 
 /**

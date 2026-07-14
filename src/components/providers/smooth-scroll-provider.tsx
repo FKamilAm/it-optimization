@@ -34,20 +34,6 @@ function resolveElement(target: string | HTMLElement): HTMLElement | null {
   return target;
 }
 
-/**
- * Offset that lands the target block in the vertical center of the viewport
- * instead of jamming its top edge under the header. Blocks shorter than the
- * viewport are centered exactly; taller blocks sit a touch above center so their
- * heading keeps breathing room while the block still reads as centered.
- */
-function centerOffset(el: HTMLElement): number {
-  if (typeof window === "undefined") return HEADER_OFFSET;
-  const vh = window.innerHeight;
-  const h = el.offsetHeight;
-  if (h + 120 <= vh) return -Math.round((vh - h) / 2);
-  return -Math.round(vh * 0.2);
-}
-
 function fallbackScroll(
   el: HTMLElement,
   offset: number,
@@ -71,7 +57,7 @@ export function useSmoothScroll(): SmoothScrollContextValue {
         if (!el) return;
         fallbackScroll(
           el,
-          options?.offset ?? centerOffset(el),
+          options?.offset ?? HEADER_OFFSET,
           options?.onComplete,
           options?.updateHash ?? true,
         );
@@ -94,7 +80,7 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       const el = resolveElement(target);
       if (!el) return;
 
-      const offset = options?.offset ?? centerOffset(el);
+      const offset = options?.offset ?? HEADER_OFFSET;
       const updateHash = options?.updateHash ?? true;
       const onComplete = options?.onComplete;
 

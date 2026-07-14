@@ -75,11 +75,19 @@ export async function generateMetadata(): Promise<Metadata> {
     category: "technology",
     icons: {
       icon: [
-        { url: "/favicon-light.png", media: "(prefers-color-scheme: light)" },
-        { url: "/favicon-dark.png", media: "(prefers-color-scheme: dark)" },
+        {
+          url: "/favicon_black.svg",
+          type: "image/svg+xml",
+          media: "(prefers-color-scheme: light)",
+        },
+        {
+          url: "/favicon_white.svg",
+          type: "image/svg+xml",
+          media: "(prefers-color-scheme: dark)",
+        },
       ],
-      shortcut: "/favicon-light.png",
-      apple: "/favicon-light.png",
+      shortcut: "/favicon_black.svg",
+      apple: "/favicon_black.svg",
     },
   };
 }

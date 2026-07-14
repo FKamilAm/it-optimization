@@ -6,7 +6,7 @@
  */
 export function HeroLogoFallback() {
   return (
-    <div className="flex h-full w-full items-center justify-center">
+    <div className="hero-mark-anim flex h-full w-full items-center justify-center">
       <svg
         viewBox="0 0 35 27"
         role="img"

@@ -3,8 +3,8 @@
 import { useTranslations } from "next-intl";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal, StaggerReveal } from "@/components/animations/reveal";
-import { useContactModal } from "@/components/providers/contact-modal-provider";
 import { TiltCard } from "@/components/ui/tilt-card";
+import { SERVICE_PAGES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 const SERVICE_KEYS = [
@@ -20,7 +20,6 @@ const SERVICE_KEYS = [
 
 export function ServicesSection() {
   const t = useTranslations("services");
-  const { openContactModal } = useContactModal();
 
   return (
     <section id="services" className="surface-light section-padding relative">
@@ -38,32 +37,25 @@ export function ServicesSection() {
           {SERVICE_KEYS.map((key, index) => {
             const tags = t.raw(`items.${key}.tags`) as string[];
             const isDark = index % 3 === 1;
+            const pageSlug = SERVICE_PAGES[key];
 
-            const openForService = () => openContactModal(key);
+            const cardClassName = cn(
+              "group relative flex h-full min-h-[280px] cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border p-8 duration-500 md:p-10",
+              "transition-[border-color,box-shadow,background-color] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+              isDark
+                ? "border-white/10 bg-surface text-surface-foreground hover:border-accent"
+                : "border-border bg-background hover:border-accent hover:shadow-[0_24px_60px_rgba(0,0,0,0.06)]",
+            );
 
             return (
               <div key={key} className="h-full">
                 <TiltCard
-                  as="article"
+                  as="a"
+                  href={`/uslugi/${pageSlug}/`}
+                  aria-label={t(`items.${key}.title`)}
                   max={2.5}
                   data-cursor="dark"
-                  role="button"
-                  tabIndex={0}
-                  aria-label={t("cardCta", { service: t(`items.${key}.title`) })}
-                  onClick={openForService}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      openForService();
-                    }
-                  }}
-                  className={cn(
-                    "group relative flex h-full min-h-[280px] cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border p-8 duration-500 md:p-10",
-                    "transition-[border-color,box-shadow,background-color] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
-                    isDark
-                      ? "border-white/10 bg-surface text-surface-foreground hover:border-accent"
-                      : "border-border bg-background hover:border-accent hover:shadow-[0_24px_60px_rgba(0,0,0,0.06)]",
-                  )}
+                  className={cardClassName}
                 >
                   <span
                     aria-hidden="true"

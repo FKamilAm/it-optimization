@@ -11,7 +11,38 @@ export type ProjectVisualVariant =
   | "miniapp"
   | "web3"
   | "marketplace"
-  | "corporate";
+  | "corporate"
+  | "svpr"
+  | "tiger"
+  | "mebel"
+  | "renegade"
+  | "visit"
+  | "tgMiniApp"
+  | "nori"
+  | "street"
+  | "crypto"
+  | "score99";
+
+// Full ordered list of case keys, shared by the homepage section (first few)
+// and the dedicated /proekty page (all of them).
+export const PROJECT_KEYS: ProjectVisualVariant[] = [
+  "crm",
+  "aiAgent",
+  "miniapp",
+  "marketplace",
+  "web3",
+  "corporate",
+  "svpr",
+  "tiger",
+  "mebel",
+  "renegade",
+  "visit",
+  "tgMiniApp",
+  "nori",
+  "street",
+  "crypto",
+  "score99",
+];
 
 interface ProjectCardProps {
   title: string;
@@ -31,6 +62,16 @@ const COVER: Record<ProjectVisualVariant, string> = {
   web3: "/cases/case-web3.webp",
   marketplace: "/cases/case-marketplace.webp",
   corporate: "/cases/case-corporate.webp",
+  svpr: "/cases/case-svpr.webp",
+  tiger: "/cases/case-tiger.webp",
+  mebel: "/cases/case-mebel.webp",
+  renegade: "/cases/case-renegade.webp",
+  visit: "/cases/case-visit.webp",
+  tgMiniApp: "/cases/case-tg-mini-app.webp",
+  nori: "/cases/case-nori.webp",
+  street: "/cases/case-street.webp",
+  crypto: "/cases/case-crypto.webp",
+  score99: "/cases/case-99.webp",
 };
 
 // Full presentation slide shown in the lightbox when a case is opened (desktop, 16:9).
@@ -41,6 +82,16 @@ export const CASE_DETAIL: Record<ProjectVisualVariant, string> = {
   web3: "/cases/detail-web3.webp",
   marketplace: "/cases/detail-marketplace.webp",
   corporate: "/cases/detail-corporate.webp",
+  svpr: "/cases/detail-svpr.webp",
+  tiger: "/cases/detail-tiger.webp",
+  mebel: "/cases/detail-mebel.webp",
+  renegade: "/cases/detail-renegade.webp",
+  visit: "/cases/detail-visit.webp",
+  tgMiniApp: "/cases/detail-tg-mini-app.webp",
+  nori: "/cases/detail-nori.webp",
+  street: "/cases/detail-street.webp",
+  crypto: "/cases/detail-crypto.webp",
+  score99: "/cases/detail-99.webp",
 };
 
 // Portrait (9:16) variant used in the lightbox on mobile so the whole slide fits
@@ -52,6 +103,16 @@ export const CASE_DETAIL_MOBILE: Record<ProjectVisualVariant, string> = {
   web3: "/cases/detail-web3-mobile.webp",
   marketplace: "/cases/detail-marketplace-mobile.webp",
   corporate: "/cases/detail-corporate-mobile.webp",
+  svpr: "/cases/detail-svpr-mobile.webp",
+  tiger: "/cases/detail-tiger-mobile.webp",
+  mebel: "/cases/detail-mebel-mobile.webp",
+  renegade: "/cases/detail-renegade-mobile.webp",
+  visit: "/cases/detail-visit-mobile.webp",
+  tgMiniApp: "/cases/detail-tg-mini-app-mobile.webp",
+  nori: "/cases/detail-nori-mobile.webp",
+  street: "/cases/detail-street-mobile.webp",
+  crypto: "/cases/detail-crypto-mobile.webp",
+  score99: "/cases/detail-99-mobile.webp",
 };
 
 export function ProjectCard({
