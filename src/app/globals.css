@@ -316,10 +316,17 @@
     background-color: var(--surface);
   }
 
+  /* About+FAQ live in one defer block; keep it fully painted so the
+     reserved intrinsic height never flashes the light page background. */
   .section-defer:has(#faq),
   .section-defer:has(#faq) + .section-defer {
     content-visibility: visible;
     contain-intrinsic-size: none;
+  }
+
+  /* Harden dark→dark joins if sections ever sit adjacent without a wrapper. */
+  .surface-dark + .surface-dark {
+    margin-top: -1px;
   }
 
   /* --- Motion system: tilt / directional fill --- */

@@ -65,10 +65,13 @@ export default function HomePage() {
               <SolutionsSection />
             </div>
             <AuditSection />
+            {/* About + FAQ share one defer wrapper so content-visibility
+                cannot open a 1px light “seam” between two adjacent dark
+                surfaces (white hairline above the FAQ heading). */}
             <div className="section-defer">
               <AboutSection />
+              <FaqSection />
             </div>
-            <FaqSection />
             <div className="section-defer">
               <TechnologiesSection />
             </div>
