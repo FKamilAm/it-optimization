@@ -34,7 +34,7 @@ export function EcommerceScene({ animate }: { animate: boolean }) {
 
   return (
     <group ref={groupRef}>
-      <group scale={1.1} rotation={[0.14, -0.5, 0]} position={[0, 0.15, 0]}>
+      <group scale={1.42} rotation={[0.14, -0.5, 0]} position={[0, 0.1, 0]}>
         {/* ---- Wire-mesh basket (tilted back a touch) ---- */}
         <group position={[0.25, 0.55, 0]} rotation={[0.12, 0, 0]}>
           {/* Dark body behind the grid. */}
