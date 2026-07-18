@@ -12,6 +12,14 @@ import { AiScene } from "./scenes/ai-scene";
 import { IntegrationsScene } from "./scenes/integrations-scene";
 import { BlockchainScene } from "./scenes/blockchain-scene";
 import { SupportScene } from "./scenes/support-scene";
+import { CorporateScene } from "./scenes/corporate-scene";
+import { LaptopScene } from "./scenes/laptop-scene";
+import { EcommerceScene } from "./scenes/ecommerce-scene";
+import { BusinessCardScene } from "./scenes/business-card-scene";
+import { B2bScene } from "./scenes/b2b-scene";
+import { ContentAnalysisScene } from "./scenes/content-analysis-scene";
+import { TechContentScene } from "./scenes/tech-content-scene";
+import { CommercialAuditScene } from "./scenes/commercial-audit-scene";
 
 export type ServiceHeroVariant =
   | "platforms"
@@ -21,7 +29,15 @@ export type ServiceHeroVariant =
   | "ai"
   | "integrations"
   | "blockchain"
-  | "support";
+  | "support"
+  | "corporate"
+  | "websiteTurnkey"
+  | "ecommerce"
+  | "businessCard"
+  | "b2b"
+  | "contentAnalysis"
+  | "techContent"
+  | "commercialAudit";
 
 function SceneForVariant({ variant, animate }: { variant: ServiceHeroVariant; animate: boolean }) {
   switch (variant) {
@@ -41,6 +57,22 @@ function SceneForVariant({ variant, animate }: { variant: ServiceHeroVariant; an
       return <BlockchainScene animate={animate} />;
     case "support":
       return <SupportScene animate={animate} />;
+    case "corporate":
+      return <CorporateScene animate={animate} />;
+    case "websiteTurnkey":
+      return <LaptopScene animate={animate} />;
+    case "ecommerce":
+      return <EcommerceScene animate={animate} />;
+    case "businessCard":
+      return <BusinessCardScene animate={animate} />;
+    case "b2b":
+      return <B2bScene animate={animate} />;
+    case "contentAnalysis":
+      return <ContentAnalysisScene animate={animate} />;
+    case "techContent":
+      return <TechContentScene animate={animate} />;
+    case "commercialAudit":
+      return <CommercialAuditScene animate={animate} />;
     default:
       return null;
   }

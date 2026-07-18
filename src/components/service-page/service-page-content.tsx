@@ -35,6 +35,14 @@ const HERO_VISUAL: Partial<Record<string, ServiceHeroVariant>> = {
   integrations: "integrations",
   blockchain: "blockchain",
   support: "support",
+  corporate: "corporate",
+  websiteTurnkey: "websiteTurnkey",
+  ecommerce: "ecommerce",
+  businessCard: "businessCard",
+  b2b: "b2b",
+  contentAnalysis: "contentAnalysis",
+  techContent: "techContent",
+  commercialAudit: "commercialAudit",
 };
 
 // Solutions case key → square cover artwork (mirrors the homepage section).

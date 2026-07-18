@@ -1,0 +1,72 @@
+<svg width="1200" height="750" viewBox="0 0 1200 750" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Разработка мессенджеров">
+  <defs>
+    <linearGradient id="msgBg" x1="0" y1="0" x2="1200" y2="750" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f0f0f"/>
+      <stop offset="1" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <radialGradient id="msgGlow" cx="0.5" cy="0.45" r="0.55">
+      <stop stop-color="#b4e02d" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#b4e02d" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#msgBg)"/>
+  <g stroke="#ffffff" stroke-opacity="0.05">
+    <path d="M0 150H1200M0 300H1200M0 450H1200M0 600H1200"/>
+    <path d="M150 0V750M300 0V750M450 0V750M600 0V750M750 0V750M900 0V750M1050 0V750"/>
+  </g>
+  <rect width="1200" height="750" fill="url(#msgGlow)"/>
+
+  <!-- app window: the messenger being built -->
+  <g>
+    <rect x="360" y="180" width="480" height="390" rx="28" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.14" stroke-width="2"/>
+    <!-- title bar -->
+    <line x1="360" y1="236" x2="840" y2="236" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2"/>
+    <circle cx="392" cy="208" r="6" fill="#ffffff" fill-opacity="0.25"/>
+    <circle cx="414" cy="208" r="6" fill="#ffffff" fill-opacity="0.25"/>
+    <circle cx="436" cy="208" r="6" fill="#b4e02d" fill-opacity="0.8"/>
+
+    <!-- incoming bubble -->
+    <g>
+      <rect x="400" y="272" width="230" height="74" rx="22" fill="#ffffff" fill-opacity="0.08"/>
+      <rect x="426" y="296" width="150" height="12" rx="6" fill="#ffffff" fill-opacity="0.35"/>
+      <rect x="426" y="318" width="104" height="12" rx="6" fill="#ffffff" fill-opacity="0.22"/>
+    </g>
+    <!-- outgoing bubble (accent) -->
+    <g>
+      <rect x="560" y="366" width="240" height="86" rx="22" fill="#b4e02d"/>
+      <rect x="588" y="392" width="184" height="12" rx="6" fill="#0a0a0a" fill-opacity="0.55"/>
+      <rect x="588" y="416" width="120" height="12" rx="6" fill="#0a0a0a" fill-opacity="0.4"/>
+    </g>
+    <!-- typing indicator -->
+    <g>
+      <rect x="400" y="472" width="96" height="46" rx="23" fill="#ffffff" fill-opacity="0.08"/>
+      <circle cx="428" cy="495" r="6" fill="#ffffff" fill-opacity="0.4"/>
+      <circle cx="448" cy="495" r="6" fill="#ffffff" fill-opacity="0.28"/>
+      <circle cx="468" cy="495" r="6" fill="#ffffff" fill-opacity="0.2"/>
+    </g>
+  </g>
+
+  <!-- code tag badge: "development" signal -->
+  <g transform="translate(830 190)">
+    <rect x="-52" y="-40" width="150" height="80" rx="20" fill="#0a0a0a" stroke="#b4e02d" stroke-width="2.5"/>
+    <g stroke="#b4e02d" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M-18 -14l-16 14 16 14"/>
+      <path d="M62 -14l16 14 -16 14"/>
+      <path d="M28 -20l-12 40"/>
+    </g>
+  </g>
+
+  <!-- realtime connection nodes -->
+  <g stroke="#b4e02d" stroke-opacity="0.4" stroke-width="2.5" fill="none" stroke-dasharray="3 12" stroke-linecap="round">
+    <path d="M360 500C270 500 250 360 210 300"/>
+    <path d="M840 300C930 300 950 470 990 520"/>
+  </g>
+  <circle cx="205" cy="292" r="14" fill="#b4e02d" fill-opacity="0.12" stroke="#b4e02d" stroke-width="2.5"/>
+  <circle cx="205" cy="292" r="5" fill="#b4e02d"/>
+  <circle cx="995" cy="528" r="14" fill="#b4e02d" fill-opacity="0.12" stroke="#b4e02d" stroke-width="2.5"/>
+  <circle cx="995" cy="528" r="5" fill="#b4e02d"/>
+
+  <circle cx="250" cy="560" r="6" fill="#ffffff" fill-opacity="0.3"/>
+  <circle cx="960" cy="220" r="5" fill="#ffffff" fill-opacity="0.3"/>
+</svg>

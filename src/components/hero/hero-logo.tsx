@@ -40,13 +40,13 @@ function hasWebGL() {
 }
 
 export function HeroLogo({ className }: { className?: string }) {
-  // Start with the fallback (also what SSR renders), then upgrade to 3D on capable
-  // desktops. Mobile keeps the lightweight static mark to protect the first screen.
+  // Start with the fallback (also what SSR renders), then upgrade to the real 3D
+  // logo wherever WebGL is available — including mobile, so the hero mark looks
+  // identical on every device instead of dropping to the static silhouette.
   const [render3d, setRender3d] = useState(false);
 
   useEffect(() => {
-    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
-    setRender3d(isDesktop && hasWebGL());
+    setRender3d(hasWebGL());
   }, []);
 
   return (

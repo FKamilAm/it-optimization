@@ -66,6 +66,7 @@ export function FullscreenMenu({
     { key: "process", href: `${sectionPrefix}#process`, page: false },
     { key: "services", href: `${sectionPrefix}#services`, page: false },
     { key: "projects", href: "/proekty/", page: true },
+    { key: "blog", href: "/blog/", page: true },
     { key: "faq", href: `${sectionPrefix}#faq`, page: false },
     { key: "contact", href: `${sectionPrefix}#contact`, page: false },
   ];

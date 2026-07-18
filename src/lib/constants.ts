@@ -15,7 +15,7 @@ export const ORG = {
   ogrn: "1268600004463",
   address:
     "628162, Ханты-Мансийский - Югра автономный округ, Белоярский р-н, г. Белоярский, ул. Молодости, д. 1, кв. 68",
-  phone: "+7 993 726-61-61",
+  phone: "+7 996 326-61-61",
 } as const;
 
 // Direct contact channels — the site links straight into a messenger / call /
@@ -71,14 +71,22 @@ export const TECHNOLOGIES = [
 // Service key → dedicated SEO page slug (under /uslugi/…). Every service has its
 // own page, so cards link straight to these pages.
 export const SERVICE_PAGES: Record<string, string> = {
-  platforms: "razrabotka-crm",
+  corporate: "razrabotka-korporativnogo-sajta",
   websites: "razrabotka-sajtov",
+  websiteTurnkey: "veb-sajt-pod-klyuch",
+  ecommerce: "internet-magazin-pod-klyuch",
+  businessCard: "razrabotka-sajta-vizitki",
+  b2b: "razrabotka-sajta-dlya-b2b",
   telegram: "razrabotka-telegram-botov",
   mobile: "razrabotka-mobilnyh-prilozhenij",
   ai: "vnedrenie-ai",
   integrations: "parsing-i-integracii",
   blockchain: "blockchain-razrabotka",
   support: "it-soprovozhdenie",
+  contentAnalysis: "analiz-kontenta-sajta",
+  techContent: "tehnicheskij-kontent-sajta",
+  commercialAudit: "kommercheskij-audit-sajta",
+  platforms: "razrabotka-crm",
 };
 
 export const NAV_ITEMS = [
@@ -110,3 +118,51 @@ export const METRICS = [
   { valueKey: "metric2Value", labelKey: "metric2Label" },
   { valueKey: "metric3Value", labelKey: "metric3Label" },
 ] as const;
+
+// Ordered service list — the canonical order for the homepage grid and the
+// header "Услуги" dropdown. Each entry pairs a services.items.<key> catalog
+// label with its dedicated /uslugi/<slug> page.
+export const SERVICE_NAV = [
+  { key: "corporate", slug: SERVICE_PAGES.corporate },
+  { key: "websites", slug: SERVICE_PAGES.websites },
+  { key: "websiteTurnkey", slug: SERVICE_PAGES.websiteTurnkey },
+  { key: "ecommerce", slug: SERVICE_PAGES.ecommerce },
+  { key: "businessCard", slug: SERVICE_PAGES.businessCard },
+  { key: "b2b", slug: SERVICE_PAGES.b2b },
+  { key: "telegram", slug: SERVICE_PAGES.telegram },
+  { key: "mobile", slug: SERVICE_PAGES.mobile },
+  { key: "ai", slug: SERVICE_PAGES.ai },
+  { key: "integrations", slug: SERVICE_PAGES.integrations },
+  { key: "blockchain", slug: SERVICE_PAGES.blockchain },
+  { key: "support", slug: SERVICE_PAGES.support },
+  { key: "contentAnalysis", slug: SERVICE_PAGES.contentAnalysis },
+  { key: "techContent", slug: SERVICE_PAGES.techContent },
+  { key: "commercialAudit", slug: SERVICE_PAGES.commercialAudit },
+  { key: "platforms", slug: SERVICE_PAGES.platforms },
+] as const;
+
+// Blog posts, newest first. `key` maps to the blog.posts.<key> catalog block;
+// `slug` is the /blog/<slug> page URL; `cover` is the committed hero artwork.
+export const BLOG_POSTS = [
+  {
+    key: "securityAudit",
+    slug: "audit-bezopasnosti-sajtov",
+    cover: "/blog/audit-bezopasnosti-sajtov.svg",
+  },
+  {
+    key: "messengers",
+    slug: "razrabotka-messendzherov",
+    cover: "/blog/razrabotka-messendzherov.svg",
+  },
+  {
+    key: "parsing",
+    slug: "parsing-dannyh",
+    cover: "/blog/parsing-dannyh.svg",
+  },
+] as const;
+
+export type BlogPost = (typeof BLOG_POSTS)[number];
+
+export function blogPostBySlug(slug: string): BlogPost | undefined {
+  return BLOG_POSTS.find((post) => post.slug === slug);
+}

@@ -8,14 +8,22 @@ import { SERVICE_PAGES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 const SERVICE_KEYS = [
-  "platforms",
+  "corporate",
   "websites",
+  "websiteTurnkey",
+  "ecommerce",
+  "businessCard",
+  "b2b",
   "telegram",
   "mobile",
   "ai",
   "integrations",
   "blockchain",
   "support",
+  "contentAnalysis",
+  "techContent",
+  "commercialAudit",
+  "platforms",
 ] as const;
 
 export function ServicesSection() {

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Menu, X } from "lucide-react";
 import { FullscreenMenu } from "@/components/layout/fullscreen-menu";
+import { HeaderServicesMenu } from "@/components/layout/header-services-menu";
 import { Logo } from "@/components/layout/logo";
 import { useContactModal } from "@/components/providers/contact-modal-provider";
 import { AnchorLink } from "@/components/ui/anchor-link";
@@ -61,21 +62,25 @@ export function Header({ companyName, sectionPrefix = "" }: HeaderProps) {
             className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 xl:flex"
             aria-label={t("a11y.mainNav")}
           >
-            {[NAV_ITEMS[1], NAV_ITEMS[2]].map((item) => (
-              <AnchorLink
-                key={item.key}
-                href={`${sectionPrefix}${item.href}`}
-                onClick={() => setMenuOpen(false)}
-                className={cn(
-                  "cursor-pointer text-base transition-colors duration-300",
-                  menuOpen
-                    ? "text-white/70 hover:text-white"
-                    : "text-muted-foreground hover:text-foreground",
-                )}
-              >
-                {t(`nav.${item.key}`)}
-              </AnchorLink>
-            ))}
+            <AnchorLink
+              href={`${sectionPrefix}${NAV_ITEMS[1].href}`}
+              onClick={() => setMenuOpen(false)}
+              className={cn(
+                "cursor-pointer text-base transition-colors duration-300",
+                menuOpen
+                  ? "text-white/70 hover:text-white"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              {t(`nav.${NAV_ITEMS[1].key}`)}
+            </AnchorLink>
+
+            <HeaderServicesMenu
+              dark={menuOpen}
+              sectionPrefix={sectionPrefix}
+              onNavigate={() => setMenuOpen(false)}
+            />
+
             <Link
               href="/proekty/"
               onClick={() => setMenuOpen(false)}
@@ -87,6 +92,19 @@ export function Header({ companyName, sectionPrefix = "" }: HeaderProps) {
               )}
             >
               {t("nav.projects")}
+            </Link>
+
+            <Link
+              href="/blog/"
+              onClick={() => setMenuOpen(false)}
+              className={cn(
+                "cursor-pointer text-base transition-colors duration-300",
+                menuOpen
+                  ? "text-white/70 hover:text-white"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              {t("nav.blog")}
             </Link>
           </nav>
 
