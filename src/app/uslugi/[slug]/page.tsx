@@ -58,6 +58,20 @@ export default async function ServicePage({ params }: PageProps) {
   const url = `${siteUrl}/uslugi/${slug}/`;
   const faq = t.raw("faq") as { question: string; answer: string }[];
 
+  const tariffs = (t.raw("tariffs") as { name: string; price: string }[] | undefined) ?? [];
+  const prices = tariffs
+    .map((tier) => Number(tier.price.replace(/[^\d]/g, "")))
+    .filter((n) => n > 0);
+  const offers = prices.length
+    ? {
+        "@type": "AggregateOffer",
+        priceCurrency: "RUB",
+        lowPrice: Math.min(...prices),
+        highPrice: Math.max(...prices),
+        offerCount: prices.length,
+      }
+    : undefined;
+
   const jsonLd = [
     {
       "@context": "https://schema.org",
@@ -72,6 +86,7 @@ export default async function ServicePage({ params }: PageProps) {
         url: siteUrl,
       },
       areaServed: { "@type": "Country", name: "Россия" },
+      ...(offers ? { offers } : {}),
     },
     {
       "@context": "https://schema.org",

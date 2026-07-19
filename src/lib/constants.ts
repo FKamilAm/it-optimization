@@ -166,3 +166,38 @@ export type BlogPost = (typeof BLOG_POSTS)[number];
 export function blogPostBySlug(slug: string): BlogPost | undefined {
   return BLOG_POSTS.find((post) => post.slug === slug);
 }
+
+export function blogPostByKey(key: string): BlogPost | undefined {
+  return BLOG_POSTS.find((post) => post.key === key);
+}
+
+// Contextual internal links between service pages — feeds the "смежные услуги"
+// block and strengthens the internal link graph for SEO.
+export const RELATED_SERVICES: Record<string, string[]> = {
+  corporate: ["websiteTurnkey", "websites", "ecommerce", "businessCard"],
+  websites: ["corporate", "businessCard", "websiteTurnkey", "ecommerce"],
+  websiteTurnkey: ["corporate", "ecommerce", "businessCard", "websites"],
+  ecommerce: ["corporate", "b2b", "websiteTurnkey", "platforms"],
+  businessCard: ["websites", "corporate", "websiteTurnkey", "ecommerce"],
+  b2b: ["corporate", "ecommerce", "platforms", "integrations"],
+  telegram: ["mobile", "ai", "integrations", "platforms"],
+  mobile: ["telegram", "ai", "platforms", "blockchain"],
+  ai: ["integrations", "telegram", "platforms", "mobile"],
+  integrations: ["ai", "platforms", "techContent", "telegram"],
+  blockchain: ["platforms", "mobile", "ai", "integrations"],
+  support: ["platforms", "corporate", "integrations", "ai"],
+  contentAnalysis: ["commercialAudit", "techContent", "corporate", "websites"],
+  techContent: ["contentAnalysis", "commercialAudit", "corporate", "integrations"],
+  commercialAudit: ["contentAnalysis", "techContent", "websites", "corporate"],
+  platforms: ["b2b", "integrations", "ai", "support"],
+};
+
+// Service page → relevant blog posts (topical cross-linking).
+export const RELATED_ARTICLES: Record<string, string[]> = {
+  integrations: ["parsing"],
+  telegram: ["messengers"],
+  mobile: ["messengers"],
+  support: ["securityAudit"],
+  corporate: ["securityAudit"],
+  b2b: ["securityAudit"],
+};

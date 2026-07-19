@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import {
@@ -14,6 +15,7 @@ import {
 import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { ContactChannels } from "@/components/contact/contact-channels";
 import { CaseLightbox } from "@/components/sections/case-lightbox";
+import { ServiceCard } from "@/components/sections/service-card";
 import {
   CASE_DETAIL,
   CASE_DETAIL_MOBILE,
@@ -23,6 +25,12 @@ import { useContactModal } from "@/components/providers/contact-modal-provider";
 import { Button } from "@/components/ui/button";
 import { ServiceHeroVisual } from "@/components/service-hero/service-hero-visual";
 import type { ServiceHeroVariant } from "@/components/service-hero/service-hero-3d";
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
+import {
+  blogPostByKey,
+  RELATED_ARTICLES,
+  RELATED_SERVICES,
+} from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 // Service page key → dedicated 3D hero visual. Every service has its own scene.
@@ -78,12 +86,22 @@ interface FaqItem {
   answer: string;
 }
 
+interface Tariff {
+  name: string;
+  price: string;
+  deadline: string;
+  recommended?: boolean;
+  features: string[];
+}
+
 export function ServicePageContent({ pageKey }: { pageKey: string }) {
   const t = useTranslations(`servicePages.${pageKey}`);
   const c = useTranslations("servicePages.common");
   const service = useTranslations("services.items");
   const solutions = useTranslations("solutions.items");
+  const blog = useTranslations("blog");
   const { openContactModal } = useContactModal();
+  const { scrollToSection } = useSmoothScroll();
 
   const serviceKey = t("serviceKey");
   const includes = t.raw("includes") as string[];
@@ -91,6 +109,9 @@ export function ServicePageContent({ pageKey }: { pageKey: string }) {
   const steps = t.raw("steps") as UseCaseItem[];
   const faq = t.raw("faq") as FaqItem[];
   const cases = (t.raw("cases") as string[] | undefined) ?? [];
+  const tariffs = (t.raw("tariffs") as Tariff[] | undefined) ?? [];
+  const relatedServices = RELATED_SERVICES[pageKey] ?? [];
+  const relatedArticleKeys = RELATED_ARTICLES[pageKey] ?? [];
 
   const heroVariant = HERO_VISUAL[pageKey];
   // All service pages use the light hero (dark text on white) + re-sequenced
@@ -336,6 +357,20 @@ export function ServicePageContent({ pageKey }: { pageKey: string }) {
                 >
                   {c("ctaPrimary")}
                 </Button>
+                {tariffs.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => scrollToSection("#tariffs")}
+                    className={cn(
+                      "inline-flex h-14 w-full cursor-pointer items-center justify-center gap-2 rounded-full border px-8 text-base font-medium transition-colors duration-300 hover:border-accent hover:text-accent sm:w-auto",
+                      lightHero
+                        ? "border-foreground/20 text-foreground"
+                        : "border-white/20 text-white",
+                    )}
+                  >
+                    {c("viewTariffs")}
+                  </button>
+                )}
                 <a
                   href="/#services"
                   className={cn(
@@ -708,16 +743,167 @@ export function ServicePageContent({ pageKey }: { pageKey: string }) {
       </section>
   );
 
-  // Section order. Telegram is the pilot with a re-sequenced layout (cases first,
-  // then what's included, audience, process, FAQ); other pages keep the default.
+  const tariffsSection = tariffs.length ? (
+    <section key="tariffs" id="tariffs" className="surface-light section-padding relative">
+      <div className="container-premium relative z-10">
+        <Reveal>
+          <h2 className="heading-section max-w-3xl">{c("tariffsTitle")}</h2>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <p className="body-base mt-5 max-w-2xl text-muted-foreground">
+            {c("tariffsSubtitle")}
+          </p>
+        </Reveal>
+
+        <StaggerReveal className="mt-14 grid gap-6 md:grid-cols-3 md:gap-7">
+          {tariffs.map((tier) => (
+            <div key={tier.name} className="h-full">
+              <div
+                className={cn(
+                  "relative flex h-full flex-col rounded-2xl border p-8 transition-[border-color,box-shadow] duration-500 md:p-9",
+                  tier.recommended
+                    ? "border-accent bg-accent-muted/40 shadow-[0_0_40px_rgba(180,224,45,0.16)]"
+                    : "border-border bg-background hover:border-accent/50",
+                )}
+              >
+                {tier.recommended && (
+                  <span className="absolute right-7 top-8 rounded-full bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-accent-foreground md:right-8">
+                    {c("recommendedLabel")}
+                  </span>
+                )}
+                <h3 className="heading-subsection text-foreground">{tier.name}</h3>
+                <p className="mt-5 text-3xl font-semibold text-foreground md:text-4xl">
+                  {tier.price}
+                </p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {c("deadlineLabel")}: {tier.deadline}
+                </p>
+
+                <ul className="mt-7 flex flex-1 flex-col gap-3">
+                  {tier.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-3">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground">
+                        <Check className="h-3 w-3" />
+                      </span>
+                      <span className="body-base text-foreground/80">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Button
+                  variant={tier.recommended ? "primary" : "outline"}
+                  size="lg"
+                  className="mt-8 w-full"
+                  onClick={() => openContactModal()}
+                >
+                  {c("tariffCta")}
+                </Button>
+              </div>
+            </div>
+          ))}
+        </StaggerReveal>
+
+        <Reveal delay={0.1}>
+          <p className="mt-8 text-sm text-muted-foreground">{c("tariffsNote")}</p>
+        </Reveal>
+      </div>
+    </section>
+  ) : null;
+
+  const relatedSection = relatedServices.length ? (
+    <section
+      key="related"
+      className="surface-light section-padding relative border-t border-border"
+    >
+      <div className="container-premium relative z-10">
+        <Reveal>
+          <h2 className="heading-section max-w-3xl">{c("relatedTitle")}</h2>
+        </Reveal>
+        <StaggerReveal className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4 md:gap-8">
+          {relatedServices.map((key, index) => (
+            <div key={key} className="h-full">
+              <ServiceCard serviceKey={key} index={index} />
+            </div>
+          ))}
+        </StaggerReveal>
+
+        {relatedArticleKeys.length > 0 && (
+          <div className="mt-16">
+            <Reveal>
+              <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                {c("relatedArticlesTitle")}
+              </h3>
+            </Reveal>
+            <StaggerReveal className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3 md:gap-8">
+              {relatedArticleKeys.map((key) => {
+                const post = blogPostByKey(key);
+                if (!post) return null;
+                return (
+                  <div key={key} className="h-full">
+                    <Link
+                      href={`/blog/${post.slug}/`}
+                      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-background transition-[border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent hover:shadow-[0_0_38px_rgba(180,224,45,0.22)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                    >
+                      <div className="relative aspect-[16/10] overflow-hidden bg-surface">
+                        <Image
+                          src={post.cover}
+                          alt={blog(`posts.${key}.title`)}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                        />
+                      </div>
+                      <div className="flex flex-1 flex-col p-7 md:p-8">
+                        <h4 className="heading-subsection text-foreground">
+                          {blog(`posts.${key}.title`)}
+                        </h4>
+                        <span className="mt-6 inline-flex items-center gap-1.5 text-base font-medium text-foreground">
+                          <span className="relative">
+                            {blog("readMore")}
+                            <span
+                              aria-hidden="true"
+                              className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100 motion-reduce:transition-none"
+                            />
+                          </span>
+                          <ArrowUpRight className="h-4 w-4" />
+                        </span>
+                      </div>
+                    </Link>
+                  </div>
+                );
+              })}
+            </StaggerReveal>
+          </div>
+        )}
+      </div>
+    </section>
+  ) : null;
+
+  // Section order: tariffs sit directly after the cases block; other pages
+  // (non-light hero) keep the default sequence.
   const middleSections = lightHero
-    ? [casesSection, includesSection, forWhomSection, processSection, faqSection]
-    : [includesSection, casesSection, processSection, forWhomSection, faqSection];
+    ? [
+        casesSection,
+        tariffsSection,
+        includesSection,
+        forWhomSection,
+        processSection,
+        faqSection,
+      ]
+    : [
+        includesSection,
+        casesSection,
+        tariffsSection,
+        processSection,
+        forWhomSection,
+        faqSection,
+      ];
 
   return (
     <>
       {heroSection}
       {middleSections}
+      {relatedSection}
       {contactSection}
 
       <CaseLightbox
