@@ -97,16 +97,15 @@ export function httpCasesApi(): CasesApi {
         buildUrl?: string;
       };
 
-      if (!result.published && result.reason) {
-        // Локальный режим без доступа к репозиторию: данные сохранены, но сайт
-        // не пересобирается — честно говорим об этом, а не рисуем успех.
-        throw new Error(result.reason);
-      }
-
+      // Если снапшот никуда не уехал (например, серверу не выдан доступ к
+      // репозиторию), это не повод бросать ошибку: правки уже в базе, и
+      // потерять достигнутую версию нельзя — иначе повторная попытка упрётся в
+      // конфликт версий. Возвращаем успех с предупреждением.
       return {
         version,
         changeUrl: result.commitUrl,
         buildUrl: result.buildUrl,
+        warning: result.published ? undefined : result.reason,
       };
     },
   };

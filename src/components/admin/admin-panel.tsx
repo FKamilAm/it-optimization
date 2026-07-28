@@ -483,11 +483,25 @@ export function AdminPanel() {
         )}
 
         {published && !dirty && (
-          <div className="border-accent-border bg-accent-muted mb-6 rounded-xl border p-4 text-sm">
+          <div
+            className={cn(
+              "mb-6 rounded-xl border p-4 text-sm",
+              published.warning
+                ? "border-amber-300 bg-amber-50 text-amber-900"
+                : "border-accent-border bg-accent-muted",
+            )}
+          >
             <p className="flex items-center gap-2 font-medium">
-              <Check className="h-4 w-4" />
-              Изменения закоммичены. Сайт пересоберётся сам — обычно 2–4 минуты.
+              {published.warning ? (
+                <AlertTriangle className="h-4 w-4 shrink-0" />
+              ) : (
+                <Check className="h-4 w-4" />
+              )}
+              {published.warning
+                ? "Правки сохранены, но на сайт пока не уехали."
+                : "Изменения закоммичены. Сайт пересоберётся сам — обычно 2–4 минуты."}
             </p>
+            {published.warning && <p className="mt-2">{published.warning}</p>}
             <p className="text-muted-foreground mt-2 flex flex-wrap gap-4">
               {published.buildUrl && (
                 <a
