@@ -2,11 +2,7 @@
 
 import { useEffect, useMemo } from "react";
 import * as THREE from "three";
-import {
-  AccentMaterial,
-  ChromeMaterial,
-  useIdleAnimation,
-} from "../shared";
+import { AccentMaterial, ChromeMaterial, useIdleAnimation } from "../shared";
 
 const EXTRUDE: THREE.ExtrudeGeometryOptions = {
   depth: 0.5,

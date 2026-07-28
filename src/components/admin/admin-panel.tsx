@@ -16,7 +16,11 @@ import {
   Upload,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { FilterSelect, type FilterOption } from "@/components/ui/filter-select";
+import {
+  FilterSelect,
+  MultiFilterSelect,
+  type FilterOption,
+} from "@/components/ui/filter-select";
 import { countCasesByService, formatTags, type CaseItem } from "@/lib/cases";
 import { ADMIN_REPO, CASES_JSON_PATH, TOKEN_STORAGE_KEY } from "@/lib/admin/github";
 import {
@@ -570,12 +574,22 @@ export function AdminPanel() {
           </p>
         ) : (
           <>
-            <ServiceFilter
-              counts={serviceCounts}
-              total={drafts.length}
-              active={serviceFilter}
-              onChange={setServiceFilter}
-            />
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+              <ServiceFilter
+                counts={serviceCounts}
+                total={drafts.length}
+                active={serviceFilter}
+                onChange={setServiceFilter}
+              />
+              <button
+                type="button"
+                onClick={addCase}
+                className="border-foreground/40 hover:border-foreground hover:bg-background inline-flex h-12 shrink-0 cursor-pointer items-center gap-2 rounded-full border border-dashed px-6 text-sm font-medium transition-colors"
+              >
+                <Plus className="h-4 w-4" />
+                Добавить кейс
+              </button>
+            </div>
 
             {serviceFilter && (
               <p className="text-muted-foreground mb-3 text-sm">
@@ -613,15 +627,6 @@ export function AdminPanel() {
             </Reorder.Group>
           </>
         )}
-
-        <button
-          type="button"
-          onClick={addCase}
-          className="border-foreground/40 hover:border-foreground hover:bg-background mt-6 inline-flex h-12 cursor-pointer items-center gap-2 rounded-full border border-dashed px-6 text-sm font-medium transition-colors"
-        >
-          <Plus className="h-4 w-4" />
-          Добавить кейс
-        </button>
 
         <p className="text-muted-foreground mt-10 text-xs leading-relaxed">
           {ADMIN_MODE === "api" ? (
@@ -668,13 +673,21 @@ function ServiceFilter({
   ];
 
   return (
-    <div className="mb-4">
-      <FilterSelect label="Услуга" options={options} value={active} onChange={onChange} />
-    </div>
+    <FilterSelect
+      label="Услуга"
+      options={options}
+      value={active}
+      onChange={onChange}
+      className="max-w-sm"
+    />
   );
 }
 
-/** Услуги, на страницах которых показывается кейс. Их может быть несколько. */
+/**
+ * Услуги, на страницах которых показывается кейс. Выпадающий список с
+ * множественным выбором, рядом — плашки выбранного: так видно результат, не
+ * открывая список.
+ */
 function ServicePicker({
   selected,
   onChange,
@@ -682,43 +695,25 @@ function ServicePicker({
   selected: string[];
   onChange: (services: string[]) => void;
 }) {
-  const toggle = (key: string) =>
-    onChange(
-      selected.includes(key)
-        ? selected.filter((item) => item !== key)
-        : [...selected, key],
-    );
-
   return (
-    <label className="block text-sm font-medium md:col-span-2">
-      Услуги
-      <span className="text-muted-foreground mt-1 block text-xs font-normal">
+    <div className="md:col-span-2">
+      <span className="block text-sm font-medium">Услуги</span>
+      <span className="text-muted-foreground mt-1 block text-xs">
         На страницах каких услуг показывать кейс и по каким фильтровать. Можно выбрать
         несколько; если ничего не выбрано, кейс виден только в общем списке.
       </span>
-      <div className="mt-2 flex flex-wrap gap-2">
-        {SERVICE_OPTIONS.map((option) => {
-          const on = selected.includes(option.key);
-          return (
-            <button
-              key={option.key}
-              type="button"
-              onClick={() => toggle(option.key)}
-              aria-pressed={on}
-              className={cn(
-                "inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm transition-colors",
-                on
-                  ? "border-accent-border bg-accent-soft"
-                  : "border-border hover:border-foreground",
-              )}
-            >
-              {on && <Check className="h-3.5 w-3.5" />}
-              {option.title}
-            </button>
-          );
-        })}
-      </div>
-    </label>
+      <MultiFilterSelect
+        label="Услуги кейса"
+        placeholder="Выбрать услуги"
+        options={SERVICE_OPTIONS.map((option) => ({
+          value: option.key,
+          label: option.title,
+        }))}
+        selected={selected}
+        onChange={onChange}
+        className="mt-2"
+      />
+    </div>
   );
 }
 

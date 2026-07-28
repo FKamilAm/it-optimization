@@ -5,7 +5,12 @@ import { AccentMaterial, ChromeMaterial, Connector, useIdleAnimation } from "../
 
 // Dark recessed body behind the chrome wire grid — gives the see-through
 // "wire basket" read of a real supermarket cart.
-const BODY = { color: "#12161d", metalness: 0.8, roughness: 0.25, envMapIntensity: 1.4 } as const;
+const BODY = {
+  color: "#12161d",
+  metalness: 0.8,
+  roughness: 0.25,
+  envMapIntensity: 1.4,
+} as const;
 
 const W = 2.4;
 const H = 1.3;
@@ -75,7 +80,12 @@ export function EcommerceScene({ animate }: { animate: boolean }) {
           ))}
 
           {/* Top rim frame. */}
-          {([[0, D / 2], [0, -D / 2]] as const).map(([, z]) => (
+          {(
+            [
+              [0, D / 2],
+              [0, -D / 2],
+            ] as const
+          ).map(([, z]) => (
             <mesh key={`rim${z}`} position={[0, H / 2, z]}>
               <boxGeometry args={[W + 0.12, 0.11, 0.11]} />
               <ChromeMaterial color="#c8ced6" />

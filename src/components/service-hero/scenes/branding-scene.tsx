@@ -4,19 +4,25 @@ import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Extrude } from "@react-three/drei";
 import * as THREE from "three";
-import { ACCENT, AccentMaterial, ChromeMaterial, useIdleAnimation } from "../shared";
+import { AccentMaterial, ChromeMaterial, useIdleAnimation } from "../shared";
 
-const R = 1.55; // радиус палитры
-const THUMB = { x: 0.42, y: -0.52, r: 0.42 }; // отверстие для большого пальца
+const R = 1.6; // радиус палитры
+const THUMB = { x: 0.5, y: -0.62, r: 0.4 }; // отверстие для большого пальца
 
 /**
- * Силуэт палитры — тот же, что у иконки услуги в шапке: почти круг с вырезом
- * под большой палец. Вырез сделан отверстием в фигуре, поэтому сквозь него
- * видно фон, как и положено палитре.
+ * Силуэт классической палитры: круг с вырезом-«заливом» слева снизу, куда
+ * ложится большой палец, и отдельным отверстием под него же. Вырез делает
+ * форму узнаваемой — ровный круг читался бы просто как диск.
  */
 function paletteShape(): THREE.Shape {
   const shape = new THREE.Shape();
-  shape.absarc(0, 0, R, 0, Math.PI * 2, false);
+
+  // Основная дуга — почти полный круг, разрыв оставлен под залив.
+  shape.absarc(0, 0, R, Math.PI * 1.28, Math.PI * 0.72, false);
+
+  // Залив: плавно уводим контур внутрь и возвращаем к началу дуги.
+  shape.bezierCurveTo(-0.95, -1.25, -0.2, -0.62, 0.16, -1.02);
+  shape.bezierCurveTo(0.5, -1.4, -0.4, -1.62, -0.98, -1.26);
 
   const hole = new THREE.Path();
   hole.absarc(THUMB.x, THUMB.y, THUMB.r, 0, Math.PI * 2, true);
@@ -26,7 +32,7 @@ function paletteShape(): THREE.Shape {
 }
 
 const EXTRUDE = {
-  depth: 0.3,
+  depth: 0.28,
   bevelEnabled: true,
   bevelThickness: 0.05,
   bevelSize: 0.05,
@@ -35,39 +41,48 @@ const EXTRUDE = {
 };
 
 /**
- * Краски по дуге, как на иконке. Одна — фирменная зелёная, остальные приглушены:
- * акцент на сайте один, и палитра не должна с ним спорить.
+ * Краски по дуге, как на палитре художника. Одна фирменная зелёная, остальные
+ * приглушены: акцент на сайте один, и палитра не должна с ним спорить.
  */
 const PAINTS = [
-  { x: -0.72, y: 0.78, color: ACCENT.color, accent: true },
-  { x: 0.28, y: 0.98, color: "#4b5563", accent: false },
-  { x: 1.0, y: 0.32, color: "#94a3b8", accent: false },
-  { x: -1.05, y: -0.28, color: "#64748b", accent: false },
+  { x: -0.78, y: 0.72, accent: true, color: "#b4e02d" },
+  { x: 0.22, y: 1.0, accent: false, color: "#475569" },
+  { x: 1.0, y: 0.34, accent: false, color: "#94a3b8" },
+  { x: -1.06, y: -0.34, accent: false, color: "#64748b" },
 ] as const;
 
 /**
- * Дизайн и брендинг — палитра с красками, повторяющая иконку услуги в шапке.
- * Она покачивается, а не крутится: по кругу палитра быстро перестаёт читаться,
- * потому что узнаётся именно силуэтом с вырезом.
+ * Дизайн и брендинг — палитра с красками и кисть рядом, остриём вниз. Сцена
+ * покачивается, а не крутится: палитра узнаётся силуэтом с вырезом, и при
+ * полном обороте он пропадает.
  */
 export function BrandingScene({ animate }: { animate: boolean }) {
   const groupRef = useIdleAnimation(animate);
-  const paletteRef = useRef<THREE.Group>(null);
+  const sceneRef = useRef<THREE.Group>(null);
+  const brushRef = useRef<THREE.Group>(null);
   const shape = useMemo(paletteShape, []);
 
   useFrame(({ clock }) => {
-    const palette = paletteRef.current;
-    if (!palette || !animate) return;
     const t = clock.getElapsedTime();
-    palette.rotation.y = Math.sin(t * 0.4) * 0.46;
-    palette.rotation.x = Math.sin(t * 0.63) * 0.12;
-    palette.rotation.z = Math.sin(t * 0.33) * 0.07;
-    palette.position.y = Math.sin(t * 0.85) * 0.07;
+
+    const scene = sceneRef.current;
+    if (scene && animate) {
+      scene.rotation.y = Math.sin(t * 0.4) * 0.44;
+      scene.rotation.x = Math.sin(t * 0.63) * 0.1;
+      scene.position.y = Math.sin(t * 0.85) * 0.06;
+    }
+
+    // Кисть слегка «макает» в краску — движение вдоль своей оси.
+    const brush = brushRef.current;
+    if (brush && animate) {
+      brush.position.y = 0.28 + Math.sin(t * 0.9) * 0.12;
+      brush.rotation.z = 0.2 + Math.sin(t * 0.55) * 0.05;
+    }
   });
 
   return (
     <group ref={groupRef}>
-      <group ref={paletteRef} scale={1.32} rotation={[0, 0, 0.12]}>
+      <group ref={sceneRef} scale={1.16} position={[-0.35, 0, 0]}>
         <Extrude args={[shape, EXTRUDE]} position={[0, 0, -EXTRUDE.depth / 2]}>
           <ChromeMaterial color="#e9eef4" roughness={0.28} />
         </Extrude>
@@ -75,17 +90,36 @@ export function BrandingScene({ animate }: { animate: boolean }) {
         {PAINTS.map((paint) => (
           <mesh
             key={`${paint.x}-${paint.y}`}
-            position={[paint.x, paint.y, EXTRUDE.depth / 2 + 0.06]}
+            position={[paint.x, paint.y, EXTRUDE.depth / 2 + 0.05]}
             rotation={[Math.PI / 2, 0, 0]}
           >
-            <cylinderGeometry args={[0.27, 0.27, 0.12, 32]} />
+            <cylinderGeometry args={[0.26, 0.26, 0.1, 32]} />
             {paint.accent ? (
               <AccentMaterial />
             ) : (
-              <ChromeMaterial color={paint.color} roughness={0.32} metalness={0.1} />
+              <ChromeMaterial color={paint.color} roughness={0.34} metalness={0.1} />
             )}
           </mesh>
         ))}
+
+        {/* Кисть справа от палитры, ворсом вниз. */}
+        <group ref={brushRef} position={[2.15, 0.28, 0.3]} rotation={[0, 0, 0.2]}>
+          {/* Ручка. */}
+          <mesh position={[0, 1.15, 0]}>
+            <cylinderGeometry args={[0.11, 0.14, 2.1, 20]} />
+            <ChromeMaterial color="#cfd8e3" roughness={0.3} metalness={0.2} />
+          </mesh>
+          {/* Обойма. */}
+          <mesh position={[0, -0.02, 0]}>
+            <cylinderGeometry args={[0.15, 0.15, 0.36, 20]} />
+            <ChromeMaterial color="#94a3b8" roughness={0.22} metalness={0.7} />
+          </mesh>
+          {/* Ворс — сходится в кончик. */}
+          <mesh position={[0, -0.42, 0]}>
+            <cylinderGeometry args={[0.14, 0.02, 0.56, 20]} />
+            <AccentMaterial />
+          </mesh>
+        </group>
       </group>
     </group>
   );

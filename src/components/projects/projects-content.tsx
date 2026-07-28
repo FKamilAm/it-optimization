@@ -70,7 +70,9 @@ export function ProjectsContent({ cases }: { cases: CaseItem[] }) {
 
           {options.length > 2 && (
             <Reveal delay={0.1}>
-              <div className="mt-12">
+              {/* relative + z-40: без этого открытый список уходит под сетку
+                  карточек, которая идёт ниже по разметке и создаёт свой слой. */}
+              <div className="relative z-40 mt-12">
                 <FilterSelect
                   label={t("filterLabel")}
                   options={options}

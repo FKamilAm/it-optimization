@@ -29,15 +29,37 @@ function curvePoints(segments = 48): [number, number][] {
   return curve.getPoints(segments).map((p) => [p.x, p.y] as [number, number]);
 }
 
-/** Перо: вытянутый наконечник со скошенным кончиком. */
+/**
+ * Каллиграфическое перо: вытянутый ромб с остриём внизу, круглым отверстием
+ * посередине и прорезью от него к кончику — тот самый силуэт, которым во всех
+ * редакторах обозначают инструмент «перо». Отверстие и прорезь сделаны
+ * настоящими дырками в геометрии, поэтому сквозь них виден фон.
+ */
 function nibShape(): THREE.Shape {
   const s = new THREE.Shape();
-  s.moveTo(0, -0.62);
-  s.lineTo(0.26, -0.12);
-  s.lineTo(0.26, 0.66);
-  s.lineTo(-0.26, 0.66);
-  s.lineTo(-0.26, -0.12);
+  s.moveTo(0, -1.18); // остриё
+  s.lineTo(0.54, -0.12); // правая скула
+  s.lineTo(0.34, 0.76);
+  s.lineTo(0.19, 1.02); // хвостовик под держатель
+  s.lineTo(-0.19, 1.02);
+  s.lineTo(-0.34, 0.76);
+  s.lineTo(-0.54, -0.12); // левая скула
   s.closePath();
+
+  // Отверстие для чернил.
+  const hole = new THREE.Path();
+  hole.absarc(0, -0.04, 0.14, 0, Math.PI * 2, true);
+  s.holes.push(hole);
+
+  // Прорезь от отверстия к острию — книзу сходится в ноль.
+  const slit = new THREE.Path();
+  slit.moveTo(-0.05, -0.1);
+  slit.lineTo(0.05, -0.1);
+  slit.lineTo(0.012, -1.04);
+  slit.lineTo(-0.012, -1.04);
+  slit.closePath();
+  s.holes.push(slit);
+
   return s;
 }
 
@@ -84,7 +106,7 @@ export function WebDesignScene({ animate }: { animate: boolean }) {
     if (pen) {
       const at = curve.getPoint(progress);
       const tangent = curve.getTangent(Math.min(0.999, progress));
-      pen.position.set(at.x, at.y + 0.5, 0.42);
+      pen.position.set(at.x, at.y + 0.86, 0.44);
       // Остриё смотрит по касательной к кривой.
       pen.rotation.z = Math.atan2(tangent.y, tangent.x) - Math.PI / 2;
     }
@@ -153,13 +175,13 @@ export function WebDesignScene({ animate }: { animate: boolean }) {
         ))}
 
         {/* Перо. */}
-        <group ref={penRef}>
+        <group ref={penRef} scale={0.92}>
           <Extrude args={[nib, NIB_EXTRUDE]}>
-            <ChromeMaterial color="#e8edf3" roughness={0.22} />
+            <ChromeMaterial color="#dfe6ee" roughness={0.2} metalness={0.55} />
           </Extrude>
-          {/* Акцентная вставка у основания пера. */}
-          <mesh position={[0, 0.42, NIB_EXTRUDE.depth + 0.02]}>
-            <boxGeometry args={[0.34, 0.16, 0.05]} />
+          {/* Акцентная обойма на хвостовике. */}
+          <mesh position={[0, 0.88, NIB_EXTRUDE.depth / 2]}>
+            <boxGeometry args={[0.46, 0.2, NIB_EXTRUDE.depth + 0.12]} />
             <AccentMaterial />
           </mesh>
         </group>

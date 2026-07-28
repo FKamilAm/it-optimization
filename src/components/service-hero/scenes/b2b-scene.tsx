@@ -39,7 +39,11 @@ export function B2bScene({ animate }: { animate: boolean }) {
             smoothness={4}
             position={[x, 0.55, 0.6]}
           >
-            {i === 0 ? <AccentMaterial /> : <ChromeMaterial color="#b7bfca" roughness={0.3} />}
+            {i === 0 ? (
+              <AccentMaterial />
+            ) : (
+              <ChromeMaterial color="#b7bfca" roughness={0.3} />
+            )}
           </RoundedBox>
         ))}
       </group>

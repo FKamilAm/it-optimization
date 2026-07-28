@@ -3,12 +3,7 @@
 import { useEffect, useMemo } from "react";
 import * as THREE from "three";
 import { RoundedBox } from "@react-three/drei";
-import {
-  AccentMaterial,
-  ChromeMaterial,
-  strokeShape,
-  useIdleAnimation,
-} from "../shared";
+import { AccentMaterial, ChromeMaterial, strokeShape, useIdleAnimation } from "../shared";
 
 const BOARD_Z = 0.16;
 
@@ -50,7 +45,12 @@ export function CommercialAuditScene({ animate }: { animate: boolean }) {
           <ChromeMaterial />
         </RoundedBox>
         {/* Clip at the top. */}
-        <RoundedBox args={[1.1, 0.5, 0.24]} radius={0.08} smoothness={4} position={[0, 2.35, 0.05]}>
+        <RoundedBox
+          args={[1.1, 0.5, 0.24]}
+          radius={0.08}
+          smoothness={4}
+          position={[0, 2.35, 0.05]}
+        >
           <ChromeMaterial color="#b7bfca" roughness={0.3} />
         </RoundedBox>
 
@@ -73,7 +73,11 @@ export function CommercialAuditScene({ animate }: { animate: boolean }) {
         {[0.6, 1.0, 1.5].map((h, i) => (
           <mesh key={i} position={[-0.85 + i * 0.7, -1.35 + h / 2, BOARD_Z]}>
             <boxGeometry args={[0.46, h, 0.08]} />
-            {i === 2 ? <AccentMaterial /> : <ChromeMaterial color="#aab2bd" roughness={0.34} />}
+            {i === 2 ? (
+              <AccentMaterial />
+            ) : (
+              <ChromeMaterial color="#aab2bd" roughness={0.34} />
+            )}
           </mesh>
         ))}
       </group>

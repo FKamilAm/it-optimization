@@ -31,7 +31,12 @@ export function CorporateScene({ animate }: { animate: boolean }) {
           <ChromeMaterial color="#c2c9d3" />
         </RoundedBox>
         {/* Glossy display. */}
-        <RoundedBox args={[W - 0.34, H - 0.34, 0.05]} radius={0.08} smoothness={5} position={[0, 0, 0.13]}>
+        <RoundedBox
+          args={[W - 0.34, H - 0.34, 0.05]}
+          radius={0.08}
+          smoothness={5}
+          position={[0, 0, 0.13]}
+        >
           <meshStandardMaterial {...GLASS} />
         </RoundedBox>
 
@@ -50,7 +55,12 @@ export function CorporateScene({ animate }: { animate: boolean }) {
         </mesh>
 
         {/* Hero block. */}
-        <RoundedBox args={[GX, 1.1, 0.05]} radius={0.08} smoothness={4} position={[0, 0.42, UI_Z]}>
+        <RoundedBox
+          args={[GX, 1.1, 0.05]}
+          radius={0.08}
+          smoothness={4}
+          position={[0, 0.42, UI_Z]}
+        >
           <ChromeMaterial color="#e2e8f0" roughness={0.28} />
         </RoundedBox>
 
@@ -72,7 +82,12 @@ export function CorporateScene({ animate }: { animate: boolean }) {
           <boxGeometry args={[0.5, 0.9, 0.35]} />
           <ChromeMaterial color="#b7bfca" />
         </mesh>
-        <RoundedBox args={[2.6, 0.16, 1.1]} radius={0.08} smoothness={5} position={[0, -2.85, 0.1]}>
+        <RoundedBox
+          args={[2.6, 0.16, 1.1]}
+          radius={0.08}
+          smoothness={5}
+          position={[0, -2.85, 0.1]}
+        >
           <ChromeMaterial color="#b7bfca" />
         </RoundedBox>
       </group>

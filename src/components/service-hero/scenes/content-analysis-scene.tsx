@@ -25,7 +25,12 @@ export function ContentAnalysisScene({ animate }: { animate: boolean }) {
     <group ref={groupRef}>
       <group scale={1.05} rotation={[0.08, -0.26, 0]} position={[0, 0.45, 0]}>
         {/* Page. */}
-        <RoundedBox args={[3.6, 4.4, 0.16]} radius={0.12} smoothness={5} rotation={[0, 0.12, 0]}>
+        <RoundedBox
+          args={[3.6, 4.4, 0.16]}
+          radius={0.12}
+          smoothness={5}
+          rotation={[0, 0.12, 0]}
+        >
           <ChromeMaterial color="#cdd4dd" />
         </RoundedBox>
 
@@ -39,9 +44,17 @@ export function ContentAnalysisScene({ animate }: { animate: boolean }) {
 
         {/* Mini bar chart on the page. */}
         {[0.5, 0.85, 1.25].map((h, i) => (
-          <mesh key={i} position={[-0.9 + i * 0.55, -1.1 + h / 2, PAGE_Z]} rotation={[0, 0.12, 0]}>
+          <mesh
+            key={i}
+            position={[-0.9 + i * 0.55, -1.1 + h / 2, PAGE_Z]}
+            rotation={[0, 0.12, 0]}
+          >
             <boxGeometry args={[0.36, h, 0.06]} />
-            {i === 2 ? <AccentMaterial /> : <ChromeMaterial color="#aab2bd" roughness={0.34} />}
+            {i === 2 ? (
+              <AccentMaterial />
+            ) : (
+              <ChromeMaterial color="#aab2bd" roughness={0.34} />
+            )}
           </mesh>
         ))}
 

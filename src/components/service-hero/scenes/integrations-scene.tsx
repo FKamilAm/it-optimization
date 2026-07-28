@@ -16,7 +16,10 @@ const GEAR_EXTRUDE: THREE.ExtrudeGeometryOptions = {
 
 function useGearGeometry(teeth: number, root: number, tooth: number, bore: number) {
   return useMemo(() => {
-    const geo = new THREE.ExtrudeGeometry(gearShape(teeth, root, tooth, bore), GEAR_EXTRUDE);
+    const geo = new THREE.ExtrudeGeometry(
+      gearShape(teeth, root, tooth, bore),
+      GEAR_EXTRUDE,
+    );
     geo.translate(0, 0, -GEAR_EXTRUDE.depth! / 2);
     return geo;
   }, [teeth, root, tooth, bore]);
@@ -58,7 +61,11 @@ export function IntegrationsScene({ animate }: { animate: boolean }) {
           </mesh>
         </group>
 
-        <group ref={smallRef} position={[1.05, -0.65, 0.15]} rotation={[0, 0, Math.PI / 9]}>
+        <group
+          ref={smallRef}
+          position={[1.05, -0.65, 0.15]}
+          rotation={[0, 0, Math.PI / 9]}
+        >
           <mesh geometry={smallGeo}>
             <ChromeMaterial color="#b7bfca" />
           </mesh>

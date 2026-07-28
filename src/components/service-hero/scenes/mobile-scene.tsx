@@ -2,7 +2,12 @@
 
 import { useEffect, useMemo } from "react";
 import * as THREE from "three";
-import { AccentMaterial, ChromeMaterial, roundedRectShape, useIdleAnimation } from "../shared";
+import {
+  AccentMaterial,
+  ChromeMaterial,
+  roundedRectShape,
+  useIdleAnimation,
+} from "../shared";
 
 const ICON_EXTRUDE: THREE.ExtrudeGeometryOptions = {
   depth: 0.5,

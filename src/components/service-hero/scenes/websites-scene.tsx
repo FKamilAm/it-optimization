@@ -35,7 +35,12 @@ export function WebsitesScene({ animate }: { animate: boolean }) {
         </RoundedBox>
 
         {/* Glossy display glass (shifted up for the bottom chin). */}
-        <RoundedBox args={[BODY_W - 0.3, BODY_H - 0.6, 0.05]} radius={0.1} smoothness={5} position={[0, GLASS_Y, 0.16]}>
+        <RoundedBox
+          args={[BODY_W - 0.3, BODY_H - 0.6, 0.05]}
+          radius={0.1}
+          smoothness={5}
+          position={[0, GLASS_Y, 0.16]}
+        >
           <meshStandardMaterial {...GLASS} />
         </RoundedBox>
 
@@ -52,7 +57,10 @@ export function WebsitesScene({ animate }: { animate: boolean }) {
           <ChromeMaterial color="#8b939f" roughness={0.34} />
         </mesh>
         {[0, 1, 2].map((d) => (
-          <mesh key={d} position={[-GX / 2 + 0.32 + d * 0.3, GLASS_Y + 1.05, UI_Z + 0.04]}>
+          <mesh
+            key={d}
+            position={[-GX / 2 + 0.32 + d * 0.3, GLASS_Y + 1.05, UI_Z + 0.04]}
+          >
             <sphereGeometry args={[0.08, 20, 20]} />
             <ChromeMaterial color="#e2e8f0" roughness={0.3} />
           </mesh>
@@ -63,7 +71,12 @@ export function WebsitesScene({ animate }: { animate: boolean }) {
         </mesh>
 
         {/* Hero block. */}
-        <RoundedBox args={[GX - 0.2, 1.0, 0.05]} radius={0.1} smoothness={4} position={[0, GLASS_Y + 0.2, UI_Z]}>
+        <RoundedBox
+          args={[GX - 0.2, 1.0, 0.05]}
+          radius={0.1}
+          smoothness={4}
+          position={[0, GLASS_Y + 0.2, UI_Z]}
+        >
           <ChromeMaterial color="#e2e8f0" roughness={0.28} />
         </RoundedBox>
         {/* Text lines. */}
@@ -83,7 +96,12 @@ export function WebsitesScene({ animate }: { animate: boolean }) {
           <ChromeMaterial color="#b7bfca" />
         </mesh>
         {/* Foot. */}
-        <RoundedBox args={[2.5, 0.18, 1.1]} radius={0.09} smoothness={5} position={[0, -2.9, 0.1]}>
+        <RoundedBox
+          args={[2.5, 0.18, 1.1]}
+          radius={0.09}
+          smoothness={5}
+          position={[0, -2.9, 0.1]}
+        >
           <ChromeMaterial color="#b7bfca" />
         </RoundedBox>
       </group>

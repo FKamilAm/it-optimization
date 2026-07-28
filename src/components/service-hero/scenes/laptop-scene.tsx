@@ -31,7 +31,12 @@ export function LaptopScene({ animate }: { animate: boolean }) {
           <RoundedBox args={[SW, SH, 0.16]} radius={0.1} smoothness={5}>
             <ChromeMaterial color="#c2c9d3" />
           </RoundedBox>
-          <RoundedBox args={[SW - 0.28, SH - 0.28, 0.05]} radius={0.07} smoothness={4} position={[0, 0, 0.08]}>
+          <RoundedBox
+            args={[SW - 0.28, SH - 0.28, 0.05]}
+            radius={0.07}
+            smoothness={4}
+            position={[0, 0, 0.08]}
+          >
             <meshStandardMaterial {...GLASS} />
           </RoundedBox>
 
@@ -41,7 +46,10 @@ export function LaptopScene({ animate }: { animate: boolean }) {
             <ChromeMaterial color="#8b939f" roughness={0.34} />
           </mesh>
           {[0, 1, 2].map((d) => (
-            <mesh key={d} position={[-GX / 2 + 0.28 + d * 0.26, SH / 2 - 0.42, UI_Z + 0.04]}>
+            <mesh
+              key={d}
+              position={[-GX / 2 + 0.28 + d * 0.26, SH / 2 - 0.42, UI_Z + 0.04]}
+            >
               <sphereGeometry args={[0.07, 18, 18]} />
               <ChromeMaterial color="#e2e8f0" roughness={0.3} />
             </mesh>
@@ -52,7 +60,12 @@ export function LaptopScene({ animate }: { animate: boolean }) {
           </mesh>
 
           {/* Hero block. */}
-          <RoundedBox args={[GX - 0.2, 0.9, 0.05]} radius={0.08} smoothness={4} position={[0, 0.2, UI_Z]}>
+          <RoundedBox
+            args={[GX - 0.2, 0.9, 0.05]}
+            radius={0.08}
+            smoothness={4}
+            position={[0, 0.2, UI_Z]}
+          >
             <ChromeMaterial color="#e2e8f0" roughness={0.28} />
           </RoundedBox>
           {/* Text lines. */}
@@ -72,7 +85,12 @@ export function LaptopScene({ animate }: { animate: boolean }) {
             <ChromeMaterial color="#b7bfca" />
           </RoundedBox>
           {/* Trackpad hint. */}
-          <RoundedBox args={[1.6, 1.0, 0.03]} radius={0.06} smoothness={4} position={[0, -0.85, 0.1]}>
+          <RoundedBox
+            args={[1.6, 1.0, 0.03]}
+            radius={0.06}
+            smoothness={4}
+            position={[0, -0.85, 0.1]}
+          >
             <ChromeMaterial color="#aab2bd" roughness={0.4} />
           </RoundedBox>
         </group>
