@@ -9,7 +9,7 @@ import { ContactSection } from "@/components/sections/contact-section";
 import { ProjectCard } from "@/components/sections/project-card";
 import { countCasesByService, type CaseItem } from "@/lib/cases";
 import { SERVICE_NAV } from "@/lib/constants";
-import { cn } from "@/lib/utils";
+import { FilterSelect, type FilterOption } from "@/components/ui/filter-select";
 
 export function ProjectsContent({ cases }: { cases: CaseItem[] }) {
   const t = useTranslations("projectsPage");
@@ -21,9 +21,16 @@ export function ProjectsContent({ cases }: { cases: CaseItem[] }) {
   const counts = useMemo(() => countCasesByService(cases), [cases]);
   // В фильтре показываем только услуги, у которых есть хотя бы один кейс:
   // пустая кнопка ведёт в пустоту и лишь захламляет строку.
-  const options = useMemo(
-    () => SERVICE_NAV.filter((entry) => (counts[entry.key] ?? 0) > 0),
-    [counts],
+  const options = useMemo<FilterOption[]>(
+    () => [
+      { value: null, label: t("filterAll"), count: cases.length },
+      ...SERVICE_NAV.filter((entry) => (counts[entry.key] ?? 0) > 0).map((entry) => ({
+        value: entry.key,
+        label: services(`${entry.key}.title`),
+        count: counts[entry.key] ?? 0,
+      })),
+    ],
+    [cases.length, counts, services, t],
   );
   const visible = useMemo(
     () => (filter ? cases.filter((item) => item.services.includes(filter)) : cases),
@@ -61,30 +68,15 @@ export function ProjectsContent({ cases }: { cases: CaseItem[] }) {
             </p>
           </Reveal>
 
-          {options.length > 1 && (
+          {options.length > 2 && (
             <Reveal delay={0.1}>
-              <div
-                role="group"
-                aria-label={t("filterLabel")}
-                className="mt-12 flex flex-wrap gap-2"
-              >
-                <FilterChip
-                  active={!filter}
-                  count={cases.length}
-                  onClick={() => setFilter(null)}
-                >
-                  {t("filterAll")}
-                </FilterChip>
-                {options.map((entry) => (
-                  <FilterChip
-                    key={entry.key}
-                    active={filter === entry.key}
-                    count={counts[entry.key] ?? 0}
-                    onClick={() => setFilter(filter === entry.key ? null : entry.key)}
-                  >
-                    {services(`${entry.key}.title`)}
-                  </FilterChip>
-                ))}
+              <div className="mt-12">
+                <FilterSelect
+                  label={t("filterLabel")}
+                  options={options}
+                  value={filter}
+                  onChange={setFilter}
+                />
               </div>
             </Reveal>
           )}
@@ -111,35 +103,5 @@ export function ProjectsContent({ cases }: { cases: CaseItem[] }) {
         onClose={() => setOpenCase(null)}
       />
     </>
-  );
-}
-
-function FilterChip({
-  active,
-  count,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  count: number;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={active}
-      data-cursor="hover"
-      className={cn(
-        "inline-flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors duration-300",
-        active
-          ? "border-foreground bg-foreground text-background"
-          : "border-border/80 hover:border-foreground text-foreground/70 hover:text-foreground",
-      )}
-    >
-      {children}
-      <span className="tabular-nums opacity-55">{count}</span>
-    </button>
   );
 }

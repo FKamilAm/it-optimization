@@ -1,95 +1,167 @@
 "use client";
 
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { RoundedBox } from "@react-three/drei";
-import type * as THREE from "three";
-import { AccentMaterial, ChromeMaterial, useIdleAnimation } from "../shared";
+import { Extrude, RoundedBox } from "@react-three/drei";
+import * as THREE from "three";
+import { AccentMaterial, ChromeMaterial, strokeShape, useIdleAnimation } from "../shared";
 
-const BOARD = { w: 4.6, h: 3.0 };
-const PLATE = 0.08;
+/** Опорные точки кривой: две вершины и по управляющей ручке к каждой. */
+const P0 = new THREE.Vector2(-2.15, -0.95);
+const C0 = new THREE.Vector2(-1.15, 1.35);
+const C1 = new THREE.Vector2(1.0, -1.7);
+const P1 = new THREE.Vector2(2.05, 0.85);
 
-/** Направляющие модульной сетки — по ним встают блоки. */
-const GUIDES = [-1.68, -0.56, 0.56, 1.68];
+const CURVE_EXTRUDE = {
+  depth: 0.16,
+  bevelEnabled: true,
+  bevelThickness: 0.03,
+  bevelSize: 0.025,
+  bevelSegments: 2,
+  curveSegments: 8,
+};
+
+const NIB_EXTRUDE = { ...CURVE_EXTRUDE, depth: 0.22 };
+
+/** Кубическая кривая Безье, разложенная в ломаную для объёмного штриха. */
+function curvePoints(segments = 48): [number, number][] {
+  const curve = new THREE.CubicBezierCurve(P0, C0, C1, P1);
+  return curve.getPoints(segments).map((p) => [p.x, p.y] as [number, number]);
+}
+
+/** Перо: вытянутый наконечник со скошенным кончиком. */
+function nibShape(): THREE.Shape {
+  const s = new THREE.Shape();
+  s.moveTo(0, -0.62);
+  s.lineTo(0.26, -0.12);
+  s.lineTo(0.26, 0.66);
+  s.lineTo(-0.26, 0.66);
+  s.lineTo(-0.26, -0.12);
+  s.closePath();
+  return s;
+}
 
 /**
- * Блоки макета: ширина кратна колонкам, поэтому вместе они и читаются как
- * система, а не как случайные прямоугольники. `phase` разводит их во времени,
- * чтобы они вставали на сетку по очереди.
- */
-const BLOCKS = [
-  { x: -0.56, y: 0.86, w: 3.36, h: 0.7, phase: 0.0, accent: false },
-  { x: 1.68, y: 0.86, w: 1.12, h: 0.7, phase: 0.5, accent: true },
-  { x: -1.68, y: -0.16, w: 1.12, h: 1.0, phase: 1.0, accent: false },
-  { x: -0.56, y: -0.16, w: 1.12, h: 1.0, phase: 1.5, accent: false },
-  { x: 0.56, y: -0.16, w: 1.12, h: 1.0, phase: 2.0, accent: false },
-  { x: 1.68, y: -0.16, w: 1.12, h: 1.0, phase: 2.5, accent: false },
-  { x: 0, y: -1.12, w: 4.48, h: 0.42, phase: 3.0, accent: false },
-] as const;
-
-/**
- * Веб-дизайн системы — модульная сетка, по которой раскладываются блоки разной
- * ширины. Блоки по очереди приподнимаются и снова садятся на направляющие: из
- * одних и тех же колонок собирается любая страница, в этом и смысл системы.
+ * Веб-дизайн системы — перо ведёт кривую Безье: сам штрих, две опорные точки и
+ * управляющие ручки с круглыми маркерами. Кривая «прорисовывается» от начала к
+ * концу и начинается заново, перо идёт по ней остриём вперёд.
  */
 export function WebDesignScene({ animate }: { animate: boolean }) {
   const groupRef = useIdleAnimation(animate);
-  const blocksRef = useRef<THREE.Group>(null);
+  const penRef = useRef<THREE.Group>(null);
+  const drawnRef = useRef<THREE.Group>(null);
+
+  const points = useMemo(() => curvePoints(), []);
+  const curve = useMemo(() => new THREE.CubicBezierCurve(P0, C0, C1, P1), []);
+  const fullStroke = useMemo(() => strokeShape(points, 0.11), [points]);
+  const nib = useMemo(nibShape, []);
+
+  // Штрих собран из коротких сегментов: показывая их по очереди, получаем
+  // эффект прорисовки без пересборки геометрии на каждом кадре.
+  const segments = useMemo(
+    () =>
+      points.slice(0, -1).map((point, index) => ({
+        shape: strokeShape([point, points[index + 1]], 0.11),
+        t: index / (points.length - 1),
+      })),
+    [points],
+  );
 
   useFrame(({ clock }) => {
-    const blocks = blocksRef.current;
-    if (!blocks || !animate) return;
-    const t = clock.getElapsedTime();
-    blocks.children.forEach((child, index) => {
-      const phase = BLOCKS[index]?.phase ?? 0;
-      // Половина периода блок стоит на сетке, половину — приподнят: движение
-      // заметное, но не суетливое.
-      const lift = Math.max(0, Math.sin(t * 0.8 - phase));
-      child.position.z = 0.12 + lift * 0.34;
-    });
+    if (!animate) return;
+    // Цикл: 0 → 1 рисуем, затем короткая пауза перед новым проходом.
+    const cycle = (clock.getElapsedTime() % 6) / 4.6;
+    const progress = Math.min(1, Math.max(0, cycle));
+
+    const drawn = drawnRef.current;
+    if (drawn) {
+      drawn.children.forEach((child, index) => {
+        child.visible = segments[index] !== undefined && segments[index].t <= progress;
+      });
+    }
+
+    const pen = penRef.current;
+    if (pen) {
+      const at = curve.getPoint(progress);
+      const tangent = curve.getTangent(Math.min(0.999, progress));
+      pen.position.set(at.x, at.y + 0.5, 0.42);
+      // Остриё смотрит по касательной к кривой.
+      pen.rotation.z = Math.atan2(tangent.y, tangent.x) - Math.PI / 2;
+    }
   });
 
   return (
     <group ref={groupRef}>
-      <group scale={1.12} rotation={[0.06, -0.32, 0.03]}>
-        {/* Монтажная область. */}
-        <RoundedBox args={[BOARD.w, BOARD.h, PLATE]} radius={0.12} smoothness={5}>
-          <ChromeMaterial color="#eef2f6" roughness={0.32} />
-        </RoundedBox>
+      <group scale={1.12} rotation={[0.05, -0.26, 0.02]}>
+        {/* Бледный контур всей кривой — куда штрих придёт. */}
+        <Extrude
+          args={[fullStroke, { ...CURVE_EXTRUDE, depth: 0.06 }]}
+          position={[0, 0, -0.02]}
+        >
+          <ChromeMaterial color="#c9d3de" roughness={0.45} transparent opacity={0.5} />
+        </Extrude>
 
-        {/* Направляющие колонок. */}
-        {GUIDES.map((x) => (
-          <mesh key={x} position={[x, 0, PLATE / 2 + 0.01]}>
-            <boxGeometry args={[0.015, BOARD.h - 0.24, 0.01]} />
-            <ChromeMaterial color="#b6c2cf" roughness={0.5} transparent opacity={0.75} />
-          </mesh>
-        ))}
-
-        {/* Горизонтальные базовые линии. */}
-        {[1.28, 0.42, -0.74].map((y) => (
-          <mesh key={y} position={[0, y, PLATE / 2 + 0.01]}>
-            <boxGeometry args={[BOARD.w - 0.24, 0.012, 0.01]} />
-            <ChromeMaterial color="#c3cdd8" roughness={0.5} transparent opacity={0.6} />
-          </mesh>
-        ))}
-
-        {/* Блоки, встающие по сетке. */}
-        <group ref={blocksRef}>
-          {BLOCKS.map((block) => (
-            <RoundedBox
-              key={`${block.x}-${block.y}`}
-              args={[block.w - 0.12, block.h - 0.12, 0.1]}
-              radius={0.07}
-              smoothness={4}
-              position={[block.x, block.y, 0.12]}
-            >
-              {block.accent ? (
-                <AccentMaterial />
-              ) : (
-                <ChromeMaterial color="#dbe3ec" roughness={0.28} />
-              )}
-            </RoundedBox>
+        {/* Прорисованная часть. */}
+        <group ref={drawnRef}>
+          {segments.map((segment, index) => (
+            <Extrude key={index} args={[segment.shape, CURVE_EXTRUDE]}>
+              <AccentMaterial />
+            </Extrude>
           ))}
+        </group>
+
+        {/* Управляющие ручки: линия от вершины к маркеру. */}
+        {[
+          [P0, C0],
+          [P1, C1],
+        ].map(([anchor, handle], index) => (
+          <group key={index}>
+            <Extrude
+              args={[
+                strokeShape(
+                  [
+                    [anchor.x, anchor.y],
+                    [handle.x, handle.y],
+                  ],
+                  0.025,
+                ),
+                { ...CURVE_EXTRUDE, depth: 0.04, bevelEnabled: false },
+              ]}
+              position={[0, 0, 0.06]}
+            >
+              <ChromeMaterial color="#94a3b8" roughness={0.4} />
+            </Extrude>
+            {/* Круглый маркер ручки. */}
+            <mesh position={[handle.x, handle.y, 0.12]} rotation={[Math.PI / 2, 0, 0]}>
+              <cylinderGeometry args={[0.11, 0.11, 0.07, 24]} />
+              <ChromeMaterial color="#e2e8f0" roughness={0.25} />
+            </mesh>
+          </group>
+        ))}
+
+        {/* Квадратные опорные точки — как в любом векторном редакторе. */}
+        {[P0, P1].map((anchor) => (
+          <RoundedBox
+            key={`${anchor.x}-${anchor.y}`}
+            args={[0.2, 0.2, 0.09]}
+            radius={0.03}
+            smoothness={3}
+            position={[anchor.x, anchor.y, 0.14]}
+          >
+            <ChromeMaterial color="#f1f5f9" roughness={0.2} />
+          </RoundedBox>
+        ))}
+
+        {/* Перо. */}
+        <group ref={penRef}>
+          <Extrude args={[nib, NIB_EXTRUDE]}>
+            <ChromeMaterial color="#e8edf3" roughness={0.22} />
+          </Extrude>
+          {/* Акцентная вставка у основания пера. */}
+          <mesh position={[0, 0.42, NIB_EXTRUDE.depth + 0.02]}>
+            <boxGeometry args={[0.34, 0.16, 0.05]} />
+            <AccentMaterial />
+          </mesh>
         </group>
       </group>
     </group>

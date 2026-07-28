@@ -16,6 +16,7 @@ import {
   Upload,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { FilterSelect, type FilterOption } from "@/components/ui/filter-select";
 import { countCasesByService, formatTags, type CaseItem } from "@/lib/cases";
 import { ADMIN_REPO, CASES_JSON_PATH, TOKEN_STORAGE_KEY } from "@/lib/admin/github";
 import {
@@ -642,7 +643,10 @@ export function AdminPanel() {
   );
 }
 
-/** Фильтр по услугам со счётчиками. Кейс с несколькими услугами считается в каждой. */
+/**
+ * Фильтр по услугам. В отличие от каталога на сайте, здесь показываются и
+ * пустые категории: владельцу важно видеть, что кейсов по услуге пока нет.
+ */
 function ServiceFilter({
   counts,
   total,
@@ -654,35 +658,18 @@ function ServiceFilter({
   active: string | null;
   onChange: (key: string | null) => void;
 }) {
-  const chip = (selected: boolean) =>
-    cn(
-      "inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm transition-colors",
-      selected
-        ? "border-foreground bg-foreground text-background"
-        : "border-border hover:border-foreground",
-    );
+  const options: FilterOption[] = [
+    { value: null, label: "Все кейсы", count: total },
+    ...SERVICE_OPTIONS.map((option) => ({
+      value: option.key,
+      label: option.title,
+      count: counts[option.key] ?? 0,
+    })),
+  ];
 
   return (
-    <div className="mb-4 flex flex-wrap gap-2">
-      <button type="button" onClick={() => onChange(null)} className={chip(!active)}>
-        Все
-        <span className="tabular-nums opacity-60">{total}</span>
-      </button>
-
-      {SERVICE_OPTIONS.map((option) => {
-        const count = counts[option.key] ?? 0;
-        return (
-          <button
-            key={option.key}
-            type="button"
-            onClick={() => onChange(active === option.key ? null : option.key)}
-            className={cn(chip(active === option.key), count === 0 && "opacity-45")}
-          >
-            {option.title}
-            <span className="tabular-nums opacity-60">{count}</span>
-          </button>
-        );
-      })}
+    <div className="mb-4">
+      <FilterSelect label="Услуга" options={options} value={active} onChange={onChange} />
     </div>
   );
 }
