@@ -22,6 +22,8 @@ export const caseInput = z.object({
   description: z.string().trim().min(1).max(2000),
   quote: z.string().trim().min(1).max(2000),
   tags: z.array(z.string().trim().min(1).max(60)).min(1).max(12),
+  // Пустой список допустим: кейс может жить только в общем каталоге.
+  services: z.array(z.string().trim().min(1).max(60)).max(24).default([]),
 });
 
 export type CaseInput = z.infer<typeof caseInput>;
@@ -40,6 +42,7 @@ export interface CaseDto {
   description: string;
   quote: string;
   tags: string[];
+  services: string[];
   cover: string;
   detail: string;
   detailMobile: string;
@@ -62,6 +65,7 @@ export function toDto(item: CaseWithAssets): CaseDto {
     description: item.description,
     quote: item.quote,
     tags: item.tags,
+    services: item.services,
     cover: bySlot.get("cover") ?? "",
     detail,
     // Вертикальный слайд необязателен — если его нет, берём широкий.

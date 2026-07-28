@@ -20,6 +20,8 @@ import { B2bScene } from "./scenes/b2b-scene";
 import { ContentAnalysisScene } from "./scenes/content-analysis-scene";
 import { TechContentScene } from "./scenes/tech-content-scene";
 import { CommercialAuditScene } from "./scenes/commercial-audit-scene";
+import { WebDesignScene } from "./scenes/web-design-scene";
+import { BrandingScene } from "./scenes/branding-scene";
 
 export type ServiceHeroVariant =
   | "platforms"
@@ -37,7 +39,9 @@ export type ServiceHeroVariant =
   | "b2b"
   | "contentAnalysis"
   | "techContent"
-  | "commercialAudit";
+  | "commercialAudit"
+  | "webDesign"
+  | "branding";
 
 function SceneForVariant({ variant, animate }: { variant: ServiceHeroVariant; animate: boolean }) {
   switch (variant) {
@@ -73,6 +77,10 @@ function SceneForVariant({ variant, animate }: { variant: ServiceHeroVariant; an
       return <TechContentScene animate={animate} />;
     case "commercialAudit":
       return <CommercialAuditScene animate={animate} />;
+    case "webDesign":
+      return <WebDesignScene animate={animate} />;
+    case "branding":
+      return <BrandingScene animate={animate} />;
     default:
       return null;
   }

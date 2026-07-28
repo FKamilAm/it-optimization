@@ -91,6 +91,7 @@ export async function caseRoutes(app: FastifyInstance): Promise<void> {
             description: item.description,
             quote: item.quote,
             tags: item.tags,
+            services: item.services,
             position: index,
           },
           update: {
@@ -100,6 +101,7 @@ export async function caseRoutes(app: FastifyInstance): Promise<void> {
             description: item.description,
             quote: item.quote,
             tags: item.tags,
+            services: item.services,
             position: index,
             deletedAt: null,
           },

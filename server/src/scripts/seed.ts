@@ -15,6 +15,7 @@ interface SnapshotCase {
   description: string;
   quote: string;
   tags: string[];
+  services?: string[];
   cover: string;
   detail: string;
   detailMobile: string;
@@ -49,6 +50,7 @@ async function main(): Promise<void> {
         description: item.description,
         quote: item.quote,
         tags: item.tags,
+        services: item.services ?? [],
         position: index,
         createdAt: new Date(item.createdAt),
         updatedAt: new Date(item.updatedAt),
@@ -59,6 +61,7 @@ async function main(): Promise<void> {
         description: item.description,
         quote: item.quote,
         tags: item.tags,
+        services: item.services ?? [],
         position: index,
         deletedAt: null,
       },

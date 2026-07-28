@@ -10,6 +10,8 @@ const SERVICE_KEYS = [
   "websiteTurnkey",
   "ecommerce",
   "businessCard",
+  "webDesign",
+  "branding",
   "b2b",
   "telegram",
   "mobile",

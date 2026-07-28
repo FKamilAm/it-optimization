@@ -5,11 +5,8 @@
     "title": "CRM для агентства недвижимости",
     "description": "Система для управления объектами, заявками, клиентами и сделками в одном интерфейсе.",
     "quote": "Команда помогла превратить разрозненные заявки и таблицы в понятную систему продаж.",
-    "tags": [
-      "Real Estate",
-      "CRM",
-      "Automation"
-    ],
+    "tags": ["Real Estate", "CRM", "Automation"],
+    "services": ["platforms", "ai", "integrations"],
     "cover": "/cases/case-crm.webp",
     "detail": "/cases/detail-crm.webp",
     "detailMobile": "/cases/detail-crm-mobile.webp",
@@ -22,11 +19,8 @@
     "title": "ИИ-агент для обработки обращений",
     "description": "ИИ-модуль классифицирует обращения, отвечает на типовые вопросы и передаёт лиды в CRM.",
     "quote": "Мы сократили ручную обработку заявок и быстрее стали реагировать на новых клиентов.",
-    "tags": [
-      "ИИ",
-      "Automation",
-      "CRM"
-    ],
+    "tags": ["ИИ", "Automation", "CRM"],
+    "services": ["ai"],
     "cover": "/cases/case-ai.webp",
     "detail": "/cases/detail-ai.webp",
     "detailMobile": "/cases/detail-ai-mobile.webp",
@@ -39,11 +33,8 @@
     "title": "Мини-приложение Telegram для заявок",
     "description": "Мини-приложение для приёма заявок, статусов, уведомлений и коммуникации внутри Telegram.",
     "quote": "Клиенты получили быстрый способ взаимодействия без установки отдельного приложения.",
-    "tags": [
-      "Telegram",
-      "Mini App",
-      "Leadgen"
-    ],
+    "tags": ["Telegram", "Mini App", "Leadgen"],
+    "services": ["telegram", "mobile"],
     "cover": "/cases/case-miniapp.webp",
     "detail": "/cases/detail-miniapp.webp",
     "detailMobile": "/cases/detail-miniapp-mobile.webp",
@@ -56,11 +47,8 @@
     "title": "Маркетплейс-платформа",
     "description": "Платформа с каталогом, ролями, кабинетами продавцов, заказами и платежной логикой.",
     "quote": "Архитектура позволила запустить MVP и оставить пространство для масштабирования.",
-    "tags": [
-      "Marketplace",
-      "eCommerce",
-      "Payments"
-    ],
+    "tags": ["Marketplace", "eCommerce", "Payments"],
+    "services": ["ecommerce", "platforms"],
     "cover": "/cases/case-marketplace.webp",
     "detail": "/cases/detail-marketplace.webp",
     "detailMobile": "/cases/detail-marketplace-mobile.webp",
@@ -73,11 +61,8 @@
     "title": "Панель Web3 / крипто",
     "description": "Интерфейс для работы с on-chain данными, кошельками, транзакциями и мультичейн-логикой.",
     "quote": "Сложная blockchain-логика стала понятной через аккуратный и чистый интерфейс.",
-    "tags": [
-      "Web3",
-      "Blockchain",
-      "Dashboard"
-    ],
+    "tags": ["Web3", "Blockchain", "Dashboard"],
+    "services": ["blockchain"],
     "cover": "/cases/case-web3.webp",
     "detail": "/cases/detail-web3.webp",
     "detailMobile": "/cases/detail-web3-mobile.webp",
@@ -90,11 +75,8 @@
     "title": "Корпоративный сайт + автоматизация",
     "description": "Корпоративный сайт с формами, аналитикой, Telegram-уведомлениями и интеграцией с таблицами/CRM.",
     "quote": "Сайт стал не просто визиткой, а рабочим каналом получения и обработки заявок.",
-    "tags": [
-      "Website",
-      "CRM",
-      "Analytics"
-    ],
+    "tags": ["Website", "CRM", "Analytics"],
+    "services": ["corporate", "telegram", "platforms", "integrations"],
     "cover": "/cases/case-corporate.webp",
     "detail": "/cases/detail-corporate.webp",
     "detailMobile": "/cases/detail-corporate-mobile.webp",
@@ -107,11 +89,8 @@
     "title": "«Проектные решения» — IT для городов",
     "description": "Корпоративный сайт IT-компании, которая создаёт инновации для городской среды: услуги, проекты и команда в едином стиле.",
     "quote": "Сайт передал масштаб компании и упаковал сложные IT-решения в понятную подачу.",
-    "tags": [
-      "Website",
-      "Corporate",
-      "IT"
-    ],
+    "tags": ["Website", "Corporate", "IT"],
+    "services": ["corporate", "b2b"],
     "cover": "/cases/case-svpr.webp",
     "detail": "/cases/detail-svpr.webp",
     "detailMobile": "/cases/detail-svpr-mobile.webp",
@@ -124,11 +103,8 @@
     "title": "«Тайгер» — сайт девелопера",
     "description": "Корпоративный сайт девелопера недвижимости: проекты, компания и подбор квартир с акцентом на эстетику и качество.",
     "quote": "Премиальная подача усилила доверие к бренду и упростила подбор объектов.",
-    "tags": [
-      "Website",
-      "Real Estate",
-      "Development"
-    ],
+    "tags": ["Website", "Real Estate", "Development"],
+    "services": ["corporate", "websites"],
     "cover": "/cases/case-tiger.webp",
     "detail": "/cases/detail-tiger.webp",
     "detailMobile": "/cases/detail-tiger-mobile.webp",
@@ -141,11 +117,8 @@
     "title": "Forma Casa — мебель для интерьера",
     "description": "Сайт мебельного бренда с каталогом, коллекциями и авторским дизайном для современных интерьеров.",
     "quote": "Витрина подчеркнула качество мебели и увеличила число обращений в шоурум.",
-    "tags": [
-      "Website",
-      "eCommerce",
-      "Furniture"
-    ],
+    "tags": ["Website", "eCommerce", "Furniture"],
+    "services": ["websiteTurnkey", "ecommerce"],
     "cover": "/cases/case-mebel.webp",
     "detail": "/cases/detail-mebel.webp",
     "detailMobile": "/cases/detail-mebel-mobile.webp",
@@ -158,11 +131,8 @@
     "title": "ANG — тюнинг и карбон-обвесы",
     "description": "Сайт студии автомобильного тюнинга: услуги, проекты и галерея работ с премиальной тёмной подачей.",
     "quote": "Тёмный дизайн передал премиальность бренда и его работ по карбону.",
-    "tags": [
-      "Website",
-      "Automotive",
-      "Portfolio"
-    ],
+    "tags": ["Website", "Automotive", "Portfolio"],
+    "services": ["websiteTurnkey", "websites"],
     "cover": "/cases/case-renegade.webp",
     "detail": "/cases/detail-renegade.webp",
     "detailMobile": "/cases/detail-renegade-mobile.webp",
@@ -175,11 +145,8 @@
     "title": "Visit Tatarstan — тур-портал",
     "description": "Туристический портал региона: события, маршруты, идеи для путешествий и 3D-туры в едином удобном гиде.",
     "quote": "Портал собрал события и маршруты в удобный гид для путешественников.",
-    "tags": [
-      "Website",
-      "Tourism",
-      "Portal"
-    ],
+    "tags": ["Website", "Tourism", "Portal"],
+    "services": ["businessCard", "websites"],
     "cover": "/cases/case-visit.webp",
     "detail": "/cases/detail-visit.webp",
     "detailMobile": "/cases/detail-visit-mobile.webp",
@@ -192,11 +159,8 @@
     "title": "MiniFlow — финансовый Mini App",
     "description": "Telegram Mini App для управления балансом, переводами и мультивалютными счетами прямо внутри мессенджера.",
     "quote": "Пользователи управляют финансами в пару касаний, не покидая Telegram.",
-    "tags": [
-      "Telegram",
-      "Mini App",
-      "Fintech"
-    ],
+    "tags": ["Telegram", "Mini App", "Fintech"],
+    "services": ["telegram"],
     "cover": "/cases/case-tg-mini-app.webp",
     "detail": "/cases/detail-tg-mini-app.webp",
     "detailMobile": "/cases/detail-tg-mini-app-mobile.webp",
@@ -209,11 +173,8 @@
     "title": "NORI GO — доставка суши",
     "description": "Мобильное приложение доставки: меню, сеты, корзина и оформление заказа с доставкой от 30 минут.",
     "quote": "Заказы стали быстрее и удобнее — прямо из приложения за пару минут.",
-    "tags": [
-      "Mobile",
-      "Delivery",
-      "Food"
-    ],
+    "tags": ["Mobile", "Delivery", "Food"],
+    "services": ["websiteTurnkey", "mobile"],
     "cover": "/cases/case-nori.webp",
     "detail": "/cases/detail-nori.webp",
     "detailMobile": "/cases/detail-nori-mobile.webp",
@@ -226,11 +187,8 @@
     "title": "Стрит.РФ — аренда помещений",
     "description": "Мобильная платформа поиска и бронирования коммерческих помещений: фильтры, карта и детальные карточки объектов.",
     "quote": "Поиск и бронирование помещений для бизнеса ускорились в разы.",
-    "tags": [
-      "Mobile",
-      "PropTech",
-      "Booking"
-    ],
+    "tags": ["Mobile", "PropTech", "Booking"],
+    "services": ["businessCard", "mobile"],
     "cover": "/cases/case-street.webp",
     "detail": "/cases/detail-street.webp",
     "detailMobile": "/cases/detail-street-mobile.webp",
@@ -243,11 +201,8 @@
     "title": "Crypto Robotics — крипто-боты",
     "description": "Платформа автоматизированного крипто-трейдинга: торговые боты, стратегии, тарифы и аналитика портфеля.",
     "quote": "Сложный трейдинг стал доступным через понятные боты и стратегии.",
-    "tags": [
-      "Web3",
-      "Crypto",
-      "Trading"
-    ],
+    "tags": ["Web3", "Crypto", "Trading"],
+    "services": ["blockchain"],
     "cover": "/cases/case-crypto.webp",
     "detail": "/cases/detail-crypto.webp",
     "detailMobile": "/cases/detail-crypto-mobile.webp",
@@ -260,11 +215,8 @@
     "title": "«99 баллов» — подготовка к ЕГЭ",
     "description": "EdTech-платформа подготовки к ЕГЭ и ОГЭ: курсы, преподаватели, направления и удобный подбор программ.",
     "quote": "Платформа упаковала курсы и преподавателей в понятную систему подготовки.",
-    "tags": [
-      "Platform",
-      "EdTech",
-      "Education"
-    ],
+    "tags": ["Platform", "EdTech", "Education"],
+    "services": ["b2b", "platforms"],
     "cover": "/cases/case-99.webp",
     "detail": "/cases/detail-99.webp",
     "detailMobile": "/cases/detail-99-mobile.webp",
@@ -277,11 +229,8 @@
     "title": "Веб-дизайн сайта для IT-аутсорс компании",
     "description": "Концепция корпоративного сайта для компании, которая занимается разработкой сайтов, мобильных приложений, Telegram-ботов, CRM и цифровых сервисов для бизнеса.",
     "quote": "Мы создали визуальную систему, которая передаёт технологичность бренда, подчёркивает экспертизу команды и помогает понятно представить услуги разработки.",
-    "tags": [
-      "Web Design",
-      "IT Outsourcing",
-      "Corporate Website"
-    ],
+    "tags": ["Web Design", "IT Outsourcing", "Corporate Website"],
+    "services": ["webDesign", "corporate"],
     "cover": "/cases/case-veb-dizayn-sayta-dlya-it-autsors-kompani-387f33a1.webp",
     "detail": "/cases/detail-veb-dizayn-sayta-dlya-it-autsors-kompani-8448bc19.webp",
     "detailMobile": "/cases/detail-veb-dizayn-sayta-dlya-it-autsors-kompani-239973b0-mobile.webp",
@@ -294,12 +243,8 @@
     "title": "CRM-система для сети детейлинг-центров",
     "description": "Единая CRM для управления сетью детейлинг-студий. Система автоматизирует запись клиентов, распределяет автомобили между мастерами, отслеживает загрузку боксов, хранит историю обслуживания и помогает руководителю контролировать эффективность каждого филиала в режиме реального времени.",
     "quote": "Мы перестали терять клиентов из-за хаоса в записях. Теперь вся сеть работает как единый механизм, а руководители видят полную картину бизнеса.",
-    "tags": [
-      "CRM",
-      "Automation",
-      "Automotive",
-      "Dashboard"
-    ],
+    "tags": ["CRM", "Automation", "Automotive", "Dashboard"],
+    "services": ["platforms", "integrations"],
     "cover": "/cases/case-crm-sistema-dlya-seti-deteyling-centrov-b983edd0.webp",
     "detail": "/cases/detail-crm-sistema-dlya-seti-deteyling-centrov-a7113c3e.webp",
     "detailMobile": "/cases/detail-crm-sistema-dlya-seti-deteyling-centrov-027da73e-mobile.webp",
@@ -312,11 +257,8 @@
     "title": "«Фронтал» — интернет-магазин запчастей для погрузчиков",
     "description": "Интернет-магазин запчастей для китайских фронтальных погрузчиков: каталог на 100 000 позиций, интерактивные взрыв-схемы узлов и автоматическая синхронизация цен, остатков и фотографий с 1С клиента.",
     "quote": "Раньше подбор запчасти был перепиской и звонками. Теперь клиент сам находит деталь по схеме своей машины и оставляет заказ, а цены и наличие сайт берёт из нашей 1С без нашего участия.",
-    "tags": [
-      "E-commerce",
-      "Catalog",
-      "1C"
-    ],
+    "tags": ["E-commerce", "Catalog", "1C"],
+    "services": ["ecommerce", "websiteTurnkey"],
     "cover": "/cases/case-frontal-internet-magazin-zapchastey-dlya-18dcd8c3.webp",
     "detail": "/cases/detail-frontal-internet-magazin-zapchastey-dlya-67f26a26.webp",
     "detailMobile": "/cases/detail-frontal-internet-magazin-zapchastey-dlya-2462361c-mobile.webp",

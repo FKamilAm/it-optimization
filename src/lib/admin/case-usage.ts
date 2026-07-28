@@ -1,30 +1,32 @@
 import ru from "../../../messages/ru.json";
+import { SERVICE_NAV } from "@/lib/constants";
 import { HOME_CASE_COUNT } from "@/lib/cases";
 
 /**
- * Service pages reference cases by slug (`servicePages.<page>.cases` in the message
- * catalog), and those references live outside the panel's reach. The panel uses
- * this map to warn before deleting a case that a service page still points at —
- * the build tolerates a dangling key (see `getCases`), the page just shows one
- * case fewer.
+ * Список услуг для панели: ключ плюс название из каталога, в том же порядке,
+ * что в шапке сайта. Кейс привязывается к услугам этими ключами (поле
+ * `services`), а страница услуги по ним же собирает свои кейсы.
  */
-type ServicePages = Record<string, { breadcrumb?: string; cases?: string[] }>;
-
-const USAGE: Record<string, string[]> = {};
-
-for (const [pageKey, page] of Object.entries(ru.servicePages as ServicePages)) {
-  if (pageKey === "common") continue;
-  for (const caseSlug of page.cases ?? []) {
-    (USAGE[caseSlug] ??= []).push(page.breadcrumb ?? pageKey);
-  }
+export interface ServiceOption {
+  key: string;
+  title: string;
 }
 
-/** Human-readable names of the service pages showing this case. */
-export function servicePagesUsing(caseSlug: string): string[] {
-  return USAGE[caseSlug] ?? [];
+const ITEMS = ru.services.items as Record<string, { title?: string }>;
+
+export const SERVICE_OPTIONS: ServiceOption[] = SERVICE_NAV.map((entry) => ({
+  key: entry.key,
+  title: ITEMS[entry.key]?.title ?? entry.key,
+}));
+
+const TITLES = new Map(SERVICE_OPTIONS.map((option) => [option.key, option.title]));
+
+/** Названия услуг кейса — для строки под заголовком в списке. */
+export function serviceTitles(keys: readonly string[]): string[] {
+  return keys.map((key) => TITLES.get(key) ?? key);
 }
 
-/** Positions inside this many first cases are also shown on the homepage. */
+/** Позиции внутри стольких первых кейсов показываются и на главной. */
 export { HOME_CASE_COUNT };
 
 /**

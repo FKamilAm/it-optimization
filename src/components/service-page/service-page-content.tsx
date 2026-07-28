@@ -10,7 +10,7 @@ import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { ContactChannels } from "@/components/contact/contact-channels";
 import { CaseLightbox } from "@/components/sections/case-lightbox";
 import { ServiceCard } from "@/components/sections/service-card";
-import { formatTags, pickCases, type CaseItem } from "@/lib/cases";
+import { casesForService, formatTags, type CaseItem } from "@/lib/cases";
 import { useContactModal } from "@/components/providers/contact-modal-provider";
 import { Button } from "@/components/ui/button";
 import { ServiceHeroVisual } from "@/components/service-hero/service-hero-visual";
@@ -37,6 +37,8 @@ const HERO_VISUAL: Partial<Record<string, ServiceHeroVariant>> = {
   contentAnalysis: "contentAnalysis",
   techContent: "techContent",
   commercialAudit: "commercialAudit",
+  webDesign: "webDesign",
+  branding: "branding",
 };
 
 const CASE_ROTATE_MS = 5000;
@@ -80,7 +82,9 @@ export function ServicePageContent({
   const forWhom = t.raw("forWhom") as UseCaseItem[];
   const steps = t.raw("steps") as UseCaseItem[];
   const faq = t.raw("faq") as FaqItem[];
-  const cases = pickCases(allCases, (t.raw("cases") as string[] | undefined) ?? []);
+  // Кейсы больше не перечисляются в каталоге у каждой услуги: теперь кейс сам
+  // знает, к каким услугам относится, и это редактируется в панели.
+  const cases = casesForService(allCases, pageKey);
   const tariffs = (t.raw("tariffs") as Tariff[] | undefined) ?? [];
   const relatedServices = RELATED_SERVICES[pageKey] ?? [];
   const relatedArticleKeys = RELATED_ARTICLES[pageKey] ?? [];

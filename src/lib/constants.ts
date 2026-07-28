@@ -76,6 +76,8 @@ export const SERVICE_PAGES: Record<string, string> = {
   websiteTurnkey: "veb-sajt-pod-klyuch",
   ecommerce: "internet-magazin-pod-klyuch",
   businessCard: "razrabotka-sajta-vizitki",
+  webDesign: "veb-dizajn-sistemy",
+  branding: "dizajn-i-brending",
   b2b: "razrabotka-sajta-dlya-b2b",
   telegram: "razrabotka-telegram-botov",
   mobile: "razrabotka-mobilnyh-prilozhenij",
@@ -128,6 +130,8 @@ export const SERVICE_NAV = [
   { key: "websiteTurnkey", slug: SERVICE_PAGES.websiteTurnkey },
   { key: "ecommerce", slug: SERVICE_PAGES.ecommerce },
   { key: "businessCard", slug: SERVICE_PAGES.businessCard },
+  { key: "webDesign", slug: SERVICE_PAGES.webDesign },
+  { key: "branding", slug: SERVICE_PAGES.branding },
   { key: "b2b", slug: SERVICE_PAGES.b2b },
   { key: "telegram", slug: SERVICE_PAGES.telegram },
   { key: "mobile", slug: SERVICE_PAGES.mobile },
@@ -174,11 +178,11 @@ export function blogPostByKey(key: string): BlogPost | undefined {
 // Contextual internal links between service pages — feeds the "смежные услуги"
 // block and strengthens the internal link graph for SEO.
 export const RELATED_SERVICES: Record<string, string[]> = {
-  corporate: ["websiteTurnkey", "websites", "ecommerce", "businessCard"],
-  websites: ["corporate", "businessCard", "websiteTurnkey", "ecommerce"],
+  corporate: ["webDesign", "websiteTurnkey", "websites", "branding"],
+  websites: ["webDesign", "corporate", "businessCard", "websiteTurnkey"],
   websiteTurnkey: ["corporate", "ecommerce", "businessCard", "websites"],
   ecommerce: ["corporate", "b2b", "websiteTurnkey", "platforms"],
-  businessCard: ["websites", "corporate", "websiteTurnkey", "ecommerce"],
+  businessCard: ["branding", "websites", "corporate", "webDesign"],
   b2b: ["corporate", "ecommerce", "platforms", "integrations"],
   telegram: ["mobile", "ai", "integrations", "platforms"],
   mobile: ["telegram", "ai", "platforms", "blockchain"],
@@ -190,6 +194,8 @@ export const RELATED_SERVICES: Record<string, string[]> = {
   techContent: ["contentAnalysis", "commercialAudit", "corporate", "integrations"],
   commercialAudit: ["contentAnalysis", "techContent", "websites", "corporate"],
   platforms: ["b2b", "integrations", "ai", "support"],
+  webDesign: ["branding", "corporate", "websites", "websiteTurnkey"],
+  branding: ["webDesign", "businessCard", "corporate", "websites"],
 };
 
 // Service page → relevant blog posts (topical cross-linking).

@@ -1,17 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { ChevronRight } from "lucide-react";
 import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { CaseLightbox } from "@/components/sections/case-lightbox";
 import { ContactSection } from "@/components/sections/contact-section";
 import { ProjectCard } from "@/components/sections/project-card";
-import type { CaseItem } from "@/lib/cases";
+import { countCasesByService, type CaseItem } from "@/lib/cases";
+import { SERVICE_NAV } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
 export function ProjectsContent({ cases }: { cases: CaseItem[] }) {
   const t = useTranslations("projectsPage");
+  const services = useTranslations("services.items");
   const [openCase, setOpenCase] = useState<CaseItem | null>(null);
+  /** Выбранная услуга; null — весь каталог. */
+  const [filter, setFilter] = useState<string | null>(null);
+
+  const counts = useMemo(() => countCasesByService(cases), [cases]);
+  // В фильтре показываем только услуги, у которых есть хотя бы один кейс:
+  // пустая кнопка ведёт в пустоту и лишь захламляет строку.
+  const options = useMemo(
+    () => SERVICE_NAV.filter((entry) => (counts[entry.key] ?? 0) > 0),
+    [counts],
+  );
+  const visible = useMemo(
+    () => (filter ? cases.filter((item) => item.services.includes(filter)) : cases),
+    [cases, filter],
+  );
 
   return (
     <>
@@ -44,8 +61,39 @@ export function ProjectsContent({ cases }: { cases: CaseItem[] }) {
             </p>
           </Reveal>
 
-          <StaggerReveal className="mt-16 grid grid-cols-1 gap-10 md:mt-20 md:grid-cols-2 md:gap-12 xl:grid-cols-3 xl:gap-14">
-            {cases.map((item, index) => (
+          {options.length > 1 && (
+            <Reveal delay={0.1}>
+              <div
+                role="group"
+                aria-label={t("filterLabel")}
+                className="mt-12 flex flex-wrap gap-2"
+              >
+                <FilterChip
+                  active={!filter}
+                  count={cases.length}
+                  onClick={() => setFilter(null)}
+                >
+                  {t("filterAll")}
+                </FilterChip>
+                {options.map((entry) => (
+                  <FilterChip
+                    key={entry.key}
+                    active={filter === entry.key}
+                    count={counts[entry.key] ?? 0}
+                    onClick={() => setFilter(filter === entry.key ? null : entry.key)}
+                  >
+                    {services(`${entry.key}.title`)}
+                  </FilterChip>
+                ))}
+              </div>
+            </Reveal>
+          )}
+
+          <StaggerReveal
+            key={filter ?? "all"}
+            className="mt-12 grid grid-cols-1 gap-10 md:mt-16 md:grid-cols-2 md:gap-12 xl:grid-cols-3 xl:gap-14"
+          >
+            {visible.map((item, index) => (
               <div key={item.slug} className="h-full">
                 <ProjectCard index={index} item={item} onOpen={() => setOpenCase(item)} />
               </div>
@@ -63,5 +111,35 @@ export function ProjectsContent({ cases }: { cases: CaseItem[] }) {
         onClose={() => setOpenCase(null)}
       />
     </>
+  );
+}
+
+function FilterChip({
+  active,
+  count,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  count: number;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      data-cursor="hover"
+      className={cn(
+        "inline-flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors duration-300",
+        active
+          ? "border-foreground bg-foreground text-background"
+          : "border-border/80 hover:border-foreground text-foreground/70 hover:text-foreground",
+      )}
+    >
+      {children}
+      <span className="tabular-nums opacity-55">{count}</span>
+    </button>
   );
 }

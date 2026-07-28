@@ -1,6 +1,8 @@
 export {
   HOME_CASE_COUNT,
   TAG_SEPARATOR,
+  casesForService,
+  countCasesByService,
   formatTags,
   pickCases,
   type CaseItem,

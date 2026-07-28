@@ -16,7 +16,7 @@ import {
   Upload,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { formatTags, type CaseItem } from "@/lib/cases";
+import { countCasesByService, formatTags, type CaseItem } from "@/lib/cases";
 import { ADMIN_REPO, CASES_JSON_PATH, TOKEN_STORAGE_KEY } from "@/lib/admin/github";
 import {
   githubCasesApi,
@@ -42,7 +42,8 @@ import {
 } from "@/lib/admin/images";
 import {
   HOME_CASE_COUNT,
-  servicePagesUsing,
+  SERVICE_OPTIONS,
+  serviceTitles,
   slugifyCaseSlug,
   uniqueCaseSlug,
 } from "@/lib/admin/case-usage";
@@ -77,6 +78,7 @@ const EMPTY_CASE: Omit<CaseItem, "id" | "slug" | "createdAt" | "updatedAt"> = {
   description: "",
   quote: "",
   tags: [],
+  services: [],
   cover: "",
   detail: "",
   detailMobile: "",
@@ -120,6 +122,7 @@ function serialize(drafts: DraftCase[]): CaseItem[] {
       description: draft.description.trim(),
       quote: draft.quote.trim(),
       tags: parseTags(draft.tagsDraft),
+      services: draft.services,
       cover: slotPath(draft, "cover"),
       detail,
       // Вертикальный слайд необязателен — если его нет, берём широкий.
@@ -172,6 +175,8 @@ export function AdminPanel() {
   /** Asset paths dropped by a delete/replace — cleaned up at publish time. */
   const [orphaned, setOrphaned] = useState<string[]>([]);
   const [openId, setOpenId] = useState<string | null>(null);
+  /** Какая услуга выбрана в фильтре; null — показываем все кейсы. */
+  const [serviceFilter, setServiceFilter] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [publishing, setPublishing] = useState(false);
   const [published, setPublished] = useState<CasesPublishResult | null>(null);
@@ -220,6 +225,15 @@ export function AdminPanel() {
   }, [api, load]);
 
   const serialized = useMemo(() => serialize(drafts), [drafts]);
+  /** Счётчики берём из сериализованных кейсов, чтобы они шли за правками. */
+  const serviceCounts = useMemo(() => countCasesByService(serialized), [serialized]);
+  const visibleDrafts = useMemo(
+    () =>
+      serviceFilter
+        ? drafts.filter((draft) => draft.services.includes(serviceFilter))
+        : drafts,
+    [drafts, serviceFilter],
+  );
   const problems = useMemo(() => validate(drafts), [drafts]);
   const pendingImageCount = useMemo(
     () => drafts.reduce((sum, draft) => sum + Object.keys(draft.pending).length, 0),
@@ -284,6 +298,8 @@ export function AdminPanel() {
         draftId,
         tagsDraft: "",
         ...EMPTY_CASE,
+        // Если открыт фильтр по услуге, логично сразу привязать к ней.
+        services: serviceFilter ? [serviceFilter] : [],
         createdAt: now,
         updatedAt: now,
         pending: {},
@@ -297,7 +313,7 @@ export function AdminPanel() {
   const removeCase = (draftId: string) => {
     const draft = drafts.find((item) => item.draftId === draftId);
     if (!draft) return;
-    const used = servicePagesUsing(draft.slug);
+    const used = serviceTitles(draft.services);
     const warning = used.length
       ? `\n\nЭтот кейс показывается на страницах услуг: ${used.join(", ")}. После удаления там станет на один кейс меньше.`
       : "";
@@ -552,29 +568,49 @@ export function AdminPanel() {
             Загружаю {CASES_JSON_PATH}…
           </p>
         ) : (
-          <Reorder.Group
-            axis="y"
-            values={drafts}
-            onReorder={setDrafts}
-            className="space-y-3"
-          >
-            {drafts.map((draft, index) => (
-              <CaseRow
-                key={draft.draftId}
-                draft={draft}
-                index={index}
-                open={openId === draft.draftId}
-                onToggle={() =>
-                  setOpenId(openId === draft.draftId ? null : draft.draftId)
-                }
-                onChange={(changes) => patch(draft.draftId, changes)}
-                onRename={(slug) => patch(draft.draftId, { slug })}
-                takenSlugs={drafts.map((item) => item.slug)}
-                onDelete={() => removeCase(draft.draftId)}
-                onImage={(slot, file) => void attachImage(draft.draftId, slot, file)}
-              />
-            ))}
-          </Reorder.Group>
+          <>
+            <ServiceFilter
+              counts={serviceCounts}
+              total={drafts.length}
+              active={serviceFilter}
+              onChange={setServiceFilter}
+            />
+
+            {serviceFilter && (
+              <p className="text-muted-foreground mb-3 text-sm">
+                Показаны кейсы одной услуги — {visibleDrafts.length} из {drafts.length}.
+                Перетаскивание доступно только без фильтра: порядок общий для всего сайта.
+              </p>
+            )}
+
+            <Reorder.Group
+              axis="y"
+              values={drafts}
+              onReorder={setDrafts}
+              className="space-y-3"
+            >
+              {visibleDrafts.map((draft) => {
+                const index = drafts.indexOf(draft);
+                return (
+                  <CaseRow
+                    key={draft.draftId}
+                    draft={draft}
+                    index={index}
+                    open={openId === draft.draftId}
+                    draggable={!serviceFilter}
+                    onToggle={() =>
+                      setOpenId(openId === draft.draftId ? null : draft.draftId)
+                    }
+                    onChange={(changes) => patch(draft.draftId, changes)}
+                    onRename={(slug) => patch(draft.draftId, { slug })}
+                    takenSlugs={drafts.map((item) => item.slug)}
+                    onDelete={() => removeCase(draft.draftId)}
+                    onImage={(slot, file) => void attachImage(draft.draftId, slot, file)}
+                  />
+                );
+              })}
+            </Reorder.Group>
+          </>
         )}
 
         <button
@@ -603,6 +639,99 @@ export function AdminPanel() {
         </p>
       </main>
     </div>
+  );
+}
+
+/** Фильтр по услугам со счётчиками. Кейс с несколькими услугами считается в каждой. */
+function ServiceFilter({
+  counts,
+  total,
+  active,
+  onChange,
+}: {
+  counts: Record<string, number>;
+  total: number;
+  active: string | null;
+  onChange: (key: string | null) => void;
+}) {
+  const chip = (selected: boolean) =>
+    cn(
+      "inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm transition-colors",
+      selected
+        ? "border-foreground bg-foreground text-background"
+        : "border-border hover:border-foreground",
+    );
+
+  return (
+    <div className="mb-4 flex flex-wrap gap-2">
+      <button type="button" onClick={() => onChange(null)} className={chip(!active)}>
+        Все
+        <span className="tabular-nums opacity-60">{total}</span>
+      </button>
+
+      {SERVICE_OPTIONS.map((option) => {
+        const count = counts[option.key] ?? 0;
+        return (
+          <button
+            key={option.key}
+            type="button"
+            onClick={() => onChange(active === option.key ? null : option.key)}
+            className={cn(chip(active === option.key), count === 0 && "opacity-45")}
+          >
+            {option.title}
+            <span className="tabular-nums opacity-60">{count}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+/** Услуги, на страницах которых показывается кейс. Их может быть несколько. */
+function ServicePicker({
+  selected,
+  onChange,
+}: {
+  selected: string[];
+  onChange: (services: string[]) => void;
+}) {
+  const toggle = (key: string) =>
+    onChange(
+      selected.includes(key)
+        ? selected.filter((item) => item !== key)
+        : [...selected, key],
+    );
+
+  return (
+    <label className="block text-sm font-medium md:col-span-2">
+      Услуги
+      <span className="text-muted-foreground mt-1 block text-xs font-normal">
+        На страницах каких услуг показывать кейс и по каким фильтровать. Можно выбрать
+        несколько; если ничего не выбрано, кейс виден только в общем списке.
+      </span>
+      <div className="mt-2 flex flex-wrap gap-2">
+        {SERVICE_OPTIONS.map((option) => {
+          const on = selected.includes(option.key);
+          return (
+            <button
+              key={option.key}
+              type="button"
+              onClick={() => toggle(option.key)}
+              aria-pressed={on}
+              className={cn(
+                "inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm transition-colors",
+                on
+                  ? "border-accent-border bg-accent-soft"
+                  : "border-border hover:border-foreground",
+              )}
+            >
+              {on && <Check className="h-3.5 w-3.5" />}
+              {option.title}
+            </button>
+          );
+        })}
+      </div>
+    </label>
   );
 }
 
@@ -689,6 +818,7 @@ function CaseRow({
   draft,
   index,
   open,
+  draggable,
   onToggle,
   onChange,
   onRename,
@@ -699,6 +829,8 @@ function CaseRow({
   draft: DraftCase;
   index: number;
   open: boolean;
+  /** С включённым фильтром список неполный, и перетаскивание сбило бы порядок. */
+  draggable: boolean;
   onToggle: () => void;
   onChange: (changes: Partial<DraftCase>) => void;
   onRename: (slug: string) => void;
@@ -708,7 +840,7 @@ function CaseRow({
 }) {
   const controls = useDragControls();
   const onHome = index < HOME_CASE_COUNT;
-  const usedOn = servicePagesUsing(draft.slug);
+  const usedOn = serviceTitles(draft.services);
 
   return (
     <Reorder.Item
@@ -720,9 +852,17 @@ function CaseRow({
       <div className="flex items-center gap-3 p-3">
         <button
           type="button"
-          aria-label="Перетащить для смены порядка"
-          onPointerDown={(event) => controls.start(event)}
-          className="text-muted-foreground hover:bg-muted hover:text-foreground cursor-grab touch-none rounded-lg p-2 transition-colors active:cursor-grabbing"
+          aria-label={
+            draggable ? "Перетащить для смены порядка" : "Порядок меняется без фильтра"
+          }
+          disabled={!draggable}
+          onPointerDown={(event) => draggable && controls.start(event)}
+          className={cn(
+            "text-muted-foreground rounded-lg p-2 transition-colors",
+            draggable
+              ? "hover:bg-muted hover:text-foreground cursor-grab touch-none active:cursor-grabbing"
+              : "cursor-not-allowed opacity-30",
+          )}
         >
           <GripVertical className="h-5 w-5" />
         </button>
@@ -803,6 +943,10 @@ function CaseRow({
               value={draft.tagsDraft}
               hint="Через запятую: CRM, Automation, Real Estate"
               onChange={(tagsDraft) => onChange({ tagsDraft })}
+            />
+            <ServicePicker
+              selected={draft.services}
+              onChange={(services) => onChange({ services })}
             />
             <Field
               label="Описание"
