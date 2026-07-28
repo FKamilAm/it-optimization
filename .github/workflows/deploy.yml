@@ -1,0 +1,69 @@
+name: Deploy to reg.ru
+
+# Any push to main rebuilds the static export and uploads it over FTP. That is
+# what turns the /admin panel into a real CMS: the panel commits content, this
+# workflow publishes the site. Also runnable by hand from the Actions tab.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# One deploy at a time — an FTP upload that gets cancelled halfway would leave
+# the hosting with a mix of old and new files.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - run: npm ci
+
+      # NEXT_PUBLIC_* values are baked in at build time. Each falls back to the
+      # same literal as src/lib/constants.ts, so a repo without any variables set
+      # still builds the correct production site. Override any of them in
+      # Settings → Secrets and variables → Actions → Variables.
+      - name: Build static export
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || 'https://it-optimization.ru' }}
+          NEXT_PUBLIC_CONTACT_EMAIL: ${{ vars.NEXT_PUBLIC_CONTACT_EMAIL || 'info@itoptimizations.ru' }}
+          NEXT_PUBLIC_CONTACT_PHONE: ${{ vars.NEXT_PUBLIC_CONTACT_PHONE || '+79937266061' }}
+          NEXT_PUBLIC_TELEGRAM_URL: ${{ vars.NEXT_PUBLIC_TELEGRAM_URL || 'https://t.me/dujaii' }}
+          NEXT_PUBLIC_WHATSAPP_URL: ${{ vars.NEXT_PUBLIC_WHATSAPP_URL || 'https://wa.me/79963266161' }}
+          NEXT_PUBLIC_MAX_URL: ${{ vars.NEXT_PUBLIC_MAX_URL || 'https://max.ru/' }}
+          # Адрес бэкенда панели. Пока переменная не задана, /admin собирается в
+          # прежнем режиме — вход по токену GitHub. Как только в Settings →
+          # Variables появится NEXT_PUBLIC_ADMIN_API_URL, следующая сборка
+          # выкатит панель с формой входа по почте и паролю.
+          NEXT_PUBLIC_ADMIN_API_URL: ${{ vars.NEXT_PUBLIC_ADMIN_API_URL }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check FTP password is configured
+        env:
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          if [ -z "$FTP_PASSWORD" ]; then
+            echo "::error::Secret FTP_PASSWORD is not set — add it in Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+
+      # Stdlib-only script, no pip install needed. It re-uploads every file and
+      # retries flaky reg.ru data connections, so expect several minutes.
+      - name: Upload out/ over FTP
+        env:
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: python scripts/ftp-upload.py
