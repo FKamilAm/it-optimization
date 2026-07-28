@@ -6,22 +6,33 @@ import { Extrude, RoundedBox } from "@react-three/drei";
 import * as THREE from "three";
 import { AccentMaterial, ChromeMaterial, useIdleAnimation } from "../shared";
 
-/**
- * Контур фирменного знака: скошенный шеврон, собранный из двух штрихов. Форма
- * намеренно простая — знак должен читаться силуэтом, как и положено логотипу.
- */
-function markShape(): THREE.Shape {
+const STEM = 0.5; // толщина штриха, общая для обеих букв
+const HALF_H = 0.9;
+
+/** Буква «I» — простой штрих; рядом с «T» читается однозначно. */
+function letterI(): THREE.Shape {
   const shape = new THREE.Shape();
-  shape.moveTo(-0.95, 0.9);
-  shape.lineTo(-0.2, 0.9);
-  shape.lineTo(0.55, -0.28);
-  shape.lineTo(0.55, 0.9);
-  shape.lineTo(1.15, 0.9);
-  shape.lineTo(1.15, -0.9);
-  shape.lineTo(0.4, -0.9);
-  shape.lineTo(-0.35, 0.28);
-  shape.lineTo(-0.35, -0.9);
-  shape.lineTo(-0.95, -0.9);
+  shape.moveTo(-STEM / 2, HALF_H);
+  shape.lineTo(STEM / 2, HALF_H);
+  shape.lineTo(STEM / 2, -HALF_H);
+  shape.lineTo(-STEM / 2, -HALF_H);
+  shape.closePath();
+  return shape;
+}
+
+/** Буква «T»: перекладина сверху и штрих той же толщины, что у «I». */
+function letterT(): THREE.Shape {
+  const barHalf = 0.85;
+  const barBottom = HALF_H - 0.36;
+  const shape = new THREE.Shape();
+  shape.moveTo(-barHalf, HALF_H);
+  shape.lineTo(barHalf, HALF_H);
+  shape.lineTo(barHalf, barBottom);
+  shape.lineTo(STEM / 2, barBottom);
+  shape.lineTo(STEM / 2, -HALF_H);
+  shape.lineTo(-STEM / 2, -HALF_H);
+  shape.lineTo(-STEM / 2, barBottom);
+  shape.lineTo(-barHalf, barBottom);
   shape.closePath();
   return shape;
 }
@@ -43,31 +54,37 @@ const CARRIERS = [
 ] as const;
 
 /**
- * Дизайн и брендинг — гранёный фирменный знак, медленно поворачивающийся в
- * акцентном цвете, а вокруг него бледные носители фирстиля. Идея буквальная:
- * один знак задаёт систему, всё остальное её носит.
+ * Дизайн и брендинг — объёмный знак «IT» в акцентном цвете, медленно
+ * поворачивающийся вокруг вертикали, а вокруг него бледные носители фирстиля.
+ * Идея буквальная: один знак задаёт систему, всё остальное её носит.
  */
 export function BrandingScene({ animate }: { animate: boolean }) {
   const groupRef = useIdleAnimation(animate);
   const markRef = useRef<THREE.Group>(null);
-  const shape = useMemo(markShape, []);
+  const shapeI = useMemo(letterI, []);
+  const shapeT = useMemo(letterT, []);
 
   useFrame(({ clock }) => {
     const mark = markRef.current;
     if (!mark || !animate) return;
     const t = clock.getElapsedTime();
-    // Поворот вокруг вертикали + едва заметное покачивание: знак «показывает
-    // грани», но не крутится волчком.
-    mark.rotation.y = t * 0.5;
-    mark.rotation.x = Math.sin(t * 0.7) * 0.12;
+    // Качание в пределах ±30°, а не полный оборот: логотип обязан читаться в
+    // любой момент. На полном обороте «IT» половину времени видно с ребра, а
+    // ещё четверть — зеркально, как «TI».
+    mark.rotation.y = Math.sin(t * 0.42) * 0.52;
+    mark.rotation.x = Math.sin(t * 0.7) * 0.1;
     mark.position.y = Math.sin(t * 0.9) * 0.08;
   });
 
   return (
     <group ref={groupRef}>
       <group scale={1.25}>
-        <group ref={markRef} scale={1.5}>
-          <Extrude args={[shape, EXTRUDE]} position={[0, 0, -EXTRUDE.depth / 2]}>
+        {/* Знак «IT»: обе буквы вращаются как одно целое. */}
+        <group ref={markRef} scale={1.45}>
+          <Extrude args={[shapeI, EXTRUDE]} position={[-0.95, 0, -EXTRUDE.depth / 2]}>
+            <AccentMaterial />
+          </Extrude>
+          <Extrude args={[shapeT, EXTRUDE]} position={[0.35, 0, -EXTRUDE.depth / 2]}>
             <AccentMaterial />
           </Extrude>
         </group>
