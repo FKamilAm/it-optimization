@@ -1,0 +1,152 @@
+# Развёртывание API на VPS
+
+Пошаговый чеклист. Всё, что можно было подготовить заранее, уже лежит в
+репозитории: `server/docker-compose.prod.yml`, `server/Caddyfile`,
+`server/.env.production.example`, `server/scripts/setup-server.sh`,
+`server/scripts/backup.sh`.
+
+Сайт при этом остаётся там же, где был: статика на хостинге reg.ru. На VPS
+переезжает только API панели и база.
+
+---
+
+## 0. Что нужно до начала
+
+| Что                                        | Зачем                                | Кто делает                     |
+| ------------------------------------------ | ------------------------------------ | ------------------------------ |
+| VPS, Ubuntu 22.04/24.04, ≥1 ГБ RAM         | там живут API и PostgreSQL           | ты (аккаунт и оплата)          |
+| Доступ по SSH (root или sudo)              | развернуть сервис                    | ты                             |
+| A-запись `api.it-optimization.ru` → IP VPS | Caddy проверяет домен через порт 80  | ты, у регистратора             |
+| Секрет `FTP_PASSWORD` в GitHub             | иначе сайт соберётся, но не зальётся | проверить в Settings → Secrets |
+
+DNS применяется не мгновенно. Проверить: `dig +short api.it-optimization.ru` —
+должен вернуться IP сервера. **Пока не вернулся, шаг 3 делать бессмысленно**:
+Let's Encrypt не выдаст сертификат.
+
+---
+
+## 1. Подготовить сервер
+
+```bash
+ssh root@IP_СЕРВЕРА
+git clone https://github.com/FKamilAm/it-optimization.git /opt/it-optimization
+bash /opt/it-optimization/server/scripts/setup-server.sh
+```
+
+Скрипт ставит Docker, включает файрвол (открыты только SSH, 80, 443) и, если
+памяти меньше 2 ГБ, добавляет swap — без него сборка образа падает по OOM.
+
+## 2. Заполнить переменные
+
+```bash
+cd /opt/it-optimization/server
+cp .env.production.example .env
+openssl rand -base64 24     # пароль для POSTGRES_PASSWORD
+nano .env
+```
+
+`GITHUB_TOKEN` на этом шаге **оставить пустым** — публикация будет работать
+вхолостую, и можно спокойно проверить всё остальное, ничего не закоммитив в
+боевой репозиторий.
+
+## 3. Запустить
+
+```bash
+docker compose -f docker-compose.prod.yml up -d --build
+docker compose -f docker-compose.prod.yml ps        # все healthy?
+curl https://api.it-optimization.ru/health          # {"ok":true}
+```
+
+Первый запуск дольше остальных: собирается образ и выпускается сертификат.
+Если `/health` не отвечает — `docker compose -f docker-compose.prod.yml logs caddy`
+покажет, получилось ли подтвердить домен.
+
+## 4. База и учётная запись
+
+```bash
+CO="docker compose -f docker-compose.prod.yml"
+$CO exec api npx prisma migrate deploy    # таблицы (при старте накатываются и сами)
+$CO exec api npm run seed:prod            # 16 кейсов из content/cases.json
+$CO exec -it api npm run user:create:prod -- ТВОЯ_ПОЧТА owner
+```
+
+Пароль вводится интерактивно, в историю команд не попадает. Минимум 12 символов.
+
+Проверить, что данные на месте:
+
+```bash
+curl -s https://api.it-optimization.ru/cases/snapshot | head -c 300
+```
+
+## 5. Переключить панель
+
+В GitHub: **Settings → Secrets and variables → Actions → Variables → New variable**
+
+```
+NEXT_PUBLIC_ADMIN_API_URL = https://api.it-optimization.ru
+```
+
+Затем запустить workflow «Deploy to reg.ru» (вкладка Actions → Run workflow) или
+просто сделать любой пуш в `main`. Адрес API запекается в статику на этапе
+сборки, поэтому без пересборки панель останется в старом режиме.
+
+После сборки `/admin` открывается формой входа. **Проверить с телефона** — ради
+этого всё и делалось.
+
+## 6. Включить публикацию
+
+Убедившись, что вход, редактирование и загрузка картинок работают:
+
+```bash
+nano .env                                    # вписать GITHUB_TOKEN
+docker compose -f docker-compose.prod.yml up -d
+```
+
+Токен — fine-grained PAT: только репозиторий сайта, `Contents: read and write`.
+Теперь «Опубликовать» коммитит снапшот, GitHub Actions пересобирает сайт и
+заливает его по FTP.
+
+## 7. Бэкапы
+
+```bash
+crontab -e
+0 4 * * * cd /opt/it-optimization/server && bash scripts/backup.sh >> backups/backup.log 2>&1
+```
+
+Через сутки проверить, что дампы появляются, и **один раз восстановить** — дамп,
+который ни разу не разворачивали, бэкапом не является. Команда восстановления —
+в конце `scripts/backup.sh`.
+
+---
+
+## Обновление кода
+
+```bash
+cd /opt/it-optimization && git pull
+cd server && docker compose -f docker-compose.prod.yml up -d --build
+docker compose -f docker-compose.prod.yml exec api npx prisma migrate deploy
+```
+
+Тома `db-data`, `uploads` и сертификаты переживают пересборку.
+
+---
+
+## Если что-то не так
+
+| Симптом                                      | Где смотреть                                            |
+| -------------------------------------------- | ------------------------------------------------------- |
+| `/health` не отвечает                        | `docker compose -f docker-compose.prod.yml logs api`    |
+| Нет сертификата                              | `logs caddy` — чаще всего DNS ещё не применился         |
+| Вход проходит, но панель сразу разлогинивает | `COOKIE_SECURE`, `COOKIE_DOMAIN`, `WEB_ORIGIN` в `.env` |
+| CORS-ошибка в консоли браузера               | `WEB_ORIGIN` не совпадает с адресом сайта посимвольно   |
+| «Опубликовать» пишет про отсутствие доступа  | пустой или просроченный `GITHUB_TOKEN`                  |
+| Сайт не обновился после публикации           | Actions: собралось ли, и задан ли секрет `FTP_PASSWORD` |
+
+---
+
+## Откат
+
+Панель возвращается в прежний режим за одну минуту и без сервера: удалить
+переменную `NEXT_PUBLIC_ADMIN_API_URL` и пересобрать сайт. `/admin` снова
+попросит токен GitHub и будет коммитить напрямую. Публичные страницы не зависят
+от API вообще — они статические, и падение сервера на них не влияет.

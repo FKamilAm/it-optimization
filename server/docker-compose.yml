@@ -1,0 +1,40 @@
+# Локальный стенд: база + API. На VPS этот же файл поднимает боевой сервис —
+# меняются только переменные в server/.env (см. .env.example).
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: itopt
+      POSTGRES_PASSWORD: itopt
+      POSTGRES_DB: itopt
+    # 5433 наружу, чтобы не конфликтовать с локально установленным Postgres.
+    ports:
+      - "5433:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U itopt -d itopt"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      # Внутри сети compose база доступна по имени сервиса.
+      DATABASE_URL: postgresql://itopt:itopt@db:5432/itopt?schema=public
+      UPLOAD_DIR: /app/uploads
+    ports:
+      - "4000:4000"
+    volumes:
+      - uploads:/app/uploads
+
+volumes:
+  db-data:
+  uploads:

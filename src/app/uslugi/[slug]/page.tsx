@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { SiteShell } from "@/components/layout/site-shell";
 import { ServicePageContent } from "@/components/service-page/service-page-content";
+import { getAllCases } from "@/lib/cases";
 import { SERVICE_PAGES, SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -58,7 +59,8 @@ export default async function ServicePage({ params }: PageProps) {
   const url = `${siteUrl}/uslugi/${slug}/`;
   const faq = t.raw("faq") as { question: string; answer: string }[];
 
-  const tariffs = (t.raw("tariffs") as { name: string; price: string }[] | undefined) ?? [];
+  const tariffs =
+    (t.raw("tariffs") as { name: string; price: string }[] | undefined) ?? [];
   const prices = tariffs
     .map((tier) => Number(tier.price.replace(/[^\d]/g, "")))
     .filter((n) => n > 0);
@@ -130,7 +132,7 @@ export default async function ServicePage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <SiteShell>
-        <ServicePageContent pageKey={pageKey} />
+        <ServicePageContent pageKey={pageKey} cases={await getAllCases()} />
       </SiteShell>
     </>
   );

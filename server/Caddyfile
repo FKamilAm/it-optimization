@@ -1,0 +1,41 @@
+# Caddy сам получает и продлевает сертификат Let's Encrypt для {$API_DOMAIN}.
+# Отдельного certbot и заданий по расписанию не нужно — этим и выбран Caddy.
+#
+# Обязательное условие: A-запись {$API_DOMAIN} уже указывает на IP этого
+# сервера, а порты 80 и 443 открыты. Проверка домена идёт через 80-й.
+
+{
+	email {$ACME_EMAIL}
+	# Меньше шума в логах: успешные запросы пишет сам сайт, не прокси.
+	admin off
+}
+
+{$API_DOMAIN} {
+	encode gzip zstd
+
+	# Заголовки безопасности. API отвечает только JSON, поэтому CSP жёсткая:
+	# ничего исполняемого отсюда грузиться не должно.
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "no-referrer"
+		Content-Security-Policy "default-src 'none'; frame-ancestors 'none'"
+		# Сервер и его версию наружу не показываем.
+		-Server
+	}
+
+	# Картинки кейсов раздаёт сам API из тома uploads.
+	reverse_proxy api:4000 {
+		# Реальный IP клиента — нужен лимиту попыток входа, иначе все запросы
+		# выглядят как один адрес прокси и лимит блокирует всех сразу.
+		header_up X-Real-IP {remote_host}
+		header_up X-Forwarded-For {remote_host}
+		header_up X-Forwarded-Proto {scheme}
+	}
+
+	log {
+		output stdout
+		format console
+	}
+}

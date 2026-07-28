@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { SiteShell } from "@/components/layout/site-shell";
 import { ProjectsContent } from "@/components/projects/projects-content";
+import { getAllCases } from "@/lib/cases";
 import { SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -26,10 +27,12 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const cases = await getAllCases();
+
   return (
     <SiteShell>
-      <ProjectsContent />
+      <ProjectsContent cases={cases} />
     </SiteShell>
   );
 }
