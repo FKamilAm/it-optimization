@@ -11,7 +11,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
       // Internal case-management panel — nothing to index there.
-      disallow: "/admin/",
+      disallow: "/panel/",
     },
     sitemap: `${siteUrl}/sitemap.xml`,
     host: siteUrl,
