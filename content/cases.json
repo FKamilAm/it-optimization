@@ -1,17 +1,39 @@
 [
   {
+    "id": "6c2ef8ba-141a-43f8-b3f7-d667f158d5a3",
+    "slug": "veb-dizayn-sayta-portfolio-dlya-art-dire",
+    "title": "Веб-дизайн сайта-портфолио для арт-директора",
+    "description": "Концепция персонального сайта для креативного специалиста с акцентом на визуальную подачу, сильный личный бренд и удобную презентацию услуг",
+    "quote": "Сайт получился стильным, запоминающимся и точно передал мой визуальный подход. Теперь портфолио выглядит намного профессиональнее.",
+    "tags": [
+      "Web Design",
+      "Portfolio",
+      "Personal Brand"
+    ],
+    "services": [],
+    "cover": "/cases/case-veb-dizayn-sayta-portfolio-dlya-art-dire-8250cc6a.webp",
+    "detail": "/cases/detail-veb-dizayn-sayta-portfolio-dlya-art-dire-89a2b69d.webp",
+    "detailMobile": "/cases/detail-veb-dizayn-sayta-portfolio-dlya-art-dire-291472b6-mobile.webp",
+    "createdAt": "2026-07-29T10:51:45.833Z",
+    "updatedAt": "2026-07-29T10:51:45.833Z"
+  },
+  {
     "id": "9ea86da4-e830-5ce0-b4b2-3494d2ed61fc",
     "slug": "crm",
     "title": "CRM для агентства недвижимости",
     "description": "Система для управления объектами, заявками, клиентами и сделками в одном интерфейсе.",
     "quote": "Команда помогла превратить разрозненные заявки и таблицы в понятную систему продаж.",
-    "tags": ["Real Estate", "CRM", "Automation"],
-    "services": ["platforms", "ai", "integrations"],
+    "tags": [
+      "Real Estate",
+      "CRM",
+      "Automation"
+    ],
+    "services": [],
     "cover": "/cases/case-crm.webp",
     "detail": "/cases/detail-crm.webp",
     "detailMobile": "/cases/detail-crm-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-07-28T15:36:52.599Z"
+    "updatedAt": "2026-07-29T10:51:45.835Z"
   },
   {
     "id": "d071b235-5c43-51b5-9b8e-7bb9699c05ca",
@@ -19,13 +41,17 @@
     "title": "ИИ-агент для обработки обращений",
     "description": "ИИ-модуль классифицирует обращения, отвечает на типовые вопросы и передаёт лиды в CRM.",
     "quote": "Мы сократили ручную обработку заявок и быстрее стали реагировать на новых клиентов.",
-    "tags": ["ИИ", "Automation", "CRM"],
-    "services": ["ai"],
+    "tags": [
+      "ИИ",
+      "Automation",
+      "CRM"
+    ],
+    "services": [],
     "cover": "/cases/case-ai.webp",
     "detail": "/cases/detail-ai.webp",
     "detailMobile": "/cases/detail-ai-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-07-28T15:36:52.601Z"
+    "updatedAt": "2026-07-29T10:51:45.837Z"
   },
   {
     "id": "76b9cacc-de69-55a4-8366-fb3826979141",
@@ -33,13 +59,17 @@
     "title": "Мини-приложение Telegram для заявок",
     "description": "Мини-приложение для приёма заявок, статусов, уведомлений и коммуникации внутри Telegram.",
     "quote": "Клиенты получили быстрый способ взаимодействия без установки отдельного приложения.",
-    "tags": ["Telegram", "Mini App", "Leadgen"],
-    "services": ["telegram", "mobile"],
+    "tags": [
+      "Telegram",
+      "Mini App",
+      "Leadgen"
+    ],
+    "services": [],
     "cover": "/cases/case-miniapp.webp",
     "detail": "/cases/detail-miniapp.webp",
     "detailMobile": "/cases/detail-miniapp-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-07-28T15:36:52.603Z"
+    "updatedAt": "2026-07-29T10:51:45.838Z"
   },
   {
     "id": "91330f3a-a643-5e66-9499-7a572d1d9c37",
@@ -47,13 +77,17 @@
     "title": "Маркетплейс-платформа",
     "description": "Платформа с каталогом, ролями, кабинетами продавцов, заказами и платежной логикой.",
     "quote": "Архитектура позволила запустить MVP и оставить пространство для масштабирования.",
-    "tags": ["Marketplace", "eCommerce", "Payments"],
-    "services": ["ecommerce", "platforms"],
+    "tags": [
+      "Marketplace",
+      "eCommerce",
+      "Payments"
+    ],
+    "services": [],
     "cover": "/cases/case-marketplace.webp",
     "detail": "/cases/detail-marketplace.webp",
     "detailMobile": "/cases/detail-marketplace-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-07-28T15:36:52.604Z"
+    "updatedAt": "2026-07-29T10:51:45.839Z"
   },
   {
     "id": "00433701-7dcf-5449-bd2e-4b4871fb449a",
@@ -61,13 +95,17 @@
     "title": "Панель Web3 / крипто",
     "description": "Интерфейс для работы с on-chain данными, кошельками, транзакциями и мультичейн-логикой.",
     "quote": "Сложная blockchain-логика стала понятной через аккуратный и чистый интерфейс.",
-    "tags": ["Web3", "Blockchain", "Dashboard"],
-    "services": ["blockchain"],
+    "tags": [
+      "Web3",
+      "Blockchain",
+      "Dashboard"
+    ],
+    "services": [],
     "cover": "/cases/case-web3.webp",
     "detail": "/cases/detail-web3.webp",
     "detailMobile": "/cases/detail-web3-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-07-28T15:36:52.605Z"
+    "updatedAt": "2026-07-29T10:51:45.840Z"
   },
   {
     "id": "fa57f696-f23d-59c3-bfaa-a6dc52ea75cf",
@@ -75,13 +113,17 @@
     "title": "Корпоративный сайт + автоматизация",
     "description": "Корпоративный сайт с формами, аналитикой, Telegram-уведомлениями и интеграцией с таблицами/CRM.",
     "quote": "Сайт стал не просто визиткой, а рабочим каналом получения и обработки заявок.",
-    "tags": ["Website", "CRM", "Analytics"],
-    "services": ["corporate", "telegram", "platforms", "integrations"],
+    "tags": [
+      "Website",
+      "CRM",
+      "Analytics"
+    ],
+    "services": [],
     "cover": "/cases/case-corporate.webp",
     "detail": "/cases/detail-corporate.webp",
     "detailMobile": "/cases/detail-corporate-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-07-28T15:36:52.606Z"
+    "updatedAt": "2026-07-29T10:51:45.842Z"
   },
   {
     "id": "987ad389-0bb3-528b-9b21-035029474f9d",
@@ -89,13 +131,17 @@
     "title": "«Проектные решения» — IT для городов",
     "description": "Корпоративный сайт IT-компании, которая создаёт инновации для городской среды: услуги, проекты и команда в едином стиле.",
     "quote": "Сайт передал масштаб компании и упаковал сложные IT-решения в понятную подачу.",
-    "tags": ["Website", "Corporate", "IT"],
-    "services": ["corporate", "b2b"],
+    "tags": [
+      "Website",
+      "Corporate",
+      "IT"
+    ],
+    "services": [],
     "cover": "/cases/case-svpr.webp",
     "detail": "/cases/detail-svpr.webp",
     "detailMobile": "/cases/detail-svpr-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-07-28T15:36:52.607Z"
+    "updatedAt": "2026-07-29T10:51:45.843Z"
   },
   {
     "id": "3f0e4ee3-bd29-50d9-9470-cb85eb1b730a",
@@ -103,13 +149,17 @@
     "title": "«Тайгер» — сайт девелопера",
     "description": "Корпоративный сайт девелопера недвижимости: проекты, компания и подбор квартир с акцентом на эстетику и качество.",
     "quote": "Премиальная подача усилила доверие к бренду и упростила подбор объектов.",
-    "tags": ["Website", "Real Estate", "Development"],
-    "services": ["corporate", "websites"],
+    "tags": [
+      "Website",
+      "Real Estate",
+      "Development"
+    ],
+    "services": [],
     "cover": "/cases/case-tiger.webp",
     "detail": "/cases/detail-tiger.webp",
     "detailMobile": "/cases/detail-tiger-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-07-28T15:36:52.608Z"
+    "updatedAt": "2026-07-29T10:51:45.844Z"
   },
   {
     "id": "e23b3464-9fb2-5697-ac3d-74efb449b31a",
@@ -117,13 +167,17 @@
     "title": "Forma Casa — мебель для интерьера",
     "description": "Сайт мебельного бренда с каталогом, коллекциями и авторским дизайном для современных интерьеров.",
     "quote": "Витрина подчеркнула качество мебели и увеличила число обращений в шоурум.",
-    "tags": ["Website", "eCommerce", "Furniture"],
-    "services": ["websiteTurnkey", "ecommerce"],
+    "tags": [
+      "Website",
+      "eCommerce",
+      "Furniture"
+    ],
+    "services": [],
     "cover": "/cases/case-mebel.webp",
     "detail": "/cases/detail-mebel.webp",
     "detailMobile": "/cases/detail-mebel-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-07-28T15:36:52.609Z"
+    "updatedAt": "2026-07-29T10:51:45.845Z"
   },
   {
     "id": "6a964468-0a9b-59f1-bfe7-e21ce5d5bad1",
@@ -131,13 +185,17 @@
     "title": "ANG — тюнинг и карбон-обвесы",
     "description": "Сайт студии автомобильного тюнинга: услуги, проекты и галерея работ с премиальной тёмной подачей.",
     "quote": "Тёмный дизайн передал премиальность бренда и его работ по карбону.",
-    "tags": ["Website", "Automotive", "Portfolio"],
-    "services": ["websiteTurnkey", "websites"],
+    "tags": [
+      "Website",
+      "Automotive",
+      "Portfolio"
+    ],
+    "services": [],
     "cover": "/cases/case-renegade.webp",
     "detail": "/cases/detail-renegade.webp",
     "detailMobile": "/cases/detail-renegade-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-07-28T15:36:52.610Z"
+    "updatedAt": "2026-07-29T10:51:45.846Z"
   },
   {
     "id": "d34afcdd-6f48-57c1-a6bb-9fa2a33d39fb",
@@ -145,13 +203,17 @@
     "title": "Visit Tatarstan — тур-портал",
     "description": "Туристический портал региона: события, маршруты, идеи для путешествий и 3D-туры в едином удобном гиде.",
     "quote": "Портал собрал события и маршруты в удобный гид для путешественников.",
-    "tags": ["Website", "Tourism", "Portal"],
-    "services": ["businessCard", "websites"],
+    "tags": [
+      "Website",
+      "Tourism",
+      "Portal"
+    ],
+    "services": [],
     "cover": "/cases/case-visit.webp",
     "detail": "/cases/detail-visit.webp",
     "detailMobile": "/cases/detail-visit-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-07-28T15:36:52.611Z"
+    "updatedAt": "2026-07-29T10:51:45.848Z"
   },
   {
     "id": "057a2e2b-121b-5f70-9f38-528253a2e7ca",
@@ -159,13 +221,17 @@
     "title": "MiniFlow — финансовый Mini App",
     "description": "Telegram Mini App для управления балансом, переводами и мультивалютными счетами прямо внутри мессенджера.",
     "quote": "Пользователи управляют финансами в пару касаний, не покидая Telegram.",
-    "tags": ["Telegram", "Mini App", "Fintech"],
-    "services": ["telegram"],
+    "tags": [
+      "Telegram",
+      "Mini App",
+      "Fintech"
+    ],
+    "services": [],
     "cover": "/cases/case-tg-mini-app.webp",
     "detail": "/cases/detail-tg-mini-app.webp",
     "detailMobile": "/cases/detail-tg-mini-app-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-07-28T15:36:52.613Z"
+    "updatedAt": "2026-07-29T10:51:45.849Z"
   },
   {
     "id": "639b8c0b-d052-5fdd-8c7c-245026f84d8c",
@@ -173,13 +239,17 @@
     "title": "NORI GO — доставка суши",
     "description": "Мобильное приложение доставки: меню, сеты, корзина и оформление заказа с доставкой от 30 минут.",
     "quote": "Заказы стали быстрее и удобнее — прямо из приложения за пару минут.",
-    "tags": ["Mobile", "Delivery", "Food"],
-    "services": ["websiteTurnkey", "mobile"],
+    "tags": [
+      "Mobile",
+      "Delivery",
+      "Food"
+    ],
+    "services": [],
     "cover": "/cases/case-nori.webp",
     "detail": "/cases/detail-nori.webp",
     "detailMobile": "/cases/detail-nori-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-07-28T15:36:52.613Z"
+    "updatedAt": "2026-07-29T10:51:45.850Z"
   },
   {
     "id": "78a3f737-358a-5fc4-a732-b3b824918c27",
@@ -187,13 +257,17 @@
     "title": "Стрит.РФ — аренда помещений",
     "description": "Мобильная платформа поиска и бронирования коммерческих помещений: фильтры, карта и детальные карточки объектов.",
     "quote": "Поиск и бронирование помещений для бизнеса ускорились в разы.",
-    "tags": ["Mobile", "PropTech", "Booking"],
-    "services": ["businessCard", "mobile"],
+    "tags": [
+      "Mobile",
+      "PropTech",
+      "Booking"
+    ],
+    "services": [],
     "cover": "/cases/case-street.webp",
     "detail": "/cases/detail-street.webp",
     "detailMobile": "/cases/detail-street-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-07-28T15:36:52.615Z"
+    "updatedAt": "2026-07-29T10:51:45.851Z"
   },
   {
     "id": "ab3fd2d9-32a5-5c91-a7ed-eb5330d8e0ea",
@@ -201,13 +275,17 @@
     "title": "Crypto Robotics — крипто-боты",
     "description": "Платформа автоматизированного крипто-трейдинга: торговые боты, стратегии, тарифы и аналитика портфеля.",
     "quote": "Сложный трейдинг стал доступным через понятные боты и стратегии.",
-    "tags": ["Web3", "Crypto", "Trading"],
-    "services": ["blockchain"],
+    "tags": [
+      "Web3",
+      "Crypto",
+      "Trading"
+    ],
+    "services": [],
     "cover": "/cases/case-crypto.webp",
     "detail": "/cases/detail-crypto.webp",
     "detailMobile": "/cases/detail-crypto-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-07-28T15:36:52.616Z"
+    "updatedAt": "2026-07-29T10:51:45.852Z"
   },
   {
     "id": "d532f4fe-f604-5b37-9c15-8dd48449223e",
@@ -215,13 +293,17 @@
     "title": "«99 баллов» — подготовка к ЕГЭ",
     "description": "EdTech-платформа подготовки к ЕГЭ и ОГЭ: курсы, преподаватели, направления и удобный подбор программ.",
     "quote": "Платформа упаковала курсы и преподавателей в понятную систему подготовки.",
-    "tags": ["Platform", "EdTech", "Education"],
-    "services": ["b2b", "platforms"],
+    "tags": [
+      "Platform",
+      "EdTech",
+      "Education"
+    ],
+    "services": [],
     "cover": "/cases/case-99.webp",
     "detail": "/cases/detail-99.webp",
     "detailMobile": "/cases/detail-99-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-07-28T15:36:52.617Z"
+    "updatedAt": "2026-07-29T10:51:45.853Z"
   },
   {
     "id": "55b7570a-3abb-47df-9c3c-ea8d688a47c7",
@@ -229,13 +311,17 @@
     "title": "Веб-дизайн сайта для IT-аутсорс компании",
     "description": "Концепция корпоративного сайта для компании, которая занимается разработкой сайтов, мобильных приложений, Telegram-ботов, CRM и цифровых сервисов для бизнеса.",
     "quote": "Мы создали визуальную систему, которая передаёт технологичность бренда, подчёркивает экспертизу команды и помогает понятно представить услуги разработки.",
-    "tags": ["Web Design", "IT Outsourcing", "Corporate Website"],
-    "services": ["webDesign", "corporate"],
+    "tags": [
+      "Web Design",
+      "IT Outsourcing",
+      "Corporate Website"
+    ],
+    "services": [],
     "cover": "/cases/case-veb-dizayn-sayta-dlya-it-autsors-kompani-387f33a1.webp",
     "detail": "/cases/detail-veb-dizayn-sayta-dlya-it-autsors-kompani-8448bc19.webp",
     "detailMobile": "/cases/detail-veb-dizayn-sayta-dlya-it-autsors-kompani-239973b0-mobile.webp",
     "createdAt": "2026-07-28T11:54:49.350Z",
-    "updatedAt": "2026-07-28T15:36:52.618Z"
+    "updatedAt": "2026-07-29T10:51:45.854Z"
   },
   {
     "id": "f931441b-4c77-42d3-8b29-e678187139ad",
@@ -243,13 +329,18 @@
     "title": "CRM-система для сети детейлинг-центров",
     "description": "Единая CRM для управления сетью детейлинг-студий. Система автоматизирует запись клиентов, распределяет автомобили между мастерами, отслеживает загрузку боксов, хранит историю обслуживания и помогает руководителю контролировать эффективность каждого филиала в режиме реального времени.",
     "quote": "Мы перестали терять клиентов из-за хаоса в записях. Теперь вся сеть работает как единый механизм, а руководители видят полную картину бизнеса.",
-    "tags": ["CRM", "Automation", "Automotive", "Dashboard"],
-    "services": ["platforms", "integrations"],
+    "tags": [
+      "CRM",
+      "Automation",
+      "Automotive",
+      "Dashboard"
+    ],
+    "services": [],
     "cover": "/cases/case-crm-sistema-dlya-seti-deteyling-centrov-b983edd0.webp",
     "detail": "/cases/detail-crm-sistema-dlya-seti-deteyling-centrov-a7113c3e.webp",
     "detailMobile": "/cases/detail-crm-sistema-dlya-seti-deteyling-centrov-027da73e-mobile.webp",
     "createdAt": "2026-07-28T14:56:18.930Z",
-    "updatedAt": "2026-07-28T15:36:52.619Z"
+    "updatedAt": "2026-07-29T10:51:45.856Z"
   },
   {
     "id": "5c42a9d0-aa05-4342-ab1d-39579be7f6a5",
@@ -257,12 +348,16 @@
     "title": "«Фронтал» — интернет-магазин запчастей для погрузчиков",
     "description": "Интернет-магазин запчастей для китайских фронтальных погрузчиков: каталог на 100 000 позиций, интерактивные взрыв-схемы узлов и автоматическая синхронизация цен, остатков и фотографий с 1С клиента.",
     "quote": "Раньше подбор запчасти был перепиской и звонками. Теперь клиент сам находит деталь по схеме своей машины и оставляет заказ, а цены и наличие сайт берёт из нашей 1С без нашего участия.",
-    "tags": ["E-commerce", "Catalog", "1C"],
-    "services": ["ecommerce", "websiteTurnkey"],
+    "tags": [
+      "E-commerce",
+      "Catalog",
+      "1C"
+    ],
+    "services": [],
     "cover": "/cases/case-frontal-internet-magazin-zapchastey-dlya-18dcd8c3.webp",
     "detail": "/cases/detail-frontal-internet-magazin-zapchastey-dlya-67f26a26.webp",
     "detailMobile": "/cases/detail-frontal-internet-magazin-zapchastey-dlya-2462361c-mobile.webp",
     "createdAt": "2026-07-28T15:36:52.621Z",
-    "updatedAt": "2026-07-28T15:36:52.621Z"
+    "updatedAt": "2026-07-29T10:51:45.858Z"
   }
 ]
