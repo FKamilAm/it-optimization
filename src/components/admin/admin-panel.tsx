@@ -294,8 +294,9 @@ export function AdminPanel() {
     );
     const draftId = crypto.randomUUID();
     const now = new Date().toISOString();
+    // В начало списка: форма открывается сразу под фильтром, а не в самом низу
+    // после двух десятков кейсов. Новый кейс становится первым и на сайте.
     setDrafts((list) => [
-      ...list,
       {
         // id живёт вечно и переживает переименование slug — как в таблице cases.
         id: crypto.randomUUID(),
@@ -310,6 +311,7 @@ export function AdminPanel() {
         pending: {},
         isNew: true,
       },
+      ...list,
     ]);
     setOpenId(draftId);
     setPublished(null);
@@ -885,10 +887,12 @@ function CaseRow({
           onClick={onToggle}
           className="mr-auto min-w-0 flex-1 cursor-pointer text-left"
         >
-          <span className="block leading-snug font-medium break-words">
+          <span className="block leading-snug font-medium">
             {draft.title || <span className="text-muted-foreground">Без названия</span>}
           </span>
-          <span className="text-muted-foreground mt-0.5 flex flex-wrap items-center gap-2 text-xs">
+          {/* Подробности прячем на телефоне: в узкой строке они переносились
+              по слогам и превращали карточку в кашу. */}
+          <span className="text-muted-foreground mt-0.5 hidden flex-wrap items-center gap-2 text-xs sm:flex">
             <code>{draft.slug}</code>
             {onHome && <span className="text-accent-foreground/70">· на главной</span>}
             {usedOn.length > 0 && (

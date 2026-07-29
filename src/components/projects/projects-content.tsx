@@ -69,18 +69,21 @@ export function ProjectsContent({ cases }: { cases: CaseItem[] }) {
           </Reveal>
 
           {options.length > 2 && (
-            <Reveal delay={0.1}>
-              {/* relative + z-40: без этого открытый список уходит под сетку
-                  карточек, которая идёт ниже по разметке и создаёт свой слой. */}
-              <div className="relative z-40 mt-12">
-                <FilterSelect
-                  label={t("filterLabel")}
-                  options={options}
-                  value={filter}
-                  onChange={setFilter}
-                />
-              </div>
-            </Reveal>
+            // Слой задаётся здесь, а не внутри Reveal: у .reveal есть transform,
+            // а он сам создаёт stacking context — z-index внутри него сортирует
+            // только собственных детей и не поднимает блок над сеткой карточек.
+            <div className="relative z-40">
+              <Reveal delay={0.1}>
+                <div className="mt-12">
+                  <FilterSelect
+                    label={t("filterLabel")}
+                    options={options}
+                    value={filter}
+                    onChange={setFilter}
+                  />
+                </div>
+              </Reveal>
+            </div>
           )}
 
           <StaggerReveal

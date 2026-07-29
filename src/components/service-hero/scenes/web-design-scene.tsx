@@ -98,10 +98,13 @@ export function WebDesignScene({ animate }: { animate: boolean }) {
     // Маятник: 0 → 1 перо идёт слева направо снизу линии, 1 → 0 возвращается
     // справа налево уже сверху. Ни рывка, ни перезапуска — на концах перо
     // просто переворачивается на другую сторону штриха.
-    const period = 11;
+    const period = 13;
     const phase = (clock.getElapsedTime() % period) / period;
     const forward = phase < 0.5;
-    const progress = forward ? phase * 2 : 2 - phase * 2;
+    const linear = forward ? phase * 2 : 2 - phase * 2;
+    // Сглаживание у концов: перо притормаживает перед разворотом, и на сам
+    // разворот остаётся заметно больше времени, чем при равномерном ходе.
+    const progress = linear * linear * (3 - 2 * linear);
 
     const drawn = drawnRef.current;
     if (drawn) {
@@ -133,7 +136,8 @@ export function WebDesignScene({ animate }: { animate: boolean }) {
         Math.sin(target - pen.rotation.z),
         Math.cos(target - pen.rotation.z),
       );
-      pen.rotation.z += delta * 0.12;
+      // Мягче, чем раньше: разворот занимает несколько кадров, а не рывок.
+      pen.rotation.z += delta * 0.055;
     }
   });
 
