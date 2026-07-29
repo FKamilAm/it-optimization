@@ -80,6 +80,8 @@ export function ProjectsContent({ cases }: { cases: CaseItem[] }) {
                     options={options}
                     value={filter}
                     onChange={setFilter}
+                    showCounts={false}
+                    className="sm:max-w-sm"
                   />
                 </div>
               </Reveal>

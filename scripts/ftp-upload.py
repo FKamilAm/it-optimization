@@ -55,9 +55,34 @@ def main() -> int:
     created: set[str] = set()
     count = 0
 
+    # Порядок заливки важен. Файлы перезаписываются по одному несколько минут, и
+    # всё это время на хостинге лежит смесь старой и новой версии. Если свежий
+    # HTML попадёт туда раньше своих чанков, посетитель получит страницу,
+    # ссылающуюся на ещё не залитые скрипты, — и клиентскую ошибку вместо сайта.
+    #
+    # Поэтому сначала уезжают ассеты (имена у них с хэшем, старые остаются на
+    # месте и продолжают обслуживать старый HTML), и только в конце — HTML.
+    def priority(remote_path: str) -> int:
+        if "/_next/static/" in remote_path:
+            return 0
+        if remote_path.endswith((".html", ".txt", ".xml")):
+            return 2
+        return 1
+
+    uploads: list[tuple[int, str, str, str]] = []
     for root, _dirs, filenames in os.walk(LOCAL_ROOT):
         rel = os.path.relpath(root, LOCAL_ROOT).replace("\\", "/")
         remote_dir = REMOTE_ROOT if rel == "." else f"{REMOTE_ROOT}/{rel}"
+        for name in sorted(filenames):
+            remote_path = f"{remote_dir}/{name}"
+            uploads.append(
+                (priority(remote_path), remote_dir, os.path.join(root, name), name)
+            )
+
+    uploads.sort(key=lambda item: (item[0], item[1], item[3]))
+
+    for _rank, remote_dir, local_path, name in uploads:
+        remote_path = f"{remote_dir}/{name}"
 
         if remote_dir not in created:
             for attempt in range(1, RETRIES + 1):
@@ -77,28 +102,25 @@ def main() -> int:
                 print(f"FAILED mkdir: {remote_dir}", file=sys.stderr)
                 return 1
 
-        for name in sorted(filenames):
-            local_path = os.path.join(root, name)
-            remote_path = f"{remote_dir}/{name}"
-            for attempt in range(1, RETRIES + 1):
+        for attempt in range(1, RETRIES + 1):
+            try:
+                ftp.cwd(remote_dir)
+                with open(local_path, "rb") as handle:
+                    ftp.storbinary(f"STOR {name}", handle)
+                count += 1
+                print(f"uploaded: {remote_path}")
+                break
+            except Exception as exc:  # noqa: BLE001
+                print(f"retry {attempt} {remote_path}: {exc}", file=sys.stderr)
                 try:
-                    ftp.cwd(remote_dir)
-                    with open(local_path, "rb") as handle:
-                        ftp.storbinary(f"STOR {name}", handle)
-                    count += 1
-                    print(f"uploaded: {remote_path}")
-                    break
-                except Exception as exc:  # noqa: BLE001
-                    print(f"retry {attempt} {remote_path}: {exc}", file=sys.stderr)
-                    try:
-                        ftp.close()
-                    except Exception:  # noqa: BLE001
-                        pass
-                    time.sleep(2)
-                    ftp = connect()
-            else:
-                print(f"FAILED: {remote_path}", file=sys.stderr)
-                return 1
+                    ftp.close()
+                except Exception:  # noqa: BLE001
+                    pass
+                time.sleep(2)
+                ftp = connect()
+        else:
+            print(f"FAILED: {remote_path}", file=sys.stderr)
+            return 1
 
     print(f"done: {count} files, {len(created)} directories")
     try:

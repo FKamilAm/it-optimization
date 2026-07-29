@@ -77,7 +77,7 @@ export function BrandingScene({ animate }: { animate: boolean }) {
 
   return (
     <group ref={groupRef}>
-      <group ref={sceneRef} scale={0.94} position={[-0.2, 0.2, 0]}>
+      <group ref={sceneRef} scale={1.08} position={[-0.15, 0.15, 0]}>
         <Extrude args={[shape, EXTRUDE]} position={[0, 0, -EXTRUDE.depth / 2]}>
           {/* Материал по умолчанию — тот же тёмный хром, что и в остальных
               сценах сайта. */}

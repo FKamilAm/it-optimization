@@ -53,6 +53,11 @@ function Dropdown({
     <div ref={rootRef} className={cn("relative z-40 block", className)}>
       {trigger(open)}
       <div
+        // Lenis перехватывает колесо и крутит страницу вместо списка. Этот
+        // атрибут — принятый в проекте способ вернуть прокрутку блоку (так же
+        // помечены модалка и лайтбокс).
+        data-lenis-prevent
+        onWheel={(event) => event.stopPropagation()}
         className={cn(
           "border-border bg-background absolute top-full left-0 z-50 mt-2 max-h-[22rem] overflow-y-auto rounded-2xl border p-2 shadow-[0_28px_70px_rgba(0,0,0,0.16)] transition-all duration-200",
           open
@@ -79,12 +84,15 @@ export function FilterSelect({
   options,
   value,
   onChange,
+  showCounts = true,
   className,
 }: {
   label: string;
   options: FilterOption[];
   value: string | null;
   onChange: (value: string | null) => void;
+  /** Показывать ли, сколько кейсов в категории. */
+  showCounts?: boolean;
   className?: string;
 }) {
   const [open, setOpen] = useState(false);
@@ -111,9 +119,11 @@ export function FilterSelect({
           <span className="min-w-0 flex-1 truncate text-left font-medium">
             {current?.label}
           </span>
-          <span className="text-muted-foreground shrink-0 tabular-nums">
-            {current?.count}
-          </span>
+          {showCounts && (
+            <span className="text-muted-foreground shrink-0 tabular-nums">
+              {current?.count}
+            </span>
+          )}
           <ChevronDown
             className={cn(
               "h-4 w-4 shrink-0 transition-transform duration-300",
@@ -148,9 +158,11 @@ export function FilterSelect({
                 aria-hidden="true"
               />
               <span className="flex-1">{option.label}</span>
-              <span className="text-muted-foreground shrink-0 text-sm tabular-nums">
-                {option.count}
-              </span>
+              {showCounts && (
+                <span className="text-muted-foreground shrink-0 text-sm tabular-nums">
+                  {option.count}
+                </span>
+              )}
             </button>
           );
         })}

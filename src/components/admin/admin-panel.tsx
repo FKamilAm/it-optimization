@@ -294,9 +294,8 @@ export function AdminPanel() {
     );
     const draftId = crypto.randomUUID();
     const now = new Date().toISOString();
-    // В начало списка: форма открывается сразу под фильтром, а не в самом низу
-    // после двух десятков кейсов. Новый кейс становится первым и на сайте.
     setDrafts((list) => [
+      ...list,
       {
         // id живёт вечно и переживает переименование slug — как в таблице cases.
         id: crypto.randomUUID(),
@@ -311,7 +310,6 @@ export function AdminPanel() {
         pending: {},
         isNew: true,
       },
-      ...list,
     ]);
     setOpenId(draftId);
     setPublished(null);
