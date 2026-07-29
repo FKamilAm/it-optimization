@@ -91,7 +91,7 @@ export async function caseRoutes(app: FastifyInstance): Promise<void> {
             description: item.description,
             quote: item.quote,
             tags: item.tags,
-            services: item.services,
+            services: item.services ?? [],
             position: index,
           },
           update: {
@@ -101,7 +101,9 @@ export async function caseRoutes(app: FastifyInstance): Promise<void> {
             description: item.description,
             quote: item.quote,
             tags: item.tags,
-            services: item.services,
+            // Поля нет в запросе — оставляем то, что уже в базе. Иначе клиент
+            // старой версии обнуляет привязку к услугам у всех кейсов разом.
+            ...(item.services !== undefined ? { services: item.services } : {}),
             position: index,
             deletedAt: null,
           },

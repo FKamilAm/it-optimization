@@ -22,8 +22,11 @@ export const caseInput = z.object({
   description: z.string().trim().min(1).max(2000),
   quote: z.string().trim().min(1).max(2000),
   tags: z.array(z.string().trim().min(1).max(60)).min(1).max(12),
-  // Пустой список допустим: кейс может жить только в общем каталоге.
-  services: z.array(z.string().trim().min(1).max(60)).max(24).default([]),
+  // Пустой список допустим: кейс может жить только в общем каталоге. Но
+  // ОТСУТСТВИЕ поля и пустой список — разные вещи: default([]) молча стирал
+  // связи, когда сохранял клиент старой версии, не знающий про услуги.
+  // Поэтому поле необязательное, а отсутствие означает «не трогать».
+  services: z.array(z.string().trim().min(1).max(60)).max(24).optional(),
 });
 
 export type CaseInput = z.infer<typeof caseInput>;
