@@ -574,7 +574,7 @@ export function AdminPanel() {
           </p>
         ) : (
           <>
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <div className="mb-4 flex flex-wrap items-center gap-3">
               <ServiceFilter
                 counts={serviceCounts}
                 total={drafts.length}
@@ -584,7 +584,7 @@ export function AdminPanel() {
               <button
                 type="button"
                 onClick={addCase}
-                className="border-foreground/40 hover:border-foreground hover:bg-background inline-flex h-12 shrink-0 cursor-pointer items-center gap-2 rounded-full border border-dashed px-6 text-sm font-medium transition-colors"
+                className="border-foreground/40 hover:border-foreground hover:bg-background ml-auto inline-flex h-12 shrink-0 cursor-pointer items-center gap-2 rounded-full border border-dashed px-6 text-sm font-medium transition-colors"
               >
                 <Plus className="h-4 w-4" />
                 Добавить кейс
@@ -678,7 +678,7 @@ function ServiceFilter({
       options={options}
       value={active}
       onChange={onChange}
-      className="max-w-sm"
+      className="w-full sm:w-[28rem]"
     />
   );
 }

@@ -7,22 +7,41 @@ import * as THREE from "three";
 import { AccentMaterial, ChromeMaterial, useIdleAnimation } from "../shared";
 
 const R = 1.6; // радиус палитры
-const THUMB = { x: 0.5, y: -0.62, r: 0.4 }; // отверстие для большого пальца
+const BAY = { x: -0.62, y: -1.72, r: 0.92 }; // окружность, вырезающая залив
+const THUMB = { x: 0.34, y: -0.66, r: 0.38 }; // отверстие для большого пальца
 
 /**
- * Силуэт классической палитры: круг с вырезом-«заливом» слева снизу, куда
- * ложится большой палец, и отдельным отверстием под него же. Вырез делает
- * форму узнаваемой — ровный круг читался бы просто как диск.
+ * Силуэт палитры: круг, из которого снизу слева вырезан залив. Точки стыка
+ * считаются как пересечение двух окружностей, поэтому контур замыкается ровно —
+ * подгон кривыми на глаз давал излом и «обрезанный» вид.
  */
 function paletteShape(): THREE.Shape {
+  const d = Math.hypot(BAY.x, BAY.y);
+  // Расстояние от центра палитры до линии, соединяющей точки пересечения.
+  const a = (d * d - BAY.r * BAY.r + R * R) / (2 * d);
+  const h = Math.sqrt(Math.max(0, R * R - a * a));
+
+  const ux = BAY.x / d;
+  const uy = BAY.y / d;
+  const mx = ux * a;
+  const my = uy * a;
+
+  // Две точки пересечения: смещение от середины по перпендикуляру.
+  const p1 = { x: mx - uy * h, y: my + ux * h };
+  const p2 = { x: mx + uy * h, y: my - ux * h };
+
   const shape = new THREE.Shape();
-
-  // Основная дуга — почти полный круг, разрыв оставлен под залив.
-  shape.absarc(0, 0, R, Math.PI * 1.28, Math.PI * 0.72, false);
-
-  // Залив: плавно уводим контур внутрь и возвращаем к началу дуги.
-  shape.bezierCurveTo(-0.95, -1.25, -0.2, -0.62, 0.16, -1.02);
-  shape.bezierCurveTo(0.5, -1.4, -0.4, -1.62, -0.98, -1.26);
+  // Дуга палитры — против часовой от p1 к p2, мимо залива.
+  shape.absarc(0, 0, R, Math.atan2(p1.y, p1.x), Math.atan2(p2.y, p2.x), false);
+  // Вогнутая дуга залива обратно к p1.
+  shape.absarc(
+    BAY.x,
+    BAY.y,
+    BAY.r,
+    Math.atan2(p2.y - BAY.y, p2.x - BAY.x),
+    Math.atan2(p1.y - BAY.y, p1.x - BAY.x),
+    true,
+  );
 
   const hole = new THREE.Path();
   hole.absarc(THUMB.x, THUMB.y, THUMB.r, 0, Math.PI * 2, true);
@@ -84,7 +103,10 @@ export function BrandingScene({ animate }: { animate: boolean }) {
     <group ref={groupRef}>
       <group ref={sceneRef} scale={1.16} position={[-0.35, 0, 0]}>
         <Extrude args={[shape, EXTRUDE]} position={[0, 0, -EXTRUDE.depth / 2]}>
-          <ChromeMaterial color="#e9eef4" roughness={0.28} />
+          {/* metalness почти на нуле: у хрома по умолчанию 1, и такая крупная
+              плоскость отражала тёмные грани студийного окружения, выглядя
+              чёрной вместо светлой палитры. */}
+          <ChromeMaterial color="#eef2f7" roughness={0.42} metalness={0.12} />
         </Extrude>
 
         {PAINTS.map((paint) => (

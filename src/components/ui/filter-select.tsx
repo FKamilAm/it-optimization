@@ -50,7 +50,7 @@ function Dropdown({
   return (
     // z-40 нужен здесь, а не только на панели: карточки ниже по разметке лежат
     // в своём слое, и без этого открытый список уезжает под них.
-    <div ref={rootRef} className={cn("relative z-40 inline-block", className)}>
+    <div ref={rootRef} className={cn("relative z-40 block", className)}>
       {trigger(open)}
       <div
         className={cn(
@@ -68,7 +68,7 @@ function Dropdown({
 }
 
 const TRIGGER =
-  "border-border/80 hover:border-foreground text-foreground focus-visible:outline-accent flex h-14 w-full cursor-pointer items-center gap-3 rounded-full border bg-transparent pr-6 pl-7 text-base transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2";
+  "border-border/80 hover:border-foreground text-foreground focus-visible:outline-accent flex h-14 w-full min-w-0 cursor-pointer items-center gap-4 rounded-full border bg-transparent pr-6 pl-7 text-base transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2";
 
 const ROW =
   "flex w-full cursor-pointer items-center gap-3 rounded-xl px-3.5 py-3 text-left text-base transition-colors";
@@ -94,7 +94,7 @@ export function FilterSelect({
     <Dropdown
       open={open}
       setOpen={setOpen}
-      className={cn("w-full max-w-md", className)}
+      className={cn("w-full min-w-[18rem] sm:max-w-xl", className)}
       panelClassName="w-full"
       trigger={(isOpen) => (
         <button
@@ -105,8 +105,12 @@ export function FilterSelect({
           data-cursor="hover"
           className={TRIGGER}
         >
-          <span className="text-muted-foreground shrink-0 text-sm">{label}</span>
-          <span className="flex-1 truncate text-left font-medium">{current?.label}</span>
+          <span className="text-muted-foreground shrink-0 text-sm whitespace-nowrap">
+            {label}
+          </span>
+          <span className="min-w-0 flex-1 truncate text-left font-medium">
+            {current?.label}
+          </span>
           <span className="text-muted-foreground shrink-0 tabular-nums">
             {current?.count}
           </span>

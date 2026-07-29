@@ -23,6 +23,9 @@ const CURVE_EXTRUDE = {
 
 const NIB_EXTRUDE = { ...CURVE_EXTRUDE, depth: 0.22 };
 
+/** Наклон пера к линии — держат его не перпендикулярно, а под углом. */
+const PEN_TILT = 0.42;
+
 /** Кубическая кривая Безье, разложенная в ломаную для объёмного штриха. */
 function curvePoints(segments = 48): [number, number][] {
   const curve = new THREE.CubicBezierCurve(P0, C0, C1, P1);
@@ -106,15 +109,20 @@ export function WebDesignScene({ animate }: { animate: boolean }) {
     if (pen) {
       const at = curve.getPoint(progress);
       const tangent = curve.getTangent(Math.min(0.999, progress));
-      pen.position.set(at.x, at.y + 0.86, 0.44);
-      // Остриё смотрит по касательной к кривой.
-      pen.rotation.z = Math.atan2(tangent.y, tangent.x) - Math.PI / 2;
+      // Перо ставим ровно в точку кривой: смещение к острию задано внутри
+      // группы, поэтому кончик всегда лежит на линии.
+      pen.position.set(at.x, at.y, 0.44);
+      // Остриё пера в его системе координат смотрит в −Y. Чтобы направить его
+      // по касательной, нужен atan2(tx, −ty): прежняя формула давала разворот
+      // в другую сторону, и перо шло против движения. TILT добавляет наклон,
+      // как у пера в руке.
+      pen.rotation.z = Math.atan2(tangent.x, -tangent.y) + PEN_TILT;
     }
   });
 
   return (
     <group ref={groupRef}>
-      <group scale={1.12} rotation={[0.05, -0.26, 0.02]}>
+      <group scale={1.45} rotation={[0.05, -0.26, 0.02]}>
         {/* Бледный контур всей кривой — куда штрих придёт. */}
         <Extrude
           args={[fullStroke, { ...CURVE_EXTRUDE, depth: 0.06 }]}
@@ -174,16 +182,18 @@ export function WebDesignScene({ animate }: { animate: boolean }) {
           </RoundedBox>
         ))}
 
-        {/* Перо. */}
-        <group ref={penRef} scale={0.92}>
-          <Extrude args={[nib, NIB_EXTRUDE]}>
-            <ChromeMaterial color="#dfe6ee" roughness={0.2} metalness={0.55} />
-          </Extrude>
-          {/* Акцентная обойма на хвостовике. */}
-          <mesh position={[0, 0.88, NIB_EXTRUDE.depth / 2]}>
-            <boxGeometry args={[0.46, 0.2, NIB_EXTRUDE.depth + 0.12]} />
-            <AccentMaterial />
-          </mesh>
+        {/* Перо. Внутренний сдвиг ставит остриё в начало координат группы. */}
+        <group ref={penRef}>
+          <group scale={0.9} position={[0, 1.062, 0]}>
+            <Extrude args={[nib, NIB_EXTRUDE]}>
+              <ChromeMaterial color="#dfe6ee" roughness={0.2} metalness={0.55} />
+            </Extrude>
+            {/* Акцентная обойма на хвостовике. */}
+            <mesh position={[0, 0.88, NIB_EXTRUDE.depth / 2]}>
+              <boxGeometry args={[0.46, 0.2, NIB_EXTRUDE.depth + 0.12]} />
+              <AccentMaterial />
+            </mesh>
+          </group>
         </group>
       </group>
     </group>
