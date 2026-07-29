@@ -452,7 +452,9 @@ export function AdminPanel() {
 
   return (
     <div className="bg-muted/40 min-h-screen pb-32">
-      <header className="border-border bg-background/95 sticky top-0 z-30 border-b backdrop-blur">
+      {/* z-50: выше выпадающего фильтра (z-40), иначе открытый список накрывает
+          шапку с кнопками публикации. */}
+      <header className="border-border bg-background/95 sticky top-0 z-50 border-b backdrop-blur">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-2 px-4 py-3 sm:gap-3 sm:px-5 sm:py-4">
           <div className="mr-auto min-w-0">
             <h1 className="font-display text-lg leading-tight">Кейсы</h1>
@@ -883,7 +885,7 @@ function CaseRow({
         <button
           type="button"
           onClick={onToggle}
-          className="mr-auto min-w-0 flex-1 cursor-pointer text-left"
+          className="min-w-0 flex-1 cursor-pointer text-left"
         >
           <span className="block leading-snug font-medium">
             {draft.title || <span className="text-muted-foreground">Без названия</span>}
@@ -904,21 +906,26 @@ function CaseRow({
           </span>
         </button>
 
-        <button
-          type="button"
-          onClick={onToggle}
-          className="border-border hover:border-foreground ml-auto cursor-pointer rounded-full border px-4 py-2 text-sm whitespace-nowrap transition-colors"
-        >
-          {open ? "Свернуть" : "Изменить"}
-        </button>
-        <button
-          type="button"
-          onClick={onDelete}
-          aria-label="Удалить кейс"
-          className="text-muted-foreground cursor-pointer rounded-lg p-2 transition-colors hover:bg-red-50 hover:text-red-700"
-        >
-          <Trash2 className="h-4 w-4" />
-        </button>
+        {/* На телефоне кнопки занимают всю ширину и уходят на вторую строку:
+            рядом с ними заголовку оставалось сантиметра три, и он рассыпался
+            в столбик по слогам. */}
+        <div className="flex w-full items-center justify-end gap-2 sm:ml-auto sm:w-auto">
+          <button
+            type="button"
+            onClick={onToggle}
+            className="border-border hover:border-foreground cursor-pointer rounded-full border px-4 py-2 text-sm whitespace-nowrap transition-colors"
+          >
+            {open ? "Свернуть" : "Изменить"}
+          </button>
+          <button
+            type="button"
+            onClick={onDelete}
+            aria-label="Удалить кейс"
+            className="text-muted-foreground cursor-pointer rounded-lg p-2 transition-colors hover:bg-red-50 hover:text-red-700"
+          >
+            <Trash2 className="h-4 w-4" />
+          </button>
+        </div>
       </div>
 
       {open && (
