@@ -105,9 +105,9 @@ export function FilterSelect({
           data-cursor="hover"
           className={TRIGGER}
         >
-          <span className="text-muted-foreground shrink-0 text-sm whitespace-nowrap">
-            {label}
-          </span>
+          {/* Подпись только для скринридеров: в интерфейсе она лишний шум,
+              выбранное значение и так говорит само за себя. */}
+          <span className="sr-only">{label}</span>
           <span className="min-w-0 flex-1 truncate text-left font-medium">
             {current?.label}
           </span>

@@ -453,8 +453,8 @@ export function AdminPanel() {
   return (
     <div className="bg-muted/40 min-h-screen pb-32">
       <header className="border-border bg-background/95 sticky top-0 z-30 border-b backdrop-blur">
-        <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-3 px-5 py-4">
-          <div className="mr-auto">
+        <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-2 px-4 py-3 sm:gap-3 sm:px-5 sm:py-4">
+          <div className="mr-auto min-w-0">
             <h1 className="font-display text-lg leading-tight">Кейсы</h1>
             <p className="text-muted-foreground text-sm">
               {drafts.length} шт. · первые {HOME_CASE_COUNT} видны на главной
@@ -469,7 +469,7 @@ export function AdminPanel() {
             className="border-border hover:border-foreground inline-flex h-10 cursor-pointer items-center gap-2 rounded-full border px-4 text-sm transition-colors disabled:opacity-50"
           >
             <RefreshCw className={cn("h-4 w-4", loading && "animate-spin")} />
-            Обновить
+            <span className="hidden sm:inline">Обновить</span>
           </button>
           <button
             type="button"
@@ -477,7 +477,7 @@ export function AdminPanel() {
             className="border-border hover:border-foreground inline-flex h-10 cursor-pointer items-center gap-2 rounded-full border px-4 text-sm transition-colors"
           >
             <LogOut className="h-4 w-4" />
-            Выйти
+            <span className="hidden sm:inline">Выйти</span>
           </button>
           <button
             type="button"
@@ -495,7 +495,7 @@ export function AdminPanel() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-5xl px-5 py-8">
+      <main className="mx-auto max-w-5xl px-4 py-6 sm:px-5 sm:py-8">
         {error && (
           <p className="mb-6 flex items-start gap-3 rounded-xl border border-red-300 bg-red-50 p-4 text-sm text-red-900">
             <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
@@ -558,13 +558,6 @@ export function AdminPanel() {
               ))}
             </ul>
           </div>
-        )}
-
-        {dirty && problems.length === 0 && (
-          <p className="border-border bg-background text-muted-foreground mb-6 rounded-xl border p-4 text-sm">
-            Есть неопубликованные изменения. Пока не нажмёшь «Опубликовать», на сайте
-            ничего не поменяется.
-          </p>
         )}
 
         {loading && drafts.length === 0 ? (
@@ -644,6 +637,34 @@ export function AdminPanel() {
           )}
         </p>
       </main>
+
+      {dirty && problems.length === 0 && (
+        <aside
+          role="status"
+          className="border-border bg-background/95 fixed right-4 bottom-4 left-4 z-40 rounded-2xl border p-4 shadow-[0_20px_50px_rgba(0,0,0,0.16)] backdrop-blur sm:left-auto sm:w-72"
+        >
+          <p className="flex items-start gap-2 text-sm font-medium">
+            <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
+            Есть неопубликованные изменения
+          </p>
+          <p className="text-muted-foreground mt-1.5 text-sm">
+            Пока не нажмёшь «Опубликовать», на сайте ничего не поменяется.
+          </p>
+          <button
+            type="button"
+            onClick={publish}
+            disabled={publishing}
+            className="bg-foreground text-background hover:bg-accent hover:text-accent-foreground mt-3 inline-flex h-10 w-full cursor-pointer items-center justify-center gap-2 rounded-full text-sm font-medium transition-colors disabled:opacity-50"
+          >
+            {publishing ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Rocket className="h-4 w-4" />
+            )}
+            Опубликовать
+          </button>
+        </aside>
+      )}
     </div>
   );
 }
@@ -697,11 +718,6 @@ function ServicePicker({
 }) {
   return (
     <div className="md:col-span-2">
-      <span className="block text-sm font-medium">Услуги</span>
-      <span className="text-muted-foreground mt-1 block text-xs">
-        На страницах каких услуг показывать кейс и по каким фильтровать. Можно выбрать
-        несколько; если ничего не выбрано, кейс виден только в общем списке.
-      </span>
       <MultiFilterSelect
         label="Услуги кейса"
         placeholder="Выбрать услуги"
@@ -711,7 +727,6 @@ function ServicePicker({
         }))}
         selected={selected}
         onChange={onChange}
-        className="mt-2"
       />
     </div>
   );
@@ -831,7 +846,7 @@ function CaseRow({
       dragControls={controls}
       className="border-border bg-background overflow-hidden rounded-2xl border"
     >
-      <div className="flex items-center gap-3 p-3">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 p-3">
         <button
           type="button"
           aria-label={
@@ -849,7 +864,7 @@ function CaseRow({
           <GripVertical className="h-5 w-5" />
         </button>
 
-        <span className="text-muted-foreground w-7 text-sm tabular-nums">
+        <span className="text-muted-foreground hidden w-7 text-sm tabular-nums sm:block">
           {String(index + 1).padStart(2, "0")}
         </span>
 
@@ -868,15 +883,17 @@ function CaseRow({
         <button
           type="button"
           onClick={onToggle}
-          className="mr-auto cursor-pointer text-left"
+          className="mr-auto min-w-0 flex-1 cursor-pointer text-left"
         >
-          <span className="block leading-snug font-medium">
+          <span className="block leading-snug font-medium break-words">
             {draft.title || <span className="text-muted-foreground">Без названия</span>}
           </span>
           <span className="text-muted-foreground mt-0.5 flex flex-wrap items-center gap-2 text-xs">
             <code>{draft.slug}</code>
             {onHome && <span className="text-accent-foreground/70">· на главной</span>}
-            {usedOn.length > 0 && <span>· услуги: {usedOn.join(", ")}</span>}
+            {usedOn.length > 0 && (
+              <span className="break-words">· услуги: {usedOn.join(", ")}</span>
+            )}
             {Object.keys(draft.pending).length > 0 && (
               <span className="bg-accent-soft rounded-full px-2 py-0.5">
                 новых картинок: {Object.keys(draft.pending).length}
@@ -888,7 +905,7 @@ function CaseRow({
         <button
           type="button"
           onClick={onToggle}
-          className="border-border hover:border-foreground cursor-pointer rounded-full border px-4 py-2 text-sm transition-colors"
+          className="border-border hover:border-foreground ml-auto cursor-pointer rounded-full border px-4 py-2 text-sm whitespace-nowrap transition-colors"
         >
           {open ? "Свернуть" : "Изменить"}
         </button>
@@ -903,7 +920,7 @@ function CaseRow({
       </div>
 
       {open && (
-        <div className="border-border bg-muted/30 border-t p-5">
+        <div className="border-border bg-muted/30 border-t p-4 sm:p-5">
           <div className="grid gap-4 md:grid-cols-2">
             <Field
               label="Заголовок"

@@ -94,29 +94,46 @@ export function WebDesignScene({ animate }: { animate: boolean }) {
 
   useFrame(({ clock }) => {
     if (!animate) return;
-    // Цикл: 0 → 1 рисуем, затем короткая пауза перед новым проходом.
-    const cycle = (clock.getElapsedTime() % 6) / 4.6;
-    const progress = Math.min(1, Math.max(0, cycle));
+
+    // Маятник: 0 → 1 перо идёт слева направо снизу линии, 1 → 0 возвращается
+    // справа налево уже сверху. Ни рывка, ни перезапуска — на концах перо
+    // просто переворачивается на другую сторону штриха.
+    const period = 11;
+    const phase = (clock.getElapsedTime() % period) / period;
+    const forward = phase < 0.5;
+    const progress = forward ? phase * 2 : 2 - phase * 2;
 
     const drawn = drawnRef.current;
     if (drawn) {
       drawn.children.forEach((child, index) => {
-        child.visible = segments[index] !== undefined && segments[index].t <= progress;
+        // На обратном ходу линия уже нарисована и остаётся целиком.
+        child.visible =
+          !forward || (segments[index] !== undefined && segments[index].t <= progress);
       });
     }
 
     const pen = penRef.current;
     if (pen) {
       const at = curve.getPoint(progress);
-      const tangent = curve.getTangent(Math.min(0.999, progress));
+      const tangent = curve.getTangent(Math.min(0.999, Math.max(0.001, progress)));
       // Перо ставим ровно в точку кривой: смещение к острию задано внутри
       // группы, поэтому кончик всегда лежит на линии.
       pen.position.set(at.x, at.y, 0.44);
-      // Остриё пера в его системе координат смотрит в −Y. Чтобы направить его
-      // по касательной, нужен atan2(tx, −ty): прежняя формула давала разворот
-      // в другую сторону, и перо шло против движения. TILT добавляет наклон,
-      // как у пера в руке.
-      pen.rotation.z = Math.atan2(tangent.x, -tangent.y) + PEN_TILT;
+
+      // Остриё пера в его системе координат смотрит в −Y, поэтому направление
+      // задаётся как atan2(tx, −ty). На обратном ходу берём противоположную
+      // касательную и зеркалим наклон — перо оказывается над линией.
+      const dirX = forward ? tangent.x : -tangent.x;
+      const dirY = forward ? tangent.y : -tangent.y;
+      const target = Math.atan2(dirX, -dirY) + (forward ? PEN_TILT : -PEN_TILT);
+
+      // Доворачиваем плавно и кратчайшим путём, иначе на развороте перо
+      // прыгает через полный оборот.
+      const delta = Math.atan2(
+        Math.sin(target - pen.rotation.z),
+        Math.cos(target - pen.rotation.z),
+      );
+      pen.rotation.z += delta * 0.12;
     }
   });
 
@@ -184,7 +201,7 @@ export function WebDesignScene({ animate }: { animate: boolean }) {
 
         {/* Перо. Внутренний сдвиг ставит остриё в начало координат группы. */}
         <group ref={penRef}>
-          <group scale={0.9} position={[0, 1.062, 0]}>
+          <group scale={0.66} position={[0, 0.779, 0]}>
             <Extrude args={[nib, NIB_EXTRUDE]}>
               <ChromeMaterial color="#dfe6ee" roughness={0.2} metalness={0.55} />
             </Extrude>

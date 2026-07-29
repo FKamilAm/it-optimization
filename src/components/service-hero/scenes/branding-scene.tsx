@@ -6,42 +6,18 @@ import { Extrude } from "@react-three/drei";
 import * as THREE from "three";
 import { AccentMaterial, ChromeMaterial, useIdleAnimation } from "../shared";
 
-const R = 1.6; // радиус палитры
-const BAY = { x: -0.62, y: -1.72, r: 0.92 }; // окружность, вырезающая залив
-const THUMB = { x: 0.34, y: -0.66, r: 0.38 }; // отверстие для большого пальца
+const R = 1.5; // радиус палитры
+const THUMB = { x: -0.28, y: -0.72, r: 0.4 }; // отверстие для большого пальца
 
 /**
- * Силуэт палитры: круг, из которого снизу слева вырезан залив. Точки стыка
- * считаются как пересечение двух окружностей, поэтому контур замыкается ровно —
- * подгон кривыми на глаз давал излом и «обрезанный» вид.
+ * Силуэт палитры — круг с отверстием под большой палец. Залив по краю пробовали
+ * вырезать второй окружностью: математически контур замыкался верно, но при
+ * повороте срез читался как обрезанная модель, поэтому форма оставлена цельной.
+ * Палитру здесь опознают отверстие, краски и кисть, а не изгиб края.
  */
 function paletteShape(): THREE.Shape {
-  const d = Math.hypot(BAY.x, BAY.y);
-  // Расстояние от центра палитры до линии, соединяющей точки пересечения.
-  const a = (d * d - BAY.r * BAY.r + R * R) / (2 * d);
-  const h = Math.sqrt(Math.max(0, R * R - a * a));
-
-  const ux = BAY.x / d;
-  const uy = BAY.y / d;
-  const mx = ux * a;
-  const my = uy * a;
-
-  // Две точки пересечения: смещение от середины по перпендикуляру.
-  const p1 = { x: mx - uy * h, y: my + ux * h };
-  const p2 = { x: mx + uy * h, y: my - ux * h };
-
   const shape = new THREE.Shape();
-  // Дуга палитры — против часовой от p1 к p2, мимо залива.
-  shape.absarc(0, 0, R, Math.atan2(p1.y, p1.x), Math.atan2(p2.y, p2.x), false);
-  // Вогнутая дуга залива обратно к p1.
-  shape.absarc(
-    BAY.x,
-    BAY.y,
-    BAY.r,
-    Math.atan2(p2.y - BAY.y, p2.x - BAY.x),
-    Math.atan2(p1.y - BAY.y, p1.x - BAY.x),
-    true,
-  );
+  shape.absarc(0, 0, R, 0, Math.PI * 2, false);
 
   const hole = new THREE.Path();
   hole.absarc(THUMB.x, THUMB.y, THUMB.r, 0, Math.PI * 2, true);
@@ -64,10 +40,10 @@ const EXTRUDE = {
  * приглушены: акцент на сайте один, и палитра не должна с ним спорить.
  */
 const PAINTS = [
-  { x: -0.78, y: 0.72, accent: true, color: "#b4e02d" },
-  { x: 0.22, y: 1.0, accent: false, color: "#475569" },
-  { x: 1.0, y: 0.34, accent: false, color: "#94a3b8" },
-  { x: -1.06, y: -0.34, accent: false, color: "#64748b" },
+  { x: -0.72, y: 0.62, accent: true, color: "#b4e02d" },
+  { x: 0.16, y: 0.9, accent: false, color: "#475569" },
+  { x: 0.9, y: 0.3, accent: false, color: "#94a3b8" },
+  { x: 0.74, y: -0.62, accent: false, color: "#64748b" },
 ] as const;
 
 /**
@@ -101,7 +77,7 @@ export function BrandingScene({ animate }: { animate: boolean }) {
 
   return (
     <group ref={groupRef}>
-      <group ref={sceneRef} scale={1.16} position={[-0.35, 0, 0]}>
+      <group ref={sceneRef} scale={1.05} position={[-0.3, 0, 0]}>
         <Extrude args={[shape, EXTRUDE]} position={[0, 0, -EXTRUDE.depth / 2]}>
           {/* metalness почти на нуле: у хрома по умолчанию 1, и такая крупная
               плоскость отражала тёмные грани студийного окружения, выглядя
@@ -125,7 +101,7 @@ export function BrandingScene({ animate }: { animate: boolean }) {
         ))}
 
         {/* Кисть справа от палитры, ворсом вниз. */}
-        <group ref={brushRef} position={[2.15, 0.28, 0.3]} rotation={[0, 0, 0.2]}>
+        <group ref={brushRef} position={[2.05, 0.28, 0.3]} rotation={[0, 0, 0.2]}>
           {/* Ручка. */}
           <mesh position={[0, 1.15, 0]}>
             <cylinderGeometry args={[0.11, 0.14, 2.1, 20]} />
