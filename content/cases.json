@@ -19,7 +19,7 @@
     "detail": "/cases/detail-crm.webp",
     "detailMobile": "/cases/detail-crm-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-08-01T09:33:38.710Z"
+    "updatedAt": "2026-08-01T10:41:52.063Z"
   },
   {
     "id": "d071b235-5c43-51b5-9b8e-7bb9699c05ca",
@@ -39,7 +39,7 @@
     "detail": "/cases/detail-ai.webp",
     "detailMobile": "/cases/detail-ai-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-08-01T09:33:38.712Z"
+    "updatedAt": "2026-08-01T10:41:52.068Z"
   },
   {
     "id": "76b9cacc-de69-55a4-8366-fb3826979141",
@@ -60,7 +60,7 @@
     "detail": "/cases/detail-miniapp.webp",
     "detailMobile": "/cases/detail-miniapp-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-08-01T09:33:38.714Z"
+    "updatedAt": "2026-08-01T10:41:52.070Z"
   },
   {
     "id": "91330f3a-a643-5e66-9499-7a572d1d9c37",
@@ -81,7 +81,7 @@
     "detail": "/cases/detail-marketplace.webp",
     "detailMobile": "/cases/detail-marketplace-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-08-01T09:33:38.715Z"
+    "updatedAt": "2026-08-01T10:41:52.074Z"
   },
   {
     "id": "00433701-7dcf-5449-bd2e-4b4871fb449a",
@@ -101,7 +101,7 @@
     "detail": "/cases/detail-web3.webp",
     "detailMobile": "/cases/detail-web3-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-08-01T09:33:38.716Z"
+    "updatedAt": "2026-08-01T10:41:52.076Z"
   },
   {
     "id": "fa57f696-f23d-59c3-bfaa-a6dc52ea75cf",
@@ -124,7 +124,7 @@
     "detail": "/cases/detail-corporate.webp",
     "detailMobile": "/cases/detail-corporate-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-08-01T09:33:38.717Z"
+    "updatedAt": "2026-08-01T10:41:52.079Z"
   },
   {
     "id": "987ad389-0bb3-528b-9b21-035029474f9d",
@@ -145,7 +145,7 @@
     "detail": "/cases/detail-svpr.webp",
     "detailMobile": "/cases/detail-svpr-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-08-01T09:33:38.719Z"
+    "updatedAt": "2026-08-01T10:41:52.082Z"
   },
   {
     "id": "3f0e4ee3-bd29-50d9-9470-cb85eb1b730a",
@@ -166,7 +166,7 @@
     "detail": "/cases/detail-tiger.webp",
     "detailMobile": "/cases/detail-tiger-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-08-01T09:33:38.720Z"
+    "updatedAt": "2026-08-01T10:41:52.085Z"
   },
   {
     "id": "e23b3464-9fb2-5697-ac3d-74efb449b31a",
@@ -187,7 +187,7 @@
     "detail": "/cases/detail-mebel.webp",
     "detailMobile": "/cases/detail-mebel-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-08-01T09:33:38.721Z"
+    "updatedAt": "2026-08-01T10:41:52.087Z"
   },
   {
     "id": "6a964468-0a9b-59f1-bfe7-e21ce5d5bad1",
@@ -208,7 +208,7 @@
     "detail": "/cases/detail-renegade.webp",
     "detailMobile": "/cases/detail-renegade-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-08-01T09:33:38.722Z"
+    "updatedAt": "2026-08-01T10:41:52.090Z"
   },
   {
     "id": "d34afcdd-6f48-57c1-a6bb-9fa2a33d39fb",
@@ -229,7 +229,7 @@
     "detail": "/cases/detail-visit.webp",
     "detailMobile": "/cases/detail-visit-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-08-01T09:33:38.724Z"
+    "updatedAt": "2026-08-01T10:41:52.092Z"
   },
   {
     "id": "057a2e2b-121b-5f70-9f38-528253a2e7ca",
@@ -249,7 +249,7 @@
     "detail": "/cases/detail-tg-mini-app.webp",
     "detailMobile": "/cases/detail-tg-mini-app-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-08-01T09:33:38.725Z"
+    "updatedAt": "2026-08-01T10:41:52.093Z"
   },
   {
     "id": "639b8c0b-d052-5fdd-8c7c-245026f84d8c",
@@ -270,7 +270,7 @@
     "detail": "/cases/detail-nori.webp",
     "detailMobile": "/cases/detail-nori-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-08-01T09:33:38.726Z"
+    "updatedAt": "2026-08-01T10:41:52.094Z"
   },
   {
     "id": "78a3f737-358a-5fc4-a732-b3b824918c27",
@@ -291,7 +291,7 @@
     "detail": "/cases/detail-street.webp",
     "detailMobile": "/cases/detail-street-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-08-01T09:33:38.727Z"
+    "updatedAt": "2026-08-01T10:41:52.096Z"
   },
   {
     "id": "ab3fd2d9-32a5-5c91-a7ed-eb5330d8e0ea",
@@ -311,7 +311,7 @@
     "detail": "/cases/detail-crypto.webp",
     "detailMobile": "/cases/detail-crypto-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-08-01T09:33:38.728Z"
+    "updatedAt": "2026-08-01T10:41:52.097Z"
   },
   {
     "id": "d532f4fe-f604-5b37-9c15-8dd48449223e",
@@ -332,7 +332,7 @@
     "detail": "/cases/detail-99.webp",
     "detailMobile": "/cases/detail-99-mobile.webp",
     "createdAt": "2026-07-27T00:00:00.000Z",
-    "updatedAt": "2026-08-01T09:33:38.729Z"
+    "updatedAt": "2026-08-01T10:41:52.099Z"
   },
   {
     "id": "55b7570a-3abb-47df-9c3c-ea8d688a47c7",
@@ -353,7 +353,7 @@
     "detail": "/cases/detail-veb-dizayn-sayta-dlya-it-autsors-kompani-8448bc19.webp",
     "detailMobile": "/cases/detail-veb-dizayn-sayta-dlya-it-autsors-kompani-239973b0-mobile.webp",
     "createdAt": "2026-07-28T11:54:49.350Z",
-    "updatedAt": "2026-08-01T09:33:38.731Z"
+    "updatedAt": "2026-08-01T10:41:52.100Z"
   },
   {
     "id": "f931441b-4c77-42d3-8b29-e678187139ad",
@@ -375,7 +375,7 @@
     "detail": "/cases/detail-crm-sistema-dlya-seti-deteyling-centrov-a7113c3e.webp",
     "detailMobile": "/cases/detail-crm-sistema-dlya-seti-deteyling-centrov-027da73e-mobile.webp",
     "createdAt": "2026-07-28T14:56:18.930Z",
-    "updatedAt": "2026-08-01T09:33:38.733Z"
+    "updatedAt": "2026-08-01T10:41:52.102Z"
   },
   {
     "id": "5c42a9d0-aa05-4342-ab1d-39579be7f6a5",
@@ -396,7 +396,7 @@
     "detail": "/cases/detail-frontal-internet-magazin-zapchastey-dlya-67f26a26.webp",
     "detailMobile": "/cases/detail-frontal-internet-magazin-zapchastey-dlya-2462361c-mobile.webp",
     "createdAt": "2026-07-28T15:36:52.621Z",
-    "updatedAt": "2026-08-01T09:33:38.734Z"
+    "updatedAt": "2026-08-01T10:41:52.103Z"
   },
   {
     "id": "6c2ef8ba-141a-43f8-b3f7-d667f158d5a3",
@@ -416,7 +416,7 @@
     "detail": "/cases/detail-veb-dizayn-sayta-portfolio-dlya-art-dire-89a2b69d.webp",
     "detailMobile": "/cases/detail-veb-dizayn-sayta-portfolio-dlya-art-dire-291472b6-mobile.webp",
     "createdAt": "2026-07-29T10:51:45.833Z",
-    "updatedAt": "2026-08-01T09:33:38.735Z"
+    "updatedAt": "2026-08-01T10:41:52.105Z"
   },
   {
     "id": "d7efba00-4f3b-4613-930a-3e37ba29f1a0",
@@ -429,11 +429,13 @@
       "Graphic Design",
       "Print Design"
     ],
-    "services": [],
+    "services": [
+      "branding"
+    ],
     "cover": "/cases/case-vizitka-dlya-konditerskoy-na-domu-2a052772.webp",
     "detail": "/cases/detail-vizitka-dlya-konditerskoy-na-domu-34abfbef.webp",
     "detailMobile": "/cases/detail-vizitka-dlya-konditerskoy-na-domu-f23d1bda-mobile.webp",
     "createdAt": "2026-08-01T09:24:30.017Z",
-    "updatedAt": "2026-08-01T09:33:38.736Z"
+    "updatedAt": "2026-08-01T10:41:52.106Z"
   }
 ]
