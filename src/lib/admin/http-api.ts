@@ -59,6 +59,9 @@ export function httpCasesApi(): CasesApi {
             description: item.description,
             quote: item.quote,
             tags: item.tags,
+            // Без этого поля сервер оставляет привязку к услугам как есть, и
+            // правки категорий в панели просто не доезжали до базы.
+            services: item.services,
           })),
           version: input.baseVersion,
         }),

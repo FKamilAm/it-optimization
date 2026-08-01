@@ -239,6 +239,15 @@ export function AdminPanel() {
         : drafts,
     [drafts, serviceFilter],
   );
+  /** Ещё не опубликованные — их карточки выносим наверх списка. */
+  const newDrafts = useMemo(
+    () => visibleDrafts.filter((draft) => draft.isNew),
+    [visibleDrafts],
+  );
+  const savedDrafts = useMemo(
+    () => visibleDrafts.filter((draft) => !draft.isNew),
+    [visibleDrafts],
+  );
   const problems = useMemo(() => validate(drafts), [drafts]);
   const pendingImageCount = useMemo(
     () => drafts.reduce((sum, draft) => sum + Object.keys(draft.pending).length, 0),
@@ -593,13 +602,43 @@ export function AdminPanel() {
               </p>
             )}
 
+            {/* Ещё не опубликованные кейсы показываем сверху, чтобы форма
+                открывалась под кнопкой, а не за два десятка карточек ниже.
+                В самом списке они остаются последними — порядок на сайте от
+                этого не меняется. */}
+            {newDrafts.length > 0 && (
+              <div className="mb-3 space-y-3">
+                {newDrafts.map((draft) => (
+                  <CaseRow
+                    key={draft.draftId}
+                    draft={draft}
+                    index={drafts.indexOf(draft)}
+                    open={openId === draft.draftId}
+                    draggable={false}
+                    onToggle={() =>
+                      setOpenId(openId === draft.draftId ? null : draft.draftId)
+                    }
+                    onChange={(changes) => patch(draft.draftId, changes)}
+                    onRename={(slug) => patch(draft.draftId, { slug })}
+                    takenSlugs={drafts.map((item) => item.slug)}
+                    onDelete={() => removeCase(draft.draftId)}
+                    onImage={(slot, file) => void attachImage(draft.draftId, slot, file)}
+                  />
+                ))}
+              </div>
+            )}
+
             <Reorder.Group
               axis="y"
-              values={drafts}
-              onReorder={setDrafts}
+              values={savedDrafts}
+              onReorder={(next) =>
+                // Новые кейсы не участвуют в перетаскивании и всегда идут в
+                // хвосте, поэтому дописываем их обратно после переупорядоченных.
+                setDrafts([...next, ...drafts.filter((item) => item.isNew)])
+              }
               className="space-y-3"
             >
-              {visibleDrafts.map((draft) => {
+              {savedDrafts.map((draft) => {
                 const index = drafts.indexOf(draft);
                 return (
                   <CaseRow
