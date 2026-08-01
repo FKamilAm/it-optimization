@@ -607,7 +607,15 @@ export function AdminPanel() {
                 В самом списке они остаются последними — порядок на сайте от
                 этого не меняется. */}
             {newDrafts.length > 0 && (
-              <div className="mb-3 space-y-3">
+              // Собственная Reorder.Group, а не просто div: карточка кейса —
+              // это Reorder.Item, и вне группы он падает с ошибкой. Порядок
+              // здесь не меняют, поэтому onReorder ничего не делает.
+              <Reorder.Group
+                axis="y"
+                values={newDrafts}
+                onReorder={() => {}}
+                className="mb-3 space-y-3"
+              >
                 {newDrafts.map((draft) => (
                   <CaseRow
                     key={draft.draftId}
@@ -625,7 +633,7 @@ export function AdminPanel() {
                     onImage={(slot, file) => void attachImage(draft.draftId, slot, file)}
                   />
                 ))}
-              </div>
+              </Reorder.Group>
             )}
 
             <Reorder.Group
