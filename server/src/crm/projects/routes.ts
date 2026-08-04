@@ -1,0 +1,237 @@
+import type { Prisma } from "@prisma/client";
+import type { FastifyInstance } from "fastify";
+import { z } from "zod";
+import { audit } from "../../audit.js";
+import { requireAuth } from "../../auth/guard.js";
+import { prisma } from "../../db.js";
+import { invalidInput } from "../http.js";
+import { deleteNotes, listNotes, noteRoutesFor } from "../notes.js";
+import {
+  CLOSED_PROJECT_STATUSES,
+  createProjectBody,
+  listProjectsQuery,
+  OPEN_PROJECT_STATUSES,
+  PROJECT_RELATIONS,
+  toProjectDto,
+  updateProjectBody,
+} from "./dto.js";
+
+const idParams = z.object({ id: z.string().uuid() });
+
+/**
+ * Закрытие проставляет дату закрытия, возврат в работу — снимает. Иначе в
+ * списке закрытых оказываются записи без даты, и непонятно, когда всё
+ * закончилось.
+ */
+function closedAtFor(
+  status: string | undefined,
+  current: Date | null,
+): Date | null | undefined {
+  if (status === undefined) return undefined;
+  const closed = (CLOSED_PROJECT_STATUSES as readonly string[]).includes(status);
+  if (closed) return current ?? new Date();
+  return null;
+}
+
+/**
+ * Ссылки на клиента, лид и исполнителя проверяем до записи: иначе опечатка в
+ * идентификаторе превращается в ошибку внешнего ключа, а наружу летит
+ * невнятная «внутренняя ошибка сервера».
+ */
+async function assertReferences(input: {
+  clientId?: string | null;
+  leadId?: string | null;
+  ownerId?: string | null;
+}): Promise<string | null> {
+  if (input.clientId) {
+    const found = await prisma.client.count({
+      where: { id: input.clientId, deletedAt: null },
+    });
+    if (!found) return "Клиент не найден";
+  }
+  if (input.leadId) {
+    const found = await prisma.lead.count({
+      where: { id: input.leadId, deletedAt: null },
+    });
+    if (!found) return "Лид не найден";
+  }
+  if (input.ownerId) {
+    const found = await prisma.user.count({
+      where: { id: input.ownerId, disabledAt: null },
+    });
+    if (!found) return "Исполнитель не найден";
+  }
+  return null;
+}
+
+export async function projectRoutes(app: FastifyInstance): Promise<void> {
+  app.get("/projects", { preHandler: requireAuth }, async (request, reply) => {
+    const query = listProjectsQuery.safeParse(request.query);
+    if (!query.success) return invalidInput(reply, query.error);
+
+    const { status, scope, clientId, ownerId, overdue, search } = query.data;
+    const where: Prisma.ProjectWhereInput = { deletedAt: null };
+
+    if (status) where.status = status;
+    else if (scope === "open") where.status = { in: [...OPEN_PROJECT_STATUSES] };
+    else if (scope === "closed") where.status = { in: [...CLOSED_PROJECT_STATUSES] };
+
+    if (clientId) where.clientId = clientId;
+    if (ownerId) where.ownerId = ownerId;
+
+    if (overdue) {
+      where.deadline = { lt: new Date() };
+      // Просроченным может быть только незакрытый проект: у закрытого срок уже
+      // не имеет значения.
+      where.status = { in: [...OPEN_PROJECT_STATUSES] };
+    }
+
+    if (search) {
+      where.OR = [
+        { title: { contains: search, mode: "insensitive" } },
+        { description: { contains: search, mode: "insensitive" } },
+        { client: { name: { contains: search, mode: "insensitive" } } },
+      ];
+    }
+
+    const projects = await prisma.project.findMany({
+      where,
+      // Сначала те, у кого горит срок; проекты без срока — в конце.
+      orderBy: [{ deadline: { sort: "asc", nulls: "last" } }, { createdAt: "desc" }],
+      include: PROJECT_RELATIONS,
+      take: 500,
+    });
+
+    return reply.send({ projects: projects.map(toProjectDto) });
+  });
+
+  app.post("/projects", { preHandler: requireAuth }, async (request, reply) => {
+    const parsed = createProjectBody.safeParse(request.body);
+    if (!parsed.success) return invalidInput(reply, parsed.error);
+
+    const input = parsed.data;
+    const problem = await assertReferences(input);
+    if (problem) return reply.code(400).send({ error: problem });
+
+    const status = input.status ?? "planned";
+    const project = await prisma.project.create({
+      data: {
+        title: input.title,
+        description: input.description ?? null,
+        status,
+        clientId: input.clientId ?? null,
+        leadId: input.leadId ?? null,
+        ownerId: input.ownerId ?? null,
+        startedAt: input.startedAt ?? null,
+        deadline: input.deadline ?? null,
+        closedAt: closedAtFor(status, null) ?? null,
+      },
+      include: PROJECT_RELATIONS,
+    });
+
+    await audit(request, { entity: "projects", entityId: project.id, action: "create" });
+    return reply.code(201).send({ project: toProjectDto(project) });
+  });
+
+  app.get("/projects/:id", { preHandler: requireAuth }, async (request, reply) => {
+    const params = idParams.safeParse(request.params);
+    if (!params.success) return invalidInput(reply, params.error);
+
+    const project = await prisma.project.findFirst({
+      where: { id: params.data.id, deletedAt: null },
+      include: PROJECT_RELATIONS,
+    });
+    if (!project) return reply.code(404).send({ error: "Проект не найден" });
+
+    return reply.send({
+      project: toProjectDto(project),
+      notes: await listNotes("project", project.id),
+    });
+  });
+
+  app.patch("/projects/:id", { preHandler: requireAuth }, async (request, reply) => {
+    const params = idParams.safeParse(request.params);
+    if (!params.success) return invalidInput(reply, params.error);
+
+    const parsed = updateProjectBody.safeParse(request.body);
+    if (!parsed.success) return invalidInput(reply, parsed.error);
+
+    const existing = await prisma.project.findFirst({
+      where: { id: params.data.id, deletedAt: null },
+    });
+    if (!existing) return reply.code(404).send({ error: "Проект не найден" });
+
+    const input = parsed.data;
+    const problem = await assertReferences(input);
+    if (problem) return reply.code(400).send({ error: problem });
+
+    const data: Prisma.ProjectUncheckedUpdateInput = {};
+    if (input.title !== undefined) data.title = input.title;
+    if (input.description !== undefined) data.description = input.description;
+    if (input.status !== undefined) data.status = input.status;
+    if (input.clientId !== undefined) data.clientId = input.clientId;
+    if (input.leadId !== undefined) data.leadId = input.leadId;
+    if (input.ownerId !== undefined) data.ownerId = input.ownerId;
+    if (input.startedAt !== undefined) data.startedAt = input.startedAt;
+    if (input.deadline !== undefined) data.deadline = input.deadline;
+
+    const closedAt = closedAtFor(input.status, existing.closedAt);
+    if (closedAt !== undefined) data.closedAt = closedAt;
+
+    const project = await prisma.project.update({
+      where: { id: existing.id },
+      data,
+      include: PROJECT_RELATIONS,
+    });
+
+    await audit(request, {
+      entity: "projects",
+      entityId: project.id,
+      action: "update",
+      diff: { status: { from: existing.status, to: project.status } },
+    });
+
+    return reply.send({ project: toProjectDto(project) });
+  });
+
+  app.delete("/projects/:id", { preHandler: requireAuth }, async (request, reply) => {
+    const params = idParams.safeParse(request.params);
+    if (!params.success) return invalidInput(reply, params.error);
+
+    const project = await prisma.project.findFirst({
+      where: { id: params.data.id, deletedAt: null },
+    });
+    if (!project) return reply.code(404).send({ error: "Проект не найден" });
+
+    // Задачи проекта уходят вместе с ним: у задачи вне проекта, который её
+    // породил, нет смысла. Мягко, как и сам проект.
+    await prisma.$transaction([
+      prisma.project.update({
+        where: { id: project.id },
+        data: { deletedAt: new Date() },
+      }),
+      prisma.task.updateMany({
+        where: { projectId: project.id, deletedAt: null },
+        data: { deletedAt: new Date() },
+      }),
+    ]);
+    await deleteNotes("project", project.id);
+
+    await audit(request, {
+      entity: "projects",
+      entityId: project.id,
+      action: "delete",
+      diff: { title: project.title, status: project.status },
+    });
+
+    return reply.code(204).send();
+  });
+
+  await noteRoutesFor(
+    app,
+    "project",
+    "projects",
+    async (id) => (await prisma.project.count({ where: { id, deletedAt: null } })) > 0,
+    "Проект не найден",
+  );
+}

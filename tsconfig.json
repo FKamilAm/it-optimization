@@ -23,5 +23,10 @@
   // проверкой типов (npm run typecheck в server/). Сборке сайта он не нужен, а
   // без исключения `next build` пытался проверять его типы и падал, не найдя
   // Fastify: на CI зависимости бэкенда не устанавливаются.
-  "exclude": ["node_modules", "server", "out", ".next"]
+  //
+  // crm/ — по той же причине. У CRM свой tsconfig, где алиас `@/*` указывает на
+  // crm/src/*, а здесь тот же `@/*` ведёт в src/ сайта. Без исключения
+  // `next build` разрешал импорты CRM по чужому алиасу и падал на первом же
+  // «Cannot find module '@/components/…'».
+  "exclude": ["node_modules", "server", "crm", "out", ".next"]
 }

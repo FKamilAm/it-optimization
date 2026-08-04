@@ -1,7 +1,8 @@
 import { buildApp } from "./app.js";
 import { purgeExpiredSessions } from "./auth/session.js";
 import { prisma } from "./db.js";
-import { canPublish, env } from "./env.js";
+import { canNotify, canPublish, env } from "./env.js";
+import { startBot } from "./notify/bot.js";
 
 const app = await buildApp();
 
@@ -10,6 +11,12 @@ if (!canPublish) {
     "GITHUB_TOKEN не задан: правки сохраняются в базу, но публикация на сайт отключена.",
   );
 }
+
+// Бот необязателен: без токена CRM работает полностью, просто молча.
+const stopBot = canNotify
+  ? startBot(app.log)
+  : (app.log.warn("TELEGRAM_BOT_TOKEN не задан: напоминания отключены."),
+    async () => {});
 
 // Раз в сутки подчищаем истёкшие сессии — иначе таблица растёт вечно.
 const cleanup = setInterval(
@@ -25,6 +32,7 @@ cleanup.unref();
 async function shutdown(signal: string): Promise<void> {
   app.log.info({ signal }, "остановка");
   clearInterval(cleanup);
+  await stopBot();
   await app.close();
   await prisma.$disconnect();
   process.exit(0);

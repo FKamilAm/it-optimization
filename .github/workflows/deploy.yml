@@ -6,6 +6,13 @@ name: Deploy to reg.ru
 on:
   push:
     branches: [main]
+    # Бэкенд и CRM живут в этом же репозитории, но в статику сайта не попадают.
+    # Коммит, который трогает только их, не должен запускать десятиминутную
+    # перезаливку по FTP. Смешанный коммит фильтр не пропустит — он срабатывает,
+    # только когда под исключение подпадают все изменённые файлы.
+    paths-ignore:
+      - "crm/**"
+      - "server/**"
   workflow_dispatch:
 
 # One deploy at a time — an FTP upload that gets cancelled halfway would leave
