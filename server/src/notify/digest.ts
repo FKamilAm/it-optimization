@@ -123,7 +123,7 @@ export async function sendDailyDigest(log: Log): Promise<void> {
         log.warn({ email: user.email }, "телеграм отвязан: бот заблокирован адресатом");
         continue;
       }
-      log.error({ cause, email: user.email }, "не удалось отправить дайджест");
+      log.error({ err: cause, email: user.email }, "не удалось отправить дайджест");
     }
   }
 

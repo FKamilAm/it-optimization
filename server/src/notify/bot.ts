@@ -151,7 +151,7 @@ function startScheduler(log: Log): () => void {
   const tick = setInterval(
     () => {
       runDigestIfDue(log).catch((cause: unknown) => {
-        log.error({ cause }, "рассылка дайджеста не удалась");
+        log.error({ err: cause }, "рассылка дайджеста не удалась");
       });
     },
     60 * 1000,
@@ -186,12 +186,12 @@ export function startBot(log: Log): () => Promise<void> {
           if (!text || chatId === undefined) continue;
 
           await handleCommand(String(chatId), text, log).catch((cause: unknown) => {
-            log.error({ cause }, "ошибка обработки сообщения бота");
+            log.error({ err: cause }, "ошибка обработки сообщения бота");
           });
         }
       } catch (cause) {
         if (controller.signal.aborted) return;
-        log.warn({ cause }, "опрос телеграма сорвался, повтор через 5 секунд");
+        log.warn({ err: cause }, "опрос телеграма сорвался, повтор через 5 секунд");
         await new Promise((resolve) => setTimeout(resolve, 5000));
       }
     }

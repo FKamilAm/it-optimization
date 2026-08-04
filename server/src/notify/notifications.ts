@@ -47,6 +47,6 @@ export async function notifyNewLead(lead: Lead, log: Log): Promise<void> {
  */
 export function notifyNewLeadInBackground(lead: Lead, log: Log): void {
   void notifyNewLead(lead, log).catch((cause: unknown) => {
-    log.warn({ cause }, "уведомление о новом лиде не отправлено");
+    log.warn({ err: cause }, "уведомление о новом лиде не отправлено");
   });
 }

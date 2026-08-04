@@ -6,7 +6,8 @@ import { env } from "../env.js";
  * а зависимость пришлось бы обновлять годами ради этого.
  */
 
-const API = "https://api.telegram.org";
+/** Адрес Bot API — настраиваемый, см. TELEGRAM_API_BASE в env.ts. */
+const API = env.TELEGRAM_API_BASE.replace(/\/$/, "");
 
 interface TelegramResponse<T> {
   ok: boolean;
@@ -111,7 +112,7 @@ export async function trySendMessage(
       if (cause instanceof TelegramError && cause.isGone) throw cause;
 
       if (attempt === attempts) {
-        log.warn({ cause, chatId }, "не удалось отправить сообщение в телеграм");
+        log.warn({ err: cause, chatId }, "не удалось отправить сообщение в телеграм");
         return false;
       }
       await new Promise((resolve) => setTimeout(resolve, attempt * 2000));
