@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { ArrowUpRight, Check, ChevronLeft, ChevronRight, Plus } from "lucide-react";
+import { ArrowUpRight, Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { ContactChannels } from "@/components/contact/contact-channels";
 import { CaseLightbox } from "@/components/sections/case-lightbox";
@@ -13,6 +13,7 @@ import { ServiceCard } from "@/components/sections/service-card";
 import { casesForService, formatTags, type CaseItem } from "@/lib/cases";
 import { useContactModal } from "@/components/providers/contact-modal-provider";
 import { Button } from "@/components/ui/button";
+import { FaqAccordion, type FaqItem } from "@/components/ui/faq-accordion";
 import { ServiceHeroVisual } from "@/components/service-hero/service-hero-visual";
 import type { ServiceHeroVariant } from "@/components/service-hero/service-hero-3d";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
@@ -47,11 +48,6 @@ const STEP_ROTATE_MS = 3000;
 interface UseCaseItem {
   title: string;
   text: string;
-}
-
-interface FaqItem {
-  question: string;
-  answer: string;
 }
 
 interface Tariff {
@@ -94,7 +90,6 @@ export function ServicePageContent({
   // layout that was piloted on the Telegram page.
   const lightHero = true;
 
-  const [openFaq, setOpenFaq] = useState(0);
   const [activeStep, setActiveStep] = useState(0);
   const [lightboxCase, setLightboxCase] = useState<CaseItem | null>(null);
 
@@ -625,80 +620,8 @@ export function ServicePageContent({
         <Reveal>
           <h2 className="heading-section">{c("faqTitle")}</h2>
         </Reveal>
-        <div
-          className={cn(
-            "mt-14 divide-y border-t",
-            lightHero ? "divide-white/10 border-white/10" : "divide-border border-border",
-          )}
-        >
-          {faq.map((item, index) => {
-            const isOpen = openFaq === index;
-            return (
-              <div
-                key={item.question}
-                className={cn(
-                  "py-1 transition-colors duration-300",
-                  isOpen && (lightHero ? "bg-accent-muted/30" : "bg-muted/40"),
-                )}
-              >
-                <button
-                  type="button"
-                  onClick={() => setOpenFaq(isOpen ? -1 : index)}
-                  className={cn(
-                    "flex w-full cursor-pointer items-start justify-between gap-6 py-6 text-left transition-colors duration-300",
-                    isOpen && "border-accent border-l-2 pl-4",
-                  )}
-                  aria-expanded={isOpen}
-                >
-                  <span
-                    className={cn(
-                      "heading-subsection max-w-3xl font-medium",
-                      lightHero
-                        ? isOpen
-                          ? "text-white"
-                          : "text-white/80"
-                        : isOpen
-                          ? "text-foreground"
-                          : "text-foreground/80",
-                    )}
-                  >
-                    {item.question}
-                  </span>
-                  <span
-                    className={cn(
-                      "mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300",
-                      isOpen
-                        ? lightHero
-                          ? "border-accent/50 bg-accent/10 text-accent rotate-45"
-                          : "border-accent/50 bg-accent/10 text-accent-foreground rotate-45"
-                        : lightHero
-                          ? "border-white/15 text-white/70"
-                          : "border-border text-muted-foreground",
-                    )}
-                  >
-                    <Plus className="h-4 w-4" />
-                  </span>
-                </button>
-                <div
-                  className={cn(
-                    "grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
-                    isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
-                  )}
-                >
-                  <div className="min-h-0 overflow-hidden">
-                    <p
-                      className={cn(
-                        "body-base max-w-3xl pb-6 pl-4",
-                        lightHero ? "text-white/65" : "text-muted-foreground",
-                      )}
-                    >
-                      {item.answer}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+        <div className="mt-14">
+          <FaqAccordion items={faq} surface={lightHero ? "dark" : "light"} />
         </div>
       </div>
     </section>
