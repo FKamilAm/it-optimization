@@ -104,7 +104,7 @@ export default async function ServicePage({ params }: PageProps) {
           "@type": "ListItem",
           position: 2,
           name: c("breadcrumbServices"),
-          item: `${siteUrl}/#services`,
+          item: `${siteUrl}/uslugi/`,
         },
         {
           "@type": "ListItem",

@@ -244,7 +244,7 @@ export function ServicePageContent({
               />
               <li>
                 <a
-                  href="/#services"
+                  href="/uslugi/"
                   className={cn(
                     "cursor-pointer transition-colors",
                     lightHero ? "hover:text-foreground" : "hover:text-white",
@@ -358,7 +358,7 @@ export function ServicePageContent({
                   </button>
                 )}
                 <a
-                  href="/#services"
+                  href="/uslugi/"
                   className={cn(
                     "hover:border-accent hover:text-accent inline-flex h-14 w-full cursor-pointer items-center justify-center gap-2 rounded-full border px-8 text-base font-medium transition-colors duration-300 sm:w-auto",
                     lightHero

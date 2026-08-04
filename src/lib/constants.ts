@@ -24,11 +24,46 @@ export const ORG = {
 //   action "copy" — show a small popover with the value + "copy" button
 //                   (better for phone, e-mail and MAX, which has no chat link)
 export const CONTACT_CHANNELS = [
-  { key: "telegram", label: "Telegram", value: "@dujaii", href: SITE.telegram, external: true, action: "link" },
-  { key: "whatsapp", label: "WhatsApp", value: "+7 996 326-61-61", href: SITE.whatsapp, external: true, action: "link" },
-  { key: "max", label: "MAX", value: "+7 996 326-61-61", href: SITE.max, external: false, action: "copy" },
-  { key: "phone", label: "Телефон", value: "+7 993 726-60-61", href: `tel:${SITE.phone}`, external: false, action: "copy" },
-  { key: "email", label: "Email", value: SITE.email, href: `mailto:${SITE.email}`, external: false, action: "copy" },
+  {
+    key: "telegram",
+    label: "Telegram",
+    value: "@dujaii",
+    href: SITE.telegram,
+    external: true,
+    action: "link",
+  },
+  {
+    key: "whatsapp",
+    label: "WhatsApp",
+    value: "+7 996 326-61-61",
+    href: SITE.whatsapp,
+    external: true,
+    action: "link",
+  },
+  {
+    key: "max",
+    label: "MAX",
+    value: "+7 996 326-61-61",
+    href: SITE.max,
+    external: false,
+    action: "copy",
+  },
+  {
+    key: "phone",
+    label: "Телефон",
+    value: "+7 993 726-60-61",
+    href: `tel:${SITE.phone}`,
+    external: false,
+    action: "copy",
+  },
+  {
+    key: "email",
+    label: "Email",
+    value: SITE.email,
+    href: `mailto:${SITE.email}`,
+    external: false,
+    action: "copy",
+  },
 ] as const;
 
 export type ContactChannelKey = (typeof CONTACT_CHANNELS)[number]["key"];
@@ -147,21 +182,34 @@ export const SERVICE_NAV = [
 
 // Blog posts, newest first. `key` maps to the blog.posts.<key> catalog block;
 // `slug` is the /blog/<slug> page URL; `cover` is the committed hero artwork.
+//
+// `publishedAt` / `updatedAt` — ISO-даты (день, без времени). Нужны в двух
+// местах: Article-разметка без datePublished неполная для Google, а sitemap без
+// реального lastmod вынужден подставлять время сборки, то есть врать. Правки
+// текста статьи — повод обновить updatedAt вручную; это редкое событие, и
+// выводить дату из истории git на сборке нельзя — на CI её нет (checkout
+// делается с depth 1).
 export const BLOG_POSTS = [
   {
     key: "securityAudit",
     slug: "audit-bezopasnosti-sajtov",
     cover: "/blog/audit-bezopasnosti-sajtov.svg",
+    publishedAt: "2026-07-18",
+    updatedAt: "2026-07-18",
   },
   {
     key: "messengers",
     slug: "razrabotka-messendzherov",
     cover: "/blog/razrabotka-messendzherov.svg",
+    publishedAt: "2026-07-18",
+    updatedAt: "2026-07-18",
   },
   {
     key: "parsing",
     slug: "parsing-dannyh",
     cover: "/blog/parsing-dannyh.svg",
+    publishedAt: "2026-07-18",
+    updatedAt: "2026-07-18",
   },
 ] as const;
 

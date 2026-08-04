@@ -39,7 +39,7 @@ export function Header({ companyName, sectionPrefix = "" }: HeaderProps) {
       <header
         className={cn(
           "fixed inset-x-0 top-0 transition-colors duration-500 ease-out",
-          menuOpen ? "z-[110] bg-surface" : "z-50 bg-background",
+          menuOpen ? "bg-surface z-[110]" : "bg-background z-50",
         )}
       >
         <div className="container-premium relative flex h-[72px] items-center md:h-20">
@@ -75,11 +75,7 @@ export function Header({ companyName, sectionPrefix = "" }: HeaderProps) {
               {t(`nav.${NAV_ITEMS[1].key}`)}
             </AnchorLink>
 
-            <HeaderServicesMenu
-              dark={menuOpen}
-              sectionPrefix={sectionPrefix}
-              onNavigate={() => setMenuOpen(false)}
-            />
+            <HeaderServicesMenu dark={menuOpen} onNavigate={() => setMenuOpen(false)} />
 
             <Link
               href="/proekty/"
@@ -125,9 +121,9 @@ export function Header({ companyName, sectionPrefix = "" }: HeaderProps) {
               type="button"
               onClick={() => setMenuOpen((v) => !v)}
               className={cn(
-                "menu-icon-button cursor-pointer border-border hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+                "menu-icon-button border-border hover:bg-muted focus-visible:outline-accent cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2",
                 menuOpen &&
-                  "border-white/15 bg-surface text-surface-foreground hover:bg-white/10",
+                  "bg-surface text-surface-foreground border-white/15 hover:bg-white/10",
               )}
               aria-label={menuOpen ? t("menu.close") : t("a11y.openMenu")}
               aria-expanded={menuOpen}
