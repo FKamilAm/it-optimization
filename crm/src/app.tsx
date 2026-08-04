@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router";
+import { HashRouter, Navigate, Route, Routes } from "react-router";
 import { Shell } from "@/components/shell";
 import { AuthProvider, useAuth } from "@/auth/auth-context";
 import { ClientsScreen } from "@/screens/clients/clients-screen";
@@ -38,12 +38,25 @@ function Routed() {
   );
 }
 
+/**
+ * Маршрутизация через решётку: адреса выглядят как `/#/leads`.
+ *
+ * Выглядит старомодно, но не зависит от веб-сервера вообще. На шаред-хостинге
+ * reg.ru PHP для аккаунта отключён, поэтому сайт отдаётся напрямую nginx, а он
+ * не читает `.htaccess` — правило SPA-маршрутизации из `public/.htaccess` не
+ * применяется, и прямая ссылка на `/leads` возвращает 404 от сервера. Всё, что
+ * после решётки, на сервер не уходит совсем: он всегда отдаёт index.html.
+ *
+ * Если хостинг однажды научится отдавать index.html на любой путь (через
+ * `try_files` в nginx или включённый Apache), достаточно вернуть здесь
+ * BrowserRouter — больше ничего в коде не изменится.
+ */
 export function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AuthProvider>
         <Routed />
       </AuthProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
