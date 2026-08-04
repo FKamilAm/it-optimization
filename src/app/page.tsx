@@ -5,7 +5,6 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { FloatingContact } from "@/components/layout/floating-contact";
 import { SkipLink } from "@/components/layout/skip-link";
-import { SitePreloader } from "@/components/layout/site-preloader";
 import { HeroSection } from "@/components/sections/hero-section";
 import { getHomeCases } from "@/lib/cases";
 import { SITE } from "@/lib/constants";
@@ -42,46 +41,48 @@ export default async function HomePage() {
   const companyName = SITE.name;
   const cases = await getHomeCases();
 
+  // NOTE: <SitePreloader /> used to wrap the page here. It held an opaque
+  // full-screen overlay for ~1.65s on first visit, which pushed the hero out of
+  // the first paint and cost us LCP. The component is kept in
+  // components/layout/site-preloader.tsx so it can be brought back — restoring
+  // it is an import plus one line above <SmoothScrollProvider>.
   return (
-    <>
-      <SitePreloader />
-      <SmoothScrollProvider>
-        <ContactModalProvider>
-          <SkipLink />
-          <Header companyName={companyName} />
-          <main id="main">
-            <HeroSection />
-            <div className="section-defer">
-              <ProcessSection />
-            </div>
-            <div className="section-defer">
-              <ServicesSection />
-            </div>
-            <div className="section-defer">
-              <IndustriesSection />
-            </div>
-            <div className="section-defer">
-              <SolutionsSection cases={cases} />
-            </div>
-            <AuditSection />
-            {/* About + FAQ share one defer wrapper so content-visibility
-                cannot open a 1px light “seam” between two adjacent dark
-                surfaces (white hairline above the FAQ heading). */}
-            <div className="section-defer">
-              <AboutSection />
-              <FaqSection />
-            </div>
-            <div className="section-defer">
-              <TechnologiesSection />
-            </div>
-            <div className="section-defer">
-              <ContactSection />
-            </div>
-          </main>
-          <Footer companyName={companyName} />
-          <FloatingContact />
-        </ContactModalProvider>
-      </SmoothScrollProvider>
-    </>
+    <SmoothScrollProvider>
+      <ContactModalProvider>
+        <SkipLink />
+        <Header companyName={companyName} />
+        <main id="main">
+          <HeroSection />
+          <div className="section-defer">
+            <ProcessSection />
+          </div>
+          <div className="section-defer">
+            <ServicesSection />
+          </div>
+          <div className="section-defer">
+            <IndustriesSection />
+          </div>
+          <div className="section-defer">
+            <SolutionsSection cases={cases} />
+          </div>
+          <AuditSection />
+          {/* About + FAQ share one defer wrapper so content-visibility
+              cannot open a 1px light “seam” between two adjacent dark
+              surfaces (white hairline above the FAQ heading). */}
+          <div className="section-defer">
+            <AboutSection />
+            <FaqSection />
+          </div>
+          <div className="section-defer">
+            <TechnologiesSection />
+          </div>
+          <div className="section-defer">
+            <ContactSection />
+          </div>
+        </main>
+        <Footer companyName={companyName} />
+        <FloatingContact />
+      </ContactModalProvider>
+    </SmoothScrollProvider>
   );
 }

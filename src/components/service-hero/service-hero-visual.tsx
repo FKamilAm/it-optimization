@@ -1,7 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { Component, type ReactNode, useEffect, useState } from "react";
+import { Component, type ReactNode } from "react";
+import { useWebGLReady } from "@/hooks/use-webgl-ready";
 import { cn } from "@/lib/utils";
 import type { ServiceHeroVariant } from "./service-hero-3d";
 import { ServiceHeroFallback } from "./service-hero-fallback";
@@ -27,18 +28,6 @@ class WebGLBoundary extends Component<
   }
 }
 
-function hasWebGL() {
-  try {
-    const canvas = document.createElement("canvas");
-    return !!(
-      window.WebGLRenderingContext &&
-      (canvas.getContext("webgl") || canvas.getContext("experimental-webgl"))
-    );
-  } catch {
-    return false;
-  }
-}
-
 export function ServiceHeroVisual({
   variant,
   className,
@@ -48,12 +37,9 @@ export function ServiceHeroVisual({
 }) {
   // Start with the fallback (also what SSR renders), then upgrade to the real
   // 3D scene wherever WebGL is available — including mobile, so every service
-  // hero shows its actual model, not a placeholder silhouette.
-  const [render3d, setRender3d] = useState(false);
-
-  useEffect(() => {
-    setRender3d(hasWebGL());
-  }, []);
+  // hero shows its actual model, not a placeholder silhouette. The upgrade
+  // waits for browser idle so the three.js chunk stays out of the critical path.
+  const render3d = useWebGLReady();
 
   return (
     <div className={cn("relative", className)} aria-hidden="true">

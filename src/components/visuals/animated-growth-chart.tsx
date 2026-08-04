@@ -10,7 +10,7 @@ if (typeof window !== "undefined") {
 }
 
 /**
- * The chart lives in a single PNG (public/industries-chart.png, 820x936).
+ * The chart lives in a single image (public/industries-chart.webp, 820x936).
  * To animate the bars growing and the arrow climbing we render the same image
  * in several SVG layers, each revealed through its own clip/mask:
  *   - one clipped layer per bar (revealed bottom -> top),
@@ -31,7 +31,7 @@ const BARS = [
   { x: 596, w: 224, top: 242 },
 ] as const;
 
-const IMG = "/industries-chart.png";
+const IMG = "/industries-chart.webp";
 
 export function AnimatedGrowthChart({ className }: { className?: string }) {
   const rootRef = useRef<SVGSVGElement>(null);

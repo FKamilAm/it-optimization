@@ -13,9 +13,9 @@ import { Reveal } from "@/components/animations/reveal";
 import { cn } from "@/lib/utils";
 
 const CARDS = [
-  { key: "1", image: "/audit/card-1.png" },
-  { key: "2", image: "/audit/card-2.png" },
-  { key: "3", image: "/audit/card-3.png" },
+  { key: "1", image: "/audit/card-1.webp" },
+  { key: "2", image: "/audit/card-2.webp" },
+  { key: "3", image: "/audit/card-3.webp" },
 ] as const;
 
 function StackCard({

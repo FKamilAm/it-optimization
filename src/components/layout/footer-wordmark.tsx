@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 // Source art: the "IT-OPTIMIZATION" wordmark rendered as horizontal stripes
 // (white on dark). We read its pixels once and rebuild it from independent
 // horizontal segments so each one can be "plucked" like a string on hover.
-const SRC = "/footer/wordmark-en.png";
+const SRC = "/footer/wordmark-en.webp";
 const SRC_W = 1920;
 const SRC_H = 173;
 
