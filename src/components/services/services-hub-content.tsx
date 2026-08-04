@@ -5,6 +5,7 @@ import { ChevronRight } from "lucide-react";
 import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { ContactSection } from "@/components/sections/contact-section";
 import { ServiceCard } from "@/components/sections/service-card";
+import { FaqAccordion, type FaqItem } from "@/components/ui/faq-accordion";
 import { SERVICE_NAV } from "@/lib/constants";
 
 /**
@@ -15,6 +16,7 @@ import { SERVICE_NAV } from "@/lib/constants";
 export function ServicesHubContent() {
   const t = useTranslations("servicesPage");
   const services = useTranslations("services.items");
+  const faq = t.raw("faq") as FaqItem[];
 
   return (
     <>
@@ -53,6 +55,17 @@ export function ServicesHubContent() {
               </div>
             ))}
           </StaggerReveal>
+        </div>
+      </section>
+
+      <section className="surface-dark section-padding relative overflow-hidden">
+        <div className="container-premium relative z-10">
+          <Reveal>
+            <h2 className="heading-section">{t("faqTitle")}</h2>
+          </Reveal>
+          <div className="mt-16">
+            <FaqAccordion items={faq} surface="dark" />
+          </div>
         </div>
       </section>
 

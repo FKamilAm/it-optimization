@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import { getTranslations } from "next-intl/server";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 import { ContactModalProvider } from "@/components/providers/contact-modal-provider";
 import { Header } from "@/components/layout/header";
@@ -37,9 +38,28 @@ const ContactSection = dynamic(() =>
   import("@/components/sections/contact-section").then((m) => m.ContactSection),
 );
 
+const FAQ_KEYS = ["1", "2", "3", "4", "5", "6", "7", "8"] as const;
+
 export default async function HomePage() {
   const companyName = SITE.name;
   const cases = await getHomeCases();
+  const faq = await getTranslations("faq.items");
+
+  // Разметка блока #faq. Раньше жила в StructuredData и вместе с layout
+  // уезжала на все страницы сайта — теперь объявляется там, где вопросы
+  // действительно есть на экране.
+  const faqPage = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_KEYS.map((key) => ({
+      "@type": "Question",
+      name: faq(`${key}.question`),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq(`${key}.answer`),
+      },
+    })),
+  };
 
   // NOTE: <SitePreloader /> used to wrap the page here. It held an opaque
   // full-screen overlay for ~1.65s on first visit, which pushed the hero out of
@@ -48,6 +68,10 @@ export default async function HomePage() {
   // it is an import plus one line above <SmoothScrollProvider>.
   return (
     <SmoothScrollProvider>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPage) }}
+      />
       <ContactModalProvider>
         <SkipLink />
         <Header companyName={companyName} />

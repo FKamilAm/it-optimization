@@ -31,6 +31,7 @@ export default async function ServicesPage() {
   const services = await getTranslations("services.items");
   const siteUrl = getSiteUrl();
   const url = `${siteUrl}/uslugi/`;
+  const faq = t.raw("faq") as { question: string; answer: string }[];
 
   const jsonLd = [
     {
@@ -64,6 +65,15 @@ export default async function ServicesPage() {
         position: index + 1,
         name: services(`${key}.title`),
         url: `${siteUrl}/uslugi/${slug}/`,
+      })),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faq.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: { "@type": "Answer", text: item.answer },
       })),
     },
   ];

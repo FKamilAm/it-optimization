@@ -2,12 +2,19 @@ import { getTranslations } from "next-intl/server";
 import { ORG, SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 
-const FAQ_KEYS = ["1", "2", "3", "4", "5", "6", "7", "8"] as const;
-
+/**
+ * Разметка уровня организации. Рендерится из layout, то есть на каждой
+ * странице — поэтому здесь только то, что верно для всего сайта.
+ *
+ * FAQPage отсюда убрана намеренно: она описывает восемь вопросов из блока на
+ * главной, и вместе с layout уезжала на все 24 URL. На /proekty/ и в блоге это
+ * разметка контента, которого на странице нет, а на страницах услуг она
+ * сталкивалась со второй, настоящей FAQPage. Теперь блок вопросов объявляет
+ * себя сам — там, где он действительно есть.
+ */
 export async function StructuredData() {
   const siteUrl = getSiteUrl();
   const meta = await getTranslations("meta");
-  const faq = await getTranslations("faq.items");
 
   const organization = {
     "@context": "https://schema.org",
@@ -55,20 +62,7 @@ export async function StructuredData() {
     priceRange: "$$",
   };
 
-  const faqPage = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQ_KEYS.map((key) => ({
-      "@type": "Question",
-      name: faq(`${key}.question`),
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq(`${key}.answer`),
-      },
-    })),
-  };
-
-  const payload = [organization, website, professionalService, faqPage];
+  const payload = [organization, website, professionalService];
 
   return (
     <script
