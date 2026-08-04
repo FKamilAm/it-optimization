@@ -16,7 +16,7 @@ export function ContactSection() {
               <h2 className="heading-section max-w-xl">{t("title")}</h2>
             </Reveal>
             <Reveal delay={0.05}>
-              <p className="body-large mt-6 max-w-md text-muted-foreground">
+              <p className="body-large text-muted-foreground mt-6 max-w-md">
                 {t("subtitle")}
               </p>
             </Reveal>

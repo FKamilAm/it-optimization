@@ -25,7 +25,8 @@ export function CaseLightbox({ src, srcMobile, alt, onClose }: CaseLightboxProps
 
   // On phones we show a dedicated 9:16 slide sized to the viewport height.
   const [isMobile, setIsMobile] = useState(
-    () => typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches,
+    () =>
+      typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches,
   );
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 767px)");
@@ -83,7 +84,7 @@ export function CaseLightbox({ src, srcMobile, alt, onClose }: CaseLightboxProps
             type="button"
             onClick={onClose}
             aria-label="Закрыть"
-            className="absolute right-4 top-4 z-20 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-6 sm:top-6 sm:h-12 sm:w-12"
+            className="absolute top-4 right-4 z-20 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:top-6 sm:right-6 sm:h-12 sm:w-12"
           >
             <X className="h-5 w-5 sm:h-6 sm:w-6" />
           </button>

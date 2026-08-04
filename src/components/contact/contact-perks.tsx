@@ -22,12 +22,12 @@ export function ContactPerks({ className }: { className?: string }) {
     <ul className={cn("flex flex-col gap-5", className)}>
       {PERKS.map(({ key, Icon }) => (
         <li key={key} className="flex items-start gap-4">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-foreground">
+          <span className="border-border text-foreground flex h-10 w-10 shrink-0 items-center justify-center rounded-full border">
             <Icon className="h-[18px] w-[18px]" />
           </span>
           <span className="flex flex-col gap-0.5">
-            <span className="font-medium text-foreground">{t(`${key}.title`)}</span>
-            <span className="text-sm text-muted-foreground">{t(`${key}.text`)}</span>
+            <span className="text-foreground font-medium">{t(`${key}.title`)}</span>
+            <span className="text-muted-foreground text-sm">{t(`${key}.text`)}</span>
           </span>
         </li>
       ))}

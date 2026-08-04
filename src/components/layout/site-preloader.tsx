@@ -53,7 +53,13 @@ export function SitePreloader() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
-            <svg width="132" height="132" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+            <svg
+              width="132"
+              height="132"
+              viewBox="0 0 120 120"
+              fill="none"
+              aria-hidden="true"
+            >
               {/* "I" — vertical stroke drawn top → bottom */}
               <motion.line
                 x1="33"
@@ -65,7 +71,11 @@ export function SitePreloader() {
                 strokeLinecap="round"
                 initial={reduced ? false : { pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={reduced ? { duration: 0 } : { duration: 0.42, delay: 0, ease: [0.22, 1, 0.36, 1] }}
+                transition={
+                  reduced
+                    ? { duration: 0 }
+                    : { duration: 0.42, delay: 0, ease: [0.22, 1, 0.36, 1] }
+                }
               />
 
               {/* "O" — ring drawn around, leaving a gap in the top-right */}
@@ -79,7 +89,11 @@ export function SitePreloader() {
                 fill="none"
                 initial={reduced ? false : { pathLength: 0 }}
                 animate={{ pathLength: 0.82 }}
-                transition={reduced ? { duration: 0 } : { duration: 0.66, delay: 0.36, ease: [0.22, 1, 0.36, 1] }}
+                transition={
+                  reduced
+                    ? { duration: 0 }
+                    : { duration: 0.66, delay: 0.36, ease: [0.22, 1, 0.36, 1] }
+                }
               />
 
               {/* accent dot sitting in the gap at the top-right of the O */}
@@ -100,7 +114,7 @@ export function SitePreloader() {
             </svg>
 
             <motion.p
-              className="mt-6 text-sm font-medium uppercase tracking-[0.28em] text-white/50"
+              className="mt-6 text-sm font-medium tracking-[0.28em] text-white/50 uppercase"
               initial={reduced ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={reduced ? { duration: 0 } : { duration: 0.5, delay: 0.5 }}

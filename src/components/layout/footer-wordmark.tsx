@@ -46,12 +46,9 @@ export function FooterWordmark({ className }: { className?: string }) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const interactive =
-      window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
-      !reduceMotion;
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches && !reduceMotion;
 
     let segments: Segment[] = [];
     let inkColor = "rgb(226, 230, 233)";
@@ -86,15 +83,14 @@ export function FooterWordmark({ className }: { className?: string }) {
       const isInk = (x: number, y: number) => {
         const i = (y * SRC_W + x) * 4;
         const a = data[i + 3] / 255;
-        const lum =
-          (data[i] * 0.299 + data[i + 1] * 0.587 + data[i + 2] * 0.114) * a;
+        const lum = (data[i] * 0.299 + data[i + 1] * 0.587 + data[i + 2] * 0.114) * a;
         return lum > 90;
       };
 
       // 1a. Group rows into stripe bands (gaps between stripes are dark rows).
       const rowMin = Math.max(4, Math.floor(SRC_W * 0.01));
       const bands: Array<[number, number]> = [];
-      for (let y = 0; y < SRC_H; ) {
+      for (let y = 0; y < SRC_H;) {
         let count = 0;
         for (let x = 0; x < SRC_W; x++) if (isInk(x, y)) count++;
         if (count >= rowMin) {
@@ -160,8 +156,7 @@ export function FooterWordmark({ className }: { className?: string }) {
         for (let xx = 0; xx < SRC_W; xx += 2) {
           const i = (yy * SRC_W + xx) * 4;
           const a = data[i + 3] / 255;
-          const lum =
-            (data[i] * 0.299 + data[i + 1] * 0.587 + data[i + 2] * 0.114) * a;
+          const lum = (data[i] * 0.299 + data[i + 1] * 0.587 + data[i + 2] * 0.114) * a;
           if (lum > 150) {
             sr += data[i];
             sg += data[i + 1];

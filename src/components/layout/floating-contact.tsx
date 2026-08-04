@@ -61,11 +61,9 @@ export function FloatingContact() {
   return (
     <div
       ref={rootRef}
-      className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3 pb-[env(safe-area-inset-bottom)] pr-[env(safe-area-inset-right)] md:bottom-8 md:right-8"
+      className="fixed right-5 bottom-5 z-40 flex flex-col items-end gap-3 pr-[env(safe-area-inset-right)] pb-[env(safe-area-inset-bottom)] md:right-8 md:bottom-8"
     >
-      <AnimatePresence
-        onExitComplete={() => setCopyKey(null)}
-      >
+      <AnimatePresence onExitComplete={() => setCopyKey(null)}>
         {open && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -95,7 +93,10 @@ export function FloatingContact() {
                       aria-expanded={isOpen}
                       aria-label={channel.label}
                       data-cursor="dark"
-                      className={cn(BUBBLE_CLASS, isOpen && "border-accent bg-accent text-accent-foreground")}
+                      className={cn(
+                        BUBBLE_CLASS,
+                        isOpen && "border-accent bg-accent text-accent-foreground",
+                      )}
                     >
                       <Icon className="h-[22px] w-[22px]" />
                     </button>
@@ -143,7 +144,7 @@ export function FloatingContact() {
         }}
         data-cursor="dark"
         className={cn(
-          "flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-white/80 bg-foreground text-background shadow-xl transition-all duration-300 hover:border-accent hover:bg-accent hover:text-accent-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+          "bg-foreground text-background hover:border-accent hover:bg-accent hover:text-accent-foreground focus-visible:outline-accent flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-white/80 shadow-xl transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2",
           open && "border-accent bg-accent text-accent-foreground",
         )}
         aria-label={open ? t("floating.close") : t("floating.open")}

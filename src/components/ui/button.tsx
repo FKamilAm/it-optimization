@@ -19,8 +19,7 @@ const variants: Record<ButtonVariant, string> = {
     "hover:before:translate-y-0 hover:text-accent-foreground",
     "focus-visible:outline-accent",
   ),
-  secondary:
-    "bg-muted text-foreground hover:bg-muted/80 border border-transparent",
+  secondary: "bg-muted text-foreground hover:bg-muted/80 border border-transparent",
   ghost: "bg-transparent text-foreground hover:bg-muted border border-transparent",
   outline:
     "bg-transparent text-foreground border border-foreground/20 hover:border-accent/50 hover:bg-accent-muted",
@@ -66,14 +65,7 @@ function ButtonContent({
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    {
-      className,
-      variant = "primary",
-      size = "md",
-      children,
-      showArrow,
-      ...props
-    },
+    { className, variant = "primary", size = "md", children, showArrow, ...props },
     ref,
   ) => {
     const autoArrow =
@@ -90,7 +82,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           "group/btn inline-flex cursor-pointer items-center justify-center rounded-full font-medium",
           "transition-[color,background-color,border-color,transform] duration-300 ease-out",
           "hover:scale-[1.02] active:scale-[0.99] motion-reduce:transform-none motion-reduce:hover:scale-100",
-          "disabled:cursor-not-allowed disabled:pointer-events-none disabled:opacity-50 disabled:hover:scale-100",
+          "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100",
           "focus-visible:outline-2 focus-visible:outline-offset-2",
           variants[variant],
           sizes[size],

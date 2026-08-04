@@ -28,22 +28,25 @@ export function BlogArticle({ postKey }: { postKey: string }) {
       <article className="surface-light relative overflow-hidden pt-36 pb-8 md:pt-44 md:pb-12">
         <div className="container-premium relative z-10">
           <nav aria-label="breadcrumb" className="mb-10">
-            <ol className="flex flex-wrap items-center gap-2 text-sm text-foreground/50">
+            <ol className="text-foreground/50 flex flex-wrap items-center gap-2 text-sm">
               <li>
-                <a href="/" className="cursor-pointer transition-colors hover:text-foreground">
+                <a
+                  href="/"
+                  className="hover:text-foreground cursor-pointer transition-colors"
+                >
                   {t("breadcrumbHome")}
                 </a>
               </li>
-              <ChevronRight className="h-4 w-4 text-foreground/30" aria-hidden="true" />
+              <ChevronRight className="text-foreground/30 h-4 w-4" aria-hidden="true" />
               <li>
                 <Link
                   href="/blog/"
-                  className="cursor-pointer transition-colors hover:text-foreground"
+                  className="hover:text-foreground cursor-pointer transition-colors"
                 >
                   {t("breadcrumb")}
                 </Link>
               </li>
-              <ChevronRight className="h-4 w-4 text-foreground/30" aria-hidden="true" />
+              <ChevronRight className="text-foreground/30 h-4 w-4" aria-hidden="true" />
               <li aria-current="page" className="text-foreground/80">
                 {p("category")}
               </li>
@@ -52,8 +55,8 @@ export function BlogArticle({ postKey }: { postKey: string }) {
 
           <div className="mx-auto max-w-4xl">
             <Reveal>
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <span className="rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium uppercase tracking-[0.12em] text-foreground">
+              <div className="text-muted-foreground flex items-center gap-3 text-sm">
+                <span className="border-border bg-muted text-foreground rounded-full border px-3 py-1 text-xs font-medium tracking-[0.12em] uppercase">
                   {p("category")}
                 </span>
                 <span>{p("date")}</span>
@@ -68,13 +71,13 @@ export function BlogArticle({ postKey }: { postKey: string }) {
               <h1 className="heading-display mt-6">{p("title")}</h1>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="body-large mt-8 text-muted-foreground">{p("lead")}</p>
+              <p className="body-large text-muted-foreground mt-8">{p("lead")}</p>
             </Reveal>
           </div>
 
           {cover && (
             <Reveal delay={0.15}>
-              <div className="relative mx-auto mt-12 aspect-[16/9] w-full max-w-5xl overflow-hidden rounded-2xl border border-border bg-surface">
+              <div className="border-border bg-surface relative mx-auto mt-12 aspect-[16/9] w-full max-w-5xl overflow-hidden rounded-2xl border">
                 <Image
                   src={cover}
                   alt={p("title")}
@@ -96,9 +99,9 @@ export function BlogArticle({ postKey }: { postKey: string }) {
             <Reveal>
               <nav
                 aria-label={t("tocTitle")}
-                className="mb-14 rounded-2xl border border-border bg-muted/40 p-6 md:p-8"
+                className="border-border bg-muted/40 mb-14 rounded-2xl border p-6 md:p-8"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                <p className="text-muted-foreground text-xs font-semibold tracking-[0.16em] uppercase">
                   {t("tocTitle")}
                 </p>
                 <ol className="mt-4 flex flex-col gap-2.5">
@@ -106,12 +109,12 @@ export function BlogArticle({ postKey }: { postKey: string }) {
                     <li key={section.heading}>
                       <a
                         href={`#section-${index}`}
-                        className="group inline-flex items-start gap-3 text-base text-foreground/80 transition-colors duration-300 hover:text-accent-foreground"
+                        className="group text-foreground/80 hover:text-accent-foreground inline-flex items-start gap-3 text-base transition-colors duration-300"
                       >
-                        <span className="mt-0.5 text-sm font-semibold text-muted-foreground transition-colors duration-300 group-hover:text-accent-foreground">
+                        <span className="text-muted-foreground group-hover:text-accent-foreground mt-0.5 text-sm font-semibold transition-colors duration-300">
                           {String(index + 1).padStart(2, "0")}
                         </span>
-                        <span className="border-b border-transparent transition-colors duration-300 group-hover:border-accent">
+                        <span className="group-hover:border-accent border-b border-transparent transition-colors duration-300">
                           {section.heading}
                         </span>
                       </a>
@@ -142,12 +145,14 @@ export function BlogArticle({ postKey }: { postKey: string }) {
             {/* Takeaways */}
             {takeaways.length > 0 && (
               <Reveal>
-                <div className="mt-16 rounded-2xl border border-accent-border bg-accent-muted p-8 md:p-10">
-                  <h2 className="heading-subsection text-foreground">{t("takeawaysTitle")}</h2>
+                <div className="border-accent-border bg-accent-muted mt-16 rounded-2xl border p-8 md:p-10">
+                  <h2 className="heading-subsection text-foreground">
+                    {t("takeawaysTitle")}
+                  </h2>
                   <ul className="mt-6 flex flex-col gap-4">
                     {takeaways.map((item) => (
                       <li key={item} className="flex items-start gap-3">
-                        <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground">
+                        <span className="bg-accent text-accent-foreground mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
                           <Check className="h-3.5 w-3.5" />
                         </span>
                         <span className="body-base text-foreground">{item}</span>
@@ -161,7 +166,7 @@ export function BlogArticle({ postKey }: { postKey: string }) {
             <div className="mt-14">
               <Link
                 href="/blog/"
-                className="inline-flex items-center gap-2 text-base font-medium text-foreground transition-colors hover:text-accent-foreground"
+                className="text-foreground hover:text-accent-foreground inline-flex items-center gap-2 text-base font-medium transition-colors"
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 {t("backToList")}
@@ -173,7 +178,7 @@ export function BlogArticle({ postKey }: { postKey: string }) {
 
       {/* Related posts */}
       {related.length > 0 && (
-        <section className="surface-light section-padding border-t border-border pt-16 md:pt-20">
+        <section className="surface-light section-padding border-border border-t pt-16 md:pt-20">
           <div className="container-premium">
             <Reveal>
               <h2 className="heading-section">{t("relatedTitle")}</h2>
@@ -183,9 +188,9 @@ export function BlogArticle({ postKey }: { postKey: string }) {
                 <div key={item.key} className="h-full">
                   <Link
                     href={`/blog/${item.slug}/`}
-                    className="group flex h-full gap-5 rounded-2xl border border-border bg-background p-5 transition-[border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent hover:shadow-[0_0_38px_rgba(180,224,45,0.22)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                    className="group border-border bg-background hover:border-accent focus-visible:outline-accent flex h-full gap-5 rounded-2xl border p-5 transition-[border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_0_38px_rgba(180,224,45,0.22)] focus-visible:outline-2 focus-visible:outline-offset-2"
                   >
-                    <div className="relative aspect-square w-28 shrink-0 overflow-hidden rounded-xl bg-surface">
+                    <div className="bg-surface relative aspect-square w-28 shrink-0 overflow-hidden rounded-xl">
                       <Image
                         src={item.cover}
                         alt={t(`posts.${item.key}.title`)}
@@ -195,13 +200,13 @@ export function BlogArticle({ postKey }: { postKey: string }) {
                       />
                     </div>
                     <div className="flex flex-col justify-center">
-                      <span className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
+                      <span className="text-muted-foreground text-xs font-medium tracking-[0.12em] uppercase">
                         {t(`posts.${item.key}.category`)}
                       </span>
-                      <h3 className="mt-2 text-lg font-semibold text-foreground">
+                      <h3 className="text-foreground mt-2 text-lg font-semibold">
                         {t(`posts.${item.key}.title`)}
                       </h3>
-                      <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-foreground">
+                      <span className="text-foreground mt-3 inline-flex items-center gap-1.5 text-sm font-medium">
                         <span className="relative">
                           {t("readMore")}
                           <span

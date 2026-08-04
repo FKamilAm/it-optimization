@@ -43,7 +43,10 @@ function MarqueeRow({ duration }: { duration: string }) {
   // padding gives the tilted words room so they never clip against the row edges.
   return (
     <div className="marquee py-16 md:py-24">
-      <div className="marquee-track" style={{ "--marquee-duration": duration } as CSSProperties}>
+      <div
+        className="marquee-track"
+        style={{ "--marquee-duration": duration } as CSSProperties}
+      >
         {[0, 1].map((groupIndex) => (
           <div
             key={groupIndex}
@@ -70,7 +73,7 @@ function MarqueeRow({ duration }: { duration: string }) {
                     } as CSSProperties
                   }
                   className={cn(
-                    "cursor-target mr-2.5 whitespace-nowrap font-display font-black uppercase leading-none tracking-normal text-white/35 transition-colors duration-300 hover:bg-gradient-to-br hover:from-[var(--tech-from)] hover:to-[var(--tech-to)] hover:bg-clip-text hover:text-transparent",
+                    "cursor-target font-display mr-2.5 leading-none font-black tracking-normal whitespace-nowrap text-white/35 uppercase transition-colors duration-300 hover:bg-gradient-to-br hover:from-[var(--tech-from)] hover:to-[var(--tech-to)] hover:bg-clip-text hover:text-transparent",
                     sizeClass,
                   )}
                 >
@@ -89,7 +92,10 @@ export function TechnologiesSection() {
   const t = useTranslations("technologies");
 
   return (
-    <section id="technologies" className="surface-dark section-padding relative overflow-hidden">
+    <section
+      id="technologies"
+      className="surface-dark section-padding relative overflow-hidden"
+    >
       <div className="container-premium relative z-10">
         <Reveal>
           <h2 className="heading-section">{t("title")}</h2>

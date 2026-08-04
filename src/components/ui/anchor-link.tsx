@@ -35,7 +35,12 @@ export function AnchorLink({
   };
 
   return (
-    <a href={href} onClick={handleClick} className={cn("cursor-pointer", className)} {...props}>
+    <a
+      href={href}
+      onClick={handleClick}
+      className={cn("cursor-pointer", className)}
+      {...props}
+    >
       {children}
     </a>
   );

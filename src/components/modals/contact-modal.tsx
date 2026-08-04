@@ -70,12 +70,12 @@ export function ContactModal({ open, service, onClose }: ContactModalProps) {
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             data-lenis-prevent
-            className="relative z-10 flex max-h-[92vh] w-full max-w-[1000px] flex-col overflow-y-auto overscroll-contain rounded-[2rem] bg-background shadow-[0_32px_80px_rgba(0,0,0,0.2)] lg:aspect-video lg:max-h-none lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:overflow-hidden"
+            className="bg-background relative z-10 flex max-h-[92vh] w-full max-w-[1000px] flex-col overflow-y-auto overscroll-contain rounded-[2rem] shadow-[0_32px_80px_rgba(0,0,0,0.2)] lg:grid lg:aspect-video lg:max-h-none lg:grid-cols-[1.1fr_0.9fr] lg:overflow-hidden"
           >
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-6 top-6 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-border bg-background/80 text-muted-foreground backdrop-blur transition-colors hover:border-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              className="border-border bg-background/80 text-muted-foreground hover:border-foreground hover:text-foreground focus-visible:outline-accent absolute top-6 right-6 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border backdrop-blur transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
               aria-label={t("contact.modal.close")}
             >
               <X className="h-5 w-5" />
@@ -90,30 +90,30 @@ export function ContactModal({ open, service, onClose }: ContactModalProps) {
               <div className="flex flex-col gap-4 pr-10">
                 <h2
                   id="contact-modal-title"
-                  className="text-[1.75rem] font-semibold leading-tight tracking-[-0.02em] md:text-4xl"
+                  className="text-[1.75rem] leading-tight font-semibold tracking-[-0.02em] md:text-4xl"
                 >
                   {title}
                 </h2>
-                <p className="body-large max-w-lg text-muted-foreground">{description}</p>
+                <p className="body-large text-muted-foreground max-w-lg">{description}</p>
               </div>
 
               {!base && <ContactPerks className="max-w-md" />}
 
               {base && (
-                <dl className="grid grid-cols-2 gap-4 border-t border-border pt-6">
+                <dl className="border-border grid grid-cols-2 gap-4 border-t pt-6">
                   <div className="flex flex-col gap-1">
-                    <dt className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
+                    <dt className="text-muted-foreground text-xs font-medium tracking-[0.14em] uppercase">
                       {t("services.detail.budgetLabel")}
                     </dt>
-                    <dd className="text-xl font-semibold text-foreground md:text-2xl">
+                    <dd className="text-foreground text-xl font-semibold md:text-2xl">
                       {t(`${base}.budget`)}
                     </dd>
                   </div>
                   <div className="flex flex-col gap-1">
-                    <dt className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
+                    <dt className="text-muted-foreground text-xs font-medium tracking-[0.14em] uppercase">
                       {t("services.detail.deadlineLabel")}
                     </dt>
-                    <dd className="text-xl font-semibold text-foreground md:text-2xl">
+                    <dd className="text-foreground text-xl font-semibold md:text-2xl">
                       {t(`${base}.deadline`)}
                     </dd>
                   </div>
@@ -122,7 +122,7 @@ export function ContactModal({ open, service, onClose }: ContactModalProps) {
             </div>
 
             {/* Right — contact channels in a column */}
-            <div className="flex flex-col justify-center bg-surface p-8 text-surface-foreground sm:p-10">
+            <div className="bg-surface text-surface-foreground flex flex-col justify-center p-8 sm:p-10">
               <div className="mx-auto w-full max-w-[320px]">
                 <ContactChannels
                   layout="column"

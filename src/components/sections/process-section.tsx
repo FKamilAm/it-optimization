@@ -14,8 +14,7 @@ export function ProcessSection() {
   const stepsRef = useRef<(HTMLElement | null)[]>([]);
   const [activeStep, setActiveStep] = useState(0);
 
-  const lineProgress =
-    STEP_KEYS.length > 1 ? activeStep / (STEP_KEYS.length - 1) : 0;
+  const lineProgress = STEP_KEYS.length > 1 ? activeStep / (STEP_KEYS.length - 1) : 0;
 
   useEffect(() => {
     const steps = stepsRef.current.filter(Boolean) as HTMLElement[];
@@ -48,11 +47,11 @@ export function ProcessSection() {
             <div className="mt-10 hidden items-center gap-4 lg:flex">
               <div className="h-1.5 w-40 overflow-hidden rounded-full bg-white/10">
                 <div
-                  className="h-full origin-left rounded-full bg-accent transition-transform duration-500 ease-out"
+                  className="bg-accent h-full origin-left rounded-full transition-transform duration-500 ease-out"
                   style={{ transform: `scaleX(${Math.max(lineProgress, 0.06)})` }}
                 />
               </div>
-              <span className="text-sm font-medium tabular-nums text-white/45">
+              <span className="text-sm font-medium text-white/45 tabular-nums">
                 {String(activeStep + 1).padStart(2, "0")} /{" "}
                 {String(STEP_KEYS.length).padStart(2, "0")}
               </span>
@@ -60,9 +59,9 @@ export function ProcessSection() {
           </aside>
 
           <div className="process-steps relative space-y-0">
-            <div className="absolute bottom-4 left-[19px] top-4 hidden w-px bg-white/10 md:block" />
+            <div className="absolute top-4 bottom-4 left-[19px] hidden w-px bg-white/10 md:block" />
             <div
-              className="absolute left-[19px] top-4 hidden h-[calc(100%-2rem)] w-px origin-top bg-accent transition-transform duration-500 ease-out md:block"
+              className="bg-accent absolute top-4 left-[19px] hidden h-[calc(100%-2rem)] w-px origin-top transition-transform duration-500 ease-out md:block"
               style={{ transform: `scaleY(${lineProgress})` }}
             />
 
@@ -117,8 +116,8 @@ export function ProcessSection() {
                       </h3>
 
                       {status === "active" && (
-                        <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-2.5 py-1 text-xs font-medium uppercase tracking-[0.12em] text-accent">
-                          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
+                        <span className="border-accent/30 bg-accent/10 text-accent inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium tracking-[0.12em] uppercase">
+                          <span className="bg-accent h-1.5 w-1.5 animate-pulse rounded-full" />
                           {t("statusActive")}
                         </span>
                       )}

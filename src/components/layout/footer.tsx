@@ -19,36 +19,45 @@ export function Footer({ companyName }: FooterProps) {
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
           <div className="max-w-md">
             <dl className="grid grid-cols-1 gap-x-10 gap-y-5 sm:grid-cols-2">
-              <div className="sm:col-span-2 flex flex-col gap-1.5">
-                <dt className="text-xs uppercase tracking-[0.18em] text-white/60">
+              <div className="flex flex-col gap-1.5 sm:col-span-2">
+                <dt className="text-xs tracking-[0.18em] text-white/60 uppercase">
                   {t("footer.legalName")}
                 </dt>
                 <dd className="text-base font-medium text-white/90">{ORG.legalName}</dd>
               </div>
               <div className="flex flex-col gap-1.5">
-                <dt className="text-xs uppercase tracking-[0.18em] text-white/60">
+                <dt className="text-xs tracking-[0.18em] text-white/60 uppercase">
                   {t("footer.inn")}
                 </dt>
-                <dd className="font-mono text-base tracking-wide text-white/90">{ORG.inn}</dd>
+                <dd className="font-mono text-base tracking-wide text-white/90">
+                  {ORG.inn}
+                </dd>
               </div>
               <div className="flex flex-col gap-1.5">
-                <dt className="text-xs uppercase tracking-[0.18em] text-white/60">
+                <dt className="text-xs tracking-[0.18em] text-white/60 uppercase">
                   {t("footer.kpp")}
                 </dt>
-                <dd className="font-mono text-base tracking-wide text-white/90">{ORG.kpp}</dd>
+                <dd className="font-mono text-base tracking-wide text-white/90">
+                  {ORG.kpp}
+                </dd>
               </div>
               <div className="flex flex-col gap-1.5">
-                <dt className="text-xs uppercase tracking-[0.18em] text-white/60">
+                <dt className="text-xs tracking-[0.18em] text-white/60 uppercase">
                   {t("footer.ogrn")}
                 </dt>
-                <dd className="font-mono text-base tracking-wide text-white/90">{ORG.ogrn}</dd>
+                <dd className="font-mono text-base tracking-wide text-white/90">
+                  {ORG.ogrn}
+                </dd>
               </div>
             </dl>
           </div>
 
           <div className="flex max-w-sm flex-col gap-4 text-base text-white/70">
             <p className="flex items-start gap-3">
-              <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-white/55" aria-hidden="true" />
+              <MapPin
+                className="mt-0.5 h-5 w-5 shrink-0 text-white/55"
+                aria-hidden="true"
+              />
               <span>{ORG.address}</span>
             </p>
             <a

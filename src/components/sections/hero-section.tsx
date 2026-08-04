@@ -21,7 +21,7 @@ export function HeroSection() {
       {/* 3D logo. On mobile it's a normal-flow block shown FIRST and enlarged, so
           it never overlaps the heading; on md+ it becomes the absolute accent on
           the right. (Static silver fallback on mobile / when WebGL is off.) */}
-      <div className="pointer-events-none relative z-0 mx-auto aspect-[19/10] w-[94%] max-w-[460px] md:absolute md:left-auto md:right-0 md:top-[16%] md:mx-0 md:aspect-auto md:h-[70%] md:w-[54%] md:max-w-none lg:right-[1%] lg:w-[50%]">
+      <div className="pointer-events-none relative z-0 mx-auto aspect-[19/10] w-[94%] max-w-[460px] md:absolute md:top-[16%] md:right-0 md:left-auto md:mx-0 md:aspect-auto md:h-[70%] md:w-[54%] md:max-w-none lg:right-[1%] lg:w-[50%]">
         <div className="absolute inset-[6%] rounded-full bg-[radial-gradient(circle_at_50%_42%,rgba(148,163,184,0.30),transparent_70%)] blur-2xl" />
         <HeroLogo className="h-full w-full" />
       </div>
@@ -33,7 +33,7 @@ export function HeroSection() {
           </h1>
         </Reveal>
         <Reveal delay={0.05}>
-          <p className="body-large mt-6 max-w-[920px] text-muted-foreground sm:mt-10 lg:max-w-[50%]">
+          <p className="body-large text-muted-foreground mt-6 max-w-[920px] sm:mt-10 lg:max-w-[50%]">
             {t("subtitle")}
           </p>
         </Reveal>

@@ -2,12 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  type MotionValue,
-} from "framer-motion";
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Reveal } from "@/components/animations/reveal";
 import { cn } from "@/lib/utils";
@@ -54,7 +49,10 @@ function StackCard({
     const el = cardRef.current;
     if (!el) return;
     const update = () => {
-      const centered = Math.max(88, Math.round((window.innerHeight - el.offsetHeight) / 2));
+      const centered = Math.max(
+        88,
+        Math.round((window.innerHeight - el.offsetHeight) / 2),
+      );
       setStickyTop(centered + index * 18);
     };
     update();
@@ -75,7 +73,7 @@ function StackCard({
         style={isLast ? undefined : { scale, opacity }}
         className={cn(
           "group relative isolate origin-top overflow-hidden rounded-[28px] border border-white/14 bg-[#101010]",
-          "transition-colors duration-500 hover:border-accent-border",
+          "hover:border-accent-border transition-colors duration-500",
         )}
       >
         <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
@@ -95,7 +93,7 @@ function StackCard({
 
           {/* Existing description text (right on desktop) */}
           <div className="relative flex flex-col gap-5 p-8 md:p-10 lg:p-14">
-            <span className="text-sm font-medium uppercase tracking-[0.2em] text-accent md:text-base">
+            <span className="text-accent text-sm font-medium tracking-[0.2em] uppercase md:text-base">
               {number}
             </span>
             <h3 className="text-2xl font-semibold tracking-[-0.025em] text-white md:text-3xl lg:text-[2.5rem] lg:leading-[1.15]">

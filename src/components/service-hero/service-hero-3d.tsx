@@ -43,7 +43,13 @@ export type ServiceHeroVariant =
   | "webDesign"
   | "branding";
 
-function SceneForVariant({ variant, animate }: { variant: ServiceHeroVariant; animate: boolean }) {
+function SceneForVariant({
+  variant,
+  animate,
+}: {
+  variant: ServiceHeroVariant;
+  animate: boolean;
+}) {
   switch (variant) {
     case "platforms":
       return <CrmScene animate={animate} />;

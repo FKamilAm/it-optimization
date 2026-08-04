@@ -31,7 +31,7 @@ export function AboutSection() {
                 className="pointer-events-none absolute inset-x-0 top-0 z-0 h-full -translate-y-full bg-white transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 motion-reduce:transition-none"
               />
               <div className="relative z-10">
-                <span className="text-base uppercase tracking-[0.18em] text-white/55 transition-colors duration-500 group-hover:text-black/55">
+                <span className="text-base tracking-[0.18em] text-white/55 uppercase transition-colors duration-500 group-hover:text-black/55">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <h3 className="heading-subsection mt-6 transition-colors duration-500 group-hover:text-black">

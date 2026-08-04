@@ -98,11 +98,41 @@ function StudioEnvironment() {
   return (
     <Environment resolution={256} frames={1}>
       <color attach="background" args={["#0d1016"]} />
-      <Lightformer form="rect" intensity={5} color="#ffffff" position={[0, 6, 4]} scale={[12, 6, 1]} />
-      <Lightformer form="rect" intensity={2.6} color="#cbd5e1" position={[-6, 2, 2]} scale={[6, 9, 1]} />
-      <Lightformer form="rect" intensity={1.1} color="#334155" position={[6, -3, 3]} scale={[7, 5, 1]} />
-      <Lightformer form="ring" intensity={1.5} color="#e2e8f0" position={[3, 4, -5]} scale={[3, 3, 1]} />
-      <Lightformer form="circle" intensity={1.2} color="#94a3b8" position={[-4, -4, -3]} scale={[4, 4, 1]} />
+      <Lightformer
+        form="rect"
+        intensity={5}
+        color="#ffffff"
+        position={[0, 6, 4]}
+        scale={[12, 6, 1]}
+      />
+      <Lightformer
+        form="rect"
+        intensity={2.6}
+        color="#cbd5e1"
+        position={[-6, 2, 2]}
+        scale={[6, 9, 1]}
+      />
+      <Lightformer
+        form="rect"
+        intensity={1.1}
+        color="#334155"
+        position={[6, -3, 3]}
+        scale={[7, 5, 1]}
+      />
+      <Lightformer
+        form="ring"
+        intensity={1.5}
+        color="#e2e8f0"
+        position={[3, 4, -5]}
+        scale={[3, 3, 1]}
+      />
+      <Lightformer
+        form="circle"
+        intensity={1.2}
+        color="#94a3b8"
+        position={[-4, -4, -3]}
+        scale={[4, 4, 1]}
+      />
     </Environment>
   );
 }

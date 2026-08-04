@@ -42,15 +42,17 @@ export function CopyPopover({
       role="dialog"
       onClick={(event) => event.stopPropagation()}
       className={cn(
-        "absolute z-50 w-64 rounded-2xl border border-border bg-background p-4 text-left shadow-[0_24px_60px_rgba(0,0,0,0.18)]",
+        "border-border bg-background absolute z-50 w-64 rounded-2xl border p-4 text-left shadow-[0_24px_60px_rgba(0,0,0,0.18)]",
         PLACEMENT[placement],
         className,
       )}
     >
-      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+      <p className="text-muted-foreground text-[11px] font-semibold tracking-[0.16em] uppercase">
         {label}
       </p>
-      <p className="mt-1 select-all break-all text-lg font-semibold text-foreground">{value}</p>
+      <p className="text-foreground mt-1 text-lg font-semibold break-all select-all">
+        {value}
+      </p>
       <Button
         variant="primary"
         size="sm"

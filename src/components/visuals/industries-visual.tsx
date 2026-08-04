@@ -51,10 +51,10 @@ export function IndustriesVisual({ className }: IndustriesVisualProps) {
         style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
       >
         <div className="absolute inset-[18%] rounded-[2rem] border border-white/10 bg-black/40" />
-        <div className="absolute left-[22%] top-[18%] h-16 w-16 rounded-2xl border border-white/20 bg-white/10 md:h-20 md:w-20" />
-        <div className="absolute bottom-[20%] right-[18%] h-24 w-24 rounded-full border border-white/15 bg-gradient-to-tr from-white/20 to-transparent md:h-28 md:w-28" />
-        <div className="absolute left-1/2 top-1/2 h-px w-[70%] -translate-x-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-        <div className="absolute left-1/2 top-1/2 h-[70%] w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-white/30 to-transparent" />
+        <div className="absolute top-[18%] left-[22%] h-16 w-16 rounded-2xl border border-white/20 bg-white/10 md:h-20 md:w-20" />
+        <div className="absolute right-[18%] bottom-[20%] h-24 w-24 rounded-full border border-white/15 bg-gradient-to-tr from-white/20 to-transparent md:h-28 md:w-28" />
+        <div className="absolute top-1/2 left-1/2 h-px w-[70%] -translate-x-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+        <div className="absolute top-1/2 left-1/2 h-[70%] w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-white/30 to-transparent" />
       </div>
     </div>
   );

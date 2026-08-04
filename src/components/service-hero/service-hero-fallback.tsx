@@ -34,7 +34,15 @@ export function ServiceHeroFallback({ variant }: { variant: ServiceHeroVariant }
           <>
             {/* Generic abstract mark: overlapping rounded facets + accent node. */}
             <rect x="24" y="24" width="42" height="42" rx="12" fill="url(#svcSilver)" />
-            <rect x="42" y="42" width="36" height="36" rx="10" fill="#9aa2ad" opacity="0.85" />
+            <rect
+              x="42"
+              y="42"
+              width="36"
+              height="36"
+              rx="10"
+              fill="#9aa2ad"
+              opacity="0.85"
+            />
             <circle cx="72" cy="30" r="7" fill="#b4e02d" />
           </>
         )}

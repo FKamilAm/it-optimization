@@ -84,12 +84,16 @@ export function ContactChannels({
         const Icon = ICONS[channel.key];
         const inner = (
           <>
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border bg-background text-foreground transition-colors duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-accent-foreground">
+            <span className="border-border bg-background text-foreground group-hover:border-accent group-hover:bg-accent group-hover:text-accent-foreground flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition-colors duration-300">
               <Icon className="h-5 w-5" />
             </span>
             <span className="flex min-w-0 flex-col">
-              <span className="text-base font-medium text-foreground">{channel.label}</span>
-              <span className="truncate text-sm text-muted-foreground">{channel.value}</span>
+              <span className="text-foreground text-base font-medium">
+                {channel.label}
+              </span>
+              <span className="text-muted-foreground truncate text-sm">
+                {channel.value}
+              </span>
             </span>
           </>
         );

@@ -46,11 +46,41 @@ export function StudioEnvironment() {
   return (
     <Environment resolution={256} frames={1}>
       <color attach="background" args={["#0d1016"]} />
-      <Lightformer form="rect" intensity={5} color="#ffffff" position={[0, 6, 4]} scale={[12, 6, 1]} />
-      <Lightformer form="rect" intensity={2.6} color="#cbd5e1" position={[-6, 2, 2]} scale={[6, 9, 1]} />
-      <Lightformer form="rect" intensity={1.1} color="#334155" position={[6, -3, 3]} scale={[7, 5, 1]} />
-      <Lightformer form="ring" intensity={1.5} color="#e2e8f0" position={[3, 4, -5]} scale={[3, 3, 1]} />
-      <Lightformer form="circle" intensity={1.2} color="#94a3b8" position={[-4, -4, -3]} scale={[4, 4, 1]} />
+      <Lightformer
+        form="rect"
+        intensity={5}
+        color="#ffffff"
+        position={[0, 6, 4]}
+        scale={[12, 6, 1]}
+      />
+      <Lightformer
+        form="rect"
+        intensity={2.6}
+        color="#cbd5e1"
+        position={[-6, 2, 2]}
+        scale={[6, 9, 1]}
+      />
+      <Lightformer
+        form="rect"
+        intensity={1.1}
+        color="#334155"
+        position={[6, -3, 3]}
+        scale={[7, 5, 1]}
+      />
+      <Lightformer
+        form="ring"
+        intensity={1.5}
+        color="#e2e8f0"
+        position={[3, 4, -5]}
+        scale={[3, 3, 1]}
+      />
+      <Lightformer
+        form="circle"
+        intensity={1.2}
+        color="#94a3b8"
+        position={[-4, -4, -3]}
+        scale={[4, 4, 1]}
+      />
     </Environment>
   );
 }
@@ -62,7 +92,10 @@ export function StudioEnvironment() {
  * to attach to the animated group; when `animate` is false the scene renders
  * once (on-demand frameloop) in a resting pose.
  */
-export function useIdleAnimation(animate: boolean, restRotation: [number, number, number] = [-0.04, -0.28, 0]) {
+export function useIdleAnimation(
+  animate: boolean,
+  restRotation: [number, number, number] = [-0.04, -0.28, 0],
+) {
   const ref = useRef<THREE.Group>(null);
   const invalidate = useThree((state) => state.invalidate);
 
@@ -142,7 +175,12 @@ export function Connector({
  * Spur-gear 2D shape: an inner disc with `teeth` rectangular teeth around the
  * rim and a central bore. Centred on the origin.
  */
-export function gearShape(teeth: number, rootRadius: number, toothHeight: number, bore: number) {
+export function gearShape(
+  teeth: number,
+  rootRadius: number,
+  toothHeight: number,
+  bore: number,
+) {
   const shape = new THREE.Shape();
   const tip = rootRadius + toothHeight;
   const half = Math.PI / teeth; // half tooth+gap angular width
@@ -195,12 +233,18 @@ export function strokeShape(points: [number, number][], width: number) {
       left.push(p.clone().addScaledVector(n, w));
       right.push(p.clone().addScaledVector(n, -w));
     } else if (i === pts.length - 1) {
-      const d = p.clone().sub(pts[i - 1]).normalize();
+      const d = p
+        .clone()
+        .sub(pts[i - 1])
+        .normalize();
       const n = perp(d);
       left.push(p.clone().addScaledVector(n, w));
       right.push(p.clone().addScaledVector(n, -w));
     } else {
-      const d0 = p.clone().sub(pts[i - 1]).normalize();
+      const d0 = p
+        .clone()
+        .sub(pts[i - 1])
+        .normalize();
       const d1 = pts[i + 1].clone().sub(p).normalize();
       const n0 = perp(d0);
       const n1 = perp(d1);

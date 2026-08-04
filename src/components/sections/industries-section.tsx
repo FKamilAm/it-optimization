@@ -18,8 +18,14 @@ function IndustryPill({ label }: { label: string }) {
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    el.style.setProperty("--fill-x", `${((event.clientX - rect.left) / rect.width) * 100}%`);
-    el.style.setProperty("--fill-y", `${((event.clientY - rect.top) / rect.height) * 100}%`);
+    el.style.setProperty(
+      "--fill-x",
+      `${((event.clientX - rect.left) / rect.width) * 100}%`,
+    );
+    el.style.setProperty(
+      "--fill-y",
+      `${((event.clientY - rect.top) / rect.height) * 100}%`,
+    );
   };
 
   return (
@@ -79,9 +85,9 @@ export function IndustriesSection() {
                 >
                   <AnimatedCounter
                     value={t(valueKey)}
-                    className="font-display text-3xl font-bold leading-none tracking-tight text-accent sm:text-4xl md:text-5xl"
+                    className="font-display text-accent text-3xl leading-none font-bold tracking-tight sm:text-4xl md:text-5xl"
                   />
-                  <span className="mt-3 text-sm uppercase tracking-[0.14em] text-white/45">
+                  <span className="mt-3 text-sm tracking-[0.14em] text-white/45 uppercase">
                     {t(labelKey)}
                   </span>
                 </div>

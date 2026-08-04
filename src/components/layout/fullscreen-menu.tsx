@@ -75,7 +75,7 @@ export function FullscreenMenu({
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-[100] bg-surface text-surface-foreground"
+          className="bg-surface text-surface-foreground fixed inset-0 z-[100]"
           initial={{ clipPath: "inset(0 0 100% 0)" }}
           animate={{ clipPath: "inset(0 0 0% 0)" }}
           exit={{ clipPath: "inset(0 0 100% 0)" }}
@@ -114,9 +114,9 @@ export function FullscreenMenu({
                       e.preventDefault();
                       handleNavClick(item.href);
                     }}
-                    className="group inline-flex cursor-pointer items-center gap-4 text-[clamp(2rem,5vw,4.5rem)] font-semibold leading-none tracking-[-0.03em] transition-colors duration-300 hover:text-accent"
+                    className="group hover:text-accent inline-flex cursor-pointer items-center gap-4 text-[clamp(2rem,5vw,4.5rem)] leading-none font-semibold tracking-[-0.03em] transition-colors duration-300"
                   >
-                    <span className="text-base font-normal uppercase tracking-[0.2em] text-white/30 transition-colors group-hover:text-accent/60">
+                    <span className="group-hover:text-accent/60 text-base font-normal tracking-[0.2em] text-white/30 uppercase transition-colors">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     {t(`nav.${item.key}`)}
@@ -134,7 +134,7 @@ export function FullscreenMenu({
                 <div className="flex flex-col gap-3 text-base text-white/60">
                   <a
                     href={`mailto:${SITE.email}`}
-                    className="inline-flex cursor-pointer items-center gap-2 transition-colors duration-300 hover:text-accent"
+                    className="hover:text-accent inline-flex cursor-pointer items-center gap-2 transition-colors duration-300"
                   >
                     <Mail className="h-4 w-4" />
                     {SITE.email}
@@ -143,7 +143,7 @@ export function FullscreenMenu({
                     href={SITE.telegram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex cursor-pointer items-center gap-2 transition-colors duration-300 hover:text-accent"
+                    className="hover:text-accent inline-flex cursor-pointer items-center gap-2 transition-colors duration-300"
                   >
                     <Send className="h-4 w-4" />
                     Telegram
