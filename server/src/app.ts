@@ -5,7 +5,14 @@ import rateLimit from "@fastify/rate-limit";
 import Fastify, { type FastifyError, type FastifyInstance } from "fastify";
 import { authRoutes } from "./auth/routes.js";
 import { caseRoutes } from "./cases/routes.js";
+import { leadRoutes } from "./crm/leads/routes.js";
+import { teamRoutes } from "./crm/team.js";
 import { env, isProduction } from "./env.js";
+import { clientRoutes } from "./crm/clients/routes.js";
+import { projectRoutes } from "./crm/projects/routes.js";
+import { taskRoutes } from "./crm/tasks/routes.js";
+import { todayRoutes } from "./crm/today-routes.js";
+import { telegramRoutes } from "./notify/routes.js";
 import { publishRoutes } from "./publish/routes.js";
 
 export async function buildApp(): Promise<FastifyInstance> {
@@ -17,12 +24,16 @@ export async function buildApp(): Promise<FastifyInstance> {
     bodyLimit: 2 * 1024 * 1024,
   });
 
-  // Куки ходят между поддоменами (сайт и API), поэтому нужен явный origin —
-  // с credentials браузер не примет «*».
+  // Куки ходят между поддоменами (сайт, CRM и API), поэтому нужен явный
+  // список origin'ов — с credentials браузер не примет «*».
   await app.register(cors, {
     origin: env.WEB_ORIGIN,
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    // PATCH обязателен: правки в CRM идут им. Метод, которого нет в этом
+    // списке, браузер блокирует на предварительном запросе — и до сервера
+    // ничего не доходит, а в интерфейсе это выглядит как «сервер не отвечает».
+    // Проверить можно только из браузера: curl CORS не соблюдает.
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   });
 
   await app.register(cookie);
@@ -46,6 +57,16 @@ export async function buildApp(): Promise<FastifyInstance> {
   await app.register(authRoutes);
   await app.register(caseRoutes);
   await app.register(publishRoutes);
+  await app.register(clientRoutes);
+  await app.register(projectRoutes);
+  await app.register(taskRoutes);
+  await app.register(todayRoutes);
+  await app.register(telegramRoutes);
+
+  // CRM. Живёт в том же процессе и за той же авторизацией, что и контент сайта:
+  // отдельный сервис потребовал бы второй копии сессий, ролей и журнала.
+  await app.register(teamRoutes);
+  await app.register(leadRoutes);
 
   return app;
 }

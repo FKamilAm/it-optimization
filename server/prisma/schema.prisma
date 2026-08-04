@@ -38,6 +38,9 @@ model Case {
   position Int
 
   assets CaseAsset[]
+  /// Проект, из которого вырос кейс. Заполняется, когда закрытый проект
+  /// публикуют на сайте; у кейсов, заведённых руками, связи нет.
+  project Project?
 
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
@@ -104,8 +107,23 @@ model User {
   role         UserRole  @default(editor)
   lastLoginAt  DateTime? @map("last_login_at")
 
+  /// Куда бот шлёт личный утренний список. Пусто — уведомления не приходят,
+  /// и это нормальное состояние: подключение к боту добровольное.
+  telegramChatId String? @unique @map("telegram_chat_id")
+  /// Одноразовый код привязки: CRM показывает его вошедшему пользователю, тот
+  /// отправляет боту `/start <код>`. Так бот узнаёт, кто ему пишет, не спрашивая
+  /// ни почту, ни пароль — в переписке с ботом им не место.
+  telegramLinkCode      String?   @unique @map("telegram_link_code")
+  telegramLinkExpiresAt DateTime? @map("telegram_link_expires_at")
+
   sessions Session[]
   actions  AuditLog[]
+
+  ownedLeads    Lead[]    @relation("LeadOwner")
+  ownedProjects Project[] @relation("ProjectOwner")
+  assignedTasks Task[]    @relation("TaskAssignee")
+  createdTasks  Task[]    @relation("TaskAuthor")
+  notes         Note[]    @relation("NoteAuthor")
 
   createdAt  DateTime  @default(now()) @map("created_at")
   updatedAt  DateTime  @updatedAt @map("updated_at")
@@ -148,21 +166,220 @@ model AuditLog {
   @@map("audit_log")
 }
 
-// ------------------------------------------------------ Заготовка под формы
+// ---------------------------------------------------------------------- CRM
+//
+// Внутренняя система команды: лиды, клиенты, проекты, задачи. Живёт в той же
+// базе, что и контент сайта, — пользователи, сессии и журнал общие, бэкап
+// один. Публичных страниц не касается: сайт остаётся статикой и о таблицах
+// ниже не знает.
 
-/// Сейчас заявки идут прямо в мессенджеры мимо сайта. Когда на сайте появится
-/// форма, ей понадобится эта таблица — вместе с требованиями 152-ФЗ к хранению
-/// персональных данных и согласию на обработку.
+enum LeadStatus {
+  /// Пришёл, никто ещё не взял в работу.
+  new
+  /// Ответили, идёт переписка.
+  contacted
+  /// Понятно, что нужно; считаем или готовим предложение.
+  qualified
+  /// Превратился в проект.
+  won
+  /// Отказ — свой или клиента.
+  lost
+}
+
+/// Обращения. Пока заводятся руками: заявки идут в мессенджеры мимо сайта.
+/// Поля `source` и `channel` рассчитаны на будущую форму — когда она появится,
+/// добавится только маршрут, миграция не потребуется.
 model Lead {
-  id        String   @id @default(uuid()) @db.Uuid
-  name      String?
-  contact   String
-  message   String?
-  /// Откуда пришёл: страница, utm-метки.
-  source    Json?
-  processed Boolean  @default(false)
-  createdAt DateTime @default(now()) @map("created_at")
+  id String @id @default(uuid()) @db.Uuid
 
+  name String?
+  /// Как с ним связаться: телефон, почта или ник. Одной строкой — на входе
+  /// это всегда одна строка, и разбирать её всё равно никто не станет.
+  contact String
+  message String?
+  /// Страница входа и utm-метки. Заполняет форма; при ручном заведении пусто.
+  source  Json?
+  /// Откуда пришёл: form | telegram | whatsapp | max | phone | email | referral.
+  /// Строка, а не enum: список каналов меняется чаще, чем стоит гонять миграции.
+  channel String?
+
+  status LeadStatus @default(new)
+
+  ownerId String? @map("owner_id") @db.Uuid
+  owner   User?   @relation("LeadOwner", fields: [ownerId], references: [id], onDelete: SetNull)
+
+  /// Когда следующий шаг. Просроченное значение — единственная причина, по
+  /// которой лид попадает в утренний дайджест: статусы сами о себе не
+  /// напоминают, и «ведём переписку» висит месяцами, пока про него не забудут.
+  nextActionAt DateTime? @map("next_action_at")
+  /// Что именно за шаг: «позвонить», «отправить смету». Без него напоминание
+  /// сообщает только срок, и всё равно приходится открывать карточку, чтобы
+  /// вспомнить, о чём речь.
+  nextActionNote String? @map("next_action_note")
+  lostReason     String? @map("lost_reason")
+
+  /// Ключ услуги из SERVICE_PAGES сайта — что человеку нужно. Отвечает на
+  /// вопрос «какие услуги вообще приносят обращения». Строка, а не enum:
+  /// список услуг живёт на сайте и меняется без участия базы.
+  service String?
+
+  clientId String? @map("client_id") @db.Uuid
+  client   Client? @relation(fields: [clientId], references: [id], onDelete: SetNull)
+
+  projects Project[]
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  @@index([status, nextActionAt])
   @@index([createdAt])
   @@map("leads")
+}
+
+model Client {
+  id   String @id @default(uuid()) @db.Uuid
+  name String
+  /// Единственный реквизит, который стоит держать отдельным полем: по нему
+  /// клиент однозначно опознаётся в документах и в банке.
+  inn  String?
+  site String?
+  /// [{ type: "phone" | "email" | "telegram", value, label? }] — список, а не
+  /// колонки: у одного клиента бывает три телефона и ни одной почты.
+  contacts Json?
+  notes    String?
+
+  leads    Lead[]
+  projects Project[]
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  @@map("clients")
+}
+
+enum ProjectStatus {
+  planned
+  active
+  /// Ждём клиента, оплату или сторонний сервис. Отдельно от active, потому что
+  /// зависший проект и идущий проект требуют разного внимания.
+  on_hold
+  done
+  cancelled
+}
+
+model Project {
+  id          String        @id @default(uuid()) @db.Uuid
+  title       String
+  description String?
+  status      ProjectStatus @default(planned)
+
+  clientId String? @map("client_id") @db.Uuid
+  client   Client? @relation(fields: [clientId], references: [id], onDelete: SetNull)
+  /// Из какого обращения вырос. Нужен, чтобы был виден весь путь от первого
+  /// сообщения до сданной работы.
+  leadId   String? @map("lead_id") @db.Uuid
+  lead     Lead?   @relation(fields: [leadId], references: [id], onDelete: SetNull)
+
+  ownerId String? @map("owner_id") @db.Uuid
+  owner   User?   @relation("ProjectOwner", fields: [ownerId], references: [id], onDelete: SetNull)
+
+  startedAt DateTime? @map("started_at")
+  deadline  DateTime?
+  closedAt  DateTime? @map("closed_at")
+
+  /// Кейс на сайте, в который превратился проект. Связь ставится в момент
+  /// публикации; удаление кейса обнуляет её, но не трогает сам проект.
+  caseId String? @unique @map("case_id") @db.Uuid
+  case   Case?   @relation(fields: [caseId], references: [id], onDelete: SetNull)
+
+  tasks Task[]
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  @@index([status, deadline])
+  @@map("projects")
+}
+
+enum TaskStatus {
+  backlog
+  todo
+  in_progress
+  done
+  cancelled
+}
+
+enum TaskPriority {
+  low
+  normal
+  high
+}
+
+model Task {
+  id          String  @id @default(uuid()) @db.Uuid
+  title       String
+  description String?
+
+  /// Необязателен намеренно: половина настоящих задач ни к какому проекту не
+  /// относится — «продлить домен», «выставить счёт», «ответить в налоговую».
+  projectId String?  @map("project_id") @db.Uuid
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  status   TaskStatus   @default(todo)
+  priority TaskPriority @default(normal)
+  /// Порядок внутри колонки на доске.
+  position Int          @default(0)
+
+  assigneeId  String? @map("assignee_id") @db.Uuid
+  assignee    User?   @relation("TaskAssignee", fields: [assigneeId], references: [id], onDelete: SetNull)
+  createdById String? @map("created_by_id") @db.Uuid
+  createdBy   User?   @relation("TaskAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+
+  dueAt       DateTime? @map("due_at")
+  completedAt DateTime? @map("completed_at")
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  @@index([status, position])
+  @@index([assigneeId, dueAt])
+  @@map("tasks")
+}
+
+/// Отметки планировщика: «эта рассылка за такое-то число уже ушла».
+///
+/// Именно в базе, а не в памяти процесса: иначе перезапуск сервиса днём решит,
+/// что дайджеста сегодня ещё не было, и разошлёт его повторно — а при пяти
+/// перезапусках пять раз. Дата хранится строкой ГГГГ-ММ-ДД в часовом поясе
+/// команды: сравнивать надо календарные сутки, а не моменты времени.
+model JobRun {
+  job   String   @id
+  ranOn String   @map("ran_on")
+  ranAt DateTime @updatedAt @map("ran_at")
+
+  @@map("job_runs")
+}
+
+/// Комментарии сразу ко всему: лид, клиент, проект, задача. Одна таблица
+/// вместо четырёх — на троих отдельные comment-таблицы дают лишние джойны и
+/// ноль пользы. Внешнего ключа нет намеренно: он не бывает полиморфным.
+model Note {
+  id       String @id @default(uuid()) @db.Uuid
+  /// lead | client | project | task
+  entity   String
+  entityId String @map("entity_id") @db.Uuid
+  body     String
+
+  authorId String? @map("author_id") @db.Uuid
+  author   User?   @relation("NoteAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([entity, entityId, createdAt])
+  @@map("notes")
 }

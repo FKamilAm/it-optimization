@@ -1,4 +1,9 @@
-"""Upload static export (out/) to reg.ru hosting via FTP.
+"""Upload a built static folder to reg.ru hosting via FTP.
+
+Defaults to the site's own export (out/ → /www/it-optimization.ru). The CRM
+reuses the same script with FTP_LOCAL_ROOT/FTP_REMOTE_ROOT pointing at its own
+build and subdomain — the flaky-connection handling below is the whole reason
+not to keep a second copy of it.
 
 Resilient to reg.ru's flaky passive-mode data connections: every file is
 retried with a fresh connection, and remote directories are addressed by their
@@ -15,8 +20,9 @@ from pathlib import Path
 HOST = "31.31.197.28"
 USER = "u3568260"
 PASSWORD = os.environ.get("FTP_PASSWORD", "")
-LOCAL_ROOT = Path(__file__).resolve().parents[1] / "out"
-REMOTE_ROOT = "/www/it-optimization.ru"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+LOCAL_ROOT = PROJECT_ROOT / os.environ.get("FTP_LOCAL_ROOT", "out")
+REMOTE_ROOT = os.environ.get("FTP_REMOTE_ROOT", "/www/it-optimization.ru").rstrip("/")
 TIMEOUT = 60
 RETRIES = 5
 
@@ -63,7 +69,9 @@ def main() -> int:
     # Поэтому сначала уезжают ассеты (имена у них с хэшем, старые остаются на
     # месте и продолжают обслуживать старый HTML), и только в конце — HTML.
     def priority(remote_path: str) -> int:
-        if "/_next/static/" in remote_path:
+        # _next/static — сборка сайта, assets — сборка CRM на Vite. В обеих
+        # именах файлов есть хэш, поэтому старые версии остаются на месте.
+        if "/_next/static/" in remote_path or "/assets/" in remote_path:
             return 0
         if remote_path.endswith((".html", ".txt", ".xml")):
             return 2

@@ -1,0 +1,26 @@
+# CRM — одностраничное приложение: маршруты вроде /leads/42 существуют только в
+# браузере, на диске такого файла нет. Без этого правила прямая ссылка и F5 на
+# любом разделе дают 404 от Apache.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Реально существующие файлы и папки отдаём как есть.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Всё остальное — приложению.
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Хэшированные ассеты Vite неизменяемы, index.html — нет.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2|svg)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>

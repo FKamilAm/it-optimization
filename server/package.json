@@ -5,7 +5,7 @@
   "type": "module",
   "description": "API администрирования сайта it-optimization.ru: кейсы, авторизация, публикация.",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx watch --env-file-if-exists=.env src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
     "typecheck": "tsc --noEmit",
@@ -14,6 +14,7 @@
     "prisma:deploy": "prisma migrate deploy",
     "seed": "tsx src/scripts/seed.ts",
     "user:create": "tsx src/scripts/create-user.ts",
+    "digest:now": "tsx --env-file-if-exists=.env src/scripts/digest-now.ts",
     "seed:prod": "node dist/scripts/seed.js",
     "user:create:prod": "node dist/scripts/create-user.js"
   },

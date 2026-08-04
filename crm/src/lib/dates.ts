@@ -1,0 +1,80 @@
+const dayMonth = new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "short" });
+const dayMonthYear = new Intl.DateTimeFormat("ru-RU", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+});
+const dayMonthTime = new Intl.DateTimeFormat("ru-RU", {
+  day: "numeric",
+  month: "short",
+  hour: "2-digit",
+  minute: "2-digit",
+});
+
+function startOfDay(date: Date): number {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
+}
+
+/** Разница в календарных днях: 0 — сегодня, −1 — вчера, 1 — завтра. */
+export function daysFromToday(iso: string): number {
+  const target = startOfDay(new Date(iso));
+  const today = startOfDay(new Date());
+  return Math.round((target - today) / 86_400_000);
+}
+
+/**
+ * Год показываем, только если он не текущий: «10 авг» читается быстрее, чем
+ * «10 авг 2026 г.», а в списке таких дат десятки.
+ */
+export function formatDate(iso: string): string {
+  const date = new Date(iso);
+  const format =
+    date.getFullYear() === new Date().getFullYear() ? dayMonth : dayMonthYear;
+  return format.format(date);
+}
+
+export function formatDateTime(iso: string): string {
+  return dayMonthTime.format(new Date(iso));
+}
+
+/** Человеческая подпись к сроку: она важнее самой даты. */
+export function describeDeadline(iso: string): { label: string; tone: Tone } {
+  const days = daysFromToday(iso);
+  if (days < 0) {
+    const overdue = Math.abs(days);
+    return { label: `просрочено на ${overdue} ${pluralDays(overdue)}`, tone: "danger" };
+  }
+  if (days === 0) return { label: "сегодня", tone: "warning" };
+  if (days === 1) return { label: "завтра", tone: "warning" };
+  return { label: formatDate(iso), tone: "neutral" };
+}
+
+export type Tone = "danger" | "warning" | "neutral";
+
+function pluralDays(count: number): string {
+  const mod10 = count % 10;
+  const mod100 = count % 100;
+  if (mod10 === 1 && mod100 !== 11) return "день";
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return "дня";
+  return "дней";
+}
+
+/** ISO → значение для <input type="date"> в местном часовом поясе. */
+export function toDateInputValue(iso: string | null): string {
+  if (!iso) return "";
+  const date = new Date(iso);
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${date.getFullYear()}-${month}-${day}`;
+}
+
+/**
+ * Дата из формы → конец этого дня. Иначе «следующий шаг сегодня» становится
+ * просроченным уже в 00:01, потому что в базе лежит полночь.
+ */
+export function fromDateInputValue(value: string): string | null {
+  if (!value) return null;
+  const [year, month, day] = value.split("-").map(Number);
+  if (!year || !month || !day) return null;
+  return new Date(year, month - 1, day, 23, 59, 59).toISOString();
+}
