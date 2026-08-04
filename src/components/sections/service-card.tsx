@@ -7,11 +7,25 @@ import { SERVICE_PAGES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 /**
- * Homepage-style service card — shared by the homepage services grid and the
- * "смежные услуги" block on service pages so they read identically. `index`
- * drives the alternating dark card (every 3rd, offset by one).
+ * Homepage-style service card — shared by the homepage services grid, the
+ * /uslugi/ catalog and the "смежные услуги" block on service pages so they all
+ * read identically. `index` drives the alternating dark card (every 3rd, offset
+ * by one).
+ *
+ * `headingAs` меняет только уровень заголовка, не вид: под секцией с h2
+ * карточка должна быть h3, а на /uslugi/, где над сеткой стоит h1 страницы и
+ * весь смысл документа — это и есть список услуг, их названия логичнее сделать
+ * h2, не перепрыгивая уровень.
  */
-export function ServiceCard({ serviceKey, index }: { serviceKey: string; index: number }) {
+export function ServiceCard({
+  serviceKey,
+  index,
+  headingAs: Heading = "h3",
+}: {
+  serviceKey: string;
+  index: number;
+  headingAs?: "h2" | "h3";
+}) {
   const t = useTranslations("services");
   const tags = t.raw(`items.${serviceKey}.tags`) as string[];
   const isDark = index % 3 === 1;
@@ -36,25 +50,25 @@ export function ServiceCard({ serviceKey, index }: { serviceKey: string; index: 
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-full translate-y-full bg-accent transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 motion-reduce:transition-none"
+        className="bg-accent pointer-events-none absolute inset-x-0 bottom-0 z-0 h-full translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 motion-reduce:transition-none"
       />
-      <div className="relative z-10 transition-colors duration-500 group-hover:text-accent-foreground">
+      <div className="group-hover:text-accent-foreground relative z-10 transition-colors duration-500">
         <ArrowUpRight
           className={cn(
-            "h-5 w-5 transition-[transform,color] duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-foreground",
+            "group-hover:text-accent-foreground h-5 w-5 transition-[transform,color] duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5",
             isDark ? "text-white/50" : "text-muted-foreground",
           )}
         />
-        <h3 className="heading-subsection mt-8 max-w-[16ch]">
+        <Heading className="heading-subsection mt-8 max-w-[16ch]">
           {t(`items.${serviceKey}.title`)}
-        </h3>
+        </Heading>
       </div>
       <ul className="relative z-10 mt-6 flex flex-wrap gap-2">
         {tags.map((tag) => (
           <li
             key={tag}
             className={cn(
-              "rounded-full border px-3 py-1 text-base transition-colors duration-500 group-hover:border-accent-foreground/25 group-hover:text-accent-foreground/80",
+              "group-hover:border-accent-foreground/25 group-hover:text-accent-foreground/80 rounded-full border px-3 py-1 text-base transition-colors duration-500",
               isDark
                 ? "border-white/10 text-white/60"
                 : "border-border text-muted-foreground",

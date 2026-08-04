@@ -1,19 +1,16 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { ArrowUpRight, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { ContactSection } from "@/components/sections/contact-section";
-import { TiltCard } from "@/components/ui/tilt-card";
+import { ServiceCard } from "@/components/sections/service-card";
 import { SERVICE_NAV } from "@/lib/constants";
 
 /**
- * Каталог всех услуг на отдельной странице.
- *
- * Карточка здесь намеренно богаче, чем на главной: там ServiceCard показывает
- * только заголовок и теги, а тут — ещё описание, бюджет и срок. Иначе страница
- * была бы дублем блока #services, и поисковику пришлось бы выбирать между
- * двумя одинаковыми документами.
+ * Полный каталог услуг. Главная показывает четыре направления из
+ * HOME_SERVICE_KEYS и уводит сюда — здесь лежат все 18 на тех же карточках,
+ * что и на главной.
  */
 export function ServicesHubContent() {
   const t = useTranslations("servicesPage");
@@ -49,33 +46,10 @@ export function ServicesHubContent() {
             </p>
           </Reveal>
 
-          <StaggerReveal className="mt-12 grid grid-cols-1 gap-6 md:mt-16 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
-            {SERVICE_NAV.map(({ key, slug }) => (
+          <StaggerReveal className="mt-12 grid gap-6 md:mt-16 md:grid-cols-2 md:gap-8 xl:grid-cols-4">
+            {SERVICE_NAV.map(({ key }, index) => (
               <div key={key} className="h-full">
-                <TiltCard
-                  as="a"
-                  href={`/uslugi/${slug}/`}
-                  aria-label={services(`${key}.title`)}
-                  max={2.5}
-                  data-cursor="dark"
-                  className="group border-border bg-background hover:border-accent focus-visible:outline-accent flex h-full cursor-pointer flex-col rounded-2xl border p-8 transition-[border-color,box-shadow] duration-500 hover:shadow-[0_24px_60px_rgba(0,0,0,0.06)] focus-visible:outline-2 focus-visible:outline-offset-2"
-                >
-                  <ArrowUpRight className="text-muted-foreground group-hover:text-accent h-5 w-5 transition-[transform,color] duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  <h2 className="heading-subsection mt-6">{services(`${key}.title`)}</h2>
-                  <p className="body-base text-muted-foreground mt-4 grow">
-                    {services(`${key}.description`)}
-                  </p>
-                  <dl className="border-border mt-8 flex flex-wrap gap-x-8 gap-y-2 border-t pt-6 text-sm">
-                    <div>
-                      <dt className="text-muted-foreground">{t("budgetLabel")}</dt>
-                      <dd className="mt-1 font-medium">{services(`${key}.budget`)}</dd>
-                    </div>
-                    <div>
-                      <dt className="text-muted-foreground">{t("deadlineLabel")}</dt>
-                      <dd className="mt-1 font-medium">{services(`${key}.deadline`)}</dd>
-                    </div>
-                  </dl>
-                </TiltCard>
+                <ServiceCard serviceKey={key} index={index} headingAs="h2" />
               </div>
             ))}
           </StaggerReveal>

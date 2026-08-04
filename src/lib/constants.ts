@@ -180,6 +180,13 @@ export const SERVICE_NAV = [
   { key: "platforms", slug: SERVICE_PAGES.platforms },
 ] as const;
 
+// Что показывает главная в блоке «Популярные направления» — витрина, а не
+// каталог: полный список из 18 услуг живёт на /uslugi/, куда ведёт кнопка над
+// сеткой. Четыре ключа заполняют ровно один ряд на широком экране (xl:grid-cols-4).
+// Порядок здесь и есть порядок карточек; менять состав можно свободно, ничего
+// кроме этой витрины он не задевает.
+export const HOME_SERVICE_KEYS = ["corporate", "platforms", "telegram", "ai"] as const;
+
 // Blog posts, newest first. `key` maps to the blog.posts.<key> catalog block;
 // `slug` is the /blog/<slug> page URL; `cover` is the committed hero artwork.
 //
