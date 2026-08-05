@@ -262,3 +262,34 @@ export const RELATED_ARTICLES: Record<string, string[]> = {
   corporate: ["securityAudit"],
   b2b: ["securityAudit"],
 };
+
+/**
+ * Обратная связь: статья → услуги, о которых она.
+ *
+ * Выводится из RELATED_ARTICLES, а не задаётся отдельной таблицей: связь между
+ * статьёй и услугой одна и та же в обе стороны, и два списка рано или поздно
+ * разошлись бы. Порядок услуг внутри статьи повторяет порядок SERVICE_NAV,
+ * чтобы он не зависел от того, как перечислены ключи в RELATED_ARTICLES.
+ *
+ * Зачем вообще: статьи собирают 79% показов сайта, но до этого не вели ни на
+ * одну коммерческую страницу — человек, пришедший по «парсингу базы данных»,
+ * дочитывал и уходил, не узнав, что это можно заказать.
+ */
+export const SERVICES_BY_ARTICLE: Record<string, string[]> = (() => {
+  const order = new Map<string, number>(
+    SERVICE_NAV.map(({ key }, index) => [key, index]),
+  );
+  const byArticle: Record<string, string[]> = {};
+
+  for (const [serviceKey, articleKeys] of Object.entries(RELATED_ARTICLES)) {
+    for (const articleKey of articleKeys) {
+      (byArticle[articleKey] ??= []).push(serviceKey);
+    }
+  }
+
+  for (const services of Object.values(byArticle)) {
+    services.sort((a, b) => (order.get(a) ?? 0) - (order.get(b) ?? 0));
+  }
+
+  return byArticle;
+})();

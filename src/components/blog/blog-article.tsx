@@ -6,7 +6,9 @@ import { useTranslations } from "next-intl";
 import { ArrowLeft, ArrowUpRight, Check, ChevronRight, Clock } from "lucide-react";
 import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { ContactSection } from "@/components/sections/contact-section";
-import { BLOG_POSTS } from "@/lib/constants";
+import { ServiceCard } from "@/components/sections/service-card";
+import { BLOG_POSTS, SERVICES_BY_ARTICLE } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
 interface Section {
   heading: string;
@@ -22,6 +24,7 @@ export function BlogArticle({ postKey }: { postKey: string }) {
   const sections = p.raw("sections") as Section[];
   const takeaways = (p.raw("takeaways") as string[] | undefined) ?? [];
   const related = BLOG_POSTS.filter((item) => item.key !== postKey);
+  const services = SERVICES_BY_ARTICLE[postKey] ?? [];
 
   return (
     <>
@@ -175,6 +178,40 @@ export function BlogArticle({ postKey }: { postKey: string }) {
           </div>
         </div>
       </div>
+
+      {/* Услуги по теме статьи — коммерческий выход из информационного текста.
+          Стоит перед «Читайте также» намеренно: тот блок уводит глубже в блог,
+          и если поставить его первым, до услуг читатель уже не доберётся. */}
+      {services.length > 0 && (
+        <section className="surface-light section-padding border-border border-t pt-16 md:pt-20">
+          <div className="container-premium">
+            <Reveal>
+              <h2 className="heading-section">{t("servicesTitle")}</h2>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <p className="body-base text-muted-foreground mt-6 max-w-2xl">
+                {t("servicesSubtitle")}
+              </p>
+            </Reveal>
+            <StaggerReveal
+              className={cn(
+                "mt-12 grid gap-6 md:gap-8",
+                services.length === 1
+                  ? "max-w-md"
+                  : services.length === 2
+                    ? "md:grid-cols-2"
+                    : "md:grid-cols-2 xl:grid-cols-3",
+              )}
+            >
+              {services.map((key, index) => (
+                <div key={key} className="h-full">
+                  <ServiceCard serviceKey={key} index={index} />
+                </div>
+              ))}
+            </StaggerReveal>
+          </div>
+        </section>
+      )}
 
       {/* Related posts */}
       {related.length > 0 && (
