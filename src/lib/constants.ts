@@ -216,7 +216,7 @@ export const BLOG_POSTS = [
     slug: "parsing-dannyh",
     cover: "/blog/parsing-dannyh.svg",
     publishedAt: "2026-07-18",
-    updatedAt: "2026-07-18",
+    updatedAt: "2026-08-05",
   },
 ] as const;
 
