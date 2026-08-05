@@ -42,11 +42,6 @@ export function ServicesHubContent() {
           <Reveal>
             <h1 className="heading-display max-w-4xl">{t("title")}</h1>
           </Reveal>
-          <Reveal delay={0.05}>
-            <p className="body-large text-muted-foreground mt-8 max-w-3xl">
-              {t("description")}
-            </p>
-          </Reveal>
 
           <StaggerReveal className="mt-12 grid gap-6 md:mt-16 md:grid-cols-2 md:gap-8 xl:grid-cols-4">
             {SERVICE_NAV.map(({ key }, index) => (

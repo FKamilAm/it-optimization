@@ -41,6 +41,8 @@ jobs:
         run: npm run build
         env:
           VITE_API_URL: ${{ vars.CRM_API_URL || 'https://api.it-optimization.ru' }}
+          VITE_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || 'https://it-optimization.ru' }}
+          VITE_BOT_USERNAME: ${{ vars.CRM_BOT_USERNAME || 'it_optimization_bot' }}
 
       - uses: actions/setup-python@v5
         with:

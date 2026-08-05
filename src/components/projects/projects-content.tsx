@@ -59,34 +59,31 @@ export function ProjectsContent({ cases }: { cases: CaseItem[] }) {
             </ol>
           </nav>
 
-          <Reveal>
-            <h1 className="heading-display max-w-4xl">{t("title")}</h1>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <p className="body-large text-muted-foreground mt-8 max-w-3xl">
-              {t("description")}
-            </p>
-          </Reveal>
+          {/* Заголовок и фильтр в одну строку: на широком экране фильтр уходит
+              вправо к верхней кромке заголовка, на узком встаёт под ним. */}
+          <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between md:gap-12">
+            <Reveal className="min-w-0">
+              <h1 className="heading-display max-w-4xl">{t("title")}</h1>
+            </Reveal>
 
-          {options.length > 2 && (
-            // Слой задаётся здесь, а не внутри Reveal: у .reveal есть transform,
-            // а он сам создаёт stacking context — z-index внутри него сортирует
-            // только собственных детей и не поднимает блок над сеткой карточек.
-            <div className="relative z-40">
-              <Reveal delay={0.1}>
-                <div className="mt-12">
+            {options.length > 2 && (
+              // Слой задаётся здесь, а не внутри Reveal: у .reveal есть transform,
+              // а он сам создаёт stacking context — z-index внутри него сортирует
+              // только собственных детей и не поднимает блок над сеткой карточек.
+              <div className="relative z-40 md:w-72 md:shrink-0">
+                <Reveal delay={0.1}>
                   <FilterSelect
                     label={t("filterLabel")}
                     options={options}
                     value={filter}
                     onChange={setFilter}
                     showCounts={false}
-                    className="sm:max-w-sm"
+                    className="sm:max-w-sm md:max-w-none"
                   />
-                </div>
-              </Reveal>
-            </div>
-          )}
+                </Reveal>
+              </div>
+            )}
+          </div>
 
           <StaggerReveal
             key={filter ?? "all"}
