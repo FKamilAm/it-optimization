@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
 import { Bounds, Environment, Lightformer } from "@react-three/drei";
 import { SVGLoader } from "three-stdlib";
+import { useInView } from "@/hooks/use-in-view";
 import { prefersReducedMotion } from "@/lib/utils";
 
 const EXTRUDE_OPTIONS: THREE.ExtrudeGeometryOptions = {
@@ -139,25 +140,33 @@ function StudioEnvironment() {
 
 export default function HeroLogo3D() {
   const animate = !prefersReducedMotion();
+  // Пока сцена за пределами экрана, кадры не рисуются вовсе: "never" полностью
+  // останавливает requestAnimationFrame. Видимой разницы нет — за экраном
+  // смотреть нечего, — а основной поток освобождается.
+  const { ref, inView } = useInView<HTMLDivElement>();
+
+  const frameloop = !animate ? "demand" : inView ? "always" : "never";
 
   return (
-    <Canvas
-      dpr={[1, 2]}
-      frameloop={animate ? "always" : "demand"}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      camera={{ position: [0, 0, 12], fov: 30 }}
-    >
-      <ambientLight intensity={0.35} />
-      <directionalLight position={[5, 6, 8]} intensity={1.5} />
-      <directionalLight position={[-6, -1, 4]} intensity={0.55} color="#aab4c4" />
-      <Suspense fallback={null}>
-        {/* Auto-fits the mark to the canvas so it never clips regardless of the
-            container's aspect ratio (mobile portrait → wide desktop). */}
-        <Bounds fit observe margin={1.2}>
-          <LogoMark animate={animate} />
-        </Bounds>
-        <StudioEnvironment />
-      </Suspense>
-    </Canvas>
+    <div ref={ref} className="h-full w-full">
+      <Canvas
+        dpr={[1, 2]}
+        frameloop={frameloop}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        camera={{ position: [0, 0, 12], fov: 30 }}
+      >
+        <ambientLight intensity={0.35} />
+        <directionalLight position={[5, 6, 8]} intensity={1.5} />
+        <directionalLight position={[-6, -1, 4]} intensity={0.55} color="#aab4c4" />
+        <Suspense fallback={null}>
+          {/* Auto-fits the mark to the canvas so it never clips regardless of the
+              container's aspect ratio (mobile portrait → wide desktop). */}
+          <Bounds fit observe margin={1.2}>
+            <LogoMark animate={animate} />
+          </Bounds>
+          <StudioEnvironment />
+        </Suspense>
+      </Canvas>
+    </div>
   );
 }

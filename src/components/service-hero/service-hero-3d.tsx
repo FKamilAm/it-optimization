@@ -2,6 +2,7 @@
 
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
+import { useInView } from "@/hooks/use-in-view";
 import { prefersReducedMotion } from "@/lib/utils";
 import { StudioEnvironment } from "./shared";
 import { TelegramScene } from "./scenes/telegram-scene";
@@ -94,21 +95,27 @@ function SceneForVariant({
 
 export default function ServiceHero3D({ variant }: { variant: ServiceHeroVariant }) {
   const animate = !prefersReducedMotion();
+  // См. hero-logo-3d.tsx: за пределами экрана кадры не рисуются вовсе.
+  const { ref, inView } = useInView<HTMLDivElement>();
+
+  const frameloop = !animate ? "demand" : inView ? "always" : "never";
 
   return (
-    <Canvas
-      dpr={[1, 1.5]}
-      frameloop={animate ? "always" : "demand"}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      camera={{ position: [0, 0, 12], fov: 30 }}
-    >
-      <ambientLight intensity={0.35} />
-      <directionalLight position={[5, 6, 8]} intensity={1.5} />
-      <directionalLight position={[-6, -1, 4]} intensity={0.55} color="#aab4c4" />
-      <Suspense fallback={null}>
-        <SceneForVariant variant={variant} animate={animate} />
-        <StudioEnvironment />
-      </Suspense>
-    </Canvas>
+    <div ref={ref} className="h-full w-full">
+      <Canvas
+        dpr={[1, 1.5]}
+        frameloop={frameloop}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        camera={{ position: [0, 0, 12], fov: 30 }}
+      >
+        <ambientLight intensity={0.35} />
+        <directionalLight position={[5, 6, 8]} intensity={1.5} />
+        <directionalLight position={[-6, -1, 4]} intensity={0.55} color="#aab4c4" />
+        <Suspense fallback={null}>
+          <SceneForVariant variant={variant} animate={animate} />
+          <StudioEnvironment />
+        </Suspense>
+      </Canvas>
+    </div>
   );
 }
