@@ -8,13 +8,23 @@ import { SVGLoader } from "three-stdlib";
 import { useInView } from "@/hooks/use-in-view";
 import { prefersReducedMotion } from "@/lib/utils";
 
+// curveSegments — во сколько отрезков разбивается каждая кривая контура. В
+// logo-mark.svg их 36 плюс скруглённый прямоугольник акцентной точки, так что
+// значение множится на весь контур кольца: при 40 грань приходилась на каждые
+// 2,3° дуги — примерно 156 граней на окружность. Столько имеет смысл, если
+// модель можно приблизить; наш знак занимает фиксированное место на экране.
+// 16 даёт грань на 5,6°, на силуэте это неразличимо, а треугольников остаётся
+// 32% (28 816 → 9 228) и столько же работы в каждом кадре.
+//
+// Ниже 16 не опускаемся: материал зеркальный (metalness 1), а на блестящем
+// огранка проявляется в бликах раньше, чем на силуэте.
 const EXTRUDE_OPTIONS: THREE.ExtrudeGeometryOptions = {
   depth: 8,
   bevelEnabled: true,
   bevelThickness: 1.15,
   bevelSize: 0.85,
-  bevelSegments: 4,
-  curveSegments: 40,
+  bevelSegments: 3,
+  curveSegments: 16,
 };
 
 // World size of the mark's largest dimension. Kept modest so it never clips inside
@@ -149,8 +159,12 @@ export default function HeroLogo3D() {
 
   return (
     <div ref={ref} className="h-full w-full">
+      {/* dpr до 1.5, а не 2: закраска зеркального металла с отражением
+          окружения — самая дорогая часть кадра, и на retina это вчетверо
+          больше пикселей при разнице, которую на таком размере не видно.
+          У сцен на страницах услуг уже стоит 1.5 — здесь было расхождение. */}
       <Canvas
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
         frameloop={frameloop}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         camera={{ position: [0, 0, 12], fov: 30 }}
