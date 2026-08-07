@@ -5,62 +5,92 @@ import * as THREE from "three";
 import { AccentMaterial, ChromeMaterial, useIdleAnimation } from "../shared";
 
 const BUBBLE_EXTRUDE: THREE.ExtrudeGeometryOptions = {
-  depth: 0.34,
+  depth: 0.36,
   bevelEnabled: true,
-  bevelThickness: 0.07,
-  bevelSize: 0.06,
+  bevelThickness: 0.08,
+  bevelSize: 0.07,
   bevelSegments: 3,
   curveSegments: 10,
 };
 
+/** Front face of an extruded bubble, plus bevel — where the text bars sit. */
+const FACE_Z = 0.46;
+
 /**
- * Rounded rectangle with a tail on one bottom corner — a speech bubble.
+ * Rounded rectangle with a tail hanging off one bottom corner.
  *
- * roundedRectShape from ../shared would give the body, but a bubble without a
- * tail reads as a card, and this series already has cards (business-card,
- * tech-content). The tail is what makes it a conversation.
+ * The tail is part of the outline rather than a separate mesh, so it extrudes
+ * and bevels with the body and reads as one solid shape. Both cases are written
+ * out instead of being mirrored with a sign: the outline has to stay wound in
+ * one direction, and flipping coordinates mid-path is what made the first
+ * version come out crooked.
  */
-function bubbleShape(width: number, height: number, radius: number, flip: boolean) {
+function bubbleShape(
+  width: number,
+  height: number,
+  radius: number,
+  tail: "left" | "right",
+) {
   const w = width / 2;
   const h = height / 2;
   const r = Math.min(radius, w, h);
   const s = new THREE.Shape();
-  const dir = flip ? -1 : 1;
 
   s.moveTo(-w + r, -h);
-  // Tail sits just inside the bottom corner, pointing down and outward.
-  s.lineTo(dir * (w - r * 1.6), -h);
-  s.lineTo(dir * (w - r * 0.5), -h - r * 1.15);
-  s.lineTo(dir * (w - r * 0.15), -h);
-  s.lineTo(dir * (w - r), -h);
-  s.quadraticCurveTo(dir * w, -h, dir * w, -h + r);
-  s.lineTo(dir * w, h - r);
-  s.quadraticCurveTo(dir * w, h, dir * (w - r), h);
-  s.lineTo(dir * (-w + r), h);
-  s.quadraticCurveTo(dir * -w, h, dir * -w, h - r);
-  s.lineTo(dir * -w, -h + r);
-  s.quadraticCurveTo(dir * -w, -h, dir * (-w + r), -h);
+
+  if (tail === "left") {
+    s.lineTo(-w + r * 0.35, -h - r * 1.25); // tip, angled down and outward
+    s.lineTo(-w + r * 1.9, -h);
+  }
+
+  if (tail === "right") {
+    s.lineTo(w - r * 1.9, -h);
+    s.lineTo(w - r * 0.35, -h - r * 1.25);
+  }
+
+  s.lineTo(w - r, -h);
+  s.quadraticCurveTo(w, -h, w, -h + r);
+  s.lineTo(w, h - r);
+  s.quadraticCurveTo(w, h, w - r, h);
+  s.lineTo(-w + r, h);
+  s.quadraticCurveTo(-w, h, -w, h - r);
+  s.lineTo(-w, -h + r);
+  s.quadraticCurveTo(-w, -h, -w + r, -h);
   return s;
 }
 
+/** Accent bars standing in for lines of text on a bubble face. */
+function TextLines({ widths, gap = 0.34 }: { widths: number[]; gap?: number }) {
+  const top = ((widths.length - 1) * gap) / 2;
+  return (
+    <>
+      {widths.map((w, i) => (
+        <mesh key={i} position={[-0.1, top - i * gap, FACE_Z]}>
+          <boxGeometry args={[w, 0.16, 0.09]} />
+          <AccentMaterial />
+        </mesh>
+      ))}
+    </>
+  );
+}
+
 /**
- * Corporate messenger — two speech bubbles from opposite sides of a
- * conversation, the near one in brand green. The chrome bubble carries two
- * short bars standing in for text.
+ * Corporate messenger — two chrome speech bubbles from opposite sides of a
+ * conversation, each carrying accent-green bars for text.
  *
- * The Telegram scene in this series is a paper plane (one message, sent
- * outward); bubbles read as an exchange between people, which is what an
+ * The Telegram scene in this series is a paper plane: one message, sent
+ * outward. Bubbles read as an exchange between people, which is what an
  * internal messenger is for.
  */
 export function MessengerScene({ animate }: { animate: boolean }) {
   const groupRef = useIdleAnimation(animate);
 
   const backGeo = useMemo(
-    () => new THREE.ExtrudeGeometry(bubbleShape(3.0, 1.9, 0.42, false), BUBBLE_EXTRUDE),
+    () => new THREE.ExtrudeGeometry(bubbleShape(3.7, 2.35, 0.5, "left"), BUBBLE_EXTRUDE),
     [],
   );
   const frontGeo = useMemo(
-    () => new THREE.ExtrudeGeometry(bubbleShape(2.4, 1.5, 0.36, true), BUBBLE_EXTRUDE),
+    () => new THREE.ExtrudeGeometry(bubbleShape(3.1, 2.0, 0.44, "right"), BUBBLE_EXTRUDE),
     [],
   );
 
@@ -73,24 +103,22 @@ export function MessengerScene({ animate }: { animate: boolean }) {
 
   return (
     <group ref={groupRef}>
-      <group scale={1.02} rotation={[0.05, -0.26, 0]} position={[0, 0.1, 0]}>
-        {/* Incoming message — chrome, sitting back and to the left. */}
-        <group position={[-0.75, 0.72, -0.45]}>
+      <group scale={1.06} rotation={[0.05, -0.24, 0]} position={[0, 0.05, 0]}>
+        {/* Incoming — sitting back and up-left, tail on the left. */}
+        <group position={[-0.72, 0.92, -0.5]}>
           <mesh geometry={backGeo}>
             <ChromeMaterial />
           </mesh>
-          {[0.3, -0.15].map((y, i) => (
-            <mesh key={y} position={[-0.2 - i * 0.22, y, 0.4]}>
-              <boxGeometry args={[1.7 - i * 0.44, 0.16, 0.08]} />
-              <ChromeMaterial roughness={0.42} color="#9aa5b1" />
-            </mesh>
-          ))}
+          <TextLines widths={[2.3, 1.6]} />
         </group>
 
-        {/* Reply — accent, nearer and to the right. */}
-        <mesh geometry={frontGeo} position={[0.95, -0.78, 0.35]}>
-          <AccentMaterial />
-        </mesh>
+        {/* Reply — nearer, down-right, tail on the right. */}
+        <group position={[0.86, -0.95, 0.4]}>
+          <mesh geometry={frontGeo}>
+            <ChromeMaterial />
+          </mesh>
+          <TextLines widths={[1.9, 1.25]} />
+        </group>
       </group>
     </group>
   );

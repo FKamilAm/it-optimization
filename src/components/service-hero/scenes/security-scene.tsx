@@ -4,43 +4,52 @@ import { RoundedBox } from "@react-three/drei";
 import { AccentMaterial, ChromeMaterial, useIdleAnimation } from "../shared";
 
 /**
- * Security audit — a chrome padlock: a rounded body under a half-torus shackle,
- * with the keyhole picked out in brand green.
+ * Security audit — a chrome padlock: a rounded body under a round shackle, with
+ * the keyhole picked out in brand green.
+ *
+ * The shackle is a half-torus and must stay in the XY plane, which is where a
+ * torus lies by default. Rotating it by π/2 lays the arc flat into XZ, and from
+ * the scene camera that reads as a flat bent bar — a briefcase handle rather
+ * than a lock. Two short cylinders continue the arc down into the body so the
+ * shackle looks seated instead of floating.
  *
  * Deliberately not a shield: the IT-support scene already uses one, and two
  * services sharing a silhouette in the same series would read as a mistake.
- * A padlock is unmistakably about access, which is what the audit is about.
  */
 export function SecurityScene({ animate }: { animate: boolean }) {
   const groupRef = useIdleAnimation(animate);
 
+  const SHACKLE_R = 0.82;
+  const SHACKLE_TUBE = 0.19;
+
   return (
     <group ref={groupRef}>
-      <group scale={1.05} rotation={[0.06, -0.3, 0]} position={[0, -0.15, 0]}>
-        {/* Shackle: half ring + two straight legs sunk into the body. */}
-        <mesh position={[0, 1.28, 0]} rotation={[Math.PI / 2, 0, 0]}>
-          <torusGeometry args={[0.78, 0.17, 20, 40, Math.PI]} />
+      <group scale={1.42} rotation={[0.05, -0.26, 0]} position={[0, -0.2, 0]}>
+        {/* Shackle: upper half ring, left in the XY plane. */}
+        <mesh position={[0, 1.12, 0]}>
+          <torusGeometry args={[SHACKLE_R, SHACKLE_TUBE, 24, 48, Math.PI]} />
           <ChromeMaterial />
         </mesh>
-        {[-0.78, 0.78].map((x) => (
-          <mesh key={x} position={[x, 0.95, 0]}>
-            <cylinderGeometry args={[0.17, 0.17, 0.72, 20]} />
+        {/* Straight legs from the ring ends down into the body. */}
+        {[-SHACKLE_R, SHACKLE_R].map((x) => (
+          <mesh key={x} position={[x, 0.83, 0]}>
+            <cylinderGeometry args={[SHACKLE_TUBE, SHACKLE_TUBE, 0.62, 24]} />
             <ChromeMaterial />
           </mesh>
         ))}
 
         {/* Lock body. */}
-        <RoundedBox args={[2.7, 2.1, 0.9]} radius={0.22} smoothness={5}>
+        <RoundedBox args={[2.5, 1.95, 0.85]} radius={0.2} smoothness={5}>
           <ChromeMaterial />
         </RoundedBox>
 
         {/* Keyhole — the single accent: a disc with a tapered slot below it. */}
-        <mesh position={[0, 0.12, 0.46]} rotation={[Math.PI / 2, 0, 0]}>
-          <cylinderGeometry args={[0.26, 0.26, 0.12, 24]} />
+        <mesh position={[0, 0.14, 0.44]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.24, 0.24, 0.1, 24]} />
           <AccentMaterial />
         </mesh>
-        <mesh position={[0, -0.36, 0.46]}>
-          <boxGeometry args={[0.24, 0.62, 0.12]} />
+        <mesh position={[0, -0.32, 0.44]}>
+          <boxGeometry args={[0.22, 0.58, 0.1]} />
           <AccentMaterial />
         </mesh>
       </group>
