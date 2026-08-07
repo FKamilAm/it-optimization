@@ -215,7 +215,7 @@ export const BLOG_POSTS = [
     slug: "audit-bezopasnosti-sajtov",
     cover: "/blog/audit-bezopasnosti-sajtov.svg",
     publishedAt: "2026-07-18",
-    updatedAt: "2026-07-18",
+    updatedAt: "2026-08-07",
   },
   {
     key: "messengers",
