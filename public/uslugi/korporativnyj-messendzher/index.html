@@ -1,0 +1,38 @@
+<!doctype html>
+<!--
+  Надгробие переехавшей страницы.
+
+  Услуга недолго жила по адресу /uslugi/korporativnyj-messendzher/, пока
+  называлась «Корпоративный мессенджер». Теперь она обобщена до «Разработки
+  мессенджеров» и лежит по /uslugi/razrabotka-messendzherov/.
+
+  Обычно такое закрывают 301-м редиректом на сервере, но сайт — статический
+  экспорт на nginx, где .htaccess не читается (PHP для аккаунта отключён), а
+  доступа к конфигурации у нас нет. Плюс scripts/ftp-upload.py только заливает
+  файлы и никогда не удаляет, поэтому старый каталог остался бы на хостинге
+  и продолжал отдавать 200 с canonical на самого себя — то есть полноценным
+  дублем новой страницы.
+
+  Отсюда meta refresh с нулевой задержкой плюс canonical на новый адрес:
+  поисковики читают это как переезд, а человек просто оказывается там, где
+  нужно. Файл можно удалить, когда старый URL пропадёт из индекса.
+-->
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Разработка мессенджеров — Айти-Оптимизация</title>
+    <link rel="canonical" href="https://it-optimization.ru/uslugi/razrabotka-messendzherov/" />
+    <meta
+      http-equiv="refresh"
+      content="0; url=https://it-optimization.ru/uslugi/razrabotka-messendzherov/"
+    />
+  </head>
+  <body>
+    <p>
+      Страница переехала:
+      <a href="https://it-optimization.ru/uslugi/razrabotka-messendzherov/"
+        >Разработка мессенджеров</a
+      >.
+    </p>
+  </body>
+</html>
