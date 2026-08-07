@@ -222,7 +222,7 @@ export const BLOG_POSTS = [
     slug: "razrabotka-messendzherov",
     cover: "/blog/razrabotka-messendzherov.svg",
     publishedAt: "2026-07-18",
-    updatedAt: "2026-07-18",
+    updatedAt: "2026-08-07",
   },
   {
     key: "parsing",
