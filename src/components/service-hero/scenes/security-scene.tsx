@@ -24,7 +24,7 @@ export function SecurityScene({ animate }: { animate: boolean }) {
 
   return (
     <group ref={groupRef}>
-      <group scale={1.42} rotation={[0.05, -0.26, 0]} position={[0, -0.2, 0]}>
+      <group scale={1.42} rotation={[0.05, -0.26, 0]} position={[0, -0.55, 0]}>
         {/* Shackle: upper half ring, left in the XY plane. */}
         <mesh position={[0, 1.12, 0]}>
           <torusGeometry args={[SHACKLE_R, SHACKLE_TUBE, 24, 48, Math.PI]} />
