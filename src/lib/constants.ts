@@ -124,6 +124,16 @@ export const SERVICE_PAGES: Record<string, string> = {
   techContent: "tehnicheskij-kontent-sajta",
   commercialAudit: "kommercheskij-audit-sajta",
   platforms: "razrabotka-crm",
+  // Слуг единственного числа — у статьи блога про ту же тему множественное
+  // (audit-bezopasnosti-sajtov). Пара близкая, поэтому интенты разведены в
+  // заголовках: статья отвечает «что это и как проходит», страница — «заказать,
+  // цена, сроки». Иначе они конкурировали бы за один и тот же запрос.
+  security: "audit-bezopasnosti-sajta",
+  // Не razrabotka-messendzherov: этот запрос мёртвый — статья с таким
+  // заголовком за три месяца не собрала ни одного показа. Услуга про
+  // внутренние мессенджеры для сотрудников, и живой запрос здесь именно
+  // «корпоративный мессенджер».
+  messenger: "korporativnyj-messendzher",
 };
 
 export const NAV_ITEMS = [
@@ -170,10 +180,12 @@ export const SERVICE_NAV = [
   { key: "b2b", slug: SERVICE_PAGES.b2b },
   { key: "telegram", slug: SERVICE_PAGES.telegram },
   { key: "mobile", slug: SERVICE_PAGES.mobile },
+  { key: "messenger", slug: SERVICE_PAGES.messenger },
   { key: "ai", slug: SERVICE_PAGES.ai },
   { key: "integrations", slug: SERVICE_PAGES.integrations },
   { key: "blockchain", slug: SERVICE_PAGES.blockchain },
   { key: "support", slug: SERVICE_PAGES.support },
+  { key: "security", slug: SERVICE_PAGES.security },
   { key: "contentAnalysis", slug: SERVICE_PAGES.contentAnalysis },
   { key: "techContent", slug: SERVICE_PAGES.techContent },
   { key: "commercialAudit", slug: SERVICE_PAGES.commercialAudit },
@@ -239,28 +251,37 @@ export const RELATED_SERVICES: Record<string, string[]> = {
   ecommerce: ["corporate", "b2b", "websiteTurnkey", "platforms"],
   businessCard: ["branding", "websites", "corporate", "webDesign"],
   b2b: ["corporate", "ecommerce", "platforms", "integrations"],
-  telegram: ["mobile", "ai", "integrations", "platforms"],
-  mobile: ["telegram", "ai", "platforms", "blockchain"],
+  telegram: ["mobile", "messenger", "ai", "integrations"],
+  mobile: ["telegram", "messenger", "platforms", "ai"],
   ai: ["integrations", "telegram", "platforms", "mobile"],
   integrations: ["ai", "platforms", "techContent", "telegram"],
   blockchain: ["platforms", "mobile", "ai", "integrations"],
-  support: ["platforms", "corporate", "integrations", "ai"],
+  support: ["security", "platforms", "corporate", "integrations"],
   contentAnalysis: ["commercialAudit", "techContent", "corporate", "websites"],
   techContent: ["contentAnalysis", "commercialAudit", "corporate", "integrations"],
-  commercialAudit: ["contentAnalysis", "techContent", "websites", "corporate"],
+  commercialAudit: ["contentAnalysis", "security", "techContent", "corporate"],
   platforms: ["b2b", "integrations", "ai", "support"],
   webDesign: ["branding", "corporate", "websites", "websiteTurnkey"],
   branding: ["webDesign", "businessCard", "corporate", "websites"],
+  security: ["support", "commercialAudit", "corporate", "platforms"],
+  messenger: ["platforms", "mobile", "telegram", "integrations"],
 };
 
 // Service page → relevant blog posts (topical cross-linking).
+//
+// Каждая из двух статей теперь имеет профильную услугу, поэтому связи сузились:
+// раньше статья про безопасность вела на корпоративные сайты и B2B просто
+// потому, что больше вести было некуда, а статья про мессенджеры — на
+// Telegram-ботов, хотя это принципиально другой продукт (в FAQ услуги это
+// прямо объясняется). Лишние пары убраны: обратная карта SERVICES_BY_ARTICLE
+// строится отсюда, и каждая неточность здесь становится неточной ссылкой в
+// конце статьи.
 export const RELATED_ARTICLES: Record<string, string[]> = {
   integrations: ["parsing"],
-  telegram: ["messengers"],
-  mobile: ["messengers"],
+  security: ["securityAudit"],
   support: ["securityAudit"],
-  corporate: ["securityAudit"],
-  b2b: ["securityAudit"],
+  messenger: ["messengers"],
+  mobile: ["messengers"],
 };
 
 /**

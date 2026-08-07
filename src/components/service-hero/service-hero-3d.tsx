@@ -23,6 +23,8 @@ import { TechContentScene } from "./scenes/tech-content-scene";
 import { CommercialAuditScene } from "./scenes/commercial-audit-scene";
 import { WebDesignScene } from "./scenes/web-design-scene";
 import { BrandingScene } from "./scenes/branding-scene";
+import { SecurityScene } from "./scenes/security-scene";
+import { MessengerScene } from "./scenes/messenger-scene";
 
 export type ServiceHeroVariant =
   | "platforms"
@@ -42,7 +44,9 @@ export type ServiceHeroVariant =
   | "techContent"
   | "commercialAudit"
   | "webDesign"
-  | "branding";
+  | "branding"
+  | "security"
+  | "messenger";
 
 function SceneForVariant({
   variant,
@@ -88,6 +92,10 @@ function SceneForVariant({
       return <WebDesignScene animate={animate} />;
     case "branding":
       return <BrandingScene animate={animate} />;
+    case "security":
+      return <SecurityScene animate={animate} />;
+    case "messenger":
+      return <MessengerScene animate={animate} />;
     default:
       return null;
   }

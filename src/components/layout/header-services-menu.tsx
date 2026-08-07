@@ -16,6 +16,8 @@ import {
   Globe,
   LayoutGrid,
   LayoutTemplate,
+  Lock,
+  MessagesSquare,
   Palette,
   PenTool,
   ShieldCheck,
@@ -48,6 +50,8 @@ const SERVICE_ICON: Record<string, ComponentType<{ className?: string }>> = {
   techContent: Code2,
   commercialAudit: ClipboardCheck,
   platforms: LayoutGrid,
+  security: Lock,
+  messenger: MessagesSquare,
 };
 
 interface HeaderServicesMenuProps {

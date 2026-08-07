@@ -40,6 +40,8 @@ const HERO_VISUAL: Partial<Record<string, ServiceHeroVariant>> = {
   commercialAudit: "commercialAudit",
   webDesign: "webDesign",
   branding: "branding",
+  security: "security",
+  messenger: "messenger",
 };
 
 const CASE_ROTATE_MS = 5000;
