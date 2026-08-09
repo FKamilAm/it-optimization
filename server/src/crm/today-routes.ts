@@ -1,5 +1,5 @@
 import type { FastifyInstance } from "fastify";
-import { requireAuth } from "../auth/guard.js";
+import { requireTeam } from "../auth/guard.js";
 import { toLeadDto } from "./leads/dto.js";
 import { toProjectDto } from "./projects/dto.js";
 import { toTaskDto } from "./tasks/dto.js";
@@ -10,7 +10,7 @@ import { collectToday, isEmptySnapshot } from "./today.js";
  * данные из `collectToday`. Разница только в подаче: боту текст, экрану JSON.
  */
 export async function todayRoutes(app: FastifyInstance): Promise<void> {
-  app.get("/today", { preHandler: requireAuth }, async (request, reply) => {
+  app.get("/today", { preHandler: requireTeam }, async (request, reply) => {
     const snapshot = await collectToday(request.user!.id);
 
     return reply.send({

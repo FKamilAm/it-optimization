@@ -19,8 +19,10 @@ async function main(): Promise<void> {
     process.exitCode = 1;
     return;
   }
-  if (roleArg !== "owner" && roleArg !== "editor") {
-    console.error("Роль может быть только owner или editor");
+  if (roleArg !== "owner" && roleArg !== "editor" && roleArg !== "marketing") {
+    console.error(
+      "Роль может быть owner, editor или marketing (marketing — только раздел лидов)",
+    );
     process.exitCode = 1;
     return;
   }

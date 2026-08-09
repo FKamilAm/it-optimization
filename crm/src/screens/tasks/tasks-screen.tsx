@@ -11,11 +11,10 @@ import {
   type Task,
   type TaskFilters,
 } from "@/api/tasks";
-import { listTeam, memberLabel, type TeamMember } from "@/api/team";
-import { useCurrentUser } from "@/auth/auth-context";
 import { Badge, Button, EmptyState, ErrorNote, Input, Modal } from "@/components/ui";
 import { describeDeadline } from "@/lib/dates";
 import { cn } from "@/lib/cn";
+import { DEVELOPERS } from "@/lib/developers";
 import {
   emptyTaskValues,
   TaskFields,
@@ -25,12 +24,12 @@ import {
 } from "./task-form";
 
 /**
- * Срезы. «Мои» стоит вторым: в ежедневной работе первый вопрос — что делать
- * мне, а не что вообще заведено в системе.
+ * Срезы списка. Вкладки «Мои» нет намеренно: исполнители значатся именами, а не
+ * учётными записями, поэтому связать вошедшего с именем нельзя. Вместо неё —
+ * выбор исполнителя рядом с поиском.
  */
 const TABS = [
   { key: "all", label: "Все", filters: { scope: "all" } },
-  { key: "mine", label: "Мои", filters: { scope: "open" } },
   { key: "overdue", label: "Просрочено", filters: { overdue: true } },
   { key: "open", label: "Открытые", filters: { scope: "open" } },
   { key: "done", label: "Готово", filters: { scope: "closed" } },
@@ -39,12 +38,12 @@ const TABS = [
 type TabKey = (typeof TABS)[number]["key"];
 
 export function TasksScreen() {
-  const user = useCurrentUser();
   const [tab, setTab] = useState<TabKey>("all");
+  /** Фильтр по исполнителю: «мои» без учётных записей не выразить. */
+  const [developer, setDeveloper] = useState("");
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [tasks, setTasks] = useState<Task[] | null>(null);
-  const [team, setTeam] = useState<TeamMember[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
@@ -58,7 +57,7 @@ export function TasksScreen() {
   const load = useCallback(() => {
     const active = TABS.find((item) => item.key === tab) ?? TABS[0];
     const filters: TaskFilters = { ...active.filters };
-    if (tab === "mine") filters.assigneeId = user.id;
+    if (developer) filters.developer = developer;
     if (debouncedSearch) filters.search = debouncedSearch;
 
     setError(null);
@@ -68,14 +67,11 @@ export function TasksScreen() {
         setError(cause instanceof ApiError ? cause.message : "Не удалось загрузить");
         setTasks([]);
       });
-  }, [tab, debouncedSearch, user.id]);
+  }, [tab, developer, debouncedSearch]);
 
   useEffect(load, [load]);
 
   useEffect(() => {
-    listTeam()
-      .then(setTeam)
-      .catch(() => setTeam([]));
     // Список проектов нужен только для выпадающего списка в форме, поэтому
     // берём открытые: закрытому проекту новые задачи не заводят.
     listProjects({ scope: "open" })
@@ -127,11 +123,23 @@ export function TasksScreen() {
             {item.label}
           </button>
         ))}
+        <select
+          value={developer}
+          onChange={(event) => setDeveloper(event.target.value)}
+          className="border-border bg-background ml-auto rounded-lg border px-3 py-1.5 text-sm outline-none"
+        >
+          <option value="">Все исполнители</option>
+          {DEVELOPERS.map((name) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </select>
         <Input
           value={search}
           onChange={(event) => setSearch(event.target.value)}
           placeholder="Поиск"
-          className="ml-auto w-full sm:w-56"
+          className="w-full sm:w-56"
         />
       </div>
 
@@ -170,9 +178,8 @@ export function TasksScreen() {
       {creating && (
         <TaskModal
           title="Новая задача"
-          team={team}
           projects={projects}
-          initial={emptyTaskValues({ assigneeId: user.id })}
+          initial={emptyTaskValues({})}
           onClose={() => setCreating(false)}
           onSubmit={async (values) => {
             await createTask(valuesToTaskInput(values));
@@ -185,7 +192,6 @@ export function TasksScreen() {
       {editing && (
         <TaskModal
           title="Задача"
-          team={team}
           projects={projects}
           initial={taskToValues(editing)}
           onClose={() => setEditing(null)}
@@ -246,7 +252,7 @@ function TaskRow({
         <span className="text-muted-foreground mt-0.5 block truncate text-xs">
           {[
             task.project?.title,
-            task.assignee ? memberLabel(task.assignee) : "ничья",
+            task.developers.length ? task.developers.join(", ") : "ничья",
             done ? TASK_STATUS_LABELS[task.status] : null,
           ]
             .filter(Boolean)
@@ -266,7 +272,6 @@ function TaskRow({
 function TaskModal({
   title,
   initial,
-  team,
   projects,
   onClose,
   onSubmit,
@@ -274,7 +279,6 @@ function TaskModal({
 }: {
   title: string;
   initial: TaskFormValues;
-  team: TeamMember[];
   projects: Project[];
   onClose: () => void;
   onSubmit: (values: TaskFormValues) => Promise<void>;
@@ -312,12 +316,7 @@ function TaskModal({
   return (
     <Modal title={title} onClose={onClose}>
       <form onSubmit={handleSubmit}>
-        <TaskFields
-          values={values}
-          onChange={setValues}
-          team={team}
-          projects={projects}
-        />
+        <TaskFields values={values} onChange={setValues} projects={projects} />
 
         {error && (
           <div className="mt-4">

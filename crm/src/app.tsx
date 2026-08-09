@@ -22,6 +22,21 @@ function Routed() {
 
   if (state.status === "anonymous") return <LoginScreen />;
 
+  // Маркетолог ведёт только лиды. Маршруты остальных разделов ему просто не
+  // существуют — при попытке зайти по адресу он окажется на лидах. Настоящий
+  // запрет при этом стоит на сервере: сюда он бы всё равно упёрся в 403.
+  if (state.user.role === "marketing") {
+    return (
+      <Routes>
+        <Route element={<Shell />}>
+          <Route path="leads" element={<LeadsScreen />} />
+          <Route path="settings" element={<SettingsScreen />} />
+          <Route path="*" element={<Navigate to="/leads" replace />} />
+        </Route>
+      </Routes>
+    );
+  }
+
   return (
     <Routes>
       <Route element={<Shell />}>

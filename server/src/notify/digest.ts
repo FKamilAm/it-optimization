@@ -1,8 +1,13 @@
 import type { Lead, Project, Task } from "@prisma/client";
-import { collectToday, isEmptySnapshot } from "../crm/today.js";
+import {
+  collectTeamToday,
+  collectToday,
+  isEmptySnapshot,
+  isEmptyTeamSnapshot,
+} from "../crm/today.js";
 import { prisma } from "../db.js";
 import { env } from "../env.js";
-import { escapeHtml, TelegramError, trySendMessage } from "./telegram.js";
+import { escapeHtml, sendMessage, TelegramError, trySendMessage } from "./telegram.js";
 import { daysOverdue, pluralDays } from "./zone.js";
 
 /**
@@ -20,17 +25,29 @@ interface Log {
   error: (obj: unknown, msg: string) => void;
 }
 
-function projectSection(
-  title: string,
-  projects: (Project & { client: { name: string } | null })[],
-): string[] {
+/** Имя для дайджеста: оно необязательное, поэтому запасной вариант — почта. */
+function personName(user: { name: string | null; email: string }): string {
+  return user.name?.trim() || user.email;
+}
+
+type ProjectForDigest = Project & {
+  client: { name: string } | null;
+};
+
+function projectSection(title: string, projects: ProjectForDigest[]): string[] {
   if (projects.length === 0) return [];
   const lines = projects.map((project) => {
-    const who = project.client ? ` — ${escapeHtml(project.client.name)}` : "";
-    if (!project.deadline) return `• ${escapeHtml(project.title)}${who}`;
+    const client = project.client ? ` — ${escapeHtml(project.client.name)}` : "";
+    // Кто ведёт — важнее срока: по сроку понятно, что горит, а по имени —
+    // кому этим заниматься. Без этого в общем чате никто не берёт на себя.
+    const who = project.developers.length
+      ? ` · ${project.developers.map(escapeHtml).join(", ")}`
+      : " · <i>никто не ведёт</i>";
+
+    if (!project.deadline) return `• ${escapeHtml(project.title)}${client}${who}`;
     const days = daysOverdue(project.deadline, env.TIMEZONE);
     const late = days > 0 ? ` — ${pluralDays(days)}` : "";
-    return `• ${escapeHtml(project.title)}${who}${late}`;
+    return `• ${escapeHtml(project.title)}${client}${late}${who}`;
   });
   return [`<b>${title}</b>`, ...lines, ""];
 }
@@ -95,6 +112,62 @@ export async function buildDigestFor(userId: string): Promise<string | null> {
   ];
 
   return ["☀️ <b>Доброе утро</b>", "", ...blocks].join("\n").trimEnd();
+}
+
+/**
+ * Сводка для общего чата. Не копия личной: здесь у каждой строки указано, на
+ * ком она висит, иначе в чате на троих никто не понимает, к кому обращаются.
+ */
+export async function buildTeamDigest(): Promise<string | null> {
+  const snapshot = await collectTeamToday();
+  if (isEmptyTeamSnapshot(snapshot)) return null;
+
+  const { leads, tasks, projects } = snapshot;
+
+  const leadLines = leads.overdue.map((lead) => {
+    const who = lead.owner ? personName(lead.owner) : "ничей";
+    const what = lead.nextActionNote?.trim();
+    const days = lead.nextActionAt ? daysOverdue(lead.nextActionAt, env.TIMEZONE) : 0;
+    const late = days > 0 ? ` — ${pluralDays(days)}` : "";
+    const head = what ? `<b>${escapeHtml(what)}</b> — ` : "";
+    return `• ${head}${escapeHtml(lead.name?.trim() || lead.contact)}${late} · ${escapeHtml(who)}`;
+  });
+
+  const taskLines = tasks.overdue.map((task) => {
+    const who = task.developers.length ? task.developers.join(", ") : "ничья";
+    const where = task.project ? ` <i>${escapeHtml(task.project.title)}</i>` : "";
+    const days = task.dueAt ? daysOverdue(task.dueAt, env.TIMEZONE) : 0;
+    const late = days > 0 ? ` — ${pluralDays(days)}` : "";
+    return `• ${escapeHtml(task.title)}${where}${late} · ${escapeHtml(who)}`;
+  });
+
+  const blocks = [
+    ...(leadLines.length
+      ? [`<b>Лиды просрочены (${leadLines.length})</b>`, ...leadLines, ""]
+      : []),
+    ...section(`Никто не взял (${leads.unclaimed.length})`, leads.unclaimed, false),
+    ...(taskLines.length
+      ? [`<b>Задачи просрочены (${taskLines.length})</b>`, ...taskLines, ""]
+      : []),
+    ...projectSection(`Проекты — срок (${projects.urgent.length})`, projects.urgent),
+  ];
+
+  return ["🌅 <b>Сводка по команде</b>", "", ...blocks].join("\n").trimEnd();
+}
+
+/** Отправляет сводку в общий чат, если он задан. */
+export async function sendTeamDigest(log: Log): Promise<void> {
+  if (!env.TELEGRAM_TEAM_CHAT_ID) return;
+
+  const text = await buildTeamDigest();
+  if (!text) return;
+
+  try {
+    await sendMessage(env.TELEGRAM_TEAM_CHAT_ID, text);
+    log.info({}, "сводка по команде отправлена в общий чат");
+  } catch (cause) {
+    log.error({ err: cause }, "не удалось отправить сводку в общий чат");
+  }
 }
 
 /** Рассылает дайджест всем, кто подключил бота. */

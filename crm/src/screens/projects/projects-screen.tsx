@@ -12,8 +12,6 @@ import {
   type Project,
   type ProjectFilters,
 } from "@/api/projects";
-import { listTeam, memberLabel, type TeamMember } from "@/api/team";
-import { useCurrentUser } from "@/auth/auth-context";
 import { Badge, Button, EmptyState, ErrorNote, Input, Modal } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { describeDeadline } from "@/lib/dates";
@@ -43,12 +41,10 @@ const STATUS_TONE: Record<string, "neutral" | "accent" | "warning" | "success"> 
 };
 
 export function ProjectsScreen() {
-  const user = useCurrentUser();
   const [tab, setTab] = useState<TabKey>("all");
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [projects, setProjects] = useState<Project[] | null>(null);
-  const [team, setTeam] = useState<TeamMember[]>([]);
   const [clients, setClients] = useState<Client[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
@@ -76,9 +72,6 @@ export function ProjectsScreen() {
   useEffect(load, [load]);
 
   useEffect(() => {
-    listTeam()
-      .then(setTeam)
-      .catch(() => setTeam([]));
     listClients()
       .then(setClients)
       .catch(() => setClients([]));
@@ -148,9 +141,8 @@ export function ProjectsScreen() {
       {creating && (
         <ProjectModal
           title="Новый проект"
-          team={team}
           clients={clients}
-          initial={emptyProjectValues({ ownerId: user.id })}
+          initial={emptyProjectValues()}
           onClose={() => setCreating(false)}
           onSubmit={async (values) => {
             await createProject(valuesToProjectInput(values));
@@ -163,7 +155,6 @@ export function ProjectsScreen() {
       {editing && (
         <ProjectModal
           title="Проект"
-          team={team}
           clients={clients}
           initial={projectToValues(editing)}
           onClose={() => setEditing(null)}
@@ -200,13 +191,15 @@ function ProjectRow({ project, onOpen }: { project: Project; onOpen: () => void 
           <span className="text-muted-foreground mt-0.5 block truncate text-xs">
             {[
               project.client?.name,
-              project.owner ? memberLabel(project.owner) : null,
+              project.developers.length
+                ? project.developers.join(", ")
+                : "никто не ведёт",
               project.taskCount > 0
                 ? `задач ${project.openTaskCount}/${project.taskCount}`
                 : null,
             ]
               .filter(Boolean)
-              .join(" · ") || "без клиента"}
+              .join(" · ")}
           </span>
         </div>
 
@@ -226,7 +219,6 @@ function ProjectRow({ project, onOpen }: { project: Project; onOpen: () => void 
 function ProjectModal({
   title,
   initial,
-  team,
   clients,
   onClose,
   onSubmit,
@@ -234,7 +226,6 @@ function ProjectModal({
 }: {
   title: string;
   initial: ProjectFormValues;
-  team: TeamMember[];
   clients: Client[];
   onClose: () => void;
   onSubmit: (values: ProjectFormValues) => Promise<void>;
@@ -272,12 +263,7 @@ function ProjectModal({
   return (
     <Modal title={title} onClose={onClose}>
       <form onSubmit={handleSubmit}>
-        <ProjectFields
-          values={values}
-          onChange={setValues}
-          team={team}
-          clients={clients}
-        />
+        <ProjectFields values={values} onChange={setValues} clients={clients} />
 
         {error && (
           <div className="mt-4">

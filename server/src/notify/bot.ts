@@ -1,6 +1,6 @@
 import { prisma } from "../db.js";
 import { env } from "../env.js";
-import { buildDigestFor, sendDailyDigest } from "./digest.js";
+import { buildDigestFor, sendDailyDigest, sendTeamDigest } from "./digest.js";
 
 import { callBotApi, escapeHtml, trySendMessage } from "./telegram.js";
 import { zonedNow } from "./zone.js";
@@ -35,6 +35,7 @@ const HELP = [
   "Я напоминаю о лидах, про которые пора что-то сделать.",
   "",
   "<b>/today</b> — что горит прямо сейчас",
+  "<b>/chatid</b> — идентификатор этого чата",
   "<b>/stop</b> — отключить напоминания",
   "",
   "Каждое утро присылаю просроченное и запланированное на сегодня.",
@@ -94,6 +95,18 @@ async function handleCommand(chatId: string, text: string, log: Log): Promise<vo
     return;
   }
 
+  // Идентификатор чата нужен, чтобы прописать общий чат в TELEGRAM_TEAM_CHAT_ID.
+  // Достать его иначе — значит лезть на сервер за getUpdates, а тот вдобавок
+  // возвращает пустоту, пока обновления забирает работающий бот.
+  if (command === "/chatid") {
+    await trySendMessage(
+      chatId,
+      `Идентификатор этого чата: <code>${escapeHtml(chatId)}</code>\n\nВпишите его в TELEGRAM_TEAM_CHAT_ID на сервере.`,
+      log,
+    );
+    return;
+  }
+
   const user = await prisma.user.findFirst({ where: { telegramChatId: chatId } });
 
   if (command === "/stop") {
@@ -145,6 +158,9 @@ async function runDigestIfDue(log: Log): Promise<void> {
   });
 
   await sendDailyDigest(log);
+  // Общий чат получает сводку по команде отдельным сообщением: там нужен не
+  // чей-то личный список, а картина целиком с именами.
+  await sendTeamDigest(log);
 }
 
 function startScheduler(log: Log): () => void {

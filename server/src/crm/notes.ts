@@ -72,9 +72,13 @@ export const createNoteBody = z.object({
 });
 
 /**
- * Маршрут добавления заметки одинаков у всех сущностей — отличается только
- * проверкой, что запись существует. Она передаётся снаружи: без внешнего ключа
- * (см. выше) это единственное, что не даёт завести заметку в пустоту.
+ * Маршрут добавления заметки одинаков у всех сущностей — отличается двумя
+ * вещами. Первая: проверка, что запись существует; без внешнего ключа (см.
+ * выше) только она не даёт завести заметку в пустоту. Вторая: кому можно.
+ *
+ * Права передаются снаружи намеренно. Заметки к лиду пишет и маркетолог, а к
+ * проекту или задаче — только команда; общий `requireAuth` здесь стал бы
+ * дырой, через которую маркетолог комментирует чужие разделы.
  */
 export async function noteRoutesFor(
   app: FastifyInstance,
@@ -82,10 +86,11 @@ export async function noteRoutesFor(
   basePath: string,
   exists: (id: string) => Promise<boolean>,
   notFound: string,
+  guard: typeof requireAuth = requireAuth,
 ): Promise<void> {
   const params = z.object({ id: z.string().uuid() });
 
-  app.post(`/${basePath}/:id/notes`, { preHandler: requireAuth }, async (request, reply) => {
+  app.post(`/${basePath}/:id/notes`, { preHandler: guard }, async (request, reply) => {
     const parsedParams = params.safeParse(request.params);
     if (!parsedParams.success) return invalidInput(reply, parsedParams.error);
 

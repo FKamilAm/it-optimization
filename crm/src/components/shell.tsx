@@ -14,12 +14,17 @@ import { NavLink, Outlet } from "react-router";
 import { useAuth, useCurrentUser } from "@/auth/auth-context";
 import { cn } from "@/lib/cn";
 
+/**
+ * `leadsOnly` — пункты, доступные маркетологу. Остальные он не увидит, но
+ * настоящий запрет стоит на сервере: скрытая кнопка защищает от случайного
+ * клика, а не от человека, который наберёт адрес руками.
+ */
 const NAV = [
-  { to: "/", label: "Сегодня", icon: Sun, end: true },
-  { to: "/leads", label: "Лиды", icon: Inbox, end: false },
-  { to: "/projects", label: "Проекты", icon: Briefcase, end: false },
-  { to: "/tasks", label: "Задачи", icon: CheckSquare, end: false },
-  { to: "/clients", label: "Клиенты", icon: Building2, end: false },
+  { to: "/", label: "Сегодня", icon: Sun, end: true, leadsOnly: false },
+  { to: "/leads", label: "Лиды", icon: Inbox, end: false, leadsOnly: true },
+  { to: "/projects", label: "Проекты", icon: Briefcase, end: false, leadsOnly: false },
+  { to: "/tasks", label: "Задачи", icon: CheckSquare, end: false, leadsOnly: false },
+  { to: "/clients", label: "Клиенты", icon: Building2, end: false, leadsOnly: false },
 ] as const;
 
 /**
@@ -43,6 +48,7 @@ const EXTERNAL = [
 export function Shell() {
   const user = useCurrentUser();
   const { logout } = useAuth();
+  const leadsOnly = user.role === "marketing";
 
   return (
     <div className="flex min-h-full flex-col md:flex-row">
@@ -54,24 +60,26 @@ export function Shell() {
           <span className="text-sm font-bold tracking-tight">CRM</span>
         </div>
 
-        {NAV.map(({ to, label, icon: Icon, end }) => (
-          <NavLink
-            key={to}
-            to={to}
-            end={end}
-            className={({ isActive }) =>
-              cn(
-                "flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium whitespace-nowrap transition",
-                isActive
-                  ? "bg-accent-soft text-foreground"
-                  : "text-muted-foreground hover:bg-muted hover:text-foreground",
-              )
-            }
-          >
-            <Icon size={16} strokeWidth={2} />
-            {label}
-          </NavLink>
-        ))}
+        {NAV.filter((item) => !leadsOnly || item.leadsOnly).map(
+          ({ to, label, icon: Icon, end }) => (
+            <NavLink
+              key={to}
+              to={to}
+              end={end}
+              className={({ isActive }) =>
+                cn(
+                  "flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium whitespace-nowrap transition",
+                  isActive
+                    ? "bg-accent-soft text-foreground"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                )
+              }
+            >
+              <Icon size={16} strokeWidth={2} />
+              {label}
+            </NavLink>
+          ),
+        )}
 
         {/* Разделитель виден только в боковой раскладке: в строке наверху он
             превратился бы в лишнюю полосу поперёк навигации. */}

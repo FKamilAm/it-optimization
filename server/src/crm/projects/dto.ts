@@ -1,5 +1,6 @@
-import type { Client, Lead, Project, User } from "@prisma/client";
+import type { Client, Lead, Project } from "@prisma/client";
 import { z } from "zod";
+import { DEVELOPERS } from "../developers.js";
 import { optionalDate, optionalText, optionalUuid, requiredTitle } from "../fields.js";
 
 export const PROJECT_STATUSES = [
@@ -20,7 +21,10 @@ const projectFields = {
   status: z.enum(PROJECT_STATUSES),
   clientId: optionalUuid,
   leadId: optionalUuid,
-  ownerId: optionalUuid,
+  /// Кто ведёт. Список целиком: приходит новый состав, а не «добавь этого».
+  /// Частичные операции над множеством порождают гонки, когда двое правят
+  /// проект одновременно.
+  developers: z.array(z.enum(DEVELOPERS)).max(10),
   startedAt: optionalDate,
   deadline: optionalDate,
 };
@@ -36,7 +40,8 @@ export const listProjectsQuery = z.object({
   status: z.enum(PROJECT_STATUSES).optional(),
   scope: z.enum(["open", "closed", "all"]).default("all"),
   clientId: z.string().uuid().optional(),
-  ownerId: z.string().uuid().optional(),
+  /// Проекты одного человека — «что на мне висит».
+  developer: z.enum(DEVELOPERS).optional(),
   /** Только те, у кого срок уже прошёл, а проект ещё не закрыт. */
   overdue: z
     .enum(["true", "false"])
@@ -52,7 +57,7 @@ export interface ProjectDto {
   status: (typeof PROJECT_STATUSES)[number];
   client: { id: string; name: string } | null;
   lead: { id: string; contact: string; name: string | null } | null;
-  owner: { id: string; name: string | null; email: string } | null;
+  developers: string[];
   startedAt: string | null;
   deadline: string | null;
   closedAt: string | null;
@@ -67,7 +72,6 @@ export interface ProjectDto {
 type ProjectWithRelations = Project & {
   client: Pick<Client, "id" | "name"> | null;
   lead: Pick<Lead, "id" | "contact" | "name"> | null;
-  owner: Pick<User, "id" | "name" | "email"> | null;
   tasks?: { status: string }[];
 };
 
@@ -82,9 +86,7 @@ export function toProjectDto(item: ProjectWithRelations): ProjectDto {
     lead: item.lead
       ? { id: item.lead.id, contact: item.lead.contact, name: item.lead.name }
       : null,
-    owner: item.owner
-      ? { id: item.owner.id, name: item.owner.name, email: item.owner.email }
-      : null,
+    developers: item.developers,
     startedAt: item.startedAt?.toISOString() ?? null,
     deadline: item.deadline?.toISOString() ?? null,
     closedAt: item.closedAt?.toISOString() ?? null,
@@ -101,6 +103,5 @@ export function toProjectDto(item: ProjectWithRelations): ProjectDto {
 export const PROJECT_RELATIONS = {
   client: { select: { id: true, name: true } },
   lead: { select: { id: true, contact: true, name: true } },
-  owner: { select: { id: true, name: true, email: true } },
   tasks: { where: { deletedAt: null }, select: { status: true } },
 } as const;

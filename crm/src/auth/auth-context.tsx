@@ -9,7 +9,8 @@ import {
 } from "react";
 import { api, ApiError } from "@/api/client";
 
-export type UserRole = "owner" | "editor";
+/** marketing видит только лиды — запрет продублирован на сервере. */
+export type UserRole = "owner" | "editor" | "marketing";
 
 export interface User {
   id: string;

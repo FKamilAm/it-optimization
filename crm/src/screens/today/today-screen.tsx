@@ -4,7 +4,6 @@ import { ApiError } from "@/api/client";
 import type { Lead } from "@/api/leads";
 import type { Project } from "@/api/projects";
 import { updateTask, type Task } from "@/api/tasks";
-import { memberLabel } from "@/api/team";
 import { getToday, type TodaySnapshot } from "@/api/today";
 import { useCurrentUser } from "@/auth/auth-context";
 import { Badge, EmptyState, ErrorNote } from "@/components/ui";
@@ -241,7 +240,7 @@ function ProjectLine({ project }: { project: Project }) {
         <span className="text-muted-foreground mt-0.5 block truncate text-xs">
           {[
             project.client?.name,
-            project.owner ? memberLabel(project.owner) : null,
+            project.developers.length ? project.developers.join(", ") : "никто не ведёт",
             project.openTaskCount > 0 ? `открытых задач ${project.openTaskCount}` : null,
           ]
             .filter(Boolean)

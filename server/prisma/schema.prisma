@@ -96,6 +96,11 @@ model ContentRevision {
 enum UserRole {
   owner
   editor
+  /// Только раздел лидов. Заведена под маркетолога, который приводит
+  /// обращения и ведёт их сам, но к проектам, задачам и сайту отношения не
+  /// имеет. Ограничение проверяется на каждом маршруте, а не прячется в меню:
+  /// скрытая кнопка защищает от случайности, а не от человека с консолью.
+  marketing
 }
 
 model User {
@@ -119,11 +124,9 @@ model User {
   sessions Session[]
   actions  AuditLog[]
 
-  ownedLeads    Lead[]    @relation("LeadOwner")
-  ownedProjects Project[] @relation("ProjectOwner")
-  assignedTasks Task[]    @relation("TaskAssignee")
-  createdTasks  Task[]    @relation("TaskAuthor")
-  notes         Note[]    @relation("NoteAuthor")
+  ownedLeads   Lead[] @relation("LeadOwner")
+  createdTasks Task[] @relation("TaskAuthor")
+  notes        Note[] @relation("NoteAuthor")
 
   createdAt  DateTime  @default(now()) @map("created_at")
   updatedAt  DateTime  @updatedAt @map("updated_at")
@@ -282,8 +285,14 @@ model Project {
   leadId   String? @map("lead_id") @db.Uuid
   lead     Lead?   @relation(fields: [leadId], references: [id], onDelete: SetNull)
 
-  ownerId String? @map("owner_id") @db.Uuid
-  owner   User?   @relation("ProjectOwner", fields: [ownerId], references: [id], onDelete: SetNull)
+  /// Кто ведёт. Имена, а не ссылки на учётные записи: разработчики работают под
+  /// общим входом, отдельных аккаунтов у них нет. Список — проект нередко тянут
+  /// вдвоём, и в утренней сводке должно быть видно обоих.
+  ///
+  /// Допустимые значения проверяются по DEVELOPERS в src/crm/developers.ts:
+  /// свободная строка означала бы «Вадим», «вадим» и «Вадик» как трёх разных
+  /// людей, и любая группировка по имени сразу бы врала.
+  developers String[]
 
   startedAt DateTime? @map("started_at")
   deadline  DateTime?
@@ -333,10 +342,10 @@ model Task {
   /// Порядок внутри колонки на доске.
   position Int          @default(0)
 
-  assigneeId  String? @map("assignee_id") @db.Uuid
-  assignee    User?   @relation("TaskAssignee", fields: [assigneeId], references: [id], onDelete: SetNull)
-  createdById String? @map("created_by_id") @db.Uuid
-  createdBy   User?   @relation("TaskAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+  /// Кто делает. Имена из DEVELOPERS, как и у проекта, — по той же причине.
+  developers  String[]
+  createdById String?  @map("created_by_id") @db.Uuid
+  createdBy   User?    @relation("TaskAuthor", fields: [createdById], references: [id], onDelete: SetNull)
 
   dueAt       DateTime? @map("due_at")
   completedAt DateTime? @map("completed_at")
@@ -346,7 +355,7 @@ model Task {
   deletedAt DateTime? @map("deleted_at")
 
   @@index([status, position])
-  @@index([assigneeId, dueAt])
+  @@index([dueAt])
   @@map("tasks")
 }
 

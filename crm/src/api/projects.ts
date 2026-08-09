@@ -27,7 +27,7 @@ export interface Project {
   status: ProjectStatus;
   client: { id: string; name: string } | null;
   lead: { id: string; contact: string; name: string | null } | null;
-  owner: { id: string; name: string | null; email: string } | null;
+  developers: string[];
   startedAt: string | null;
   deadline: string | null;
   closedAt: string | null;
@@ -44,7 +44,7 @@ export interface ProjectInput {
   status?: ProjectStatus;
   clientId?: string | null;
   leadId?: string | null;
-  ownerId?: string | null;
+  developers?: string[];
   startedAt?: string | null;
   deadline?: string | null;
 }
@@ -53,7 +53,7 @@ export interface ProjectFilters {
   status?: ProjectStatus;
   scope?: "open" | "closed" | "all";
   clientId?: string;
-  ownerId?: string;
+  developer?: string;
   overdue?: boolean;
   search?: string;
 }
@@ -63,7 +63,7 @@ function toQuery(filters: ProjectFilters): string {
   if (filters.status) params.set("status", filters.status);
   if (filters.scope) params.set("scope", filters.scope);
   if (filters.clientId) params.set("clientId", filters.clientId);
-  if (filters.ownerId) params.set("ownerId", filters.ownerId);
+  if (filters.developer) params.set("developer", filters.developer);
   if (filters.overdue) params.set("overdue", "true");
   if (filters.search) params.set("search", filters.search);
   const query = params.toString();

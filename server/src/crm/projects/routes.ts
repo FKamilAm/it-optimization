@@ -2,7 +2,7 @@ import type { Prisma } from "@prisma/client";
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { audit } from "../../audit.js";
-import { requireAuth } from "../../auth/guard.js";
+import { requireTeam } from "../../auth/guard.js";
 import { prisma } from "../../db.js";
 import { invalidInput } from "../http.js";
 import { deleteNotes, listNotes, noteRoutesFor } from "../notes.js";
@@ -41,7 +41,6 @@ function closedAtFor(
 async function assertReferences(input: {
   clientId?: string | null;
   leadId?: string | null;
-  ownerId?: string | null;
 }): Promise<string | null> {
   if (input.clientId) {
     const found = await prisma.client.count({
@@ -55,21 +54,15 @@ async function assertReferences(input: {
     });
     if (!found) return "Лид не найден";
   }
-  if (input.ownerId) {
-    const found = await prisma.user.count({
-      where: { id: input.ownerId, disabledAt: null },
-    });
-    if (!found) return "Исполнитель не найден";
-  }
   return null;
 }
 
 export async function projectRoutes(app: FastifyInstance): Promise<void> {
-  app.get("/projects", { preHandler: requireAuth }, async (request, reply) => {
+  app.get("/projects", { preHandler: requireTeam }, async (request, reply) => {
     const query = listProjectsQuery.safeParse(request.query);
     if (!query.success) return invalidInput(reply, query.error);
 
-    const { status, scope, clientId, ownerId, overdue, search } = query.data;
+    const { status, scope, clientId, developer, overdue, search } = query.data;
     const where: Prisma.ProjectWhereInput = { deletedAt: null };
 
     if (status) where.status = status;
@@ -77,7 +70,7 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
     else if (scope === "closed") where.status = { in: [...CLOSED_PROJECT_STATUSES] };
 
     if (clientId) where.clientId = clientId;
-    if (ownerId) where.ownerId = ownerId;
+    if (developer) where.developers = { has: developer };
 
     if (overdue) {
       where.deadline = { lt: new Date() };
@@ -105,7 +98,7 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
     return reply.send({ projects: projects.map(toProjectDto) });
   });
 
-  app.post("/projects", { preHandler: requireAuth }, async (request, reply) => {
+  app.post("/projects", { preHandler: requireTeam }, async (request, reply) => {
     const parsed = createProjectBody.safeParse(request.body);
     if (!parsed.success) return invalidInput(reply, parsed.error);
 
@@ -121,7 +114,7 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
         status,
         clientId: input.clientId ?? null,
         leadId: input.leadId ?? null,
-        ownerId: input.ownerId ?? null,
+        developers: input.developers ?? [],
         startedAt: input.startedAt ?? null,
         deadline: input.deadline ?? null,
         closedAt: closedAtFor(status, null) ?? null,
@@ -133,7 +126,7 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
     return reply.code(201).send({ project: toProjectDto(project) });
   });
 
-  app.get("/projects/:id", { preHandler: requireAuth }, async (request, reply) => {
+  app.get("/projects/:id", { preHandler: requireTeam }, async (request, reply) => {
     const params = idParams.safeParse(request.params);
     if (!params.success) return invalidInput(reply, params.error);
 
@@ -149,7 +142,7 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
     });
   });
 
-  app.patch("/projects/:id", { preHandler: requireAuth }, async (request, reply) => {
+  app.patch("/projects/:id", { preHandler: requireTeam }, async (request, reply) => {
     const params = idParams.safeParse(request.params);
     if (!params.success) return invalidInput(reply, params.error);
 
@@ -171,7 +164,8 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
     if (input.status !== undefined) data.status = input.status;
     if (input.clientId !== undefined) data.clientId = input.clientId;
     if (input.leadId !== undefined) data.leadId = input.leadId;
-    if (input.ownerId !== undefined) data.ownerId = input.ownerId;
+    // Состав приходит целиком — записываем как есть.
+    if (input.developers !== undefined) data.developers = input.developers;
     if (input.startedAt !== undefined) data.startedAt = input.startedAt;
     if (input.deadline !== undefined) data.deadline = input.deadline;
 
@@ -194,7 +188,7 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
     return reply.send({ project: toProjectDto(project) });
   });
 
-  app.delete("/projects/:id", { preHandler: requireAuth }, async (request, reply) => {
+  app.delete("/projects/:id", { preHandler: requireTeam }, async (request, reply) => {
     const params = idParams.safeParse(request.params);
     if (!params.success) return invalidInput(reply, params.error);
 
@@ -233,5 +227,6 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
     "projects",
     async (id) => (await prisma.project.count({ where: { id, deletedAt: null } })) > 0,
     "Проект не найден",
+    requireTeam,
   );
 }

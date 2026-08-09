@@ -22,13 +22,11 @@ type LeadFull = Lead & {
 
 type TaskFull = Task & {
   project: Pick<Project, "id" | "title"> | null;
-  assignee: Pick<User, "id" | "name" | "email"> | null;
 };
 
 type ProjectFull = Project & {
   client: Pick<Client, "id" | "name"> | null;
   lead: Pick<Lead, "id" | "contact" | "name"> | null;
-  owner: Pick<User, "id" | "name" | "email"> | null;
   tasks: { status: string }[];
 };
 
@@ -43,6 +41,11 @@ export interface TodaySnapshot {
     /** Пришёл, никто не взял, срок не поставлен. Самое опасное состояние. */
     unclaimed: LeadFull[];
   };
+  /**
+   * Задачи и проекты не фильтруются по человеку: разработчики значатся
+   * именами, а не учётными записями, и связать читающего с именем нельзя.
+   * Под общим входом это и правильно — экран показывает всё, что горит.
+   */
   tasks: {
     overdue: TaskFull[];
     today: TaskFull[];
@@ -60,13 +63,11 @@ const LEAD_INCLUDE = {
 
 const TASK_INCLUDE = {
   project: { select: { id: true, title: true } },
-  assignee: { select: { id: true, name: true, email: true } },
 } as const;
 
 const PROJECT_INCLUDE = {
   client: { select: { id: true, name: true } },
   lead: { select: { id: true, contact: true, name: true } },
-  owner: { select: { id: true, name: true, email: true } },
   tasks: { where: { deletedAt: null }, select: { status: true } },
 } as const;
 
@@ -126,7 +127,6 @@ export async function collectToday(userId: string): Promise<TodaySnapshot> {
       where: {
         deletedAt: null,
         status: openTasks,
-        assigneeId: userId,
         dueAt: { lt: from },
       },
       orderBy: { dueAt: "asc" },
@@ -136,7 +136,6 @@ export async function collectToday(userId: string): Promise<TodaySnapshot> {
       where: {
         deletedAt: null,
         status: openTasks,
-        assigneeId: userId,
         dueAt: { gte: from, lt: until },
       },
       orderBy: [{ priority: "desc" }, { position: "asc" }],
@@ -154,6 +153,65 @@ export async function collectToday(userId: string): Promise<TodaySnapshot> {
     tasks: { overdue: overdueTasks, today: todayTasks },
     projects: { urgent: urgentProjects },
   };
+}
+
+export interface TeamSnapshot {
+  /** Просрочено у всех разом, с указанием, на ком висит. */
+  leads: { overdue: LeadFull[]; unclaimed: LeadFull[] };
+  tasks: { overdue: TaskFull[] };
+  projects: { urgent: ProjectFull[] };
+}
+
+/**
+ * Срез по всей команде — для общего чата. Отличается от личного не оформлением,
+ * а смыслом: тут важно не «что делать мне», а «что не движется у нас» и на ком
+ * это висит. Поэтому выборки без фильтра по человеку, зато с именами.
+ */
+export async function collectTeamToday(): Promise<TeamSnapshot> {
+  const from = startOfToday(env.TIMEZONE);
+  const until = startOfTomorrow(env.TIMEZONE);
+
+  const openLeads = { in: [...OPEN_LEAD_STATUSES] };
+  const openTasks = { in: [...OPEN_TASK_STATUSES] };
+  const openProjects = { in: [...OPEN_PROJECT_STATUSES] };
+
+  const [overdueLeads, unclaimed, overdueTasks, urgentProjects] = await Promise.all([
+    prisma.lead.findMany({
+      where: { deletedAt: null, status: openLeads, nextActionAt: { lt: from } },
+      orderBy: { nextActionAt: "asc" },
+      include: LEAD_INCLUDE,
+    }),
+    prisma.lead.findMany({
+      where: { deletedAt: null, status: "new", ownerId: null, nextActionAt: null },
+      orderBy: { createdAt: "asc" },
+      include: LEAD_INCLUDE,
+    }),
+    prisma.task.findMany({
+      where: { deletedAt: null, status: openTasks, dueAt: { lt: from } },
+      orderBy: { dueAt: "asc" },
+      include: TASK_INCLUDE,
+    }),
+    prisma.project.findMany({
+      where: { deletedAt: null, status: openProjects, deadline: { lt: until } },
+      orderBy: { deadline: "asc" },
+      include: PROJECT_INCLUDE,
+    }),
+  ]);
+
+  return {
+    leads: { overdue: overdueLeads, unclaimed },
+    tasks: { overdue: overdueTasks },
+    projects: { urgent: urgentProjects },
+  };
+}
+
+export function isEmptyTeamSnapshot(snapshot: TeamSnapshot): boolean {
+  return (
+    snapshot.leads.overdue.length === 0 &&
+    snapshot.leads.unclaimed.length === 0 &&
+    snapshot.tasks.overdue.length === 0 &&
+    snapshot.projects.urgent.length === 0
+  );
 }
 
 /** Пусто — значит напоминать не о чем: бот в этом случае молчит. */

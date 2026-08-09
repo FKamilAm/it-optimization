@@ -1,5 +1,6 @@
-import type { Project, Task, User } from "@prisma/client";
+import type { Project, Task } from "@prisma/client";
 import { z } from "zod";
+import { DEVELOPERS } from "../developers.js";
 import { optionalDate, optionalText, optionalUuid, requiredTitle } from "../fields.js";
 
 export const TASK_STATUSES = ["backlog", "todo", "in_progress", "done", "cancelled"] as const;
@@ -15,7 +16,7 @@ const taskFields = {
   status: z.enum(TASK_STATUSES),
   priority: z.enum(TASK_PRIORITIES),
   projectId: optionalUuid,
-  assigneeId: optionalUuid,
+  developers: z.array(z.enum(DEVELOPERS)).max(10),
   dueAt: optionalDate,
 };
 
@@ -37,7 +38,7 @@ export const listTasksQuery = z.object({
   status: z.enum(TASK_STATUSES).optional(),
   scope: z.enum(["open", "closed", "all"]).default("all"),
   projectId: z.string().uuid().optional(),
-  assigneeId: z.string().uuid().optional(),
+  developer: z.enum(DEVELOPERS).optional(),
   /** Задачи без проекта — их легко потерять, поэтому нужен отдельный срез. */
   standalone: z
     .enum(["true", "false"])
@@ -57,7 +58,7 @@ export interface TaskDto {
   status: (typeof TASK_STATUSES)[number];
   priority: (typeof TASK_PRIORITIES)[number];
   project: { id: string; title: string } | null;
-  assignee: { id: string; name: string | null; email: string } | null;
+  developers: string[];
   dueAt: string | null;
   completedAt: string | null;
   position: number;
@@ -67,7 +68,6 @@ export interface TaskDto {
 
 type TaskWithRelations = Task & {
   project: Pick<Project, "id" | "title"> | null;
-  assignee: Pick<User, "id" | "name" | "email"> | null;
 };
 
 export function toTaskDto(item: TaskWithRelations): TaskDto {
@@ -78,9 +78,7 @@ export function toTaskDto(item: TaskWithRelations): TaskDto {
     status: item.status,
     priority: item.priority,
     project: item.project ? { id: item.project.id, title: item.project.title } : null,
-    assignee: item.assignee
-      ? { id: item.assignee.id, name: item.assignee.name, email: item.assignee.email }
-      : null,
+    developers: item.developers,
     dueAt: item.dueAt?.toISOString() ?? null,
     completedAt: item.completedAt?.toISOString() ?? null,
     position: item.position,
@@ -91,5 +89,4 @@ export function toTaskDto(item: TaskWithRelations): TaskDto {
 
 export const TASK_RELATIONS = {
   project: { select: { id: true, title: true } },
-  assignee: { select: { id: true, name: true, email: true } },
 } as const;

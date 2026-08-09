@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { FastifyInstance } from "fastify";
 import { audit } from "../audit.js";
-import { requireAuth } from "../auth/guard.js";
+import { requireTeam } from "../auth/guard.js";
 import { REPO_DIR } from "../assets/images.js";
 import { prisma } from "../db.js";
 import { canPublish, env } from "../env.js";
@@ -45,7 +45,7 @@ export async function publishRoutes(app: FastifyInstance): Promise<void> {
     return reply.send(toSnapshot(items.map(toDto)));
   });
 
-  app.post("/cases/publish", { preHandler: requireAuth }, async (request, reply) => {
+  app.post("/cases/publish", { preHandler: requireTeam }, async (request, reply) => {
     const items = await prisma.case.findMany({
       where: { deletedAt: null },
       orderBy: { position: "asc" },

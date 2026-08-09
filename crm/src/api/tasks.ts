@@ -44,7 +44,7 @@ export interface Task {
   status: TaskStatus;
   priority: TaskPriority;
   project: { id: string; title: string } | null;
-  assignee: { id: string; name: string | null; email: string } | null;
+  developers: string[];
   dueAt: string | null;
   completedAt: string | null;
   position: number;
@@ -58,7 +58,7 @@ export interface TaskInput {
   status?: TaskStatus;
   priority?: TaskPriority;
   projectId?: string | null;
-  assigneeId?: string | null;
+  developers?: string[];
   dueAt?: string | null;
 }
 
@@ -66,7 +66,7 @@ export interface TaskFilters {
   status?: TaskStatus;
   scope?: "open" | "closed" | "all";
   projectId?: string;
-  assigneeId?: string;
+  developer?: string;
   standalone?: boolean;
   overdue?: boolean;
   search?: string;
@@ -77,7 +77,7 @@ function toQuery(filters: TaskFilters): string {
   if (filters.status) params.set("status", filters.status);
   if (filters.scope) params.set("scope", filters.scope);
   if (filters.projectId) params.set("projectId", filters.projectId);
-  if (filters.assigneeId) params.set("assigneeId", filters.assigneeId);
+  if (filters.developer) params.set("developer", filters.developer);
   if (filters.standalone) params.set("standalone", "true");
   if (filters.overdue) params.set("overdue", "true");
   if (filters.search) params.set("search", filters.search);

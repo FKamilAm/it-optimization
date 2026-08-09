@@ -1,7 +1,7 @@
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { audit } from "../audit.js";
-import { requireAuth } from "../auth/guard.js";
+import { requireTeam } from "../auth/guard.js";
 import { processUpload, SLOTS, type AssetSlot } from "../assets/images.js";
 import { CASES_SCOPE, currentRevision, prisma } from "../db.js";
 import { env } from "../env.js";
@@ -34,7 +34,7 @@ async function bumpRevision(): Promise<number> {
 }
 
 export async function caseRoutes(app: FastifyInstance): Promise<void> {
-  app.get("/cases", { preHandler: requireAuth }, async (_request, reply) => {
+  app.get("/cases", { preHandler: requireTeam }, async (_request, reply) => {
     const [cases, version] = await Promise.all([listCases(), currentRevision()]);
     return reply.send({ cases, version: String(version) });
   });
@@ -44,7 +44,7 @@ export async function caseRoutes(app: FastifyInstance): Promise<void> {
    * такое же свойство контента, как заголовок. Пришедшие id создаются или
    * обновляются, пропавшие помечаются удалёнными.
    */
-  app.put("/cases", { preHandler: requireAuth }, async (request, reply) => {
+  app.put("/cases", { preHandler: requireTeam }, async (request, reply) => {
     const parsed = replaceCasesBody.safeParse(request.body);
     if (!parsed.success) {
       return reply.code(400).send({
@@ -148,7 +148,7 @@ export async function caseRoutes(app: FastifyInstance): Promise<void> {
    */
   app.post(
     "/cases/:caseId/assets/:slot",
-    { preHandler: requireAuth },
+    { preHandler: requireTeam },
     async (request, reply) => {
       const params = assetParams.safeParse(request.params);
       if (!params.success) {
@@ -225,7 +225,7 @@ export async function caseRoutes(app: FastifyInstance): Promise<void> {
     },
   );
 
-  app.get("/cases/slots", { preHandler: requireAuth }, async (_request, reply) =>
+  app.get("/cases/slots", { preHandler: requireTeam }, async (_request, reply) =>
     reply.send({
       slots: Object.entries(SLOTS).map(([slot, spec]) => ({
         slot,

@@ -6,7 +6,7 @@ import {
   type ProjectInput,
   type ProjectStatus,
 } from "@/api/projects";
-import { memberLabel, type TeamMember } from "@/api/team";
+import { DeveloperPicker } from "@/components/developer-picker";
 import { Field, Input, Select, Textarea } from "@/components/ui";
 import { fromDateInputValue, toDateInputValue } from "@/lib/dates";
 
@@ -15,18 +15,18 @@ export interface ProjectFormValues {
   description: string;
   status: ProjectStatus;
   clientId: string;
-  ownerId: string;
+  developers: string[];
   startedDate: string;
   deadlineDate: string;
 }
 
-export function emptyProjectValues(defaults: { ownerId?: string }): ProjectFormValues {
+export function emptyProjectValues(): ProjectFormValues {
   return {
     title: "",
     description: "",
     status: "planned",
     clientId: "",
-    ownerId: defaults.ownerId ?? "",
+    developers: [],
     startedDate: "",
     deadlineDate: "",
   };
@@ -38,7 +38,7 @@ export function projectToValues(project: Project): ProjectFormValues {
     description: project.description ?? "",
     status: project.status,
     clientId: project.client?.id ?? "",
-    ownerId: project.owner?.id ?? "",
+    developers: project.developers,
     startedDate: toDateInputValue(project.startedAt),
     deadlineDate: toDateInputValue(project.deadline),
   };
@@ -50,7 +50,7 @@ export function valuesToProjectInput(values: ProjectFormValues): ProjectInput {
     description: values.description.trim() || null,
     status: values.status,
     clientId: values.clientId || null,
-    ownerId: values.ownerId || null,
+    developers: values.developers,
     startedAt: fromDateInputValue(values.startedDate),
     deadline: fromDateInputValue(values.deadlineDate),
   };
@@ -59,12 +59,10 @@ export function valuesToProjectInput(values: ProjectFormValues): ProjectInput {
 export function ProjectFields({
   values,
   onChange,
-  team,
   clients,
 }: {
   values: ProjectFormValues;
   onChange: (values: ProjectFormValues) => void;
-  team: TeamMember[];
   clients: Client[];
 }) {
   function set<K extends keyof ProjectFormValues>(key: K, value: ProjectFormValues[K]) {
@@ -98,34 +96,26 @@ export function ProjectFields({
           </Select>
         </Field>
 
-        <Field label="Кто ведёт">
+        <Field label="Клиент" hint="Можно оставить пустым — например, для своих">
           <Select
-            value={values.ownerId}
-            onChange={(event) => set("ownerId", event.target.value)}
+            value={values.clientId}
+            onChange={(event) => set("clientId", event.target.value)}
           >
-            <option value="">Никто</option>
-            {team.map((member) => (
-              <option key={member.id} value={member.id}>
-                {memberLabel(member)}
+            <option value="">Без клиента</option>
+            {clients.map((client) => (
+              <option key={client.id} value={client.id}>
+                {client.name}
               </option>
             ))}
           </Select>
         </Field>
       </div>
 
-      <Field label="Клиент" hint="Можно оставить пустым — например, для своих проектов">
-        <Select
-          value={values.clientId}
-          onChange={(event) => set("clientId", event.target.value)}
-        >
-          <option value="">Без клиента</option>
-          {clients.map((client) => (
-            <option key={client.id} value={client.id}>
-              {client.name}
-            </option>
-          ))}
-        </Select>
-      </Field>
+      <DeveloperPicker
+        value={values.developers}
+        onChange={(next) => set("developers", next)}
+        hint="Попадёт в утреннюю сводку в общий чат"
+      />
 
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Начали">

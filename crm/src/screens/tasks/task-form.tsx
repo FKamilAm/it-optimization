@@ -9,7 +9,7 @@ import {
   type TaskPriority,
   type TaskStatus,
 } from "@/api/tasks";
-import { memberLabel, type TeamMember } from "@/api/team";
+import { DeveloperPicker } from "@/components/developer-picker";
 import { Field, Input, Select, Textarea } from "@/components/ui";
 import { fromDateInputValue, toDateInputValue } from "@/lib/dates";
 
@@ -19,23 +19,18 @@ export interface TaskFormValues {
   status: TaskStatus;
   priority: TaskPriority;
   projectId: string;
-  assigneeId: string;
+  developers: string[];
   dueDate: string;
 }
 
-export function emptyTaskValues(defaults: {
-  assigneeId?: string;
-  projectId?: string;
-}): TaskFormValues {
+export function emptyTaskValues(defaults: { projectId?: string }): TaskFormValues {
   return {
     title: "",
     description: "",
     status: "todo",
     priority: "normal",
     projectId: defaults.projectId ?? "",
-    // По умолчанию задача на себя: чаще всего заводят себе, а «ничья» задача
-    // не попадёт ни в чей утренний список.
-    assigneeId: defaults.assigneeId ?? "",
+    developers: [],
     dueDate: "",
   };
 }
@@ -47,7 +42,7 @@ export function taskToValues(task: Task): TaskFormValues {
     status: task.status,
     priority: task.priority,
     projectId: task.project?.id ?? "",
-    assigneeId: task.assignee?.id ?? "",
+    developers: task.developers,
     dueDate: toDateInputValue(task.dueAt),
   };
 }
@@ -59,7 +54,7 @@ export function valuesToTaskInput(values: TaskFormValues): TaskInput {
     status: values.status,
     priority: values.priority,
     projectId: values.projectId || null,
-    assigneeId: values.assigneeId || null,
+    developers: values.developers,
     dueAt: fromDateInputValue(values.dueDate),
   };
 }
@@ -67,12 +62,10 @@ export function valuesToTaskInput(values: TaskFormValues): TaskInput {
 export function TaskFields({
   values,
   onChange,
-  team,
   projects,
 }: {
   values: TaskFormValues;
   onChange: (values: TaskFormValues) => void;
-  team: TeamMember[];
   projects: Project[];
 }) {
   function set<K extends keyof TaskFormValues>(key: K, value: TaskFormValues[K]) {
@@ -120,21 +113,14 @@ export function TaskFields({
         </Field>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Исполнитель" hint="Пусто — задача не попадёт ни в чей список">
-          <Select
-            value={values.assigneeId}
-            onChange={(event) => set("assigneeId", event.target.value)}
-          >
-            <option value="">Никто</option>
-            {team.map((member) => (
-              <option key={member.id} value={member.id}>
-                {memberLabel(member)}
-              </option>
-            ))}
-          </Select>
-        </Field>
+      <DeveloperPicker
+        value={values.developers}
+        onChange={(next) => set("developers", next)}
+        label="Кто делает"
+        hint="Имя попадёт в утреннюю сводку в общий чат"
+      />
 
+      <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Срок" hint="Пусто — напоминания не будет">
           <Input
             type="date"

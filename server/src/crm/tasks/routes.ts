@@ -2,7 +2,7 @@ import type { Prisma } from "@prisma/client";
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { audit } from "../../audit.js";
-import { requireAuth } from "../../auth/guard.js";
+import { requireTeam } from "../../auth/guard.js";
 import { prisma } from "../../db.js";
 import { invalidInput } from "../http.js";
 import { deleteNotes, listNotes, noteRoutesFor } from "../notes.js";
@@ -36,19 +36,12 @@ function completedAtFor(
 
 async function assertReferences(input: {
   projectId?: string | null;
-  assigneeId?: string | null;
 }): Promise<string | null> {
   if (input.projectId) {
     const found = await prisma.project.count({
       where: { id: input.projectId, deletedAt: null },
     });
     if (!found) return "Проект не найден";
-  }
-  if (input.assigneeId) {
-    const found = await prisma.user.count({
-      where: { id: input.assigneeId, disabledAt: null },
-    });
-    if (!found) return "Исполнитель не найден";
   }
   return null;
 }
@@ -63,11 +56,11 @@ async function nextPosition(status: string): Promise<number> {
 }
 
 export async function taskRoutes(app: FastifyInstance): Promise<void> {
-  app.get("/tasks", { preHandler: requireAuth }, async (request, reply) => {
+  app.get("/tasks", { preHandler: requireTeam }, async (request, reply) => {
     const query = listTasksQuery.safeParse(request.query);
     if (!query.success) return invalidInput(reply, query.error);
 
-    const { status, scope, projectId, assigneeId, standalone, overdue, search } =
+    const { status, scope, projectId, developer, standalone, overdue, search } =
       query.data;
     const where: Prisma.TaskWhereInput = { deletedAt: null };
 
@@ -77,7 +70,7 @@ export async function taskRoutes(app: FastifyInstance): Promise<void> {
 
     if (projectId) where.projectId = projectId;
     if (standalone) where.projectId = null;
-    if (assigneeId) where.assigneeId = assigneeId;
+    if (developer) where.developers = { has: developer };
 
     if (overdue) {
       where.dueAt = { lt: new Date() };
@@ -101,7 +94,7 @@ export async function taskRoutes(app: FastifyInstance): Promise<void> {
     return reply.send({ tasks: tasks.map(toTaskDto) });
   });
 
-  app.post("/tasks", { preHandler: requireAuth }, async (request, reply) => {
+  app.post("/tasks", { preHandler: requireTeam }, async (request, reply) => {
     const parsed = createTaskBody.safeParse(request.body);
     if (!parsed.success) return invalidInput(reply, parsed.error);
 
@@ -117,7 +110,7 @@ export async function taskRoutes(app: FastifyInstance): Promise<void> {
         status,
         priority: input.priority ?? "normal",
         projectId: input.projectId ?? null,
-        assigneeId: input.assigneeId ?? null,
+        developers: input.developers ?? [],
         createdById: request.user!.id,
         dueAt: input.dueAt ?? null,
         completedAt: completedAtFor(status, null) ?? null,
@@ -130,7 +123,7 @@ export async function taskRoutes(app: FastifyInstance): Promise<void> {
     return reply.code(201).send({ task: toTaskDto(task) });
   });
 
-  app.get("/tasks/:id", { preHandler: requireAuth }, async (request, reply) => {
+  app.get("/tasks/:id", { preHandler: requireTeam }, async (request, reply) => {
     const params = idParams.safeParse(request.params);
     if (!params.success) return invalidInput(reply, params.error);
 
@@ -146,7 +139,7 @@ export async function taskRoutes(app: FastifyInstance): Promise<void> {
     });
   });
 
-  app.patch("/tasks/:id", { preHandler: requireAuth }, async (request, reply) => {
+  app.patch("/tasks/:id", { preHandler: requireTeam }, async (request, reply) => {
     const params = idParams.safeParse(request.params);
     if (!params.success) return invalidInput(reply, params.error);
 
@@ -167,7 +160,7 @@ export async function taskRoutes(app: FastifyInstance): Promise<void> {
     if (input.description !== undefined) data.description = input.description;
     if (input.priority !== undefined) data.priority = input.priority;
     if (input.projectId !== undefined) data.projectId = input.projectId;
-    if (input.assigneeId !== undefined) data.assigneeId = input.assigneeId;
+    if (input.developers !== undefined) data.developers = input.developers;
     if (input.dueAt !== undefined) data.dueAt = input.dueAt;
 
     // Смена статуса — это переезд в другую колонку, поэтому задача встаёт в её
@@ -191,7 +184,7 @@ export async function taskRoutes(app: FastifyInstance): Promise<void> {
   });
 
   /** Порядок внутри одной колонки. Приходит целиком, применяется одной транзакцией. */
-  app.put("/tasks/reorder", { preHandler: requireAuth }, async (request, reply) => {
+  app.put("/tasks/reorder", { preHandler: requireTeam }, async (request, reply) => {
     const parsed = reorderTasksBody.safeParse(request.body);
     if (!parsed.success) return invalidInput(reply, parsed.error);
 
@@ -216,7 +209,7 @@ export async function taskRoutes(app: FastifyInstance): Promise<void> {
     return reply.code(204).send();
   });
 
-  app.delete("/tasks/:id", { preHandler: requireAuth }, async (request, reply) => {
+  app.delete("/tasks/:id", { preHandler: requireTeam }, async (request, reply) => {
     const params = idParams.safeParse(request.params);
     if (!params.success) return invalidInput(reply, params.error);
 
@@ -247,5 +240,6 @@ export async function taskRoutes(app: FastifyInstance): Promise<void> {
     "tasks",
     async (id) => (await prisma.task.count({ where: { id, deletedAt: null } })) > 0,
     "Задача не найдена",
+    requireTeam,
   );
 }
