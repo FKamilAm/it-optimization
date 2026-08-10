@@ -1,14 +1,14 @@
+import { buildDigest, sendTeamDigest } from "../notify/digest.js";
 import { prisma } from "../db.js";
-import { buildDigestFor, buildTeamDigest } from "../notify/digest.js";
 
 /**
- * Печатает утренние сводки, ничего не отправляя.
+ * Показывает утреннюю сводку, ничего не отправляя.
  *
- * Проверять текст, рассылая его в рабочий чат, — плохая идея: правки в
- * формулировках случаются часто, а команда получает их все. Здесь то же
- * содержимое, но в терминал.
+ *   npm run digest:preview          — напечатать в терминал
+ *   npm run digest:preview -- send  — отправить в общий чат прямо сейчас
  *
- *   npm run digest:preview
+ * Проверять текст, рассылая его в рабочий чат, — плохая идея: формулировки
+ * правятся часто, а команда получает их все.
  */
 function strip(html: string): string {
   // Телеграм рисует разметку сам; в терминале она только мешает читать.
@@ -20,20 +20,17 @@ function strip(html: string): string {
 }
 
 async function main(): Promise<void> {
-  const team = await buildTeamDigest();
-  console.log("=== СВОДКА В ОБЩИЙ ЧАТ ===\n");
-  console.log(team ? strip(team) : "(пусто — бот промолчит)");
-
-  const users = await prisma.user.findMany({
-    where: { disabledAt: null },
-    select: { id: true, email: true, name: true },
-  });
-
-  for (const user of users) {
-    const personal = await buildDigestFor(user.id);
-    console.log(`\n=== ЛИЧНО: ${user.name ?? user.email} ===\n`);
-    console.log(personal ? strip(personal) : "(пусто — бот промолчит)");
+  if (process.argv.includes("send")) {
+    await sendTeamDigest({
+      info: (_obj, msg) => console.log(msg),
+      warn: (_obj, msg) => console.warn(msg),
+      error: (obj, msg) => console.error(msg, obj),
+    });
+    return;
   }
+
+  const digest = await buildDigest();
+  console.log(digest ? strip(digest) : "Ничего не горит — бот промолчал бы.");
 }
 
 main()

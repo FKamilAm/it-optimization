@@ -14,6 +14,8 @@ import {
   CLOSED_PROJECT_STATUSES,
   createProject,
   deleteProject,
+  addProjectNote,
+  getProject,
   listProjects,
   PROJECT_STATUSES,
   PROJECT_STATUS_LABELS,
@@ -25,6 +27,7 @@ import {
   type ProjectStatus,
 } from "@/api/projects";
 import { Board, type BoardColumn, type ColumnTone } from "@/components/board";
+import { NotesPanel } from "@/components/notes-panel";
 import { PersonChips } from "@/components/person-chip";
 import { Badge, Button, EmptyState, ErrorNote, Input, Modal } from "@/components/ui";
 import { cn } from "@/lib/cn";
@@ -523,9 +526,18 @@ function ProjectModal({
         <ProjectFields values={values} onChange={setValues} clients={clients} />
 
         {projectId && (
-          <div className="mt-4">
-            <ProjectInvoices projectId={projectId} />
-          </div>
+          <>
+            <div className="mt-4">
+              <ProjectInvoices projectId={projectId} />
+            </div>
+            <div className="mt-4">
+              <NotesPanel
+                load={async () => (await getProject(projectId)).notes}
+                add={(body) => addProjectNote(projectId, body)}
+                hint="Пока пусто. Сюда — договорённости с клиентом и решения по проекту."
+              />
+            </div>
+          </>
         )}
 
         {error && (

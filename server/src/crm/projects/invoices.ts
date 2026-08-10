@@ -44,7 +44,50 @@ async function projectExists(id: string): Promise<boolean> {
   return (await prisma.project.count({ where: { id, deletedAt: null } })) > 0;
 }
 
+const listQuery = z.object({
+  /** unpaid — выставленные и неоплаченные; all — все подряд. */
+  scope: z.enum(["unpaid", "all"]).default("unpaid"),
+});
+
 export async function invoiceRoutes(app: FastifyInstance): Promise<void> {
+  /**
+   * Все счета разом, поверх проектов.
+   *
+   * Без этого «кто нам должен» отвечается только обходом каждого проекта по
+   * очереди — то есть не отвечается вовсе. Здесь же общая сумма долга.
+   */
+  app.get("/invoices", { preHandler: requireTeam }, async (request, reply) => {
+    const query = listQuery.safeParse(request.query);
+    if (!query.success) return invalidInput(reply, query.error);
+
+    const invoices = await prisma.invoice.findMany({
+      where: {
+        kind: "invoice",
+        project: { deletedAt: null },
+        ...(query.data.scope === "unpaid" ? { paidAt: null } : {}),
+      },
+      orderBy: [{ period: "asc" }],
+      include: {
+        project: { select: { id: true, title: true, client: { select: { name: true } } } },
+      },
+      take: 500,
+    });
+
+    return reply.send({
+      invoices: invoices.map((invoice) => ({
+        ...toInvoiceDto(invoice),
+        project: {
+          id: invoice.project.id,
+          title: invoice.project.title,
+          client: invoice.project.client?.name ?? null,
+        },
+      })),
+      // Сумма считается на сервере: клиент иначе сложил бы только то, что
+      // попало в выдачу, и цифра врала бы при обрезке по take.
+      total: invoices.reduce((sum, invoice) => sum + (invoice.amount ?? 0), 0),
+    });
+  });
+
   app.get("/projects/:id/invoices", { preHandler: requireTeam }, async (request, reply) => {
     const params = projectParams.safeParse(request.params);
     if (!params.success) return invalidInput(reply, params.error);

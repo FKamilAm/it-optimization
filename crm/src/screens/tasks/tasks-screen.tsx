@@ -4,8 +4,10 @@ import { ApiError } from "@/api/client";
 import { listProjects, type Project } from "@/api/projects";
 import {
   BOARD_COLUMNS,
+  addTaskNote,
   createTask,
   deleteTask,
+  getTask,
   listTasks,
   reorderTasks,
   TASK_STATUS_LABELS,
@@ -15,6 +17,7 @@ import {
   type TaskStatus,
 } from "@/api/tasks";
 import { Board, type BoardColumn, type ColumnTone } from "@/components/board";
+import { NotesPanel } from "@/components/notes-panel";
 import { PersonChip, PersonChips } from "@/components/person-chip";
 import { MonthCalendar } from "@/components/month-calendar";
 import { Badge, Button, EmptyState, ErrorNote, Input, Modal } from "@/components/ui";
@@ -460,6 +463,7 @@ export function TasksScreen() {
         <TaskModal
           title="Задача"
           projects={projects}
+          taskId={editing.id}
           initial={taskToValues(editing)}
           onClose={() => setEditing(null)}
           onSubmit={async (values) => {
@@ -540,6 +544,7 @@ function TaskModal({
   title,
   initial,
   projects,
+  taskId,
   onClose,
   onSubmit,
   onDelete,
@@ -547,6 +552,8 @@ function TaskModal({
   title: string;
   initial: TaskFormValues;
   projects: Project[];
+  /** Есть только у сохранённой задачи — заметки вешать не на что, пока её нет. */
+  taskId?: string;
   onClose: () => void;
   onSubmit: (values: TaskFormValues) => Promise<void>;
   onDelete?: () => Promise<void>;
@@ -584,6 +591,16 @@ function TaskModal({
     <Modal title={title} onClose={onClose}>
       <form onSubmit={handleSubmit}>
         <TaskFields values={values} onChange={setValues} projects={projects} />
+
+        {taskId && (
+          <div className="mt-4">
+            <NotesPanel
+              load={async () => (await getTask(taskId)).notes}
+              add={(body) => addTaskNote(taskId, body)}
+              hint="Пока пусто. Сюда — что выяснилось по ходу и почему сделано так."
+            />
+          </div>
+        )}
 
         {error && (
           <div className="mt-4">

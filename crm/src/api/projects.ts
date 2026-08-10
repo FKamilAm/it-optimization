@@ -41,8 +41,12 @@ export interface Project {
 
   billingMonthly: boolean;
   monthlyAmount: number | null;
-  /** Период вида «2026-08», за который счёта ещё нет. Считает сервер. */
+  /**
+   * Самый ранний месяц без счёта — вида «2026-08», и сколько их всего.
+   * Считает сервер: он один знает календарь команды и часовой пояс.
+   */
   unbilledPeriod: string | null;
+  unbilledCount: number;
 
   caseId: string | null;
   openTaskCount: number;
@@ -116,6 +120,23 @@ export interface InvoiceInput {
   issuedAt?: string | null;
   paidAt?: string | null;
   note?: string | null;
+}
+
+/** Счёт вместе с проектом, к которому относится, — для сквозного списка. */
+export interface InvoiceWithProject extends Invoice {
+  project: { id: string; title: string; client: string | null };
+}
+
+/**
+ * Все счета поверх проектов. Без этого «кто нам должен» отвечается только
+ * обходом каждого проекта по очереди — то есть не отвечается.
+ */
+export async function listAllInvoices(
+  scope: "unpaid" | "all" = "unpaid",
+): Promise<{ invoices: InvoiceWithProject[]; total: number }> {
+  return api.get<{ invoices: InvoiceWithProject[]; total: number }>(
+    `/invoices?scope=${scope}`,
+  );
 }
 
 export async function listInvoices(projectId: string): Promise<Invoice[]> {

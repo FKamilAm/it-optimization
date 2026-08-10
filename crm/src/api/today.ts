@@ -21,6 +21,8 @@ export interface TodaySnapshot {
   };
   projects: {
     urgent: Project[];
+    /** Помесячные проекты с пробелом в счетах — считает сервер. */
+    unbilled: Project[];
   };
 }
 

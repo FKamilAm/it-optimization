@@ -4,6 +4,7 @@ import {
   CheckSquare,
   ExternalLink,
   KeyRound,
+  Wallet,
   Globe,
   Images,
   Inbox,
@@ -26,6 +27,7 @@ const NAV = [
   { to: "/projects", label: "Проекты", icon: Briefcase, end: false, leadsOnly: false },
   { to: "/tasks", label: "Задачи", icon: CheckSquare, end: false, leadsOnly: false },
   { to: "/clients", label: "Клиенты", icon: Building2, end: false, leadsOnly: false },
+  { to: "/money", label: "Деньги", icon: Wallet, end: false, leadsOnly: false },
   {
     to: "/credentials",
     label: "Доступы",

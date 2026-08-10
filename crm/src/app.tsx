@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from "@/auth/auth-context";
 import { ClientsScreen } from "@/screens/clients/clients-screen";
 import { CredentialsScreen } from "@/screens/credentials/credentials-screen";
 import { LeadsScreen } from "@/screens/leads/leads-screen";
+import { MoneyScreen } from "@/screens/money/money-screen";
 import { LoginScreen } from "@/screens/login";
 import { ProjectsScreen } from "@/screens/projects/projects-screen";
 import { SettingsScreen } from "@/screens/settings";
@@ -46,6 +47,7 @@ function Routed() {
         <Route path="projects" element={<ProjectsScreen />} />
         <Route path="tasks" element={<TasksScreen />} />
         <Route path="clients" element={<ClientsScreen />} />
+        <Route path="money" element={<MoneyScreen />} />
         <Route path="credentials" element={<CredentialsScreen />} />
         <Route path="settings" element={<SettingsScreen />} />
         {/* Неизвестный адрес — не ошибка, а промах: возвращаем на главную. */}

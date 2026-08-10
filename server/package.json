@@ -14,7 +14,6 @@
     "prisma:deploy": "prisma migrate deploy",
     "seed": "tsx src/scripts/seed.ts",
     "user:create": "tsx src/scripts/create-user.ts",
-    "digest:now": "tsx --env-file-if-exists=.env src/scripts/digest-now.ts",
     "seed:prod": "node dist/scripts/seed.js",
     "user:create:prod": "node dist/scripts/create-user.js",
     "digest:preview": "tsx --env-file-if-exists=.env src/scripts/digest-preview.ts"

@@ -11,8 +11,8 @@ import { collectToday, isEmptySnapshot } from "./today.js";
  * данные из `collectToday`. Разница только в подаче: боту текст, экрану JSON.
  */
 export async function todayRoutes(app: FastifyInstance): Promise<void> {
-  app.get("/today", { preHandler: requireTeam }, async (request, reply) => {
-    const snapshot = await collectToday(request.user!.id);
+  app.get("/today", { preHandler: requireTeam }, async (_request, reply) => {
+    const snapshot = await collectToday();
 
     return reply.send({
       empty: isEmptySnapshot(snapshot),
@@ -28,6 +28,7 @@ export async function todayRoutes(app: FastifyInstance): Promise<void> {
       },
       projects: {
         urgent: snapshot.projects.urgent.map((item) => toProjectDto(item, env.TIMEZONE)),
+        unbilled: snapshot.projects.unbilled.map((item) => toProjectDto(item, env.TIMEZONE)),
       },
     });
   });

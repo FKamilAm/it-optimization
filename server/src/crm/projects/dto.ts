@@ -111,11 +111,13 @@ export interface ProjectDto {
   billingMonthly: boolean;
   monthlyAmount: number | null;
   /**
-   * Период, за который счёт ещё не выставлен, — вида «2026-08». Считается на
-   * сервере: клиенту иначе пришлось бы знать про календарь команды и часовой
-   * пояс. `null` — либо счета не помесячные, либо за текущий месяц уже есть.
+   * Самый ранний месяц без счёта — вида «2026-08», и сколько их всего.
+   * Считается на сервере: клиенту иначе пришлось бы знать про календарь
+   * команды и часовой пояс. `null` — либо счета не помесячные, либо всё
+   * выставлено.
    */
   unbilledPeriod: string | null;
+  unbilledCount: number;
   /** Есть ли уже кейс на сайте — из этого растёт кнопка публикации. */
   caseId: string | null;
   openTaskCount: number;
@@ -131,25 +133,64 @@ type ProjectWithRelations = Project & {
   invoices?: { kind: string; period: string }[];
 };
 
-/** Текущий месяц как ГГГГ-ММ в часовом поясе команды. */
+/** Месяц как ГГГГ-ММ в часовом поясе команды. */
 export function currentPeriod(timeZone: string, now = new Date()): string {
-  const parts = new Intl.DateTimeFormat("en-CA", {
+  // en-CA даёт «2026-08» — ровно нужный порядок.
+  return new Intl.DateTimeFormat("en-CA", {
     timeZone,
     year: "numeric",
     month: "2-digit",
   }).format(now);
-  // en-CA даёт «2026-08», ровно нужный порядок.
-  return parts;
+}
+
+/** Все месяцы от начального до текущего включительно. */
+function periodsBetween(from: string, to: string): string[] {
+  const [fromYear = 0, fromMonth = 1] = from.split("-").map(Number);
+  const [toYear = 0, toMonth = 1] = to.split("-").map(Number);
+
+  const result: string[] = [];
+  let year = fromYear;
+  let month = fromMonth;
+  // Ограничение сверху: порченая дата начала не должна крутить цикл вечно.
+  while ((year < toYear || (year === toYear && month <= toMonth)) && result.length < 120) {
+    result.push(`${year}-${String(month).padStart(2, "0")}`);
+    month += 1;
+    if (month > 12) {
+      month = 1;
+      year += 1;
+    }
+  }
+  return result;
+}
+
+/**
+ * Самый ранний месяц, за который счёта нет, и сколько таких месяцев всего.
+ *
+ * Раньше проверялся только текущий месяц — и забытый февраль не всплывал уже
+ * никогда: в апреле система смотрела на апрель. Проект, не выставленный три
+ * месяца, выглядел ровно как выставленный вчера. Считаем от начала работ.
+ */
+export function unbilled(
+  project: { billingMonthly: boolean; startedAt: Date | null; createdAt: Date },
+  invoices: { kind: string; period: string }[],
+  timeZone: string,
+): { period: string | null; count: number } {
+  if (!project.billingMonthly) return { period: null, count: 0 };
+
+  const from = currentPeriod(timeZone, project.startedAt ?? project.createdAt);
+  const to = currentPeriod(timeZone);
+  const issued = new Set(
+    invoices.filter((invoice) => invoice.kind === "invoice").map((it) => it.period),
+  );
+
+  const missing = periodsBetween(from, to).filter((period) => !issued.has(period));
+  return { period: missing[0] ?? null, count: missing.length };
 }
 
 export function toProjectDto(item: ProjectWithRelations, timeZone: string): ProjectDto {
   const tasks = item.tasks ?? [];
-  const period = currentPeriod(timeZone);
-  // Счёт за текущий месяц либо есть, либо его надо выставить. Акты в этот
-  // расчёт не входят: напоминание про деньги, а не про документы.
-  const billed = (item.invoices ?? []).some(
-    (invoice) => invoice.kind === "invoice" && invoice.period === period,
-  );
+  // Акты в расчёт не входят: напоминание про деньги, а не про документы.
+  const missing = unbilled(item, item.invoices ?? [], timeZone);
   return {
     id: item.id,
     title: item.title,
@@ -171,7 +212,8 @@ export function toProjectDto(item: ProjectWithRelations, timeZone: string): Proj
     actDate: item.actDate?.toISOString() ?? null,
     billingMonthly: item.billingMonthly,
     monthlyAmount: item.monthlyAmount,
-    unbilledPeriod: item.billingMonthly && !billed ? period : null,
+    unbilledPeriod: missing.period,
+    unbilledCount: missing.count,
     caseId: item.caseId,
     openTaskCount: tasks.filter(
       (task) => task.status !== "done" && task.status !== "cancelled",

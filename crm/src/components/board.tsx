@@ -48,22 +48,48 @@ export function Board<T extends { id: string }>({
 }) {
   const [dragging, setDragging] = useState<{ id: string; from: string } | null>(null);
   const [over, setOver] = useState<string | null>(null);
+  /** Карточка, перед которой встанет перетаскиваемая. null — в конец колонки. */
+  const [beforeId, setBeforeId] = useState<string | null>(null);
+
+  function reset() {
+    setDragging(null);
+    setOver(null);
+    setBeforeId(null);
+  }
+
+  /**
+   * Куда попадёт карточка: выше середины наведённой — перед ней, ниже — после.
+   * Считаем по геометрии, а не по индексу, иначе при разной высоте карточек
+   * место вставки не совпадает с тем, что видит человек.
+   */
+  function handleCardDragOver(event: DragEvent, itemId: string, items: T[]) {
+    if (!dragging || dragging.id === itemId) return;
+    event.preventDefault();
+    event.stopPropagation();
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const after = event.clientY > rect.top + rect.height / 2;
+    if (!after) {
+      setBeforeId(itemId);
+      return;
+    }
+    const index = items.findIndex((item) => item.id === itemId);
+    setBeforeId(items[index + 1]?.id ?? null);
+  }
 
   function handleDrop(event: DragEvent, columnKey: string) {
     event.preventDefault();
-    setOver(null);
     const current = dragging;
-    setDragging(null);
-    if (!current) return;
-
     const target = columns.find((column) => column.key === columnKey);
-    if (!target) return;
+    const insertBefore = beforeId;
+    reset();
+    if (!current || !target) return;
 
-    // Карточка встаёт в конец колонки. Точное место внутри колонки на трёх
-    // людях роли не играет, а вычисление позиции под курсором стоит заметно
-    // больше кода, чем даёт пользы.
     const ids = target.items.map((item) => item.id).filter((id) => id !== current.id);
-    ids.push(current.id);
+    const at = insertBefore ? ids.indexOf(insertBefore) : -1;
+    if (at === -1) ids.push(current.id);
+    else ids.splice(at, 0, current.id);
+
     onMove(columnKey, ids);
   }
 
@@ -87,9 +113,10 @@ export function Board<T extends { id: string }>({
               event.preventDefault();
               setOver(column.key);
             }}
-            onDragLeave={() =>
-              setOver((current) => (current === column.key ? null : current))
-            }
+            onDragLeave={() => {
+              setOver((current) => (current === column.key ? null : current));
+              setBeforeId(null);
+            }}
             onDrop={(event) => handleDrop(event, column.key)}
             className={cn(
               "border-border bg-muted/30 flex min-w-0 flex-col rounded-2xl border p-2.5 transition-colors",
@@ -120,16 +147,18 @@ export function Board<T extends { id: string }>({
                   key={item.id}
                   draggable
                   onDragStart={() => setDragging({ id: item.id, from: column.key })}
-                  onDragEnd={() => {
-                    setDragging(null);
-                    setOver(null);
-                  }}
+                  onDragEnd={reset}
+                  onDragOver={(event) => handleCardDragOver(event, item.id, column.items)}
                   className={cn(
                     // Фон задаёт сама карточка: цвет несёт смысл, и у задач с
                     // проектами он разный — доска в него не лезет.
                     "border-border cursor-grab overflow-hidden rounded-xl border shadow-sm transition active:cursor-grabbing",
                     "hover:border-accent-border hover:shadow-md",
                     dragging?.id === item.id && "opacity-30",
+                    // Черта сверху показывает, куда именно встанет карточка.
+                    dragging &&
+                      beforeId === item.id &&
+                      "before:bg-accent relative before:absolute before:-top-1.5 before:right-0 before:left-0 before:h-0.5 before:rounded-full",
                   )}
                 >
                   {renderCard(item)}
@@ -138,7 +167,7 @@ export function Board<T extends { id: string }>({
 
               {/* Место под карточку: без него при перетаскивании в пустую
                   колонку непонятно, попадёт ли она туда вообще. */}
-              {active && (
+              {active && column.items.length === 0 && (
                 <div className="border-accent-border text-muted-foreground rounded-xl border-2 border-dashed px-3 py-7 text-center text-xs">
                   Отпустите здесь
                 </div>

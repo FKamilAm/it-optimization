@@ -1,6 +1,6 @@
 import { prisma } from "../db.js";
 import { env } from "../env.js";
-import { buildDigestFor, sendDailyDigest, sendTeamDigest } from "./digest.js";
+import { buildDigest, sendTeamDigest } from "./digest.js";
 
 import { callBotApi, escapeHtml, trySendMessage } from "./telegram.js";
 import { zonedNow } from "./zone.js";
@@ -118,11 +118,9 @@ async function handleCommand(chatId: string, text: string, log: Log): Promise<vo
   }
 
   if (command === "/today") {
-    if (!user) {
-      await trySendMessage(chatId, "Сначала подключитесь: /start с кодом из CRM.", log);
-      return;
-    }
-    const digest = await buildDigestFor(user.id);
+    // Сводка общая, поэтому привязка для неё не нужна: спросить «что горит»
+    // может любой, кто и так сидит в рабочем чате.
+    const digest = await buildDigest();
     await trySendMessage(chatId, digest ?? "Ничего не горит. Свободны.", log);
     return;
   }
@@ -157,9 +155,6 @@ async function runDigestIfDue(log: Log): Promise<void> {
     update: { ranOn: date },
   });
 
-  await sendDailyDigest(log);
-  // Общий чат получает сводку по команде отдельным сообщением: там нужен не
-  // чей-то личный список, а картина целиком с именами.
   await sendTeamDigest(log);
 }
 
