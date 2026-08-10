@@ -33,10 +33,15 @@ function validateForPublish(cases: CaseDto[]): string[] {
 
 export async function publishRoutes(app: FastifyInstance): Promise<void> {
   /**
-   * Отдаёт снапшот, ничего не отправляя. Нужен и для отладки, и для сборки
-   * сайта в CI, если однажды захочется брать данные напрямую из API.
+   * Отдаёт снапшот, ничего не отправляя. Нужен для отладки и на случай, если
+   * однажды захочется собирать сайт прямо из API.
+   *
+   * Закрыт авторизацией: выборка не фильтрует по статусу, поэтому без неё
+   * первый же черновик кейса стал бы публично читаемым — вместе с заголовком,
+   * описанием и отзывом клиента, который ещё не согласован. Сборке сайта это
+   * не мешает: она берёт кейсы из content/cases.json в репозитории.
    */
-  app.get("/cases/snapshot", async (_request, reply) => {
+  app.get("/cases/snapshot", { preHandler: requireTeam }, async (_request, reply) => {
     const items = await prisma.case.findMany({
       where: { deletedAt: null },
       orderBy: { position: "asc" },

@@ -7,19 +7,22 @@ import { useCurrentUser } from "@/auth/auth-context";
 
 export function SettingsScreen() {
   const user = useCurrentUser();
+  // Сводка бота — про проекты, задачи и деньги; маркетолог их не видит.
+  const canUseBot = user.role !== "marketing";
   const [status, setStatus] = useState<TelegramStatus | null>(null);
   const [code, setCode] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
 
   const load = useCallback(() => {
+    if (!canUseBot) return;
     telegramApi
       .status()
       .then(setStatus)
       .catch((cause: unknown) => {
         setError(cause instanceof ApiError ? cause.message : "Не удалось загрузить");
       });
-  }, []);
+  }, [canUseBot]);
 
   useEffect(load, [load]);
 
@@ -55,77 +58,83 @@ export function SettingsScreen() {
       <h1 className="text-xl font-bold tracking-tight">Настройки</h1>
       <p className="text-muted-foreground mt-1 text-sm">{user.email}</p>
 
-      <div className="border-border mt-6 rounded-xl border p-5">
-        <div className="flex items-start gap-3">
-          <Send size={18} className="mt-0.5 shrink-0" strokeWidth={2} />
-          <div className="min-w-0 flex-1">
-            <h2 className="text-sm font-semibold">Напоминания в телеграме</h2>
-            <p className="text-muted-foreground mt-1 text-sm">
-              Каждое утро бот присылает просроченные лиды и то, что запланировано на
-              сегодня. Если присылать нечего — молчит.
-            </p>
-
-            {error && (
-              <div className="mt-4">
-                <ErrorNote>{error}</ErrorNote>
-              </div>
-            )}
-
-            {status && !status.available && (
-              <p className="text-muted-foreground mt-4 text-sm">
-                Бот не настроен на сервере — подключать пока нечего.
+      {canUseBot && (
+        <div className="border-border mt-6 rounded-xl border p-5">
+          <div className="flex items-start gap-3">
+            <Send size={18} className="mt-0.5 shrink-0" strokeWidth={2} />
+            <div className="min-w-0 flex-1">
+              <h2 className="text-sm font-semibold">Напоминания в телеграме</h2>
+              <p className="text-muted-foreground mt-1 text-sm">
+                Каждое утро бот присылает просроченные лиды и то, что запланировано на
+                сегодня. Если присылать нечего — молчит.
               </p>
-            )}
 
-            {status?.available && status.connected && (
-              <div className="mt-4 flex flex-wrap items-center gap-3">
-                <span className="text-success inline-flex items-center gap-1.5 text-sm font-medium">
-                  <Check size={16} strokeWidth={2.5} />
-                  Подключено
-                </span>
-                <Button variant="danger" onClick={() => void unlink()} disabled={pending}>
-                  Отключить
-                </Button>
-              </div>
-            )}
+              {error && (
+                <div className="mt-4">
+                  <ErrorNote>{error}</ErrorNote>
+                </div>
+              )}
 
-            {status?.available && !status.connected && (
-              <div className="mt-4">
-                {code ? (
-                  <div className="space-y-3">
-                    <p className="text-sm">
-                      Отправьте боту{" "}
-                      <a
-                        href={`https://t.me/${BOT_USERNAME}?start=${code}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="font-semibold underline underline-offset-2"
-                      >
-                        @{BOT_USERNAME}
-                      </a>{" "}
-                      команду с этим кодом:
-                    </p>
-                    <code className="bg-muted block rounded-lg px-3 py-2.5 font-mono text-sm">
-                      /start {code}
-                    </code>
-                    <p className="text-muted-foreground text-sm">
-                      Код действует 15 минут. Ссылка выше подставит его сама — после
-                      отправки обновите страницу.
-                    </p>
-                    <Button variant="ghost" onClick={load}>
-                      Проверить подключение
-                    </Button>
-                  </div>
-                ) : (
-                  <Button onClick={() => void requestCode()} disabled={pending}>
-                    {pending ? "Готовим код…" : "Подключить телеграм"}
+              {status && !status.available && (
+                <p className="text-muted-foreground mt-4 text-sm">
+                  Бот не настроен на сервере — подключать пока нечего.
+                </p>
+              )}
+
+              {status?.available && status.connected && (
+                <div className="mt-4 flex flex-wrap items-center gap-3">
+                  <span className="text-success inline-flex items-center gap-1.5 text-sm font-medium">
+                    <Check size={16} strokeWidth={2.5} />
+                    Подключено
+                  </span>
+                  <Button
+                    variant="danger"
+                    onClick={() => void unlink()}
+                    disabled={pending}
+                  >
+                    Отключить
                   </Button>
-                )}
-              </div>
-            )}
+                </div>
+              )}
+
+              {status?.available && !status.connected && (
+                <div className="mt-4">
+                  {code ? (
+                    <div className="space-y-3">
+                      <p className="text-sm">
+                        Отправьте боту{" "}
+                        <a
+                          href={`https://t.me/${BOT_USERNAME}?start=${code}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="font-semibold underline underline-offset-2"
+                        >
+                          @{BOT_USERNAME}
+                        </a>{" "}
+                        команду с этим кодом:
+                      </p>
+                      <code className="bg-muted block rounded-lg px-3 py-2.5 font-mono text-sm">
+                        /start {code}
+                      </code>
+                      <p className="text-muted-foreground text-sm">
+                        Код действует 15 минут. Ссылка выше подставит его сама — после
+                        отправки обновите страницу.
+                      </p>
+                      <Button variant="ghost" onClick={load}>
+                        Проверить подключение
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button onClick={() => void requestCode()} disabled={pending}>
+                      {pending ? "Готовим код…" : "Подключить телеграм"}
+                    </Button>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }

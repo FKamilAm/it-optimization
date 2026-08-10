@@ -47,12 +47,14 @@ const SITE_URL = (import.meta.env.VITE_SITE_URL ?? "https://it-optimization.ru")
 );
 
 /**
- * Ссылки наружу — на сайт и в панель кейсов. Вход общий, поэтому панель
- * откроется без повторной авторизации: кука выписана на весь домен.
+ * Ссылки наружу. Вход общий, поэтому панель кейсов открывается без повторной
+ * авторизации — кука выписана на весь домен. Маркетологу она не показывается:
+ * API кейсов ему всё равно отвечает 403, и ссылка вела бы в пустую страницу с
+ * ошибкой.
  */
 const EXTERNAL = [
-  { href: `${SITE_URL}/`, label: "Сайт", icon: Globe },
-  { href: `${SITE_URL}/panel/`, label: "Кейсы сайта", icon: Images },
+  { href: `${SITE_URL}/`, label: "Сайт", icon: Globe, leadsOnly: true },
+  { href: `${SITE_URL}/panel/`, label: "Кейсы сайта", icon: Images, leadsOnly: false },
 ] as const;
 
 export function Shell() {
@@ -95,23 +97,25 @@ export function Shell() {
             превратился бы в лишнюю полосу поперёк навигации. */}
         <div className="border-border hidden md:mt-5 md:block md:border-t md:pt-5" />
 
-        {EXTERNAL.map(({ href, label, icon: Icon }) => (
-          <a
-            key={href}
-            href={href}
-            target="_blank"
-            rel="noreferrer"
-            className="text-muted-foreground hover:bg-muted hover:text-foreground group flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium whitespace-nowrap transition"
-          >
-            <Icon size={16} strokeWidth={2} />
-            {label}
-            <ExternalLink
-              size={13}
-              strokeWidth={2}
-              className="ml-auto hidden opacity-0 transition-opacity group-hover:opacity-60 md:block"
-            />
-          </a>
-        ))}
+        {EXTERNAL.filter((item) => !leadsOnly || item.leadsOnly).map(
+          ({ href, label, icon: Icon }) => (
+            <a
+              key={href}
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+              className="text-muted-foreground hover:bg-muted hover:text-foreground group flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium whitespace-nowrap transition"
+            >
+              <Icon size={16} strokeWidth={2} />
+              {label}
+              <ExternalLink
+                size={13}
+                strokeWidth={2}
+                className="ml-auto hidden opacity-0 transition-opacity group-hover:opacity-60 md:block"
+              />
+            </a>
+          ),
+        )}
 
         <div className="ml-auto flex items-center gap-2 md:mt-auto md:ml-0 md:flex-col md:items-stretch md:pt-5">
           <NavLink
