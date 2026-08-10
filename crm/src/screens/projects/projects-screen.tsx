@@ -1,5 +1,13 @@
-import { CalendarDays, Plus, Wallet } from "lucide-react";
-import { useCallback, useEffect, useState, type FormEvent } from "react";
+import {
+  Briefcase,
+  Building2,
+  CalendarDays,
+  FileText,
+  Plus,
+  Server,
+  Wallet,
+} from "lucide-react";
+import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { ApiError } from "@/api/client";
 import { listClients, type Client } from "@/api/clients";
 import {
@@ -62,6 +70,10 @@ const COLUMN_TONE: Record<string, ColumnTone> = {
  * сдвинутый дедлайн переживём, а забытый счёт — это недополученные деньги, и
  * заметить его больше негде.
  */
+/**
+ * Заливка означает, что горит. Невыставленный счёт стоит выше срока намеренно:
+ * сдвинутый дедлайн переживём, а забытый счёт — это недополученные деньги.
+ */
 function projectTone(project: Project): { card: string; pill: string } {
   const closed = (CLOSED_PROJECT_STATUSES as readonly string[]).includes(project.status);
   if (closed) return { card: "bg-muted/60", pill: "bg-background text-muted-foreground" };
@@ -79,6 +91,30 @@ function projectTone(project: Project): { card: string; pill: string } {
   return { card: "bg-background", pill: "bg-muted text-muted-foreground" };
 }
 
+/** Строка сведений с иконкой. Пустое значение показывается серым, а не прячется:
+ *  на доске это подсказка, что в проекте не хватает, а не мусор. */
+function Meta({
+  icon: Icon,
+  children,
+  muted,
+}: {
+  icon: typeof Building2;
+  children: ReactNode;
+  muted?: boolean;
+}) {
+  return (
+    <span
+      className={cn(
+        "flex items-center gap-1.5 text-xs",
+        muted ? "text-muted-foreground/60" : "text-muted-foreground",
+      )}
+    >
+      <Icon size={12} strokeWidth={2} className="shrink-0" />
+      <span className="truncate">{children}</span>
+    </span>
+  );
+}
+
 function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void }) {
   const closed = (CLOSED_PROJECT_STATUSES as readonly string[]).includes(project.status);
   const deadline =
@@ -90,43 +126,59 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
     <button
       type="button"
       onClick={onOpen}
-      className={cn("flex w-full flex-col gap-2.5 p-3.5 text-left", tone.card)}
+      className={cn("flex w-full flex-col gap-2 p-3.5 text-left", tone.card)}
     >
-      <span className="flex flex-wrap items-center gap-1.5">
-        {project.deadline && !closed && (
-          <span
-            className={cn(
-              "inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-medium",
-              tone.pill,
-            )}
-          >
-            <CalendarDays size={11} strokeWidth={2.5} />
-            {deadline ? deadline.label : formatDate(project.deadline)}
-          </span>
-        )}
-        {project.unbilledPeriod && (
-          <span className="bg-danger inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-medium text-white">
-            <Wallet size={11} strokeWidth={2.5} />
-            счёт за {project.unbilledPeriod}
-          </span>
-        )}
-      </span>
+      {(deadline || project.unbilledPeriod) && (
+        <span className="flex flex-wrap items-center gap-1.5">
+          {deadline && (
+            <span
+              className={cn(
+                "inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-medium",
+                tone.pill,
+              )}
+            >
+              <CalendarDays size={11} strokeWidth={2.5} />
+              {deadline.label}
+            </span>
+          )}
+          {project.unbilledPeriod && (
+            <span className="bg-danger inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-medium text-white">
+              <Wallet size={11} strokeWidth={2.5} />
+              счёт за {project.unbilledPeriod}
+            </span>
+          )}
+        </span>
+      )}
 
       <span className="text-sm leading-snug font-semibold">{project.title}</span>
 
-      {(project.client || project.workType) && (
-        <span className="text-muted-foreground truncate text-xs">
-          {[project.client?.name, workTypeLabel(project.workType)]
-            .filter(Boolean)
-            .join(" · ")}
-        </span>
-      )}
+      <span className="flex flex-col gap-1">
+        <Meta icon={Building2} muted={!project.client}>
+          {project.client?.name ?? "без клиента"}
+        </Meta>
+
+        {project.workType && (
+          <Meta icon={Briefcase}>{workTypeLabel(project.workType)}</Meta>
+        )}
+        {project.hosting && <Meta icon={Server}>{project.hosting}</Meta>}
+        {project.contractNumber && (
+          <Meta icon={FileText}>
+            договор {project.contractNumber}
+            {project.contractDate && ` от ${formatDate(project.contractDate)}`}
+          </Meta>
+        )}
+        {project.billingMonthly && project.monthlyAmount !== null && (
+          <Meta icon={Wallet}>
+            {project.monthlyAmount.toLocaleString("ru-RU")} ₽ в месяц
+          </Meta>
+        )}
+      </span>
 
       {/* Полоса выполнения вместо «задач 3/7»: доля закрытого читается мгновенно,
           а точные числа остаются подписью рядом. */}
       {project.taskCount > 0 && (
-        <span className="block">
-          <span className="bg-foreground/10 block h-1 overflow-hidden rounded-full">
+        <span className="mt-0.5 block">
+          <span className="bg-foreground/10 block h-1.5 overflow-hidden rounded-full">
             <span
               className="bg-success block h-full rounded-full transition-all"
               style={{ width: `${(doneTasks / project.taskCount) * 100}%` }}
@@ -138,11 +190,18 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
         </span>
       )}
 
-      {project.developers.length > 0 && (
-        <span className="border-foreground/10 mt-0.5 flex items-center gap-2 border-t pt-2.5">
+      <span className="border-foreground/10 mt-0.5 flex min-h-6 items-center justify-between gap-2 border-t pt-2.5">
+        {project.developers.length > 0 ? (
           <PersonChips names={project.developers} />
-        </span>
-      )}
+        ) : (
+          <span className="text-muted-foreground/60 text-[11px]">никто не ведёт</span>
+        )}
+        {project.startedAt && !closed && (
+          <span className="text-muted-foreground/70 text-[11px]">
+            с {formatDate(project.startedAt)}
+          </span>
+        )}
+      </span>
     </button>
   );
 }

@@ -1,5 +1,5 @@
-import { CalendarDays, Check, Plus } from "lucide-react";
-import { useCallback, useEffect, useState, type FormEvent } from "react";
+import { AlignLeft, CalendarDays, Check, Flame, FolderOpen, Plus } from "lucide-react";
+import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { ApiError } from "@/api/client";
 import { listProjects, type Project } from "@/api/projects";
 import {
@@ -59,6 +59,11 @@ const COLUMN_TONE: Record<string, ColumnTone> = {
  * срочность и берётся по худшему из условий — просрочено важнее «сегодня»,
  * «сегодня» важнее высокого приоритета.
  */
+/**
+ * Заливка всей карточки, а не полоска сбоку: в колонке из десятка карточек
+ * взгляд цепляется за пятно. Цвет означает срочность и берётся по худшему из
+ * условий — просрочено важнее «сегодня», «сегодня» важнее приоритета.
+ */
 function taskTone(task: Task): { card: string; pill: string } {
   const done = task.status === "done" || task.status === "cancelled";
   if (done) return { card: "bg-muted/60", pill: "bg-background text-muted-foreground" };
@@ -85,19 +90,30 @@ function TaskCard({ task, onOpen }: { task: Task; onOpen: () => void }) {
     <button
       type="button"
       onClick={onOpen}
-      className={cn("flex w-full flex-col gap-2.5 p-3.5 text-left", tone.card)}
+      className={cn("flex w-full flex-col gap-2 p-3.5 text-left", tone.card)}
     >
-      {task.dueAt && (
-        <span
-          className={cn(
-            "inline-flex w-fit items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-medium",
-            tone.pill,
-          )}
-        >
-          <CalendarDays size={11} strokeWidth={2.5} />
-          {deadline ? deadline.label : formatDate(task.dueAt)}
-        </span>
-      )}
+      <span className="flex flex-wrap items-center gap-1.5">
+        {task.dueAt && (
+          <span
+            className={cn(
+              "inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-medium",
+              tone.pill,
+            )}
+          >
+            <CalendarDays size={11} strokeWidth={2.5} />
+            {deadline ? deadline.label : formatDate(task.dueAt)}
+          </span>
+        )}
+        {task.priority === "high" && !done && (
+          <span className="bg-danger inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium text-white">
+            <Flame size={11} strokeWidth={2.5} />
+            срочно
+          </span>
+        )}
+        {task.priority === "low" && !done && (
+          <span className="text-muted-foreground/70 text-[11px]">не срочно</span>
+        )}
+      </span>
 
       {/* Заголовок не обрезается: на доске карточка — единственное место, где
           видно, что за задача, и «Сверстать главную стр…» здесь бесполезно. */}
@@ -110,21 +126,53 @@ function TaskCard({ task, onOpen }: { task: Task; onOpen: () => void }) {
         {task.title}
       </span>
 
-      {task.project && (
-        <span className="text-muted-foreground truncate text-xs">
-          {task.project.title}
-        </span>
-      )}
+      <span className="flex flex-col gap-1">
+        <Meta icon={FolderOpen} muted={!task.project}>
+          {task.project?.title ?? "без проекта"}
+        </Meta>
+        {task.description && (
+          // Одна строка описания: часто в ней и лежит суть, а открывать
+          // карточку ради неё — лишний клик.
+          <Meta icon={AlignLeft}>{task.description}</Meta>
+        )}
+      </span>
 
-      {(task.developers.length > 0 || (task.priority === "high" && !done)) && (
-        <span className="border-foreground/10 mt-0.5 flex items-center justify-between gap-2 border-t pt-2.5">
+      <span className="border-foreground/10 mt-0.5 flex min-h-6 items-center justify-between gap-2 border-t pt-2.5">
+        {task.developers.length > 0 ? (
           <PersonChips names={task.developers} />
-          {task.priority === "high" && !done && (
-            <span className="text-danger text-[11px] font-semibold">срочно</span>
-          )}
-        </span>
-      )}
+        ) : (
+          <span className="text-muted-foreground/60 text-[11px]">ничья</span>
+        )}
+        {done && task.completedAt && (
+          <span className="text-muted-foreground/70 text-[11px]">
+            {formatDate(task.completedAt)}
+          </span>
+        )}
+      </span>
     </button>
+  );
+}
+
+/** Строка сведений с иконкой; пустое значение показывается серым, а не прячется. */
+function Meta({
+  icon: Icon,
+  children,
+  muted,
+}: {
+  icon: typeof FolderOpen;
+  children: ReactNode;
+  muted?: boolean;
+}) {
+  return (
+    <span
+      className={cn(
+        "flex items-center gap-1.5 text-xs",
+        muted ? "text-muted-foreground/60" : "text-muted-foreground",
+      )}
+    >
+      <Icon size={12} strokeWidth={2} className="shrink-0" />
+      <span className="truncate">{children}</span>
+    </span>
   );
 }
 

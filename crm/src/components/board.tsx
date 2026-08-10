@@ -68,12 +68,13 @@ export function Board<T extends { id: string }>({
   }
 
   return (
-    // Колонки делят ширину поровну и всегда влезают целиком: горизонтальная
-    // прокрутка на доске означает, что часть работы не видна, а ради неё
-    // доску и открывают. На узком экране — по две в ряд, там всё равно
-    // перетаскивания нет и пользуются списком.
+    // Колонки влезают целиком: горизонтальная прокрутка на доске означает, что
+    // часть работы не видна, а ради неё доску и открывают. Ширина ограничена
+    // сверху — на широком мониторе растянутая на 400 пикселей карточка с одной
+    // строкой текста выглядит пустой. На узком экране — по две в ряд, там всё
+    // равно нет перетаскивания и пользуются списком.
     <div
-      className="grid [grid-template-columns:repeat(2,minmax(0,1fr))] gap-3 md:[grid-template-columns:repeat(var(--cols),minmax(0,1fr))]"
+      className="grid [grid-template-columns:repeat(2,minmax(0,1fr))] justify-start gap-3 md:[grid-template-columns:repeat(var(--cols),minmax(0,19rem))]"
       style={{ "--cols": columns.length } as CSSProperties}
     >
       {columns.map((column) => {
