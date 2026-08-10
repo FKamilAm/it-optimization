@@ -51,58 +51,79 @@ const COLUMN_TONE: Record<string, ColumnTone> = {
   done: "success",
 };
 
+/**
+ * Карточка задачи на доске.
+ *
+ * Заливка всей карточки, а не полоска сбоку: в колонке из десятка карточек
+ * взгляд цепляется за пятно, а не за четыре пикселя у края. Цвет означает
+ * срочность и берётся по худшему из условий — просрочено важнее «сегодня»,
+ * «сегодня» важнее высокого приоритета.
+ */
+function taskTone(task: Task): { card: string; pill: string } {
+  const done = task.status === "done" || task.status === "cancelled";
+  if (done) return { card: "bg-muted/60", pill: "bg-background text-muted-foreground" };
+
+  const deadline = task.dueAt ? describeDeadline(task.dueAt) : null;
+  if (deadline?.tone === "danger") {
+    return { card: "bg-danger-soft", pill: "bg-danger text-white" };
+  }
+  if (deadline?.tone === "warning") {
+    return { card: "bg-warning-soft", pill: "bg-warning text-white" };
+  }
+  if (task.priority === "high") {
+    return { card: "bg-accent-soft", pill: "bg-background text-foreground" };
+  }
+  return { card: "bg-background", pill: "bg-muted text-muted-foreground" };
+}
+
 function TaskCard({ task, onOpen }: { task: Task; onOpen: () => void }) {
   const done = task.status === "done" || task.status === "cancelled";
   const deadline = task.dueAt && !done ? describeDeadline(task.dueAt) : null;
+  const tone = taskTone(task);
 
   return (
-    <button type="button" onClick={onOpen} className="flex w-full text-left">
-      {/* Полоса слева — срочность: красная видна в потоке одинаковых карточек
-          быстрее любого значка внутри. */}
-      <span
-        aria-hidden="true"
-        className={cn(
-          "w-1 shrink-0 rounded-l-lg",
-          task.priority === "high" && !done ? "bg-danger" : "bg-transparent",
-        )}
-      />
-      <span className="min-w-0 flex-1 p-2.5">
-        {task.dueAt && (
-          <span
-            className={cn(
-              "mb-1.5 flex items-center gap-1 text-[11px]",
-              deadline?.tone === "danger"
-                ? "text-danger"
-                : deadline?.tone === "warning"
-                  ? "text-warning"
-                  : "text-muted-foreground",
-            )}
-          >
-            <CalendarDays size={11} strokeWidth={2.5} />
-            {deadline ? deadline.label : formatDate(task.dueAt)}
-          </span>
-        )}
-
+    <button
+      type="button"
+      onClick={onOpen}
+      className={cn("flex w-full flex-col gap-2.5 p-3.5 text-left", tone.card)}
+    >
+      {task.dueAt && (
         <span
           className={cn(
-            "block text-sm font-medium",
-            done && "text-muted-foreground line-through",
+            "inline-flex w-fit items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-medium",
+            tone.pill,
           )}
         >
-          {task.title}
+          <CalendarDays size={11} strokeWidth={2.5} />
+          {deadline ? deadline.label : formatDate(task.dueAt)}
         </span>
+      )}
 
-        {task.project && (
-          <span className="text-muted-foreground mt-1 block truncate text-xs">
-            {task.project.title}
-          </span>
+      {/* Заголовок не обрезается: на доске карточка — единственное место, где
+          видно, что за задача, и «Сверстать главную стр…» здесь бесполезно. */}
+      <span
+        className={cn(
+          "text-sm leading-snug font-semibold",
+          done && "text-muted-foreground line-through",
         )}
-
-        <span className="mt-2 flex items-center justify-between gap-2">
-          <PersonChips names={task.developers} />
-          {task.priority === "high" && !done && <Badge tone="danger">срочно</Badge>}
-        </span>
+      >
+        {task.title}
       </span>
+
+      {task.project && (
+        <span className="text-muted-foreground truncate text-xs">
+          {task.project.title}
+        </span>
+      )}
+
+      {(task.developers.length > 0 || (task.priority === "high" && !done)) && (
+        <span className="border-foreground/10 mt-0.5 flex items-center justify-between gap-2 border-t pt-2.5">
+          <PersonChips names={task.developers} />
+          {task.priority === "high" && !done && (
+            <span className="text-danger text-[11px] font-semibold">срочно</span>
+          )}
+        </span>
+      )}
     </button>
   );
 }

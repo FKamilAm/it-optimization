@@ -84,7 +84,7 @@ export function Board<T extends { id: string }>({
             }
             onDrop={(event) => handleDrop(event, column.key)}
             className={cn(
-              "bg-muted/40 flex w-72 shrink-0 flex-col rounded-xl p-2 transition-colors",
+              "bg-muted/40 flex w-80 shrink-0 flex-col rounded-2xl p-2.5 transition-colors",
               active && "bg-accent-muted",
             )}
           >
@@ -106,7 +106,7 @@ export function Board<T extends { id: string }>({
               )}
             </div>
 
-            <div className="mt-1 flex flex-col gap-2">
+            <div className="mt-2 flex flex-col gap-2.5">
               {column.items.map((item) => (
                 <div
                   key={item.id}
@@ -117,8 +117,10 @@ export function Board<T extends { id: string }>({
                     setOver(null);
                   }}
                   className={cn(
-                    "border-border bg-background cursor-grab rounded-lg border shadow-sm transition active:cursor-grabbing",
-                    "hover:border-accent-border hover:shadow",
+                    // Фон задаёт сама карточка: цвет несёт смысл, и у задач с
+                    // проектами он разный — доска в него не лезет.
+                    "border-border cursor-grab overflow-hidden rounded-xl border shadow-sm transition active:cursor-grabbing",
+                    "hover:border-accent-border hover:shadow-md",
                     dragging?.id === item.id && "opacity-30",
                   )}
                 >
@@ -129,7 +131,7 @@ export function Board<T extends { id: string }>({
               {/* Место под карточку: без него при перетаскивании в пустую
                   колонку непонятно, попадёт ли она туда вообще. */}
               {active && (
-                <div className="border-accent-border text-muted-foreground rounded-lg border border-dashed px-3 py-4 text-center text-xs">
+                <div className="border-accent-border text-muted-foreground rounded-xl border-2 border-dashed px-3 py-7 text-center text-xs">
                   Отпустите здесь
                 </div>
               )}

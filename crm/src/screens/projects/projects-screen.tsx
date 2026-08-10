@@ -55,63 +55,94 @@ const COLUMN_TONE: Record<string, ColumnTone> = {
   cancelled: "neutral",
 };
 
+/**
+ * Карточка проекта на доске.
+ *
+ * Заливка означает, что горит. Невыставленный счёт стоит выше срока намеренно:
+ * сдвинутый дедлайн переживём, а забытый счёт — это недополученные деньги, и
+ * заметить его больше негде.
+ */
+function projectTone(project: Project): { card: string; pill: string } {
+  const closed = (CLOSED_PROJECT_STATUSES as readonly string[]).includes(project.status);
+  if (closed) return { card: "bg-muted/60", pill: "bg-background text-muted-foreground" };
+  if (project.unbilledPeriod) {
+    return { card: "bg-danger-soft", pill: "bg-danger text-white" };
+  }
+
+  const deadline = project.deadline ? describeDeadline(project.deadline) : null;
+  if (deadline?.tone === "danger") {
+    return { card: "bg-danger-soft", pill: "bg-danger text-white" };
+  }
+  if (deadline?.tone === "warning") {
+    return { card: "bg-warning-soft", pill: "bg-warning text-white" };
+  }
+  return { card: "bg-background", pill: "bg-muted text-muted-foreground" };
+}
+
 function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void }) {
   const closed = (CLOSED_PROJECT_STATUSES as readonly string[]).includes(project.status);
   const deadline =
     project.deadline && !closed ? describeDeadline(project.deadline) : null;
+  const tone = projectTone(project);
+  const doneTasks = project.taskCount - project.openTaskCount;
 
   return (
-    <button type="button" onClick={onOpen} className="flex w-full text-left">
-      {/* Полоса слева — невыставленный счёт. Это единственное на карточке, что
-          стоит денег, поэтому оно и заметнее срока. */}
-      <span
-        aria-hidden="true"
-        className={cn(
-          "w-1 shrink-0 rounded-l-lg",
-          project.unbilledPeriod ? "bg-danger" : "bg-transparent",
-        )}
-      />
-      <span className="min-w-0 flex-1 p-2.5">
+    <button
+      type="button"
+      onClick={onOpen}
+      className={cn("flex w-full flex-col gap-2.5 p-3.5 text-left", tone.card)}
+    >
+      <span className="flex flex-wrap items-center gap-1.5">
         {project.deadline && !closed && (
           <span
             className={cn(
-              "mb-1.5 flex items-center gap-1 text-[11px]",
-              deadline?.tone === "danger"
-                ? "text-danger"
-                : deadline?.tone === "warning"
-                  ? "text-warning"
-                  : "text-muted-foreground",
+              "inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-medium",
+              tone.pill,
             )}
           >
             <CalendarDays size={11} strokeWidth={2.5} />
             {deadline ? deadline.label : formatDate(project.deadline)}
           </span>
         )}
-
-        <span className="block text-sm font-medium">{project.title}</span>
-
-        {project.client && (
-          <span className="text-muted-foreground mt-1 block truncate text-xs">
-            {project.client.name}
-          </span>
-        )}
-
         {project.unbilledPeriod && (
-          <span className="text-danger mt-1.5 flex items-center gap-1 text-[11px] font-medium">
+          <span className="bg-danger inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-medium text-white">
             <Wallet size={11} strokeWidth={2.5} />
-            счёт за {project.unbilledPeriod} не выставлен
+            счёт за {project.unbilledPeriod}
           </span>
         )}
-
-        <span className="mt-2 flex items-center justify-between gap-2">
-          <PersonChips names={project.developers} />
-          {project.taskCount > 0 && (
-            <span className="text-muted-foreground text-[11px]">
-              задач {project.openTaskCount}/{project.taskCount}
-            </span>
-          )}
-        </span>
       </span>
+
+      <span className="text-sm leading-snug font-semibold">{project.title}</span>
+
+      {(project.client || project.workType) && (
+        <span className="text-muted-foreground truncate text-xs">
+          {[project.client?.name, workTypeLabel(project.workType)]
+            .filter(Boolean)
+            .join(" · ")}
+        </span>
+      )}
+
+      {/* Полоса выполнения вместо «задач 3/7»: доля закрытого читается мгновенно,
+          а точные числа остаются подписью рядом. */}
+      {project.taskCount > 0 && (
+        <span className="block">
+          <span className="bg-foreground/10 block h-1 overflow-hidden rounded-full">
+            <span
+              className="bg-success block h-full rounded-full transition-all"
+              style={{ width: `${(doneTasks / project.taskCount) * 100}%` }}
+            />
+          </span>
+          <span className="text-muted-foreground mt-1 block text-[11px]">
+            задач {doneTasks} из {project.taskCount}
+          </span>
+        </span>
+      )}
+
+      {project.developers.length > 0 && (
+        <span className="border-foreground/10 mt-0.5 flex items-center gap-2 border-t pt-2.5">
+          <PersonChips names={project.developers} />
+        </span>
+      )}
     </button>
   );
 }
