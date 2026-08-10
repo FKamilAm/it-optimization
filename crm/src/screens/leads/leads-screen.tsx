@@ -138,7 +138,7 @@ export function LeadsScreen() {
         )}
 
         {leads && leads.length > 0 && (
-          <ul className="divide-border border-border divide-y border-y">
+          <ul className="space-y-2">
             {leads.map((lead) => (
               <LeadRow key={lead.id} lead={lead} onOpen={() => setOpenLeadId(lead.id)} />
             ))}
@@ -178,7 +178,7 @@ function LeadRow({ lead, onOpen }: { lead: Lead; onOpen: () => void }) {
       <button
         type="button"
         onClick={onOpen}
-        className="hover:bg-muted/60 flex w-full flex-wrap items-center gap-x-3 gap-y-1 px-1 py-3 text-left transition"
+        className="border-border bg-background hover:border-accent-border flex w-full flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border px-3 py-2.5 text-left transition hover:shadow-sm"
       >
         <span className="min-w-0 flex-1">
           <span className="block truncate font-medium">{lead.name ?? lead.contact}</span>

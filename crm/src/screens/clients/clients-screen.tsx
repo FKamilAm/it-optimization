@@ -81,7 +81,7 @@ export function ClientsScreen() {
             note="Клиент появляется тогда, когда с ним начинается работа, а не при первом письме."
           />
         ) : (
-          <ul className="divide-border divide-y">
+          <ul className="space-y-2">
             {clients.map((client) => (
               <ClientRow
                 key={client.id}
@@ -141,7 +141,7 @@ function ClientRow({ client, onOpen }: { client: Client; onOpen: () => void }) {
       <button
         type="button"
         onClick={onOpen}
-        className="hover:bg-muted flex w-full items-start gap-3 rounded-lg px-2 py-3 text-left transition"
+        className="border-border bg-background hover:border-accent-border flex w-full items-start gap-3 rounded-xl border px-3 py-2.5 text-left transition hover:shadow-sm"
       >
         <div className="min-w-0 flex-1">
           <span className="block truncate text-sm font-medium">{client.name}</span>

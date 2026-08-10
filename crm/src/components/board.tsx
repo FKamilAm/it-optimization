@@ -1,5 +1,5 @@
 import { Plus } from "lucide-react";
-import { useState, type DragEvent, type ReactNode } from "react";
+import { useState, type CSSProperties, type DragEvent, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 /**
@@ -68,7 +68,14 @@ export function Board<T extends { id: string }>({
   }
 
   return (
-    <div className="-mx-1 flex gap-3 overflow-x-auto px-1 pb-3">
+    // Колонки делят ширину поровну и всегда влезают целиком: горизонтальная
+    // прокрутка на доске означает, что часть работы не видна, а ради неё
+    // доску и открывают. На узком экране — по две в ряд, там всё равно
+    // перетаскивания нет и пользуются списком.
+    <div
+      className="grid [grid-template-columns:repeat(2,minmax(0,1fr))] gap-3 md:[grid-template-columns:repeat(var(--cols),minmax(0,1fr))]"
+      style={{ "--cols": columns.length } as CSSProperties}
+    >
       {columns.map((column) => {
         const active = over === column.key && dragging?.from !== column.key;
 
@@ -84,8 +91,8 @@ export function Board<T extends { id: string }>({
             }
             onDrop={(event) => handleDrop(event, column.key)}
             className={cn(
-              "bg-muted/40 flex w-80 shrink-0 flex-col rounded-2xl p-2.5 transition-colors",
-              active && "bg-accent-muted",
+              "border-border bg-muted/30 flex min-w-0 flex-col rounded-2xl border p-2.5 transition-colors",
+              active && "border-accent-border bg-accent-muted",
             )}
           >
             <div className="flex items-center gap-2 px-1.5 py-1">

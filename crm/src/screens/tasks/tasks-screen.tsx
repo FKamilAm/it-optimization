@@ -186,12 +186,29 @@ export function TasksScreen() {
    */
   async function moveTask(status: TaskStatus, ids: string[]) {
     const moved = tasks?.find((task) => ids.includes(task.id) && task.status !== status);
+
+    // Двигаем на месте до ответа сервера. Иначе карточка на долю секунды
+    // возвращается в исходную колонку и «прыгает» — выглядит как сбой, хотя
+    // перенос уже принят.
+    setTasks((current) =>
+      current === null
+        ? null
+        : current.map((task) =>
+            task.id === moved?.id
+              ? { ...task, status, position: ids.indexOf(task.id) }
+              : ids.includes(task.id)
+                ? { ...task, position: ids.indexOf(task.id) }
+                : task,
+          ),
+    );
+
     try {
       if (moved) await updateTask(moved.id, { status });
       await reorderTasks(status, ids);
       load();
     } catch (cause) {
       setError(cause instanceof ApiError ? cause.message : "Не удалось перенести");
+      // Откат: перечитываем, чтобы на экране осталось то, что реально в базе.
       load();
     }
   }
@@ -354,7 +371,7 @@ export function TasksScreen() {
             )}
           />
         ) : (
-          <ul className="divide-border divide-y">
+          <ul className="space-y-2">
             {tasks.map((task) => (
               <TaskRow
                 key={task.id}
@@ -426,7 +443,7 @@ function TaskRow({
   const deadline = task.dueAt && !done ? describeDeadline(task.dueAt) : null;
 
   return (
-    <li className="flex items-start gap-3 py-3">
+    <li className="border-border bg-background hover:border-accent-border flex items-start gap-3 rounded-xl border px-3 py-2.5 transition hover:shadow-sm">
       <button
         type="button"
         onClick={onToggle}

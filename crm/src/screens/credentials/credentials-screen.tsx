@@ -140,7 +140,7 @@ export function CredentialsScreen() {
             note="Заведите первую запись — хостинг, домены, почта, аналитика."
           />
         ) : (
-          <ul className="divide-border divide-y">
+          <ul className="space-y-2">
             {items.map((item) => (
               <Row key={item.id} item={item} onOpen={() => setEditing(item)} />
             ))}
@@ -186,7 +186,7 @@ function Row({ item, onOpen }: { item: Credential; onOpen: () => void }) {
   const renews = item.renewsAt ? describeDeadline(item.renewsAt) : null;
 
   return (
-    <li className="flex items-start gap-3 py-3">
+    <li className="border-border bg-background hover:border-accent-border flex items-start gap-3 rounded-xl border px-3 py-2.5 transition hover:shadow-sm">
       <button type="button" onClick={onOpen} className="min-w-0 flex-1 text-left">
         <span className="block truncate text-sm font-medium">{item.service}</span>
         <span className="text-muted-foreground mt-0.5 block truncate text-xs">

@@ -197,6 +197,21 @@ export function ProjectsScreen() {
     const moved = projects?.find(
       (project) => ids.includes(project.id) && project.status !== status,
     );
+
+    // Двигаем на месте до ответа сервера — иначе карточка успевает вернуться
+    // в исходную колонку и мигнуть, будто перенос не принят.
+    setProjects((current) =>
+      current === null
+        ? null
+        : current.map((project) =>
+            project.id === moved?.id
+              ? { ...project, status, position: ids.indexOf(project.id) }
+              : ids.includes(project.id)
+                ? { ...project, position: ids.indexOf(project.id) }
+                : project,
+          ),
+    );
+
     try {
       if (moved) await updateProject(moved.id, { status });
       await reorderProjects(status, ids);
@@ -292,7 +307,7 @@ export function ProjectsScreen() {
             )}
           />
         ) : (
-          <ul className="divide-border divide-y">
+          <ul className="space-y-2">
             {projects.map((project) => (
               <ProjectRow
                 key={project.id}
@@ -358,7 +373,7 @@ function ProjectRow({ project, onOpen }: { project: Project; onOpen: () => void 
       <button
         type="button"
         onClick={onOpen}
-        className="hover:bg-muted flex w-full items-start gap-3 rounded-lg px-2 py-3 text-left transition"
+        className="border-border bg-background hover:border-accent-border flex w-full items-start gap-3 rounded-xl border px-3 py-2.5 text-left transition hover:shadow-sm"
       >
         <div className="min-w-0 flex-1">
           <span className="block truncate text-sm font-medium">{project.title}</span>
