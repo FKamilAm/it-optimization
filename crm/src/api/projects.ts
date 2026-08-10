@@ -31,6 +31,19 @@ export interface Project {
   startedAt: string | null;
   deadline: string | null;
   closedAt: string | null;
+  position: number;
+
+  hosting: string | null;
+  workType: string | null;
+  contractNumber: string | null;
+  contractDate: string | null;
+  actDate: string | null;
+
+  billingMonthly: boolean;
+  monthlyAmount: number | null;
+  /** Период вида «2026-08», за который счёта ещё нет. Считает сервер. */
+  unbilledPeriod: string | null;
+
   caseId: string | null;
   openTaskCount: number;
   taskCount: number;
@@ -47,6 +60,104 @@ export interface ProjectInput {
   developers?: string[];
   startedAt?: string | null;
   deadline?: string | null;
+
+  hosting?: string | null;
+  workType?: string | null;
+  contractNumber?: string | null;
+  contractDate?: string | null;
+  actDate?: string | null;
+  billingMonthly?: boolean;
+  monthlyAmount?: number | null;
+}
+
+/**
+ * Виды работ. Копия списка из `server/src/crm/projects/dto.ts` — приложения
+ * собираются раздельно. Сервер незнакомое значение не отвергает, так что
+ * расхождение проявится только пустой подписью в списке.
+ */
+export const WORK_TYPES = [
+  { value: "contract", label: "Договорной" },
+  { value: "oneoff", label: "Разовая работа" },
+  { value: "support", label: "Сопровождение" },
+  { value: "internal", label: "Свой проект" },
+] as const;
+
+const WORK_TYPE_LABELS = new Map<string, string>(
+  WORK_TYPES.map((type) => [type.value, type.label]),
+);
+
+export function workTypeLabel(value: string | null): string {
+  if (!value) return "";
+  return WORK_TYPE_LABELS.get(value) ?? value;
+}
+
+export type InvoiceKind = "invoice" | "act";
+
+export const INVOICE_KIND_LABELS: Record<InvoiceKind, string> = {
+  invoice: "Счёт",
+  act: "Акт",
+};
+
+export interface Invoice {
+  id: string;
+  kind: InvoiceKind;
+  /** ГГГГ-ММ. */
+  period: string;
+  amount: number | null;
+  issuedAt: string | null;
+  paidAt: string | null;
+  note: string | null;
+}
+
+export interface InvoiceInput {
+  kind?: InvoiceKind;
+  period?: string;
+  amount?: number | null;
+  issuedAt?: string | null;
+  paidAt?: string | null;
+  note?: string | null;
+}
+
+export async function listInvoices(projectId: string): Promise<Invoice[]> {
+  const { invoices } = await api.get<{ invoices: Invoice[] }>(
+    `/projects/${projectId}/invoices`,
+  );
+  return invoices;
+}
+
+export async function createInvoice(
+  projectId: string,
+  input: InvoiceInput,
+): Promise<Invoice> {
+  const { invoice } = await api.post<{ invoice: Invoice }>(
+    `/projects/${projectId}/invoices`,
+    input,
+  );
+  return invoice;
+}
+
+export async function updateInvoice(
+  projectId: string,
+  invoiceId: string,
+  input: InvoiceInput,
+): Promise<Invoice> {
+  const { invoice } = await api.patch<{ invoice: Invoice }>(
+    `/projects/${projectId}/invoices/${invoiceId}`,
+    input,
+  );
+  return invoice;
+}
+
+export async function deleteInvoice(projectId: string, invoiceId: string): Promise<void> {
+  await api.delete<void>(`/projects/${projectId}/invoices/${invoiceId}`);
+}
+
+/** Порядок колонки на доске — целиком, как и у задач. */
+export async function reorderProjects(
+  status: ProjectStatus,
+  ids: string[],
+): Promise<void> {
+  await api.put<void>("/projects/reorder", { status, ids });
 }
 
 export interface ProjectFilters {

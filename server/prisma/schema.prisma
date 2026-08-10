@@ -294,6 +294,31 @@ model Project {
   /// людей, и любая группировка по имени сразу бы врала.
   developers String[]
 
+  /// Где размещён: «наш VPS», «reg.ru у клиента», «Timeweb». Свободная строка —
+  /// хостингов столько же, сколько клиентов, и списком их не закрыть.
+  hosting String?
+  /// Вид работы: договорной, разовый, сопровождение. Строкой, а не enum: набор
+  /// уточняется по ходу, а миграция ради нового варианта — перебор.
+  workType String? @map("work_type")
+
+  contractNumber String?   @map("contract_number")
+  contractDate   DateTime? @map("contract_date")
+  /// Дата акта выполненных работ по проекту в целом. Помесячные акты живут
+  /// отдельными записями в invoices.
+  actDate        DateTime? @map("act_date")
+
+  /// Счета выставляются каждый месяц. Признак нужен, чтобы бот напоминал про
+  /// период, за который счёта ещё нет, — в этом и весь смысл учёта.
+  billingMonthly Boolean @default(false) @map("billing_monthly")
+  /// Ожидаемая сумма в месяц, рубли целыми. Копейки в помесячной абонплате не
+  /// встречаются, а Decimal тянет за собой отдельный тип на всех слоях.
+  monthlyAmount  Int?    @map("monthly_amount")
+
+  invoices Invoice[]
+
+  /// Порядок внутри колонки на доске.
+  position Int @default(0)
+
   startedAt DateTime? @map("started_at")
   deadline  DateTime?
   closedAt  DateTime? @map("closed_at")
@@ -311,6 +336,47 @@ model Project {
 
   @@index([status, deadline])
   @@map("projects")
+}
+
+enum InvoiceKind {
+  /// Счёт на оплату.
+  invoice
+  /// Акт выполненных работ.
+  act
+}
+
+/// Счета и акты по проекту, по одному на период.
+///
+/// Отдельная запись, а не поле проекта: счета выставляются каждый месяц, и
+/// «дата счёта» одним полем затирала бы прошлый месяц. Здесь же видно, за
+/// какой период выставлено, что оплачено и чего ещё нет.
+///
+/// Документы CRM не рисует — только помнит. Генерация требует нумерации,
+/// реквизитов и НДС, а болит не она: болит «за апрель выставить забыли».
+model Invoice {
+  id        String      @id @default(uuid()) @db.Uuid
+  projectId String      @map("project_id") @db.Uuid
+  project   Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  kind      InvoiceKind
+
+  /// Период в виде ГГГГ-ММ. Строкой, потому что это календарный месяц, а не
+  /// момент времени: сравнивать и сортировать так же просто, а часовые пояса
+  /// не превращают март в февраль.
+  period String
+  /// Рубли целыми, как и monthlyAmount у проекта.
+  amount Int?
+
+  issuedAt DateTime? @map("issued_at")
+  paidAt   DateTime? @map("paid_at")
+  note     String?
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  /// Один счёт и один акт на период: два счёта за март — это ошибка ввода.
+  @@unique([projectId, kind, period])
+  @@index([period])
+  @@map("invoices")
 }
 
 enum TaskStatus {
@@ -357,6 +423,38 @@ model Task {
   @@index([status, position])
   @@index([dueAt])
   @@map("tasks")
+}
+
+/// Учётки сервисов, которыми пользуется команда.
+///
+/// **Паролей здесь нет и быть не должно.** Это справочник «что у нас вообще
+/// есть и на кого записано»: сервис, логин, адрес, на какой почте, когда
+/// продлевать. Пароли живут в менеджере паролей — база регулярно уезжает в
+/// дампы, и одна утечка дампа отдала бы разом все сервисы.
+///
+/// Поле `secretHint` — не пароль, а подсказка, где его искать: «Bitwarden,
+/// папка Хостинг».
+model Credential {
+  id      String  @id @default(uuid()) @db.Uuid
+  /// Название сервиса: reg.ru, Яндекс 360, GitHub.
+  service String
+  /// Логин или адрес почты, под которым заходят.
+  login   String?
+  url     String?
+  /// На кого оформлено — имя из DEVELOPERS или название компании.
+  owner   String?
+  /// Где лежит пароль. Именно указание места, а не сам пароль.
+  secretHint String? @map("secret_hint")
+  /// Когда продлевать: домены, сертификаты, платные подписки.
+  renewsAt   DateTime? @map("renews_at")
+  notes      String?
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  @@index([service])
+  @@map("credentials")
 }
 
 /// Отметки планировщика: «эта рассылка за такое-то число уже ушла».

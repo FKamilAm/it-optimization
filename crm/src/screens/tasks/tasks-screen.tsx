@@ -3,14 +3,19 @@ import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { ApiError } from "@/api/client";
 import { listProjects, type Project } from "@/api/projects";
 import {
+  BOARD_COLUMNS,
   createTask,
   deleteTask,
   listTasks,
+  reorderTasks,
   TASK_STATUS_LABELS,
   updateTask,
   type Task,
   type TaskFilters,
+  type TaskStatus,
 } from "@/api/tasks";
+import { Board, type BoardColumn } from "@/components/board";
+import { MonthCalendar } from "@/components/month-calendar";
 import { Badge, Button, EmptyState, ErrorNote, Input, Modal } from "@/components/ui";
 import { describeDeadline } from "@/lib/dates";
 import { cn } from "@/lib/cn";
@@ -38,6 +43,7 @@ const TABS = [
 type TabKey = (typeof TABS)[number]["key"];
 
 export function TasksScreen() {
+  const [view, setView] = useState<"list" | "board" | "calendar">("list");
   const [tab, setTab] = useState<TabKey>("all");
   /** Фильтр по исполнителю: «мои» без учётных записей не выразить. */
   const [developer, setDeveloper] = useState("");
@@ -47,6 +53,8 @@ export function TasksScreen() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
+  /** Дата из календаря — подставляется в срок новой задачи. */
+  const [prefillDate, setPrefillDate] = useState("");
   const [editing, setEditing] = useState<Task | null>(null);
 
   useEffect(() => {
@@ -56,7 +64,11 @@ export function TasksScreen() {
 
   const load = useCallback(() => {
     const active = TABS.find((item) => item.key === tab) ?? TABS[0];
-    const filters: TaskFilters = { ...active.filters };
+    // Доске нужны все колонки разом, поэтому срез вкладки на ней не применяется.
+    // Доске и календарю нужны все задачи разом, поэтому срез вкладки на них
+    // не применяется: колонка «Готово» и прошлые сроки должны быть видны.
+    const filters: TaskFilters =
+      view === "list" ? { ...active.filters } : { scope: "all" };
     if (developer) filters.developer = developer;
     if (debouncedSearch) filters.search = debouncedSearch;
 
@@ -67,7 +79,7 @@ export function TasksScreen() {
         setError(cause instanceof ApiError ? cause.message : "Не удалось загрузить");
         setTasks([]);
       });
-  }, [tab, developer, debouncedSearch]);
+  }, [tab, view, developer, debouncedSearch]);
 
   useEffect(load, [load]);
 
@@ -78,6 +90,23 @@ export function TasksScreen() {
       .then(setProjects)
       .catch(() => setProjects([]));
   }, []);
+
+  /**
+   * Перенос карточки: сначала статус, потом порядок колонки. Порядок важен —
+   * сервер при смене статуса ставит задачу в конец, и перестановка обязана
+   * идти после, иначе она затрётся.
+   */
+  async function moveTask(status: TaskStatus, ids: string[]) {
+    const moved = tasks?.find((task) => ids.includes(task.id) && task.status !== status);
+    try {
+      if (moved) await updateTask(moved.id, { status });
+      await reorderTasks(status, ids);
+      load();
+    } catch (cause) {
+      setError(cause instanceof ApiError ? cause.message : "Не удалось перенести");
+      load();
+    }
+  }
 
   async function toggleDone(task: Task) {
     const next = task.status === "done" ? "todo" : "done";
@@ -123,10 +152,27 @@ export function TasksScreen() {
             {item.label}
           </button>
         ))}
+        <div className="border-border ml-auto flex overflow-hidden rounded-lg border">
+          {(["list", "board", "calendar"] as const).map((mode) => (
+            <button
+              key={mode}
+              type="button"
+              onClick={() => setView(mode)}
+              className={cn(
+                "px-3 py-1.5 text-sm font-medium transition",
+                view === mode
+                  ? "bg-accent-soft text-foreground"
+                  : "text-muted-foreground hover:bg-muted",
+              )}
+            >
+              {mode === "list" ? "Список" : mode === "board" ? "Доска" : "Календарь"}
+            </button>
+          ))}
+        </div>
         <select
           value={developer}
           onChange={(event) => setDeveloper(event.target.value)}
-          className="border-border bg-background ml-auto rounded-lg border px-3 py-1.5 text-sm outline-none"
+          className="border-border bg-background rounded-lg border px-3 py-1.5 text-sm outline-none"
         >
           <option value="">Все исполнители</option>
           {DEVELOPERS.map((name) => (
@@ -161,6 +207,71 @@ export function TasksScreen() {
                 : "Заведите первую задачу — кнопка справа сверху."
             }
           />
+        ) : view === "calendar" ? (
+          <MonthCalendar
+            items={tasks}
+            dateOf={(task) => task.dueAt}
+            onPickDay={(isoDate) => {
+              setPrefillDate(isoDate);
+              setCreating(true);
+            }}
+            renderItem={(task) => (
+              <button
+                key={task.id}
+                type="button"
+                onClick={() => setEditing(task)}
+                className={cn(
+                  "block w-full truncate rounded px-1.5 py-0.5 text-left text-xs transition",
+                  task.status === "done" || task.status === "cancelled"
+                    ? "text-muted-foreground line-through"
+                    : task.priority === "high"
+                      ? "bg-danger-soft text-danger"
+                      : "bg-muted hover:bg-accent-soft",
+                )}
+                title={task.title}
+              >
+                {task.title}
+              </button>
+            )}
+          />
+        ) : view === "board" ? (
+          <Board
+            columns={
+              BOARD_COLUMNS.map((status) => ({
+                key: status,
+                label: TASK_STATUS_LABELS[status],
+                items: tasks.filter((task) => task.status === status),
+              })) satisfies BoardColumn<Task>[]
+            }
+            onMove={(columnKey, ids) => void moveTask(columnKey as TaskStatus, ids)}
+            renderCard={(task) => (
+              <button
+                type="button"
+                onClick={() => setEditing(task)}
+                className="w-full text-left"
+              >
+                <span className="block text-sm font-medium">
+                  {task.priority === "high" && "❗ "}
+                  {task.title}
+                </span>
+                <span className="text-muted-foreground mt-1 block truncate text-xs">
+                  {[
+                    task.project?.title,
+                    task.developers.length ? task.developers.join(", ") : null,
+                  ]
+                    .filter(Boolean)
+                    .join(" · ")}
+                </span>
+                {task.dueAt && task.status !== "done" && (
+                  <span className="mt-1.5 block">
+                    <Badge tone={describeDeadline(task.dueAt).tone}>
+                      {describeDeadline(task.dueAt).label}
+                    </Badge>
+                  </span>
+                )}
+              </button>
+            )}
+          />
         ) : (
           <ul className="divide-border divide-y">
             {tasks.map((task) => (
@@ -179,11 +290,15 @@ export function TasksScreen() {
         <TaskModal
           title="Новая задача"
           projects={projects}
-          initial={emptyTaskValues({})}
-          onClose={() => setCreating(false)}
+          initial={{ ...emptyTaskValues({}), dueDate: prefillDate }}
+          onClose={() => {
+            setCreating(false);
+            setPrefillDate("");
+          }}
           onSubmit={async (values) => {
             await createTask(valuesToTaskInput(values));
             setCreating(false);
+            setPrefillDate("");
             load();
           }}
         />

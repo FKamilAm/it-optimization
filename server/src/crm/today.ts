@@ -3,7 +3,7 @@ import { prisma } from "../db.js";
 import { env } from "../env.js";
 import { startOfToday, startOfTomorrow } from "../notify/zone.js";
 import { OPEN_LEAD_STATUSES } from "./leads/dto.js";
-import { OPEN_PROJECT_STATUSES } from "./projects/dto.js";
+import { currentPeriod, OPEN_PROJECT_STATUSES } from "./projects/dto.js";
 import { OPEN_TASK_STATUSES } from "./tasks/dto.js";
 
 /**
@@ -159,7 +159,17 @@ export interface TeamSnapshot {
   /** Просрочено у всех разом, с указанием, на ком висит. */
   leads: { overdue: LeadFull[]; unclaimed: LeadFull[] };
   tasks: { overdue: TaskFull[] };
-  projects: { urgent: ProjectFull[] };
+  projects: {
+    urgent: ProjectFull[];
+    /**
+     * Помесячные проекты, по которым за текущий месяц счёта ещё нет. Ради
+     * этого напоминания счета и заводятся: забытый счёт — это прямые
+     * недополученные деньги, и заметить его иначе нечем.
+     */
+    unbilled: ProjectFull[];
+  };
+  /** Период, за который проверялось выставление, — вида «2026-08». */
+  period: string;
 }
 
 /**
@@ -175,33 +185,49 @@ export async function collectTeamToday(): Promise<TeamSnapshot> {
   const openTasks = { in: [...OPEN_TASK_STATUSES] };
   const openProjects = { in: [...OPEN_PROJECT_STATUSES] };
 
-  const [overdueLeads, unclaimed, overdueTasks, urgentProjects] = await Promise.all([
-    prisma.lead.findMany({
-      where: { deletedAt: null, status: openLeads, nextActionAt: { lt: from } },
-      orderBy: { nextActionAt: "asc" },
-      include: LEAD_INCLUDE,
-    }),
-    prisma.lead.findMany({
-      where: { deletedAt: null, status: "new", ownerId: null, nextActionAt: null },
-      orderBy: { createdAt: "asc" },
-      include: LEAD_INCLUDE,
-    }),
-    prisma.task.findMany({
-      where: { deletedAt: null, status: openTasks, dueAt: { lt: from } },
-      orderBy: { dueAt: "asc" },
-      include: TASK_INCLUDE,
-    }),
-    prisma.project.findMany({
-      where: { deletedAt: null, status: openProjects, deadline: { lt: until } },
-      orderBy: { deadline: "asc" },
-      include: PROJECT_INCLUDE,
-    }),
-  ]);
+  const period = currentPeriod(env.TIMEZONE);
+
+  const [overdueLeads, unclaimed, overdueTasks, urgentProjects, unbilled] =
+    await Promise.all([
+      prisma.lead.findMany({
+        where: { deletedAt: null, status: openLeads, nextActionAt: { lt: from } },
+        orderBy: { nextActionAt: "asc" },
+        include: LEAD_INCLUDE,
+      }),
+      prisma.lead.findMany({
+        where: { deletedAt: null, status: "new", ownerId: null, nextActionAt: null },
+        orderBy: { createdAt: "asc" },
+        include: LEAD_INCLUDE,
+      }),
+      prisma.task.findMany({
+        where: { deletedAt: null, status: openTasks, dueAt: { lt: from } },
+        orderBy: { dueAt: "asc" },
+        include: TASK_INCLUDE,
+      }),
+      prisma.project.findMany({
+        where: { deletedAt: null, status: openProjects, deadline: { lt: until } },
+        orderBy: { deadline: "asc" },
+        include: PROJECT_INCLUDE,
+      }),
+      // `none` вместо выборки всех счетов и фильтрации в коде: условие «нет
+      // записи за этот период» база проверяет сама, одним запросом.
+      prisma.project.findMany({
+        where: {
+          deletedAt: null,
+          status: openProjects,
+          billingMonthly: true,
+          invoices: { none: { kind: "invoice", period } },
+        },
+        orderBy: { title: "asc" },
+        include: PROJECT_INCLUDE,
+      }),
+    ]);
 
   return {
     leads: { overdue: overdueLeads, unclaimed },
     tasks: { overdue: overdueTasks },
-    projects: { urgent: urgentProjects },
+    projects: { urgent: urgentProjects, unbilled },
+    period,
   };
 }
 
@@ -210,7 +236,8 @@ export function isEmptyTeamSnapshot(snapshot: TeamSnapshot): boolean {
     snapshot.leads.overdue.length === 0 &&
     snapshot.leads.unclaimed.length === 0 &&
     snapshot.tasks.overdue.length === 0 &&
-    snapshot.projects.urgent.length === 0
+    snapshot.projects.urgent.length === 0 &&
+    snapshot.projects.unbilled.length === 0
   );
 }
 

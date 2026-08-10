@@ -3,6 +3,7 @@ import {
   Building2,
   CheckSquare,
   ExternalLink,
+  KeyRound,
   Globe,
   Images,
   Inbox,
@@ -25,6 +26,13 @@ const NAV = [
   { to: "/projects", label: "Проекты", icon: Briefcase, end: false, leadsOnly: false },
   { to: "/tasks", label: "Задачи", icon: CheckSquare, end: false, leadsOnly: false },
   { to: "/clients", label: "Клиенты", icon: Building2, end: false, leadsOnly: false },
+  {
+    to: "/credentials",
+    label: "Доступы",
+    icon: KeyRound,
+    end: false,
+    leadsOnly: false,
+  },
 ] as const;
 
 /**

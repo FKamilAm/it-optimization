@@ -7,11 +7,16 @@ import {
   createProject,
   deleteProject,
   listProjects,
+  PROJECT_STATUSES,
   PROJECT_STATUS_LABELS,
+  reorderProjects,
   updateProject,
+  workTypeLabel,
   type Project,
   type ProjectFilters,
+  type ProjectStatus,
 } from "@/api/projects";
+import { Board, type BoardColumn } from "@/components/board";
 import { Badge, Button, EmptyState, ErrorNote, Input, Modal } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { describeDeadline } from "@/lib/dates";
@@ -22,6 +27,7 @@ import {
   valuesToProjectInput,
   type ProjectFormValues,
 } from "./project-form";
+import { ProjectInvoices } from "./project-invoices";
 
 const TABS = [
   { key: "all", label: "Все", filters: { scope: "all" } },
@@ -41,6 +47,7 @@ const STATUS_TONE: Record<string, "neutral" | "accent" | "warning" | "success"> 
 };
 
 export function ProjectsScreen() {
+  const [view, setView] = useState<"list" | "board">("list");
   const [tab, setTab] = useState<TabKey>("all");
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
@@ -57,7 +64,9 @@ export function ProjectsScreen() {
 
   const load = useCallback(() => {
     const active = TABS.find((item) => item.key === tab) ?? TABS[0];
-    const filters: ProjectFilters = { ...active.filters };
+    // Доске нужны все колонки разом, поэтому срез вкладки на ней не применяется.
+    const filters: ProjectFilters =
+      view === "board" ? { scope: "all" } : { ...active.filters };
     if (debouncedSearch) filters.search = debouncedSearch;
 
     setError(null);
@@ -67,7 +76,7 @@ export function ProjectsScreen() {
         setError(cause instanceof ApiError ? cause.message : "Не удалось загрузить");
         setProjects([]);
       });
-  }, [tab, debouncedSearch]);
+  }, [tab, view, debouncedSearch]);
 
   useEffect(load, [load]);
 
@@ -76,6 +85,24 @@ export function ProjectsScreen() {
       .then(setClients)
       .catch(() => setClients([]));
   }, []);
+
+  /**
+   * Перенос карточки: сначала статус, потом порядок колонки — сервер при смене
+   * статуса ставит проект в конец, и перестановка обязана идти после.
+   */
+  async function moveProject(status: ProjectStatus, ids: string[]) {
+    const moved = projects?.find(
+      (project) => ids.includes(project.id) && project.status !== status,
+    );
+    try {
+      if (moved) await updateProject(moved.id, { status });
+      await reorderProjects(status, ids);
+      load();
+    } catch (cause) {
+      setError(cause instanceof ApiError ? cause.message : "Не удалось перенести");
+      load();
+    }
+  }
 
   return (
     <section>
@@ -103,11 +130,28 @@ export function ProjectsScreen() {
             {item.label}
           </button>
         ))}
+        <div className="border-border ml-auto flex overflow-hidden rounded-lg border">
+          {(["list", "board"] as const).map((mode) => (
+            <button
+              key={mode}
+              type="button"
+              onClick={() => setView(mode)}
+              className={cn(
+                "px-3 py-1.5 text-sm font-medium transition",
+                view === mode
+                  ? "bg-accent-soft text-foreground"
+                  : "text-muted-foreground hover:bg-muted",
+              )}
+            >
+              {mode === "list" ? "Список" : "Доска"}
+            </button>
+          ))}
+        </div>
         <Input
           value={search}
           onChange={(event) => setSearch(event.target.value)}
           placeholder="Поиск"
-          className="ml-auto w-full sm:w-56"
+          className="w-full sm:w-56"
         />
       </div>
 
@@ -124,6 +168,44 @@ export function ProjectsScreen() {
           <EmptyState
             title="Пока пусто"
             note="Проект — это работа, у которой есть начало и конец. Заведите первый."
+          />
+        ) : view === "board" ? (
+          <Board
+            columns={
+              PROJECT_STATUSES.map((status) => ({
+                key: status,
+                label: PROJECT_STATUS_LABELS[status],
+                items: projects.filter((project) => project.status === status),
+              })) satisfies BoardColumn<Project>[]
+            }
+            onMove={(columnKey, ids) => void moveProject(columnKey as ProjectStatus, ids)}
+            renderCard={(project) => (
+              <button
+                type="button"
+                onClick={() => setEditing(project)}
+                className="w-full text-left"
+              >
+                <span className="block text-sm font-medium">{project.title}</span>
+                <span className="text-muted-foreground mt-1 block truncate text-xs">
+                  {[
+                    project.client?.name,
+                    project.developers.length ? project.developers.join(", ") : null,
+                  ]
+                    .filter(Boolean)
+                    .join(" · ")}
+                </span>
+                <span className="mt-1.5 flex flex-wrap gap-1">
+                  {project.deadline && (
+                    <Badge tone={describeDeadline(project.deadline).tone}>
+                      {describeDeadline(project.deadline).label}
+                    </Badge>
+                  )}
+                  {project.unbilledPeriod && (
+                    <Badge tone="danger">счёт за {project.unbilledPeriod}</Badge>
+                  )}
+                </span>
+              </button>
+            )}
           />
         ) : (
           <ul className="divide-border divide-y">
@@ -156,6 +238,7 @@ export function ProjectsScreen() {
         <ProjectModal
           title="Проект"
           clients={clients}
+          projectId={editing.id}
           initial={projectToValues(editing)}
           onClose={() => setEditing(null)}
           onSubmit={async (values) => {
@@ -194,6 +277,7 @@ function ProjectRow({ project, onOpen }: { project: Project; onOpen: () => void 
               project.developers.length
                 ? project.developers.join(", ")
                 : "никто не ведёт",
+              workTypeLabel(project.workType) || null,
               project.taskCount > 0
                 ? `задач ${project.openTaskCount}/${project.taskCount}`
                 : null,
@@ -203,6 +287,11 @@ function ProjectRow({ project, onOpen }: { project: Project; onOpen: () => void 
           </span>
         </div>
 
+        {project.unbilledPeriod && (
+          <Badge tone="danger" className="mt-0.5">
+            счёт за {project.unbilledPeriod}
+          </Badge>
+        )}
         {deadline && (
           <Badge tone={deadline.tone} className="mt-0.5">
             {deadline.label}
@@ -220,6 +309,7 @@ function ProjectModal({
   title,
   initial,
   clients,
+  projectId,
   onClose,
   onSubmit,
   onDelete,
@@ -227,6 +317,8 @@ function ProjectModal({
   title: string;
   initial: ProjectFormValues;
   clients: Client[];
+  /** Есть только у сохранённого проекта — счета вешать не на что, пока его нет. */
+  projectId?: string;
   onClose: () => void;
   onSubmit: (values: ProjectFormValues) => Promise<void>;
   onDelete?: () => Promise<void>;
@@ -264,6 +356,12 @@ function ProjectModal({
     <Modal title={title} onClose={onClose}>
       <form onSubmit={handleSubmit}>
         <ProjectFields values={values} onChange={setValues} clients={clients} />
+
+        {projectId && (
+          <div className="mt-4">
+            <ProjectInvoices projectId={projectId} />
+          </div>
+        )}
 
         {error && (
           <div className="mt-4">

@@ -150,6 +150,21 @@ export async function buildTeamDigest(): Promise<string | null> {
       ? [`<b>Задачи просрочены (${taskLines.length})</b>`, ...taskLines, ""]
       : []),
     ...projectSection(`Проекты — срок (${projects.urgent.length})`, projects.urgent),
+    // Забытый счёт — это прямые недополученные деньги, поэтому блок выделен
+    // значком: среди сроков и задач его иначе легко пролистать.
+    ...(projects.unbilled.length
+      ? [
+          `💸 <b>Счёт за ${snapshot.period} не выставлен (${projects.unbilled.length})</b>`,
+          ...projects.unbilled.map((project) => {
+            const amount = project.monthlyAmount
+              ? ` — ${project.monthlyAmount.toLocaleString("ru-RU")} ₽`
+              : "";
+            const client = project.client ? ` · ${escapeHtml(project.client.name)}` : "";
+            return `• ${escapeHtml(project.title)}${amount}${client}`;
+          }),
+          "",
+        ]
+      : []),
   ];
 
   return ["🌅 <b>Сводка по команде</b>", "", ...blocks].join("\n").trimEnd();

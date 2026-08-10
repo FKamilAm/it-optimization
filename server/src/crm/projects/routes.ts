@@ -4,11 +4,14 @@ import { z } from "zod";
 import { audit } from "../../audit.js";
 import { requireTeam } from "../../auth/guard.js";
 import { prisma } from "../../db.js";
+import { env } from "../../env.js";
 import { invalidInput } from "../http.js";
 import { deleteNotes, listNotes, noteRoutesFor } from "../notes.js";
+import { invoiceRoutes } from "./invoices.js";
 import {
   CLOSED_PROJECT_STATUSES,
   createProjectBody,
+  reorderProjectsBody,
   listProjectsQuery,
   OPEN_PROJECT_STATUSES,
   PROJECT_RELATIONS,
@@ -95,7 +98,7 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
       take: 500,
     });
 
-    return reply.send({ projects: projects.map(toProjectDto) });
+    return reply.send({ projects: projects.map((item) => toProjectDto(item, env.TIMEZONE)) });
   });
 
   app.post("/projects", { preHandler: requireTeam }, async (request, reply) => {
@@ -115,6 +118,13 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
         clientId: input.clientId ?? null,
         leadId: input.leadId ?? null,
         developers: input.developers ?? [],
+        hosting: input.hosting ?? null,
+        workType: input.workType ?? null,
+        contractNumber: input.contractNumber ?? null,
+        contractDate: input.contractDate ?? null,
+        actDate: input.actDate ?? null,
+        billingMonthly: input.billingMonthly ?? false,
+        monthlyAmount: input.monthlyAmount ?? null,
         startedAt: input.startedAt ?? null,
         deadline: input.deadline ?? null,
         closedAt: closedAtFor(status, null) ?? null,
@@ -123,7 +133,7 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
     });
 
     await audit(request, { entity: "projects", entityId: project.id, action: "create" });
-    return reply.code(201).send({ project: toProjectDto(project) });
+    return reply.code(201).send({ project: toProjectDto(project, env.TIMEZONE) });
   });
 
   app.get("/projects/:id", { preHandler: requireTeam }, async (request, reply) => {
@@ -137,7 +147,7 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
     if (!project) return reply.code(404).send({ error: "Проект не найден" });
 
     return reply.send({
-      project: toProjectDto(project),
+      project: toProjectDto(project, env.TIMEZONE),
       notes: await listNotes("project", project.id),
     });
   });
@@ -166,6 +176,13 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
     if (input.leadId !== undefined) data.leadId = input.leadId;
     // Состав приходит целиком — записываем как есть.
     if (input.developers !== undefined) data.developers = input.developers;
+    if (input.hosting !== undefined) data.hosting = input.hosting;
+    if (input.workType !== undefined) data.workType = input.workType;
+    if (input.contractNumber !== undefined) data.contractNumber = input.contractNumber;
+    if (input.contractDate !== undefined) data.contractDate = input.contractDate;
+    if (input.actDate !== undefined) data.actDate = input.actDate;
+    if (input.billingMonthly !== undefined) data.billingMonthly = input.billingMonthly;
+    if (input.monthlyAmount !== undefined) data.monthlyAmount = input.monthlyAmount;
     if (input.startedAt !== undefined) data.startedAt = input.startedAt;
     if (input.deadline !== undefined) data.deadline = input.deadline;
 
@@ -185,8 +202,36 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
       diff: { status: { from: existing.status, to: project.status } },
     });
 
-    return reply.send({ project: toProjectDto(project) });
+    return reply.send({ project: toProjectDto(project, env.TIMEZONE) });
   });
+
+  /** Порядок внутри колонки на доске. Приходит целиком, как и у задач. */
+  app.put("/projects/reorder", { preHandler: requireTeam }, async (request, reply) => {
+    const parsed = reorderProjectsBody.safeParse(request.body);
+    if (!parsed.success) return invalidInput(reply, parsed.error);
+
+    const { status, ids } = parsed.data;
+
+    // Берём только те, что действительно в этой колонке: присланный список мог
+    // устареть, пока его тащили мышью.
+    const existing = await prisma.project.findMany({
+      where: { id: { in: ids }, status, deletedAt: null },
+      select: { id: true },
+    });
+    const known = new Set(existing.map((project) => project.id));
+
+    await prisma.$transaction(
+      ids
+        .filter((id) => known.has(id))
+        .map((id, index) =>
+          prisma.project.update({ where: { id }, data: { position: index } }),
+        ),
+    );
+
+    return reply.code(204).send();
+  });
+
+  await invoiceRoutes(app);
 
   app.delete("/projects/:id", { preHandler: requireTeam }, async (request, reply) => {
     const params = idParams.safeParse(request.params);

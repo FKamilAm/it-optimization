@@ -9,6 +9,7 @@ import { leadRoutes } from "./crm/leads/routes.js";
 import { teamRoutes } from "./crm/team.js";
 import { env, isProduction } from "./env.js";
 import { clientRoutes } from "./crm/clients/routes.js";
+import { credentialRoutes } from "./crm/credentials/routes.js";
 import { projectRoutes } from "./crm/projects/routes.js";
 import { taskRoutes } from "./crm/tasks/routes.js";
 import { todayRoutes } from "./crm/today-routes.js";
@@ -58,6 +59,7 @@ export async function buildApp(): Promise<FastifyInstance> {
   await app.register(caseRoutes);
   await app.register(publishRoutes);
   await app.register(clientRoutes);
+  await app.register(credentialRoutes);
   await app.register(projectRoutes);
   await app.register(taskRoutes);
   await app.register(todayRoutes);

@@ -1,4 +1,5 @@
 import type { FastifyInstance } from "fastify";
+import { env } from "../env.js";
 import { requireTeam } from "../auth/guard.js";
 import { toLeadDto } from "./leads/dto.js";
 import { toProjectDto } from "./projects/dto.js";
@@ -26,7 +27,7 @@ export async function todayRoutes(app: FastifyInstance): Promise<void> {
         today: snapshot.tasks.today.map(toTaskDto),
       },
       projects: {
-        urgent: snapshot.projects.urgent.map(toProjectDto),
+        urgent: snapshot.projects.urgent.map((item) => toProjectDto(item, env.TIMEZONE)),
       },
     });
   });
