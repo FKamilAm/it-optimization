@@ -1,4 +1,4 @@
-import { Check, Plus } from "lucide-react";
+import { CalendarDays, Check, Plus } from "lucide-react";
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { ApiError } from "@/api/client";
 import { listProjects, type Project } from "@/api/projects";
@@ -14,10 +14,11 @@ import {
   type TaskFilters,
   type TaskStatus,
 } from "@/api/tasks";
-import { Board, type BoardColumn } from "@/components/board";
+import { Board, type BoardColumn, type ColumnTone } from "@/components/board";
+import { PersonChip, PersonChips } from "@/components/person-chip";
 import { MonthCalendar } from "@/components/month-calendar";
 import { Badge, Button, EmptyState, ErrorNote, Input, Modal } from "@/components/ui";
-import { describeDeadline } from "@/lib/dates";
+import { describeDeadline, formatDate } from "@/lib/dates";
 import { cn } from "@/lib/cn";
 import { DEVELOPERS } from "@/lib/developers";
 import {
@@ -42,6 +43,70 @@ const TABS = [
 
 type TabKey = (typeof TABS)[number]["key"];
 
+/** Цвет колонки — по смыслу: что ждёт, что в работе, что закрыто. */
+const COLUMN_TONE: Record<string, ColumnTone> = {
+  backlog: "neutral",
+  todo: "accent",
+  in_progress: "warning",
+  done: "success",
+};
+
+function TaskCard({ task, onOpen }: { task: Task; onOpen: () => void }) {
+  const done = task.status === "done" || task.status === "cancelled";
+  const deadline = task.dueAt && !done ? describeDeadline(task.dueAt) : null;
+
+  return (
+    <button type="button" onClick={onOpen} className="flex w-full text-left">
+      {/* Полоса слева — срочность: красная видна в потоке одинаковых карточек
+          быстрее любого значка внутри. */}
+      <span
+        aria-hidden="true"
+        className={cn(
+          "w-1 shrink-0 rounded-l-lg",
+          task.priority === "high" && !done ? "bg-danger" : "bg-transparent",
+        )}
+      />
+      <span className="min-w-0 flex-1 p-2.5">
+        {task.dueAt && (
+          <span
+            className={cn(
+              "mb-1.5 flex items-center gap-1 text-[11px]",
+              deadline?.tone === "danger"
+                ? "text-danger"
+                : deadline?.tone === "warning"
+                  ? "text-warning"
+                  : "text-muted-foreground",
+            )}
+          >
+            <CalendarDays size={11} strokeWidth={2.5} />
+            {deadline ? deadline.label : formatDate(task.dueAt)}
+          </span>
+        )}
+
+        <span
+          className={cn(
+            "block text-sm font-medium",
+            done && "text-muted-foreground line-through",
+          )}
+        >
+          {task.title}
+        </span>
+
+        {task.project && (
+          <span className="text-muted-foreground mt-1 block truncate text-xs">
+            {task.project.title}
+          </span>
+        )}
+
+        <span className="mt-2 flex items-center justify-between gap-2">
+          <PersonChips names={task.developers} />
+          {task.priority === "high" && !done && <Badge tone="danger">срочно</Badge>}
+        </span>
+      </span>
+    </button>
+  );
+}
+
 export function TasksScreen() {
   const [view, setView] = useState<"list" | "board" | "calendar">("list");
   const [tab, setTab] = useState<TabKey>("all");
@@ -55,6 +120,8 @@ export function TasksScreen() {
   const [creating, setCreating] = useState(false);
   /** Дата из календаря — подставляется в срок новой задачи. */
   const [prefillDate, setPrefillDate] = useState("");
+  /** Колонка, из которой нажали «+» — новая задача заводится сразу в ней. */
+  const [prefillStatus, setPrefillStatus] = useState<TaskStatus | null>(null);
   const [editing, setEditing] = useState<Task | null>(null);
 
   useEffect(() => {
@@ -215,61 +282,54 @@ export function TasksScreen() {
               setPrefillDate(isoDate);
               setCreating(true);
             }}
-            renderItem={(task) => (
-              <button
-                key={task.id}
-                type="button"
-                onClick={() => setEditing(task)}
-                className={cn(
-                  "block w-full truncate rounded px-1.5 py-0.5 text-left text-xs transition",
-                  task.status === "done" || task.status === "cancelled"
-                    ? "text-muted-foreground line-through"
-                    : task.priority === "high"
-                      ? "bg-danger-soft text-danger"
-                      : "bg-muted hover:bg-accent-soft",
-                )}
-                title={task.title}
-              >
-                {task.title}
-              </button>
-            )}
+            renderItem={(task) => {
+              const done = task.status === "done" || task.status === "cancelled";
+              const late = !done && task.dueAt && describeDeadline(task.dueAt).tone;
+              return (
+                <button
+                  key={task.id}
+                  type="button"
+                  onClick={() => setEditing(task)}
+                  title={`${task.title}${task.developers.length ? ` · ${task.developers.join(", ")}` : ""}`}
+                  className={cn(
+                    "flex w-full items-center gap-1 rounded px-1.5 py-1 text-left text-[11px] transition",
+                    done
+                      ? "text-muted-foreground line-through"
+                      : late === "danger"
+                        ? "bg-danger-soft text-danger hover:brightness-95"
+                        : late === "warning"
+                          ? "bg-warning-soft text-warning hover:brightness-95"
+                          : "bg-muted hover:bg-accent-soft",
+                  )}
+                >
+                  {task.developers[0] && (
+                    <PersonChip
+                      name={task.developers[0]}
+                      className="size-4 text-[9px] ring-0"
+                    />
+                  )}
+                  <span className="min-w-0 flex-1 truncate">{task.title}</span>
+                </button>
+              );
+            }}
           />
         ) : view === "board" ? (
           <Board
+            onAdd={(columnKey) => {
+              setPrefillStatus(columnKey as TaskStatus);
+              setCreating(true);
+            }}
             columns={
               BOARD_COLUMNS.map((status) => ({
                 key: status,
                 label: TASK_STATUS_LABELS[status],
+                tone: COLUMN_TONE[status],
                 items: tasks.filter((task) => task.status === status),
               })) satisfies BoardColumn<Task>[]
             }
             onMove={(columnKey, ids) => void moveTask(columnKey as TaskStatus, ids)}
             renderCard={(task) => (
-              <button
-                type="button"
-                onClick={() => setEditing(task)}
-                className="w-full text-left"
-              >
-                <span className="block text-sm font-medium">
-                  {task.priority === "high" && "❗ "}
-                  {task.title}
-                </span>
-                <span className="text-muted-foreground mt-1 block truncate text-xs">
-                  {[
-                    task.project?.title,
-                    task.developers.length ? task.developers.join(", ") : null,
-                  ]
-                    .filter(Boolean)
-                    .join(" · ")}
-                </span>
-                {task.dueAt && task.status !== "done" && (
-                  <span className="mt-1.5 block">
-                    <Badge tone={describeDeadline(task.dueAt).tone}>
-                      {describeDeadline(task.dueAt).label}
-                    </Badge>
-                  </span>
-                )}
-              </button>
+              <TaskCard task={task} onOpen={() => setEditing(task)} />
             )}
           />
         ) : (
@@ -290,15 +350,21 @@ export function TasksScreen() {
         <TaskModal
           title="Новая задача"
           projects={projects}
-          initial={{ ...emptyTaskValues({}), dueDate: prefillDate }}
+          initial={{
+            ...emptyTaskValues({}),
+            dueDate: prefillDate,
+            ...(prefillStatus ? { status: prefillStatus } : {}),
+          }}
           onClose={() => {
             setCreating(false);
             setPrefillDate("");
+            setPrefillStatus(null);
           }}
           onSubmit={async (values) => {
             await createTask(valuesToTaskInput(values));
             setCreating(false);
             setPrefillDate("");
+            setPrefillStatus(null);
             load();
           }}
         />

@@ -1,4 +1,4 @@
-import { Plus } from "lucide-react";
+import { CalendarDays, Plus, Wallet } from "lucide-react";
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { ApiError } from "@/api/client";
 import { listClients, type Client } from "@/api/clients";
@@ -16,10 +16,11 @@ import {
   type ProjectFilters,
   type ProjectStatus,
 } from "@/api/projects";
-import { Board, type BoardColumn } from "@/components/board";
+import { Board, type BoardColumn, type ColumnTone } from "@/components/board";
+import { PersonChips } from "@/components/person-chip";
 import { Badge, Button, EmptyState, ErrorNote, Input, Modal } from "@/components/ui";
 import { cn } from "@/lib/cn";
-import { describeDeadline } from "@/lib/dates";
+import { describeDeadline, formatDate } from "@/lib/dates";
 import {
   emptyProjectValues,
   ProjectFields,
@@ -46,6 +47,75 @@ const STATUS_TONE: Record<string, "neutral" | "accent" | "warning" | "success"> 
   cancelled: "neutral",
 };
 
+const COLUMN_TONE: Record<string, ColumnTone> = {
+  planned: "neutral",
+  active: "accent",
+  on_hold: "warning",
+  done: "success",
+  cancelled: "neutral",
+};
+
+function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void }) {
+  const closed = (CLOSED_PROJECT_STATUSES as readonly string[]).includes(project.status);
+  const deadline =
+    project.deadline && !closed ? describeDeadline(project.deadline) : null;
+
+  return (
+    <button type="button" onClick={onOpen} className="flex w-full text-left">
+      {/* Полоса слева — невыставленный счёт. Это единственное на карточке, что
+          стоит денег, поэтому оно и заметнее срока. */}
+      <span
+        aria-hidden="true"
+        className={cn(
+          "w-1 shrink-0 rounded-l-lg",
+          project.unbilledPeriod ? "bg-danger" : "bg-transparent",
+        )}
+      />
+      <span className="min-w-0 flex-1 p-2.5">
+        {project.deadline && !closed && (
+          <span
+            className={cn(
+              "mb-1.5 flex items-center gap-1 text-[11px]",
+              deadline?.tone === "danger"
+                ? "text-danger"
+                : deadline?.tone === "warning"
+                  ? "text-warning"
+                  : "text-muted-foreground",
+            )}
+          >
+            <CalendarDays size={11} strokeWidth={2.5} />
+            {deadline ? deadline.label : formatDate(project.deadline)}
+          </span>
+        )}
+
+        <span className="block text-sm font-medium">{project.title}</span>
+
+        {project.client && (
+          <span className="text-muted-foreground mt-1 block truncate text-xs">
+            {project.client.name}
+          </span>
+        )}
+
+        {project.unbilledPeriod && (
+          <span className="text-danger mt-1.5 flex items-center gap-1 text-[11px] font-medium">
+            <Wallet size={11} strokeWidth={2.5} />
+            счёт за {project.unbilledPeriod} не выставлен
+          </span>
+        )}
+
+        <span className="mt-2 flex items-center justify-between gap-2">
+          <PersonChips names={project.developers} />
+          {project.taskCount > 0 && (
+            <span className="text-muted-foreground text-[11px]">
+              задач {project.openTaskCount}/{project.taskCount}
+            </span>
+          )}
+        </span>
+      </span>
+    </button>
+  );
+}
+
 export function ProjectsScreen() {
   const [view, setView] = useState<"list" | "board">("list");
   const [tab, setTab] = useState<TabKey>("all");
@@ -55,6 +125,8 @@ export function ProjectsScreen() {
   const [clients, setClients] = useState<Client[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
+  /** Колонка, из которой нажали «+» — проект заводится сразу в ней. */
+  const [prefillStatus, setPrefillStatus] = useState<ProjectStatus | null>(null);
   const [editing, setEditing] = useState<Project | null>(null);
 
   useEffect(() => {
@@ -171,40 +243,21 @@ export function ProjectsScreen() {
           />
         ) : view === "board" ? (
           <Board
+            onAdd={(columnKey) => {
+              setPrefillStatus(columnKey as ProjectStatus);
+              setCreating(true);
+            }}
             columns={
               PROJECT_STATUSES.map((status) => ({
                 key: status,
                 label: PROJECT_STATUS_LABELS[status],
+                tone: COLUMN_TONE[status],
                 items: projects.filter((project) => project.status === status),
               })) satisfies BoardColumn<Project>[]
             }
             onMove={(columnKey, ids) => void moveProject(columnKey as ProjectStatus, ids)}
             renderCard={(project) => (
-              <button
-                type="button"
-                onClick={() => setEditing(project)}
-                className="w-full text-left"
-              >
-                <span className="block text-sm font-medium">{project.title}</span>
-                <span className="text-muted-foreground mt-1 block truncate text-xs">
-                  {[
-                    project.client?.name,
-                    project.developers.length ? project.developers.join(", ") : null,
-                  ]
-                    .filter(Boolean)
-                    .join(" · ")}
-                </span>
-                <span className="mt-1.5 flex flex-wrap gap-1">
-                  {project.deadline && (
-                    <Badge tone={describeDeadline(project.deadline).tone}>
-                      {describeDeadline(project.deadline).label}
-                    </Badge>
-                  )}
-                  {project.unbilledPeriod && (
-                    <Badge tone="danger">счёт за {project.unbilledPeriod}</Badge>
-                  )}
-                </span>
-              </button>
+              <ProjectCard project={project} onOpen={() => setEditing(project)} />
             )}
           />
         ) : (
@@ -224,11 +277,18 @@ export function ProjectsScreen() {
         <ProjectModal
           title="Новый проект"
           clients={clients}
-          initial={emptyProjectValues()}
-          onClose={() => setCreating(false)}
+          initial={{
+            ...emptyProjectValues(),
+            ...(prefillStatus ? { status: prefillStatus } : {}),
+          }}
+          onClose={() => {
+            setCreating(false);
+            setPrefillStatus(null);
+          }}
           onSubmit={async (values) => {
             await createProject(valuesToProjectInput(values));
             setCreating(false);
+            setPrefillStatus(null);
             load();
           }}
         />
