@@ -8,6 +8,21 @@ export const SITE = {
   max: process.env.NEXT_PUBLIC_MAX_URL ?? "https://max.ru/",
 } as const;
 
+/**
+ * Профили компании на внешних площадках — для `sameAs` в микроразметке.
+ *
+ * `sameAs` говорит поисковику, что сайт, организация и эти страницы — одна и та
+ * же сущность, а не однофамильцы. Пополнять по мере регистрации в каталогах;
+ * тексты для профилей лежат в docs/katalogi.md.
+ *
+ * Ссылки без UTM: метки нужны площадке для своей статистики, а в разметке
+ * важен канонический адрес профиля.
+ */
+export const PROFILES = {
+  telegram: "https://t.me/dujaii",
+  workspace: "https://workspace.ru/contractors/it-optimizaciya/",
+} as const;
+
 export const ORG = {
   legalName: "ООО «ИТ ОПТИМИЗАЦИЯ»",
   inn: "8600002653",

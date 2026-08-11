@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { ORG, SITE } from "@/lib/constants";
+import { ORG, PROFILES, SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 
 /**
@@ -33,7 +33,7 @@ export async function StructuredData() {
       postalCode: "628162",
       addressCountry: "RU",
     },
-    sameAs: [SITE.telegram],
+    sameAs: Object.values(PROFILES),
   };
 
   const website = {
