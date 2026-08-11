@@ -9,7 +9,8 @@ import { getToday, type TodaySnapshot } from "@/api/today";
 import { useCurrentUser } from "@/auth/auth-context";
 import { Badge, EmptyState, ErrorNote } from "@/components/ui";
 import { cn } from "@/lib/cn";
-import { describeDeadline } from "@/lib/dates";
+import { describeDeadline, periodLabel } from "@/lib/dates";
+import { money } from "@/lib/money";
 import { Link } from "react-router";
 
 /**
@@ -144,6 +145,13 @@ export function TodayScreen() {
             note="Домены, хостинг и подписки со сроком в ближайшие две недели"
             render={(item) => <CredentialLine key={item.id} item={item} />}
           />
+          <Block
+            title="Счета не выставлены"
+            items={snapshot.projects.unbilled}
+            tone="danger"
+            note="Помесячные проекты, по которым есть пропущенный месяц"
+            render={(project) => <UnbilledLine key={project.id} project={project} />}
+          />
         </div>
       )}
     </section>
@@ -233,6 +241,32 @@ function TaskLine({
         )}
       </Link>
       {deadline && <Badge tone={deadline.tone}>{deadline.label}</Badge>}
+    </li>
+  );
+}
+
+/**
+ * Счёт, о котором забыли, — это не срок, а недополученные деньги, поэтому
+ * справа стоит сумма, а не подпись к дате. Число месяцев важнее самого раннего
+ * из них: один месяц — забывчивость, четыре — потерянные деньги.
+ */
+function UnbilledLine({ project }: { project: Project }) {
+  return (
+    <li className="flex items-start gap-3 py-2.5">
+      <Link to="/money" className="min-w-0 flex-1">
+        <span className="block truncate text-sm font-medium">{project.title}</span>
+        <span className="text-muted-foreground mt-0.5 block truncate text-xs">
+          {[project.client?.name, `с ${periodLabel(project.unbilledPeriod ?? "")}`]
+            .filter(Boolean)
+            .join(" · ")}
+        </span>
+      </Link>
+      <Badge tone="danger">{`${project.unbilledCount} мес.`}</Badge>
+      {project.monthlyAmount !== null && (
+        <span className="text-sm font-medium">
+          {money(project.monthlyAmount * project.unbilledCount)}
+        </span>
+      )}
     </li>
   );
 }

@@ -4,6 +4,8 @@ import { ApiError } from "@/api/client";
 import { listAllInvoices, type InvoiceWithProject, type Project } from "@/api/projects";
 import { getToday } from "@/api/today";
 import { Badge, EmptyState, ErrorNote } from "@/components/ui";
+import { periodLabel } from "@/lib/dates";
+import { money } from "@/lib/money";
 import { Link } from "react-router";
 
 /**
@@ -13,19 +15,6 @@ import { Link } from "react-router";
  * Два блока намеренно разделены: невыставленный счёт зависит от нас, а
  * неоплаченный — от клиента, и делать с ними надо разное.
  */
-
-/** «2026-08» → «август 2026». */
-function periodLabel(period: string): string {
-  const [year, month] = period.split("-").map(Number);
-  if (!year || !month) return period;
-  return new Intl.DateTimeFormat("ru-RU", { month: "long", year: "numeric" })
-    .format(new Date(year, month - 1, 1))
-    .replace(" г.", "");
-}
-
-function money(amount: number): string {
-  return `${amount.toLocaleString("ru-RU")} ₽`;
-}
 
 export function MoneyScreen() {
   const [unpaid, setUnpaid] = useState<InvoiceWithProject[] | null>(null);

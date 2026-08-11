@@ -78,3 +78,15 @@ export function fromDateInputValue(value: string): string | null {
   if (!year || !month || !day) return null;
   return new Date(year, month - 1, day, 23, 59, 59).toISOString();
 }
+
+/**
+ * «2026-08» → «август 2026». Периоды счетов хранятся строкой, а не датой:
+ * счёт выставляется за месяц целиком, и день в нём ничего не значит.
+ */
+export function periodLabel(period: string): string {
+  const [year, month] = period.split("-").map(Number);
+  if (!year || !month) return period;
+  return new Intl.DateTimeFormat("ru-RU", { month: "long", year: "numeric" })
+    .format(new Date(year, month - 1, 1))
+    .replace(" г.", "");
+}

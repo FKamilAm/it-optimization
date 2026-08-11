@@ -12,6 +12,7 @@ import {
 } from "@/api/projects";
 import { Badge, Button, ErrorNote, Input, Select } from "@/components/ui";
 import { cn } from "@/lib/cn";
+import { periodLabel } from "@/lib/dates";
 
 /**
  * Счета и акты по проекту.
@@ -25,17 +26,6 @@ import { cn } from "@/lib/cn";
 function thisPeriod(): string {
   const now = new Date();
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
-}
-
-/** «2026-08» → «август 2026»: в списке читается лучше, чем цифры. */
-function periodLabel(period: string): string {
-  const [year, month] = period.split("-").map(Number);
-  if (!year || !month) return period;
-  const formatted = new Intl.DateTimeFormat("ru-RU", {
-    month: "long",
-    year: "numeric",
-  }).format(new Date(year, month - 1, 1));
-  return formatted.replace(" г.", "");
 }
 
 function formatAmount(amount: number | null): string {
