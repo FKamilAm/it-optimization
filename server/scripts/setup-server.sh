@@ -57,6 +57,34 @@ ufw status verbose
 # База наружу не публикуется вовсе (см. docker-compose.prod.yml), поэтому
 # отдельного правила для 5432 нет и быть не должно.
 
+log "Закрываю вход по паролю"
+# Только если ключ уже работает: скрипт запускают по SSH, и запрет без ключа
+# запер бы снаружи. Пустой authorized_keys — значит зашли по паролю.
+if [ -s /root/.ssh/authorized_keys ]; then
+  # Имя начинается с 00 не для красоты. sshd берёт ПЕРВОЕ встреченное значение
+  # каждого параметра, файлы из sshd_config.d читаются по алфавиту, а облачные
+  # образы кладут туда 50-cloud-init.conf с «PasswordAuthentication yes». Файл
+  # с большим номером проиграет ему молча: запрет будет лежать в системе и не
+  # работать, а `grep` по sshd_config покажет ровно то, чего нет на деле.
+  # Проверять надо `sshd -T`, он печатает итоговые значения.
+  cat > /etc/ssh/sshd_config.d/00-hardening.conf <<'SSHD'
+# Вход только по ключу. Аварийный доступ остаётся через консоль в панели хостинга.
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+PermitRootLogin prohibit-password
+SSHD
+  if sshd -t; then
+    systemctl reload ssh
+    log "Действует: $(sshd -T | grep -i '^passwordauthentication')"
+  else
+    log "ОШИБКА в конфиге sshd — откатываю, вход по паролю остаётся"
+    rm -f /etc/ssh/sshd_config.d/00-hardening.conf
+  fi
+else
+  log "ВНИМАНИЕ: в /root/.ssh/authorized_keys пусто — вход по паролю оставлен"
+  log "Добавь ключ и запусти скрипт повторно, иначе root будут подбирать круглосуточно"
+fi
+
 if [ ! -f /swapfile ] && [ "$(free -m | awk '/^Mem:/{print $2}')" -lt 2048 ]; then
   log "Меньше 2 ГБ памяти — добавляю swap 2G, чтобы сборка образа не падала"
   fallocate -l 2G /swapfile
