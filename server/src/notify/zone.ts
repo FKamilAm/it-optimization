@@ -91,6 +91,13 @@ export function daysOverdue(deadline: Date, timeZone: string, now = new Date()):
   return Math.max(0, Math.round((start - target) / (24 * 60 * 60 * 1000)));
 }
 
+/** Сколько полных суток осталось до даты. Уже наступившая — 0. */
+export function daysUntil(deadline: Date, timeZone: string, now = new Date()): number {
+  const start = startOfToday(timeZone, now).getTime();
+  const target = startOfToday(timeZone, deadline).getTime();
+  return Math.max(0, Math.round((target - start) / (24 * 60 * 60 * 1000)));
+}
+
 /** «3 дня», «1 день» — русские окончания, без которых текст выглядит машинным. */
 export function pluralDays(count: number): string {
   const mod100 = count % 100;

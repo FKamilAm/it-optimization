@@ -1,6 +1,7 @@
 import { Check } from "lucide-react";
 import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { ApiError } from "@/api/client";
+import type { Credential } from "@/api/credentials";
 import type { Lead } from "@/api/leads";
 import type { Project } from "@/api/projects";
 import { updateTask, type Task } from "@/api/tasks";
@@ -137,6 +138,12 @@ export function TodayScreen() {
             items={snapshot.projects.urgent}
             render={(project) => <ProjectLine key={project.id} project={project} />}
           />
+          <Block
+            title="Пора продлевать"
+            items={snapshot.credentials.expiring}
+            note="Домены, хостинг и подписки со сроком в ближайшие две недели"
+            render={(item) => <CredentialLine key={item.id} item={item} />}
+          />
         </div>
       )}
     </section>
@@ -224,6 +231,28 @@ function TaskLine({
             {task.project.title}
           </span>
         )}
+      </Link>
+      {deadline && <Badge tone={deadline.tone}>{deadline.label}</Badge>}
+    </li>
+  );
+}
+
+/**
+ * Продление показывается как обычный срок: истёкший домен так же ломает работу,
+ * как просроченная задача, и выделять его отдельным видом строки незачем.
+ */
+function CredentialLine({ item }: { item: Credential }) {
+  const deadline = item.renewsAt ? describeDeadline(item.renewsAt) : null;
+
+  return (
+    <li className="flex items-start gap-3 py-2.5">
+      <Link to="/credentials" className="min-w-0 flex-1">
+        <span className="block truncate text-sm font-medium">{item.service}</span>
+        <span className="text-muted-foreground mt-0.5 block truncate text-xs">
+          {[item.login, item.owner ?? "ни на кого не оформлен", item.secretHint]
+            .filter(Boolean)
+            .join(" · ")}
+        </span>
       </Link>
       {deadline && <Badge tone={deadline.tone}>{deadline.label}</Badge>}
     </li>

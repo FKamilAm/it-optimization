@@ -1,4 +1,5 @@
 import { api } from "./client";
+import type { Credential } from "./credentials";
 import type { Lead } from "./leads";
 import type { Project } from "./projects";
 import type { Task } from "./tasks";
@@ -18,6 +19,10 @@ export interface TodaySnapshot {
   tasks: {
     overdue: Task[];
     today: Task[];
+  };
+  /** Сервисы, которым до продления осталось меньше двух недель. */
+  credentials: {
+    expiring: Credential[];
   };
   projects: {
     urgent: Project[];

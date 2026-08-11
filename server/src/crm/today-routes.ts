@@ -3,6 +3,7 @@ import { env } from "../env.js";
 import { requireTeam } from "../auth/guard.js";
 import { toLeadDto } from "./leads/dto.js";
 import { toProjectDto } from "./projects/dto.js";
+import { toCredentialDto } from "./credentials/dto.js";
 import { toTaskDto } from "./tasks/dto.js";
 import { collectToday, isEmptySnapshot } from "./today.js";
 
@@ -25,6 +26,9 @@ export async function todayRoutes(app: FastifyInstance): Promise<void> {
       tasks: {
         overdue: snapshot.tasks.overdue.map(toTaskDto),
         today: snapshot.tasks.today.map(toTaskDto),
+      },
+      credentials: {
+        expiring: snapshot.credentials.expiring.map(toCredentialDto),
       },
       projects: {
         urgent: snapshot.projects.urgent.map((item) => toProjectDto(item, env.TIMEZONE)),

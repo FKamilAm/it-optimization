@@ -1,4 +1,4 @@
-import type { Credential, Prisma } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { audit } from "../../audit.js";
@@ -6,6 +6,7 @@ import { requireTeam } from "../../auth/guard.js";
 import { prisma } from "../../db.js";
 import { optionalDate, optionalText, requiredTitle } from "../fields.js";
 import { invalidInput } from "../http.js";
+import { toCredentialDto as toDto } from "./dto.js";
 
 /**
  * Справочник учёток сервисов.
@@ -32,30 +33,6 @@ const credentialFields = {
 const createBody = z.object(credentialFields).partial().required({ service: true });
 const updateBody = z.object(credentialFields).partial();
 const listQuery = z.object({ search: z.string().trim().max(200).optional() });
-
-export interface CredentialDto {
-  id: string;
-  service: string;
-  login: string | null;
-  url: string | null;
-  owner: string | null;
-  secretHint: string | null;
-  renewsAt: string | null;
-  notes: string | null;
-}
-
-function toDto(item: Credential): CredentialDto {
-  return {
-    id: item.id,
-    service: item.service,
-    login: item.login,
-    url: item.url,
-    owner: item.owner,
-    secretHint: item.secretHint,
-    renewsAt: item.renewsAt?.toISOString() ?? null,
-    notes: item.notes,
-  };
-}
 
 export async function credentialRoutes(app: FastifyInstance): Promise<void> {
   app.get("/credentials", { preHandler: requireTeam }, async (request, reply) => {

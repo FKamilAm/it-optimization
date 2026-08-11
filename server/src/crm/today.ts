@@ -1,4 +1,4 @@
-import type { Client, Lead, Project, Task, User } from "@prisma/client";
+import type { Client, Credential, Lead, Project, Task, User } from "@prisma/client";
 import { prisma } from "../db.js";
 import { env } from "../env.js";
 import { startOfToday, startOfTomorrow } from "../notify/zone.js";
@@ -52,6 +52,12 @@ export interface TodaySnapshot {
     overdue: TaskFull[];
     today: TaskFull[];
   };
+  /**
+   * Сервисы, которые пора продлевать. Заглядывать на две недели вперёд, а не
+   * ждать самого дня: домен или хостинг оплачиваются не мгновенно, а истёкший
+   * в субботу домен — это упавший сайт.
+   */
+  credentials: { expiring: Credential[] };
   projects: {
     /** Срок сдачи прошёл или наступает сегодня. */
     urgent: ProjectFull[];
@@ -59,6 +65,9 @@ export interface TodaySnapshot {
     unbilled: (ProjectFull & { unbilledPeriod: string; unbilledCount: number })[];
   };
 }
+
+/** За сколько дней предупреждать о продлении сервиса. */
+const RENEWAL_WARNING_DAYS = 14;
 
 const LEAD_INCLUDE = {
   owner: { select: { id: true, name: true, email: true } },
@@ -83,6 +92,7 @@ export async function collectToday(): Promise<TodaySnapshot> {
   const openLeads = { in: [...OPEN_LEAD_STATUSES] };
   const openTasks = { in: [...OPEN_TASK_STATUSES] };
   const openProjects = { in: [...OPEN_PROJECT_STATUSES] };
+  const renewalHorizon = new Date(until.getTime() + RENEWAL_WARNING_DAYS * 86_400_000);
 
   const [
     overdueLeads,
@@ -92,6 +102,7 @@ export async function collectToday(): Promise<TodaySnapshot> {
     overdueTasks,
     todayTasks,
     urgentProjects,
+    expiringCredentials,
     monthlyProjects,
   ] = await Promise.all([
     prisma.lead.findMany({
@@ -138,6 +149,10 @@ export async function collectToday(): Promise<TodaySnapshot> {
       orderBy: { deadline: "asc" },
       include: PROJECT_INCLUDE,
     }),
+    prisma.credential.findMany({
+      where: { deletedAt: null, renewsAt: { lt: renewalHorizon } },
+      orderBy: { renewsAt: "asc" },
+    }),
     // Пробелы считаются в коде, а не запросом: «нет счёта за любой месяц с
     // начала работ» через SQL выражается плохо, а помесячных проектов у
     // команды десятки, не тысячи.
@@ -168,6 +183,7 @@ export async function collectToday(): Promise<TodaySnapshot> {
   return {
     leads: { overdue: overdueLeads, today: todayLeads, orphanUrgent, unclaimed },
     tasks: { overdue: overdueTasks, today: todayTasks },
+    credentials: { expiring: expiringCredentials },
     projects: { urgent: urgentProjects, unbilled: unbilledProjects },
   };
 }
@@ -182,6 +198,7 @@ export function isEmptySnapshot(snapshot: TodaySnapshot): boolean {
     snapshot.tasks.overdue.length === 0 &&
     snapshot.tasks.today.length === 0 &&
     snapshot.projects.urgent.length === 0 &&
-    snapshot.projects.unbilled.length === 0
+    snapshot.projects.unbilled.length === 0 &&
+    snapshot.credentials.expiring.length === 0
   );
 }

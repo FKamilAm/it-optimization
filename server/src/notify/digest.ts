@@ -1,7 +1,7 @@
 import { collectToday, isEmptySnapshot } from "../crm/today.js";
 import { env } from "../env.js";
 import { escapeHtml, sendMessage, TelegramError } from "./telegram.js";
-import { daysOverdue, pluralDays } from "./zone.js";
+import { daysOverdue, daysUntil, pluralDays } from "./zone.js";
 
 /**
  * Утренняя сводка в общий чат.
@@ -49,7 +49,7 @@ export async function buildDigest(): Promise<string | null> {
   const snapshot = await collectToday();
   if (isEmptySnapshot(snapshot)) return null;
 
-  const { leads, tasks, projects } = snapshot;
+  const { leads, tasks, credentials, projects } = snapshot;
 
   const leadLine = (lead: (typeof leads.overdue)[number], withLate: boolean) => {
     const what = lead.nextActionNote?.trim();
@@ -96,6 +96,25 @@ export async function buildDigest(): Promise<string | null> {
         return `• ${escapeHtml(project.title)}${client}${lateSuffix(project.deadline)}${who(
           project.developers,
           "никто не ведёт",
+        )}`;
+      }),
+    ),
+    // Продления идут перед деньгами: пропущенный счёт — отложенные деньги,
+    // а истёкший домен — лежащий сайт, свой или клиентский.
+    ...block(
+      `🔑 Продлить (${credentials.expiring.length})`,
+      credentials.expiring.map((item) => {
+        const left = item.renewsAt ? daysUntil(item.renewsAt, env.TIMEZONE) : 0;
+        const late = item.renewsAt ? daysOverdue(item.renewsAt, env.TIMEZONE) : 0;
+        const when = late > 0
+          ? ` — <b>истёк ${pluralDays(late)} назад</b>`
+          : left === 0
+            ? " — <b>сегодня</b>"
+            : ` — через ${pluralDays(left)}`;
+        const login = item.login ? ` · ${escapeHtml(item.login)}` : "";
+        return `• ${escapeHtml(item.service)}${when}${login}${who(
+          item.owner ? [item.owner] : [],
+          "ни на кого не оформлен",
         )}`;
       }),
     ),
