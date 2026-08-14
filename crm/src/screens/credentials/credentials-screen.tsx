@@ -64,8 +64,8 @@ function toValues(item: Credential): FormValues {
     owner: item.owner ?? "",
     secretHint: item.secretHint ?? "",
     renewsDate: toDateInputValue(item.renewsAt),
-    amount: item.amount === null ? "" : String(item.amount),
-    monthlyFee: item.monthlyFee,
+    amount: item.amount == null ? "" : String(item.amount),
+    monthlyFee: item.monthlyFee ?? false,
     notes: item.notes ?? "",
   };
 }
@@ -205,7 +205,7 @@ function Row({ item, onOpen }: { item: Credential; onOpen: () => void }) {
         </span>
       </button>
 
-      {item.amount !== null && (
+      {item.amount != null && (
         <span className="mt-0.5 shrink-0 text-sm font-medium">
           {fee(item.amount, item.monthlyFee)}
         </span>

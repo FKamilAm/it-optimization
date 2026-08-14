@@ -16,7 +16,13 @@ export interface Credential {
   owner: string | null;
   secretHint: string | null;
   renewsAt: string | null;
-  /** Рубли целыми. Что это за период — говорит monthlyFee. */
+  /**
+   * Рубли целыми. Что это за период — говорит monthlyFee.
+   *
+   * Проверять на наличие надо нестрого (`!= null`): CRM выкатывается сразу при
+   * пуше, а API руками, поэтому новое поле какое-то время приходит как undefined —
+   * и строгое `!== null` пропустит его дальше, где оно уронит рендер.
+   */
   amount: number | null;
   monthlyFee: boolean;
   notes: string | null;

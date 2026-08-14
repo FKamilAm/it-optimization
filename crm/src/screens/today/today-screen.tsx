@@ -288,7 +288,7 @@ function CredentialLine({ item }: { item: Credential }) {
             .join(" · ")}
         </span>
       </Link>
-      {item.amount !== null && (
+      {item.amount != null && (
         <span className="shrink-0 text-sm font-medium">
           {fee(item.amount, item.monthlyFee)}
         </span>
