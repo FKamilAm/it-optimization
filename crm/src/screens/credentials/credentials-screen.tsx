@@ -20,6 +20,7 @@ import {
   Textarea,
 } from "@/components/ui";
 import { describeDeadline, fromDateInputValue, toDateInputValue } from "@/lib/dates";
+import { fee } from "@/lib/money";
 
 /**
  * Справочник учёток сервисов — **без паролей**.
@@ -36,6 +37,8 @@ interface FormValues {
   owner: string;
   secretHint: string;
   renewsDate: string;
+  amount: string;
+  monthlyFee: boolean;
   notes: string;
 }
 
@@ -47,6 +50,8 @@ function empty(): FormValues {
     owner: "",
     secretHint: "",
     renewsDate: "",
+    amount: "",
+    monthlyFee: false,
     notes: "",
   };
 }
@@ -59,6 +64,8 @@ function toValues(item: Credential): FormValues {
     owner: item.owner ?? "",
     secretHint: item.secretHint ?? "",
     renewsDate: toDateInputValue(item.renewsAt),
+    amount: item.amount === null ? "" : String(item.amount),
+    monthlyFee: item.monthlyFee,
     notes: item.notes ?? "",
   };
 }
@@ -71,6 +78,8 @@ function toInput(values: FormValues): CredentialInput {
     owner: values.owner.trim() || null,
     secretHint: values.secretHint.trim() || null,
     renewsAt: fromDateInputValue(values.renewsDate),
+    amount: values.amount ? Number(values.amount) : null,
+    monthlyFee: values.monthlyFee,
     notes: values.notes.trim() || null,
   };
 }
@@ -195,6 +204,12 @@ function Row({ item, onOpen }: { item: Credential; onOpen: () => void }) {
             .join(" · ") || "подробности не заполнены"}
         </span>
       </button>
+
+      {item.amount !== null && (
+        <span className="mt-0.5 shrink-0 text-sm font-medium">
+          {fee(item.amount, item.monthlyFee)}
+        </span>
+      )}
 
       {renews && (
         <Badge tone={renews.tone} className="mt-0.5">
@@ -324,6 +339,34 @@ function CredentialModal({
               onChange={(event) => set("renewsDate", event.target.value)}
             />
           </Field>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Field label="Сумма" hint="Рубли, целыми. Можно оставить пустым">
+              <Input
+                value={values.amount}
+                onChange={(event) =>
+                  set("amount", event.target.value.replace(/[^\d]/g, ""))
+                }
+                inputMode="numeric"
+                placeholder="1200"
+              />
+            </Field>
+
+            <label className="flex cursor-pointer items-start gap-2.5 sm:mt-7">
+              <input
+                type="checkbox"
+                checked={values.monthlyFee}
+                onChange={(event) => set("monthlyFee", event.target.checked)}
+                className="accent-accent mt-0.5 size-4 shrink-0"
+              />
+              <span className="text-sm">
+                Списывается каждый месяц
+                <span className="text-muted-foreground mt-0.5 block text-sm">
+                  Иначе сумма считается платой за период продления
+                </span>
+              </span>
+            </label>
+          </div>
 
           <Field label="Заметки">
             <Textarea

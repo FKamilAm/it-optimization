@@ -447,6 +447,11 @@ model Credential {
   secretHint String? @map("secret_hint")
   /// Когда продлевать: домены, сертификаты, платные подписки.
   renewsAt   DateTime? @map("renews_at")
+  /// Сколько стоит, рубли целыми — как monthlyAmount у проекта.
+  amount     Int?
+  /// Списывается каждый месяц. Без признака сумма непонятна: 500 ₽ у хостинга
+  /// и 500 ₽ у домена — это про разные деньги в год.
+  monthlyFee Boolean @default(false) @map("monthly_fee")
   notes      String?
 
   createdAt DateTime  @default(now()) @map("created_at")

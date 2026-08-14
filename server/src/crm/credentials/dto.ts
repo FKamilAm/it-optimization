@@ -15,6 +15,8 @@ export interface CredentialDto {
   owner: string | null;
   secretHint: string | null;
   renewsAt: string | null;
+  amount: number | null;
+  monthlyFee: boolean;
   notes: string | null;
 }
 
@@ -27,6 +29,8 @@ export function toCredentialDto(item: Credential): CredentialDto {
     owner: item.owner,
     secretHint: item.secretHint,
     renewsAt: item.renewsAt?.toISOString() ?? null,
+    amount: item.amount,
+    monthlyFee: item.monthlyFee,
     notes: item.notes,
   };
 }

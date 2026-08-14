@@ -27,6 +27,9 @@ const credentialFields = {
   owner: optionalText(120),
   secretHint: optionalText(200),
   renewsAt: optionalDate,
+  // Рубли целыми, как у проекта: копеек в абонплате не бывает.
+  amount: z.union([z.null(), z.number().int().min(0).max(100_000_000)]),
+  monthlyFee: z.boolean(),
   notes: optionalText(2000),
 };
 
@@ -73,6 +76,8 @@ export async function credentialRoutes(app: FastifyInstance): Promise<void> {
         owner: input.owner ?? null,
         secretHint: input.secretHint ?? null,
         renewsAt: input.renewsAt ?? null,
+        amount: input.amount ?? null,
+        monthlyFee: input.monthlyFee ?? false,
         notes: input.notes ?? null,
       },
     });
@@ -107,6 +112,8 @@ export async function credentialRoutes(app: FastifyInstance): Promise<void> {
         ...(input.owner !== undefined && { owner: input.owner }),
         ...(input.secretHint !== undefined && { secretHint: input.secretHint }),
         ...(input.renewsAt !== undefined && { renewsAt: input.renewsAt }),
+        ...(input.amount !== undefined && { amount: input.amount }),
+        ...(input.monthlyFee !== undefined && { monthlyFee: input.monthlyFee }),
         ...(input.notes !== undefined && { notes: input.notes }),
       },
     });

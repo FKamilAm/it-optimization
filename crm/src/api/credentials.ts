@@ -16,6 +16,9 @@ export interface Credential {
   owner: string | null;
   secretHint: string | null;
   renewsAt: string | null;
+  /** Рубли целыми. Что это за период — говорит monthlyFee. */
+  amount: number | null;
+  monthlyFee: boolean;
   notes: string | null;
 }
 
@@ -26,6 +29,8 @@ export interface CredentialInput {
   owner?: string | null;
   secretHint?: string | null;
   renewsAt?: string | null;
+  amount?: number | null;
+  monthlyFee?: boolean;
   notes?: string | null;
 }
 

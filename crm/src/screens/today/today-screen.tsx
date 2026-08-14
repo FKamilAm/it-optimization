@@ -10,7 +10,7 @@ import { useCurrentUser } from "@/auth/auth-context";
 import { Badge, EmptyState, ErrorNote } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { describeDeadline, periodLabel } from "@/lib/dates";
-import { money } from "@/lib/money";
+import { fee, money } from "@/lib/money";
 import { Link } from "react-router";
 
 /**
@@ -288,6 +288,11 @@ function CredentialLine({ item }: { item: Credential }) {
             .join(" · ")}
         </span>
       </Link>
+      {item.amount !== null && (
+        <span className="shrink-0 text-sm font-medium">
+          {fee(item.amount, item.monthlyFee)}
+        </span>
+      )}
       {deadline && <Badge tone={deadline.tone}>{deadline.label}</Badge>}
     </li>
   );

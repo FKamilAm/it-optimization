@@ -111,8 +111,13 @@ export async function buildDigest(): Promise<string | null> {
           : left === 0
             ? " — <b>сегодня</b>"
             : ` — через ${pluralDays(left)}`;
+        // Сумма прямо в напоминании: «пора продлить» без цены заставляет лезть
+        // в CRM ровно за одной цифрой.
+        const price = item.amount
+          ? ` — ${item.amount.toLocaleString("ru-RU")} ₽${item.monthlyFee ? "/мес" : ""}`
+          : "";
         const login = item.login ? ` · ${escapeHtml(item.login)}` : "";
-        return `• ${escapeHtml(item.service)}${when}${login}${who(
+        return `• ${escapeHtml(item.service)}${when}${price}${login}${who(
           item.owner ? [item.owner] : [],
           "ни на кого не оформлен",
         )}`;
