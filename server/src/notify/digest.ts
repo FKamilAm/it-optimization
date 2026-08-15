@@ -1,4 +1,4 @@
-import { collectToday, isEmptySnapshot } from "../crm/today.js";
+import { collectToday, isQuietSnapshot } from "../crm/today.js";
 import { env } from "../env.js";
 import { escapeHtml, sendMessage, TelegramError } from "./telegram.js";
 import { daysOverdue, daysUntil, pluralDays } from "./zone.js";
@@ -47,7 +47,9 @@ function block(title: string, lines: string[]): string[] {
 
 export async function buildDigest(): Promise<string | null> {
   const snapshot = await collectToday();
-  if (isEmptySnapshot(snapshot)) return null;
+  // Не `isEmptySnapshot`: далёкое продление — не повод писать в чат. Разницу
+  // между двумя проверками см. у них самих.
+  if (isQuietSnapshot(snapshot)) return null;
 
   const { leads, tasks, credentials, projects } = snapshot;
 
@@ -58,6 +60,26 @@ export async function buildDigest(): Promise<string | null> {
     const late = withLate ? lateSuffix(lead.nextActionAt) : "";
     const owner = lead.owner ? ` · ${escapeHtml(personName(lead.owner))}` : " · <i>ничей</i>";
     return `• ${head}${name}${late}${owner}`;
+  };
+
+  const credentialLine = (item: (typeof credentials.urgent)[number]) => {
+    const left = item.renewsAt ? daysUntil(item.renewsAt, env.TIMEZONE) : 0;
+    const late = item.renewsAt ? daysOverdue(item.renewsAt, env.TIMEZONE) : 0;
+    const when = late > 0
+      ? ` — <b>истёк ${pluralDays(late)} назад</b>`
+      : left === 0
+        ? " — <b>сегодня</b>"
+        : ` — через ${pluralDays(left)}`;
+    // Сумма прямо в напоминании: «пора продлить» без цены заставляет лезть
+    // в CRM ровно за одной цифрой.
+    const price = item.amount
+      ? ` — ${item.amount.toLocaleString("ru-RU")} ₽${item.monthlyFee ? "/мес" : ""}`
+      : "";
+    const login = item.login ? ` · ${escapeHtml(item.login)}` : "";
+    return `• ${escapeHtml(item.service)}${when}${price}${login}${who(
+      item.owner ? [item.owner] : [],
+      "ни на кого не оформлен",
+    )}`;
   };
 
   const taskLine = (task: (typeof tasks.overdue)[number], withLate: boolean) => {
@@ -102,26 +124,8 @@ export async function buildDigest(): Promise<string | null> {
     // Продления идут перед деньгами: пропущенный счёт — отложенные деньги,
     // а истёкший домен — лежащий сайт, свой или клиентский.
     ...block(
-      `🔑 Продлить (${credentials.expiring.length})`,
-      credentials.expiring.map((item) => {
-        const left = item.renewsAt ? daysUntil(item.renewsAt, env.TIMEZONE) : 0;
-        const late = item.renewsAt ? daysOverdue(item.renewsAt, env.TIMEZONE) : 0;
-        const when = late > 0
-          ? ` — <b>истёк ${pluralDays(late)} назад</b>`
-          : left === 0
-            ? " — <b>сегодня</b>"
-            : ` — через ${pluralDays(left)}`;
-        // Сумма прямо в напоминании: «пора продлить» без цены заставляет лезть
-        // в CRM ровно за одной цифрой.
-        const price = item.amount
-          ? ` — ${item.amount.toLocaleString("ru-RU")} ₽${item.monthlyFee ? "/мес" : ""}`
-          : "";
-        const login = item.login ? ` · ${escapeHtml(item.login)}` : "";
-        return `• ${escapeHtml(item.service)}${when}${price}${login}${who(
-          item.owner ? [item.owner] : [],
-          "ни на кого не оформлен",
-        )}`;
-      }),
+      `🔑 Продлить (${credentials.urgent.length})`,
+      credentials.urgent.map(credentialLine),
     ),
     // Счета последними, но со значком: забытый счёт — это недополученные
     // деньги, и среди сроков его легко пролистать.
@@ -140,6 +144,13 @@ export async function buildDigest(): Promise<string | null> {
             : ` (за ${project.unbilledPeriod})`;
         return `• ${escapeHtml(project.title)}${months}${amount}${client}`;
       }),
+    ),
+    // Самый низ и без значка — это справка, а не повод действовать сегодня.
+    // Сводку такие строки не поднимают (см. `isQuietSnapshot`), но раз она уже
+    // вышла, пусть весь горизонт продлений будет виден целиком.
+    ...block(
+      `Скоро продлить (${credentials.later.length})`,
+      credentials.later.map(credentialLine),
     ),
   ];
 

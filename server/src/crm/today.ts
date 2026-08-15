@@ -56,8 +56,18 @@ export interface TodaySnapshot {
    * Сервисы, которые пора продлевать. Заглядывать на две недели вперёд, а не
    * ждать самого дня: домен или хостинг оплачиваются не мгновенно, а истёкший
    * в субботу домен — это упавший сайт.
+   *
+   * Разделены на две очереди, потому что у среза два потребителя с разными
+   * запросами. Экран «Сегодня» человек открыл сам и хочет видеть весь горизонт.
+   * Утреннее сообщение в чат приходит без спроса и называется «Что горит» —
+   * туда далёкое продление не тянет.
    */
-  credentials: { expiring: Credential[] };
+  credentials: {
+    /** Истекло, сегодня или в ближайшие дни — про такое будим чат. */
+    urgent: Credential[];
+    /** Остаток двухнедельного окна: показать на экране, но не будить. */
+    later: Credential[];
+  };
   projects: {
     /** Срок сдачи прошёл или наступает сегодня. */
     urgent: ProjectFull[];
@@ -66,8 +76,22 @@ export interface TodaySnapshot {
   };
 }
 
-/** За сколько дней предупреждать о продлении сервиса. */
+/** За сколько дней продление вообще попадает в срез. */
 const RENEWAL_WARNING_DAYS = 14;
+
+/**
+ * За сколько дней продление считается горящим.
+ *
+ * Двух недель хватает, чтобы успеть оплатить, но эти же две недели раньше
+ * заставляли бота писать в чат каждое утро подряд из-за одной записи — а
+ * сообщение при этом состояло из единственной строки «через 13 дней». Ровно
+ * то, от чего оберегает правило молчания в `digest.ts`: ежедневная сводка ни о
+ * чём приучает не открывать бота.
+ *
+ * Три дня — это ещё запас (пятничное продление видно в среду), но уже такой
+ * срок, когда бездействие стоит денег или лежащего сайта.
+ */
+const RENEWAL_URGENT_DAYS = 3;
 
 const LEAD_INCLUDE = {
   owner: { select: { id: true, name: true, email: true } },
@@ -93,6 +117,7 @@ export async function collectToday(): Promise<TodaySnapshot> {
   const openTasks = { in: [...OPEN_TASK_STATUSES] };
   const openProjects = { in: [...OPEN_PROJECT_STATUSES] };
   const renewalHorizon = new Date(until.getTime() + RENEWAL_WARNING_DAYS * 86_400_000);
+  const renewalUrgentUntil = new Date(until.getTime() + RENEWAL_URGENT_DAYS * 86_400_000);
 
   const [
     overdueLeads,
@@ -180,16 +205,36 @@ export async function collectToday(): Promise<TodaySnapshot> {
       unbilledCount: count,
     }));
 
+  /*
+   * Делим уже выбранное, а не вторым запросом: горящие — подмножество
+   * двухнедельного окна, и второй поход в базу за тем же самым только даёт
+   * шанс разъехаться. Выборка отсортирована по сроку, поэтому обе очереди
+   * сохраняют порядок «сначала ближайшее».
+   */
+  const urgentCredentials: Credential[] = [];
+  const laterCredentials: Credential[] = [];
+  for (const item of expiringCredentials) {
+    // Без срока продления записи в выборку не попадают, но тип это допускает;
+    // такую считаем горящей, чтобы она не потерялась молча.
+    const urgent = !item.renewsAt || item.renewsAt < renewalUrgentUntil;
+    (urgent ? urgentCredentials : laterCredentials).push(item);
+  }
+
   return {
     leads: { overdue: overdueLeads, today: todayLeads, orphanUrgent, unclaimed },
     tasks: { overdue: overdueTasks, today: todayTasks },
-    credentials: { expiring: expiringCredentials },
+    credentials: { urgent: urgentCredentials, later: laterCredentials },
     projects: { urgent: urgentProjects, unbilled: unbilledProjects },
   };
 }
 
-/** Пусто — значит напоминать не о чем: бот в этом случае молчит. */
-export function isEmptySnapshot(snapshot: TodaySnapshot): boolean {
+/**
+ * Общая часть двух проверок ниже: всё, кроме продлений.
+ *
+ * Продления вынесены, потому что «показывать нечего» и «будить чат незачем» —
+ * разные вопросы, и различаются они ровно продлениями.
+ */
+function hasNothingButCredentials(snapshot: TodaySnapshot): boolean {
   return (
     snapshot.leads.overdue.length === 0 &&
     snapshot.leads.today.length === 0 &&
@@ -198,7 +243,37 @@ export function isEmptySnapshot(snapshot: TodaySnapshot): boolean {
     snapshot.tasks.overdue.length === 0 &&
     snapshot.tasks.today.length === 0 &&
     snapshot.projects.urgent.length === 0 &&
-    snapshot.projects.unbilled.length === 0 &&
-    snapshot.credentials.expiring.length === 0
+    snapshot.projects.unbilled.length === 0
   );
+}
+
+/**
+ * Экрану «Сегодня» показывать нечего — рисуется пустое состояние.
+ *
+ * Здесь считаются ВСЕ продления, включая далёкие: если человек открыл экран, а
+ * там ждёт продление через десять дней, показать его надо, а не писать «всё
+ * чисто».
+ */
+export function isEmptySnapshot(snapshot: TodaySnapshot): boolean {
+  return (
+    hasNothingButCredentials(snapshot) &&
+    snapshot.credentials.urgent.length === 0 &&
+    snapshot.credentials.later.length === 0
+  );
+}
+
+/**
+ * Боту незачем писать в чат — он молчит.
+ *
+ * Отличается от `isEmptySnapshot` одним: далёкие продления поводом не считает.
+ * Из-за того, что раньше эти две проверки были одной, единственная запись со
+ * сроком через две недели поднимала утреннюю сводку четырнадцать раз подряд, и
+ * в каждой была ровно одна строка. Молчание — сигнал, и разменивать его на
+ * «через 13 дней» нельзя.
+ *
+ * Обратного перекоса нет: когда сводка выходит по другому поводу, далёкие
+ * продления в неё всё равно попадают — отдельным блоком в самом низу.
+ */
+export function isQuietSnapshot(snapshot: TodaySnapshot): boolean {
+  return hasNothingButCredentials(snapshot) && snapshot.credentials.urgent.length === 0;
 }

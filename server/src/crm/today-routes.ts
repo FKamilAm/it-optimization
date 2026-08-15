@@ -28,7 +28,16 @@ export async function todayRoutes(app: FastifyInstance): Promise<void> {
         today: snapshot.tasks.today.map(toTaskDto),
       },
       credentials: {
-        expiring: snapshot.credentials.expiring.map(toCredentialDto),
+        /*
+         * Экрану — весь двухнедельный горизонт одним списком, как и раньше:
+         * делить продления на горящие и далёкие нужно боту, чтобы решить,
+         * писать ли вообще, а человек и так видит срок у каждой строки.
+         * Обе очереди отсортированы по сроку, а горящие все раньше далёких,
+         * поэтому склейка остаётся упорядоченной.
+         */
+        expiring: [...snapshot.credentials.urgent, ...snapshot.credentials.later].map(
+          toCredentialDto,
+        ),
       },
       projects: {
         urgent: snapshot.projects.urgent.map((item) => toProjectDto(item, env.TIMEZONE)),
