@@ -10,9 +10,19 @@ const TEXT_SELECTOR = 'input, textarea, select, [contenteditable="true"]';
 
 /**
  * Single global cursor follower (Cuberto-style). Renders a small disc that
- * smoothly trails the pointer and inverts against the background via
- * mix-blend-mode. Desktop + fine-pointer only; disabled for touch / reduced
- * motion, and hands the native caret back over form fields.
+ * tracks the pointer and inverts against the background via mix-blend-mode.
+ * Desktop + fine-pointer only; disabled for touch / reduced motion, and hands
+ * the native caret back over form fields.
+ *
+ * The disc tracks the pointer exactly, with no easing. It used to lerp 20% of
+ * the remaining distance per frame, which read as lag rather than polish: the
+ * native cursor is hidden, so this disc *is* the pointer, and a pointer that
+ * trails its own position looks broken. Worse, a per-frame step is tied to the
+ * frame rate — once the WebGL hero, GSAP or Lenis pushed the page below 60fps,
+ * the same 20% covered the same distance in twice the wall-clock time, so the
+ * lag grew exactly when the page felt busiest.
+ *
+ * The Cuberto look survives in the size changes, which CSS still animates.
  */
 export function CursorFollower() {
   const dotRef = useRef<HTMLDivElement>(null);
@@ -34,18 +44,13 @@ export function CursorFollower() {
 
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
-    let curX = mouseX;
-    let curY = mouseY;
     let visible = false;
     let raf = 0;
 
-    const render = () => {
-      curX += (mouseX - curX) * 0.2;
-      curY += (mouseY - curY) * 0.2;
-      dot.style.transform = `translate3d(${curX}px, ${curY}px, 0) translate(-50%, -50%)`;
-      raf = requestAnimationFrame(render);
+    const paint = () => {
+      raf = 0;
+      dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
     };
-    raf = requestAnimationFrame(render);
 
     const onMove = (event: MouseEvent) => {
       mouseX = event.clientX;
@@ -54,6 +59,11 @@ export function CursorFollower() {
         visible = true;
         dot.classList.add("is-visible");
       }
+      // One style write per frame. Several mousemove events can land between
+      // frames, and only the last position is worth painting. Scheduling
+      // through rAF also keeps the write inside the frame the browser is
+      // already about to composite, so this costs nothing in latency.
+      if (!raf) raf = requestAnimationFrame(paint);
     };
 
     const onOver = (event: MouseEvent) => {
@@ -83,7 +93,7 @@ export function CursorFollower() {
     window.addEventListener("mouseup", onUp);
 
     return () => {
-      cancelAnimationFrame(raf);
+      if (raf) cancelAnimationFrame(raf);
       root.classList.remove("has-cursor");
       window.removeEventListener("mousemove", onMove);
       document.removeEventListener("mouseover", onOver);
