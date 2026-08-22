@@ -79,6 +79,35 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /*
+   * Указатель на всём, что нажимается.
+   *
+   * В preflight третьего Tailwind это правило было, в четвёртом его убрали —
+   * и кнопки молча вернулись к системной стрелке, из-за чего половина
+   * интерфейса перестала выглядеть нажимаемой. Правило повторяет то, что уже
+   * стоит в globals.css сайта, чтобы два приложения вели себя одинаково.
+   *
+   * Отключённое не приглашает нажимать: у него свой курсор ниже. Карточки
+   * досок сюда не попадают — они div со своим cursor-grab, и утилита Tailwind
+   * всё равно перекрыла бы базовый слой.
+   */
+  a[href],
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  input[type="submit"],
+  input[type="button"],
+  input[type="checkbox"],
+  input[type="radio"],
+  summary {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  input:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
   /* Внутренний инструмент открыт весь день — фокус должен быть виден. */
   :focus-visible {
     outline: 2px solid var(--accent);
