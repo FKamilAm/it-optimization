@@ -11,6 +11,7 @@ import {
   LogOut,
   Settings,
   Sun,
+  Trash2,
 } from "lucide-react";
 import { NavLink, Outlet } from "react-router";
 import { useAuth, useCurrentUser } from "@/auth/auth-context";
@@ -35,6 +36,8 @@ const NAV = [
     end: false,
     leadsOnly: false,
   },
+  // Корзина последняя: заходят туда редко и по конкретному поводу.
+  { to: "/trash", label: "Корзина", icon: Trash2, end: false, leadsOnly: false },
 ] as const;
 
 /**

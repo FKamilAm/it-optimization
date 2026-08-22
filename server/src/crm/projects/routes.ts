@@ -6,7 +6,7 @@ import { requireTeam } from "../../auth/guard.js";
 import { prisma } from "../../db.js";
 import { env } from "../../env.js";
 import { invalidInput } from "../http.js";
-import { deleteNotes, listNotes, noteRoutesFor } from "../notes.js";
+import { listNotes, noteRoutesFor } from "../notes.js";
 import { invoiceRoutes } from "./invoices.js";
 import {
   CLOSED_PROJECT_STATUSES,
@@ -254,7 +254,6 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
         data: { deletedAt: new Date() },
       }),
     ]);
-    await deleteNotes("project", project.id);
 
     await audit(request, {
       entity: "projects",

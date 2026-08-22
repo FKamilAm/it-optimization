@@ -1,0 +1,77 @@
+import type { FastifyInstance } from "fastify";
+import { z } from "zod";
+import { audit } from "../../audit.js";
+import { requireTeam } from "../../auth/guard.js";
+import { invalidInput } from "../http.js";
+import { deleteNotes } from "../notes.js";
+import { RETENTION_DAYS, TRASH, TRASH_ENTITIES } from "./registry.js";
+
+/**
+ * Корзина — один экран на все сущности вместо шести кнопок «восстановить».
+ *
+ * Записи здесь уже не видны в своих разделах, поэтому список плоский: что это
+ * было, как называлось и сколько ещё пролежит.
+ */
+
+const entity = z.enum(TRASH_ENTITIES);
+const targetBody = z.object({ entity, id: z.string().uuid() });
+
+export async function trashRoutes(app: FastifyInstance): Promise<void> {
+  app.get("/trash", { preHandler: requireTeam }, async (_request, reply) => {
+    const groups = await Promise.all(
+      Object.entries(TRASH).map(async ([key, model]) => {
+        const entries = await model.list();
+        return entries.map((entry) => ({
+          entity: key,
+          label: model.label,
+          id: entry.id,
+          title: entry.title,
+          deletedAt: entry.deletedAt.toISOString(),
+        }));
+      }),
+    );
+
+    // Свежеудалённое сверху: если человек пришёл что-то вернуть, оно там.
+    const items = groups
+      .flat()
+      .sort((a, b) => b.deletedAt.localeCompare(a.deletedAt));
+
+    return reply.send({ items, retentionDays: RETENTION_DAYS });
+  });
+
+  app.post("/trash/restore", { preHandler: requireTeam }, async (request, reply) => {
+    const parsed = targetBody.safeParse(request.body);
+    if (!parsed.success) return invalidInput(reply, parsed.error);
+
+    const model = TRASH[parsed.data.entity];
+    await model.restore(parsed.data.id);
+
+    await audit(request, {
+      entity: parsed.data.entity,
+      entityId: parsed.data.id,
+      action: "restore",
+    });
+    return reply.code(204).send();
+  });
+
+  /**
+   * Удалить сейчас, не дожидаясь срока. Нужно не для порядка, а для данных,
+   * которым не место в базе лишний месяц: контакты человека, попросившего его
+   * забыть, или доступ к сервису, с которым разошлись.
+   */
+  app.post("/trash/purge", { preHandler: requireTeam }, async (request, reply) => {
+    const parsed = targetBody.safeParse(request.body);
+    if (!parsed.success) return invalidInput(reply, parsed.error);
+
+    const model = TRASH[parsed.data.entity];
+    await model.purgeOne(parsed.data.id);
+    if (model.notes) await deleteNotes(model.notes, parsed.data.id);
+
+    await audit(request, {
+      entity: parsed.data.entity,
+      entityId: parsed.data.id,
+      action: "purge",
+    });
+    return reply.code(204).send();
+  });
+}

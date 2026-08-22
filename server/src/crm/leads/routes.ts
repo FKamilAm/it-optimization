@@ -6,7 +6,7 @@ import { requireAuth } from "../../auth/guard.js";
 import { notifyNewLeadInBackground } from "../../notify/notifications.js";
 import { prisma } from "../../db.js";
 import { invalidInput } from "../http.js";
-import { createNote, deleteNotes, listNotes } from "../notes.js";
+import { createNote, listNotes } from "../notes.js";
 import {
   CLOSED_LEAD_STATUSES,
   createLeadBody,
@@ -228,7 +228,6 @@ export async function leadRoutes(app: FastifyInstance): Promise<void> {
       where: { id: lead.id },
       data: { deletedAt: new Date() },
     });
-    await deleteNotes("lead", lead.id);
 
     await audit(request, {
       entity: "leads",

@@ -1,4 +1,5 @@
 import { buildApp } from "./app.js";
+import { purgeDeleted } from "./crm/trash/purge.js";
 import { purgeExpiredSessions } from "./auth/session.js";
 import { prisma } from "./db.js";
 import { canNotify, canPublish, env } from "./env.js";
@@ -18,12 +19,15 @@ const stopBot = canNotify
   : (app.log.warn("TELEGRAM_BOT_TOKEN не задан: напоминания отключены."),
     async () => {});
 
-// Раз в сутки подчищаем истёкшие сессии — иначе таблица растёт вечно.
+// Раз в сутки подчищаем истёкшие сессии и корзину — иначе таблицы растут вечно.
 const cleanup = setInterval(
   () => {
     purgeExpiredSessions()
       .then((count) => count && app.log.info({ count }, "удалены истёкшие сессии"))
-      .catch((cause: unknown) => app.log.error({ cause }, "очистка сессий не удалась"));
+      .catch((cause: unknown) => app.log.error({ err: cause }, "очистка сессий не удалась"));
+    purgeDeleted()
+      .then((count) => count && app.log.info({ count }, "корзина очищена"))
+      .catch((cause: unknown) => app.log.error({ err: cause }, "очистка корзины не удалась"));
   },
   24 * 60 * 60 * 1000,
 );

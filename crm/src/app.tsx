@@ -10,6 +10,7 @@ import { ProjectsScreen } from "@/screens/projects/projects-screen";
 import { SettingsScreen } from "@/screens/settings";
 import { TasksScreen } from "@/screens/tasks/tasks-screen";
 import { TodayScreen } from "@/screens/today/today-screen";
+import { TrashScreen } from "@/screens/trash/trash-screen";
 import { VaultProvider } from "@/vault/vault-context";
 
 function Routed() {
@@ -50,6 +51,7 @@ function Routed() {
         <Route path="clients" element={<ClientsScreen />} />
         <Route path="money" element={<MoneyScreen />} />
         <Route path="credentials" element={<CredentialsScreen />} />
+        <Route path="trash" element={<TrashScreen />} />
         <Route path="settings" element={<SettingsScreen />} />
         {/* Неизвестный адрес — не ошибка, а промах: возвращаем на главную. */}
         <Route path="*" element={<Navigate to="/" replace />} />

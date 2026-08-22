@@ -5,7 +5,7 @@ import { audit } from "../../audit.js";
 import { requireTeam } from "../../auth/guard.js";
 import { prisma } from "../../db.js";
 import { invalidInput } from "../http.js";
-import { deleteNotes, listNotes, noteRoutesFor } from "../notes.js";
+import { listNotes, noteRoutesFor } from "../notes.js";
 import {
   CLOSED_TASK_STATUSES,
   createTaskBody,
@@ -222,7 +222,6 @@ export async function taskRoutes(app: FastifyInstance): Promise<void> {
       where: { id: task.id },
       data: { deletedAt: new Date() },
     });
-    await deleteNotes("task", task.id);
 
     await audit(request, {
       entity: "tasks",
