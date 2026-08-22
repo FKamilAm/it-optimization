@@ -14,6 +14,8 @@ export interface CredentialDto {
   url: string | null;
   owner: string | null;
   secretHint: string | null;
+  /** Шифротекст пароля. Сервер его не понимает — расшифровка в браузере. */
+  secret: string | null;
   renewsAt: string | null;
   amount: number | null;
   monthlyFee: boolean;
@@ -28,6 +30,7 @@ export function toCredentialDto(item: Credential): CredentialDto {
     url: item.url,
     owner: item.owner,
     secretHint: item.secretHint,
+    secret: item.secret,
     renewsAt: item.renewsAt?.toISOString() ?? null,
     amount: item.amount,
     monthlyFee: item.monthlyFee,

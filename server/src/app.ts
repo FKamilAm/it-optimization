@@ -13,6 +13,7 @@ import { credentialRoutes } from "./crm/credentials/routes.js";
 import { projectRoutes } from "./crm/projects/routes.js";
 import { taskRoutes } from "./crm/tasks/routes.js";
 import { todayRoutes } from "./crm/today-routes.js";
+import { vaultRoutes } from "./crm/vault/routes.js";
 import { telegramRoutes } from "./notify/routes.js";
 import { publishRoutes } from "./publish/routes.js";
 
@@ -63,6 +64,7 @@ export async function buildApp(): Promise<FastifyInstance> {
   await app.register(projectRoutes);
   await app.register(taskRoutes);
   await app.register(todayRoutes);
+  await app.register(vaultRoutes);
   await app.register(telegramRoutes);
 
   // CRM. Живёт в том же процессе и за той же авторизацией, что и контент сайта:

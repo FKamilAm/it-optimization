@@ -9,13 +9,20 @@ import { invalidInput } from "../http.js";
 import { toCredentialDto as toDto } from "./dto.js";
 
 /**
- * Справочник учёток сервисов.
+ * Справочник учёток сервисов: что есть, на кого записано, когда продлевать и
+ * под каким паролем заходят.
  *
- * **Паролей здесь нет намеренно.** Это ответ на вопросы «что у нас вообще
- * есть», «на кого записано» и «когда продлевать», а не хранилище секретов:
- * база уезжает в дампы по расписанию, и одна их утечка отдала бы разом все
- * сервисы. Пароли живут в менеджере паролей, а поле `secretHint` говорит, в
- * каком именно.
+ * **Пароли сервер не видит.** Они приходят уже зашифрованными: ключ выводится
+ * из мастер-фразы в браузере и сюда не передаётся. Раньше паролей здесь не было
+ * вовсе — именно потому, что база уезжает в ночные дампы, и одна их утечка
+ * отдала бы разом все сервисы. Шифрование на устройстве снимает ровно это:
+ * в дампе лежит нечитаемый текст.
+ *
+ * Отсюда следует то, что легко нарушить по невнимательности: расшифровка,
+ * проверка и поиск по паролю на сервере невозможны и появиться не должны.
+ * Любая такая «мелочь» потребует ключа здесь и вернёт исходную проблему.
+ *
+ * `secretHint` остался для сервисов, пароль от которых лежит не здесь.
  */
 
 const idParams = z.object({ id: z.string().uuid() });
@@ -26,6 +33,9 @@ const credentialFields = {
   url: optionalText(300),
   owner: optionalText(120),
   secretHint: optionalText(200),
+  // Приходит уже зашифрованным. Сервер проверяет только форму и размер:
+  // содержимое для него — непрозрачный набор байт, и так и задумано.
+  secret: z.union([z.null(), z.string().max(4096)]),
   renewsAt: optionalDate,
   // Рубли целыми, как у проекта: копеек в абонплате не бывает.
   amount: z.union([z.null(), z.number().int().min(0).max(100_000_000)]),
@@ -75,6 +85,7 @@ export async function credentialRoutes(app: FastifyInstance): Promise<void> {
         url: input.url ?? null,
         owner: input.owner ?? null,
         secretHint: input.secretHint ?? null,
+        secret: input.secret ?? null,
         renewsAt: input.renewsAt ?? null,
         amount: input.amount ?? null,
         monthlyFee: input.monthlyFee ?? false,
@@ -111,6 +122,7 @@ export async function credentialRoutes(app: FastifyInstance): Promise<void> {
         ...(input.url !== undefined && { url: input.url }),
         ...(input.owner !== undefined && { owner: input.owner }),
         ...(input.secretHint !== undefined && { secretHint: input.secretHint }),
+        ...(input.secret !== undefined && { secret: input.secret }),
         ...(input.renewsAt !== undefined && { renewsAt: input.renewsAt }),
         ...(input.amount !== undefined && { amount: input.amount }),
         ...(input.monthlyFee !== undefined && { monthlyFee: input.monthlyFee }),

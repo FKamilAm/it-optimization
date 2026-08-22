@@ -1,12 +1,12 @@
 import { api } from "./client";
 
 /**
- * Справочник учёток сервисов — **без паролей**.
+ * Справочник учёток сервисов вместе с паролями.
  *
- * Это ответ на «что у нас есть», «на кого записано» и «когда продлевать», а не
- * хранилище секретов: база уезжает в дампы, и одна их утечка отдала бы разом
- * все сервисы. Пароли живут в менеджере паролей, а `secretHint` подсказывает,
- * в каком именно и где искать.
+ * `secret` приходит и уходит только зашифрованным: ключ выводится из
+ * мастер-фразы в браузере (см. `lib/vault.ts`) и на сервер не передаётся.
+ * Поэтому утечка ночного дампа отдаёт нечитаемый текст, а не все сервисы
+ * разом. `secretHint` остался для паролей, которые лежат не здесь.
  */
 export interface Credential {
   id: string;
@@ -15,6 +15,11 @@ export interface Credential {
   url: string | null;
   owner: string | null;
   secretHint: string | null;
+  /**
+   * Пароль, зашифрованный в браузере. Сервер хранит его непрозрачно и
+   * расшифровать не может — ключа у него нет и не будет.
+   */
+  secret: string | null;
   renewsAt: string | null;
   /**
    * Рубли целыми. Что это за период — говорит monthlyFee.
@@ -34,6 +39,7 @@ export interface CredentialInput {
   url?: string | null;
   owner?: string | null;
   secretHint?: string | null;
+  secret?: string | null;
   renewsAt?: string | null;
   amount?: number | null;
   monthlyFee?: boolean;
