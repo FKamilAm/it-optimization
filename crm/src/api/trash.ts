@@ -31,3 +31,9 @@ export async function restoreItem(entity: string, id: string): Promise<void> {
 export async function purgeItem(entity: string, id: string): Promise<void> {
   await api.post<void>("/trash/purge", { entity, id });
 }
+
+/** Очистить целиком. Возвращает, сколько записей исчезло. */
+export async function emptyTrash(): Promise<number> {
+  const { purged } = await api.post<{ purged: number }>("/trash/empty", {});
+  return purged;
+}

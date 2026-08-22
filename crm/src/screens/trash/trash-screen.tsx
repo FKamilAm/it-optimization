@@ -1,7 +1,13 @@
 import { RotateCcw, Trash2 } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { ApiError } from "@/api/client";
-import { getTrash, purgeItem, restoreItem, type TrashItem } from "@/api/trash";
+import {
+  emptyTrash,
+  getTrash,
+  purgeItem,
+  restoreItem,
+  type TrashItem,
+} from "@/api/trash";
 import { Badge, Button, EmptyState, ErrorNote } from "@/components/ui";
 import { daysFromToday, formatDate } from "@/lib/dates";
 
@@ -17,6 +23,7 @@ export function TrashScreen() {
   const [retention, setRetention] = useState(30);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
+  const [emptying, setEmptying] = useState(false);
 
   const load = useCallback(() => {
     setError(null);
@@ -55,14 +62,44 @@ export function TrashScreen() {
     }
   }
 
+  async function empty() {
+    const count = items?.length ?? 0;
+    // Счёт прямо в вопросе: «очистить корзину?» звучит безобидно, а за ним
+    // может стоять проект, который кто-то удалил по ошибке неделю назад.
+    if (!confirm(`Удалить насовсем ${count} зап. из корзины? Вернуть будет нельзя.`)) {
+      return;
+    }
+
+    setEmptying(true);
+    setError(null);
+    try {
+      await emptyTrash();
+      load();
+    } catch (cause) {
+      setError(cause instanceof ApiError ? cause.message : "Не получилось очистить");
+    } finally {
+      setEmptying(false);
+    }
+  }
+
   return (
     <section>
-      <header>
-        <h1 className="text-xl font-bold tracking-tight">Корзина</h1>
-        <p className="text-muted-foreground mt-1 max-w-prose text-sm">
-          Удалённое хранится {retention} дней, потом исчезает насовсем. Проект
-          возвращается вместе со своими задачами и заметками.
-        </p>
+      <header className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h1 className="text-xl font-bold tracking-tight">Корзина</h1>
+          <p className="text-muted-foreground mt-1 max-w-prose text-sm">
+            Удалённое хранится {retention} дней, потом исчезает насовсем. Проект
+            возвращается вместе со своими задачами и заметками.
+          </p>
+        </div>
+        <Button
+          variant="danger"
+          onClick={() => void empty()}
+          disabled={emptying || !items?.length}
+        >
+          <Trash2 size={16} strokeWidth={2} />
+          {emptying ? "Очищаем…" : "Очистить корзину"}
+        </Button>
       </header>
 
       {error && (

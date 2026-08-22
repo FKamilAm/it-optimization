@@ -4,6 +4,7 @@ import { audit } from "../../audit.js";
 import { requireTeam } from "../../auth/guard.js";
 import { invalidInput } from "../http.js";
 import { deleteNotes } from "../notes.js";
+import { purgeDeleted } from "./purge.js";
 import { RETENTION_DAYS, TRASH, TRASH_ENTITIES } from "./registry.js";
 
 /**
@@ -73,5 +74,19 @@ export async function trashRoutes(app: FastifyInstance): Promise<void> {
       action: "purge",
     });
     return reply.code(204).send();
+  });
+
+  /**
+   * Очистить корзину целиком.
+   *
+   * Тот же код, что и в суточной уборке, но с нулевым сроком: «удалить всё,
+   * что старше нуля дней» — это и есть «удалить всё». Отдельной реализации
+   * заводить незачем, иначе две логики удаления однажды разойдутся.
+   */
+  app.post("/trash/empty", { preHandler: requireTeam }, async (request, reply) => {
+    const purged = await purgeDeleted(0);
+
+    await audit(request, { entity: "trash", action: "empty", diff: { purged } });
+    return reply.send({ purged });
   });
 }
