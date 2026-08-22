@@ -1,4 +1,13 @@
-import { Check, Copy, ExternalLink, KeyRound, Lock, Plus } from "lucide-react";
+import {
+  Check,
+  Copy,
+  Eye,
+  EyeOff,
+  ExternalLink,
+  KeyRound,
+  Lock,
+  Plus,
+} from "lucide-react";
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { ApiError } from "@/api/client";
 import {
@@ -19,6 +28,7 @@ import {
   Modal,
   Textarea,
 } from "@/components/ui";
+import { cn } from "@/lib/cn";
 import { describeDeadline, fromDateInputValue, toDateInputValue } from "@/lib/dates";
 import { fee } from "@/lib/money";
 import { useVault } from "@/vault/vault-context";
@@ -367,6 +377,8 @@ function CredentialModal({
   const [values, setValues] = useState<FormValues>(initial);
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  // Сбрасывается вместе с окном: закрыли карточку — пароль снова скрыт.
+  const [revealed, setRevealed] = useState(false);
 
   function set<K extends keyof FormValues>(key: K, value: FormValues[K]) {
     setValues((current) => ({ ...current, [key]: value }));
@@ -449,15 +461,39 @@ function CredentialModal({
                   : "Разблокируйте хранилище, чтобы сохранить пароль"
             }
           >
-            <Input
-              type="password"
-              value={values.secret}
-              onChange={(event) => set("secret", event.target.value)}
-              disabled={!secretWritable}
-              autoComplete="new-password"
-              placeholder={secretWritable ? "" : "••••••••"}
-              maxLength={500}
-            />
+            {/*
+             * Показать пароль можно, но по умолчанию он скрыт: чаще его
+             * копируют, а открытый текст видит любой, кто смотрит в монитор.
+             * Глазок нужен там, где буфер обмена не помогает, — ввести на
+             * телефоне, на роутере, продиктовать.
+             */}
+            <div className="relative">
+              <Input
+                type={revealed ? "text" : "password"}
+                value={values.secret}
+                onChange={(event) => set("secret", event.target.value)}
+                disabled={!secretWritable}
+                autoComplete="new-password"
+                placeholder={secretWritable ? "" : "••••••••"}
+                maxLength={500}
+                className={cn(values.secret && "pr-10", revealed && "font-mono")}
+              />
+              {values.secret !== "" && (
+                <button
+                  type="button"
+                  onClick={() => setRevealed((shown) => !shown)}
+                  aria-label={revealed ? "Скрыть пароль" : "Показать пароль"}
+                  title={revealed ? "Скрыть" : "Показать"}
+                  className="text-muted-foreground hover:text-foreground absolute top-1/2 right-1.5 -translate-y-1/2 rounded-md p-1.5 transition"
+                >
+                  {revealed ? (
+                    <EyeOff size={15} strokeWidth={2} />
+                  ) : (
+                    <Eye size={15} strokeWidth={2} />
+                  )}
+                </button>
+              )}
+            </div>
           </Field>
 
           <Field
