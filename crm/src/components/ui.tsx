@@ -47,8 +47,11 @@ export function Field({
   );
 }
 
+// Недоступное поле заливается серым, а не остаётся белым: без этого оно
+// отличается от рабочего только тем, что не принимает ввод, — и человек
+// сначала пробует печатать, а потом ищет причину.
 const controlClass =
-  "w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none transition focus:border-accent";
+  "w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none transition focus:border-accent disabled:bg-disabled disabled:text-muted-foreground";
 
 export function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return <input {...props} className={cn(controlClass, props.className)} />;
