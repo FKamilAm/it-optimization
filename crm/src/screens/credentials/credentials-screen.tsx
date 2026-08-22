@@ -106,11 +106,21 @@ function toInput(values: FormValues): CredentialInput {
   };
 }
 
-/** `writable` — можно ли сохранять пароль: расшифровать удалось или его нет. */
+/**
+ * Что можно делать с паролем открытой карточки.
+ *
+ * `unreadable` — отдельное состояние, а не разновидность запертого: шифротекст
+ * есть, но текущий ключ его не берёт (например, фразу сбросили в другой
+ * вкладке). Раньше такая запись запиралась намертво — прочитать нельзя и
+ * заменить нельзя. Теперь заменить можно: пустое поле оставляет старое,
+ * заполненное перезаписывает.
+ */
+type SecretState = "editable" | "unreadable" | "locked";
+
 interface EditTarget {
   item: Credential;
   secret: string;
-  writable: boolean;
+  secretState: SecretState;
 }
 
 export function CredentialsScreen() {
@@ -120,7 +130,7 @@ export function CredentialsScreen() {
   const [error, setError] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
   const [editing, setEditing] = useState<EditTarget | null>(null);
-  const { unlocked, encryptSecret, decryptSecret } = useVault();
+  const { unlocked, revision, encryptSecret, decryptSecret } = useVault();
 
   useEffect(() => {
     const timer = setTimeout(() => setDebouncedSearch(search.trim()), 300);
@@ -137,7 +147,14 @@ export function CredentialsScreen() {
       });
   }, [debouncedSearch]);
 
-  useEffect(load, [load]);
+  useEffect(() => {
+    // `revision` здесь не украшение: после сброса сервер обнулил все
+    // шифротексты, а список в памяти остался со старыми. Без перезагрузки
+    // записи выглядят как «пароль сохранён», хотя его больше нет, и карточка
+    // запирается — новый ключ старый шифротекст не читает.
+    void revision;
+    load();
+  }, [load, revision]);
 
   /**
    * Расшифровка при открытии карточки, а не при сохранении: тогда поле пароля
@@ -145,25 +162,34 @@ export function CredentialsScreen() {
    * поле означало бы то «не менять», то «стереть», и однажды стёрло бы.
    */
   async function openEdit(item: Credential) {
-    if (!item.secret || !unlocked) {
-      setEditing({ item, secret: "", writable: unlocked && !item.secret });
+    if (!unlocked) {
+      setEditing({ item, secret: "", secretState: "locked" });
+      return;
+    }
+    if (!item.secret) {
+      setEditing({ item, secret: "", secretState: "editable" });
       return;
     }
     try {
-      setEditing({ item, secret: await decryptSecret(item.secret), writable: true });
+      setEditing({
+        item,
+        secret: await decryptSecret(item.secret),
+        secretState: "editable",
+      });
     } catch {
-      // Ключ не подходит к этой записи — её пароль не трогаем вовсе.
-      setEditing({ item, secret: "", writable: false });
+      setEditing({ item, secret: "", secretState: "unreadable" });
     }
   }
 
   /**
-   * Поле пароля опускается целиком, когда открытый текст недоступен: прислать
-   * `null` значило бы стереть сохранённое только потому, что хранилище заперто.
+   * Поле пароля опускается, когда стирать его было бы не решением человека, а
+   * побочным эффектом: при запертом хранилище — всегда, при нечитаемом
+   * шифротексте — если поле оставили пустым.
    */
-  async function buildInput(values: FormValues, writable: boolean) {
+  async function buildInput(values: FormValues, state: SecretState) {
     const input = toInput(values);
-    if (!writable) return input;
+    if (state === "locked") return input;
+    if (state === "unreadable" && !values.secret) return input;
     return {
       ...input,
       secret: values.secret ? await encryptSecret(values.secret) : null,
@@ -226,11 +252,13 @@ export function CredentialsScreen() {
         <CredentialModal
           title="Новая запись"
           initial={empty()}
-          secretWritable={unlocked}
+          secretState={unlocked ? "editable" : "locked"}
           hasSecret={false}
           onClose={() => setCreating(false)}
           onSubmit={async (values) => {
-            await createCredential(await buildInput(values, unlocked));
+            await createCredential(
+              await buildInput(values, unlocked ? "editable" : "locked"),
+            );
             setCreating(false);
             load();
           }}
@@ -241,13 +269,13 @@ export function CredentialsScreen() {
         <CredentialModal
           title={editing.item.service}
           initial={toValues(editing.item, editing.secret)}
-          secretWritable={editing.writable}
+          secretState={editing.secretState}
           hasSecret={Boolean(editing.item.secret)}
           onClose={() => setEditing(null)}
           onSubmit={async (values) => {
             await updateCredential(
               editing.item.id,
-              await buildInput(values, editing.writable),
+              await buildInput(values, editing.secretState),
             );
             setEditing(null);
             load();
@@ -359,7 +387,7 @@ function SecretButton({ item }: { item: Credential }) {
 function CredentialModal({
   title,
   initial,
-  secretWritable,
+  secretState,
   hasSecret,
   onClose,
   onSubmit,
@@ -367,8 +395,7 @@ function CredentialModal({
 }: {
   title: string;
   initial: FormValues;
-  /** Хранилище открыто и пароль этой записи прочитан — значит его можно менять. */
-  secretWritable: boolean;
+  secretState: SecretState;
   hasSecret: boolean;
   onClose: () => void;
   onSubmit: (values: FormValues) => Promise<void>;
@@ -454,11 +481,13 @@ function CredentialModal({
           <Field
             label="Пароль"
             hint={
-              secretWritable
+              secretState === "editable"
                 ? "Шифруется в браузере. Пустое поле — пароль не хранится"
-                : hasSecret
-                  ? "Сохранён. Разблокируйте хранилище, чтобы увидеть или заменить"
-                  : "Разблокируйте хранилище, чтобы сохранить пароль"
+                : secretState === "unreadable"
+                  ? "Зашифрован другой фразой и не читается. Введите новый, чтобы заменить — пустое поле оставит старый"
+                  : hasSecret
+                    ? "Сохранён. Разблокируйте хранилище, чтобы увидеть или заменить"
+                    : "Разблокируйте хранилище, чтобы сохранить пароль"
             }
           >
             {/*
@@ -472,9 +501,15 @@ function CredentialModal({
                 type={revealed ? "text" : "password"}
                 value={values.secret}
                 onChange={(event) => set("secret", event.target.value)}
-                disabled={!secretWritable}
+                disabled={secretState === "locked"}
                 autoComplete="new-password"
-                placeholder={secretWritable ? "" : "••••••••"}
+                placeholder={
+                  secretState === "editable"
+                    ? ""
+                    : secretState === "unreadable"
+                      ? "новый пароль"
+                      : "••••••••"
+                }
                 maxLength={500}
                 className={cn(values.secret && "pr-10", revealed && "font-mono")}
               />

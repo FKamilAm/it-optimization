@@ -1,5 +1,5 @@
 import { Lock, LockOpen } from "lucide-react";
-import { useEffect, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { ApiError } from "@/api/client";
 import { getVault, RESET_WORD } from "@/api/vault";
 import { Button, ErrorNote, Field, Input, Modal } from "@/components/ui";
@@ -11,6 +11,10 @@ import { useVault } from "@/vault/vault-context";
  * Мастер-фраза — не пароль от CRM, а отдельная: вход в систему сервер
  * проверяет сам, а эта фраза до сервера не доходит вовсе, иначе он смог бы
  * читать пароли, и всё построение теряло бы смысл.
+ *
+ * Состояние хранилища выясняется у сервера сразу, а не по ходу дела. Раньше
+ * человеку, у которого фразы ещё не было, предлагали «разблокировать», и
+ * понять, что задавать её надо заново, он мог только введя что-нибудь наугад.
  */
 
 /**
@@ -21,8 +25,18 @@ import { useVault } from "@/vault/vault-context";
 const MIN_LENGTH = 12;
 
 export function VaultControl() {
-  const { unlocked, lock } = useVault();
+  const { unlocked, lock, revision } = useVault();
+  const [configured, setConfigured] = useState<boolean | null>(null);
   const [asking, setAsking] = useState(false);
+
+  // Перечитывается после сброса: `revision` для того и заведён.
+  const refresh = useCallback(() => {
+    getVault()
+      .then((settings) => setConfigured(settings.configured))
+      .catch(() => setConfigured(null));
+  }, [revision]);
+
+  useEffect(refresh, [refresh]);
 
   if (unlocked) {
     return (
@@ -37,20 +51,33 @@ export function VaultControl() {
     <>
       <Button variant="ghost" onClick={() => setAsking(true)}>
         <Lock size={16} strokeWidth={2} />
-        Разблокировать
+        {configured === false ? "Задать мастер-фразу" : "Разблокировать"}
       </Button>
-      {asking && <PassphraseDialog onClose={() => setAsking(false)} />}
+      {asking && (
+        <PassphraseDialog
+          initialCreating={configured === false}
+          onClose={() => {
+            setAsking(false);
+            refresh();
+          }}
+        />
+      )}
     </>
   );
 }
 
-function PassphraseDialog({ onClose }: { onClose: () => void }) {
+function PassphraseDialog({
+  initialCreating,
+  onClose,
+}: {
+  initialCreating: boolean;
+  onClose: () => void;
+}) {
   const { unlock, create } = useVault();
-  const [resetting, setResetting] = useState(false);
   const [passphrase, setPassphrase] = useState("");
   const [repeat, setRepeat] = useState("");
-  // Переключается сам, когда сервер отвечает, что фразы ещё нет.
-  const [creating, setCreating] = useState(false);
+  const [creating, setCreating] = useState(initialCreating);
+  const [resetting, setResetting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -74,7 +101,7 @@ function PassphraseDialog({ onClose }: { onClose: () => void }) {
       await (creating ? create(passphrase) : unlock(passphrase));
       onClose();
     } catch (cause) {
-      // «Фразы ещё нет» — не ошибка, а другой сценарий: показываем создание.
+      // Фразу могли сбросить в другой вкладке, пока это окно было открыто.
       if (cause instanceof Error && cause.message === "Мастер-фраза ещё не задана") {
         setCreating(true);
         setError(null);
@@ -146,8 +173,7 @@ function PassphraseDialog({ onClose }: { onClose: () => void }) {
           <Button type="button" variant="ghost" onClick={onClose}>
             Отмена
           </Button>
-          {/* Сброс предлагается только тем, кто уже не может войти: тому, кто
-              знает фразу, он не нужен. */}
+          {/* Сбрасывать нечего, когда фразы и нет. */}
           {!creating && (
             <button
               type="button"
@@ -167,7 +193,20 @@ function PassphraseDialog({ onClose }: { onClose: () => void }) {
         )}
       </form>
 
-      {resetting && <ResetDialog onClose={() => setResetting(false)} onDone={onClose} />}
+      {resetting && (
+        <ResetDialog
+          onClose={() => setResetting(false)}
+          onDone={() => {
+            // Сразу к созданию новой: сброс делают именно ради этого, и возврат
+            // в «разблокировать» тут только сбивал бы с толку.
+            setResetting(false);
+            setCreating(true);
+            setPassphrase("");
+            setRepeat("");
+            setError(null);
+          }}
+        />
+      )}
     </Modal>
   );
 }
