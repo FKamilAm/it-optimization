@@ -23,13 +23,13 @@ export interface Credential {
   secret: string | null;
   renewsAt: string | null;
   /**
-   * Целыми, без копеек. Валюта — в `currency`, период — в `monthlyFee`.
+   * Минорные единицы. Валюта — в `currency`, период — в `monthlyFee`.
    *
    * Проверять на наличие надо нестрого (`!= null`): CRM выкатывается сразу при
    * пуше, а API руками, поэтому новое поле какое-то время приходит как undefined —
    * и строгое `!== null` пропустит его дальше, где оно уронит рендер.
    */
-  amount: number | null;
+  amountMinor: number | null;
   currency: Currency;
   monthlyFee: boolean;
   notes: string | null;
@@ -43,7 +43,7 @@ export interface CredentialInput {
   secretHint?: string | null;
   secret?: string | null;
   renewsAt?: string | null;
-  amount?: number | null;
+  amountMinor?: number | null;
   currency?: Currency;
   monthlyFee?: boolean;
   notes?: string | null;

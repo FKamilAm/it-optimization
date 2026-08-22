@@ -36,7 +36,7 @@ const projectFields = {
 
   billingMonthly: z.boolean(),
   /// Рубли целыми. Отрицательная сумма — почти наверняка опечатка.
-  monthlyAmount: z.union([z.null(), z.number().int().min(0).max(100_000_000)]),
+  monthlyAmountMinor: z.union([z.null(), z.number().int().min(0).max(10_000_000_000)]),
   currency: z.enum(["rub", "usd"]),
 };
 
@@ -70,7 +70,9 @@ export const invoiceBody = z.object({
   kind: z.enum(["invoice", "act"]),
   /// ГГГГ-ММ. Регулярка, а не дата: это календарный месяц, а не момент.
   period: z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/, "Период вида 2026-08"),
-  amount: z.union([z.null(), z.number().int().min(0).max(100_000_000)]).optional(),
+  amountMinor: z
+    .union([z.null(), z.number().int().min(0).max(10_000_000_000)])
+    .optional(),
   currency: z.enum(["rub", "usd"]).optional(),
   issuedAt: optionalDate.optional(),
   paidAt: optionalDate.optional(),
@@ -111,7 +113,7 @@ export interface ProjectDto {
   actDate: string | null;
 
   billingMonthly: boolean;
-  monthlyAmount: number | null;
+  monthlyAmountMinor: number | null;
   currency: Currency;
   /**
    * Самый ранний месяц без счёта — вида «2026-08», и сколько их всего.
@@ -214,7 +216,7 @@ export function toProjectDto(item: ProjectWithRelations, timeZone: string): Proj
     contractDate: item.contractDate?.toISOString() ?? null,
     actDate: item.actDate?.toISOString() ?? null,
     billingMonthly: item.billingMonthly,
-    monthlyAmount: item.monthlyAmount,
+    monthlyAmountMinor: item.monthlyAmountMinor,
     currency: item.currency,
     unbilledPeriod: missing.period,
     unbilledCount: missing.count,

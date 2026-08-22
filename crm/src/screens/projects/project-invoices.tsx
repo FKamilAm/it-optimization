@@ -14,7 +14,7 @@ import { Badge, Button, ErrorNote, Input, Select } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { CurrencySelect } from "@/components/currency-select";
 import { periodLabel } from "@/lib/dates";
-import { money, type Currency } from "@/lib/money";
+import { money, parseAmount, sanitizeAmount, type Currency } from "@/lib/money";
 
 /**
  * Счета и акты по проекту.
@@ -30,8 +30,8 @@ function thisPeriod(): string {
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
 }
 
-function formatAmount(amount: number | null, currency: Currency): string {
-  return amount === null ? "" : money(amount, currency);
+function formatAmount(minor: number | null, currency: Currency): string {
+  return minor === null ? "" : money(minor, currency);
 }
 
 export function ProjectInvoices({
@@ -70,7 +70,7 @@ export function ProjectInvoices({
       await createInvoice(projectId, {
         kind,
         period,
-        amount: amount.trim() ? Number(amount) : null,
+        amountMinor: parseAmount(amount),
         currency,
         // Заводят запись обычно в день выставления — ставим сегодня, чтобы не
         // заполнять ещё одно поле.
@@ -137,7 +137,7 @@ export function ProjectInvoices({
           />
           <Input
             value={amount}
-            onChange={(event) => setAmount(event.target.value.replace(/[^\d]/g, ""))}
+            onChange={(event) => setAmount(sanitizeAmount(event.target.value))}
             inputMode="numeric"
             placeholder="Сумма"
             className="w-32"
@@ -186,8 +186,8 @@ export function ProjectInvoices({
                       {INVOICE_KIND_LABELS[invoice.kind]}
                     </span>{" "}
                     за {periodLabel(invoice.period)}
-                    {invoice.amount !== null &&
-                      ` — ${formatAmount(invoice.amount, invoice.currency)}`}
+                    {invoice.amountMinor !== null &&
+                      ` — ${formatAmount(invoice.amountMinor, invoice.currency)}`}
                   </span>
                 </button>
 

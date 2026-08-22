@@ -9,7 +9,7 @@ import {
 } from "@/api/projects";
 import { CurrencySelect } from "@/components/currency-select";
 import { DeveloperPicker } from "@/components/developer-picker";
-import type { Currency } from "@/lib/money";
+import { amountToInput, parseAmount, sanitizeAmount, type Currency } from "@/lib/money";
 import { Field, Input, Select, Textarea } from "@/components/ui";
 import { fromDateInputValue, toDateInputValue } from "@/lib/dates";
 
@@ -69,7 +69,7 @@ export function projectToValues(project: Project): ProjectFormValues {
     actDate: toDateInputValue(project.actDate),
     billingMonthly: project.billingMonthly,
     currency: project.currency,
-    monthlyAmount: project.monthlyAmount === null ? "" : String(project.monthlyAmount),
+    monthlyAmount: amountToInput(project.monthlyAmountMinor),
   };
 }
 
@@ -89,8 +89,8 @@ export function valuesToProjectInput(values: ProjectFormValues): ProjectInput {
     actDate: fromDateInputValue(values.actDate),
     billingMonthly: values.billingMonthly,
     currency: values.currency,
-    // Пустое поле — это «не задано», а не ноль рублей.
-    monthlyAmount: values.monthlyAmount.trim() ? Number(values.monthlyAmount) : null,
+    // Пустое поле — это «не задано», а не ноль.
+    monthlyAmountMinor: parseAmount(values.monthlyAmount),
   };
 }
 
@@ -242,12 +242,15 @@ export function ProjectFields({
         </label>
 
         {values.billingMonthly && (
-          <Field label="Сумма в месяц" hint="Целыми, без копеек. Можно оставить пустым">
+          <Field
+            label="Сумма в месяц"
+            hint="Можно с копейками: 45000 или 5,19. Пустое — не задано"
+          >
             <div className="flex gap-2">
               <Input
                 value={values.monthlyAmount}
                 onChange={(event) =>
-                  set("monthlyAmount", event.target.value.replace(/[^\d]/g, ""))
+                  set("monthlyAmount", sanitizeAmount(event.target.value))
                 }
                 inputMode="numeric"
                 placeholder="45000"

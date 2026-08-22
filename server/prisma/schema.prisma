@@ -310,9 +310,15 @@ model Project {
   /// Счета выставляются каждый месяц. Признак нужен, чтобы бот напоминал про
   /// период, за который счёта ещё нет, — в этом и весь смысл учёта.
   billingMonthly Boolean @default(false) @map("billing_monthly")
-  /// Ожидаемая сумма в месяц, рубли целыми. Копейки в помесячной абонплате не
-  /// встречаются, а Decimal тянет за собой отдельный тип на всех слоях.
-  monthlyAmount  Int?    @map("monthly_amount")
+  /// Ожидаемая сумма в месяц — в минорных единицах: копейках или центах.
+  ///
+  /// Целое, а не дробное: 0.1 + 0.2 в двоичной дроби не равно 0.3, и на суммах
+  /// это однажды вылезает расхождением в копейку. Decimal решил бы то же, но
+  /// притащил бы отдельный тип на все слои, включая JSON.
+  ///
+  /// Суффикс в имени не для красоты: без него пропущенное при правке место
+  /// покажет сумму в сто раз больше и никак об этом не скажет.
+  monthlyAmountMinor Int?    @map("monthly_amount_minor")
   /// Валюта monthlyAmount и счетов проекта по умолчанию.
   currency       Currency @default(rub)
 
@@ -378,9 +384,9 @@ model Invoice {
   /// момент времени: сравнивать и сортировать так же просто, а часовые пояса
   /// не превращают март в февраль.
   period String
-  /// Целыми, как и monthlyAmount у проекта. Валюта — рядом.
-  amount   Int?
-  currency Currency @default(rub)
+  /// В минорных единицах, как и monthlyAmountMinor у проекта. Валюта — рядом.
+  amountMinor Int?     @map("amount_minor")
+  currency    Currency @default(rub)
 
   issuedAt DateTime? @map("issued_at")
   paidAt   DateTime? @map("paid_at")
@@ -470,9 +476,9 @@ model Credential {
   secret     String? @db.Text
   /// Когда продлевать: домены, сертификаты, платные подписки.
   renewsAt   DateTime? @map("renews_at")
-  /// Сколько стоит, целыми — как monthlyAmount у проекта.
-  amount     Int?
-  currency   Currency @default(rub)
+  /// Сколько стоит, в минорных единицах — как у проекта.
+  amountMinor Int?     @map("amount_minor")
+  currency    Currency @default(rub)
   /// Списывается каждый месяц. Без признака сумма непонятна: 500 ₽ у хостинга
   /// и 500 ₽ у домена — это про разные деньги в год.
   monthlyFee Boolean @default(false) @map("monthly_fee")

@@ -31,7 +31,13 @@ import {
 import { cn } from "@/lib/cn";
 import { describeDeadline, fromDateInputValue, toDateInputValue } from "@/lib/dates";
 import { CurrencySelect } from "@/components/currency-select";
-import { fee, type Currency } from "@/lib/money";
+import {
+  amountToInput,
+  fee,
+  parseAmount,
+  sanitizeAmount,
+  type Currency,
+} from "@/lib/money";
 import { useVault } from "@/vault/vault-context";
 import { VaultControl } from "./vault-panel";
 
@@ -88,7 +94,7 @@ function toValues(item: Credential, secret: string): FormValues {
     owner: item.owner ?? "",
     secretHint: item.secretHint ?? "",
     renewsDate: toDateInputValue(item.renewsAt),
-    amount: item.amount == null ? "" : String(item.amount),
+    amount: amountToInput(item.amountMinor),
     currency: item.currency ?? "rub",
     monthlyFee: item.monthlyFee ?? false,
     secret,
@@ -104,7 +110,7 @@ function toInput(values: FormValues): CredentialInput {
     owner: values.owner.trim() || null,
     secretHint: values.secretHint.trim() || null,
     renewsAt: fromDateInputValue(values.renewsDate),
-    amount: values.amount ? Number(values.amount) : null,
+    amountMinor: parseAmount(values.amount),
     currency: values.currency,
     monthlyFee: values.monthlyFee,
     notes: values.notes.trim() || null,
@@ -319,9 +325,9 @@ function Row({ item, onOpen }: { item: Credential; onOpen: () => void }) {
 
       <SecretButton item={item} />
 
-      {item.amount != null && (
+      {item.amountMinor != null && (
         <span className="mt-0.5 shrink-0 text-sm font-medium">
-          {fee(item.amount, item.monthlyFee, item.currency)}
+          {fee(item.amountMinor, item.monthlyFee, item.currency)}
         </span>
       )}
 
@@ -577,13 +583,14 @@ function CredentialModal({
           </Field>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Сумма" hint="Целыми, без копеек. Можно оставить пустым">
+            <Field
+              label="Сумма"
+              hint="Можно с копейками: 1200 или 5,19. Пустое — не задано"
+            >
               <div className="flex gap-2">
                 <Input
                   value={values.amount}
-                  onChange={(event) =>
-                    set("amount", event.target.value.replace(/[^\d]/g, ""))
-                  }
+                  onChange={(event) => set("amount", sanitizeAmount(event.target.value))}
                   inputMode="numeric"
                   placeholder="1200"
                 />

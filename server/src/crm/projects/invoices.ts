@@ -23,7 +23,7 @@ export interface InvoiceDto {
   id: string;
   kind: "invoice" | "act";
   period: string;
-  amount: number | null;
+  amountMinor: number | null;
   currency: Currency;
   issuedAt: string | null;
   paidAt: string | null;
@@ -35,7 +35,7 @@ export function toInvoiceDto(item: Invoice): InvoiceDto {
     id: item.id,
     kind: item.kind,
     period: item.period,
-    amount: item.amount,
+    amountMinor: item.amountMinor,
     currency: item.currency,
     issuedAt: item.issuedAt?.toISOString() ?? null,
     paidAt: item.paidAt?.toISOString() ?? null,
@@ -135,7 +135,7 @@ export async function invoiceRoutes(app: FastifyInstance): Promise<void> {
         projectId: params.data.id,
         kind: input.kind,
         period: input.period,
-        amount: input.amount ?? null,
+        amountMinor: input.amountMinor ?? null,
         currency: input.currency ?? "rub",
         issuedAt: input.issuedAt ?? null,
         paidAt: input.paidAt ?? null,
@@ -168,7 +168,7 @@ export async function invoiceRoutes(app: FastifyInstance): Promise<void> {
         data: {
           ...(input.kind !== undefined && { kind: input.kind }),
           ...(input.period !== undefined && { period: input.period }),
-          ...(input.amount !== undefined && { amount: input.amount }),
+          ...(input.amountMinor !== undefined && { amountMinor: input.amountMinor }),
           ...(input.currency !== undefined && { currency: input.currency }),
           ...(input.issuedAt !== undefined && { issuedAt: input.issuedAt }),
           ...(input.paidAt !== undefined && { paidAt: input.paidAt }),

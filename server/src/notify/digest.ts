@@ -73,8 +73,8 @@ export async function buildDigest(): Promise<string | null> {
         : ` — через ${pluralDays(left)}`;
     // Сумма прямо в напоминании: «пора продлить» без цены заставляет лезть
     // в CRM ровно за одной цифрой.
-    const price = item.amount
-      ? ` — ${item.amount.toLocaleString("ru-RU")} ₽${item.monthlyFee ? "/мес" : ""}`
+    const price = item.amountMinor
+      ? ` — ${formatMoney(item.amountMinor, item.currency)}${item.monthlyFee ? "/мес" : ""}`
       : "";
     const login = item.login ? ` · ${escapeHtml(item.login)}` : "";
     return `• ${escapeHtml(item.service)}${when}${price}${login}${who(
@@ -133,8 +133,8 @@ export async function buildDigest(): Promise<string | null> {
     ...block(
       `💸 Счета не выставлены (${projects.unbilled.length})`,
       projects.unbilled.map((project) => {
-        const amount = project.monthlyAmount
-          ? ` — ${formatMoney(project.monthlyAmount, project.currency)}`
+        const amount = project.monthlyAmountMinor
+          ? ` — ${formatMoney(project.monthlyAmountMinor, project.currency)}`
           : "";
         const client = project.client ? ` · ${escapeHtml(project.client.name)}` : "";
         // Сколько месяцев пропущено — важнее самого раннего: один месяц это

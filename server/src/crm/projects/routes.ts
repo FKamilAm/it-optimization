@@ -124,7 +124,7 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
         contractDate: input.contractDate ?? null,
         actDate: input.actDate ?? null,
         billingMonthly: input.billingMonthly ?? false,
-        monthlyAmount: input.monthlyAmount ?? null,
+        monthlyAmountMinor: input.monthlyAmountMinor ?? null,
         currency: input.currency ?? "rub",
         startedAt: input.startedAt ?? null,
         deadline: input.deadline ?? null,
@@ -183,7 +183,8 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
     if (input.contractDate !== undefined) data.contractDate = input.contractDate;
     if (input.actDate !== undefined) data.actDate = input.actDate;
     if (input.billingMonthly !== undefined) data.billingMonthly = input.billingMonthly;
-    if (input.monthlyAmount !== undefined) data.monthlyAmount = input.monthlyAmount;
+    if (input.monthlyAmountMinor !== undefined)
+      data.monthlyAmountMinor = input.monthlyAmountMinor;
     if (input.currency !== undefined) data.currency = input.currency;
     if (input.startedAt !== undefined) data.startedAt = input.startedAt;
     if (input.deadline !== undefined) data.deadline = input.deadline;

@@ -171,9 +171,9 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
             {project.contractDate && ` от ${formatDate(project.contractDate)}`}
           </Meta>
         )}
-        {project.billingMonthly && project.monthlyAmount !== null && (
+        {project.billingMonthly && project.monthlyAmountMinor !== null && (
           <Meta icon={Wallet}>
-            {money(project.monthlyAmount, project.currency)} в месяц
+            {money(project.monthlyAmountMinor, project.currency)} в месяц
           </Meta>
         )}
       </span>

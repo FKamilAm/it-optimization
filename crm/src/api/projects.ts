@@ -43,7 +43,8 @@ export interface Project {
   actDate: string | null;
 
   billingMonthly: boolean;
-  monthlyAmount: number | null;
+  /** Минорные единицы: копейки или центы. */
+  monthlyAmountMinor: number | null;
   currency: Currency;
   /**
    * Самый ранний месяц без счёта — вида «2026-08», и сколько их всего.
@@ -75,7 +76,7 @@ export interface ProjectInput {
   contractDate?: string | null;
   actDate?: string | null;
   billingMonthly?: boolean;
-  monthlyAmount?: number | null;
+  monthlyAmountMinor?: number | null;
   currency?: Currency;
 }
 
@@ -112,7 +113,7 @@ export interface Invoice {
   kind: InvoiceKind;
   /** ГГГГ-ММ. */
   period: string;
-  amount: number | null;
+  amountMinor: number | null;
   currency: Currency;
   issuedAt: string | null;
   paidAt: string | null;
@@ -122,7 +123,7 @@ export interface Invoice {
 export interface InvoiceInput {
   kind?: InvoiceKind;
   period?: string;
-  amount?: number | null;
+  amountMinor?: number | null;
   currency?: Currency;
   issuedAt?: string | null;
   paidAt?: string | null;

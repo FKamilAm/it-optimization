@@ -262,9 +262,9 @@ function UnbilledLine({ project }: { project: Project }) {
         </span>
       </Link>
       <Badge tone="danger">{`${project.unbilledCount} мес.`}</Badge>
-      {project.monthlyAmount !== null && (
+      {project.monthlyAmountMinor !== null && (
         <span className="text-sm font-medium">
-          {money(project.monthlyAmount * project.unbilledCount, project.currency)}
+          {money(project.monthlyAmountMinor * project.unbilledCount, project.currency)}
         </span>
       )}
     </li>
@@ -288,9 +288,9 @@ function CredentialLine({ item }: { item: Credential }) {
             .join(" · ")}
         </span>
       </Link>
-      {item.amount != null && (
+      {item.amountMinor != null && (
         <span className="shrink-0 text-sm font-medium">
-          {fee(item.amount, item.monthlyFee, item.currency)}
+          {fee(item.amountMinor, item.monthlyFee, item.currency)}
         </span>
       )}
       {deadline && <Badge tone={deadline.tone}>{deadline.label}</Badge>}

@@ -47,7 +47,7 @@ export function MoneyScreen() {
   // рубли с долларами нечем, курса у CRM нет.
   const expected = sumByCurrency(
     unbilled.map((project) => ({
-      amount: (project.monthlyAmount ?? 0) * project.unbilledCount,
+      amountMinor: (project.monthlyAmountMinor ?? 0) * project.unbilledCount,
       currency: project.currency,
     })),
   );
@@ -108,10 +108,10 @@ export function MoneyScreen() {
                       ? `${project.unbilledCount} мес.`
                       : "1 мес."}
                   </Badge>
-                  {project.monthlyAmount !== null && (
+                  {project.monthlyAmountMinor !== null && (
                     <span className="text-sm font-medium">
                       {money(
-                        project.monthlyAmount * project.unbilledCount,
+                        project.monthlyAmountMinor * project.unbilledCount,
                         project.currency,
                       )}
                     </span>
@@ -157,9 +157,9 @@ export function MoneyScreen() {
                         .join(" · ")}
                     </span>
                   </span>
-                  {invoice.amount !== null && (
+                  {invoice.amountMinor !== null && (
                     <span className="text-sm font-medium">
-                      {money(invoice.amount, invoice.currency)}
+                      {money(invoice.amountMinor, invoice.currency)}
                     </span>
                   )}
                 </li>
