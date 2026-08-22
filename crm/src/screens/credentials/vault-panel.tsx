@@ -1,6 +1,7 @@
 import { Lock, LockOpen } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { ApiError } from "@/api/client";
+import { getVault, RESET_WORD } from "@/api/vault";
 import { Button, ErrorNote, Field, Input, Modal } from "@/components/ui";
 import { useVault } from "@/vault/vault-context";
 
@@ -45,6 +46,7 @@ export function VaultControl() {
 
 function PassphraseDialog({ onClose }: { onClose: () => void }) {
   const { unlock, create } = useVault();
+  const [resetting, setResetting] = useState(false);
   const [passphrase, setPassphrase] = useState("");
   const [repeat, setRepeat] = useState("");
   // Переключается сам, когда сервер отвечает, что фразы ещё нет.
@@ -137,13 +139,24 @@ function PassphraseDialog({ onClose }: { onClose: () => void }) {
           </div>
         )}
 
-        <div className="mt-5 flex items-center gap-2">
+        <div className="mt-5 flex flex-wrap items-center gap-2">
           <Button type="submit" disabled={busy}>
             {busy ? "Считаем ключ…" : creating ? "Создать" : "Разблокировать"}
           </Button>
           <Button type="button" variant="ghost" onClick={onClose}>
             Отмена
           </Button>
+          {/* Сброс предлагается только тем, кто уже не может войти: тому, кто
+              знает фразу, он не нужен. */}
+          {!creating && (
+            <button
+              type="button"
+              onClick={() => setResetting(true)}
+              className="text-muted-foreground hover:text-danger ml-auto text-xs underline underline-offset-2"
+            >
+              Забыли фразу?
+            </button>
+          )}
         </div>
 
         {busy && (
@@ -152,6 +165,93 @@ function PassphraseDialog({ onClose }: { onClose: () => void }) {
             перебирать фразу.
           </p>
         )}
+      </form>
+
+      {resetting && <ResetDialog onClose={() => setResetting(false)} onDone={onClose} />}
+    </Modal>
+  );
+}
+
+/**
+ * Сброс хранилища.
+ *
+ * Выглядит как разрушительная кнопка, но по сути ею не является: **сброс не
+ * теряет ничего, что ещё можно было прочитать**. Знаете фразу — он не нужен;
+ * не знаете — пароли потеряны и так, а шифротексты в базе только мешают начать
+ * заново. Подтверждение набирается руками, потому что операция необратима.
+ */
+function ResetDialog({ onClose, onDone }: { onClose: () => void; onDone: () => void }) {
+  const { reset } = useVault();
+  const [secrets, setSecrets] = useState<number | null>(null);
+  const [typed, setTyped] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  // Цена сброса берётся с сервера: человек должен видеть, сколько паролей
+  // исчезнет, а не подтверждать вслепую.
+  useEffect(() => {
+    getVault()
+      .then((settings) => setSecrets(settings.configured ? settings.secrets : 0))
+      .catch(() => setSecrets(null));
+  }, []);
+
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    setBusy(true);
+    setError(null);
+    try {
+      await reset();
+      onDone();
+    } catch (cause) {
+      setError(cause instanceof ApiError ? cause.message : "Не получилось сбросить");
+      setBusy(false);
+    }
+  }
+
+  return (
+    <Modal title="Сбросить хранилище" onClose={onClose}>
+      <form onSubmit={handleSubmit}>
+        <p className="text-muted-foreground max-w-prose text-sm">
+          Фраза будет забыта, а все сохранённые пароли{" "}
+          <b className="text-foreground">
+            {secrets === null
+              ? "стёрты"
+              : secrets === 0
+                ? "стирать нечего — их пока нет"
+                : `стёрты, их ${secrets}`}
+          </b>
+          . Ничего читаемого при этом не теряется: если фраза известна, сброс не нужен, а
+          если забыта — пароли уже не восстановить ничем.
+        </p>
+        <p className="text-muted-foreground mt-2 max-w-prose text-sm">
+          После сброса можно задать новую фразу и занести пароли заново.
+        </p>
+
+        <div className="mt-4">
+          <Field label={`Наберите ${RESET_WORD}`}>
+            <Input
+              value={typed}
+              onChange={(event) => setTyped(event.target.value)}
+              autoFocus
+              autoComplete="off"
+            />
+          </Field>
+        </div>
+
+        {error && (
+          <div className="mt-4">
+            <ErrorNote>{error}</ErrorNote>
+          </div>
+        )}
+
+        <div className="mt-5 flex items-center gap-2">
+          <Button type="submit" variant="danger" disabled={busy || typed !== RESET_WORD}>
+            {busy ? "Сбрасываем…" : "Сбросить"}
+          </Button>
+          <Button type="button" variant="ghost" onClick={onClose}>
+            Отмена
+          </Button>
+        </div>
       </form>
     </Modal>
   );

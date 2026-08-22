@@ -29,14 +29,31 @@ const base64 = z
 
 const setupBody = z.object({ salt: base64, verifier: base64 });
 
+/**
+ * Слово набирается руками. Сброс необратим, и защищать от него надо не
+ * диалогом «вы уверены?», который прокликивают не глядя, а действием, которое
+ * нельзя совершить случайно.
+ */
+export const RESET_WORD = "СБРОСИТЬ";
+const resetBody = z.object({ confirm: z.literal(RESET_WORD) });
+
 export async function vaultRoutes(app: FastifyInstance): Promise<void> {
   app.get("/vault", { preHandler: requireTeam }, async (_request, reply) => {
     const row = await prisma.vaultSetting.findUnique({ where: { id: ROW_ID } });
-    return reply.send(
-      row
-        ? { configured: true, salt: row.salt, verifier: row.verifier }
-        : { configured: false },
-    );
+    if (!row) return reply.send({ configured: false });
+
+    // Сколько паролей человек потеряет при сбросе. Считаются живые записи —
+    // те, что он видит в списке; сам сброс чистит и удалённые, но говорить о
+    // них незачем. Число не секрет, а без него «сбросить» жмут вслепую.
+    const secrets = await prisma.credential.count({
+      where: { deletedAt: null, secret: { not: null } },
+    });
+    return reply.send({
+      configured: true,
+      salt: row.salt,
+      verifier: row.verifier,
+      secrets,
+    });
   });
 
   /**
@@ -67,5 +84,39 @@ export async function vaultRoutes(app: FastifyInstance): Promise<void> {
     await audit(request, { entity: "vault", action: "setup", diff: {} });
 
     return reply.code(201).send({ configured: true });
+  });
+
+  /**
+   * Сброс хранилища: забыть фразу и стереть все шифротексты.
+   *
+   * Звучит страшнее, чем есть: **сброс не теряет ничего, что ещё можно было
+   * прочитать**. Знаете фразу — сброс не нужен; не знаете — пароли и так
+   * потеряны навсегда, и в базе лежит мусор, который только мешает начать
+   * заново. Поэтому операция разрешена, а не спрятана.
+   *
+   * Ею же делается смена фразы, пока настоящей смены нет: сбросить и занести
+   * пароли заново. Перешифровать существующие может только браузер со старым
+   * ключом, и это отдельная работа.
+   *
+   * Через POST, а не DELETE, потому что нужно тело с подтверждением: тело у
+   * DELETE местами теряется по дороге через прокси.
+   */
+  app.post("/vault/reset", { preHandler: requireTeam }, async (request, reply) => {
+    const parsed = resetBody.safeParse(request.body);
+    if (!parsed.success) return invalidInput(reply, parsed.error);
+
+    // Стирается и настройка, и все шифротексты. Оставить их без соли значило бы
+    // держать в базе то, что никто и никогда уже не расшифрует.
+    const [{ count }] = await prisma.$transaction([
+      prisma.credential.updateMany({
+        where: { secret: { not: null } },
+        data: { secret: null },
+      }),
+      prisma.vaultSetting.deleteMany({ where: { id: ROW_ID } }),
+    ]);
+
+    await audit(request, { entity: "vault", action: "reset", diff: { secrets: count } });
+
+    return reply.send({ configured: false, cleared: count });
   });
 }

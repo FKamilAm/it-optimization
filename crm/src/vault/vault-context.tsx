@@ -6,7 +6,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { getVault, setupVault } from "@/api/vault";
+import { getVault, resetVault, setupVault } from "@/api/vault";
 import {
   checkVerifier,
   decrypt,
@@ -35,6 +35,8 @@ interface VaultValue {
   unlock: (passphrase: string) => Promise<void>;
   create: (passphrase: string) => Promise<void>;
   lock: () => void;
+  /** Сброс: фраза забыта, шифротексты стёрты. Возвращает, сколько уничтожено. */
+  reset: () => Promise<number>;
   encryptSecret: (plaintext: string) => Promise<string>;
   decryptSecret: (packed: string) => Promise<string>;
 }
@@ -71,6 +73,13 @@ export function VaultProvider({ children }: { children: ReactNode }) {
 
   const lock = useCallback(() => setKey(null), []);
 
+  const reset = useCallback(async () => {
+    const { cleared } = await resetVault();
+    setKey(null);
+    setNeedsSetup(true);
+    return cleared;
+  }, []);
+
   const encryptSecret = useCallback(
     async (plaintext: string) => {
       if (!key) throw new Error("Хранилище заперто");
@@ -94,10 +103,11 @@ export function VaultProvider({ children }: { children: ReactNode }) {
       unlock,
       create,
       lock,
+      reset,
       encryptSecret,
       decryptSecret,
     }),
-    [key, needsSetup, unlock, create, lock, encryptSecret, decryptSecret],
+    [key, needsSetup, unlock, create, lock, reset, encryptSecret, decryptSecret],
   );
 
   return <VaultContext.Provider value={value}>{children}</VaultContext.Provider>;
