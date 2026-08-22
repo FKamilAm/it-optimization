@@ -1,4 +1,4 @@
-import type { Client, Lead, Project } from "@prisma/client";
+import type { Client, Currency, Lead, Project } from "@prisma/client";
 import { z } from "zod";
 import { DEVELOPERS } from "../developers.js";
 import { optionalDate, optionalText, optionalUuid, requiredTitle } from "../fields.js";
@@ -37,6 +37,7 @@ const projectFields = {
   billingMonthly: z.boolean(),
   /// Рубли целыми. Отрицательная сумма — почти наверняка опечатка.
   monthlyAmount: z.union([z.null(), z.number().int().min(0).max(100_000_000)]),
+  currency: z.enum(["rub", "usd"]),
 };
 
 /**
@@ -70,6 +71,7 @@ export const invoiceBody = z.object({
   /// ГГГГ-ММ. Регулярка, а не дата: это календарный месяц, а не момент.
   period: z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/, "Период вида 2026-08"),
   amount: z.union([z.null(), z.number().int().min(0).max(100_000_000)]).optional(),
+  currency: z.enum(["rub", "usd"]).optional(),
   issuedAt: optionalDate.optional(),
   paidAt: optionalDate.optional(),
   note: optionalText(500).optional(),
@@ -110,6 +112,7 @@ export interface ProjectDto {
 
   billingMonthly: boolean;
   monthlyAmount: number | null;
+  currency: Currency;
   /**
    * Самый ранний месяц без счёта — вида «2026-08», и сколько их всего.
    * Считается на сервере: клиенту иначе пришлось бы знать про календарь
@@ -212,6 +215,7 @@ export function toProjectDto(item: ProjectWithRelations, timeZone: string): Proj
     actDate: item.actDate?.toISOString() ?? null,
     billingMonthly: item.billingMonthly,
     monthlyAmount: item.monthlyAmount,
+    currency: item.currency,
     unbilledPeriod: missing.period,
     unbilledCount: missing.count,
     caseId: item.caseId,

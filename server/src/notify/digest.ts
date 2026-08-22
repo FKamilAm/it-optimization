@@ -1,3 +1,4 @@
+import { formatMoney } from "../crm/currency.js";
 import { collectToday, isQuietSnapshot } from "../crm/today.js";
 import { env } from "../env.js";
 import { escapeHtml, sendMessage, TelegramError } from "./telegram.js";
@@ -133,7 +134,7 @@ export async function buildDigest(): Promise<string | null> {
       `💸 Счета не выставлены (${projects.unbilled.length})`,
       projects.unbilled.map((project) => {
         const amount = project.monthlyAmount
-          ? ` — ${project.monthlyAmount.toLocaleString("ru-RU")} ₽`
+          ? ` — ${formatMoney(project.monthlyAmount, project.currency)}`
           : "";
         const client = project.client ? ` · ${escapeHtml(project.client.name)}` : "";
         // Сколько месяцев пропущено — важнее самого раннего: один месяц это

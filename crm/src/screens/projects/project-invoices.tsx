@@ -12,7 +12,9 @@ import {
 } from "@/api/projects";
 import { Badge, Button, ErrorNote, Input, Select } from "@/components/ui";
 import { cn } from "@/lib/cn";
+import { CurrencySelect } from "@/components/currency-select";
 import { periodLabel } from "@/lib/dates";
+import { money, type Currency } from "@/lib/money";
 
 /**
  * Счета и акты по проекту.
@@ -28,17 +30,25 @@ function thisPeriod(): string {
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
 }
 
-function formatAmount(amount: number | null): string {
-  return amount === null ? "" : `${amount.toLocaleString("ru-RU")} ₽`;
+function formatAmount(amount: number | null, currency: Currency): string {
+  return amount === null ? "" : money(amount, currency);
 }
 
-export function ProjectInvoices({ projectId }: { projectId: string }) {
+export function ProjectInvoices({
+  projectId,
+  defaultCurrency,
+}: {
+  projectId: string;
+  /** Валюта проекта: счёт почти всегда в ней же, но поменять можно. */
+  defaultCurrency: Currency;
+}) {
   const [items, setItems] = useState<Invoice[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [adding, setAdding] = useState(false);
   const [kind, setKind] = useState<InvoiceKind>("invoice");
   const [period, setPeriod] = useState(thisPeriod());
   const [amount, setAmount] = useState("");
+  const [currency, setCurrency] = useState<Currency>(defaultCurrency);
   const [saving, setSaving] = useState(false);
 
   const load = useCallback(() => {
@@ -61,6 +71,7 @@ export function ProjectInvoices({ projectId }: { projectId: string }) {
         kind,
         period,
         amount: amount.trim() ? Number(amount) : null,
+        currency,
         // Заводят запись обычно в день выставления — ставим сегодня, чтобы не
         // заполнять ещё одно поле.
         issuedAt: new Date().toISOString(),
@@ -131,6 +142,7 @@ export function ProjectInvoices({ projectId }: { projectId: string }) {
             placeholder="Сумма"
             className="w-32"
           />
+          <CurrencySelect value={currency} onChange={setCurrency} />
           {/* type="button": форма проекта снаружи, и submit сохранил бы её. */}
           <Button type="button" onClick={() => void add()} disabled={saving}>
             {saving ? "…" : "Готово"}
@@ -174,7 +186,8 @@ export function ProjectInvoices({ projectId }: { projectId: string }) {
                       {INVOICE_KIND_LABELS[invoice.kind]}
                     </span>{" "}
                     за {periodLabel(invoice.period)}
-                    {invoice.amount !== null && ` — ${formatAmount(invoice.amount)}`}
+                    {invoice.amount !== null &&
+                      ` — ${formatAmount(invoice.amount, invoice.currency)}`}
                   </span>
                 </button>
 

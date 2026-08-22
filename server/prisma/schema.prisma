@@ -313,6 +313,8 @@ model Project {
   /// Ожидаемая сумма в месяц, рубли целыми. Копейки в помесячной абонплате не
   /// встречаются, а Decimal тянет за собой отдельный тип на всех слоях.
   monthlyAmount  Int?    @map("monthly_amount")
+  /// Валюта monthlyAmount и счетов проекта по умолчанию.
+  currency       Currency @default(rub)
 
   invoices Invoice[]
 
@@ -336,6 +338,19 @@ model Project {
 
   @@index([status, deadline])
   @@map("projects")
+}
+
+/**
+ * Валюта суммы. Хранится рядом с каждой суммой, а не одна на всю систему:
+ * часть работ считается в долларах, и общий признак заставлял бы переводить
+ * по курсу — то есть придумывать число, которого никто не называл.
+ *
+ * По той же причине суммы в разных валютах нигде не складываются: итоги
+ * считаются отдельно по каждой.
+ */
+enum Currency {
+  rub
+  usd
 }
 
 enum InvoiceKind {
@@ -363,8 +378,9 @@ model Invoice {
   /// момент времени: сравнивать и сортировать так же просто, а часовые пояса
   /// не превращают март в февраль.
   period String
-  /// Рубли целыми, как и monthlyAmount у проекта.
-  amount Int?
+  /// Целыми, как и monthlyAmount у проекта. Валюта — рядом.
+  amount   Int?
+  currency Currency @default(rub)
 
   issuedAt DateTime? @map("issued_at")
   paidAt   DateTime? @map("paid_at")
@@ -454,8 +470,9 @@ model Credential {
   secret     String? @db.Text
   /// Когда продлевать: домены, сертификаты, платные подписки.
   renewsAt   DateTime? @map("renews_at")
-  /// Сколько стоит, рубли целыми — как monthlyAmount у проекта.
+  /// Сколько стоит, целыми — как monthlyAmount у проекта.
   amount     Int?
+  currency   Currency @default(rub)
   /// Списывается каждый месяц. Без признака сумма непонятна: 500 ₽ у хостинга
   /// и 500 ₽ у домена — это про разные деньги в год.
   monthlyFee Boolean @default(false) @map("monthly_fee")

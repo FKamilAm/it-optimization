@@ -5,7 +5,7 @@ import { listAllInvoices, type InvoiceWithProject, type Project } from "@/api/pr
 import { getToday } from "@/api/today";
 import { Badge, EmptyState, ErrorNote } from "@/components/ui";
 import { periodLabel } from "@/lib/dates";
-import { money } from "@/lib/money";
+import { formatTotals, money, sumByCurrency, type Currency } from "@/lib/money";
 import { Link } from "react-router";
 
 /**
@@ -18,7 +18,7 @@ import { Link } from "react-router";
 
 export function MoneyScreen() {
   const [unpaid, setUnpaid] = useState<InvoiceWithProject[] | null>(null);
-  const [total, setTotal] = useState(0);
+  const [totals, setTotals] = useState<Partial<Record<Currency, number>>>({});
   const [unbilled, setUnbilled] = useState<Project[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -27,7 +27,7 @@ export function MoneyScreen() {
     listAllInvoices("unpaid")
       .then((result) => {
         setUnpaid(result.invoices);
-        setTotal(result.total);
+        setTotals(result.totals);
       })
       .catch((cause: unknown) => {
         setError(cause instanceof ApiError ? cause.message : "Не удалось загрузить");
@@ -43,10 +43,13 @@ export function MoneyScreen() {
 
   useEffect(load, [load]);
 
-  // Ожидаемая сумма невыставленного: месяцы без счёта, умноженные на месячную.
-  const expected = unbilled.reduce(
-    (sum, project) => sum + (project.monthlyAmount ?? 0) * project.unbilledCount,
-    0,
+  // Ожидаемое за невыставленные месяцы — по каждой валюте отдельно: сложить
+  // рубли с долларами нечем, курса у CRM нет.
+  const expected = sumByCurrency(
+    unbilled.map((project) => ({
+      amount: (project.monthlyAmount ?? 0) * project.unbilledCount,
+      currency: project.currency,
+    })),
   );
 
   return (
@@ -69,9 +72,9 @@ export function MoneyScreen() {
           <div className="flex items-baseline gap-2">
             <h2 className="text-danger text-sm font-semibold">Не выставлено</h2>
             <span className="text-muted-foreground text-xs">{unbilled.length}</span>
-            {expected > 0 && (
+            {formatTotals(expected) && (
               <span className="text-muted-foreground ml-auto text-sm">
-                примерно {money(expected)}
+                примерно {formatTotals(expected)}
               </span>
             )}
           </div>
@@ -107,7 +110,10 @@ export function MoneyScreen() {
                   </Badge>
                   {project.monthlyAmount !== null && (
                     <span className="text-sm font-medium">
-                      {money(project.monthlyAmount * project.unbilledCount)}
+                      {money(
+                        project.monthlyAmount * project.unbilledCount,
+                        project.currency,
+                      )}
                     </span>
                   )}
                 </li>
@@ -120,10 +126,10 @@ export function MoneyScreen() {
           <div className="flex items-baseline gap-2">
             <h2 className="text-warning text-sm font-semibold">Не оплачено</h2>
             <span className="text-muted-foreground text-xs">{unpaid?.length ?? 0}</span>
-            {total > 0 && (
+            {formatTotals(totals) && (
               <span className="ml-auto flex items-center gap-1.5 text-sm font-medium">
                 <Wallet size={14} strokeWidth={2.5} />
-                {money(total)}
+                {formatTotals(totals)}
               </span>
             )}
           </div>
@@ -152,7 +158,9 @@ export function MoneyScreen() {
                     </span>
                   </span>
                   {invoice.amount !== null && (
-                    <span className="text-sm font-medium">{money(invoice.amount)}</span>
+                    <span className="text-sm font-medium">
+                      {money(invoice.amount, invoice.currency)}
+                    </span>
                   )}
                 </li>
               ))}

@@ -1,4 +1,5 @@
 import { api } from "./client";
+import type { Currency } from "@/lib/money";
 
 /**
  * Справочник учёток сервисов вместе с паролями.
@@ -22,13 +23,14 @@ export interface Credential {
   secret: string | null;
   renewsAt: string | null;
   /**
-   * Рубли целыми. Что это за период — говорит monthlyFee.
+   * Целыми, без копеек. Валюта — в `currency`, период — в `monthlyFee`.
    *
    * Проверять на наличие надо нестрого (`!= null`): CRM выкатывается сразу при
    * пуше, а API руками, поэтому новое поле какое-то время приходит как undefined —
    * и строгое `!== null` пропустит его дальше, где оно уронит рендер.
    */
   amount: number | null;
+  currency: Currency;
   monthlyFee: boolean;
   notes: string | null;
 }
@@ -42,6 +44,7 @@ export interface CredentialInput {
   secret?: string | null;
   renewsAt?: string | null;
   amount?: number | null;
+  currency?: Currency;
   monthlyFee?: boolean;
   notes?: string | null;
 }

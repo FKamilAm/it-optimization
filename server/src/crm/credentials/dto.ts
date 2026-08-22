@@ -1,4 +1,4 @@
-import type { Credential } from "@prisma/client";
+import type { Credential, Currency } from "@prisma/client";
 
 /**
  * Форма учётки для клиента. Вынесена из routes.ts, потому что её читает ещё и
@@ -18,6 +18,7 @@ export interface CredentialDto {
   secret: string | null;
   renewsAt: string | null;
   amount: number | null;
+  currency: Currency;
   monthlyFee: boolean;
   notes: string | null;
 }
@@ -33,6 +34,7 @@ export function toCredentialDto(item: Credential): CredentialDto {
     secret: item.secret,
     renewsAt: item.renewsAt?.toISOString() ?? null,
     amount: item.amount,
+    currency: item.currency,
     monthlyFee: item.monthlyFee,
     notes: item.notes,
   };

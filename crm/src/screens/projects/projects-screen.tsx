@@ -31,6 +31,7 @@ import { NotesPanel } from "@/components/notes-panel";
 import { PersonChips } from "@/components/person-chip";
 import { Badge, Button, EmptyState, ErrorNote, Input, Modal } from "@/components/ui";
 import { cn } from "@/lib/cn";
+import { money } from "@/lib/money";
 import { describeDeadline, formatDate } from "@/lib/dates";
 import {
   emptyProjectValues,
@@ -172,7 +173,7 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
         )}
         {project.billingMonthly && project.monthlyAmount !== null && (
           <Meta icon={Wallet}>
-            {project.monthlyAmount.toLocaleString("ru-RU")} ₽ в месяц
+            {money(project.monthlyAmount, project.currency)} в месяц
           </Meta>
         )}
       </span>
@@ -528,7 +529,7 @@ function ProjectModal({
         {projectId && (
           <>
             <div className="mt-4">
-              <ProjectInvoices projectId={projectId} />
+              <ProjectInvoices projectId={projectId} defaultCurrency={values.currency} />
             </div>
             <div className="mt-4">
               <NotesPanel

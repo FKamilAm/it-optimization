@@ -40,6 +40,7 @@ const credentialFields = {
   // Рубли целыми, как у проекта: копеек в абонплате не бывает.
   amount: z.union([z.null(), z.number().int().min(0).max(100_000_000)]),
   monthlyFee: z.boolean(),
+  currency: z.enum(["rub", "usd"]),
   notes: optionalText(2000),
 };
 
@@ -89,6 +90,7 @@ export async function credentialRoutes(app: FastifyInstance): Promise<void> {
         renewsAt: input.renewsAt ?? null,
         amount: input.amount ?? null,
         monthlyFee: input.monthlyFee ?? false,
+        currency: input.currency ?? "rub",
         notes: input.notes ?? null,
       },
     });
@@ -126,6 +128,7 @@ export async function credentialRoutes(app: FastifyInstance): Promise<void> {
         ...(input.renewsAt !== undefined && { renewsAt: input.renewsAt }),
         ...(input.amount !== undefined && { amount: input.amount }),
         ...(input.monthlyFee !== undefined && { monthlyFee: input.monthlyFee }),
+        ...(input.currency !== undefined && { currency: input.currency }),
         ...(input.notes !== undefined && { notes: input.notes }),
       },
     });

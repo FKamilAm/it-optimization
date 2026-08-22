@@ -30,7 +30,8 @@ import {
 } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { describeDeadline, fromDateInputValue, toDateInputValue } from "@/lib/dates";
-import { fee } from "@/lib/money";
+import { CurrencySelect } from "@/components/currency-select";
+import { fee, type Currency } from "@/lib/money";
 import { useVault } from "@/vault/vault-context";
 import { VaultControl } from "./vault-panel";
 
@@ -56,6 +57,7 @@ interface FormValues {
   secretHint: string;
   renewsDate: string;
   amount: string;
+  currency: Currency;
   monthlyFee: boolean;
   /** Открытый пароль. Живёт только в состоянии формы — наружу уходит шифротекст. */
   secret: string;
@@ -71,6 +73,7 @@ function empty(): FormValues {
     secretHint: "",
     renewsDate: "",
     amount: "",
+    currency: "rub",
     monthlyFee: false,
     secret: "",
     notes: "",
@@ -86,6 +89,7 @@ function toValues(item: Credential, secret: string): FormValues {
     secretHint: item.secretHint ?? "",
     renewsDate: toDateInputValue(item.renewsAt),
     amount: item.amount == null ? "" : String(item.amount),
+    currency: item.currency ?? "rub",
     monthlyFee: item.monthlyFee ?? false,
     secret,
     notes: item.notes ?? "",
@@ -101,6 +105,7 @@ function toInput(values: FormValues): CredentialInput {
     secretHint: values.secretHint.trim() || null,
     renewsAt: fromDateInputValue(values.renewsDate),
     amount: values.amount ? Number(values.amount) : null,
+    currency: values.currency,
     monthlyFee: values.monthlyFee,
     notes: values.notes.trim() || null,
   };
@@ -316,7 +321,7 @@ function Row({ item, onOpen }: { item: Credential; onOpen: () => void }) {
 
       {item.amount != null && (
         <span className="mt-0.5 shrink-0 text-sm font-medium">
-          {fee(item.amount, item.monthlyFee)}
+          {fee(item.amount, item.monthlyFee, item.currency)}
         </span>
       )}
 
@@ -572,15 +577,21 @@ function CredentialModal({
           </Field>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Сумма" hint="Рубли, целыми. Можно оставить пустым">
-              <Input
-                value={values.amount}
-                onChange={(event) =>
-                  set("amount", event.target.value.replace(/[^\d]/g, ""))
-                }
-                inputMode="numeric"
-                placeholder="1200"
-              />
+            <Field label="Сумма" hint="Целыми, без копеек. Можно оставить пустым">
+              <div className="flex gap-2">
+                <Input
+                  value={values.amount}
+                  onChange={(event) =>
+                    set("amount", event.target.value.replace(/[^\d]/g, ""))
+                  }
+                  inputMode="numeric"
+                  placeholder="1200"
+                />
+                <CurrencySelect
+                  value={values.currency}
+                  onChange={(currency) => set("currency", currency)}
+                />
+              </div>
             </Field>
 
             <label className="flex cursor-pointer items-start gap-2.5 sm:mt-7">

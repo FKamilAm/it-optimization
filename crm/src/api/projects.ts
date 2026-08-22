@@ -1,4 +1,7 @@
 import { api } from "./client";
+import type { Currency } from "@/lib/money";
+
+type Totals = Partial<Record<Currency, number>>;
 import type { Note } from "./leads";
 
 export const PROJECT_STATUSES = [
@@ -41,6 +44,7 @@ export interface Project {
 
   billingMonthly: boolean;
   monthlyAmount: number | null;
+  currency: Currency;
   /**
    * Самый ранний месяц без счёта — вида «2026-08», и сколько их всего.
    * Считает сервер: он один знает календарь команды и часовой пояс.
@@ -72,6 +76,7 @@ export interface ProjectInput {
   actDate?: string | null;
   billingMonthly?: boolean;
   monthlyAmount?: number | null;
+  currency?: Currency;
 }
 
 /**
@@ -108,6 +113,7 @@ export interface Invoice {
   /** ГГГГ-ММ. */
   period: string;
   amount: number | null;
+  currency: Currency;
   issuedAt: string | null;
   paidAt: string | null;
   note: string | null;
@@ -117,6 +123,7 @@ export interface InvoiceInput {
   kind?: InvoiceKind;
   period?: string;
   amount?: number | null;
+  currency?: Currency;
   issuedAt?: string | null;
   paidAt?: string | null;
   note?: string | null;
@@ -133,8 +140,9 @@ export interface InvoiceWithProject extends Invoice {
  */
 export async function listAllInvoices(
   scope: "unpaid" | "all" = "unpaid",
-): Promise<{ invoices: InvoiceWithProject[]; total: number }> {
-  return api.get<{ invoices: InvoiceWithProject[]; total: number }>(
+): Promise<{ invoices: InvoiceWithProject[]; totals: Totals }> {
+  // Итог по каждой валюте отдельно: складывать рубли с долларами нечем.
+  return api.get<{ invoices: InvoiceWithProject[]; totals: Totals }>(
     `/invoices?scope=${scope}`,
   );
 }

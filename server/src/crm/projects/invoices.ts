@@ -1,9 +1,10 @@
-import type { Invoice } from "@prisma/client";
+import type { Currency, Invoice } from "@prisma/client";
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { audit } from "../../audit.js";
 import { requireTeam } from "../../auth/guard.js";
 import { prisma } from "../../db.js";
+import { sumByCurrency } from "../currency.js";
 import { invalidInput } from "../http.js";
 import { invoiceBody } from "./dto.js";
 
@@ -23,6 +24,7 @@ export interface InvoiceDto {
   kind: "invoice" | "act";
   period: string;
   amount: number | null;
+  currency: Currency;
   issuedAt: string | null;
   paidAt: string | null;
   note: string | null;
@@ -34,6 +36,7 @@ export function toInvoiceDto(item: Invoice): InvoiceDto {
     kind: item.kind,
     period: item.period,
     amount: item.amount,
+    currency: item.currency,
     issuedAt: item.issuedAt?.toISOString() ?? null,
     paidAt: item.paidAt?.toISOString() ?? null,
     note: item.note,
@@ -82,9 +85,10 @@ export async function invoiceRoutes(app: FastifyInstance): Promise<void> {
           client: invoice.project.client?.name ?? null,
         },
       })),
-      // Сумма считается на сервере: клиент иначе сложил бы только то, что
-      // попало в выдачу, и цифра врала бы при обрезке по take.
-      total: invoices.reduce((sum, invoice) => sum + (invoice.amount ?? 0), 0),
+      // Считается на сервере: клиент иначе сложил бы только то, что попало в
+      // выдачу, и цифра врала бы при обрезке по take. Итог не число, а по
+      // числу на валюту — курса у CRM нет, складывать разное нечем.
+      totals: sumByCurrency(invoices),
     });
   });
 
@@ -132,6 +136,7 @@ export async function invoiceRoutes(app: FastifyInstance): Promise<void> {
         kind: input.kind,
         period: input.period,
         amount: input.amount ?? null,
+        currency: input.currency ?? "rub",
         issuedAt: input.issuedAt ?? null,
         paidAt: input.paidAt ?? null,
         note: input.note ?? null,
@@ -164,6 +169,7 @@ export async function invoiceRoutes(app: FastifyInstance): Promise<void> {
           ...(input.kind !== undefined && { kind: input.kind }),
           ...(input.period !== undefined && { period: input.period }),
           ...(input.amount !== undefined && { amount: input.amount }),
+          ...(input.currency !== undefined && { currency: input.currency }),
           ...(input.issuedAt !== undefined && { issuedAt: input.issuedAt }),
           ...(input.paidAt !== undefined && { paidAt: input.paidAt }),
           ...(input.note !== undefined && { note: input.note }),

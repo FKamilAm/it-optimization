@@ -7,7 +7,9 @@ import {
   type ProjectInput,
   type ProjectStatus,
 } from "@/api/projects";
+import { CurrencySelect } from "@/components/currency-select";
 import { DeveloperPicker } from "@/components/developer-picker";
+import type { Currency } from "@/lib/money";
 import { Field, Input, Select, Textarea } from "@/components/ui";
 import { fromDateInputValue, toDateInputValue } from "@/lib/dates";
 
@@ -26,6 +28,7 @@ export interface ProjectFormValues {
   contractDate: string;
   actDate: string;
   billingMonthly: boolean;
+  currency: Currency;
   /** Строкой, а не числом: пустое поле ввода — это "", а не 0. */
   monthlyAmount: string;
 }
@@ -45,6 +48,7 @@ export function emptyProjectValues(): ProjectFormValues {
     contractDate: "",
     actDate: "",
     billingMonthly: false,
+    currency: "rub",
     monthlyAmount: "",
   };
 }
@@ -64,6 +68,7 @@ export function projectToValues(project: Project): ProjectFormValues {
     contractDate: toDateInputValue(project.contractDate),
     actDate: toDateInputValue(project.actDate),
     billingMonthly: project.billingMonthly,
+    currency: project.currency,
     monthlyAmount: project.monthlyAmount === null ? "" : String(project.monthlyAmount),
   };
 }
@@ -83,6 +88,7 @@ export function valuesToProjectInput(values: ProjectFormValues): ProjectInput {
     contractDate: fromDateInputValue(values.contractDate),
     actDate: fromDateInputValue(values.actDate),
     billingMonthly: values.billingMonthly,
+    currency: values.currency,
     // Пустое поле — это «не задано», а не ноль рублей.
     monthlyAmount: values.monthlyAmount.trim() ? Number(values.monthlyAmount) : null,
   };
@@ -236,15 +242,21 @@ export function ProjectFields({
         </label>
 
         {values.billingMonthly && (
-          <Field label="Сумма в месяц" hint="Рубли, целыми. Можно оставить пустым">
-            <Input
-              value={values.monthlyAmount}
-              onChange={(event) =>
-                set("monthlyAmount", event.target.value.replace(/[^\d]/g, ""))
-              }
-              inputMode="numeric"
-              placeholder="45000"
-            />
+          <Field label="Сумма в месяц" hint="Целыми, без копеек. Можно оставить пустым">
+            <div className="flex gap-2">
+              <Input
+                value={values.monthlyAmount}
+                onChange={(event) =>
+                  set("monthlyAmount", event.target.value.replace(/[^\d]/g, ""))
+                }
+                inputMode="numeric"
+                placeholder="45000"
+              />
+              <CurrencySelect
+                value={values.currency}
+                onChange={(currency) => set("currency", currency)}
+              />
+            </div>
           </Field>
         )}
       </div>
