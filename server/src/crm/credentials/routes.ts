@@ -147,9 +147,14 @@ export async function credentialRoutes(app: FastifyInstance): Promise<void> {
     });
     if (!existing) return reply.code(404).send({ error: "Запись не найдена" });
 
+    // Пароль стирается насовсем, хотя сама запись удаляется мягко. Шифротекст
+    // без мастер-фразы нечитаем, но хранить его вечно незачем: он уезжает в
+    // каждый ночной дамп и переживёт любую будущую ошибку в криптографии.
+    // Цена — восстановленная запись придёт без пароля; экрана восстановления
+    // всё равно нет, а появится — пусть требует ввести пароль заново.
     await prisma.credential.update({
       where: { id: existing.id },
-      data: { deletedAt: new Date() },
+      data: { deletedAt: new Date(), secret: null },
     });
 
     await audit(request, {
