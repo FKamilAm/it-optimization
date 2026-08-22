@@ -212,19 +212,18 @@ function ResetDialog({ onClose, onDone }: { onClose: () => void; onDone: () => v
     <Modal title="Сбросить хранилище" onClose={onClose}>
       <form onSubmit={handleSubmit}>
         <p className="text-muted-foreground max-w-prose text-sm">
-          Фраза будет забыта, а все сохранённые пароли{" "}
-          <b className="text-foreground">
-            {secrets === null
-              ? "стёрты"
-              : secrets === 0
-                ? "стирать нечего — их пока нет"
-                : `стёрты, их ${secrets}`}
-          </b>
-          . Ничего читаемого при этом не теряется: если фраза известна, сброс не нужен, а
-          если забыта — пароли уже не восстановить ничем.
+          Фраза будет забыта, а сохранённые пароли стёрты
+          {secrets === null ? "" : secrets === 0 ? " (их пока нет)" : ` — их ${secrets}`}.
         </p>
         <p className="text-muted-foreground mt-2 max-w-prose text-sm">
-          После сброса можно задать новую фразу и занести пароли заново.
+          <b className="text-foreground">Сами записи останутся на месте.</b> Сервис,
+          логин, на кого оформлен, сроки продления, суммы и заметки не трогаются —
+          исчезают только пароли.
+        </p>
+        <p className="text-muted-foreground mt-2 max-w-prose text-sm">
+          Ничего читаемого при этом не теряется: если фраза известна, сброс не нужен, а
+          если забыта — пароли уже не восстановить ничем. После сброса можно задать новую
+          фразу и занести их заново.
         </p>
 
         <div className="mt-4">
