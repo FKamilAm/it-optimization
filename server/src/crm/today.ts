@@ -1,4 +1,5 @@
-import type { Client, Credential, Lead, Project, Task, User } from "@prisma/client";
+import type { Client, Lead, Project, Task, User } from "@prisma/client";
+import type { CredentialWithProject } from "./credentials/dto.js";
 import { prisma } from "../db.js";
 import { env } from "../env.js";
 import { startOfToday, startOfTomorrow } from "../notify/zone.js";
@@ -64,9 +65,9 @@ export interface TodaySnapshot {
    */
   credentials: {
     /** Истекло, сегодня или в ближайшие дни — про такое будим чат. */
-    urgent: Credential[];
+    urgent: CredentialWithProject[];
     /** Остаток двухнедельного окна: показать на экране, но не будить. */
-    later: Credential[];
+    later: CredentialWithProject[];
   };
   projects: {
     /** Срок сдачи прошёл или наступает сегодня. */
@@ -175,6 +176,7 @@ export async function collectToday(): Promise<TodaySnapshot> {
       include: PROJECT_INCLUDE,
     }),
     prisma.credential.findMany({
+      include: { project: { select: { id: true, title: true } } },
       where: { deletedAt: null, renewsAt: { lt: renewalHorizon } },
       orderBy: { renewsAt: "asc" },
     }),
@@ -211,8 +213,8 @@ export async function collectToday(): Promise<TodaySnapshot> {
    * шанс разъехаться. Выборка отсортирована по сроку, поэтому обе очереди
    * сохраняют порядок «сначала ближайшее».
    */
-  const urgentCredentials: Credential[] = [];
-  const laterCredentials: Credential[] = [];
+  const urgentCredentials: CredentialWithProject[] = [];
+  const laterCredentials: CredentialWithProject[] = [];
   for (const item of expiringCredentials) {
     // Без срока продления записи в выборку не попадают, но тип это допускает;
     // такую считаем горящей, чтобы она не потерялась молча.

@@ -26,10 +26,12 @@ import {
   Field,
   Input,
   Modal,
+  Select,
   Textarea,
 } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { describeDeadline, fromDateInputValue, toDateInputValue } from "@/lib/dates";
+import { listProjects, type Project } from "@/api/projects";
 import { CurrencySelect } from "@/components/currency-select";
 import {
   amountToInput,
@@ -60,6 +62,7 @@ interface FormValues {
   login: string;
   url: string;
   owner: string;
+  projectId: string;
   secretHint: string;
   renewsDate: string;
   amount: string;
@@ -76,6 +79,7 @@ function empty(): FormValues {
     login: "",
     url: "",
     owner: "",
+    projectId: "",
     secretHint: "",
     renewsDate: "",
     amount: "",
@@ -92,6 +96,7 @@ function toValues(item: Credential, secret: string): FormValues {
     login: item.login ?? "",
     url: item.url ?? "",
     owner: item.owner ?? "",
+    projectId: item.project?.id ?? "",
     secretHint: item.secretHint ?? "",
     renewsDate: toDateInputValue(item.renewsAt),
     amount: amountToInput(item.amountMinor),
@@ -108,6 +113,7 @@ function toInput(values: FormValues): CredentialInput {
     login: values.login.trim() || null,
     url: values.url.trim() || null,
     owner: values.owner.trim() || null,
+    projectId: values.projectId || null,
     secretHint: values.secretHint.trim() || null,
     renewsAt: fromDateInputValue(values.renewsDate),
     amountMinor: parseAmount(values.amount),
@@ -143,6 +149,7 @@ export function CredentialsScreen() {
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [items, setItems] = useState<Credential[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [creating, setCreating] = useState(false);
   const [editing, setEditing] = useState<EditTarget | null>(null);
   const { unlocked, configured, revision, encryptSecret, decryptSecret } = useVault();
@@ -154,6 +161,14 @@ export function CredentialsScreen() {
     const timer = setTimeout(() => setDebouncedSearch(search.trim()), 300);
     return () => clearTimeout(timer);
   }, [search]);
+
+  // Проекты нужны только для выбора в карточке и заголовков групп — грузятся
+  // один раз и не зависят от поиска.
+  useEffect(() => {
+    listProjects()
+      .then(setProjects)
+      .catch(() => setProjects([]));
+  }, []);
 
   const load = useCallback(() => {
     setError(null);
@@ -214,6 +229,8 @@ export function CredentialsScreen() {
     };
   }
 
+  const groups = items ? groupByProject(items) : [];
+
   return (
     <section>
       <header className="flex flex-wrap items-center justify-between gap-3">
@@ -258,11 +275,27 @@ export function CredentialsScreen() {
             note="Заведите первую запись — хостинг, домены, почта, аналитика."
           />
         ) : (
-          <ul className="space-y-2">
-            {items.map((item) => (
-              <Row key={item.id} item={item} onOpen={() => void openEdit(item)} />
+          <div className="space-y-6">
+            {groups.map((group) => (
+              <div key={group.key}>
+                {/* Заголовок появляется, только когда групп больше одной:
+                    единственная «Без проекта» над всем списком — просто шум. */}
+                {groups.length > 1 && (
+                  <div className="mb-2 flex items-baseline gap-2">
+                    <h2 className="text-sm font-semibold">{group.title}</h2>
+                    <span className="text-muted-foreground text-xs">
+                      {group.items.length}
+                    </span>
+                  </div>
+                )}
+                <ul className="space-y-2">
+                  {group.items.map((item) => (
+                    <Row key={item.id} item={item} onOpen={() => void openEdit(item)} />
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
         )}
       </div>
 
@@ -270,6 +303,7 @@ export function CredentialsScreen() {
         <CredentialModal
           title="Новая запись"
           initial={empty()}
+          projects={projects}
           secretState={unlocked ? "editable" : closedState}
           hasSecret={false}
           onClose={() => setCreating(false)}
@@ -287,6 +321,7 @@ export function CredentialsScreen() {
         <CredentialModal
           title={editing.item.service}
           initial={toValues(editing.item, editing.secret)}
+          projects={projects}
           secretState={editing.secretState}
           hasSecret={Boolean(editing.item.secret)}
           onClose={() => setEditing(null)}
@@ -307,6 +342,38 @@ export function CredentialsScreen() {
       )}
     </section>
   );
+}
+
+/**
+ * Разбивка по проектам.
+ *
+ * Плоский список перестаёт читаться уже на втором десятке: у одного клиента
+ * набирается хостинг, домен, почта и панель, и глазами их не разделить.
+ * Общие доступы — почта команды, GitHub — идут последними: к ним обращаются
+ * реже, чем к проектным, и первым экраном должно быть то, что ищут чаще.
+ */
+function groupByProject(items: Credential[]) {
+  const groups = new Map<string, { key: string; title: string; items: Credential[] }>();
+
+  for (const item of items) {
+    const key = item.project?.id ?? "";
+    const existing = groups.get(key);
+    if (existing) {
+      existing.items.push(item);
+    } else {
+      groups.set(key, {
+        key,
+        title: item.project?.title ?? "Без проекта",
+        items: [item],
+      });
+    }
+  }
+
+  return [...groups.values()].sort((a, b) => {
+    if (!a.key) return 1;
+    if (!b.key) return -1;
+    return a.title.localeCompare(b.title, "ru");
+  });
 }
 
 function Row({ item, onOpen }: { item: Credential; onOpen: () => void }) {
@@ -427,6 +494,7 @@ function secretHint(state: SecretState, hasSecret: boolean): string {
 function CredentialModal({
   title,
   initial,
+  projects,
   secretState,
   hasSecret,
   onClose,
@@ -435,6 +503,7 @@ function CredentialModal({
 }: {
   title: string;
   initial: FormValues;
+  projects: Project[];
   secretState: SecretState;
   hasSecret: boolean;
   onClose: () => void;
@@ -508,6 +577,20 @@ function CredentialModal({
               />
             </Field>
           </div>
+
+          <Field label="Проект" hint="Пусто — общий доступ: почта, GitHub, хостинг">
+            <Select
+              value={values.projectId}
+              onChange={(event) => set("projectId", event.target.value)}
+            >
+              <option value="">Без проекта</option>
+              {projects.map((project) => (
+                <option key={project.id} value={project.id}>
+                  {project.title}
+                </option>
+              ))}
+            </Select>
+          </Field>
 
           <Field label="Ссылка">
             <Input

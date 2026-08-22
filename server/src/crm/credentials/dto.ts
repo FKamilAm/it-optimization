@@ -1,4 +1,4 @@
-import type { Credential, Currency } from "@prisma/client";
+import type { Credential, Currency, Project } from "@prisma/client";
 
 /**
  * Форма учётки для клиента. Вынесена из routes.ts, потому что её читает ещё и
@@ -7,12 +7,22 @@ import type { Credential, Currency } from "@prisma/client";
  *
  * Паролей в этой форме нет — их нет и в таблице, см. `routes.ts`.
  */
+/**
+ * Проект отдаётся вместе с названием, а не одним идентификатором: экран
+ * группирует записи по проектам, и без названия ему пришлось бы тянуть весь
+ * список проектов ради подписи к заголовку.
+ */
+export type CredentialWithProject = Credential & {
+  project: Pick<Project, "id" | "title"> | null;
+};
+
 export interface CredentialDto {
   id: string;
   service: string;
   login: string | null;
   url: string | null;
   owner: string | null;
+  project: { id: string; title: string } | null;
   secretHint: string | null;
   /** Шифротекст пароля. Сервер его не понимает — расшифровка в браузере. */
   secret: string | null;
@@ -23,13 +33,14 @@ export interface CredentialDto {
   notes: string | null;
 }
 
-export function toCredentialDto(item: Credential): CredentialDto {
+export function toCredentialDto(item: CredentialWithProject): CredentialDto {
   return {
     id: item.id,
     service: item.service,
     login: item.login,
     url: item.url,
     owner: item.owner,
+    project: item.project,
     secretHint: item.secretHint,
     secret: item.secret,
     renewsAt: item.renewsAt?.toISOString() ?? null,

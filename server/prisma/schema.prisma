@@ -322,7 +322,8 @@ model Project {
   /// Валюта monthlyAmount и счетов проекта по умолчанию.
   currency       Currency @default(rub)
 
-  invoices Invoice[]
+  invoices    Invoice[]
+  credentials Credential[]
 
   /// Порядок внутри колонки на доске.
   position Int @default(0)
@@ -465,6 +466,12 @@ model Credential {
   url     String?
   /// На кого оформлено — имя из DEVELOPERS или название компании.
   owner   String?
+  /// К какому проекту относится доступ. Пусто — общий: почта, GitHub, хостинг.
+  ///
+  /// SetNull, а не Cascade: закрытый проект не должен уносить с собой пароль от
+  /// хостинга, на котором его сайт продолжает работать.
+  projectId String?  @map("project_id") @db.Uuid
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
   /// Где лежит пароль, если он не здесь: «Bitwarden, папка Хостинг».
   secretHint String? @map("secret_hint")
   /// Сам пароль — **зашифрованный в браузере**, base64 от `iv || ciphertext`.
@@ -489,6 +496,7 @@ model Credential {
   deletedAt DateTime? @map("deleted_at")
 
   @@index([service])
+  @@index([projectId])
   @@map("credentials")
 }
 

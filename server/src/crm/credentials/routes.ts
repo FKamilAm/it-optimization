@@ -4,9 +4,12 @@ import { z } from "zod";
 import { audit } from "../../audit.js";
 import { requireTeam } from "../../auth/guard.js";
 import { prisma } from "../../db.js";
-import { optionalDate, optionalText, requiredTitle } from "../fields.js";
+import { optionalDate, optionalText, optionalUuid, requiredTitle } from "../fields.js";
 import { invalidInput } from "../http.js";
 import { toCredentialDto as toDto } from "./dto.js";
+
+/** Название проекта нужно экрану для заголовка группы — тянем сразу. */
+const PROJECT_BRIEF = { project: { select: { id: true, title: true } } } as const;
 
 /**
  * Справочник учёток сервисов: что есть, на кого записано, когда продлевать и
@@ -32,6 +35,7 @@ const credentialFields = {
   login: optionalText(200),
   url: optionalText(300),
   owner: optionalText(120),
+  projectId: optionalUuid,
   secretHint: optionalText(200),
   // Приходит уже зашифрованным. Сервер проверяет только форму и размер:
   // содержимое для него — непрозрачный набор байт, и так и задумано.
@@ -66,6 +70,7 @@ export async function credentialRoutes(app: FastifyInstance): Promise<void> {
     }
 
     const credentials = await prisma.credential.findMany({
+      include: PROJECT_BRIEF,
       where,
       // Сначала то, что скоро продлевать; без даты — в конце по алфавиту.
       orderBy: [{ renewsAt: { sort: "asc", nulls: "last" } }, { service: "asc" }],
@@ -81,11 +86,13 @@ export async function credentialRoutes(app: FastifyInstance): Promise<void> {
 
     const input = parsed.data;
     const credential = await prisma.credential.create({
+      include: PROJECT_BRIEF,
       data: {
         service: input.service,
         login: input.login ?? null,
         url: input.url ?? null,
         owner: input.owner ?? null,
+        projectId: input.projectId ?? null,
         secretHint: input.secretHint ?? null,
         secret: input.secret ?? null,
         renewsAt: input.renewsAt ?? null,
@@ -118,12 +125,14 @@ export async function credentialRoutes(app: FastifyInstance): Promise<void> {
 
     const input = parsed.data;
     const credential = await prisma.credential.update({
+      include: PROJECT_BRIEF,
       where: { id: existing.id },
       data: {
         ...(input.service !== undefined && { service: input.service }),
         ...(input.login !== undefined && { login: input.login }),
         ...(input.url !== undefined && { url: input.url }),
         ...(input.owner !== undefined && { owner: input.owner }),
+        ...(input.projectId !== undefined && { projectId: input.projectId }),
         ...(input.secretHint !== undefined && { secretHint: input.secretHint }),
         ...(input.secret !== undefined && { secret: input.secret }),
         ...(input.renewsAt !== undefined && { renewsAt: input.renewsAt }),

@@ -15,6 +15,8 @@ export interface Credential {
   login: string | null;
   url: string | null;
   owner: string | null;
+  /** Проект, к которому относится доступ. `null` — общий для всей команды. */
+  project: { id: string; title: string } | null;
   secretHint: string | null;
   /**
    * Пароль, зашифрованный в браузере. Сервер хранит его непрозрачно и
@@ -40,6 +42,7 @@ export interface CredentialInput {
   login?: string | null;
   url?: string | null;
   owner?: string | null;
+  projectId?: string | null;
   secretHint?: string | null;
   secret?: string | null;
   renewsAt?: string | null;
