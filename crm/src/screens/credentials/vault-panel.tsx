@@ -1,5 +1,5 @@
 import { Lock, LockOpen } from "lucide-react";
-import { useCallback, useEffect, useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { ApiError } from "@/api/client";
 import { getVault, RESET_WORD } from "@/api/vault";
 import { Button, ErrorNote, Field, Input, Modal } from "@/components/ui";
@@ -25,18 +25,13 @@ import { useVault } from "@/vault/vault-context";
 const MIN_LENGTH = 12;
 
 export function VaultControl() {
-  const { unlocked, lock, revision } = useVault();
-  const [configured, setConfigured] = useState<boolean | null>(null);
+  const { unlocked, lock, configured, refreshStatus } = useVault();
   const [asking, setAsking] = useState(false);
 
-  // Перечитывается после сброса: `revision` для того и заведён.
-  const refresh = useCallback(() => {
-    getVault()
-      .then((settings) => setConfigured(settings.configured))
-      .catch(() => setConfigured(null));
-  }, [revision]);
-
-  useEffect(refresh, [refresh]);
+  // Спрашиваем отсюда, а не при старте приложения: до входа /vault ответит 401.
+  useEffect(() => {
+    void refreshStatus();
+  }, [refreshStatus]);
 
   if (unlocked) {
     return (
@@ -56,10 +51,7 @@ export function VaultControl() {
       {asking && (
         <PassphraseDialog
           initialCreating={configured === false}
-          onClose={() => {
-            setAsking(false);
-            refresh();
-          }}
+          onClose={() => setAsking(false)}
         />
       )}
     </>

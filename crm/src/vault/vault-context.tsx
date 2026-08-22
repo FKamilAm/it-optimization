@@ -33,6 +33,17 @@ interface VaultValue {
   /** Мастер-фраза ещё не задана: хранилищем никто не пользовался. */
   needsSetup: boolean;
   /**
+   * Задана ли фраза вообще. `null` — ещё не спрашивали.
+   *
+   * Живёт в контексте, а не в компоненте, потому что нужна двоим: замку в
+   * шапке и полю пароля в карточке. «Не задана» и «заперто» — разные вещи, и
+   * подсказка «разблокируйте хранилище» там, где разблокировать нечего, только
+   * запутывает.
+   */
+  configured: boolean | null;
+  /** Спросить сервер. Вызывается с экранов, а не при старте: до входа /vault ответит 401. */
+  refreshStatus: () => Promise<void>;
+  /**
    * Растёт после сброса. Экраны, держащие записи в памяти, обязаны на него
    * смотреть: сброс обнуляет шифротексты на сервере, и список, загруженный до
    * него, остаётся со старыми — новый ключ их не читает, а поле пароля
@@ -54,14 +65,25 @@ export function VaultProvider({ children }: { children: ReactNode }) {
   const [key, setKey] = useState<CryptoKey | null>(null);
   const [needsSetup, setNeedsSetup] = useState(false);
   const [revision, setRevision] = useState(0);
+  const [configured, setConfigured] = useState<boolean | null>(null);
+
+  const refreshStatus = useCallback(async () => {
+    try {
+      setConfigured((await getVault()).configured);
+    } catch {
+      setConfigured(null);
+    }
+  }, []);
 
   const unlock = useCallback(async (passphrase: string) => {
     const settings = await getVault();
     if (!settings.configured) {
+      setConfigured(false);
       setNeedsSetup(true);
       throw new Error("Мастер-фраза ещё не задана");
     }
 
+    setConfigured(true);
     const derived = await deriveKey(passphrase, settings.salt);
     // Проверить фразу может только тот, у кого есть ключ: сервер её не знает.
     if (!(await checkVerifier(derived, settings.verifier))) {
@@ -77,6 +99,7 @@ export function VaultProvider({ children }: { children: ReactNode }) {
     await setupVault(salt, await makeVerifier(derived));
     setKey(derived);
     setNeedsSetup(false);
+    setConfigured(true);
   }, []);
 
   const lock = useCallback(() => setKey(null), []);
@@ -85,6 +108,7 @@ export function VaultProvider({ children }: { children: ReactNode }) {
     const { cleared } = await resetVault();
     setKey(null);
     setNeedsSetup(true);
+    setConfigured(false);
     setRevision((current) => current + 1);
     return cleared;
   }, []);
@@ -109,6 +133,8 @@ export function VaultProvider({ children }: { children: ReactNode }) {
     () => ({
       unlocked: key !== null,
       needsSetup,
+      configured,
+      refreshStatus,
       revision,
       unlock,
       create,
@@ -120,6 +146,8 @@ export function VaultProvider({ children }: { children: ReactNode }) {
     [
       key,
       needsSetup,
+      configured,
+      refreshStatus,
       revision,
       unlock,
       create,
