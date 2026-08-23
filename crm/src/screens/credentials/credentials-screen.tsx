@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { ApiError } from "@/api/client";
+import { useOpenFromSearch } from "@/lib/open-from-search";
 import {
   createCredential,
   deleteCredential,
@@ -229,6 +230,9 @@ export function CredentialsScreen() {
       secret: values.secret ? await encryptSecret(values.secret) : null,
     };
   }
+
+  // Переход из глобального поиска: ?open=<id> открывает нужную карточку.
+  useOpenFromSearch(items, (item) => void openEdit(item));
 
   const groups = items ? groupByProject(items) : [];
 

@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { NavLink, Outlet } from "react-router";
 import { useAuth, useCurrentUser } from "@/auth/auth-context";
+import { GlobalSearch } from "@/components/global-search";
 import { cn } from "@/lib/cn";
 
 /**
@@ -69,11 +70,19 @@ export function Shell() {
     <div className="flex min-h-full flex-col md:flex-row">
       {/* На узком экране навигация уезжает наверх в прокручиваемую строку:
           боковая колонка на телефоне съедает половину ширины. */}
-      <nav className="border-border flex shrink-0 items-center gap-1 overflow-x-auto border-b px-3 py-2 md:w-56 md:flex-col md:items-stretch md:overflow-visible md:border-r md:border-b-0 md:px-3 md:py-5">
+      <nav className="border-border flex shrink-0 flex-wrap items-center gap-1 border-b px-3 py-2 md:w-56 md:flex-col md:flex-nowrap md:items-stretch md:border-r md:border-b-0 md:px-3 md:py-5">
         <div className="mr-3 hidden items-center gap-2 px-2 pb-5 md:flex">
           <span className="bg-accent h-2 w-2 rounded-full" />
           <span className="text-sm font-bold tracking-tight">CRM</span>
         </div>
+
+        {/* Поиск занимает всю ширину и стоит первым: на узком экране ссылки
+            уезжают под него отдельной строкой, а не толкаются с ним в ряд. */}
+        {!leadsOnly && (
+          <div className="order-first mb-2 w-full md:order-none md:mb-3">
+            <GlobalSearch />
+          </div>
+        )}
 
         {NAV.filter((item) => !leadsOnly || item.leadsOnly).map(
           ({ to, label, icon: Icon, end }) => (

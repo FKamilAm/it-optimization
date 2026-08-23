@@ -1,6 +1,7 @@
 import { AlignLeft, CalendarDays, Check, Flame, FolderOpen, Plus } from "lucide-react";
 import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { ApiError } from "@/api/client";
+import { useOpenFromSearch } from "@/lib/open-from-search";
 import { listProjects, type Project } from "@/api/projects";
 import {
   BOARD_COLUMNS,
@@ -222,7 +223,8 @@ export function TasksScreen() {
       });
   }, [tab, view, developer, debouncedSearch]);
 
-  useEffect(load, [load]);
+  useEffect(load, [load]); // Переход из глобального поиска: ?open=<id> открывает нужную карточку.
+  useOpenFromSearch(tasks, setEditing);
 
   useEffect(() => {
     // Список проектов нужен только для выпадающего списка в форме, поэтому

@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { ApiError } from "@/api/client";
+import { useOpenFromSearch } from "@/lib/open-from-search";
 import { listClients, type Client } from "@/api/clients";
 import {
   CLOSED_PROJECT_STATUSES,
@@ -246,7 +247,8 @@ export function ProjectsScreen() {
       });
   }, [tab, view, debouncedSearch]);
 
-  useEffect(load, [load]);
+  useEffect(load, [load]); // Переход из глобального поиска: ?open=<id> открывает нужную карточку.
+  useOpenFromSearch(projects, setEditing);
 
   useEffect(() => {
     listClients()
