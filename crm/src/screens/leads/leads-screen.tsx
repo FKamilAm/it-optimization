@@ -13,6 +13,7 @@ import { listTeam, memberLabel, type TeamMember } from "@/api/team";
 import { Badge, Button, EmptyState, ErrorNote, Input, Modal } from "@/components/ui";
 import { useCurrentUser } from "@/auth/auth-context";
 import { cn } from "@/lib/cn";
+import { NoteHint } from "@/components/note-hint";
 import { describeDeadline, formatDate } from "@/lib/dates";
 import { serviceLabel } from "@/lib/services";
 import { LeadDetail } from "./lead-detail";
@@ -221,6 +222,7 @@ function LeadRow({ lead, onOpen }: { lead: Lead; onOpen: () => void }) {
             {lead.owner ? memberLabel(lead.owner) : formatDate(lead.createdAt)}
           </span>
         </span>
+        <NoteHint note={lead.note} />
       </button>
     </li>
   );

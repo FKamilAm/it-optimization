@@ -6,7 +6,7 @@ import { requireAuth } from "../../auth/guard.js";
 import { notifyNewLeadInBackground } from "../../notify/notifications.js";
 import { prisma } from "../../db.js";
 import { invalidInput } from "../http.js";
-import { createNote, listNotes } from "../notes.js";
+import { briefNotes, createNote, listNotes } from "../notes.js";
 import {
   CLOSED_LEAD_STATUSES,
   createLeadBody,
@@ -118,7 +118,15 @@ export async function leadRoutes(app: FastifyInstance): Promise<void> {
       take: 500,
     });
 
-    return reply.send({ leads: leads.map(toLeadDto) });
+    // Последняя заметка едет вместе со списком: без неё «о чём мы вообще
+    // договорились» видно только внутри карточки, а туда лишний раз не ходят.
+    const notes = await briefNotes("lead", leads.map((item) => item.id));
+    return reply.send({
+      leads: leads.map((item) => ({
+        ...toLeadDto(item),
+        note: notes.get(item.id) ?? null,
+      })),
+    });
   });
 
   app.post("/leads", { preHandler: requireAuth }, async (request, reply) => {

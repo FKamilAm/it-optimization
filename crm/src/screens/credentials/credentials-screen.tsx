@@ -33,6 +33,7 @@ import { cn } from "@/lib/cn";
 import { describeDeadline, fromDateInputValue, toDateInputValue } from "@/lib/dates";
 import { listProjects, type Project } from "@/api/projects";
 import { CurrencySelect } from "@/components/currency-select";
+import { NoteHint } from "@/components/note-hint";
 import {
   amountToInput,
   fee,
@@ -388,6 +389,7 @@ function Row({ item, onOpen }: { item: Credential; onOpen: () => void }) {
             .filter(Boolean)
             .join(" · ") || "подробности не заполнены"}
         </span>
+        <NoteHint text={item.notes} />
       </button>
 
       <SecretButton item={item} />

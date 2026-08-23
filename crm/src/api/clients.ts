@@ -1,4 +1,5 @@
 import { api } from "./client";
+import type { NoteBrief } from "@/components/note-hint";
 import type { Note } from "./leads";
 
 /**
@@ -20,6 +21,8 @@ export interface ClientContact {
 }
 
 export interface Client {
+  /** Последняя заметка — приходит только в списках. */
+  note?: NoteBrief | null;
   id: string;
   name: string;
   inn: string | null;

@@ -1,6 +1,7 @@
 import { Plus } from "lucide-react";
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { ApiError } from "@/api/client";
+import { NoteHint } from "@/components/note-hint";
 import {
   CONTACT_TYPES,
   createClient,
@@ -148,6 +149,7 @@ function ClientRow({ client, onOpen }: { client: Client; onOpen: () => void }) {
           <span className="text-muted-foreground mt-0.5 block truncate text-xs">
             {contacts || "контакты не заполнены"}
           </span>
+          <NoteHint note={client.note} text={client.notes} />
         </div>
 
         {client.projectCount > 0 && (

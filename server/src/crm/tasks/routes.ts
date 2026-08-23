@@ -5,7 +5,7 @@ import { audit } from "../../audit.js";
 import { requireTeam } from "../../auth/guard.js";
 import { prisma } from "../../db.js";
 import { invalidInput } from "../http.js";
-import { listNotes, noteRoutesFor } from "../notes.js";
+import { briefNotes, listNotes, noteRoutesFor } from "../notes.js";
 import {
   CLOSED_TASK_STATUSES,
   createTaskBody,
@@ -91,7 +91,13 @@ export async function taskRoutes(app: FastifyInstance): Promise<void> {
       take: 1000,
     });
 
-    return reply.send({ tasks: tasks.map(toTaskDto) });
+    const notes = await briefNotes("task", tasks.map((item) => item.id));
+    return reply.send({
+      tasks: tasks.map((item) => ({
+        ...toTaskDto(item),
+        note: notes.get(item.id) ?? null,
+      })),
+    });
   });
 
   app.post("/tasks", { preHandler: requireTeam }, async (request, reply) => {

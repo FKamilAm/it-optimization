@@ -23,6 +23,7 @@ import { MonthCalendar } from "@/components/month-calendar";
 import { Badge, Button, EmptyState, ErrorNote, Input, Modal } from "@/components/ui";
 import { describeDeadline, formatDate } from "@/lib/dates";
 import { cn } from "@/lib/cn";
+import { NoteHint } from "@/components/note-hint";
 import { DEVELOPERS } from "@/lib/developers";
 import {
   emptyTaskValues,
@@ -152,6 +153,7 @@ function TaskCard({ task, onOpen }: { task: Task; onOpen: () => void }) {
           </span>
         )}
       </span>
+      <NoteHint note={task.note} />
     </button>
   );
 }

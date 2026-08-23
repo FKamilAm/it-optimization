@@ -36,6 +36,53 @@ function toNoteDto(note: NoteWithAuthor): NoteDto {
   };
 }
 
+/**
+ * Последняя заметка и их число для списка записей.
+ *
+ * Одним запросом на весь список, а не по запросу на карточку: список из
+ * тридцати записей иначе превращается в тридцать походов в базу. Заметок у
+ * одной сущности единицы, поэтому выбрать все и разложить в памяти дешевле,
+ * чем городить оконную функцию в обход Prisma.
+ */
+export interface NoteBrief {
+  /** Текст последней заметки — на карточке он и показывается. */
+  body: string;
+  author: string | null;
+  createdAt: string;
+  /** Сколько всего: «ещё 3» подсказывает, что за строкой есть продолжение. */
+  count: number;
+}
+
+export async function briefNotes(
+  entity: NoteEntity,
+  ids: string[],
+): Promise<Map<string, NoteBrief>> {
+  const brief = new Map<string, NoteBrief>();
+  if (ids.length === 0) return brief;
+
+  const notes = await prisma.note.findMany({
+    where: { entity, entityId: { in: ids } },
+    orderBy: { createdAt: "desc" },
+    include: { author: AUTHOR_SELECT },
+  });
+
+  for (const note of notes) {
+    const seen = brief.get(note.entityId);
+    if (seen) {
+      seen.count += 1;
+      continue;
+    }
+    brief.set(note.entityId, {
+      body: note.body,
+      author: note.author?.name?.trim() || note.author?.email || null,
+      createdAt: note.createdAt.toISOString(),
+      count: 1,
+    });
+  }
+
+  return brief;
+}
+
 /** Хронология сверху вниз: свежая запись последняя, как в переписке. */
 export async function listNotes(
   entity: NoteEntity,

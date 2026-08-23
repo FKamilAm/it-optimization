@@ -6,7 +6,7 @@ import { audit } from "../../audit.js";
 import { requireTeam } from "../../auth/guard.js";
 import { prisma } from "../../db.js";
 import { invalidInput } from "../http.js";
-import { listNotes, noteRoutesFor } from "../notes.js";
+import { briefNotes, listNotes, noteRoutesFor } from "../notes.js";
 import {
   createClientBody,
   listClientsQuery,
@@ -44,7 +44,13 @@ export async function clientRoutes(app: FastifyInstance): Promise<void> {
       take: 500,
     });
 
-    return reply.send({ clients: clients.map(toClientDto) });
+    const notes = await briefNotes("client", clients.map((item) => item.id));
+    return reply.send({
+      clients: clients.map((item) => ({
+        ...toClientDto(item),
+        note: notes.get(item.id) ?? null,
+      })),
+    });
   });
 
   app.post("/clients", { preHandler: requireTeam }, async (request, reply) => {

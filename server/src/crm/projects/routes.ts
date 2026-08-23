@@ -6,7 +6,7 @@ import { requireTeam } from "../../auth/guard.js";
 import { prisma } from "../../db.js";
 import { env } from "../../env.js";
 import { invalidInput } from "../http.js";
-import { listNotes, noteRoutesFor } from "../notes.js";
+import { briefNotes, listNotes, noteRoutesFor } from "../notes.js";
 import { invoiceRoutes } from "./invoices.js";
 import {
   CLOSED_PROJECT_STATUSES,
@@ -98,7 +98,13 @@ export async function projectRoutes(app: FastifyInstance): Promise<void> {
       take: 500,
     });
 
-    return reply.send({ projects: projects.map((item) => toProjectDto(item, env.TIMEZONE)) });
+    const notes = await briefNotes("project", projects.map((item) => item.id));
+    return reply.send({
+      projects: projects.map((item) => ({
+        ...toProjectDto(item, env.TIMEZONE),
+        note: notes.get(item.id) ?? null,
+      })),
+    });
   });
 
   app.post("/projects", { preHandler: requireTeam }, async (request, reply) => {

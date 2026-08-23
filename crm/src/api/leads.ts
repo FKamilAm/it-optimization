@@ -1,4 +1,5 @@
 import { api } from "./client";
+import type { NoteBrief } from "@/components/note-hint";
 
 export const LEAD_STATUSES = ["new", "contacted", "qualified", "won", "lost"] as const;
 export type LeadStatus = (typeof LEAD_STATUSES)[number];
@@ -30,6 +31,8 @@ export const LEAD_CHANNELS = [
 ] as const;
 
 export interface Lead {
+  /** Последняя заметка — приходит только в списках. */
+  note?: NoteBrief | null;
   id: string;
   name: string | null;
   contact: string;

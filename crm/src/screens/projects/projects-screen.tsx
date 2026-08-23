@@ -31,6 +31,7 @@ import { NotesPanel } from "@/components/notes-panel";
 import { PersonChips } from "@/components/person-chip";
 import { Badge, Button, EmptyState, ErrorNote, Input, Modal } from "@/components/ui";
 import { cn } from "@/lib/cn";
+import { NoteHint } from "@/components/note-hint";
 import { money } from "@/lib/money";
 import { describeDeadline, formatDate } from "@/lib/dates";
 import {
@@ -206,6 +207,7 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
           </span>
         )}
       </span>
+      <NoteHint note={project.note} />
     </button>
   );
 }

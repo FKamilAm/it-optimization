@@ -1,4 +1,5 @@
 import { api } from "./client";
+import type { NoteBrief } from "@/components/note-hint";
 import type { Currency } from "@/lib/money";
 
 type Totals = Partial<Record<Currency, number>>;
@@ -24,6 +25,8 @@ export const PROJECT_STATUS_LABELS: Record<ProjectStatus, string> = {
 export const CLOSED_PROJECT_STATUSES: readonly ProjectStatus[] = ["done", "cancelled"];
 
 export interface Project {
+  /** Последняя заметка — приходит только в списках. */
+  note?: NoteBrief | null;
   id: string;
   title: string;
   description: string | null;
