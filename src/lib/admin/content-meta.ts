@@ -3,9 +3,11 @@ import { SERVICE_NAV } from "@/lib/constants";
 import { HOME_CASE_COUNT } from "@/lib/cases";
 
 /**
- * Список услуг для панели: ключ плюс название из каталога, в том же порядке,
- * что в шапке сайта. Кейс привязывается к услугам этими ключами (поле
- * `services`), а страница услуги по ним же собирает свои кейсы.
+ * Общие справочники панели: список услуг и превращение заголовка в адрес.
+ *
+ * Услуги — ключ плюс название из каталога, в том же порядке, что в шапке сайта.
+ * Этими ключами к услугам привязываются и кейсы, и статьи (поле `services`), а
+ * страница услуги по ним же собирает и то, и другое.
  */
 export interface ServiceOption {
   key: string;
@@ -21,7 +23,7 @@ export const SERVICE_OPTIONS: ServiceOption[] = SERVICE_NAV.map((entry) => ({
 
 const TITLES = new Map(SERVICE_OPTIONS.map((option) => [option.key, option.title]));
 
-/** Названия услуг кейса — для строки под заголовком в списке. */
+/** Названия услуг записи — для строки под заголовком в списке. */
 export function serviceTitles(keys: readonly string[]): string[] {
   return keys.map((key) => TITLES.get(key) ?? key);
 }
@@ -30,7 +32,7 @@ export function serviceTitles(keys: readonly string[]): string[] {
 export { HOME_CASE_COUNT };
 
 /**
- * Turn a Russian title into a usable case slug: transliterated, lowercase, dashed.
+ * Turn a Russian title into a usable slug: transliterated, lowercase, dashed.
  * The slug becomes part of the asset filenames, so it must stay ASCII.
  */
 const TRANSLIT: Record<string, string> = {
@@ -69,7 +71,7 @@ const TRANSLIT: Record<string, string> = {
   я: "ya",
 };
 
-export function slugifyCaseSlug(title: string): string {
+export function slugify(title: string): string {
   const latin = Array.from(title.toLowerCase())
     .map((char) => TRANSLIT[char] ?? char)
     .join("");
@@ -80,8 +82,8 @@ export function slugifyCaseSlug(title: string): string {
 }
 
 /** Append -2, -3, … until the slug is free. */
-export function uniqueCaseSlug(base: string, taken: readonly string[]): string {
-  const seed = base || "case";
+export function uniqueSlug(base: string, taken: readonly string[]): string {
+  const seed = base || "item";
   if (!taken.includes(seed)) return seed;
   for (let i = 2; ; i += 1) {
     const candidate = `${seed}-${i}`;

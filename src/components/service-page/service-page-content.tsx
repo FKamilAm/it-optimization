@@ -17,7 +17,8 @@ import { FaqAccordion, type FaqItem } from "@/components/ui/faq-accordion";
 import { ServiceHeroVisual } from "@/components/service-hero/service-hero-visual";
 import type { ServiceHeroVariant } from "@/components/service-hero/service-hero-3d";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
-import { blogPostByKey, RELATED_ARTICLES, RELATED_SERVICES } from "@/lib/constants";
+import { RELATED_SERVICES } from "@/lib/constants";
+import type { BlogPost } from "@/lib/blog";
 import { cn } from "@/lib/utils";
 
 // Service page key → dedicated 3D hero visual. Every service has its own scene.
@@ -63,10 +64,13 @@ interface Tariff {
 export function ServicePageContent({
   pageKey,
   cases: allCases,
+  articles,
 }: {
   pageKey: string;
   /** Все кейсы сайта; страница берёт из них те, на которые ссылается. */
   cases: CaseItem[];
+  /** Статьи блога об этой услуге. Связь живёт в самой статье и правится в панели. */
+  articles: BlogPost[];
 }) {
   const t = useTranslations(`servicePages.${pageKey}`);
   const c = useTranslations("servicePages.common");
@@ -85,7 +89,6 @@ export function ServicePageContent({
   const cases = casesForService(allCases, pageKey);
   const tariffs = (t.raw("tariffs") as Tariff[] | undefined) ?? [];
   const relatedServices = RELATED_SERVICES[pageKey] ?? [];
-  const relatedArticleKeys = RELATED_ARTICLES[pageKey] ?? [];
 
   const heroVariant = HERO_VISUAL[pageKey];
   // All service pages use the light hero (dark text on white) + re-sequenced
@@ -753,7 +756,7 @@ export function ServicePageContent({
           ))}
         </StaggerReveal>
 
-        {relatedArticleKeys.length > 0 && (
+        {articles.length > 0 && (
           <div className="mt-16">
             <Reveal>
               <h3 className="text-muted-foreground text-sm font-semibold tracking-[0.16em] uppercase">
@@ -761,43 +764,37 @@ export function ServicePageContent({
               </h3>
             </Reveal>
             <StaggerReveal className="mt-8 grid gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
-              {relatedArticleKeys.map((key) => {
-                const post = blogPostByKey(key);
-                if (!post) return null;
-                return (
-                  <div key={key} className="h-full">
-                    <Link
-                      href={`/blog/${post.slug}/`}
-                      className="group border-border bg-background hover:border-accent focus-visible:outline-accent flex h-full flex-col overflow-hidden rounded-2xl border transition-[border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_0_38px_rgba(180,224,45,0.22)] focus-visible:outline-2 focus-visible:outline-offset-2"
-                    >
-                      <div className="bg-surface relative aspect-[16/10] overflow-hidden">
-                        <Image
-                          src={post.cover}
-                          alt={blog(`posts.${key}.title`)}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                          className="object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-                        />
-                      </div>
-                      <div className="flex flex-1 flex-col p-7 md:p-8">
-                        <h4 className="heading-subsection text-foreground">
-                          {blog(`posts.${key}.title`)}
-                        </h4>
-                        <span className="text-foreground mt-6 inline-flex items-center gap-1.5 text-base font-medium">
-                          <span className="relative">
-                            {blog("readMore")}
-                            <span
-                              aria-hidden="true"
-                              className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100 motion-reduce:transition-none"
-                            />
-                          </span>
-                          <ArrowUpRight className="h-4 w-4" />
+              {articles.map((post) => (
+                <div key={post.slug} className="h-full">
+                  <Link
+                    href={`/blog/${post.slug}/`}
+                    className="group border-border bg-background hover:border-accent focus-visible:outline-accent flex h-full flex-col overflow-hidden rounded-2xl border transition-[border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_0_38px_rgba(180,224,45,0.22)] focus-visible:outline-2 focus-visible:outline-offset-2"
+                  >
+                    <div className="bg-surface relative aspect-[16/10] overflow-hidden">
+                      <Image
+                        src={post.cover}
+                        alt={post.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                      />
+                    </div>
+                    <div className="flex flex-1 flex-col p-7 md:p-8">
+                      <h4 className="heading-subsection text-foreground">{post.title}</h4>
+                      <span className="text-foreground mt-6 inline-flex items-center gap-1.5 text-base font-medium">
+                        <span className="relative">
+                          {blog("readMore")}
+                          <span
+                            aria-hidden="true"
+                            className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100 motion-reduce:transition-none"
+                          />
                         </span>
-                      </div>
-                    </Link>
-                  </div>
-                );
-              })}
+                        <ArrowUpRight className="h-4 w-4" />
+                      </span>
+                    </div>
+                  </Link>
+                </div>
+              ))}
             </StaggerReveal>
           </div>
         )}

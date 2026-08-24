@@ -1,12 +1,18 @@
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { CASES_SCOPE, prisma } from "../db.js";
+import type { Prisma } from "@prisma/client";
+import { CASES_SCOPE, POSTS_SCOPE, prisma } from "../db.js";
 
 /**
- * Переносит `content/cases.json` в базу. Форма файла и таблицы совпадает, так
- * что это именно перенос, а не преобразование. Запускается сколько угодно раз:
- * кейсы сопоставляются по id, картинки — по слоту.
+ * Переносит `content/cases.json` и `content/blog.json` в базу. Форма файлов и
+ * таблиц совпадает, так что это именно перенос, а не преобразование.
+ * Запускается сколько угодно раз: записи сопоставляются по id, картинки кейса —
+ * по слоту.
+ *
+ * Блог здесь обязателен, а не «приятное дополнение»: в режиме собственного API
+ * панель публикует снапшот из базы, и пустая таблица `posts` стёрла бы блог с
+ * сайта первой же публикацией.
  */
 interface SnapshotCase {
   id: string;
@@ -23,12 +29,33 @@ interface SnapshotCase {
   updatedAt: string;
 }
 
+interface SnapshotPost {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  lead: string;
+  metaTitle: string;
+  metaDescription: string;
+  cover: string;
+  readingTime: number;
+  sections: { heading: string; body: string[] }[];
+  takeaways: string[];
+  services: string[];
+  publishedAt: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 const here = dirname(fileURLToPath(import.meta.url));
 /**
  * В репозитории снапшот лежит рядом с сайтом, в контейнере его монтируют
  * отдельно — поэтому путь можно задать переменной окружения.
  */
 const SNAPSHOT = process.env.CASES_SNAPSHOT || join(here, "../../../content/cases.json");
+const BLOG_SNAPSHOT =
+  process.env.BLOG_SNAPSHOT || join(here, "../../../content/blog.json");
 
 function hashFromPath(path: string): string {
   // Имена вида case-crm-a1b2c3d4.webp — хэш идёт последним сегментом.
@@ -104,6 +131,52 @@ async function main(): Promise<void> {
   });
 
   console.log(`Перенесено кейсов: ${cases.length}`);
+
+  await seedPosts();
+}
+
+async function seedPosts(): Promise<void> {
+  const raw = await readFile(BLOG_SNAPSHOT, "utf8");
+  const posts = JSON.parse(raw) as SnapshotPost[];
+
+  for (const [index, post] of posts.entries()) {
+    const sections = post.sections as unknown as Prisma.InputJsonValue;
+    const fields = {
+      slug: post.slug,
+      title: post.title,
+      excerpt: post.excerpt,
+      category: post.category,
+      lead: post.lead,
+      metaTitle: post.metaTitle,
+      metaDescription: post.metaDescription,
+      cover: post.cover,
+      readingTime: post.readingTime,
+      sections,
+      takeaways: post.takeaways ?? [],
+      services: post.services ?? [],
+      publishedAt: new Date(`${post.publishedAt}T00:00:00.000Z`),
+      position: index,
+    };
+
+    await prisma.post.upsert({
+      where: { id: post.id },
+      create: {
+        id: post.id,
+        ...fields,
+        createdAt: new Date(post.createdAt),
+        updatedAt: new Date(post.updatedAt),
+      },
+      update: { ...fields, deletedAt: null },
+    });
+  }
+
+  await prisma.contentRevision.upsert({
+    where: { scope: POSTS_SCOPE },
+    update: {},
+    create: { scope: POSTS_SCOPE, value: 0 },
+  });
+
+  console.log(`Перенесено статей: ${posts.length}`);
 }
 
 main()

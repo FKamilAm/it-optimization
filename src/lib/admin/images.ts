@@ -8,6 +8,9 @@
  */
 
 export type CaseImageSlot = "cover" | "detail" | "detailMobile";
+/** Обложка статьи блога. Слот один — в статье больше картинок нет. */
+export type BlogImageSlot = "blogCover";
+export type ImageSlot = CaseImageSlot | BlogImageSlot;
 
 interface SlotSpec {
   width: number;
@@ -16,6 +19,8 @@ interface SlotSpec {
   fit: "cover" | "contain";
   /** Filename prefix/suffix pattern, mirroring the existing public/cases/ naming. */
   name: (key: string, hash: string) => string;
+  /** Куда кладётся файл: /cases для кейсов, /blog для статей. */
+  dir: string;
   label: string;
   hint: string;
 }
@@ -25,12 +30,13 @@ interface SlotSpec {
  * they are decorative squares. The lightbox slides are letterboxed instead, so a
  * screenshot of any aspect ratio keeps every pixel of its content.
  */
-export const IMAGE_SLOTS: Record<CaseImageSlot, SlotSpec> = {
+export const IMAGE_SLOTS: Record<ImageSlot, SlotSpec> = {
   cover: {
     width: 1000,
     height: 1000,
     fit: "cover",
     name: (key, hash) => `case-${key}-${hash}.webp`,
+    dir: "/cases",
     label: "Обложка карточки",
     hint: "Квадрат 1000×1000. Обрезается по центру.",
   },
@@ -39,6 +45,7 @@ export const IMAGE_SLOTS: Record<CaseImageSlot, SlotSpec> = {
     height: 1080,
     fit: "contain",
     name: (key, hash) => `detail-${key}-${hash}.webp`,
+    dir: "/cases",
     label: "Слайд для лайтбокса",
     hint: "16:9, 1920×1080. Вписывается целиком, ничего не обрезается.",
   },
@@ -47,14 +54,27 @@ export const IMAGE_SLOTS: Record<CaseImageSlot, SlotSpec> = {
     height: 1600,
     fit: "contain",
     name: (key, hash) => `detail-${key}-${hash}-mobile.webp`,
+    dir: "/cases",
     label: "Слайд для телефона",
     hint: "9:16, 900×1600. Вписывается целиком. Если не загрузить — возьмём обычный слайд.",
+  },
+  // Геометрия повторяет рисованные SVG-обложки первых статей (1200×750):
+  // список показывает их в 16:10, страница статьи кадрирует до 16:9.
+  blogCover: {
+    width: 1200,
+    height: 750,
+    fit: "cover",
+    name: (key, hash) => `post-${key}-${hash}.webp`,
+    dir: "/blog",
+    label: "Обложка статьи",
+    hint: "16:10, 1200×750. Обрезается по центру. Показывается в списке блога и над текстом.",
   },
 };
 
 /** Public path of an asset inside the export (also its repo path minus `public/`). */
 export const CASES_DIR = "/cases";
 export const CASES_REPO_DIR = "public/cases";
+export const BLOG_REPO_DIR = "public/blog";
 
 const QUALITY_STEPS = [0.86, 0.78, 0.7];
 const MAX_BYTES = 600 * 1024;
@@ -62,7 +82,7 @@ const MAX_BYTES = 600 * 1024;
 export interface ProcessedImage {
   /** Content hash — the final filename is derived from it plus the case key. */
   hash: string;
-  slot: CaseImageSlot;
+  slot: ImageSlot;
   blob: Blob;
   /** Object URL for previewing before publish — revoke when done. */
   previewUrl: string;
@@ -122,22 +142,20 @@ async function shortHash(blob: Blob): Promise<string> {
  * name means a replaced image never collides with a cached copy of the old one.
  */
 export function assetPaths(
-  slot: CaseImageSlot,
-  caseKey: string,
+  slot: ImageSlot,
+  key: string,
   hash: string,
 ): { path: string; repoPath: string } {
-  const name = IMAGE_SLOTS[slot].name(caseKey, hash);
-  return { path: `${CASES_DIR}/${name}`, repoPath: `${CASES_REPO_DIR}/${name}` };
+  const spec = IMAGE_SLOTS[slot];
+  const name = spec.name(key, hash);
+  return { path: `${spec.dir}/${name}`, repoPath: `public${spec.dir}/${name}` };
 }
 
 /**
  * Convert a picked file into the final WebP asset for one slot. Quality steps
  * down until the file is a sane size for a landing page.
  */
-export async function processImage(
-  file: File,
-  slot: CaseImageSlot,
-): Promise<ProcessedImage> {
+export async function processImage(file: File, slot: ImageSlot): Promise<ProcessedImage> {
   if (!file.type.startsWith("image/")) {
     throw new Error(`«${file.name}» — это не картинка`);
   }

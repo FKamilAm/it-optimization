@@ -153,7 +153,9 @@ function Row({
       <div className="min-w-0 flex-1">
         <span className="block truncate text-sm font-medium">{item.title}</span>
         <span className="text-muted-foreground mt-0.5 block truncate text-xs">
-          {item.label} · удалён {formatDate(item.deletedAt)}
+          {/* Без «удалён»: подписи приходят с сервера и бывают женского рода
+              («Статья»), а согласовать род на клиенте не по чему. */}
+          {item.label} · в корзине с {formatDate(item.deletedAt)}
         </span>
       </div>
 

@@ -6,9 +6,9 @@ import { useTranslations } from "next-intl";
 import { ArrowUpRight, ChevronRight, Clock } from "lucide-react";
 import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { ContactSection } from "@/components/sections/contact-section";
-import { BLOG_POSTS } from "@/lib/constants";
+import { formatPostDate, formatReadingTime, type BlogPost } from "@/lib/blog";
 
-export function BlogList() {
+export function BlogList({ posts }: { posts: BlogPost[] }) {
   const t = useTranslations("blog");
 
   return (
@@ -37,8 +37,8 @@ export function BlogList() {
           </Reveal>
 
           <StaggerReveal className="mt-14 grid grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 md:gap-10 xl:grid-cols-3">
-            {BLOG_POSTS.map((post) => (
-              <article key={post.key} className="h-full">
+            {posts.map((post) => (
+              <article key={post.slug} className="h-full">
                 <Link
                   href={`/blog/${post.slug}/`}
                   className="group border-border bg-background hover:border-accent focus-visible:outline-accent flex h-full flex-col overflow-hidden rounded-2xl border transition-[border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_0_38px_rgba(180,224,45,0.22)] focus-visible:outline-2 focus-visible:outline-offset-2"
@@ -46,31 +46,31 @@ export function BlogList() {
                   <div className="bg-surface relative aspect-[16/10] overflow-hidden">
                     <Image
                       src={post.cover}
-                      alt={t(`posts.${post.key}.title`)}
+                      alt={post.title}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                       className="object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                     />
                     <span className="absolute top-4 left-4 rounded-full border border-white/15 bg-black/40 px-3 py-1 text-xs font-medium tracking-[0.12em] text-white uppercase backdrop-blur">
-                      {t(`posts.${post.key}.category`)}
+                      {post.category}
                     </span>
                   </div>
 
                   <div className="flex flex-1 flex-col p-7 md:p-8">
                     <div className="text-muted-foreground flex items-center gap-3 text-sm">
-                      <span>{t(`posts.${post.key}.date`)}</span>
+                      <span>{formatPostDate(post.publishedAt)}</span>
                       <span className="text-border">•</span>
                       <span className="inline-flex items-center gap-1.5">
                         <Clock className="h-3.5 w-3.5" aria-hidden="true" />
-                        {t(`posts.${post.key}.readingTime`)}
+                        {formatReadingTime(post.readingTime)}
                       </span>
                     </div>
 
                     <h2 className="heading-subsection text-foreground mt-4">
-                      {t(`posts.${post.key}.title`)}
+                      {post.title}
                     </h2>
                     <p className="body-base text-muted-foreground mt-3 flex-1">
-                      {t(`posts.${post.key}.excerpt`)}
+                      {post.excerpt}
                     </p>
 
                     <span className="text-foreground mt-6 inline-flex items-center gap-1.5 text-base font-medium">

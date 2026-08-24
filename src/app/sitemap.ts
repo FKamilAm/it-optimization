@@ -1,13 +1,14 @@
 import type { MetadataRoute } from "next";
+import { getAllPosts } from "@/lib/blog";
 import { getAllCases } from "@/lib/cases";
-import { BLOG_POSTS, SERVICE_PAGES } from "@/lib/constants";
+import { SERVICE_PAGES } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const dynamic = "force-static";
 
 /**
  * `lastmod` проставляется только там, где под ним есть настоящая дата: кейсы
- * приносят свой updatedAt из панели, у статей дата лежит в BLOG_POSTS. Раньше
+ * приносят свой updatedAt из панели, статьи — свой из content/blog.json. Раньше
  * во все 24 URL подставлялось время сборки — то есть каждый деплой объявлял
  * все страницы сразу обновлёнными. Поисковики такой lastmod распознают и
  * перестают ему верить по всему сайту, поэтому у страниц без даты (главная,
@@ -16,7 +17,7 @@ export const dynamic = "force-static";
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = getSiteUrl();
-  const cases = await getAllCases();
+  const [cases, posts] = await Promise.all([getAllCases(), getAllPosts()]);
 
   const latest = (dates: string[]): Date | undefined => {
     const times = dates.map((value) => new Date(value).getTime()).filter(Number.isFinite);
@@ -24,7 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   };
 
   const casesUpdated = latest(cases.map((item) => item.updatedAt));
-  const blogUpdated = latest(BLOG_POSTS.map((post) => post.updatedAt));
+  const blogUpdated = latest(posts.map((post) => post.updatedAt));
 
   const servicePages: MetadataRoute.Sitemap = Object.values(SERVICE_PAGES).map(
     (slug) => ({
@@ -34,7 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }),
   );
 
-  const blogPosts: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
+  const blogPosts: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${siteUrl}/blog/${post.slug}/`,
     lastModified: new Date(post.updatedAt),
     changeFrequency: "monthly",

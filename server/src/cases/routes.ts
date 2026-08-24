@@ -3,7 +3,7 @@ import { z } from "zod";
 import { audit } from "../audit.js";
 import { requireTeam } from "../auth/guard.js";
 import { processUpload, SLOTS, type AssetSlot } from "../assets/images.js";
-import { CASES_SCOPE, currentRevision, prisma } from "../db.js";
+import { CASES_SCOPE, bumpRevision, currentRevision, prisma } from "../db.js";
 import { env } from "../env.js";
 import { replaceCasesBody, toDto } from "./dto.js";
 
@@ -17,20 +17,6 @@ async function listCases() {
     include: WITH_ASSETS,
   });
   return items.map(toDto);
-}
-
-/**
- * Ревизия растёт на каждой записи. Панель присылает ту, на которой открылась;
- * если значение уже другое — кто-то успел отредактировать контент, и мы
- * отказываем вместо того, чтобы затереть чужую правку.
- */
-async function bumpRevision(): Promise<number> {
-  const row = await prisma.contentRevision.upsert({
-    where: { scope: CASES_SCOPE },
-    update: { value: { increment: 1 } },
-    create: { scope: CASES_SCOPE, value: 1 },
-  });
-  return row.value;
 }
 
 export async function caseRoutes(app: FastifyInstance): Promise<void> {

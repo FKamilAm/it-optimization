@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { SiteShell } from "@/components/layout/site-shell";
 import { BlogList } from "@/components/blog/blog-list";
+import { getAllPosts } from "@/lib/blog";
 import { SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -26,10 +27,14 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  // Статьи читает серверный компонент и передаёт вниз пропсами — клиент не
+  // импортирует JSON, и источник данных однажды сможет стать базой.
+  const posts = await getAllPosts();
+
   return (
     <SiteShell>
-      <BlogList />
+      <BlogList posts={posts} />
     </SiteShell>
   );
 }

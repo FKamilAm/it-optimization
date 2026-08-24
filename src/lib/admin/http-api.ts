@@ -1,5 +1,7 @@
+import type { BlogPost } from "@/lib/blog";
 import type { CaseItem } from "@/lib/cases";
 import { apiFetch, readApiError } from "./auth";
+import type { BlogApi, BlogPublishInput, BlogPublishResult } from "./blog-api";
 import type {
   CasesApi,
   CasesPublishInput,
@@ -104,6 +106,99 @@ export function httpCasesApi(): CasesApi {
       // репозиторию), это не повод бросать ошибку: правки уже в базе, и
       // потерять достигнутую версию нельзя — иначе повторная попытка упрётся в
       // конфликт версий. Возвращаем успех с предупреждением.
+      return {
+        version,
+        changeUrl: result.commitUrl,
+        buildUrl: result.buildUrl,
+        warning: result.published ? undefined : result.reason,
+      };
+    },
+  };
+}
+
+/** Та же реализация для статей блога: сохранить список, залить обложки, собрать. */
+
+/** У сервера статья дополнительно несёт `status`; сайту он не нужен. */
+interface ServerPost extends BlogPost {
+  status?: "draft" | "published";
+}
+
+function toBlogPost({ status: _status, ...post }: ServerPost): BlogPost {
+  return post;
+}
+
+export function httpBlogApi(): BlogApi {
+  return {
+    sourceLabel: "база данных",
+
+    async load() {
+      const response = await apiFetch("/posts");
+      if (!response.ok) {
+        throw new Error(await readApiError(response, "Не удалось загрузить статьи"));
+      }
+      const body = (await response.json()) as { posts: ServerPost[]; version: string };
+      return { posts: body.posts.map(toBlogPost), version: body.version };
+    },
+
+    async publish(input: BlogPublishInput): Promise<BlogPublishResult> {
+      // 1. Список целиком — порядок статей в блоге тоже контент.
+      const saved = await apiFetch("/posts", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          posts: input.posts.map((post) => ({
+            id: post.id,
+            slug: post.slug,
+            status: "published",
+            title: post.title,
+            excerpt: post.excerpt,
+            category: post.category,
+            lead: post.lead,
+            metaTitle: post.metaTitle,
+            metaDescription: post.metaDescription,
+            readingTime: post.readingTime,
+            sections: post.sections,
+            takeaways: post.takeaways,
+            services: post.services,
+            publishedAt: post.publishedAt,
+          })),
+          version: input.baseVersion,
+        }),
+      });
+
+      if (!saved.ok) {
+        throw new Error(await readApiError(saved, "Не удалось сохранить изменения"));
+      }
+      let { version } = (await saved.json()) as { version: string };
+
+      // 2. Новые обложки. Сервер пересобирает их через sharp — присланному
+      //    файлу доверять нельзя, даже если панель его уже обработала.
+      for (const upload of input.uploads) {
+        const form = new FormData();
+        form.append("file", upload.blob, upload.path.split("/").pop() || "cover.webp");
+
+        const uploaded = await apiFetch(`/posts/${upload.postId}/cover`, {
+          method: "POST",
+          body: form,
+        });
+        if (!uploaded.ok) {
+          throw new Error(await readApiError(uploaded, "Не удалось загрузить обложку"));
+        }
+        ({ version } = (await uploaded.json()) as { version: string });
+      }
+
+      // 3. Снапшот уезжает в репозиторий, дальше пересобирается статика.
+      const published = await apiFetch("/posts/publish", { method: "POST" });
+      if (!published.ok) {
+        throw new Error(await readApiError(published, "Не удалось опубликовать"));
+      }
+      const result = (await published.json()) as {
+        published: boolean;
+        reason?: string;
+        commitUrl?: string;
+        buildUrl?: string;
+      };
+
       return {
         version,
         changeUrl: result.commitUrl,

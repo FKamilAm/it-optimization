@@ -44,6 +44,21 @@ export const PUBLIC_DIR = "/cases";
 /** Путь внутри репозитория сайта — туда снапшот кладёт файлы при публикации. */
 export const REPO_DIR = "public/cases";
 
+/**
+ * Обложка статьи блога. Слот один, поэтому отдельного enum'а у неё нет —
+ * геометрия повторяет рисованные SVG первых статей (1200×750): список блога
+ * показывает их в 16:10, страница статьи кадрирует до 16:9.
+ */
+export const BLOG_COVER: SlotSpec = {
+  width: 1200,
+  height: 750,
+  fit: "cover",
+  name: (slug, hash) => `post-${slug}-${hash}.webp`,
+};
+
+export const BLOG_PUBLIC_DIR = "/blog";
+export const BLOG_REPO_DIR = "public/blog";
+
 export interface ProcessedAsset {
   path: string;
   fileName: string;
@@ -64,8 +79,23 @@ export async function processUpload(
   slot: AssetSlot,
   slug: string,
 ): Promise<ProcessedAsset> {
-  const spec = SLOTS[slot];
+  return processTo(input, SLOTS[slot], slug, PUBLIC_DIR);
+}
 
+/** То же самое для обложки статьи: другая геометрия и другая папка. */
+export async function processCover(
+  input: Buffer,
+  slug: string,
+): Promise<ProcessedAsset> {
+  return processTo(input, BLOG_COVER, slug, BLOG_PUBLIC_DIR);
+}
+
+async function processTo(
+  input: Buffer,
+  spec: SlotSpec,
+  slug: string,
+  publicDir: string,
+): Promise<ProcessedAsset> {
   const pipeline = sharp(input, { failOn: "none" })
     .rotate() // учесть EXIF-ориентацию до ресайза
     .resize(spec.width, spec.height, {
@@ -96,7 +126,7 @@ export async function processUpload(
   await writeFile(join(env.UPLOAD_DIR, fileName), buffer);
 
   return {
-    path: `${PUBLIC_DIR}/${fileName}`,
+    path: `${publicDir}/${fileName}`,
     fileName,
     hash,
     width: spec.width,

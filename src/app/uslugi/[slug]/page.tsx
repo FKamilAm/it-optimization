@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { SiteShell } from "@/components/layout/site-shell";
 import { ServicePageContent } from "@/components/service-page/service-page-content";
+import { getPostsForService } from "@/lib/blog";
 import { getAllCases } from "@/lib/cases";
 import { SERVICE_PAGES, SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
@@ -132,7 +133,11 @@ export default async function ServicePage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <SiteShell>
-        <ServicePageContent pageKey={pageKey} cases={await getAllCases()} />
+        <ServicePageContent
+          pageKey={pageKey}
+          cases={await getAllCases()}
+          articles={await getPostsForService(pageKey)}
+        />
       </SiteShell>
     </>
   );

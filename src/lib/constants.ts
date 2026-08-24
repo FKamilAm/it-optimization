@@ -215,49 +215,6 @@ export const SERVICE_NAV = [
 // кроме этой витрины он не задевает.
 export const HOME_SERVICE_KEYS = ["corporate", "platforms", "telegram", "ai"] as const;
 
-// Blog posts, newest first. `key` maps to the blog.posts.<key> catalog block;
-// `slug` is the /blog/<slug> page URL; `cover` is the committed hero artwork.
-//
-// `publishedAt` / `updatedAt` — ISO-даты (день, без времени). Нужны в двух
-// местах: Article-разметка без datePublished неполная для Google, а sitemap без
-// реального lastmod вынужден подставлять время сборки, то есть врать. Правки
-// текста статьи — повод обновить updatedAt вручную; это редкое событие, и
-// выводить дату из истории git на сборке нельзя — на CI её нет (checkout
-// делается с depth 1).
-export const BLOG_POSTS = [
-  {
-    key: "securityAudit",
-    slug: "audit-bezopasnosti-sajtov",
-    cover: "/blog/audit-bezopasnosti-sajtov.svg",
-    publishedAt: "2026-07-18",
-    updatedAt: "2026-08-07",
-  },
-  {
-    key: "messengers",
-    slug: "razrabotka-messendzherov",
-    cover: "/blog/razrabotka-messendzherov.svg",
-    publishedAt: "2026-07-18",
-    updatedAt: "2026-08-07",
-  },
-  {
-    key: "parsing",
-    slug: "parsing-dannyh",
-    cover: "/blog/parsing-dannyh.svg",
-    publishedAt: "2026-07-18",
-    updatedAt: "2026-08-05",
-  },
-] as const;
-
-export type BlogPost = (typeof BLOG_POSTS)[number];
-
-export function blogPostBySlug(slug: string): BlogPost | undefined {
-  return BLOG_POSTS.find((post) => post.slug === slug);
-}
-
-export function blogPostByKey(key: string): BlogPost | undefined {
-  return BLOG_POSTS.find((post) => post.key === key);
-}
-
 // Contextual internal links between service pages — feeds the "смежные услуги"
 // block and strengthens the internal link graph for SEO.
 export const RELATED_SERVICES: Record<string, string[]> = {
@@ -282,51 +239,3 @@ export const RELATED_SERVICES: Record<string, string[]> = {
   security: ["support", "commercialAudit", "corporate", "platforms"],
   messenger: ["platforms", "mobile", "telegram", "integrations"],
 };
-
-// Service page → relevant blog posts (topical cross-linking).
-//
-// Каждая из двух статей теперь имеет профильную услугу, поэтому связи сузились:
-// раньше статья про безопасность вела на корпоративные сайты и B2B просто
-// потому, что больше вести было некуда, а статья про мессенджеры — на
-// Telegram-ботов, хотя это принципиально другой продукт (в FAQ услуги это
-// прямо объясняется). Лишние пары убраны: обратная карта SERVICES_BY_ARTICLE
-// строится отсюда, и каждая неточность здесь становится неточной ссылкой в
-// конце статьи.
-export const RELATED_ARTICLES: Record<string, string[]> = {
-  integrations: ["parsing"],
-  security: ["securityAudit"],
-  support: ["securityAudit"],
-  messenger: ["messengers"],
-  mobile: ["messengers"],
-};
-
-/**
- * Обратная связь: статья → услуги, о которых она.
- *
- * Выводится из RELATED_ARTICLES, а не задаётся отдельной таблицей: связь между
- * статьёй и услугой одна и та же в обе стороны, и два списка рано или поздно
- * разошлись бы. Порядок услуг внутри статьи повторяет порядок SERVICE_NAV,
- * чтобы он не зависел от того, как перечислены ключи в RELATED_ARTICLES.
- *
- * Зачем вообще: статьи собирают 79% показов сайта, но до этого не вели ни на
- * одну коммерческую страницу — человек, пришедший по «парсингу базы данных»,
- * дочитывал и уходил, не узнав, что это можно заказать.
- */
-export const SERVICES_BY_ARTICLE: Record<string, string[]> = (() => {
-  const order = new Map<string, number>(
-    SERVICE_NAV.map(({ key }, index) => [key, index]),
-  );
-  const byArticle: Record<string, string[]> = {};
-
-  for (const [serviceKey, articleKeys] of Object.entries(RELATED_ARTICLES)) {
-    for (const articleKey of articleKeys) {
-      (byArticle[articleKey] ??= []).push(serviceKey);
-    }
-  }
-
-  for (const services of Object.values(byArticle)) {
-    services.sort((a, b) => (order.get(a) ?? 0) - (order.get(b) ?? 0));
-  }
-
-  return byArticle;
-})();

@@ -21,6 +21,7 @@ export const ADMIN_REPO = {
 };
 
 export const CASES_JSON_PATH = "content/cases.json";
+export const BLOG_JSON_PATH = "content/blog.json";
 export const TOKEN_STORAGE_KEY = "itopt-admin-token";
 
 export interface CommitFile {
@@ -100,18 +101,18 @@ export interface RepoState<T> {
   headSha: string;
 }
 
-/** Read cases.json straight from the branch (never a cached copy of the site). */
-export async function readCases<T>(token: string): Promise<RepoState<T>> {
+/** Read a content file straight from the branch (never a cached copy of the site). */
+export async function readJson<T>(token: string, path: string): Promise<RepoState<T>> {
   const ref = await gh<{ object: { sha: string } }>(
     token,
     `/git/ref/heads/${ADMIN_REPO.branch}`,
   );
   const file = await gh<{ content: string; encoding: string }>(
     token,
-    `/contents/${CASES_JSON_PATH}?ref=${ADMIN_REPO.branch}`,
+    `/contents/${path}?ref=${ADMIN_REPO.branch}`,
   );
   if (file.encoding !== "base64") {
-    throw new Error(`Неожиданная кодировка ${CASES_JSON_PATH}: ${file.encoding}`);
+    throw new Error(`Неожиданная кодировка ${path}: ${file.encoding}`);
   }
   return {
     data: JSON.parse(decodeBase64Utf8(file.content)) as T,

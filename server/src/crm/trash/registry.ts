@@ -224,6 +224,36 @@ export const TRASH = {
       await prisma.case.delete({ where: { id } });
     },
   },
+  posts: {
+    label: "Статья",
+    notes: null,
+    list: async () =>
+      (
+        await prisma.post.findMany({
+          where: deleted,
+          select: { id: true, title: true, slug: true, deletedAt: true },
+          orderBy: newestFirst,
+        })
+      ).map((row) => ({
+        id: row.id,
+        title: row.title || row.slug,
+        deletedAt: row.deletedAt!,
+      })),
+    restore: async (id) => {
+      await prisma.post.update({ where: { id }, data: { deletedAt: null } });
+    },
+    purge: async (before) => {
+      const rows = await prisma.post.findMany({
+        where: { deletedAt: { lt: before } },
+        select: { id: true },
+      });
+      await prisma.post.deleteMany({ where: { id: { in: rows.map((r) => r.id) } } });
+      return rows.map((r) => r.id);
+    },
+    purgeOne: async (id) => {
+      await prisma.post.delete({ where: { id } });
+    },
+  },
 } satisfies Record<string, TrashModel>;
 
 export type TrashEntity = keyof typeof TRASH;

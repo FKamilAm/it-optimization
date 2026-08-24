@@ -7,24 +7,23 @@ import { ArrowLeft, ArrowUpRight, Check, ChevronRight, Clock } from "lucide-reac
 import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { ContactSection } from "@/components/sections/contact-section";
 import { ServiceCard } from "@/components/sections/service-card";
-import { BLOG_POSTS, SERVICES_BY_ARTICLE } from "@/lib/constants";
+import { formatPostDate, formatReadingTime, type BlogPost } from "@/lib/blog";
 import { cn } from "@/lib/utils";
 
-interface Section {
-  heading: string;
-  body: string[];
-}
-
-export function BlogArticle({ postKey }: { postKey: string }) {
+export function BlogArticle({
+  post,
+  related,
+}: {
+  post: BlogPost;
+  /** Остальные статьи блога — блок «Читайте также». */
+  related: BlogPost[];
+}) {
   const t = useTranslations("blog");
-  const p = useTranslations(`blog.posts.${postKey}`);
 
-  const post = BLOG_POSTS.find((item) => item.key === postKey);
-  const cover = post?.cover;
-  const sections = p.raw("sections") as Section[];
-  const takeaways = (p.raw("takeaways") as string[] | undefined) ?? [];
-  const related = BLOG_POSTS.filter((item) => item.key !== postKey);
-  const services = SERVICES_BY_ARTICLE[postKey] ?? [];
+  const { cover, sections, takeaways } = post;
+  // Услуги, о которых статья, теперь свойство самой статьи: связь правится в
+  // панели, а не двумя картами в константах.
+  const services = post.services;
 
   return (
     <>
@@ -51,7 +50,7 @@ export function BlogArticle({ postKey }: { postKey: string }) {
               </li>
               <ChevronRight className="text-foreground/30 h-4 w-4" aria-hidden="true" />
               <li aria-current="page" className="text-foreground/80">
-                {p("category")}
+                {post.category}
               </li>
             </ol>
           </nav>
@@ -60,21 +59,21 @@ export function BlogArticle({ postKey }: { postKey: string }) {
             <Reveal>
               <div className="text-muted-foreground flex items-center gap-3 text-sm">
                 <span className="border-border bg-muted text-foreground rounded-full border px-3 py-1 text-xs font-medium tracking-[0.12em] uppercase">
-                  {p("category")}
+                  {post.category}
                 </span>
-                <span>{p("date")}</span>
+                <span>{formatPostDate(post.publishedAt)}</span>
                 <span className="text-border">•</span>
                 <span className="inline-flex items-center gap-1.5">
                   <Clock className="h-3.5 w-3.5" aria-hidden="true" />
-                  {p("readingTime")}
+                  {formatReadingTime(post.readingTime)}
                 </span>
               </div>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="heading-display mt-6">{p("title")}</h1>
+              <h1 className="heading-display mt-6">{post.title}</h1>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="body-large text-muted-foreground mt-8">{p("lead")}</p>
+              <p className="body-large text-muted-foreground mt-8">{post.lead}</p>
             </Reveal>
           </div>
 
@@ -83,7 +82,7 @@ export function BlogArticle({ postKey }: { postKey: string }) {
               <div className="border-border bg-surface relative mx-auto mt-12 aspect-[16/9] w-full max-w-5xl overflow-hidden rounded-2xl border">
                 <Image
                   src={cover}
-                  alt={p("title")}
+                  alt={post.title}
                   fill
                   sizes="(max-width: 896px) 100vw, 896px"
                   className="object-cover"
@@ -222,7 +221,7 @@ export function BlogArticle({ postKey }: { postKey: string }) {
             </Reveal>
             <StaggerReveal className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
               {related.map((item) => (
-                <div key={item.key} className="h-full">
+                <div key={item.slug} className="h-full">
                   <Link
                     href={`/blog/${item.slug}/`}
                     className="group border-border bg-background hover:border-accent focus-visible:outline-accent flex h-full gap-5 rounded-2xl border p-5 transition-[border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_0_38px_rgba(180,224,45,0.22)] focus-visible:outline-2 focus-visible:outline-offset-2"
@@ -230,7 +229,7 @@ export function BlogArticle({ postKey }: { postKey: string }) {
                     <div className="bg-surface relative aspect-square w-28 shrink-0 overflow-hidden rounded-xl">
                       <Image
                         src={item.cover}
-                        alt={t(`posts.${item.key}.title`)}
+                        alt={item.title}
                         fill
                         sizes="112px"
                         className="object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.08] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
@@ -238,10 +237,10 @@ export function BlogArticle({ postKey }: { postKey: string }) {
                     </div>
                     <div className="flex flex-col justify-center">
                       <span className="text-muted-foreground text-xs font-medium tracking-[0.12em] uppercase">
-                        {t(`posts.${item.key}.category`)}
+                        {item.category}
                       </span>
                       <h3 className="text-foreground mt-2 text-lg font-semibold">
-                        {t(`posts.${item.key}.title`)}
+                        {item.title}
                       </h3>
                       <span className="text-foreground mt-3 inline-flex items-center gap-1.5 text-sm font-medium">
                         <span className="relative">

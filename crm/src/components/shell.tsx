@@ -58,7 +58,7 @@ const SITE_URL = (import.meta.env.VITE_SITE_URL ?? "https://it-optimization.ru")
  */
 const EXTERNAL = [
   { href: `${SITE_URL}/`, label: "Сайт", icon: Globe, leadsOnly: true },
-  { href: `${SITE_URL}/panel/`, label: "Кейсы сайта", icon: Images, leadsOnly: false },
+  { href: `${SITE_URL}/panel/`, label: "Кейсы и блог", icon: Images, leadsOnly: false },
 ] as const;
 
 export function Shell() {

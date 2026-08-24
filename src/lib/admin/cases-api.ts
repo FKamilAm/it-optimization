@@ -1,5 +1,5 @@
 import type { CaseItem } from "@/lib/cases";
-import { CASES_JSON_PATH, actionsUrl, commitFiles, commitUrl, readCases } from "./github";
+import { CASES_JSON_PATH, actionsUrl, commitFiles, commitUrl, readJson } from "./github";
 
 /**
  * Шов записи для панели /admin.
@@ -66,7 +66,7 @@ export function githubCasesApi(token: string): CasesApi {
     sourceLabel: CASES_JSON_PATH,
 
     async load() {
-      const state = await readCases<CaseItem[]>(token);
+      const state = await readJson<CaseItem[]>(token, CASES_JSON_PATH);
       return { cases: state.data, version: state.headSha };
     },
 

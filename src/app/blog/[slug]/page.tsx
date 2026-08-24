@@ -3,13 +3,15 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { SiteShell } from "@/components/layout/site-shell";
 import { BlogArticle } from "@/components/blog/blog-article";
-import { BLOG_POSTS, blogPostBySlug, SITE } from "@/lib/constants";
+import { getAllPosts, getPostBySlug, otherPosts } from "@/lib/blog";
+import { SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const dynamicParams = false;
 
-export function generateStaticParams() {
-  return BLOG_POSTS.map((post) => ({ slug: post.slug }));
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 interface PageProps {
@@ -18,20 +20,19 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) return {};
 
-  const p = await getTranslations(`blog.posts.${post.key}`);
   const siteUrl = getSiteUrl();
   const url = `${siteUrl}/blog/${slug}/`;
 
   return {
-    title: p("metaTitle"),
-    description: p("metaDescription"),
+    title: post.metaTitle,
+    description: post.metaDescription,
     alternates: { canonical: url },
     openGraph: {
-      title: p("metaTitle"),
-      description: p("metaDescription"),
+      title: post.metaTitle,
+      description: post.metaDescription,
       url,
       type: "article",
       publishedTime: post.publishedAt,
@@ -45,10 +46,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
-  const post = blogPostBySlug(slug);
+  const posts = await getAllPosts();
+  const post = posts.find((item) => item.slug === slug);
   if (!post) notFound();
 
-  const p = await getTranslations(`blog.posts.${post.key}`);
   const t = await getTranslations("blog");
   const siteUrl = getSiteUrl();
   const url = `${siteUrl}/blog/${slug}/`;
@@ -57,9 +58,9 @@ export default async function BlogPostPage({ params }: PageProps) {
     {
       "@context": "https://schema.org",
       "@type": "Article",
-      headline: p("title"),
-      description: p("metaDescription"),
-      articleSection: p("category"),
+      headline: post.title,
+      description: post.metaDescription,
+      articleSection: post.category,
       image: `${siteUrl}${post.cover}`,
       url,
       datePublished: post.publishedAt,
@@ -92,7 +93,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         {
           "@type": "ListItem",
           position: 3,
-          name: p("title"),
+          name: post.title,
           item: url,
         },
       ],
@@ -106,7 +107,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <SiteShell>
-        <BlogArticle postKey={post.key} />
+        <BlogArticle post={post} related={otherPosts(posts, post.slug)} />
       </SiteShell>
     </>
   );

@@ -86,7 +86,7 @@ curl https://api.it-optimization.ru/health          # {"ok":true}
 ```bash
 CO="docker compose -f docker-compose.prod.yml"
 $CO exec api npx prisma migrate deploy    # таблицы (при старте накатываются и сами)
-$CO exec api npm run seed:prod            # 16 кейсов из content/cases.json
+$CO exec api npm run seed:prod            # кейсы и статьи из content/*.json
 $CO exec -it api npm run user:create:prod -- ТВОЯ_ПОЧТА owner
 ```
 
