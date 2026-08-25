@@ -414,9 +414,6 @@ export function BlogPanel({
     <div className="bg-muted/40 min-h-screen pb-32">
       <PanelHeader
         title="Блог"
-        subtitle={`${drafts.length} шт. · порядок в списке — порядок на /blog${
-          userEmail ? ` · ${userEmail}` : ""
-        }`}
         tab={tab}
         onTab={onTab}
         loading={loading}
@@ -428,6 +425,12 @@ export function BlogPanel({
       />
 
       <main className="mx-auto max-w-5xl px-4 py-6 sm:px-5 sm:py-8">
+        {/* Раньше эта строка была подписью в шапке; там теперь переключатель. */}
+        <p className="text-muted-foreground mb-5 text-sm">
+          {drafts.length} шт. · порядок в списке — порядок на /blog
+          {userEmail && ` · ${userEmail}`}
+        </p>
+
         {error && <ErrorNotice message={error} />}
         {published && !dirty && <PublishNotice result={published} />}
         {dirty && problems.length > 0 && <ProblemsNotice problems={problems} />}

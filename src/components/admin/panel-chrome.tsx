@@ -34,7 +34,6 @@ const TABS: { id: PanelTab; label: string }[] = [
 
 export function PanelHeader({
   title,
-  subtitle,
   tab,
   onTab,
   loading,
@@ -44,8 +43,8 @@ export function PanelHeader({
   onPublish,
   onLogout,
 }: {
+  /** Название раздела. Видно только скринридерам — в шапке слева переключатель. */
   title: string;
-  subtitle: string;
   tab: PanelTab;
   onTab: (tab: PanelTab) => void;
   loading: boolean;
@@ -60,64 +59,96 @@ export function PanelHeader({
     // шапку с кнопками публикации.
     <header className="border-border bg-background/95 sticky top-0 z-50 border-b backdrop-blur">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-2 px-4 py-3 sm:gap-3 sm:px-5 sm:py-4">
-        <div className="mr-auto min-w-0">
-          <h1 className="font-display text-lg leading-tight">{title}</h1>
-          <p className="text-muted-foreground text-sm">{subtitle}</p>
-        </div>
+        {/* Заголовок остаётся в разметке: страница без h1 — это провал по
+            доступности, а показывать его незачем — раздел виден по переключателю. */}
+        <h1 className="sr-only">{title}</h1>
 
-        {/* Переключатель разделов. Оба раздела живут в памяти одновременно,
-            поэтому переход сюда-обратно не теряет незаконченную правку. */}
-        <div className="border-border bg-muted/60 order-last flex w-full rounded-full border p-1 sm:order-none sm:w-auto">
-          {TABS.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => onTab(item.id)}
-              aria-current={tab === item.id ? "page" : undefined}
-              className={cn(
-                "h-8 flex-1 cursor-pointer rounded-full px-4 text-sm transition-colors sm:flex-none",
-                tab === item.id
-                  ? "bg-background text-foreground font-medium shadow-sm"
-                  : "text-muted-foreground hover:text-foreground",
-              )}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
+        <TabSwitch tab={tab} onTab={onTab} />
 
-        <button
-          type="button"
-          onClick={onRefresh}
-          disabled={loading || publishing}
-          className="border-border hover:border-foreground inline-flex h-10 cursor-pointer items-center gap-2 rounded-full border px-4 text-sm transition-colors disabled:opacity-50"
-        >
-          <RefreshCw className={cn("h-4 w-4", loading && "animate-spin")} />
-          <span className="hidden sm:inline">Обновить</span>
-        </button>
-        <button
-          type="button"
-          onClick={onLogout}
-          className="border-border hover:border-foreground inline-flex h-10 cursor-pointer items-center gap-2 rounded-full border px-4 text-sm transition-colors"
-        >
-          <LogOut className="h-4 w-4" />
-          <span className="hidden sm:inline">Выйти</span>
-        </button>
-        <button
-          type="button"
-          onClick={onPublish}
-          disabled={publishDisabled}
-          className="bg-foreground text-background hover:bg-accent hover:text-accent-foreground inline-flex h-10 cursor-pointer items-center gap-2 rounded-full px-5 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          {publishing ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
-          ) : (
-            <Rocket className="h-4 w-4" />
-          )}
-          Опубликовать
-        </button>
+        <div className="ml-auto flex items-center gap-2 sm:gap-3">
+          <button
+            type="button"
+            onClick={onRefresh}
+            disabled={loading || publishing}
+            className="border-border hover:border-foreground inline-flex h-10 cursor-pointer items-center gap-2 rounded-full border px-4 text-sm transition-colors disabled:opacity-50"
+          >
+            <RefreshCw className={cn("h-4 w-4", loading && "animate-spin")} />
+            <span className="hidden sm:inline">Обновить</span>
+          </button>
+          <button
+            type="button"
+            onClick={onLogout}
+            className="border-border hover:border-foreground inline-flex h-10 cursor-pointer items-center gap-2 rounded-full border px-4 text-sm transition-colors"
+          >
+            <LogOut className="h-4 w-4" />
+            <span className="hidden sm:inline">Выйти</span>
+          </button>
+          <button
+            type="button"
+            onClick={onPublish}
+            disabled={publishDisabled}
+            className="bg-foreground text-background hover:bg-accent hover:text-accent-foreground inline-flex h-10 cursor-pointer items-center gap-2 rounded-full px-5 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            {publishing ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Rocket className="h-4 w-4" />
+            )}
+            Опубликовать
+          </button>
+        </div>
       </div>
     </header>
+  );
+}
+
+/**
+ * Переключатель разделов. Оба раздела живут в памяти одновременно, поэтому
+ * переход сюда-обратно не теряет незаконченную правку.
+ *
+ * Ширина контейнера и половинок задана жёстко, а не по длине надписи: «Кейсы» и
+ * «Блог» разной длины, и подвижная вёрстка дёргала бы кнопки шапки при каждом
+ * переключении. По той же причине активный раздел подсвечивает не фон кнопки, а
+ * отдельная плашка: её можно двигать transform'ом, то есть плавно и без
+ * перерасчёта раскладки. Framer Motion с `layoutId` здесь не годится — обе
+ * шапки смонтированы разом, и общий layoutId дал бы два «одинаковых» элемента.
+ */
+function TabSwitch({ tab, onTab }: { tab: PanelTab; onTab: (next: PanelTab) => void }) {
+  const active = Math.max(
+    0,
+    TABS.findIndex((item) => item.id === tab),
+  );
+
+  // Не `role="tablist"`: настоящие вкладки обязаны управлять tabpanel'ом и
+  // ходить стрелками, а это две кнопки переключения раздела.
+  return (
+    <div
+      role="group"
+      aria-label="Раздел панели"
+      className="border-border bg-muted/60 relative flex h-10 w-52 shrink-0 rounded-full border p-1"
+    >
+      <span
+        aria-hidden="true"
+        style={{ transform: `translateX(${active * 100}%)` }}
+        className="bg-background pointer-events-none absolute top-1 bottom-1 left-1 w-[calc(50%-0.25rem)] rounded-full shadow-sm transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
+      />
+      {TABS.map((item) => (
+        <button
+          key={item.id}
+          type="button"
+          aria-current={tab === item.id ? "page" : undefined}
+          onClick={() => onTab(item.id)}
+          className={cn(
+            "relative z-10 flex-1 cursor-pointer rounded-full text-sm transition-colors",
+            tab === item.id
+              ? "text-foreground font-medium"
+              : "text-muted-foreground hover:text-foreground",
+          )}
+        >
+          {item.label}
+        </button>
+      ))}
+    </div>
   );
 }
 
