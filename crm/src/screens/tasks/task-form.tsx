@@ -89,27 +89,23 @@ export function TaskFields({
         <Field label="Статус">
           <Select
             value={values.status}
-            onChange={(event) => set("status", event.target.value as TaskStatus)}
-          >
-            {TASK_STATUSES.map((status) => (
-              <option key={status} value={status}>
-                {TASK_STATUS_LABELS[status]}
-              </option>
-            ))}
-          </Select>
+            onChange={(next) => set("status", next as TaskStatus)}
+            options={TASK_STATUSES.map((item) => ({
+              value: item,
+              label: TASK_STATUS_LABELS[item],
+            }))}
+          />
         </Field>
 
         <Field label="Важность">
           <Select
             value={values.priority}
-            onChange={(event) => set("priority", event.target.value as TaskPriority)}
-          >
-            {TASK_PRIORITIES.map((priority) => (
-              <option key={priority} value={priority}>
-                {TASK_PRIORITY_LABELS[priority]}
-              </option>
-            ))}
-          </Select>
+            onChange={(next) => set("priority", next as TaskPriority)}
+            options={TASK_PRIORITIES.map((item) => ({
+              value: item,
+              label: TASK_PRIORITY_LABELS[item],
+            }))}
+          />
         </Field>
       </div>
 
@@ -133,15 +129,12 @@ export function TaskFields({
       <Field label="Проект" hint="Не всякая задача относится к проекту — это нормально">
         <Select
           value={values.projectId}
-          onChange={(event) => set("projectId", event.target.value)}
-        >
-          <option value="">Без проекта</option>
-          {projects.map((project) => (
-            <option key={project.id} value={project.id}>
-              {project.title}
-            </option>
-          ))}
-        </Select>
+          onChange={(projectId) => set("projectId", projectId)}
+          options={[
+            { value: "", label: "Без проекта" },
+            ...projects.map((project) => ({ value: project.id, label: project.title })),
+          ]}
+        />
       </Field>
 
       <Field label="Подробности">

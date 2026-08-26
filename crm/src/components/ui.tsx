@@ -63,9 +63,10 @@ export function Textarea(props: React.TextareaHTMLAttributes<HTMLTextAreaElement
   );
 }
 
-export function Select(props: React.SelectHTMLAttributes<HTMLSelectElement>) {
-  return <select {...props} className={cn(controlClass, props.className)} />;
-}
+// Родной <select> заменён своим: системный список не подчиняется ни шрифтам,
+// ни цветам и посреди формы выглядит чужим. Реэкспорт — чтобы места вызова не
+// меняли строку импорта.
+export { Select, type SelectOption } from "./select";
 
 export function Badge({
   tone = "neutral",

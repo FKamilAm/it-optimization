@@ -21,7 +21,15 @@ import { Board, type BoardColumn, type ColumnTone } from "@/components/board";
 import { NotesPanel } from "@/components/notes-panel";
 import { PersonChip, PersonChips } from "@/components/person-chip";
 import { MonthCalendar } from "@/components/month-calendar";
-import { Badge, Button, EmptyState, ErrorNote, Input, Modal } from "@/components/ui";
+import {
+  Badge,
+  Button,
+  EmptyState,
+  ErrorNote,
+  Input,
+  Modal,
+  Select,
+} from "@/components/ui";
 import { describeDeadline, formatDate } from "@/lib/dates";
 import { cn } from "@/lib/cn";
 import { NoteHint } from "@/components/note-hint";
@@ -329,18 +337,16 @@ export function TasksScreen() {
             </button>
           ))}
         </div>
-        <select
+        <Select
           value={developer}
-          onChange={(event) => setDeveloper(event.target.value)}
-          className="border-border bg-background rounded-lg border px-3 py-1.5 text-sm outline-none"
-        >
-          <option value="">Все исполнители</option>
-          {DEVELOPERS.map((name) => (
-            <option key={name} value={name}>
-              {name}
-            </option>
-          ))}
-        </select>
+          onChange={setDeveloper}
+          ariaLabel="Исполнитель"
+          className="w-44"
+          options={[
+            { value: "", label: "Все исполнители" },
+            ...DEVELOPERS.map((name) => ({ value: name, label: name })),
+          ]}
+        />
         <Input
           value={search}
           onChange={(event) => setSearch(event.target.value)}

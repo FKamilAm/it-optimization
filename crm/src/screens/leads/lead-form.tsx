@@ -113,30 +113,21 @@ export function LeadFields({
         <Field label="Откуда пришёл">
           <Select
             value={values.channel}
-            onChange={(event) => set("channel", event.target.value)}
-          >
-            <option value="">Не указано</option>
-            {LEAD_CHANNELS.map((channel) => (
-              <option key={channel.value} value={channel.value}>
-                {channel.label}
-              </option>
-            ))}
-          </Select>
+            onChange={(channel) => set("channel", channel)}
+            options={[{ value: "", label: "Не указано" }, ...LEAD_CHANNELS]}
+          />
         </Field>
       </div>
 
       <Field label="Услуга" hint="Отвечает на вопрос, какие услуги приносят обращения">
         <Select
           value={values.service}
-          onChange={(event) => set("service", event.target.value)}
-        >
-          <option value="">Не определились</option>
-          {SERVICES.map((service) => (
-            <option key={service.key} value={service.key}>
-              {service.label}
-            </option>
-          ))}
-        </Select>
+          onChange={(service) => set("service", service)}
+          options={[
+            { value: "", label: "Не определились" },
+            ...SERVICES.map((service) => ({ value: service.key, label: service.label })),
+          ]}
+        />
       </Field>
 
       <Field label="Что нужно">
@@ -152,28 +143,23 @@ export function LeadFields({
         <Field label="Статус">
           <Select
             value={values.status}
-            onChange={(event) => set("status", event.target.value as LeadStatus)}
-          >
-            {LEAD_STATUSES.map((status) => (
-              <option key={status} value={status}>
-                {LEAD_STATUS_LABELS[status]}
-              </option>
-            ))}
-          </Select>
+            onChange={(status) => set("status", status as LeadStatus)}
+            options={LEAD_STATUSES.map((status) => ({
+              value: status,
+              label: LEAD_STATUS_LABELS[status],
+            }))}
+          />
         </Field>
 
         <Field label="Кто ведёт">
           <Select
             value={values.ownerId}
-            onChange={(event) => set("ownerId", event.target.value)}
-          >
-            <option value="">Никто</option>
-            {team.map((member) => (
-              <option key={member.id} value={member.id}>
-                {memberLabel(member)}
-              </option>
-            ))}
-          </Select>
+            onChange={(ownerId) => set("ownerId", ownerId)}
+            options={[
+              { value: "", label: "Никто" },
+              ...team.map((member) => ({ value: member.id, label: memberLabel(member) })),
+            ]}
+          />
         </Field>
       </div>
 

@@ -317,18 +317,18 @@ export function CredentialsScreen() {
           />
           <Select
             value={projectFilter}
-            onChange={(event) => setProjectFilter(event.target.value)}
-            aria-label="Проект"
+            onChange={setProjectFilter}
+            ariaLabel="Проект"
             className="w-full sm:w-56"
-          >
-            <option value="">Все проекты</option>
-            <option value={NO_PROJECT}>Без проекта</option>
-            {projects.map((project) => (
-              <option key={project.id} value={project.id}>
-                {project.title}
-              </option>
-            ))}
-          </Select>
+            options={[
+              { value: "", label: "Все проекты" },
+              { value: NO_PROJECT, label: "Без проекта" },
+              ...projects.map((project) => ({
+                value: project.id,
+                label: project.title,
+              })),
+            ]}
+          />
         </div>
       </div>
 
@@ -378,8 +378,24 @@ export function CredentialsScreen() {
                       </span>
                     </button>
                   )}
-                  {!hidden && (
-                    <ul className="space-y-2">
+                  {/* Плавность через grid-template-rows: от 0fr к 1fr. Это
+                      единственный способ анимировать высоту, которая заранее
+                      неизвестна, — max-height требует угадать её и на длинных
+                      группах рвёт плавность. Список остаётся в разметке, но
+                      обрезается обёрткой, поэтому строки не прыгают. */}
+                  <div
+                    className={cn(
+                      "grid transition-[grid-template-rows] duration-200 ease-out motion-reduce:transition-none",
+                      hidden ? "grid-rows-[0fr]" : "grid-rows-[1fr]",
+                    )}
+                  >
+                    <ul
+                      className={cn(
+                        "space-y-2 overflow-hidden transition-opacity duration-200 motion-reduce:transition-none",
+                        hidden && "opacity-0",
+                      )}
+                      aria-hidden={hidden}
+                    >
                       {group.items.map((item) => (
                         <Row
                           key={item.id}
@@ -388,7 +404,7 @@ export function CredentialsScreen() {
                         />
                       ))}
                     </ul>
-                  )}
+                  </div>
                 </div>
               );
             })}
@@ -679,15 +695,15 @@ function CredentialModal({
           <Field label="Проект" hint="Пусто — общий доступ: почта, GitHub, хостинг">
             <Select
               value={values.projectId}
-              onChange={(event) => set("projectId", event.target.value)}
-            >
-              <option value="">Без проекта</option>
-              {projects.map((project) => (
-                <option key={project.id} value={project.id}>
-                  {project.title}
-                </option>
-              ))}
-            </Select>
+              onChange={(projectId) => set("projectId", projectId)}
+              options={[
+                { value: "", label: "Без проекта" },
+                ...projects.map((project) => ({
+                  value: project.id,
+                  label: project.title,
+                })),
+              ]}
+            />
           </Field>
 
           <Field label="Ссылка">

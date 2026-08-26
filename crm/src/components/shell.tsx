@@ -67,10 +67,13 @@ export function Shell() {
   const leadsOnly = user.role === "marketing";
 
   return (
-    <div className="flex min-h-full flex-col md:flex-row">
+    /* h-full, а не min-h-full: страница целиком не прокручивается, прокрутка
+       живёт внутри <main>. Иначе боковая колонка уезжала бы вверх вместе с
+       содержимым, и до разделов приходилось бы возвращаться скроллом. */
+    <div className="flex h-full flex-col overflow-hidden md:flex-row">
       {/* На узком экране навигация уезжает наверх в прокручиваемую строку:
           боковая колонка на телефоне съедает половину ширины. */}
-      <nav className="border-border flex shrink-0 flex-wrap items-center gap-1 border-b px-3 py-2 md:w-56 md:flex-col md:flex-nowrap md:items-stretch md:border-r md:border-b-0 md:px-3 md:py-5">
+      <nav className="border-border flex shrink-0 flex-wrap items-center gap-1 border-b px-3 py-2 md:h-full md:w-56 md:flex-col md:flex-nowrap md:items-stretch md:border-r md:border-b-0 md:px-3 md:py-5">
         <div className="mr-3 hidden items-center gap-2 px-2 pb-5 md:flex">
           <span className="bg-accent h-2 w-2 rounded-full" />
           <span className="text-sm font-bold tracking-tight">CRM</span>
@@ -84,52 +87,58 @@ export function Shell() {
           </div>
         )}
 
-        {NAV.filter((item) => !leadsOnly || item.leadsOnly).map(
-          ({ to, label, icon: Icon, end }) => (
-            <NavLink
-              key={to}
-              to={to}
-              end={end}
-              className={({ isActive }) =>
-                cn(
-                  "flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium whitespace-nowrap transition",
-                  isActive
-                    ? "bg-accent-soft text-foreground"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground",
-                )
-              }
-            >
-              <Icon size={16} strokeWidth={2} />
-              {label}
-            </NavLink>
-          ),
-        )}
+        {/* Прокручиваются только ссылки, и только в боковой раскладке. Задать
+            прокрутку всей колонке нельзя: она обрезала бы выпадающий список
+            поиска, который стоит выше. На узком экране обёртка растворяется
+            (display: contents) и ссылки остаются в общей строке. */}
+        <div className="contents md:block md:min-h-0 md:flex-1 md:overflow-y-auto">
+          {NAV.filter((item) => !leadsOnly || item.leadsOnly).map(
+            ({ to, label, icon: Icon, end }) => (
+              <NavLink
+                key={to}
+                to={to}
+                end={end}
+                className={({ isActive }) =>
+                  cn(
+                    "flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium whitespace-nowrap transition",
+                    isActive
+                      ? "bg-accent-soft text-foreground"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                  )
+                }
+              >
+                <Icon size={16} strokeWidth={2} />
+                {label}
+              </NavLink>
+            ),
+          )}
 
-        {/* Разделитель виден только в боковой раскладке: в строке наверху он
+          {/* Разделитель виден только в боковой раскладке: в строке наверху он
             превратился бы в лишнюю полосу поперёк навигации. */}
-        <div className="border-border hidden md:mt-5 md:block md:border-t md:pt-5" />
+          <div className="border-border hidden md:mt-5 md:block md:border-t md:pt-5" />
 
-        {EXTERNAL.filter((item) => !leadsOnly || item.leadsOnly).map(
-          ({ href, label, icon: Icon }) => (
-            <a
-              key={href}
-              href={href}
-              target="_blank"
-              rel="noreferrer"
-              className="text-muted-foreground hover:bg-muted hover:text-foreground group flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium whitespace-nowrap transition"
-            >
-              <Icon size={16} strokeWidth={2} />
-              {label}
-              <ExternalLink
-                size={13}
-                strokeWidth={2}
-                className="ml-auto hidden opacity-0 transition-opacity group-hover:opacity-60 md:block"
-              />
-            </a>
-          ),
-        )}
+          {EXTERNAL.filter((item) => !leadsOnly || item.leadsOnly).map(
+            ({ href, label, icon: Icon }) => (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                className="text-muted-foreground hover:bg-muted hover:text-foreground group flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium whitespace-nowrap transition"
+              >
+                <Icon size={16} strokeWidth={2} />
+                {label}
+                <ExternalLink
+                  size={13}
+                  strokeWidth={2}
+                  className="ml-auto hidden opacity-0 transition-opacity group-hover:opacity-60 md:block"
+                />
+              </a>
+            ),
+          )}
+        </div>
 
-        <div className="ml-auto flex items-center gap-2 md:mt-auto md:ml-0 md:flex-col md:items-stretch md:pt-5">
+        <div className="ml-auto flex items-center gap-2 md:ml-0 md:flex-col md:items-stretch md:pt-5">
           <NavLink
             to="/settings"
             className={({ isActive }) =>
@@ -155,7 +164,7 @@ export function Shell() {
         </div>
       </nav>
 
-      <main className="min-w-0 flex-1 px-5 py-6 md:px-8 md:py-8">
+      <main className="min-w-0 flex-1 overflow-y-auto px-5 py-6 md:px-8 md:py-8">
         <Outlet />
       </main>
     </div>

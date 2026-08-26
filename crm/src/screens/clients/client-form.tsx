@@ -101,15 +101,13 @@ export function ClientFields({
             <div key={index} className="flex items-center gap-2">
               <Select
                 value={contact.type}
-                onChange={(event) => setContact(index, { type: event.target.value })}
+                onChange={(type) => setContact(index, { type })}
+                options={CONTACT_TYPES.map((type) => ({
+                  value: type.value,
+                  label: type.label,
+                }))}
                 className="w-32 shrink-0"
-              >
-                {CONTACT_TYPES.map((type) => (
-                  <option key={type.value} value={type.value}>
-                    {type.label}
-                  </option>
-                ))}
-              </Select>
+              />
               <Input
                 value={contact.value}
                 onChange={(event) => setContact(index, { value: event.target.value })}

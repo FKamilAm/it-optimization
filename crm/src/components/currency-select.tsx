@@ -20,16 +20,14 @@ export function CurrencySelect({
   return (
     <Select
       value={value}
-      onChange={(event) => onChange(event.target.value as Currency)}
+      onChange={(next) => onChange(next as Currency)}
+      options={CURRENCIES.map((currency) => ({
+        value: currency.value,
+        label: currency.label,
+      }))}
       disabled={disabled}
-      aria-label="Валюта"
-      className="w-16 shrink-0"
-    >
-      {CURRENCIES.map((currency) => (
-        <option key={currency.value} value={currency.value}>
-          {currency.label}
-        </option>
-      ))}
-    </Select>
+      ariaLabel="Валюта"
+      className="w-20 shrink-0"
+    />
   );
 }

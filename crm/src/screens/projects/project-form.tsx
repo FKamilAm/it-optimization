@@ -124,28 +124,23 @@ export function ProjectFields({
         <Field label="Статус">
           <Select
             value={values.status}
-            onChange={(event) => set("status", event.target.value as ProjectStatus)}
-          >
-            {PROJECT_STATUSES.map((status) => (
-              <option key={status} value={status}>
-                {PROJECT_STATUS_LABELS[status]}
-              </option>
-            ))}
-          </Select>
+            onChange={(next) => set("status", next as ProjectStatus)}
+            options={PROJECT_STATUSES.map((item) => ({
+              value: item,
+              label: PROJECT_STATUS_LABELS[item],
+            }))}
+          />
         </Field>
 
         <Field label="Клиент" hint="Можно оставить пустым — например, для своих">
           <Select
             value={values.clientId}
-            onChange={(event) => set("clientId", event.target.value)}
-          >
-            <option value="">Без клиента</option>
-            {clients.map((client) => (
-              <option key={client.id} value={client.id}>
-                {client.name}
-              </option>
-            ))}
-          </Select>
+            onChange={(clientId) => set("clientId", clientId)}
+            options={[
+              { value: "", label: "Без клиента" },
+              ...clients.map((client) => ({ value: client.id, label: client.name })),
+            ]}
+          />
         </Field>
       </div>
 
@@ -187,15 +182,12 @@ export function ProjectFields({
           <Field label="Вид работы">
             <Select
               value={values.workType}
-              onChange={(event) => set("workType", event.target.value)}
-            >
-              <option value="">Не указан</option>
-              {WORK_TYPES.map((type) => (
-                <option key={type.value} value={type.value}>
-                  {type.label}
-                </option>
-              ))}
-            </Select>
+              onChange={(workType) => set("workType", workType)}
+              options={[
+                { value: "", label: "Не указан" },
+                ...WORK_TYPES.map((type) => ({ value: type.value, label: type.label })),
+              ]}
+            />
           </Field>
         </div>
 

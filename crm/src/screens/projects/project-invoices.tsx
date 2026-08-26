@@ -123,12 +123,13 @@ export function ProjectInvoices({
         <div className="bg-muted/50 mt-3 flex flex-wrap items-end gap-2 rounded-lg p-2.5">
           <Select
             value={kind}
-            onChange={(event) => setKind(event.target.value as InvoiceKind)}
+            onChange={(next) => setKind(next as InvoiceKind)}
+            options={[
+              { value: "invoice", label: "Счёт" },
+              { value: "act", label: "Акт" },
+            ]}
             className="w-28"
-          >
-            <option value="invoice">Счёт</option>
-            <option value="act">Акт</option>
-          </Select>
+          />
           <Input
             type="month"
             value={period}
