@@ -3,6 +3,7 @@ import {
   Copy,
   Eye,
   EyeOff,
+  ChevronRight,
   ExternalLink,
   KeyRound,
   Lock,
@@ -146,12 +147,45 @@ interface EditTarget {
   secretState: SecretState;
 }
 
+/** Значение фильтра для записей без проекта: пустая строка уже занята под «все». */
+const NO_PROJECT = "none";
+
+/**
+ * Свёрнутые группы переживают уход с экрана.
+ *
+ * Иначе свернуть половину проектов и вернуться означало бы развернуть всё
+ * заново — то есть смысл шторок пропадал бы при каждом переходе. Хранится
+ * локально у каждого: это настройка вида, а не данные команды.
+ */
+const COLLAPSED_KEY = "credentials:collapsed";
+
+function loadCollapsed(): Set<string> {
+  try {
+    const raw = localStorage.getItem(COLLAPSED_KEY);
+    return new Set(raw ? (JSON.parse(raw) as string[]) : []);
+  } catch {
+    // Приватный режим или запрет на хранилище — просто показываем всё.
+    return new Set();
+  }
+}
+
+function saveCollapsed(keys: Set<string>): void {
+  try {
+    localStorage.setItem(COLLAPSED_KEY, JSON.stringify([...keys]));
+  } catch {
+    // Не сохранилось — не беда: развернётся при следующем заходе.
+  }
+}
+
 export function CredentialsScreen() {
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [items, setItems] = useState<Credential[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
+  /** Пусто — все проекты, NO_PROJECT — записи без привязки, иначе id проекта. */
+  const [projectFilter, setProjectFilter] = useState("");
+  const [collapsed, setCollapsed] = useState<Set<string>>(loadCollapsed);
   const [creating, setCreating] = useState(false);
   const [editing, setEditing] = useState<EditTarget | null>(null);
   const { unlocked, configured, revision, encryptSecret, decryptSecret } = useVault();
@@ -234,7 +268,24 @@ export function CredentialsScreen() {
   // Переход из глобального поиска: ?open=<id> открывает нужную карточку.
   useOpenFromSearch(items, (item) => void openEdit(item));
 
-  const groups = items ? groupByProject(items) : [];
+  // Фильтр применяется здесь, а не запросом: список доступов целиком уже в
+  // памяти, и лишний поход в базу ради выборки по одному полю ничего не даст.
+  const visible = items?.filter(
+    (item) =>
+      !projectFilter ||
+      (projectFilter === NO_PROJECT ? !item.project : item.project?.id === projectFilter),
+  );
+  const groups = visible ? groupByProject(visible) : [];
+
+  function toggle(key: string) {
+    setCollapsed((current) => {
+      const next = new Set(current);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      saveCollapsed(next);
+      return next;
+    });
+  }
 
   return (
     <section>
@@ -257,12 +308,28 @@ export function CredentialsScreen() {
       </p>
 
       <div className="mt-5">
-        <Input
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-          placeholder="Поиск по сервису, логину или заметкам"
-          className="w-full sm:w-80"
-        />
+        <div className="flex flex-wrap gap-2">
+          <Input
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder="Поиск по сервису, логину или заметкам"
+            className="w-full sm:w-80"
+          />
+          <Select
+            value={projectFilter}
+            onChange={(event) => setProjectFilter(event.target.value)}
+            aria-label="Проект"
+            className="w-full sm:w-56"
+          >
+            <option value="">Все проекты</option>
+            <option value={NO_PROJECT}>Без проекта</option>
+            {projects.map((project) => (
+              <option key={project.id} value={project.id}>
+                {project.title}
+              </option>
+            ))}
+          </Select>
+        </div>
       </div>
 
       {error && (
@@ -272,34 +339,59 @@ export function CredentialsScreen() {
       )}
 
       <div className="mt-5">
-        {items === null ? (
+        {visible === undefined ? (
           <p className="text-muted-foreground text-sm">Загружаем…</p>
-        ) : items.length === 0 ? (
+        ) : visible.length === 0 ? (
           <EmptyState
-            title="Пока пусто"
-            note="Заведите первую запись — хостинг, домены, почта, аналитика."
+            title={projectFilter ? "Ничего не нашлось" : "Пока пусто"}
+            note={
+              projectFilter
+                ? "В этом проекте доступов нет."
+                : "Заведите первую запись — хостинг, домены, почта, аналитика."
+            }
           />
         ) : (
           <div className="space-y-6">
-            {groups.map((group) => (
-              <div key={group.key}>
-                {/* Заголовок появляется, только когда групп больше одной:
-                    единственная «Без проекта» над всем списком — просто шум. */}
-                {groups.length > 1 && (
-                  <div className="mb-2 flex items-baseline gap-2">
-                    <h2 className="text-sm font-semibold">{group.title}</h2>
-                    <span className="text-muted-foreground text-xs">
-                      {group.items.length}
-                    </span>
-                  </div>
-                )}
-                <ul className="space-y-2">
-                  {group.items.map((item) => (
-                    <Row key={item.id} item={item} onOpen={() => void openEdit(item)} />
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {groups.map((group) => {
+              // Единственная группа «Без проекта» заголовка не получает: там
+              // нечего сворачивать и не с чем сравнивать.
+              const plain = groups.length === 1 && !group.key;
+              const hidden = !plain && collapsed.has(group.key);
+
+              return (
+                <div key={group.key}>
+                  {!plain && (
+                    <button
+                      type="button"
+                      onClick={() => toggle(group.key)}
+                      aria-expanded={!hidden}
+                      className="hover:text-accent-foreground mb-2 flex w-full items-center gap-1.5 text-left"
+                    >
+                      <ChevronRight
+                        size={15}
+                        strokeWidth={2.5}
+                        className={cn("transition-transform", !hidden && "rotate-90")}
+                      />
+                      <span className="text-sm font-semibold">{group.title}</span>
+                      <span className="text-muted-foreground text-xs">
+                        {group.items.length}
+                      </span>
+                    </button>
+                  )}
+                  {!hidden && (
+                    <ul className="space-y-2">
+                      {group.items.map((item) => (
+                        <Row
+                          key={item.id}
+                          item={item}
+                          onOpen={() => void openEdit(item)}
+                        />
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              );
+            })}
           </div>
         )}
       </div>
