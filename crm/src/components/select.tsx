@@ -38,9 +38,19 @@ export function Select({
 }) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
-  const [box, setBox] = useState<{ top: number; left: number; width: number } | null>(
-    null,
-  );
+  /**
+   * Либо `top`, либо `bottom` — смотря куда открывается список.
+   *
+   * Вверх он привязывается низом, а не верхом: высота заранее неизвестна
+   * (её задаёт число пунктов и max-h), и вычисленный «верх» промахивался бы
+   * тем сильнее, чем короче список.
+   */
+  const [box, setBox] = useState<{
+    top?: number;
+    bottom?: number;
+    left: number;
+    width: number;
+  } | null>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const list = useRef<HTMLDivElement>(null);
 
@@ -49,16 +59,22 @@ export function Select({
   function place() {
     const rect = trigger.current?.getBoundingClientRect();
     if (!rect) return;
-    // Снизу, если там есть место; иначе над кнопкой. Высота списка ограничена
-    // (max-h-64 ≈ 256px), от неё и считаем.
+    // Снизу, если там помещается хоть сколько-то; вверх уходим, только когда
+    // сверху места заметно больше — иначе список прыгал бы при каждом
+    // открытии у нижней трети экрана.
     const below = window.innerHeight - rect.bottom;
-    const height = Math.min(256, options.length * 36 + 8);
-    const above = below < height && rect.top > height;
-    setBox({
-      top: above ? rect.top - height - 4 : rect.bottom + 4,
-      left: rect.left,
-      width: rect.width,
-    });
+    const above = rect.top;
+    const flip = below < 160 && above > below;
+
+    setBox(
+      flip
+        ? {
+            bottom: window.innerHeight - rect.top + 4,
+            left: rect.left,
+            width: rect.width,
+          }
+        : { top: rect.bottom + 4, left: rect.left, width: rect.width },
+    );
   }
 
   useLayoutEffect(() => {
@@ -75,9 +91,15 @@ export function Select({
         setOpen(false);
       }
     }
-    // Прокрутка уводит кнопку, а список остаётся на месте: проще закрыть, чем
-    // пересчитывать положение на каждом кадре.
-    function onScroll() {
+    /**
+     * Закрывать нужно, когда прокручивается страница: кнопка уезжает, а список
+     * остаётся висеть на месте. Но прокрутка **внутри самого списка** — это
+     * ровно то, ради чего он и открыт, и на неё реагировать нельзя. Слушатель
+     * стоит в фазе перехвата и ловит вообще любую прокрутку, поэтому свою
+     * приходится отсеивать явно.
+     */
+    function onScroll(event: Event) {
+      if (list.current?.contains(event.target as Node)) return;
       setOpen(false);
     }
 
@@ -90,6 +112,14 @@ export function Select({
       window.removeEventListener("resize", onScroll);
     };
   }, [open]);
+
+  // Выбранный стрелками пункт подтягивается в видимую часть: иначе на длинном
+  // списке подсветка уезжает за край и кажется, что клавиши не работают.
+  useEffect(() => {
+    if (!open) return;
+    const option = list.current?.children[active];
+    if (option instanceof HTMLElement) option.scrollIntoView({ block: "nearest" });
+  }, [active, open]);
 
   function choose(index: number) {
     const option = options[index];
@@ -192,8 +222,13 @@ export function Select({
           <div
             ref={list}
             role="listbox"
-            style={{ top: box.top, left: box.left, width: box.width }}
-            className="border-border bg-background fixed z-[60] max-h-64 overflow-y-auto rounded-xl border py-1 shadow-lg"
+            style={{
+              top: box.top,
+              bottom: box.bottom,
+              left: box.left,
+              width: box.width,
+            }}
+            className="border-border bg-background fixed z-[60] max-h-64 overflow-y-auto overscroll-contain rounded-xl border py-1 shadow-lg"
           >
             {options.map((option, index) => (
               <button
