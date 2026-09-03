@@ -17,12 +17,13 @@ export const prisma =
 if (!isProduction) globalForPrisma.prisma = prisma;
 
 /**
- * Области контента со своим счётчиком ревизий. Разделов в панели два, и
+ * Области контента со своим счётчиком ревизий. Разделов в панели три, и
  * счётчик у каждого свой: иначе правка статьи отклоняла бы открытую рядом
  * форму кейса, хотя они не пересекаются ни одним полем.
  */
 export const CASES_SCOPE = "cases";
 export const POSTS_SCOPE = "posts";
+export const SERVICES_SCOPE = "services";
 
 /** Текущая ревизия контента — она же `version` в контракте API. */
 export async function currentRevision(scope: string = CASES_SCOPE): Promise<number> {

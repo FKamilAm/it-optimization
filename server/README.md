@@ -1,7 +1,7 @@
 # API администрирования
 
-Бэкенд панели `/panel`: кейсы и статьи блога в PostgreSQL, вход по почте и
-паролю, публикация снапшота на сайт. Архитектура и причины решений — в
+Бэкенд панели `/panel`: кейсы, статьи блога и каталог услуг в PostgreSQL, вход
+по почте и паролю, публикация снапшота на сайт. Архитектура и причины решений — в
 [../docs/backend.md](../docs/backend.md).
 
 Сайт остаётся статическим экспортом. База — источник правды для редактирования,
@@ -57,6 +57,7 @@ WEB_ORIGIN=http://localhost:3000,http://localhost:5173
 ```bash
 curl http://localhost:4000/health          # {"ok":true}
 curl http://localhost:4000/cases/snapshot  # то, что уедет в content/cases.json
+curl http://localhost:4000/service-catalog/snapshot  # разделы услуг и их состав
 ```
 
 ## Публикация

@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { Prisma } from "@prisma/client";
-import { CASES_SCOPE, POSTS_SCOPE, prisma } from "../db.js";
+import { CASES_SCOPE, POSTS_SCOPE, SERVICES_SCOPE, prisma } from "../db.js";
 
 /**
  * Переносит `content/cases.json` и `content/blog.json` в базу. Форма файлов и
@@ -27,6 +27,11 @@ interface SnapshotCase {
   detailMobile: string;
   createdAt: string;
   updatedAt: string;
+}
+
+interface SnapshotCatalog {
+  categories: { key: string; title: string }[];
+  services: { key: string; slug: string; category: string; draft: boolean }[];
 }
 
 interface SnapshotPost {
@@ -56,6 +61,8 @@ const here = dirname(fileURLToPath(import.meta.url));
 const SNAPSHOT = process.env.CASES_SNAPSHOT || join(here, "../../../content/cases.json");
 const BLOG_SNAPSHOT =
   process.env.BLOG_SNAPSHOT || join(here, "../../../content/blog.json");
+const CATALOG_SNAPSHOT =
+  process.env.CATALOG_SNAPSHOT || join(here, "../../../content/service-catalog.json");
 
 function hashFromPath(path: string): string {
   // Имена вида case-crm-a1b2c3d4.webp — хэш идёт последним сегментом.
@@ -133,6 +140,7 @@ async function main(): Promise<void> {
   console.log(`Перенесено кейсов: ${cases.length}`);
 
   await seedPosts();
+  await seedServiceCatalog();
 }
 
 async function seedPosts(): Promise<void> {
@@ -177,6 +185,63 @@ async function seedPosts(): Promise<void> {
   });
 
   console.log(`Перенесено статей: ${posts.length}`);
+}
+
+/**
+ * Каталог услуг: разделы и принадлежность услуг разделам.
+ *
+ * Сид здесь дополняющий, а не затирающий: услуга, которую уже переложили в
+ * другой раздел через панель, при повторном запуске остаётся там же. Иначе
+ * каждый `npm run seed` откатывал бы работу редактора к состоянию файла в
+ * репозитории. Новая услуга, добавленная в `content/services.json` кодом, этим
+ * же запуском попадает в базу и становится видна в панели.
+ */
+async function seedServiceCatalog(): Promise<void> {
+  const raw = await readFile(CATALOG_SNAPSHOT, "utf8");
+  const catalog = JSON.parse(raw) as SnapshotCatalog;
+
+  for (const [index, category] of catalog.categories.entries()) {
+    await prisma.serviceCategory.upsert({
+      where: { key: category.key },
+      create: { key: category.key, title: category.title, position: index },
+      update: {},
+    });
+  }
+
+  let added = 0;
+  for (const [index, service] of catalog.services.entries()) {
+    const existing = await prisma.serviceEntry.findUnique({ where: { key: service.key } });
+    if (existing) {
+      // Адрес страницы задаётся кодом и слуг обязан совпадать с маршрутом,
+      // поэтому его обновляем; раздел и черновик — за редактором.
+      await prisma.serviceEntry.update({
+        where: { key: service.key },
+        data: { slug: service.slug },
+      });
+      continue;
+    }
+
+    await prisma.serviceEntry.create({
+      data: {
+        key: service.key,
+        slug: service.slug,
+        categoryKey: service.category,
+        draft: service.draft,
+        position: index,
+      },
+    });
+    added += 1;
+  }
+
+  await prisma.contentRevision.upsert({
+    where: { scope: SERVICES_SCOPE },
+    update: {},
+    create: { scope: SERVICES_SCOPE, value: 0 },
+  });
+
+  console.log(
+    `Каталог услуг: разделов ${catalog.categories.length}, услуг ${catalog.services.length} (новых ${added})`,
+  );
 }
 
 main()

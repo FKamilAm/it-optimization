@@ -37,7 +37,7 @@ model Case {
   /// Порядок на сайте. Первые HOME_CASE_COUNT попадают на главную.
   position Int
 
-  assets CaseAsset[]
+  assets  CaseAsset[]
   /// Проект, из которого вырос кейс. Заполняется, когда закрытый проект
   /// публикуют на сайте; у кейсов, заведённых руками, связи нет.
   project Project?
@@ -110,7 +110,7 @@ model Post {
   /// Разделы статьи: [{ heading, body: string[] }]. JSON, а не две таблицы:
   /// разделы никогда не читаются отдельно от статьи, не ищутся и не
   /// переиспользуются — это её тело, а не связанные сущности.
-  sections Json
+  sections  Json
   /// Блок «Коротко» в конце. Может быть пустым.
   takeaways String[]
   /// Ключи услуг (SERVICE_PAGES), о которых статья. Связь двусторонняя: внизу
@@ -136,6 +136,45 @@ model Post {
 /// Счётчик ревизий контента — основа оптимистичной блокировки. Панель
 /// открывается на version = value и присылает её обратно; если значение
 /// успело измениться, запись отклоняется.
+// ------------------------------------------------------------- Каталог услуг
+
+/// Раздел каталога услуг. Не маршрут, а кнопка фильтра на /uslugi/ — поэтому у
+/// него нет ни адреса, ни текстов, только подпись и порядок. Форма совпадает с
+/// `content/service-catalog.json`, так что перенос — это сид, а не переделка.
+model ServiceCategory {
+  key      String @id
+  title    String
+  position Int
+
+  services ServiceEntry[]
+
+  @@map("service_categories")
+}
+
+/// Услуга в каталоге: адрес страницы, раздел и признак черновика.
+///
+/// Тексты страницы сюда не переезжают — они остаются в `content/services.json`.
+/// Здесь только структура, которую правит панель: к какому разделу услуга
+/// относится, в каком порядке стоит и опубликована ли.
+///
+/// `key` — первичный ключ, а не uuid: на него ссылаются статьи блога, кейсы,
+/// 3D-сцены героя и `Lead.service` в CRM, и он должен совпадать в пяти местах.
+model ServiceEntry {
+  key         String  @id
+  slug        String  @unique
+  categoryKey String  @map("category_key")
+  /// Черновик собирается и открывается по своему адресу, но не попадает ни в
+  /// каталог, ни в меню, ни в карту сайта, а страница отдаётся с noindex.
+  draft       Boolean @default(false)
+  position    Int
+
+  /// Restrict, а не Cascade: удаление раздела не должно уносить с собой
+  /// страницы услуг, которые в нём стояли.
+  category ServiceCategory @relation(fields: [categoryKey], references: [key], onDelete: Restrict)
+
+  @@map("service_entries")
+}
+
 model ContentRevision {
   id        Int      @id @default(autoincrement())
   scope     String   @unique
@@ -168,7 +207,7 @@ model User {
 
   /// Куда бот шлёт личный утренний список. Пусто — уведомления не приходят,
   /// и это нормальное состояние: подключение к боту добровольное.
-  telegramChatId String? @unique @map("telegram_chat_id")
+  telegramChatId        String?   @unique @map("telegram_chat_id")
   /// Одноразовый код привязки: CRM показывает его вошедшему пользователю, тот
   /// отправляет боту `/start <код>`. Так бот узнаёт, кто ему пишет, не спрашивая
   /// ни почту, ни пароль — в переписке с ботом им не место.
@@ -249,7 +288,7 @@ enum LeadStatus {
 model Lead {
   id String @id @default(uuid()) @db.Uuid
 
-  name String?
+  name    String?
   /// Как с ним связаться: телефон, почта или ник. Одной строкой — на входе
   /// это всегда одна строка, и разбирать её всё равно никто не станет.
   contact String
@@ -268,12 +307,12 @@ model Lead {
   /// Когда следующий шаг. Просроченное значение — единственная причина, по
   /// которой лид попадает в утренний дайджест: статусы сами о себе не
   /// напоминают, и «ведём переписку» висит месяцами, пока про него не забудут.
-  nextActionAt DateTime? @map("next_action_at")
+  nextActionAt   DateTime? @map("next_action_at")
   /// Что именно за шаг: «позвонить», «отправить смету». Без него напоминание
   /// сообщает только срок, и всё равно приходится открывать карточку, чтобы
   /// вспомнить, о чём речь.
-  nextActionNote String? @map("next_action_note")
-  lostReason     String? @map("lost_reason")
+  nextActionNote String?   @map("next_action_note")
+  lostReason     String?   @map("lost_reason")
 
   /// Ключ услуги из SERVICE_PAGES сайта — что человеку нужно. Отвечает на
   /// вопрос «какие услуги вообще приносят обращения». Строка, а не enum:
@@ -295,12 +334,12 @@ model Lead {
 }
 
 model Client {
-  id   String @id @default(uuid()) @db.Uuid
-  name String
+  id       String  @id @default(uuid()) @db.Uuid
+  name     String
   /// Единственный реквизит, который стоит держать отдельным полем: по нему
   /// клиент однозначно опознаётся в документах и в банке.
-  inn  String?
-  site String?
+  inn      String?
+  site     String?
   /// [{ type: "phone" | "email" | "telegram", value, label? }] — список, а не
   /// колонки: у одного клиента бывает три телефона и ни одной почты.
   contacts Json?
@@ -350,7 +389,7 @@ model Project {
 
   /// Где размещён: «наш VPS», «reg.ru у клиента», «Timeweb». Свободная строка —
   /// хостингов столько же, сколько клиентов, и списком их не закрыть.
-  hosting String?
+  hosting  String?
   /// Вид работы: договорной, разовый, сопровождение. Строкой, а не enum: набор
   /// уточняется по ходу, а миграция ради нового варианта — перебор.
   workType String? @map("work_type")
@@ -363,7 +402,7 @@ model Project {
 
   /// Счета выставляются каждый месяц. Признак нужен, чтобы бот напоминал про
   /// период, за который счёта ещё нет, — в этом и весь смысл учёта.
-  billingMonthly Boolean @default(false) @map("billing_monthly")
+  billingMonthly     Boolean  @default(false) @map("billing_monthly")
   /// Ожидаемая сумма в месяц — в минорных единицах: копейках или центах.
   ///
   /// Целое, а не дробное: 0.1 + 0.2 в двоичной дроби не равно 0.3, и на суммах
@@ -372,9 +411,9 @@ model Project {
   ///
   /// Суффикс в имени не для красоты: без него пропущенное при правке место
   /// покажет сумму в сто раз больше и никак об этом не скажет.
-  monthlyAmountMinor Int?    @map("monthly_amount_minor")
+  monthlyAmountMinor Int?     @map("monthly_amount_minor")
   /// Валюта monthlyAmount и счетов проекта по умолчанию.
-  currency       Currency @default(rub)
+  currency           Currency @default(rub)
 
   invoices    Invoice[]
   credentials Credential[]
@@ -405,7 +444,6 @@ model Project {
  * Валюта суммы. Хранится рядом с каждой суммой, а не одна на всю систему:
  * часть работ считается в долларах, и общий признак заставлял бы переводить
  * по курсу — то есть придумывать число, которого никто не называл.
- *
  * По той же причине суммы в разных валютах нигде не складываются: итоги
  * считаются отдельно по каждой.
  */
@@ -438,7 +476,7 @@ model Invoice {
   /// Период в виде ГГГГ-ММ. Строкой, потому что это календарный месяц, а не
   /// момент времени: сравнивать и сортировать так же просто, а часовые пояса
   /// не превращают март в февраль.
-  period String
+  period      String
   /// В минорных единицах, как и monthlyAmountMinor у проекта. Валюта — рядом.
   amountMinor Int?     @map("amount_minor")
   currency    Currency @default(rub)
@@ -512,38 +550,38 @@ model Task {
 /// Поле `secretHint` — не пароль, а подсказка, где его искать: «Bitwarden,
 /// папка Хостинг».
 model Credential {
-  id      String  @id @default(uuid()) @db.Uuid
+  id          String    @id @default(uuid()) @db.Uuid
   /// Название сервиса: reg.ru, Яндекс 360, GitHub.
-  service String
+  service     String
   /// Логин или адрес почты, под которым заходят.
-  login   String?
-  url     String?
+  login       String?
+  url         String?
   /// На кого оформлено — имя из DEVELOPERS или название компании.
-  owner   String?
+  owner       String?
   /// К какому проекту относится доступ. Пусто — общий: почта, GitHub, хостинг.
   ///
   /// SetNull, а не Cascade: закрытый проект не должен уносить с собой пароль от
   /// хостинга, на котором его сайт продолжает работать.
-  projectId String?  @map("project_id") @db.Uuid
-  project   Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  projectId   String?   @map("project_id") @db.Uuid
+  project     Project?  @relation(fields: [projectId], references: [id], onDelete: SetNull)
   /// Где лежит пароль, если он не здесь: «Bitwarden, папка Хостинг».
-  secretHint String? @map("secret_hint")
+  secretHint  String?   @map("secret_hint")
   /// Сам пароль — **зашифрованный в браузере**, base64 от `iv || ciphertext`.
   ///
   /// Сервер это только хранит и отдаёт: ключ выводится из мастер-фразы на
   /// устройстве и сюда никогда не попадает. Поэтому утечка дампа отдаёт
   /// нечитаемый мусор, а не все сервисы разом, — ровно из-за этого пароли
   /// раньше здесь не хранились вовсе.
-  secret     String? @db.Text
+  secret      String?   @db.Text
   /// Когда продлевать: домены, сертификаты, платные подписки.
-  renewsAt   DateTime? @map("renews_at")
+  renewsAt    DateTime? @map("renews_at")
   /// Сколько стоит, в минорных единицах — как у проекта.
-  amountMinor Int?     @map("amount_minor")
-  currency    Currency @default(rub)
+  amountMinor Int?      @map("amount_minor")
+  currency    Currency  @default(rub)
   /// Списывается каждый месяц. Без признака сумма непонятна: 500 ₽ у хостинга
   /// и 500 ₽ у домена — это про разные деньги в год.
-  monthlyFee Boolean @default(false) @map("monthly_fee")
-  notes      String?
+  monthlyFee  Boolean   @default(false) @map("monthly_fee")
+  notes       String?
 
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")

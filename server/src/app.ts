@@ -18,6 +18,7 @@ import { trashRoutes } from "./crm/trash/routes.js";
 import { vaultRoutes } from "./crm/vault/routes.js";
 import { telegramRoutes } from "./notify/routes.js";
 import { postRoutes } from "./posts/routes.js";
+import { serviceCatalogRoutes } from "./services/routes.js";
 import { blogPublishRoutes, publishRoutes } from "./publish/routes.js";
 
 export async function buildApp(): Promise<FastifyInstance> {
@@ -64,6 +65,7 @@ export async function buildApp(): Promise<FastifyInstance> {
   await app.register(publishRoutes);
   await app.register(postRoutes);
   await app.register(blogPublishRoutes);
+  await app.register(serviceCatalogRoutes);
   await app.register(clientRoutes);
   await app.register(credentialRoutes);
   await app.register(projectRoutes);
