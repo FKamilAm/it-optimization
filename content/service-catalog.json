@@ -1,0 +1,230 @@
+{
+  "categories": [
+    {
+      "key": "sites",
+      "title": "Сайты"
+    },
+    {
+      "key": "products",
+      "title": "Платформы и приложения"
+    },
+    {
+      "key": "automation",
+      "title": "Автоматизация"
+    },
+    {
+      "key": "design",
+      "title": "Дизайн"
+    },
+    {
+      "key": "itInfra",
+      "title": "Инфраструктура"
+    },
+    {
+      "key": "infosec",
+      "title": "Безопасность"
+    },
+    {
+      "key": "business",
+      "title": "Бизнес-системы"
+    },
+    {
+      "key": "audit",
+      "title": "Аудит и поддержка"
+    }
+  ],
+  "services": [
+    {
+      "key": "corporate",
+      "slug": "razrabotka-korporativnogo-sajta",
+      "category": "sites",
+      "draft": false
+    },
+    {
+      "key": "websiteTurnkey",
+      "slug": "veb-sajt-pod-klyuch",
+      "category": "sites",
+      "draft": false
+    },
+    {
+      "key": "websites",
+      "slug": "razrabotka-sajtov",
+      "category": "sites",
+      "draft": false
+    },
+    {
+      "key": "ecommerce",
+      "slug": "internet-magazin-pod-klyuch",
+      "category": "sites",
+      "draft": false
+    },
+    {
+      "key": "businessCard",
+      "slug": "razrabotka-sajta-vizitki",
+      "category": "sites",
+      "draft": false
+    },
+    {
+      "key": "b2b",
+      "slug": "razrabotka-sajta-dlya-b2b",
+      "category": "sites",
+      "draft": false
+    },
+    {
+      "key": "platforms",
+      "slug": "razrabotka-crm",
+      "category": "products",
+      "draft": false
+    },
+    {
+      "key": "telegram",
+      "slug": "razrabotka-telegram-botov",
+      "category": "products",
+      "draft": false
+    },
+    {
+      "key": "mobile",
+      "slug": "razrabotka-mobilnyh-prilozhenij",
+      "category": "products",
+      "draft": false
+    },
+    {
+      "key": "messenger",
+      "slug": "razrabotka-messendzherov",
+      "category": "products",
+      "draft": false
+    },
+    {
+      "key": "collaboration",
+      "slug": "korporativnye-kommunikacii",
+      "category": "products",
+      "draft": true
+    },
+    {
+      "key": "blockchain",
+      "slug": "blockchain-razrabotka",
+      "category": "products",
+      "draft": false
+    },
+    {
+      "key": "ai",
+      "slug": "vnedrenie-ai",
+      "category": "automation",
+      "draft": false
+    },
+    {
+      "key": "integrations",
+      "slug": "parsing-i-integracii",
+      "category": "automation",
+      "draft": false
+    },
+    {
+      "key": "webDesign",
+      "slug": "veb-dizajn-sistemy",
+      "category": "design",
+      "draft": false
+    },
+    {
+      "key": "branding",
+      "slug": "dizajn-i-brending",
+      "category": "design",
+      "draft": false
+    },
+    {
+      "key": "infrastructure",
+      "slug": "proektirovanie-it-infrastruktury",
+      "category": "itInfra",
+      "draft": true
+    },
+    {
+      "key": "migration",
+      "slug": "migraciya-it-infrastruktury",
+      "category": "itInfra",
+      "draft": true
+    },
+    {
+      "key": "os",
+      "slug": "vnedrenie-operacionnyh-sistem",
+      "category": "itInfra",
+      "draft": true
+    },
+    {
+      "key": "itOutsourcing",
+      "slug": "it-autsorsing",
+      "category": "itInfra",
+      "draft": true
+    },
+    {
+      "key": "infosecAudit",
+      "slug": "audit-informacionnoj-bezopasnosti",
+      "category": "infosec",
+      "draft": true
+    },
+    {
+      "key": "security",
+      "slug": "audit-bezopasnosti-sajta",
+      "category": "infosec",
+      "draft": false
+    },
+    {
+      "key": "infosecTools",
+      "slug": "vnedrenie-sredstv-zashchity",
+      "category": "infosec",
+      "draft": true
+    },
+    {
+      "key": "infosecMonitoring",
+      "slug": "monitoring-i-reagirovanie",
+      "category": "infosec",
+      "draft": true
+    },
+    {
+      "key": "infosecConsulting",
+      "slug": "konsalting-po-informacionnoj-bezopasnosti",
+      "category": "infosec",
+      "draft": true
+    },
+    {
+      "key": "businessSystems",
+      "slug": "vnedrenie-biznes-sistem",
+      "category": "business",
+      "draft": true
+    },
+    {
+      "key": "businessSystemsCustom",
+      "slug": "dorabotka-biznes-sistem",
+      "category": "business",
+      "draft": true
+    },
+    {
+      "key": "industrial",
+      "slug": "integraciya-s-oborudovaniem",
+      "category": "business",
+      "draft": true
+    },
+    {
+      "key": "commercialAudit",
+      "slug": "kommercheskij-audit-sajta",
+      "category": "audit",
+      "draft": false
+    },
+    {
+      "key": "contentAnalysis",
+      "slug": "analiz-kontenta-sajta",
+      "category": "audit",
+      "draft": false
+    },
+    {
+      "key": "techContent",
+      "slug": "tehnicheskij-kontent-sajta",
+      "category": "audit",
+      "draft": false
+    },
+    {
+      "key": "support",
+      "slug": "it-soprovozhdenie",
+      "category": "audit",
+      "draft": false
+    }
+  ]
+}

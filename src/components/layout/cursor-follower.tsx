@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const HOVER_SELECTOR =
   'a, button, [role="button"], [data-cursor="hover"], [data-cursor="dark"], label, summary, .cursor-target';
@@ -27,12 +28,18 @@ const TEXT_SELECTOR = 'input, textarea, select, [contenteditable="true"]';
 export function CursorFollower() {
   const dotRef = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
+  // В панели — обычный системный курсор. Диск вместо стрелки хорош на витрине,
+  // но /panel это рабочий инструмент: там попадают в поля, чекбоксы и мелкие
+  // кнопки, а `cursor: none` отбирает и привычную стрелку, и текстовый каретку
+  // ровно там, где они помогают целиться.
+  const pathname = usePathname();
+  const onPanel = pathname?.startsWith("/panel") ?? false;
 
   useEffect(() => {
     const fine = window.matchMedia("(min-width: 1024px) and (pointer: fine)");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setEnabled(fine.matches && !reduced.matches);
-  }, []);
+    setEnabled(fine.matches && !reduced.matches && !onPanel);
+  }, [onPanel]);
 
   useEffect(() => {
     if (!enabled) return;

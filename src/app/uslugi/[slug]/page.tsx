@@ -1,23 +1,35 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { SiteShell } from "@/components/layout/site-shell";
 import { ServicePageContent } from "@/components/service-page/service-page-content";
 import { getPostsForService } from "@/lib/blog";
 import { getAllCases } from "@/lib/cases";
-import { SERVICE_PAGES, SITE } from "@/lib/constants";
+import { getServicePageBySlug, tariffPriceRange } from "@/lib/services";
+import { DRAFT_SERVICES, SERVICE_PAGES, SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const dynamicParams = false;
 
 const ENTRIES = Object.entries(SERVICE_PAGES) as [string, string][];
 
-function pageKeyForSlug(slug: string): string | undefined {
-  return ENTRIES.find(([, value]) => value === slug)?.[0];
-}
-
 export function generateStaticParams() {
   return ENTRIES.map(([, slug]) => ({ slug }));
+}
+
+/**
+ * Тексты страницы лежат в `content/services.json`, а перечень адресов — в
+ * `SERVICE_PAGES`: константа нужна и хедеру, и карте сайта, и клиентским
+ * компонентам, которым нельзя тащить весь файл услуг. Расхождение двух списков
+ * роняет сборку с внятным сообщением — молчаливая 404 нашлась бы куда позже.
+ */
+async function requireServicePage(slug: string) {
+  const page = await getServicePageBySlug(slug);
+  if (!page) {
+    throw new Error(
+      `Услуга «${slug}» есть в SERVICE_PAGES, но её нет в content/services.json`,
+    );
+  }
+  return page;
 }
 
 interface PageProps {
@@ -26,20 +38,21 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const pageKey = pageKeyForSlug(slug);
-  if (!pageKey) return {};
-
-  const t = await getTranslations(`servicePages.${pageKey}`);
+  const page = await requireServicePage(slug);
   const siteUrl = getSiteUrl();
   const url = `${siteUrl}/uslugi/${slug}/`;
 
   return {
-    title: t("metaTitle"),
-    description: t("metaDescription"),
+    title: page.metaTitle,
+    description: page.metaDescription,
     alternates: { canonical: url },
+    // Черновик собирается и открывается по прямой ссылке — так его можно
+    // показать и вычитать, — но в поиск ему рано: ни ссылок с сайта, ни
+    // карты сайта у него нет, и индексировать его тоже незачем.
+    ...(DRAFT_SERVICES.has(page.key) ? { robots: { index: false, follow: false } } : {}),
     openGraph: {
-      title: t("metaTitle"),
-      description: t("metaDescription"),
+      title: page.metaTitle,
+      description: page.metaDescription,
       url,
       type: "website",
       locale: "ru_RU",
@@ -51,37 +64,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ServicePage({ params }: PageProps) {
   const { slug } = await params;
-  const pageKey = pageKeyForSlug(slug);
-  if (!pageKey) notFound();
-
-  const t = await getTranslations(`servicePages.${pageKey}`);
+  const page = await requireServicePage(slug);
   const c = await getTranslations("servicePages.common");
   const siteUrl = getSiteUrl();
   const url = `${siteUrl}/uslugi/${slug}/`;
-  const faq = t.raw("faq") as { question: string; answer: string }[];
 
-  const tariffs =
-    (t.raw("tariffs") as { name: string; price: string }[] | undefined) ?? [];
-  const prices = tariffs
-    .map((tier) => Number(tier.price.replace(/[^\d]/g, "")))
-    .filter((n) => n > 0);
-  const offers = prices.length
-    ? {
-        "@type": "AggregateOffer",
-        priceCurrency: "RUB",
-        lowPrice: Math.min(...prices),
-        highPrice: Math.max(...prices),
-        offerCount: prices.length,
-      }
+  const range = tariffPriceRange(page.tariffs);
+  const offers = range
+    ? { "@type": "AggregateOffer", priceCurrency: "RUB", ...range }
     : undefined;
 
   const jsonLd = [
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      name: t("h1"),
-      serviceType: t("breadcrumb"),
-      description: t("metaDescription"),
+      name: page.h1,
+      serviceType: page.breadcrumb,
+      description: page.metaDescription,
       url,
       provider: {
         "@type": "Organization",
@@ -110,7 +109,7 @@ export default async function ServicePage({ params }: PageProps) {
         {
           "@type": "ListItem",
           position: 3,
-          name: t("breadcrumb"),
+          name: page.breadcrumb,
           item: url,
         },
       ],
@@ -118,7 +117,7 @@ export default async function ServicePage({ params }: PageProps) {
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      mainEntity: faq.map((item) => ({
+      mainEntity: page.faq.map((item) => ({
         "@type": "Question",
         name: item.question,
         acceptedAnswer: { "@type": "Answer", text: item.answer },
@@ -134,9 +133,9 @@ export default async function ServicePage({ params }: PageProps) {
       />
       <SiteShell>
         <ServicePageContent
-          pageKey={pageKey}
+          servicePage={page}
           cases={await getAllCases()}
-          articles={await getPostsForService(pageKey)}
+          articles={await getPostsForService(page.key)}
         />
       </SiteShell>
     </>

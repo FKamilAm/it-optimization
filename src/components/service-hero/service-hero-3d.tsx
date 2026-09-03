@@ -25,6 +25,18 @@ import { WebDesignScene } from "./scenes/web-design-scene";
 import { BrandingScene } from "./scenes/branding-scene";
 import { SecurityScene } from "./scenes/security-scene";
 import { MessengerScene } from "./scenes/messenger-scene";
+import { InfrastructureScene } from "./scenes/infrastructure-scene";
+import { MigrationScene } from "./scenes/migration-scene";
+import { OsScene } from "./scenes/os-scene";
+import { ItOutsourcingScene } from "./scenes/it-outsourcing-scene";
+import { InfosecAuditScene } from "./scenes/infosec-audit-scene";
+import { InfosecToolsScene } from "./scenes/infosec-tools-scene";
+import { InfosecConsultingScene } from "./scenes/infosec-consulting-scene";
+import { InfosecMonitoringScene } from "./scenes/infosec-monitoring-scene";
+import { CollaborationScene } from "./scenes/collaboration-scene";
+import { BusinessSystemsScene } from "./scenes/business-systems-scene";
+import { BusinessSystemsCustomScene } from "./scenes/business-systems-custom-scene";
+import { IndustrialScene } from "./scenes/industrial-scene";
 
 export type ServiceHeroVariant =
   | "platforms"
@@ -46,7 +58,19 @@ export type ServiceHeroVariant =
   | "webDesign"
   | "branding"
   | "security"
-  | "messenger";
+  | "messenger"
+  | "infrastructure"
+  | "migration"
+  | "os"
+  | "itOutsourcing"
+  | "infosecAudit"
+  | "infosecTools"
+  | "infosecConsulting"
+  | "infosecMonitoring"
+  | "collaboration"
+  | "businessSystems"
+  | "businessSystemsCustom"
+  | "industrial";
 
 function SceneForVariant({
   variant,
@@ -96,6 +120,30 @@ function SceneForVariant({
       return <SecurityScene animate={animate} />;
     case "messenger":
       return <MessengerScene animate={animate} />;
+    case "infrastructure":
+      return <InfrastructureScene animate={animate} />;
+    case "migration":
+      return <MigrationScene animate={animate} />;
+    case "os":
+      return <OsScene animate={animate} />;
+    case "itOutsourcing":
+      return <ItOutsourcingScene animate={animate} />;
+    case "infosecAudit":
+      return <InfosecAuditScene animate={animate} />;
+    case "infosecTools":
+      return <InfosecToolsScene animate={animate} />;
+    case "infosecConsulting":
+      return <InfosecConsultingScene animate={animate} />;
+    case "infosecMonitoring":
+      return <InfosecMonitoringScene animate={animate} />;
+    case "collaboration":
+      return <CollaborationScene animate={animate} />;
+    case "businessSystems":
+      return <BusinessSystemsScene animate={animate} />;
+    case "businessSystemsCustom":
+      return <BusinessSystemsCustomScene animate={animate} />;
+    case "industrial":
+      return <IndustrialScene animate={animate} />;
     default:
       return null;
   }

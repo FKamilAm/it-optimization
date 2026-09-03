@@ -43,3 +43,6 @@ ftp-log.txt
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# выгрузки для внешних каталогов (Яндекс Бизнес и т.п.) — генерируются скриптом
+/exports/

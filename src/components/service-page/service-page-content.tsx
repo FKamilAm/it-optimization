@@ -13,13 +13,14 @@ import { ServiceCard } from "@/components/sections/service-card";
 import { casesForService, formatTags, type CaseItem } from "@/lib/cases";
 import { useContactModal } from "@/components/providers/contact-modal-provider";
 import { Button } from "@/components/ui/button";
-import { FaqAccordion, type FaqItem } from "@/components/ui/faq-accordion";
+import { FaqAccordion } from "@/components/ui/faq-accordion";
 import { ServiceHeroVisual } from "@/components/service-hero/service-hero-visual";
 import type { ServiceHeroVariant } from "@/components/service-hero/service-hero-3d";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
-import { RELATED_SERVICES } from "@/lib/constants";
+import { DRAFT_SERVICES, RELATED_SERVICES } from "@/lib/constants";
+import type { ServicePage } from "@/lib/services/types";
 import type { BlogPost } from "@/lib/blog";
-import { cn } from "@/lib/utils";
+import { cn, typographicNbsp } from "@/lib/utils";
 
 // Service page key → dedicated 3D hero visual. Every service has its own scene.
 const HERO_VISUAL: Partial<Record<string, ServiceHeroVariant>> = {
@@ -43,52 +44,56 @@ const HERO_VISUAL: Partial<Record<string, ServiceHeroVariant>> = {
   branding: "branding",
   security: "security",
   messenger: "messenger",
+  infrastructure: "infrastructure",
+  migration: "migration",
+  os: "os",
+  itOutsourcing: "itOutsourcing",
+  infosecAudit: "infosecAudit",
+  infosecTools: "infosecTools",
+  infosecConsulting: "infosecConsulting",
+  infosecMonitoring: "infosecMonitoring",
+  collaboration: "collaboration",
+  businessSystems: "businessSystems",
+  businessSystemsCustom: "businessSystemsCustom",
+  industrial: "industrial",
 };
 
 const CASE_ROTATE_MS = 5000;
 const STEP_ROTATE_MS = 3000;
 
-interface UseCaseItem {
-  title: string;
-  text: string;
-}
-
-interface Tariff {
-  name: string;
-  price: string;
-  deadline: string;
-  recommended?: boolean;
-  features: string[];
-}
-
 export function ServicePageContent({
-  pageKey,
+  servicePage,
   cases: allCases,
   articles,
 }: {
-  pageKey: string;
+  /**
+   * Тексты своей услуги. Приходят пропсом, а не из каталога `next-intl`:
+   * каталог уезжает клиенту целиком на каждой странице сайта, так что там
+   * страница услуги стоила бы всем остальным страницам своих тарифов и FAQ.
+   */
+  servicePage: ServicePage;
   /** Все кейсы сайта; страница берёт из них те, на которые ссылается. */
   cases: CaseItem[];
   /** Статьи блога об этой услуге. Связь живёт в самой статье и правится в панели. */
   articles: BlogPost[];
 }) {
-  const t = useTranslations(`servicePages.${pageKey}`);
   const c = useTranslations("servicePages.common");
   const service = useTranslations("services.items");
   const blog = useTranslations("blog");
   const { openContactModal } = useContactModal();
   const { scrollToSection } = useSmoothScroll();
 
-  const serviceKey = t("serviceKey");
-  const includes = t.raw("includes") as string[];
-  const forWhom = t.raw("forWhom") as UseCaseItem[];
-  const steps = t.raw("steps") as UseCaseItem[];
-  const faq = t.raw("faq") as FaqItem[];
+  const { key: pageKey, includes, forWhom, steps, faq } = servicePage;
   // Кейсы больше не перечисляются в каталоге у каждой услуги: теперь кейс сам
   // знает, к каким услугам относится, и это редактируется в панели.
   const cases = casesForService(allCases, pageKey);
-  const tariffs = (t.raw("tariffs") as Tariff[] | undefined) ?? [];
-  const relatedServices = RELATED_SERVICES[pageKey] ?? [];
+  const tariffs = servicePage.tariffs ?? [];
+  // Черновики отсюда убираются: смежная услуга — это ссылка, а страница,
+  // которой ещё нет в каталоге и в карте сайта, ссылок на себя получать не
+  // должна. Опубликуется — появится сама, без правки этого списка.
+  const relatedServices = (RELATED_SERVICES[pageKey] ?? []).filter(
+    (key) => !DRAFT_SERVICES.has(key),
+  );
 
   const heroVariant = HERO_VISUAL[pageKey];
   // All service pages use the light hero (dark text on white) + re-sequenced
@@ -264,7 +269,7 @@ export function ServicePageContent({
                 aria-current="page"
                 className={lightHero ? "text-foreground/80" : "text-white/80"}
               >
-                {t("breadcrumb")}
+                {servicePage.breadcrumb}
               </li>
             </ol>
           </nav>
@@ -273,7 +278,7 @@ export function ServicePageContent({
             <h1
               className={cn("heading-display", heroVariant ? "max-w-none" : "max-w-4xl")}
             >
-              {t("h1")}
+              {typographicNbsp(servicePage.h1)}
             </h1>
           </Reveal>
           <Reveal delay={0.05}>
@@ -284,7 +289,7 @@ export function ServicePageContent({
                 lightHero ? "text-foreground/70" : "text-white/65",
               )}
             >
-              {t("lead")}
+              {servicePage.lead}
             </p>
           </Reveal>
 
@@ -311,7 +316,7 @@ export function ServicePageContent({
                       lightHero ? "text-foreground" : "text-white",
                     )}
                   >
-                    {service(`${serviceKey}.budget`)}
+                    {service(`${pageKey}.budget`)}
                   </dd>
                 </div>
                 <div className="flex flex-col gap-1">
@@ -329,7 +334,7 @@ export function ServicePageContent({
                       lightHero ? "text-foreground" : "text-white",
                     )}
                   >
-                    {service(`${serviceKey}.deadline`)}
+                    {service(`${pageKey}.deadline`)}
                   </dd>
                 </div>
               </dl>
@@ -661,7 +666,7 @@ export function ServicePageContent({
             </Reveal>
           </div>
           <Reveal delay={0.1}>
-            <ContactChannels message={t("h1")} />
+            <ContactChannels message={servicePage.h1} />
           </Reveal>
         </div>
       </div>

@@ -43,6 +43,10 @@ jobs:
       - name: Build static export
         run: npm run build
         env:
+          # Каталог вырос до тридцати с лишним страниц услуг, и сборке перестало
+          # хватать кучи по умолчанию: локально она дважды умерла молча — без
+          # сообщения, просто с кодом 1. Явный лимит убирает эту лотерею.
+          NODE_OPTIONS: --max-old-space-size=6144
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || 'https://it-optimization.ru' }}
           NEXT_PUBLIC_CONTACT_EMAIL: ${{ vars.NEXT_PUBLIC_CONTACT_EMAIL || 'info@itoptimizations.ru' }}
           NEXT_PUBLIC_CONTACT_PHONE: ${{ vars.NEXT_PUBLIC_CONTACT_PHONE || '+79937266061' }}

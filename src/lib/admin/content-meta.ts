@@ -21,11 +21,20 @@ export const SERVICE_OPTIONS: ServiceOption[] = SERVICE_NAV.map((entry) => ({
   title: ITEMS[entry.key]?.title ?? entry.key,
 }));
 
-const TITLES = new Map(SERVICE_OPTIONS.map((option) => [option.key, option.title]));
+/**
+ * Названия всех услуг, включая черновики.
+ *
+ * `SERVICE_OPTIONS` выше — только опубликованные: привязывать кейс или статью к
+ * странице, которой ещё нет на сайте, незачем. А вкладке «Услуги» нужны все —
+ * она как раз и решает, что черновик, а что нет.
+ */
+export const SERVICE_TITLES = new Map(
+  Object.entries(ITEMS).map(([key, item]) => [key, item.title ?? key]),
+);
 
 /** Названия услуг записи — для строки под заголовком в списке. */
 export function serviceTitles(keys: readonly string[]): string[] {
-  return keys.map((key) => TITLES.get(key) ?? key);
+  return keys.map((key) => SERVICE_TITLES.get(key) ?? key);
 }
 
 /** Позиции внутри стольких первых кейсов показываются и на главной. */

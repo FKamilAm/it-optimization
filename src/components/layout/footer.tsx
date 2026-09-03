@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { FooterWordmark } from "@/components/layout/footer-wordmark";
@@ -77,10 +78,18 @@ export function Footer({ companyName }: FooterProps) {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-8 text-base text-white/55">
+        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-8 text-base text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {companyName}. {t("footer.rights")}
           </p>
+          {/* Публикация политики — требование ч. 2 ст. 18.1 152-ФЗ, поэтому
+              ссылка стоит в подвале каждой страницы, а не только на главной. */}
+          <Link
+            href="/politika-konfidencialnosti/"
+            className="underline-offset-4 transition-colors hover:text-white hover:underline"
+          >
+            {t("footer.privacy")}
+          </Link>
         </div>
       </div>
 

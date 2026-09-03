@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
 import { getAllCases } from "@/lib/cases";
-import { SERVICE_PAGES } from "@/lib/constants";
+import { SERVICE_NAV } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
+import privacy from "../../content/privacy.json";
 
 export const dynamic = "force-static";
 
@@ -27,13 +28,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const casesUpdated = latest(cases.map((item) => item.updatedAt));
   const blogUpdated = latest(posts.map((post) => post.updatedAt));
 
-  const servicePages: MetadataRoute.Sitemap = Object.values(SERVICE_PAGES).map(
-    (slug) => ({
-      url: `${siteUrl}/uslugi/${slug}/`,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    }),
-  );
+  // SERVICE_NAV, а не SERVICE_PAGES: в перечне адресов лежат и черновики,
+  // которым в карте сайта делать нечего.
+  const servicePages: MetadataRoute.Sitemap = SERVICE_NAV.map(({ slug }) => ({
+    url: `${siteUrl}/uslugi/${slug}/`,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
 
   const blogPosts: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${siteUrl}/blog/${post.slug}/`,
@@ -67,5 +68,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...servicePages,
     ...blogPosts,
+    // Политика — не маркетинговая страница, но она должна быть индексируемой:
+    // публикация подтверждается тем, что документ доступен и находится поиском.
+    // lastModified настоящий — из даты редакции в content/privacy.json.
+    {
+      url: `${siteUrl}/politika-konfidencialnosti/`,
+      lastModified: new Date(privacy.updatedAt),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
   ];
 }

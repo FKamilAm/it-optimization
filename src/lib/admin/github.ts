@@ -22,6 +22,7 @@ export const ADMIN_REPO = {
 
 export const CASES_JSON_PATH = "content/cases.json";
 export const BLOG_JSON_PATH = "content/blog.json";
+export const SERVICES_JSON_PATH = "content/service-catalog.json";
 export const TOKEN_STORAGE_KEY = "itopt-admin-token";
 
 export interface CommitFile {

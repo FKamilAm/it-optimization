@@ -8,6 +8,12 @@ import type {
   CasesPublishResult,
   CasesUpload,
 } from "./cases-api";
+import type {
+  ServicesApi,
+  ServicesPublishInput,
+  ServicesPublishResult,
+} from "./services-api";
+import type { ServiceCatalog } from "@/lib/services/types";
 
 /**
  * Реализация `CasesApi` поверх собственного API (server/).
@@ -201,6 +207,70 @@ export function httpBlogApi(): BlogApi {
 
       return {
         version,
+        changeUrl: result.commitUrl,
+        buildUrl: result.buildUrl,
+        warning: result.published ? undefined : result.reason,
+      };
+    },
+  };
+}
+
+/**
+ * Реализация `ServicesApi` поверх собственного API.
+ *
+ * Публикация здесь в два шага, как у кейсов и статей: сначала каталог целиком
+ * уходит в базу, потом отдельной командой — снапшот в репозиторий. Если второй
+ * шаг не прошёл (серверу не выдан доступ к GitHub), правки уже сохранены, и
+ * панель показывает предупреждение вместо красного сбоя — терять сделанное
+ * из-за настроек публикации нельзя.
+ */
+export function httpServicesApi(): ServicesApi {
+  return {
+    sourceLabel: "база данных",
+
+    async load() {
+      const response = await apiFetch("/service-catalog");
+      if (!response.ok) {
+        throw new Error(await readApiError(response, "Не удалось загрузить каталог"));
+      }
+      return (await response.json()) as ServiceCatalog & { version: string };
+    },
+
+    async publish(input: ServicesPublishInput): Promise<ServicesPublishResult> {
+      const saved = await apiFetch("/service-catalog", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          categories: input.categories,
+          services: input.services,
+          version: input.baseVersion,
+        }),
+      });
+      if (!saved.ok) {
+        throw new Error(await readApiError(saved, "Не удалось сохранить каталог"));
+      }
+      const body = (await saved.json()) as { version: string };
+
+      const published = await apiFetch("/service-catalog/publish", { method: "POST" });
+      if (!published.ok) {
+        return {
+          version: body.version,
+          warning: await readApiError(
+            published,
+            "Каталог сохранён, но опубликовать не удалось",
+          ),
+        };
+      }
+
+      const result = (await published.json()) as {
+        published: boolean;
+        reason?: string;
+        commitUrl?: string;
+        buildUrl?: string;
+      };
+
+      return {
+        version: body.version,
         changeUrl: result.commitUrl,
         buildUrl: result.buildUrl,
         warning: result.published ? undefined : result.reason,

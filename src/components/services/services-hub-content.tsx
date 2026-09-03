@@ -1,22 +1,56 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { ChevronRight } from "lucide-react";
 import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { ContactSection } from "@/components/sections/contact-section";
 import { ServiceCard } from "@/components/sections/service-card";
 import { FaqAccordion, type FaqItem } from "@/components/ui/faq-accordion";
-import { SERVICE_NAV } from "@/lib/constants";
+import { FilterChips, type FilterChipOption } from "@/components/ui/filter-chips";
+import { SERVICE_CATEGORY_NAV, SERVICE_NAV } from "@/lib/constants";
 
 /**
  * Полный каталог услуг. Главная показывает четыре направления из
- * HOME_SERVICE_KEYS и уводит сюда — здесь лежат все 18 на тех же карточках,
- * что и на главной.
+ * HOME_SERVICE_KEYS и уводит сюда — здесь лежат все, на тех же карточках.
+ *
+ * Разделы — это фильтр, а не заголовки секций: сеткой, разбитой на восемь
+ * блоков, страница читается как восемь отдельных списков, и человек, который
+ * пришёл за одной услугой, всё равно листает мимо семи чужих разделов. Фильтр
+ * оставляет один список и даёт сузить его одним нажатием.
+ *
+ * Раздел здесь по-прежнему не ссылка: своей страницы у него нет, и адрес при
+ * фильтрации не меняется — /uslugi/ должна оставаться одной страницей для
+ * поиска, а не размножаться на восемь почти одинаковых.
  */
 export function ServicesHubContent() {
   const t = useTranslations("servicesPage");
-  const services = useTranslations("services.items");
   const faq = t.raw("faq") as FaqItem[];
+
+  /** Выбранный раздел; null — весь каталог. */
+  const [filter, setFilter] = useState<string | null>(null);
+
+  // Названия разделов приходят из данных каталога, а не из `messages/ru.json`:
+  // раздел заводится в панели, и подпись должна заводиться там же. Разделы из
+  // одних черновиков `SERVICE_CATEGORY_NAV` уже отбросил.
+  const options = useMemo<FilterChipOption[]>(
+    () => [
+      { value: null, label: t("filterAll") },
+      ...SERVICE_CATEGORY_NAV.map((category) => ({
+        value: category.key,
+        label: category.title,
+      })),
+    ],
+    [t],
+  );
+
+  const visible = useMemo(() => {
+    if (!filter) return SERVICE_NAV;
+    const inCategory = new Set(
+      SERVICE_CATEGORY_NAV.find((category) => category.key === filter)?.services ?? [],
+    );
+    return SERVICE_NAV.filter((entry) => inCategory.has(entry.key));
+  }, [filter]);
 
   return (
     <>
@@ -43,8 +77,31 @@ export function ServicesHubContent() {
             <h1 className="heading-display max-w-4xl">{t("title")}</h1>
           </Reveal>
 
-          <StaggerReveal className="mt-12 grid gap-6 md:mt-16 md:grid-cols-2 md:gap-8 xl:grid-cols-4">
-            {SERVICE_NAV.map(({ key }, index) => (
+          <Reveal delay={0.05}>
+            <p className="text-muted-foreground mt-6 max-w-2xl text-lg">
+              {t("description")}
+            </p>
+          </Reveal>
+
+          {options.length > 2 && (
+            <Reveal delay={0.1}>
+              <FilterChips
+                label={t("filterLabel")}
+                options={options}
+                value={filter}
+                onChange={setFilter}
+                className="mt-10 md:mt-12"
+              />
+            </Reveal>
+          )}
+
+          {/* key по фильтру — чтобы карточки заново проявлялись при смене
+              раздела, а не подменялись молча под курсором. */}
+          <StaggerReveal
+            key={filter ?? "all"}
+            className="mt-12 grid gap-6 md:mt-16 md:grid-cols-2 md:gap-8 xl:grid-cols-4"
+          >
+            {visible.map(({ key }, index) => (
               <div key={key} className="h-full">
                 <ServiceCard serviceKey={key} index={index} headingAs="h2" />
               </div>

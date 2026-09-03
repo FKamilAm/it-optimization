@@ -5,7 +5,8 @@ import { AlertTriangle, ExternalLink, Loader2 } from "lucide-react";
 import { ADMIN_REPO, TOKEN_STORAGE_KEY } from "@/lib/admin/github";
 import { githubCasesApi, type CasesApi } from "@/lib/admin/cases-api";
 import { githubBlogApi, type BlogApi } from "@/lib/admin/blog-api";
-import { httpBlogApi, httpCasesApi } from "@/lib/admin/http-api";
+import { githubServicesApi, type ServicesApi } from "@/lib/admin/services-api";
+import { httpBlogApi, httpCasesApi, httpServicesApi } from "@/lib/admin/http-api";
 import {
   ADMIN_MODE,
   fetchCurrentUser,
@@ -15,16 +16,18 @@ import {
 } from "@/lib/admin/auth";
 import { CasesPanel } from "./cases-panel";
 import { BlogPanel } from "./blog-panel";
+import { ServicesPanel } from "./services-panel";
 import type { PanelTab } from "./panel-chrome";
 
 /**
- * Панель управления контентом сайта: кейсы и блог.
+ * Панель управления контентом сайта: кейсы, блог и каталог услуг.
  *
  * Здесь живёт только вход — каким способом панель авторизуется (пароль против
  * своего API или личный токен GitHub) и куда после этого пишет каждый раздел.
- * Сами разделы про этот выбор не знают: им отдают готовый `CasesApi` / `BlogApi`.
+ * Сами разделы про этот выбор не знают: им отдают готовый `CasesApi`,
+ * `BlogApi` или `ServicesApi`.
  *
- * Оба раздела смонтированы одновременно, а неактивный просто скрыт. Это
+ * Все разделы смонтированы одновременно, а неактивные просто скрыты. Это
  * намеренно: незаконченная правка живёт в состоянии панели, и переключение
  * вкладки не должно её терять.
  */
@@ -61,6 +64,12 @@ export function AdminPanel() {
   const blogApi = useMemo<BlogApi | null>(() => {
     if (ADMIN_MODE === "api") return user ? httpBlogApi() : null;
     return token ? githubBlogApi(token) : null;
+  }, [token, user]);
+
+  /** И для каталога услуг — разделов и их состава. */
+  const servicesApi = useMemo<ServicesApi | null>(() => {
+    if (ADMIN_MODE === "api") return user ? httpServicesApi() : null;
+    return token ? githubServicesApi(token) : null;
   }, [token, user]);
 
   const saveToken = () => {
@@ -102,7 +111,7 @@ export function AdminPanel() {
     return <TokenGate value={tokenInput} onChange={setTokenInput} onSubmit={saveToken} />;
   }
 
-  if (!casesApi || !blogApi) return null;
+  if (!casesApi || !blogApi || !servicesApi) return null;
 
   const chrome = {
     tab,
@@ -118,6 +127,9 @@ export function AdminPanel() {
       </div>
       <div className={tab === "blog" ? undefined : "hidden"}>
         <BlogPanel api={blogApi} {...chrome} />
+      </div>
+      <div className={tab === "services" ? undefined : "hidden"}>
+        <ServicesPanel api={servicesApi} {...chrome} />
       </div>
     </>
   );
@@ -155,7 +167,7 @@ function LoginGate({
       >
         <h1 className="font-display text-xl">Вход в панель</h1>
         <p className="text-muted-foreground mt-2 text-sm">
-          Управление кейсами и блогом сайта it-optimization.ru.
+          Кейсы, блог и каталог услуг сайта it-optimization.ru.
         </p>
 
         <label className="mt-6 block text-sm font-medium">

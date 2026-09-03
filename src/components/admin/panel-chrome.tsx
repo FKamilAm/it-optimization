@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   AlertTriangle,
   Check,
+  ChevronDown,
   ExternalLink,
   Loader2,
   LogOut,
@@ -25,11 +26,12 @@ import { IMAGE_SLOTS, formatBytes, type ImageSlot } from "@/lib/admin/images";
  * грузится на каждой публичной странице, а это внутренний инструмент.
  */
 
-export type PanelTab = "cases" | "blog";
+export type PanelTab = "cases" | "blog" | "services";
 
 const TABS: { id: PanelTab; label: string }[] = [
   { id: "cases", label: "Кейсы" },
   { id: "blog", label: "Блог" },
+  { id: "services", label: "Услуги" },
 ];
 
 export function PanelHeader({
@@ -125,12 +127,18 @@ function TabSwitch({ tab, onTab }: { tab: PanelTab; onTab: (next: PanelTab) => v
     <div
       role="group"
       aria-label="Раздел панели"
-      className="border-border bg-muted/60 relative flex h-10 w-52 shrink-0 rounded-full border p-1"
+      className="border-border bg-muted/60 relative flex h-10 w-64 shrink-0 rounded-full border p-1 sm:w-72"
     >
+      {/* Ширина плашки считается от числа вкладок, а не заклинена классом:
+          добавление раздела не должно требовать правки арифметики в вёрстке.
+          Сдвиг на 100% собственной ширины — это ровно один слот. */}
       <span
         aria-hidden="true"
-        style={{ transform: `translateX(${active * 100}%)` }}
-        className="bg-background pointer-events-none absolute top-1 bottom-1 left-1 w-[calc(50%-0.25rem)] rounded-full shadow-sm transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
+        style={{
+          width: `calc((100% - 0.5rem) / ${TABS.length})`,
+          transform: `translateX(${active * 100}%)`,
+        }}
+        className="bg-background pointer-events-none absolute top-1 bottom-1 left-1 rounded-full shadow-sm transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
       />
       {TABS.map((item) => (
         <button
@@ -365,6 +373,115 @@ export function ImageDrop({
         <p className="text-muted-foreground mt-2 text-center text-xs">
           новая · {spec.width}×{spec.height} · {formatBytes(pendingBytes)}
         </p>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Компактная выпадашка для плотных строк панели.
+ *
+ * Витринный `FilterSelect` с публичных страниц здесь не подходит: у него
+ * `h-14` и `min-w-[18rem]`, то есть он шире и выше любой строки списка и
+ * попросту вылезает за карточку.
+ *
+ * Слой — вторая причина написать своё. У всех выпадашек на странице одинаковый
+ * z-index, а при равных значениях побеждает порядок в разметке, поэтому строки
+ * ниже перекрывают открытую панель соседа сверху. Здесь открытая выпадашка
+ * поднимается в `z-30`, закрытая остаётся в `z-0` — и открытая всегда выше
+ * всех остальных, независимо от того, где стоит в списке.
+ */
+export function PanelSelect({
+  label,
+  options,
+  value,
+  onChange,
+  className,
+}: {
+  /** Подпись для скринридера: визуально её заменяет выбранное значение. */
+  label: string;
+  options: { value: string; label: string }[];
+  value: string;
+  onChange: (value: string) => void;
+  className?: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const current = options.find((option) => option.value === value);
+
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (event: PointerEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
+  return (
+    <div ref={rootRef} className={cn("relative", open ? "z-30" : "z-0", className)}>
+      <button
+        type="button"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        onClick={() => setOpen(!open)}
+        className={cn(
+          "border-border bg-background hover:border-foreground focus-visible:outline-accent flex h-9 w-full cursor-pointer items-center gap-2 rounded-lg border px-3 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2",
+          open && "border-foreground",
+        )}
+      >
+        <span className="sr-only">{label}</span>
+        <span className="min-w-0 flex-1 truncate text-left">
+          {current?.label ?? value}
+        </span>
+        <ChevronDown
+          className={cn(
+            "text-muted-foreground h-4 w-4 shrink-0 transition-transform duration-200",
+            open && "rotate-180",
+          )}
+          aria-hidden="true"
+        />
+      </button>
+
+      {open && (
+        <div
+          role="listbox"
+          aria-label={label}
+          className="border-border bg-background absolute top-full right-0 z-30 mt-1.5 max-h-64 w-64 min-w-full overflow-y-auto rounded-xl border p-1 shadow-[0_18px_44px_rgba(0,0,0,0.18)]"
+        >
+          {options.map((option) => {
+            const selected = option.value === value;
+            return (
+              <button
+                key={option.value}
+                type="button"
+                role="option"
+                aria-selected={selected}
+                onClick={() => {
+                  onChange(option.value);
+                  setOpen(false);
+                }}
+                className={cn(
+                  "flex w-full cursor-pointer items-center gap-2 rounded-lg px-2.5 py-2 text-left text-sm transition-colors",
+                  selected ? "bg-muted font-medium" : "hover:bg-muted/60",
+                )}
+              >
+                <Check
+                  className={cn("h-3.5 w-3.5 shrink-0", !selected && "opacity-0")}
+                  aria-hidden="true"
+                />
+                <span className="min-w-0 flex-1 truncate">{option.label}</span>
+              </button>
+            );
+          })}
+        </div>
       )}
     </div>
   );
