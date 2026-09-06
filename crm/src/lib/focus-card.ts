@@ -20,7 +20,7 @@ import { useSearchParams } from "react-router";
  */
 
 /** Сколько живёт подсветка — ровно длительность `.crm-focused` в стилях. */
-const RING_MS = 3600;
+const RING_MS = 3200;
 
 export function useFocusFromLink(ready: boolean): void {
   const [params, setParams] = useSearchParams();
