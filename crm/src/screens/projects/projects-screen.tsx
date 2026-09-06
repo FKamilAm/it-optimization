@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { ApiError } from "@/api/client";
+import { FilterToolbar } from "@/components/filter-toolbar";
+import { useFocusFromLink } from "@/lib/focus-card";
 import { useOpenFromSearch } from "@/lib/open-from-search";
 import { listClients, type Client } from "@/api/clients";
 import {
@@ -258,6 +260,7 @@ export function ProjectsScreen() {
 
   useEffect(load, [load]); // Переход из глобального поиска: ?open=<id> открывает нужную карточку.
   useOpenFromSearch(projects, setEditing);
+  useFocusFromLink(projects !== null);
 
   useEffect(() => {
     listClients()
@@ -308,41 +311,43 @@ export function ProjectsScreen() {
         </Button>
       </header>
 
-      {/* Срезы списка — выпадающим списком, как в задачах: одинаковый фильтр в
-          двух разделах не должен выглядеть по-разному. */}
-      <div className="mt-5 flex flex-wrap items-center gap-2">
-        <Select
-          value={tab}
-          onChange={(value) => setTab(value as TabKey)}
-          ariaLabel="Фильтр проектов"
-          icon={<Filter size={14} strokeWidth={2} />}
-          className="w-40 shrink-0"
-          options={TABS.map((item) => ({ value: item.key, label: item.label }))}
-        />
-        <div className="border-border flex shrink-0 overflow-hidden rounded-lg border">
-          {(["list", "board"] as const).map((mode) => (
-            <button
-              key={mode}
-              type="button"
-              onClick={() => setView(mode)}
-              className={cn(
-                "px-3 py-1.5 text-sm font-medium transition",
-                view === mode
-                  ? "bg-accent-soft text-foreground"
-                  : "text-muted-foreground hover:bg-muted",
-              )}
-            >
-              {mode === "list" ? "Список" : "Доска"}
-            </button>
-          ))}
-        </div>
-        <Input
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-          placeholder="Поиск"
-          className="w-full sm:ml-auto sm:w-56"
-        />
-      </div>
+      {/* Та же панель, что в задачах: одинаковый по смыслу фильтр не должен
+          выглядеть по-разному в соседних разделах. */}
+      <FilterToolbar
+        activeCount={tab === "all" ? 0 : 1}
+        view={{
+          value: view,
+          onChange: (value) => setView(value as "list" | "board"),
+          ariaLabel: "Вид списка проектов",
+          options: [
+            { value: "list", label: "Список" },
+            { value: "board", label: "Доска" },
+          ],
+        }}
+        filters={[
+          {
+            label: "Срез",
+            render: (full) => (
+              <Select
+                value={tab}
+                onChange={(value) => setTab(value as TabKey)}
+                ariaLabel="Фильтр проектов"
+                icon={<Filter size={14} strokeWidth={2} />}
+                className={full ? "w-full" : "w-40"}
+                options={TABS.map((item) => ({ value: item.key, label: item.label }))}
+              />
+            ),
+          },
+        ]}
+        search={
+          <Input
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder="Поиск"
+            className="w-full sm:w-56"
+          />
+        }
+      />
 
       {error && (
         <div className="mt-4">
@@ -444,6 +449,7 @@ function ProjectRow({ project, onOpen }: { project: Project; onOpen: () => void 
       <button
         type="button"
         onClick={onOpen}
+        data-card-id={project.id}
         className="border-border bg-background hover:border-accent-border flex w-full items-start gap-3 rounded-xl border px-3 py-2.5 text-left transition hover:shadow-sm"
       >
         <div className="min-w-0 flex-1">

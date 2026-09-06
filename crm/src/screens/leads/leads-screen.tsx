@@ -1,6 +1,8 @@
 import { Filter, Plus } from "lucide-react";
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { ApiError } from "@/api/client";
+import { FilterToolbar } from "@/components/filter-toolbar";
+import { useFocusFromLink } from "@/lib/focus-card";
 import { useOpenFromSearch } from "@/lib/open-from-search";
 import {
   createLead,
@@ -83,6 +85,7 @@ export function LeadsScreen() {
 
   useEffect(load, [load]); // Переход из глобального поиска: ?open=<id> открывает нужную карточку.
   useOpenFromSearch(leads, (lead) => setOpenLeadId(lead.id));
+  useFocusFromLink(leads !== null);
 
   useEffect(() => {
     listTeam()
@@ -100,24 +103,33 @@ export function LeadsScreen() {
         </Button>
       </header>
 
-      {/* Срезы списка — тем же выпадающим списком, что в задачах и проектах. */}
-      <div className="mt-5 flex flex-wrap items-center gap-2">
-        <Select
-          value={tab}
-          onChange={(value) => setTab(value as TabKey)}
-          ariaLabel="Фильтр лидов"
-          icon={<Filter size={14} strokeWidth={2} />}
-          className="w-40 shrink-0"
-          options={TABS.map((item) => ({ value: item.key, label: item.label }))}
-        />
-
-        <Input
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-          placeholder="Поиск по имени, контакту, тексту"
-          className="w-full sm:ml-auto sm:w-72"
-        />
-      </div>
+      {/* Вида у лидов нет — только срез и поиск, но панель та же. */}
+      <FilterToolbar
+        activeCount={tab === "all" ? 0 : 1}
+        filters={[
+          {
+            label: "Срез",
+            render: (full) => (
+              <Select
+                value={tab}
+                onChange={(value) => setTab(value as TabKey)}
+                ariaLabel="Фильтр лидов"
+                icon={<Filter size={14} strokeWidth={2} />}
+                className={full ? "w-full" : "w-40"}
+                options={TABS.map((item) => ({ value: item.key, label: item.label }))}
+              />
+            ),
+          },
+        ]}
+        search={
+          <Input
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder="Поиск по имени, контакту, тексту"
+            className="w-full sm:w-72"
+          />
+        }
+      />
 
       {error && (
         <div className="mt-5">
@@ -182,6 +194,7 @@ function LeadRow({ lead, onOpen }: { lead: Lead; onOpen: () => void }) {
       <button
         type="button"
         onClick={onOpen}
+        data-card-id={lead.id}
         className="border-border bg-background hover:border-accent-border flex w-full flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border px-3 py-2.5 text-left transition hover:shadow-sm"
       >
         <span className="min-w-0 flex-1">

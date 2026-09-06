@@ -9,6 +9,8 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { ApiError } from "@/api/client";
+import { FilterToolbar } from "@/components/filter-toolbar";
+import { useFocusFromLink } from "@/lib/focus-card";
 import { useOpenFromSearch } from "@/lib/open-from-search";
 import { listProjects, type Project } from "@/api/projects";
 import {
@@ -241,6 +243,8 @@ export function TasksScreen() {
 
   useEffect(load, [load]); // Переход из глобального поиска: ?open=<id> открывает нужную карточку.
   useOpenFromSearch(tasks, setEditing);
+  // Из «Сегодня» приходят не открывать, а показать, где карточка стоит.
+  useFocusFromLink(tasks !== null);
 
   useEffect(() => {
     // Список проектов нужен только для выпадающего списка в форме, поэтому
@@ -312,53 +316,60 @@ export function TasksScreen() {
         </Button>
       </header>
 
-      {/* Четыре состояния задачи — это фильтр, а не разделы, поэтому список, а
-          не ряд кнопок: ряд занимал целую строку и на телефоне переносился на
-          две, оставляя переключатель вида где-то посередине. В списке видно
-          выбранное, а остальное разворачивается по требованию. */}
-      <div className="mt-5 flex flex-wrap items-center gap-2">
-        <Select
-          value={tab}
-          onChange={(value) => setTab(value as TabKey)}
-          ariaLabel="Фильтр задач"
-          icon={<Filter size={14} strokeWidth={2} />}
-          className="w-40 shrink-0"
-          options={TABS.map((item) => ({ value: item.key, label: item.label }))}
-        />
-        <div className="border-border flex shrink-0 overflow-hidden rounded-lg border">
-          {(["list", "board", "calendar"] as const).map((mode) => (
-            <button
-              key={mode}
-              type="button"
-              onClick={() => setView(mode)}
-              className={cn(
-                "px-3 py-1.5 text-sm font-medium transition",
-                view === mode
-                  ? "bg-accent-soft text-foreground"
-                  : "text-muted-foreground hover:bg-muted",
-              )}
-            >
-              {mode === "list" ? "Список" : mode === "board" ? "Доска" : "Календарь"}
-            </button>
-          ))}
-        </div>
-        <Select
-          value={developer}
-          onChange={setDeveloper}
-          ariaLabel="Исполнитель"
-          className="w-44 shrink-0"
-          options={[
-            { value: "", label: "Все исполнители" },
-            ...DEVELOPERS.map((name) => ({ value: name, label: name })),
-          ]}
-        />
-        <Input
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-          placeholder="Поиск"
-          className="w-full sm:ml-auto sm:w-56"
-        />
-      </div>
+      {/* Срезы и исполнитель — фильтры, а не разделы, поэтому выпадающими
+          списками: ряд кнопок занимал целую строку и на телефоне переносился на
+          две, оставляя переключатель вида где-то посередине. */}
+      <FilterToolbar
+        activeCount={(tab === "all" ? 0 : 1) + (developer ? 1 : 0)}
+        view={{
+          value: view,
+          onChange: (value) => setView(value as "list" | "board" | "calendar"),
+          ariaLabel: "Вид списка задач",
+          options: [
+            { value: "list", label: "Список" },
+            { value: "board", label: "Доска" },
+            { value: "calendar", label: "Календарь" },
+          ],
+        }}
+        filters={[
+          {
+            label: "Срез",
+            render: (full) => (
+              <Select
+                value={tab}
+                onChange={(value) => setTab(value as TabKey)}
+                ariaLabel="Фильтр задач"
+                icon={<Filter size={14} strokeWidth={2} />}
+                className={full ? "w-full" : "w-40"}
+                options={TABS.map((item) => ({ value: item.key, label: item.label }))}
+              />
+            ),
+          },
+          {
+            label: "Исполнитель",
+            render: (full) => (
+              <Select
+                value={developer}
+                onChange={setDeveloper}
+                ariaLabel="Исполнитель"
+                className={full ? "w-full" : "w-44"}
+                options={[
+                  { value: "", label: "Все исполнители" },
+                  ...DEVELOPERS.map((name) => ({ value: name, label: name })),
+                ]}
+              />
+            ),
+          },
+        ]}
+        search={
+          <Input
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder="Поиск"
+            className="w-full sm:w-56"
+          />
+        }
+      />
 
       {error && (
         <div className="mt-4">
@@ -510,7 +521,10 @@ function TaskRow({
   const deadline = task.dueAt && !done ? describeDeadline(task.dueAt) : null;
 
   return (
-    <li className="border-border bg-background hover:border-accent-border flex items-start gap-3 rounded-xl border px-3 py-2.5 transition hover:shadow-sm">
+    <li
+      data-card-id={task.id}
+      className="border-border bg-background hover:border-accent-border flex items-start gap-3 rounded-xl border px-3 py-2.5 transition hover:shadow-sm"
+    >
       <button
         type="button"
         onClick={onToggle}

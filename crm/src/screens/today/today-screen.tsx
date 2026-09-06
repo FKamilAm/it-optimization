@@ -17,10 +17,16 @@ import { Link } from "react-router";
  * Главный экран: что горит прямо сейчас. Ровно то же, что бот присылает в
  * девять утра, — бот закрывает утро, экран нужен в течение дня.
  *
- * Каждая строка ведёт не в раздел, а прямо в свою карточку: через `?open=<id>`,
- * который экран раздела разбирает сам (`useOpenFromSearch`) — тем же способом,
- * что и глобальный поиск. Переход просто в раздел означал бы искать в списке
- * то, что человек только что видел перед собой.
+ * Каждая строка ведёт не в раздел, а прямо к своей карточке: через
+ * `?focus=<id>`, который экран раздела разбирает сам (`useFocusFromLink`).
+ * Переход просто в раздел означал бы искать в списке то, что человек только
+ * что видел перед собой.
+ *
+ * Именно к карточке, а не в неё: окно не открывается. «Сегодня» отвечает на
+ * «что горит», и строка здесь — пункт списка, а не пункт назначения; человек
+ * может просто хотеть посмотреть, где она стоит и что рядом. Открывать окно
+ * за него — решать, что он собрался править. Карточка вместо этого коротко
+ * подсвечивается, чтобы её не искать глазами заново.
  *
  * Порядок блоков не случаен: сверху то, что уже просрочено, снизу то, что ещё
  * можно успеть. Ничьи лиды идут выше своих задач — потерянный лид стоит дороже
@@ -198,7 +204,7 @@ function LeadLine({ lead, showDeadline }: { lead: Lead; showDeadline?: boolean }
 
   return (
     <li className="flex items-start gap-3 py-2.5">
-      <Link to={`/leads?open=${lead.id}`} className="min-w-0 flex-1">
+      <Link to={`/leads?focus=${lead.id}`} className="min-w-0 flex-1">
         <span className="block truncate text-sm font-medium">
           {lead.nextActionNote?.trim() || lead.name?.trim() || lead.contact}
         </span>
@@ -234,7 +240,7 @@ function TaskLine({
       >
         <Check size={13} strokeWidth={3} className="opacity-0 hover:opacity-40" />
       </button>
-      <Link to={`/tasks?open=${task.id}`} className="min-w-0 flex-1">
+      <Link to={`/tasks?focus=${task.id}`} className="min-w-0 flex-1">
         <span className="block truncate text-sm font-medium">
           {task.priority === "high" && "❗ "}
           {task.title}
@@ -258,7 +264,7 @@ function TaskLine({
 function UnbilledLine({ project }: { project: Project }) {
   return (
     <li className="flex items-start gap-3 py-2.5">
-      <Link to={`/projects?open=${project.id}`} className="min-w-0 flex-1">
+      <Link to={`/projects?focus=${project.id}`} className="min-w-0 flex-1">
         <span className="block truncate text-sm font-medium">{project.title}</span>
         <span className="text-muted-foreground mt-0.5 block truncate text-xs">
           {[project.client?.name, `с ${periodLabel(project.unbilledPeriod ?? "")}`]
@@ -285,7 +291,7 @@ function CredentialLine({ item }: { item: Credential }) {
 
   return (
     <li className="flex items-start gap-3 py-2.5">
-      <Link to={`/credentials?open=${item.id}`} className="min-w-0 flex-1">
+      <Link to={`/credentials?focus=${item.id}`} className="min-w-0 flex-1">
         <span className="block truncate text-sm font-medium">{item.service}</span>
         <span className="text-muted-foreground mt-0.5 block truncate text-xs">
           {[item.login, item.owner ?? "ни на кого не оформлен", item.secretHint]
@@ -308,7 +314,7 @@ function ProjectLine({ project }: { project: Project }) {
 
   return (
     <li className="flex items-start gap-3 py-2.5">
-      <Link to={`/projects?open=${project.id}`} className="min-w-0 flex-1">
+      <Link to={`/projects?focus=${project.id}`} className="min-w-0 flex-1">
         <span className="block truncate text-sm font-medium">{project.title}</span>
         <span className="text-muted-foreground mt-0.5 block truncate text-xs">
           {[
