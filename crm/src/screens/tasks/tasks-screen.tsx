@@ -377,7 +377,7 @@ export function TasksScreen() {
         </div>
       )}
 
-      <div className="mt-5">
+      <div className="mt-6 sm:mt-5">
         {tasks === null ? (
           <p className="text-muted-foreground text-sm">Загружаем…</p>
         ) : tasks.length === 0 ? (
@@ -448,7 +448,7 @@ export function TasksScreen() {
             )}
           />
         ) : (
-          <ul className="space-y-2">
+          <ul className="space-y-3 sm:space-y-2">
             {tasks.map((task) => (
               <TaskRow
                 key={task.id}
@@ -523,7 +523,7 @@ function TaskRow({
   return (
     <li
       data-card-id={task.id}
-      className="border-border bg-background hover:border-accent-border flex items-start gap-3 rounded-xl border px-3 py-2.5 transition hover:shadow-sm"
+      className="border-border bg-background hover:border-accent-border flex items-start gap-3 rounded-xl border px-3 py-3 transition hover:shadow-sm sm:py-2.5"
     >
       <button
         type="button"

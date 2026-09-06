@@ -355,7 +355,7 @@ export function ProjectsScreen() {
         </div>
       )}
 
-      <div className="mt-5">
+      <div className="mt-6 sm:mt-5">
         {projects === null ? (
           <p className="text-muted-foreground text-sm">Загружаем…</p>
         ) : projects.length === 0 ? (
@@ -383,7 +383,7 @@ export function ProjectsScreen() {
             )}
           />
         ) : (
-          <ul className="space-y-2">
+          <ul className="space-y-3 sm:space-y-2">
             {projects.map((project) => (
               <ProjectRow
                 key={project.id}
@@ -450,7 +450,7 @@ function ProjectRow({ project, onOpen }: { project: Project; onOpen: () => void 
         type="button"
         onClick={onOpen}
         data-card-id={project.id}
-        className="border-border bg-background hover:border-accent-border flex w-full items-start gap-3 rounded-xl border px-3 py-2.5 text-left transition hover:shadow-sm"
+        className="border-border bg-background hover:border-accent-border flex w-full items-start gap-3 rounded-xl border px-3 py-3 text-left transition hover:shadow-sm sm:py-2.5"
       >
         <div className="min-w-0 flex-1">
           <span className="block truncate text-sm font-medium">{project.title}</span>

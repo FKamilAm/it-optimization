@@ -60,7 +60,7 @@ export function ClientsScreen() {
         </Button>
       </header>
 
-      <div className="mt-5">
+      <div className="mt-6 sm:mt-5">
         <Input
           value={search}
           onChange={(event) => setSearch(event.target.value)}
@@ -75,7 +75,7 @@ export function ClientsScreen() {
         </div>
       )}
 
-      <div className="mt-5">
+      <div className="mt-6 sm:mt-5">
         {clients === null ? (
           <p className="text-muted-foreground text-sm">Загружаем…</p>
         ) : clients.length === 0 ? (
@@ -84,7 +84,7 @@ export function ClientsScreen() {
             note="Клиент появляется тогда, когда с ним начинается работа, а не при первом письме."
           />
         ) : (
-          <ul className="space-y-2">
+          <ul className="space-y-3 sm:space-y-2">
             {clients.map((client) => (
               <ClientRow
                 key={client.id}

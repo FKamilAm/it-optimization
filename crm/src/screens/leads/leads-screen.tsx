@@ -132,12 +132,12 @@ export function LeadsScreen() {
       />
 
       {error && (
-        <div className="mt-5">
+        <div className="mt-6 sm:mt-5">
           <ErrorNote>{error}</ErrorNote>
         </div>
       )}
 
-      <div className="mt-5">
+      <div className="mt-6 sm:mt-5">
         {leads === null && !error && (
           <p className="text-muted-foreground text-sm">Загружаем…</p>
         )}
@@ -154,7 +154,7 @@ export function LeadsScreen() {
         )}
 
         {leads && leads.length > 0 && (
-          <ul className="space-y-2">
+          <ul className="space-y-3 sm:space-y-2">
             {leads.map((lead) => (
               <LeadRow key={lead.id} lead={lead} onOpen={() => setOpenLeadId(lead.id)} />
             ))}
@@ -195,7 +195,7 @@ function LeadRow({ lead, onOpen }: { lead: Lead; onOpen: () => void }) {
         type="button"
         onClick={onOpen}
         data-card-id={lead.id}
-        className="border-border bg-background hover:border-accent-border flex w-full flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border px-3 py-2.5 text-left transition hover:shadow-sm"
+        className="border-border bg-background hover:border-accent-border flex w-full flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border px-3 py-3 text-left transition hover:shadow-sm sm:py-2.5"
       >
         <span className="min-w-0 flex-1">
           <span className="block truncate font-medium">{lead.name ?? lead.contact}</span>

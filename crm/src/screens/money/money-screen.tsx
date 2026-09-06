@@ -84,11 +84,11 @@ export function MoneyScreen() {
               Все помесячные проекты выставлены.
             </p>
           ) : (
-            <ul className="mt-2 space-y-2">
+            <ul className="mt-2 space-y-3 sm:space-y-2">
               {unbilled.map((project) => (
                 <li
                   key={project.id}
-                  className="border-border bg-danger-soft flex items-center gap-3 rounded-xl border px-3 py-2.5"
+                  className="border-border bg-danger-soft flex items-center gap-3 rounded-xl border px-3 py-3 sm:py-2.5"
                 >
                   <Link to={`/projects?open=${project.id}`} className="min-w-0 flex-1">
                     <span className="block truncate text-sm font-medium">
@@ -141,11 +141,11 @@ export function MoneyScreen() {
               <EmptyState title="Долгов нет" note="Все выставленные счета оплачены." />
             </div>
           ) : (
-            <ul className="mt-2 space-y-2">
+            <ul className="mt-2 space-y-3 sm:space-y-2">
               {unpaid.map((invoice) => (
                 <li
                   key={invoice.id}
-                  className="border-border bg-background flex items-center gap-3 rounded-xl border px-3 py-2.5"
+                  className="border-border bg-background flex items-center gap-3 rounded-xl border px-3 py-3 sm:py-2.5"
                 >
                   {/* Отметка об оплате живёт в карточке проекта, поэтому строка
                       ведёт прямо туда: раньше она была неинтерактивной, и путь
