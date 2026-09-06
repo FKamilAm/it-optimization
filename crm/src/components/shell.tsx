@@ -9,11 +9,15 @@ import {
   Images,
   Inbox,
   LogOut,
+  Menu,
+  Search,
   Settings,
   Sun,
   Trash2,
+  X,
 } from "lucide-react";
-import { NavLink, Outlet } from "react-router";
+import { useEffect, useRef, useState } from "react";
+import { NavLink, Outlet, useLocation } from "react-router";
 import { useAuth, useCurrentUser } from "@/auth/auth-context";
 import { GlobalSearch } from "@/components/global-search";
 import { cn } from "@/lib/cn";
@@ -61,110 +65,260 @@ const EXTERNAL = [
   { href: `${SITE_URL}/panel/`, label: "Кейсы и блог", icon: Images, leadsOnly: false },
 ] as const;
 
+/** Одна раскладка пункта на оба места: боковую колонку и выдвижную панель. */
+const itemClass = "flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium";
+const idleClass = "text-muted-foreground hover:bg-muted hover:text-foreground";
+const activeClass = "bg-accent-soft text-foreground";
+
+/**
+ * Разделы и внешние ссылки. Вынесены из `Shell`, потому что рисуются дважды —
+ * в боковой колонке и в выдвижной панели, — а разъехавшийся между ними список
+ * это ровно тот баг, который замечают последним.
+ */
+function NavItems({ leadsOnly }: { leadsOnly: boolean }) {
+  return (
+    <>
+      {NAV.filter((item) => !leadsOnly || item.leadsOnly).map(
+        ({ to, label, icon: Icon, end }) => (
+          <NavLink
+            key={to}
+            to={to}
+            end={end}
+            className={({ isActive }) =>
+              cn(itemClass, "transition", isActive ? activeClass : idleClass)
+            }
+          >
+            <Icon size={16} strokeWidth={2} />
+            {label}
+          </NavLink>
+        ),
+      )}
+
+      <div className="border-border mt-4 border-t pt-4" />
+
+      {EXTERNAL.filter((item) => !leadsOnly || item.leadsOnly).map(
+        ({ href, label, icon: Icon }) => (
+          <a
+            key={href}
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            className={cn(itemClass, idleClass, "group transition")}
+          >
+            <Icon size={16} strokeWidth={2} />
+            {label}
+            <ExternalLink
+              size={13}
+              strokeWidth={2}
+              className="ml-auto opacity-0 transition-opacity group-hover:opacity-60"
+            />
+          </a>
+        ),
+      )}
+    </>
+  );
+}
+
+/** Низ панели: свои настройки и выход. Тоже общий для двух раскладок. */
+function AccountItems({ name, onLogout }: { name: string; onLogout: () => void }) {
+  return (
+    <>
+      <NavLink
+        to="/settings"
+        className={({ isActive }) =>
+          cn(itemClass, "transition", isActive ? activeClass : idleClass)
+        }
+      >
+        <Settings size={16} strokeWidth={2} />
+        <span className="truncate">{name}</span>
+      </NavLink>
+      <button
+        type="button"
+        onClick={onLogout}
+        className={cn(itemClass, idleClass, "w-full transition")}
+      >
+        <LogOut size={16} strokeWidth={2} />
+        Выйти
+      </button>
+    </>
+  );
+}
+
+function Wordmark() {
+  return (
+    <span className="flex items-center gap-2">
+      <span className="bg-accent h-2 w-2 rounded-full" />
+      <span className="text-sm font-bold tracking-tight">CRM</span>
+    </span>
+  );
+}
+
+/** Заголовок верхней полосы — чтобы на телефоне было видно, где ты стоишь. */
+function useSectionTitle(): string {
+  const { pathname } = useLocation();
+  if (pathname === "/settings") return "Настройки";
+  const match = NAV.filter((item) => item.to !== "/").find((item) =>
+    pathname.startsWith(item.to),
+  );
+  return match?.label ?? NAV[0].label;
+}
+
 export function Shell() {
   const user = useCurrentUser();
   const { logout } = useAuth();
   const leadsOnly = user.role === "marketing";
+  const { pathname } = useLocation();
+  const title = useSectionTitle();
+
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const burger = useRef<HTMLButtonElement>(null);
+  const closeButton = useRef<HTMLButtonElement>(null);
+  const wasOpen = useRef(false);
+
+  // Переход в другой раздел закрывает панель сам: на телефоне она перекрывает
+  // весь экран, и оставить её открытой поверх только что выбранного раздела
+  // означает заставить закрывать её вручную после каждого нажатия.
+  useEffect(() => setMenuOpen(false), [pathname]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    function onKey(event: KeyboardEvent) {
+      if (event.key === "Escape") setMenuOpen(false);
+    }
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
+  // Фокус ходит за панелью: открылась — уходит внутрь, закрылась — возвращается
+  // на кнопку, с которой всё началось. Без этого клавиатура остаётся позади
+  // открытой панели, а после закрытия — в начале документа.
+  useEffect(() => {
+    if (menuOpen) closeButton.current?.focus();
+    else if (wasOpen.current) burger.current?.focus();
+    wasOpen.current = menuOpen;
+  }, [menuOpen]);
 
   return (
     /* h-full, а не min-h-full: страница целиком не прокручивается, прокрутка
        живёт внутри <main>. Иначе боковая колонка уезжала бы вверх вместе с
        содержимым, и до разделов приходилось бы возвращаться скроллом. */
     <div className="flex h-full flex-col overflow-hidden md:flex-row">
-      {/* На узком экране навигация уезжает наверх в прокручиваемую строку:
-          боковая колонка на телефоне съедает половину ширины. */}
-      <nav className="border-border flex shrink-0 flex-wrap items-center gap-1 border-b px-3 py-2 md:h-full md:w-56 md:flex-col md:flex-nowrap md:items-stretch md:border-r md:border-b-0 md:px-3 md:py-5">
-        <div className="mr-3 hidden items-center gap-2 px-2 pb-5 md:flex">
-          <span className="bg-accent h-2 w-2 rounded-full" />
-          <span className="text-sm font-bold tracking-tight">CRM</span>
+      {/* Боковая колонка — только с планшета. На телефоне она съедала бы
+          половину ширины, поэтому там её заменяет выдвижная панель. */}
+      <aside className="border-border hidden shrink-0 border-r md:flex md:h-full md:w-56 md:flex-col md:px-3 md:py-5">
+        <div className="px-2 pb-5">
+          <Wordmark />
         </div>
 
-        {/* Поиск занимает всю ширину и стоит первым: на узком экране ссылки
-            уезжают под него отдельной строкой, а не толкаются с ним в ряд. */}
         {!leadsOnly && (
-          <div className="order-first mb-2 w-full md:order-none md:mb-3">
+          <div className="mb-3">
             <GlobalSearch />
           </div>
         )}
 
-        {/* Прокручиваются только ссылки, и только в боковой раскладке. Задать
-            прокрутку всей колонке нельзя: она обрезала бы выпадающий список
-            поиска, который стоит выше. На узком экране обёртка растворяется
-            (display: contents) и ссылки остаются в общей строке. */}
-        <div className="contents md:block md:min-h-0 md:flex-1 md:overflow-y-auto">
-          {NAV.filter((item) => !leadsOnly || item.leadsOnly).map(
-            ({ to, label, icon: Icon, end }) => (
-              <NavLink
-                key={to}
-                to={to}
-                end={end}
-                className={({ isActive }) =>
-                  cn(
-                    "flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium whitespace-nowrap transition",
-                    isActive
-                      ? "bg-accent-soft text-foreground"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground",
-                  )
-                }
-              >
-                <Icon size={16} strokeWidth={2} />
-                {label}
-              </NavLink>
-            ),
-          )}
+        {/* Прокручиваются только ссылки. Задать прокрутку всей колонке нельзя:
+            она обрезала бы выпадающий список поиска, который стоит выше. */}
+        <nav aria-label="Разделы" className="min-h-0 flex-1 overflow-y-auto">
+          <NavItems leadsOnly={leadsOnly} />
+        </nav>
 
-          {/* Разделитель виден только в боковой раскладке: в строке наверху он
-            превратился бы в лишнюю полосу поперёк навигации. */}
-          <div className="border-border hidden md:mt-5 md:block md:border-t md:pt-5" />
+        <div className="border-border mt-4 flex flex-col border-t pt-4">
+          <AccountItems name={user.name ?? user.email} onLogout={() => void logout()} />
+        </div>
+      </aside>
 
-          {EXTERNAL.filter((item) => !leadsOnly || item.leadsOnly).map(
-            ({ href, label, icon: Icon }) => (
-              <a
-                key={href}
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-                className="text-muted-foreground hover:bg-muted hover:text-foreground group flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium whitespace-nowrap transition"
-              >
-                <Icon size={16} strokeWidth={2} />
-                {label}
-                <ExternalLink
-                  size={13}
-                  strokeWidth={2}
-                  className="ml-auto hidden opacity-0 transition-opacity group-hover:opacity-60 md:block"
-                />
-              </a>
-            ),
+      {/* Верхняя полоса телефона: кнопка меню, название раздела и поиск. */}
+      <header className="border-border shrink-0 border-b md:hidden">
+        <div className="flex items-center gap-1 px-2 py-2">
+          <button
+            ref={burger}
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Открыть меню разделов"
+            aria-expanded={menuOpen}
+            aria-controls="crm-menu"
+            className="text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg p-2 transition"
+          >
+            <Menu size={20} strokeWidth={2} />
+          </button>
+
+          <span className="truncate px-1 text-sm font-bold tracking-tight">{title}</span>
+
+          {!leadsOnly && (
+            <button
+              type="button"
+              onClick={() => setSearchOpen((value) => !value)}
+              aria-label={searchOpen ? "Скрыть поиск" : "Искать"}
+              aria-expanded={searchOpen}
+              className={cn(
+                "ml-auto rounded-lg p-2 transition",
+                searchOpen
+                  ? "bg-accent-soft text-foreground"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground",
+              )}
+            >
+              <Search size={18} strokeWidth={2} />
+            </button>
           )}
         </div>
 
-        <div className="ml-auto flex items-center gap-2 md:ml-0 md:flex-col md:items-stretch md:pt-5">
-          <NavLink
-            to="/settings"
-            className={({ isActive }) =>
-              cn(
-                "flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition",
-                isActive
-                  ? "bg-accent-soft text-foreground"
-                  : "text-muted-foreground hover:bg-muted hover:text-foreground",
-              )
-            }
-          >
-            <Settings size={16} strokeWidth={2} />
-            <span className="hidden truncate md:inline">{user.name ?? user.email}</span>
-          </NavLink>
+        {/* Поиск разворачивается второй строкой, а не ужимается в остаток
+            первой: на 360 пикселях поле шириной с два слова бесполезно. */}
+        {searchOpen && !leadsOnly && (
+          <div className="px-3 pb-2">
+            <GlobalSearch />
+          </div>
+        )}
+      </header>
+
+      {/* Подложка. Гасит содержимое под панелью и закрывает её по нажатию. */}
+      <div
+        aria-hidden="true"
+        onClick={() => setMenuOpen(false)}
+        className={cn(
+          "fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 ease-out motion-reduce:transition-none md:hidden",
+          menuOpen ? "opacity-100" : "pointer-events-none opacity-0",
+        )}
+      />
+
+      {/* Выдвижная панель. Всегда в разметке — иначе анимировать нечего: у
+          только что вставленного узла нет предыдущего положения, и он просто
+          появляется на месте. `inert` при этом убирает её из-под клавиатуры и
+          скринридера, пока она за краем экрана. */}
+      <nav
+        id="crm-menu"
+        inert={!menuOpen}
+        aria-label="Разделы"
+        className={cn(
+          "border-border bg-background fixed inset-y-0 left-0 z-50 flex w-72 max-w-[85vw] flex-col border-r px-3 py-4 shadow-xl",
+          "transition-transform duration-300 ease-out will-change-transform motion-reduce:transition-none md:hidden",
+          menuOpen ? "translate-x-0" : "-translate-x-full",
+        )}
+      >
+        <div className="flex items-center justify-between px-2 pb-4">
+          <Wordmark />
           <button
+            ref={closeButton}
             type="button"
-            onClick={() => void logout()}
-            className="text-muted-foreground hover:bg-muted hover:text-foreground flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Закрыть меню"
+            className="text-muted-foreground hover:bg-muted hover:text-foreground -mr-1 rounded-lg p-1.5 transition"
           >
-            <LogOut size={16} strokeWidth={2} />
-            <span className="hidden md:inline">Выйти</span>
+            <X size={18} strokeWidth={2} />
           </button>
+        </div>
+
+        <div className="min-h-0 flex-1 overflow-y-auto">
+          <NavItems leadsOnly={leadsOnly} />
+        </div>
+
+        <div className="border-border mt-4 flex flex-col border-t pt-4">
+          <AccountItems name={user.name ?? user.email} onLogout={() => void logout()} />
         </div>
       </nav>
 
-      <main className="min-w-0 flex-1 overflow-y-auto px-5 py-6 md:px-8 md:py-8">
+      <main className="min-w-0 flex-1 overflow-y-auto px-4 py-5 sm:px-5 sm:py-6 md:px-8 md:py-8">
         <Outlet />
       </main>
     </div>
