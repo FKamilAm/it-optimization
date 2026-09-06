@@ -1,4 +1,12 @@
-import { AlignLeft, CalendarDays, Check, Flame, FolderOpen, Plus } from "lucide-react";
+import {
+  AlignLeft,
+  CalendarDays,
+  Check,
+  Filter,
+  Flame,
+  FolderOpen,
+  Plus,
+} from "lucide-react";
 import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { ApiError } from "@/api/client";
 import { useOpenFromSearch } from "@/lib/open-from-search";
@@ -304,23 +312,20 @@ export function TasksScreen() {
         </Button>
       </header>
 
+      {/* Четыре состояния задачи — это фильтр, а не разделы, поэтому список, а
+          не ряд кнопок: ряд занимал целую строку и на телефоне переносился на
+          две, оставляя переключатель вида где-то посередине. В списке видно
+          выбранное, а остальное разворачивается по требованию. */}
       <div className="mt-5 flex flex-wrap items-center gap-2">
-        {TABS.map((item) => (
-          <button
-            key={item.key}
-            type="button"
-            onClick={() => setTab(item.key)}
-            className={cn(
-              "rounded-lg px-3 py-1.5 text-sm font-medium transition",
-              tab === item.key
-                ? "bg-accent-soft text-foreground"
-                : "text-muted-foreground hover:bg-muted hover:text-foreground",
-            )}
-          >
-            {item.label}
-          </button>
-        ))}
-        <div className="border-border ml-auto flex overflow-hidden rounded-lg border">
+        <Select
+          value={tab}
+          onChange={(value) => setTab(value as TabKey)}
+          ariaLabel="Фильтр задач"
+          icon={<Filter size={14} strokeWidth={2} />}
+          className="w-40 shrink-0"
+          options={TABS.map((item) => ({ value: item.key, label: item.label }))}
+        />
+        <div className="border-border flex shrink-0 overflow-hidden rounded-lg border">
           {(["list", "board", "calendar"] as const).map((mode) => (
             <button
               key={mode}
@@ -341,7 +346,7 @@ export function TasksScreen() {
           value={developer}
           onChange={setDeveloper}
           ariaLabel="Исполнитель"
-          className="w-44"
+          className="w-44 shrink-0"
           options={[
             { value: "", label: "Все исполнители" },
             ...DEVELOPERS.map((name) => ({ value: name, label: name })),
@@ -351,7 +356,7 @@ export function TasksScreen() {
           value={search}
           onChange={(event) => setSearch(event.target.value)}
           placeholder="Поиск"
-          className="w-full sm:w-56"
+          className="w-full sm:ml-auto sm:w-56"
         />
       </div>
 

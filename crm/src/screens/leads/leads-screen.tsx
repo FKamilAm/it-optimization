@@ -1,4 +1,4 @@
-import { Plus } from "lucide-react";
+import { Filter, Plus } from "lucide-react";
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { ApiError } from "@/api/client";
 import { useOpenFromSearch } from "@/lib/open-from-search";
@@ -11,9 +11,16 @@ import {
   type LeadFilters,
 } from "@/api/leads";
 import { listTeam, memberLabel, type TeamMember } from "@/api/team";
-import { Badge, Button, EmptyState, ErrorNote, Input, Modal } from "@/components/ui";
+import {
+  Badge,
+  Button,
+  EmptyState,
+  ErrorNote,
+  Input,
+  Modal,
+  Select,
+} from "@/components/ui";
 import { useCurrentUser } from "@/auth/auth-context";
-import { cn } from "@/lib/cn";
 import { NoteHint } from "@/components/note-hint";
 import { describeDeadline, formatDate } from "@/lib/dates";
 import { serviceLabel } from "@/lib/services";
@@ -93,28 +100,22 @@ export function LeadsScreen() {
         </Button>
       </header>
 
+      {/* Срезы списка — тем же выпадающим списком, что в задачах и проектах. */}
       <div className="mt-5 flex flex-wrap items-center gap-2">
-        {TABS.map((item) => (
-          <button
-            key={item.key}
-            type="button"
-            onClick={() => setTab(item.key)}
-            className={cn(
-              "rounded-full px-3 py-1.5 text-sm font-medium transition",
-              tab === item.key
-                ? "bg-surface text-surface-foreground"
-                : "text-muted-foreground hover:bg-muted hover:text-foreground",
-            )}
-          >
-            {item.label}
-          </button>
-        ))}
+        <Select
+          value={tab}
+          onChange={(value) => setTab(value as TabKey)}
+          ariaLabel="Фильтр лидов"
+          icon={<Filter size={14} strokeWidth={2} />}
+          className="w-40 shrink-0"
+          options={TABS.map((item) => ({ value: item.key, label: item.label }))}
+        />
 
         <Input
           value={search}
           onChange={(event) => setSearch(event.target.value)}
           placeholder="Поиск по имени, контакту, тексту"
-          className="ml-auto w-full sm:w-72"
+          className="w-full sm:ml-auto sm:w-72"
         />
       </div>
 

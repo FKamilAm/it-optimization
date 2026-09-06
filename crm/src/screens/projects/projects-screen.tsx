@@ -3,6 +3,7 @@ import {
   Building2,
   CalendarDays,
   FileText,
+  Filter,
   Plus,
   Server,
   Wallet,
@@ -30,7 +31,15 @@ import {
 import { Board, type BoardColumn, type ColumnTone } from "@/components/board";
 import { NotesPanel } from "@/components/notes-panel";
 import { PersonChips } from "@/components/person-chip";
-import { Badge, Button, EmptyState, ErrorNote, Input, Modal } from "@/components/ui";
+import {
+  Badge,
+  Button,
+  EmptyState,
+  ErrorNote,
+  Input,
+  Modal,
+  Select,
+} from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { NoteHint } from "@/components/note-hint";
 import { money } from "@/lib/money";
@@ -299,23 +308,18 @@ export function ProjectsScreen() {
         </Button>
       </header>
 
+      {/* Срезы списка — выпадающим списком, как в задачах: одинаковый фильтр в
+          двух разделах не должен выглядеть по-разному. */}
       <div className="mt-5 flex flex-wrap items-center gap-2">
-        {TABS.map((item) => (
-          <button
-            key={item.key}
-            type="button"
-            onClick={() => setTab(item.key)}
-            className={cn(
-              "rounded-lg px-3 py-1.5 text-sm font-medium transition",
-              tab === item.key
-                ? "bg-accent-soft text-foreground"
-                : "text-muted-foreground hover:bg-muted hover:text-foreground",
-            )}
-          >
-            {item.label}
-          </button>
-        ))}
-        <div className="border-border ml-auto flex overflow-hidden rounded-lg border">
+        <Select
+          value={tab}
+          onChange={(value) => setTab(value as TabKey)}
+          ariaLabel="Фильтр проектов"
+          icon={<Filter size={14} strokeWidth={2} />}
+          className="w-40 shrink-0"
+          options={TABS.map((item) => ({ value: item.key, label: item.label }))}
+        />
+        <div className="border-border flex shrink-0 overflow-hidden rounded-lg border">
           {(["list", "board"] as const).map((mode) => (
             <button
               key={mode}
@@ -336,7 +340,7 @@ export function ProjectsScreen() {
           value={search}
           onChange={(event) => setSearch(event.target.value)}
           placeholder="Поиск"
-          className="w-full sm:w-56"
+          className="w-full sm:ml-auto sm:w-56"
         />
       </div>
 
