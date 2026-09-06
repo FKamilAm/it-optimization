@@ -90,3 +90,36 @@ export function periodLabel(period: string): string {
     .format(new Date(year, month - 1, 1))
     .replace(" г.", "");
 }
+
+/**
+ * Следующий срок продления после оплаты — для кнопки «Оплатил» в доступах.
+ *
+ * Отдельной отметки «оплачено» у записи нет и не нужно: оплата домена или
+ * подписки означает ровно одно — срок сдвинулся вперёд. Хранить рядом с датой
+ * ещё и флаг значит завести два источника одной правды, которые разойдутся при
+ * первой же правке даты руками.
+ *
+ * Считаем от текущего срока, но не раньше сегодняшнего дня: запись, забытая на
+ * два года, иначе продлилась бы в прошлое — то есть осталась бы просроченной
+ * сразу после нажатия.
+ *
+ * День месяца прижимается к последнему числу: 31 января плюс месяц — это 28 или
+ * 29 февраля, а не 3 марта, как посчитал бы `setMonth` сам по себе.
+ */
+export function nextRenewalDate(current: string, monthly: boolean): string {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const [year, month, day] = current.split("-").map(Number);
+  const parsed = year && month && day ? new Date(year, month - 1, day) : null;
+  const base = parsed && parsed > today ? parsed : today;
+
+  const targetYear = base.getFullYear() + (monthly ? 0 : 1);
+  const targetMonth = base.getMonth() + (monthly ? 1 : 0);
+  const lastDay = new Date(targetYear, targetMonth + 1, 0).getDate();
+  const next = new Date(targetYear, targetMonth, Math.min(base.getDate(), lastDay));
+
+  const mm = String(next.getMonth() + 1).padStart(2, "0");
+  const dd = String(next.getDate()).padStart(2, "0");
+  return `${next.getFullYear()}-${mm}-${dd}`;
+}

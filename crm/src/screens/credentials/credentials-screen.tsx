@@ -32,7 +32,13 @@ import {
   Textarea,
 } from "@/components/ui";
 import { cn } from "@/lib/cn";
-import { describeDeadline, fromDateInputValue, toDateInputValue } from "@/lib/dates";
+import {
+  describeDeadline,
+  formatDate,
+  fromDateInputValue,
+  nextRenewalDate,
+  toDateInputValue,
+} from "@/lib/dates";
 import { listProjects, type Project } from "@/api/projects";
 import { CurrencySelect } from "@/components/currency-select";
 import { NoteHint } from "@/components/note-hint";
@@ -630,6 +636,13 @@ function CredentialModal({
   // Сбрасывается вместе с окном: закрыли карточку — пароль снова скрыт.
   const [revealed, setRevealed] = useState(false);
 
+  /**
+   * Куда уедет срок, если нажать «Оплатил». Считается заранее и стоит прямо на
+   * кнопке: действие меняет дату, и человек должен видеть какую, а не нажимать
+   * вслепую и потом искать, что изменилось.
+   */
+  const paidUntil = nextRenewalDate(values.renewsDate, values.monthlyFee);
+
   function set<K extends keyof FormValues>(key: K, value: FormValues[K]) {
     setValues((current) => ({ ...current, [key]: value }));
   }
@@ -830,18 +843,34 @@ function CredentialModal({
           </div>
         )}
 
-        <div className="mt-5 flex items-center gap-2">
+        <div className="mt-5 flex flex-wrap items-center gap-2">
           <Button type="submit" disabled={saving}>
             {saving ? "Сохраняем…" : "Сохранить"}
           </Button>
           <Button type="button" variant="ghost" onClick={onClose}>
             Отмена
           </Button>
+
+          {/* Отдельной отметки «оплачено» у записи нет намеренно: оплата домена
+              или подписки означает ровно одно — срок сдвинулся вперёд. Кнопка
+              только подставляет дату в форму; записывается она обычным
+              «Сохранить», поэтому промах отменяется закрытием окна. */}
+          <Button
+            type="button"
+            variant="ghost"
+            className="ml-auto"
+            onClick={() => set("renewsDate", paidUntil)}
+            disabled={saving || values.renewsDate === paidUntil}
+            title={`Продлить срок до ${formatDate(fromDateInputValue(paidUntil) ?? "")}`}
+          >
+            <Check size={15} strokeWidth={2.5} />
+            Оплатил до {formatDate(fromDateInputValue(paidUntil) ?? "")}
+          </Button>
+
           {onDelete && (
             <Button
               type="button"
               variant="danger"
-              className="ml-auto"
               onClick={() => void handleDelete()}
               disabled={saving}
             >
