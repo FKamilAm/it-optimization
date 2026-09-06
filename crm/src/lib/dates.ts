@@ -99,18 +99,18 @@ export function periodLabel(period: string): string {
  * ещё и флаг значит завести два источника одной правды, которые разойдутся при
  * первой же правке даты руками.
  *
+ * Период всегда календарный месяц — независимо от того, помесячная это плата
+ * или разовая. Кнопка закрывает частый случай, а не все: у годовых продлений
+ * дата всё равно своя, и её правят в карточке руками.
+ *
  * Считаем от текущего срока, но не раньше сегодняшнего дня: запись, забытая на
  * два года, иначе продлилась бы в прошлое — то есть осталась бы просроченной
  * сразу после нажатия.
  *
- * Месяц здесь — ровно 30 дней, а не календарный. Хостинги и подписки списывают
- * за период, а не за клетку в календаре, и «оплатил 31 января» не должно
- * означать «до 28 февраля»: календарный месяц незаметно съедал бы по два-три
- * дня на каждом продлении. Год остаётся календарным — там срок привязан к дате
- * регистрации домена, — и день прижимается к последнему числу, чтобы 29 февраля
- * не уехало на 1 марта.
+ * День прижимается к последнему числу месяца: 31 января плюс месяц — это 28 или
+ * 29 февраля, а не 3 марта, как посчитал бы `setMonth` сам по себе.
  */
-export function nextRenewalDate(current: string, monthly: boolean): string {
+export function nextRenewalDate(current: string): string {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -118,15 +118,13 @@ export function nextRenewalDate(current: string, monthly: boolean): string {
   const parsed = year && month && day ? new Date(year, month - 1, day) : null;
   const base = parsed && parsed > today ? parsed : today;
 
-  let next: Date;
-  if (monthly) {
-    next = new Date(base);
-    next.setDate(next.getDate() + 30);
-  } else {
-    const targetYear = base.getFullYear() + 1;
-    const lastDay = new Date(targetYear, base.getMonth() + 1, 0).getDate();
-    next = new Date(targetYear, base.getMonth(), Math.min(base.getDate(), lastDay));
-  }
+  const targetMonth = base.getMonth() + 1;
+  const lastDay = new Date(base.getFullYear(), targetMonth + 1, 0).getDate();
+  const next = new Date(
+    base.getFullYear(),
+    targetMonth,
+    Math.min(base.getDate(), lastDay),
+  );
 
   const mm = String(next.getMonth() + 1).padStart(2, "0");
   const dd = String(next.getDate()).padStart(2, "0");

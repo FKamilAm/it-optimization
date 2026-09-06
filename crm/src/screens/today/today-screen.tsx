@@ -1,7 +1,7 @@
 import { Check } from "lucide-react";
 import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { ApiError } from "@/api/client";
-import type { Credential } from "@/api/credentials";
+import { updateCredential, type Credential } from "@/api/credentials";
 import type { Lead } from "@/api/leads";
 import type { Project } from "@/api/projects";
 import { updateTask, type Task } from "@/api/tasks";
@@ -9,7 +9,14 @@ import { getToday, type TodaySnapshot } from "@/api/today";
 import { useCurrentUser } from "@/auth/auth-context";
 import { Badge, EmptyState, ErrorNote } from "@/components/ui";
 import { cn } from "@/lib/cn";
-import { describeDeadline, periodLabel } from "@/lib/dates";
+import {
+  describeDeadline,
+  formatDate,
+  fromDateInputValue,
+  nextRenewalDate,
+  periodLabel,
+  toDateInputValue,
+} from "@/lib/dates";
 import { fee, money } from "@/lib/money";
 import { Link } from "react-router";
 
@@ -68,6 +75,24 @@ export function TodayScreen() {
     }
   }
 
+  /**
+   * Продление прямо с главного экрана. Блок «Пора продлевать» — единственное
+   * место, где про истекающий домен вообще вспоминают, и уводить оттуда в
+   * «Доступы» ради одной даты значит терять половину продлений по дороге.
+   *
+   * Отправляем только `renewsAt`: PATCH применяет пришедшие поля и не трогает
+   * остальные, поэтому шифротекст пароля остаётся на месте.
+   */
+  async function markPaid(item: Credential) {
+    const next = nextRenewalDate(toDateInputValue(item.renewsAt));
+    try {
+      await updateCredential(item.id, { renewsAt: fromDateInputValue(next) });
+      load();
+    } catch (cause) {
+      setError(cause instanceof ApiError ? cause.message : "Не удалось продлить");
+    }
+  }
+
   const greeting = user.name ? `Привет, ${user.name}` : "Сегодня";
 
   return (
@@ -95,7 +120,7 @@ export function TodayScreen() {
           />
         </div>
       ) : (
-        <div className="mt-6 space-y-7">
+        <div className="mt-6 space-y-9 sm:space-y-7">
           <Block
             title="Лиды просрочены"
             items={snapshot.leads.overdue}
@@ -154,7 +179,9 @@ export function TodayScreen() {
             title="Пора продлевать"
             items={snapshot.credentials.expiring}
             note="Домены, хостинг и подписки со сроком в ближайшие две недели"
-            render={(item) => <CredentialLine key={item.id} item={item} />}
+            render={(item) => (
+              <CredentialLine key={item.id} item={item} onPaid={() => markPaid(item)} />
+            )}
           />
           <Block
             title="Счета не выставлены"
@@ -203,7 +230,7 @@ function LeadLine({ lead, showDeadline }: { lead: Lead; showDeadline?: boolean }
     showDeadline && lead.nextActionAt ? describeDeadline(lead.nextActionAt) : null;
 
   return (
-    <li className="flex items-start gap-3 py-2.5">
+    <li className="flex items-start gap-3 py-3.5 sm:py-2.5">
       <Link to={`/leads?focus=${lead.id}`} className="min-w-0 flex-1">
         <span className="block truncate text-sm font-medium">
           {lead.nextActionNote?.trim() || lead.name?.trim() || lead.contact}
@@ -231,7 +258,7 @@ function TaskLine({
   const deadline = showDeadline && task.dueAt ? describeDeadline(task.dueAt) : null;
 
   return (
-    <li className="flex items-start gap-3 py-2.5">
+    <li className="flex items-start gap-3 py-3.5 sm:py-2.5">
       <button
         type="button"
         onClick={onComplete}
@@ -263,7 +290,7 @@ function TaskLine({
  */
 function UnbilledLine({ project }: { project: Project }) {
   return (
-    <li className="flex items-start gap-3 py-2.5">
+    <li className="flex items-start gap-3 py-3.5 sm:py-2.5">
       <Link to={`/projects?focus=${project.id}`} className="min-w-0 flex-1">
         <span className="block truncate text-sm font-medium">{project.title}</span>
         <span className="text-muted-foreground mt-0.5 block truncate text-xs">
@@ -286,25 +313,52 @@ function UnbilledLine({ project }: { project: Project }) {
  * Продление показывается как обычный срок: истёкший домен так же ломает работу,
  * как просроченная задача, и выделять его отдельным видом строки незачем.
  */
-function CredentialLine({ item }: { item: Credential }) {
+function CredentialLine({
+  item,
+  onPaid,
+}: {
+  item: Credential;
+  onPaid: () => Promise<void>;
+}) {
   const deadline = item.renewsAt ? describeDeadline(item.renewsAt) : null;
+  const [saving, setSaving] = useState(false);
+  const paidUntil = nextRenewalDate(toDateInputValue(item.renewsAt));
 
   return (
-    <li className="flex items-start gap-3 py-2.5">
-      <Link to={`/credentials?focus=${item.id}`} className="min-w-0 flex-1">
-        <span className="block truncate text-sm font-medium">{item.service}</span>
-        <span className="text-muted-foreground mt-0.5 block truncate text-xs">
-          {[item.login, item.owner ?? "ни на кого не оформлен", item.secretHint]
-            .filter(Boolean)
-            .join(" · ")}
-        </span>
-      </Link>
-      {item.amountMinor != null && (
-        <span className="shrink-0 text-sm font-medium">
-          {fee(item.amountMinor, item.monthlyFee, item.currency)}
-        </span>
-      )}
-      {deadline && <Badge tone={deadline.tone}>{deadline.label}</Badge>}
+    <li className="flex flex-col gap-2 py-3.5 sm:py-2.5">
+      <div className="flex items-start gap-3">
+        <Link to={`/credentials?focus=${item.id}`} className="min-w-0 flex-1">
+          <span className="block truncate text-sm font-medium">{item.service}</span>
+          <span className="text-muted-foreground mt-0.5 block truncate text-xs">
+            {[item.login, item.owner ?? "ни на кого не оформлен", item.secretHint]
+              .filter(Boolean)
+              .join(" · ")}
+          </span>
+        </Link>
+        {item.amountMinor != null && (
+          <span className="shrink-0 text-sm font-medium">
+            {fee(item.amountMinor, item.monthlyFee, item.currency)}
+          </span>
+        )}
+        {deadline && <Badge tone={deadline.tone}>{deadline.label}</Badge>}
+      </div>
+
+      <div className="flex justify-end">
+        <button
+          type="button"
+          disabled={saving}
+          onClick={() => {
+            setSaving(true);
+            void onPaid().finally(() => setSaving(false));
+          }}
+          className="text-muted-foreground hover:bg-accent-soft hover:text-foreground inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-xs font-medium transition disabled:opacity-50"
+        >
+          <Check size={13} strokeWidth={2.5} />
+          {saving
+            ? "Продлеваем…"
+            : `Оплатил до ${formatDate(fromDateInputValue(paidUntil) ?? "")}`}
+        </button>
+      </div>
     </li>
   );
 }
@@ -313,7 +367,7 @@ function ProjectLine({ project }: { project: Project }) {
   const deadline = project.deadline ? describeDeadline(project.deadline) : null;
 
   return (
-    <li className="flex items-start gap-3 py-2.5">
+    <li className="flex items-start gap-3 py-3.5 sm:py-2.5">
       <Link to={`/projects?focus=${project.id}`} className="min-w-0 flex-1">
         <span className="block truncate text-sm font-medium">{project.title}</span>
         <span className="text-muted-foreground mt-0.5 block truncate text-xs">

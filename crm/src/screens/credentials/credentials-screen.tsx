@@ -229,7 +229,7 @@ export function CredentialsScreen() {
    * прочее остаются как были.
    */
   async function markPaid(item: Credential) {
-    const next = nextRenewalDate(toDateInputValue(item.renewsAt), item.monthlyFee);
+    const next = nextRenewalDate(toDateInputValue(item.renewsAt));
     try {
       await updateCredential(item.id, { renewsAt: fromDateInputValue(next) });
       load();
@@ -330,7 +330,7 @@ export function CredentialsScreen() {
         кого есть доступ к серверу.
       </p>
 
-      <div className="mt-5">
+      <div className="mt-6 sm:mt-5">
         <div className="flex flex-wrap gap-2">
           <Input
             value={search}
@@ -361,7 +361,7 @@ export function CredentialsScreen() {
         </div>
       )}
 
-      <div className="mt-5">
+      <div className="mt-6 sm:mt-5">
         {visible === undefined ? (
           <p className="text-muted-foreground text-sm">Загружаем…</p>
         ) : visible.length === 0 ? (
@@ -414,7 +414,7 @@ export function CredentialsScreen() {
                   >
                     <ul
                       className={cn(
-                        "space-y-2 overflow-hidden transition-opacity duration-200 motion-reduce:transition-none",
+                        "space-y-3 overflow-hidden transition-opacity duration-200 motion-reduce:transition-none sm:space-y-2",
                         hidden && "opacity-0",
                       )}
                       aria-hidden={hidden}
@@ -531,12 +531,12 @@ function Row({
    * что и просто засоряло бы список.
    */
   const payable = item.renewsAt !== null || item.amountMinor != null;
-  const paidUntil = nextRenewalDate(toDateInputValue(item.renewsAt), item.monthlyFee);
+  const paidUntil = nextRenewalDate(toDateInputValue(item.renewsAt));
 
   return (
     <li
       data-card-id={item.id}
-      className="border-border bg-background hover:border-accent-border flex flex-col gap-1.5 rounded-xl border px-3 py-2.5 transition hover:shadow-sm"
+      className="border-border bg-background hover:border-accent-border flex flex-col gap-1.5 rounded-xl border px-3 py-3 transition hover:shadow-sm sm:py-2.5"
     >
       <div className="flex items-start gap-3">
         <button type="button" onClick={onOpen} className="min-w-0 flex-1 text-left">
@@ -704,7 +704,7 @@ function CredentialModal({
    * кнопке: действие меняет дату, и человек должен видеть какую, а не нажимать
    * вслепую и потом искать, что изменилось.
    */
-  const paidUntil = nextRenewalDate(values.renewsDate, values.monthlyFee);
+  const paidUntil = nextRenewalDate(values.renewsDate);
 
   function set<K extends keyof FormValues>(key: K, value: FormValues[K]) {
     setValues((current) => ({ ...current, [key]: value }));
