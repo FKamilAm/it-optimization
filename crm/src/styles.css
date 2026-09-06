@@ -155,6 +155,25 @@
   }
 }
 
+@keyframes crm-focus-ring {
+  0% {
+    box-shadow:
+      0 0 0 2px transparent,
+      0 0 0 6px transparent;
+  }
+  8%,
+  55% {
+    box-shadow:
+      0 0 0 2px var(--accent),
+      0 0 0 6px var(--accent-soft);
+  }
+  100% {
+    box-shadow:
+      0 0 0 2px transparent,
+      0 0 0 6px transparent;
+  }
+}
+
 @layer components {
   /* Выпадающий список: появляется от кнопки, а не возникает поверх экрана. */
   .crm-pop-in {
@@ -178,6 +197,41 @@
   .crm-rise-in {
     animation: crm-rise 0.2s cubic-bezier(0.22, 1, 0.36, 1);
   }
+
+  /*
+   * Уход модального окна. Не анимацией, а переходом: узел на момент закрытия
+   * уже в разметке, и `animation` пришлось бы перезапускать сменой ключа.
+   * Длительность на 40 мс короче входа — закрытие должно ощущаться быстрее
+   * открытия, иначе окно «не отпускает».
+   */
+  .crm-fade-out {
+    opacity: 0;
+    transition: opacity 0.16s ease;
+  }
+
+  .crm-sink-out {
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 0.16s ease,
+      transform 0.16s ease;
+  }
+
+  /*
+   * Подсветка карточки, к которой перевели из «Сегодня». Без неё человек
+   * оказывается в списке из полусотни строк и заново ищет ту, на которую только
+   * что нажал.
+   *
+   * Анимацией, а не переходом, и намеренно: на карточках висит утилита
+   * `transition` со своими 150 мс, и она перебила бы длительность затухания —
+   * обводка гасла бы рывком. Анимация от неё не зависит.
+   *
+   * Вспыхивает быстро, держится, гаснет долго: подсветка должна успеть
+   * попасться на глаза, но не остаться насовсем и не притвориться выделением.
+   */
+  .crm-focused {
+    animation: crm-focus-ring 3.6s ease-out;
+  }
 }
 
 /*
@@ -188,11 +242,14 @@
 @media (prefers-reduced-motion: reduce) {
   .crm-pop-in,
   .crm-fade-in,
-  .crm-rise-in {
+  .crm-rise-in,
+  .crm-focused {
     animation: none;
   }
 
-  .crm-pop-out {
+  .crm-pop-out,
+  .crm-fade-out,
+  .crm-sink-out {
     transition: none;
   }
 }

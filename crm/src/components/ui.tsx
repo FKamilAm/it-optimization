@@ -1,5 +1,5 @@
 import { X } from "lucide-react";
-import { useEffect, type ReactNode } from "react";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 /*
@@ -94,43 +94,73 @@ export function Badge({
   );
 }
 
+/** Столько идёт затухание окна — ровно длительность `.crm-fade-out` в стилях. */
+const LEAVE_MS = 160;
+
 export function Modal({
   title,
   onClose,
   children,
+  wide,
 }: {
   title: string;
   onClose: () => void;
   children: ReactNode;
+  /** Шире обычного — для окон с несколькими списками рядом. */
+  wide?: boolean;
 }) {
+  /*
+   * Закрытие рисуется здесь, а не у вызывающего кода: тот убирает окно из
+   * разметки сменой своего состояния, и без задержки узел исчезал бы в тот же
+   * кадр — то есть анимации ухода не было бы вовсе. Поэтому все три способа
+   * закрыть (крестик, Escape, нажатие мимо) идут через `leave`, а настоящий
+   * `onClose` вызывается уже после затухания.
+   */
+  const [leaving, setLeaving] = useState(false);
+
+  const leave = useCallback(() => setLeaving(true), []);
+
+  useEffect(() => {
+    if (!leaving) return;
+    const timer = setTimeout(onClose, LEAVE_MS);
+    return () => clearTimeout(timer);
+  }, [leaving, onClose]);
+
   // Escape закрывает окно: без этого единственный выход — мышью по крестику,
   // а форма открывается с клавиатуры десятки раз в день.
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") leave();
     }
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [onClose]);
+  }, [leave]);
 
   return (
     <div
-      className="crm-fade-in fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-0 sm:items-center sm:p-6"
+      className={cn(
+        "fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-0 sm:items-center sm:p-6",
+        leaving ? "crm-fade-out" : "crm-fade-in",
+      )}
       onMouseDown={(event) => {
-        if (event.target === event.currentTarget) onClose();
+        if (event.target === event.currentTarget) leave();
       }}
     >
       <div
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className="crm-rise-in bg-background max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-t-2xl p-5 shadow-xl sm:rounded-2xl"
+        className={cn(
+          "bg-background max-h-[90vh] w-full overflow-y-auto rounded-t-2xl p-5 shadow-xl sm:rounded-2xl",
+          wide ? "max-w-xl" : "max-w-lg",
+          leaving ? "crm-sink-out" : "crm-rise-in",
+        )}
       >
         <div className="mb-4 flex items-start justify-between gap-4">
           <h2 className="text-lg font-bold tracking-tight">{title}</h2>
           <button
             type="button"
-            onClick={onClose}
+            onClick={leave}
             aria-label="Закрыть"
             className="text-muted-foreground hover:bg-muted hover:text-foreground -m-1 rounded-lg p-1 transition"
           >
