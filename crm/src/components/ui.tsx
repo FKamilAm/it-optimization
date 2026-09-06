@@ -115,7 +115,7 @@ export function Modal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-0 sm:items-center sm:p-6"
+      className="crm-fade-in fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-0 sm:items-center sm:p-6"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
@@ -124,7 +124,7 @@ export function Modal({
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className="bg-background max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-t-2xl p-5 shadow-xl sm:rounded-2xl"
+        className="crm-rise-in bg-background max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-t-2xl p-5 shadow-xl sm:rounded-2xl"
       >
         <div className="mb-4 flex items-start justify-between gap-4">
           <h2 className="text-lg font-bold tracking-tight">{title}</h2>

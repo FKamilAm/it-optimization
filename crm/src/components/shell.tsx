@@ -172,6 +172,7 @@ export function Shell() {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const main = useRef<HTMLElement>(null);
   const burger = useRef<HTMLButtonElement>(null);
   const closeButton = useRef<HTMLButtonElement>(null);
   const wasOpen = useRef(false);
@@ -180,6 +181,13 @@ export function Shell() {
   // весь экран, и оставить её открытой поверх только что выбранного раздела
   // означает заставить закрывать её вручную после каждого нажатия.
   useEffect(() => setMenuOpen(false), [pathname]);
+
+  // Новый раздел начинается сверху. Прокрутка живёт внутри <main>, поэтому сама
+  // она не сбрасывается: без этого раздел, открытый из середины длинного
+  // списка, показывался бы с середины — и выглядел бы полупустым.
+  useEffect(() => {
+    main.current?.scrollTo({ top: 0 });
+  }, [pathname]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -318,8 +326,16 @@ export function Shell() {
         </div>
       </nav>
 
-      <main className="min-w-0 flex-1 overflow-y-auto px-4 py-5 sm:px-5 sm:py-6 md:px-8 md:py-8">
-        <Outlet />
+      <main
+        ref={main}
+        className="min-w-0 flex-1 overflow-y-auto px-4 py-5 sm:px-5 sm:py-6 md:px-8 md:py-8"
+      >
+        {/* key по пути, а не по всему адресу: `?open=<id>` из «Сегодня» и поиска
+            меняет только параметр, и перемонтирование сбросило бы уже
+            загруженный список ровно тогда, когда в нём надо открыть карточку. */}
+        <div key={pathname} className="crm-rise-in">
+          <Outlet />
+        </div>
       </main>
     </div>
   );

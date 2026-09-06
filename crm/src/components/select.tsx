@@ -1,5 +1,5 @@
 import { Check, ChevronDown } from "lucide-react";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "@/lib/cn";
 
@@ -28,6 +28,7 @@ export function Select({
   disabled,
   className,
   ariaLabel,
+  icon,
 }: {
   value: string;
   onChange: (value: string) => void;
@@ -35,8 +36,16 @@ export function Select({
   disabled?: boolean;
   className?: string;
   ariaLabel?: string;
+  /** Значок слева от подписи — им список отличают от поля ввода на панели. */
+  icon?: ReactNode;
 }) {
   const [open, setOpen] = useState(false);
+  /**
+   * Список живёт чуть дольше, чем открыт: закрытие рисуется затуханием, а
+   * убрать узел из разметки в тот же кадр — значит не показать его вовсе.
+   * Всё остальное по-прежнему смотрит на `open`, поэтому логика не меняется.
+   */
+  const [present, setPresent] = useState(false);
   const [active, setActive] = useState(0);
   /**
    * Либо `top`, либо `bottom` — смотря куда открывается список.
@@ -80,6 +89,15 @@ export function Select({
   useLayoutEffect(() => {
     if (open) place();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
+
+  useEffect(() => {
+    if (open) {
+      setPresent(true);
+      return;
+    }
+    const timer = setTimeout(() => setPresent(false), 120);
+    return () => clearTimeout(timer);
   }, [open]);
 
   useEffect(() => {
@@ -201,6 +219,11 @@ export function Select({
           className,
         )}
       >
+        {icon && (
+          <span className="text-muted-foreground shrink-0" aria-hidden="true">
+            {icon}
+          </span>
+        )}
         <span
           className={cn("min-w-0 flex-1 truncate", !selected && "text-muted-foreground")}
         >
@@ -216,7 +239,7 @@ export function Select({
         />
       </button>
 
-      {open &&
+      {present &&
         box &&
         createPortal(
           <div
@@ -228,7 +251,10 @@ export function Select({
               left: box.left,
               width: box.width,
             }}
-            className="border-border bg-background fixed z-[60] max-h-64 overflow-y-auto overscroll-contain rounded-xl border py-1 shadow-lg"
+            className={cn(
+              "border-border bg-background fixed z-[60] max-h-64 overflow-y-auto overscroll-contain rounded-xl border py-1 shadow-lg",
+              open ? "crm-pop-in" : "crm-pop-out pointer-events-none",
+            )}
           >
             {options.map((option, index) => (
               <button
