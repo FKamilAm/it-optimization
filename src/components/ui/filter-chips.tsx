@@ -11,12 +11,20 @@ export interface FilterChipOption {
 /**
  * Строка кнопок-фильтров в фирменном стиле сайта.
  *
- * Заливка сделана отдельным слоем, а не сменой `background-color`: у кнопок
- * сайта (`btn-fill` в `Button`) цвет не переключается, а поднимается снизу, и
- * фильтр должен читаться как та же кнопка. Слой один на оба состояния — при
- * выборе он уже поднят и просто меняет цвет с зелёного на чёрный, поэтому
- * переход из наведения в выбранное состояние выглядит продолжением движения,
- * а не новой анимацией.
+ * Механика один в один как у `Button` варианта primary: класс `btn-fill`,
+ * зелёный слой в `::before`, поднимающийся снизу за 420 мс, и та же кривая
+ * `cubic-bezier(0.22, 1, 0.36, 1)`. Совпадать должны не только цвета — глаз
+ * ловит именно расхождение в скорости и характере движения, поэтому здесь не
+ * своя копия эффекта, а буквально те же утилиты; заодно фильтры бесплатно
+ * получают отключение анимации из `prefers-reduced-motion` в `globals.css`,
+ * которое написано под `.btn-fill`.
+ *
+ * Выбранное состояние — собственный фон кнопки, а не тот же поднимающийся слой.
+ * Раньше слой был один на оба состояния, и снятие фильтра выглядело так: чёрная
+ * заливка перекрашивалась в зелёную и только потом уезжала вниз — вспышка
+ * чужого цвета на ровном месте. Теперь наведение и выбор живут на разных слоях
+ * и не мешают друг другу: фон под зелёным меняется за 300 мс, а когда курсор
+ * уходит, зелёный уезжает и открывает уже готовое состояние.
  *
  * В отличие от `FilterSelect` на /proekty, здесь именно ряд кнопок: вариантов
  * немного и все они видны сразу, а выпадающий список прячет половину каталога
@@ -53,31 +61,18 @@ export function FilterChips({
             data-cursor="dark"
             onClick={() => onChange(option.value)}
             className={cn(
-              "group/chip border-foreground relative inline-flex h-11 cursor-pointer items-center justify-center overflow-hidden rounded-full border px-5 text-sm font-medium md:h-12 md:px-6 md:text-base",
-              "transition-transform duration-300 ease-out hover:scale-[1.02] active:scale-[0.99]",
+              "btn-fill border-foreground relative inline-flex h-11 cursor-pointer items-center justify-center overflow-hidden rounded-full border px-5 text-sm font-medium md:h-12 md:px-6 md:text-base",
+              "before:bg-accent before:absolute before:inset-0 before:z-0",
+              "before:translate-y-full before:transition-transform before:duration-[420ms] before:ease-[cubic-bezier(0.22,1,0.36,1)]",
+              "hover:text-accent-foreground hover:before:translate-y-0",
+              "transition-[color,background-color,border-color,transform] duration-300 ease-out",
+              "hover:scale-[1.02] active:scale-[0.99]",
               "focus-visible:outline-accent focus-visible:outline-2 focus-visible:outline-offset-2",
               "motion-reduce:transform-none motion-reduce:hover:scale-100",
+              active ? "bg-foreground text-background" : "text-foreground bg-transparent",
             )}
           >
-            <span
-              aria-hidden="true"
-              className={cn(
-                "pointer-events-none absolute inset-0 z-0 transition-[transform,background-color] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
-                active
-                  ? "bg-foreground translate-y-0"
-                  : "bg-accent translate-y-full group-hover/chip:translate-y-0",
-              )}
-            />
-            <span
-              className={cn(
-                "relative z-10 transition-colors duration-300",
-                active
-                  ? "text-background"
-                  : "text-foreground group-hover/chip:text-accent-foreground",
-              )}
-            >
-              {option.label}
-            </span>
+            <span className="relative z-10">{option.label}</span>
           </button>
         );
       })}
