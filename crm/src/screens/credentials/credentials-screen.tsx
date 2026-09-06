@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { ApiError } from "@/api/client";
+import { useFocusFromLink } from "@/lib/focus-card";
 import { useOpenFromSearch } from "@/lib/open-from-search";
 import {
   createCredential,
@@ -222,6 +223,21 @@ export function CredentialsScreen() {
       });
   }, [debouncedSearch]);
 
+  /**
+   * Продление из списка. Отправляем только `renewsAt`: PATCH применяет
+   * пришедшие поля и не трогает остальные, поэтому шифротекст пароля и всё
+   * прочее остаются как были.
+   */
+  async function markPaid(item: Credential) {
+    const next = nextRenewalDate(toDateInputValue(item.renewsAt), item.monthlyFee);
+    try {
+      await updateCredential(item.id, { renewsAt: fromDateInputValue(next) });
+      load();
+    } catch (cause) {
+      setError(cause instanceof ApiError ? cause.message : "Не удалось продлить");
+    }
+  }
+
   useEffect(() => {
     // `revision` здесь не украшение: после сброса сервер обнулил все
     // шифротексты, а список в памяти остался со старыми. Без перезагрузки
@@ -273,6 +289,7 @@ export function CredentialsScreen() {
 
   // Переход из глобального поиска: ?open=<id> открывает нужную карточку.
   useOpenFromSearch(items, (item) => void openEdit(item));
+  useFocusFromLink(items !== null);
 
   // Фильтр применяется здесь, а не запросом: список доступов целиком уже в
   // памяти, и лишний поход в базу ради выборки по одному полю ничего не даст.
@@ -407,6 +424,7 @@ export function CredentialsScreen() {
                           key={item.id}
                           item={item}
                           onOpen={() => void openEdit(item)}
+                          onPaid={() => markPaid(item)}
                         />
                       ))}
                     </ul>
@@ -495,45 +513,90 @@ function groupByProject(items: Credential[]) {
   });
 }
 
-function Row({ item, onOpen }: { item: Credential; onOpen: () => void }) {
+function Row({
+  item,
+  onOpen,
+  onPaid,
+}: {
+  item: Credential;
+  onOpen: () => void;
+  onPaid: () => Promise<void>;
+}) {
   const renews = item.renewsAt ? describeDeadline(item.renewsAt) : null;
+  const [saving, setSaving] = useState(false);
+
+  /*
+   * Продлевать имеет смысл только то, за что платят. У записи без срока и без
+   * суммы — логина от GitHub, общей почты — «Оплатил» означало бы неизвестно
+   * что и просто засоряло бы список.
+   */
+  const payable = item.renewsAt !== null || item.amountMinor != null;
+  const paidUntil = nextRenewalDate(toDateInputValue(item.renewsAt), item.monthlyFee);
 
   return (
-    <li className="border-border bg-background hover:border-accent-border flex items-start gap-3 rounded-xl border px-3 py-2.5 transition hover:shadow-sm">
-      <button type="button" onClick={onOpen} className="min-w-0 flex-1 text-left">
-        <span className="block truncate text-sm font-medium">{item.service}</span>
-        <span className="text-muted-foreground mt-0.5 block truncate text-xs">
-          {[item.login, item.owner && `на ${item.owner}`, item.secretHint]
-            .filter(Boolean)
-            .join(" · ") || "подробности не заполнены"}
-        </span>
-        <NoteHint text={item.notes} />
-      </button>
+    <li
+      data-card-id={item.id}
+      className="border-border bg-background hover:border-accent-border flex flex-col gap-1.5 rounded-xl border px-3 py-2.5 transition hover:shadow-sm"
+    >
+      <div className="flex items-start gap-3">
+        <button type="button" onClick={onOpen} className="min-w-0 flex-1 text-left">
+          <span className="block truncate text-sm font-medium">{item.service}</span>
+          <span className="text-muted-foreground mt-0.5 block truncate text-xs">
+            {[item.login, item.owner && `на ${item.owner}`, item.secretHint]
+              .filter(Boolean)
+              .join(" · ") || "подробности не заполнены"}
+          </span>
+          <NoteHint text={item.notes} />
+        </button>
 
-      <SecretButton item={item} />
+        <SecretButton item={item} />
 
-      {item.amountMinor != null && (
-        <span className="mt-0.5 shrink-0 text-sm font-medium">
-          {fee(item.amountMinor, item.monthlyFee, item.currency)}
-        </span>
-      )}
+        {item.amountMinor != null && (
+          <span className="mt-0.5 shrink-0 text-sm font-medium">
+            {fee(item.amountMinor, item.monthlyFee, item.currency)}
+          </span>
+        )}
 
-      {renews && (
-        <Badge tone={renews.tone} className="mt-0.5">
-          {renews.label}
-        </Badge>
-      )}
+        {renews && (
+          <Badge tone={renews.tone} className="mt-0.5">
+            {renews.label}
+          </Badge>
+        )}
 
-      {item.url && (
-        <a
-          href={item.url.startsWith("http") ? item.url : `https://${item.url}`}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Открыть сервис"
-          className="text-muted-foreground hover:bg-muted hover:text-foreground mt-0.5 shrink-0 rounded-lg p-1.5 transition"
-        >
-          <ExternalLink size={15} strokeWidth={2} />
-        </a>
+        {item.url && (
+          <a
+            href={item.url.startsWith("http") ? item.url : `https://${item.url}`}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Открыть сервис"
+            className="text-muted-foreground hover:bg-muted hover:text-foreground mt-0.5 shrink-0 rounded-lg p-1.5 transition"
+          >
+            <ExternalLink size={15} strokeWidth={2} />
+          </a>
+        )}
+      </div>
+
+      {/* Продление прямо из списка: открывать карточку ради одной даты — три
+          лишних движения на записи, которых у команды десятки. Дата стоит на
+          самой кнопке, поэтому нажатие не вслепую; подтверждения нет намеренно
+          — промах виден сразу по сроку рядом и правится в карточке. */}
+      {payable && (
+        <div className="flex justify-end">
+          <button
+            type="button"
+            disabled={saving}
+            onClick={() => {
+              setSaving(true);
+              void onPaid().finally(() => setSaving(false));
+            }}
+            className="text-muted-foreground hover:bg-accent-soft hover:text-foreground inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-xs font-medium transition disabled:opacity-50"
+          >
+            <Check size={13} strokeWidth={2.5} />
+            {saving
+              ? "Продлеваем…"
+              : `Оплатил до ${formatDate(fromDateInputValue(paidUntil) ?? "")}`}
+          </button>
+        </div>
       )}
     </li>
   );
@@ -850,15 +913,31 @@ function CredentialModal({
           <Button type="button" variant="ghost" onClick={onClose}>
             Отмена
           </Button>
+          {onDelete && (
+            <Button
+              type="button"
+              variant="danger"
+              className="ml-auto"
+              onClick={() => void handleDelete()}
+              disabled={saving}
+            >
+              Удалить
+            </Button>
+          )}
+        </div>
 
-          {/* Отдельной отметки «оплачено» у записи нет намеренно: оплата домена
-              или подписки означает ровно одно — срок сдвинулся вперёд. Кнопка
-              только подставляет дату в форму; записывается она обычным
-              «Сохранить», поэтому промах отменяется закрытием окна. */}
+        {/* Продление стоит отдельной строкой под всеми кнопками: это не способ
+            закрыть форму, а действие над одним полем, и в ряду с «Сохранить» и
+            «Удалить» оно читалось бы как третий способ выйти из окна.
+
+            Отдельной отметки «оплачено» у записи нет намеренно: оплата домена
+            или подписки означает ровно одно — срок сдвинулся вперёд. Кнопка
+            только подставляет дату в форму; записывается она обычным
+            «Сохранить», поэтому промах отменяется закрытием окна. */}
+        <div className="mt-3 flex justify-center">
           <Button
             type="button"
             variant="ghost"
-            className="ml-auto"
             onClick={() => set("renewsDate", paidUntil)}
             disabled={saving || values.renewsDate === paidUntil}
             title={`Продлить срок до ${formatDate(fromDateInputValue(paidUntil) ?? "")}`}
@@ -866,17 +945,6 @@ function CredentialModal({
             <Check size={15} strokeWidth={2.5} />
             Оплатил до {formatDate(fromDateInputValue(paidUntil) ?? "")}
           </Button>
-
-          {onDelete && (
-            <Button
-              type="button"
-              variant="danger"
-              onClick={() => void handleDelete()}
-              disabled={saving}
-            >
-              Удалить
-            </Button>
-          )}
         </div>
       </form>
     </Modal>

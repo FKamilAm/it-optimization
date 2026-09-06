@@ -103,8 +103,12 @@ export function periodLabel(period: string): string {
  * два года, иначе продлилась бы в прошлое — то есть осталась бы просроченной
  * сразу после нажатия.
  *
- * День месяца прижимается к последнему числу: 31 января плюс месяц — это 28 или
- * 29 февраля, а не 3 марта, как посчитал бы `setMonth` сам по себе.
+ * Месяц здесь — ровно 30 дней, а не календарный. Хостинги и подписки списывают
+ * за период, а не за клетку в календаре, и «оплатил 31 января» не должно
+ * означать «до 28 февраля»: календарный месяц незаметно съедал бы по два-три
+ * дня на каждом продлении. Год остаётся календарным — там срок привязан к дате
+ * регистрации домена, — и день прижимается к последнему числу, чтобы 29 февраля
+ * не уехало на 1 марта.
  */
 export function nextRenewalDate(current: string, monthly: boolean): string {
   const today = new Date();
@@ -114,10 +118,15 @@ export function nextRenewalDate(current: string, monthly: boolean): string {
   const parsed = year && month && day ? new Date(year, month - 1, day) : null;
   const base = parsed && parsed > today ? parsed : today;
 
-  const targetYear = base.getFullYear() + (monthly ? 0 : 1);
-  const targetMonth = base.getMonth() + (monthly ? 1 : 0);
-  const lastDay = new Date(targetYear, targetMonth + 1, 0).getDate();
-  const next = new Date(targetYear, targetMonth, Math.min(base.getDate(), lastDay));
+  let next: Date;
+  if (monthly) {
+    next = new Date(base);
+    next.setDate(next.getDate() + 30);
+  } else {
+    const targetYear = base.getFullYear() + 1;
+    const lastDay = new Date(targetYear, base.getMonth() + 1, 0).getDate();
+    next = new Date(targetYear, base.getMonth(), Math.min(base.getDate(), lastDay));
+  }
 
   const mm = String(next.getMonth() + 1).padStart(2, "0");
   const dd = String(next.getDate()).padStart(2, "0");
