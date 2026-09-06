@@ -90,7 +90,7 @@ export function MoneyScreen() {
                   key={project.id}
                   className="border-border bg-danger-soft flex items-center gap-3 rounded-xl border px-3 py-2.5"
                 >
-                  <Link to="/projects" className="min-w-0 flex-1">
+                  <Link to={`/projects?open=${project.id}`} className="min-w-0 flex-1">
                     <span className="block truncate text-sm font-medium">
                       {project.title}
                     </span>
@@ -147,7 +147,13 @@ export function MoneyScreen() {
                   key={invoice.id}
                   className="border-border bg-background flex items-center gap-3 rounded-xl border px-3 py-2.5"
                 >
-                  <span className="min-w-0 flex-1">
+                  {/* Отметка об оплате живёт в карточке проекта, поэтому строка
+                      ведёт прямо туда: раньше она была неинтерактивной, и путь
+                      от «не оплачено» до «оплачено» шёл через поиск руками. */}
+                  <Link
+                    to={`/projects?open=${invoice.project.id}`}
+                    className="min-w-0 flex-1"
+                  >
                     <span className="block truncate text-sm font-medium">
                       {invoice.project.title}
                     </span>
@@ -156,7 +162,7 @@ export function MoneyScreen() {
                         .filter(Boolean)
                         .join(" · ")}
                     </span>
-                  </span>
+                  </Link>
                   {invoice.amountMinor !== null && (
                     <span className="text-sm font-medium">
                       {money(invoice.amountMinor, invoice.currency)}
