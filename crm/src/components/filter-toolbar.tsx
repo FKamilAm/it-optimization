@@ -9,9 +9,10 @@ import { cn } from "@/lib/cn";
  * Раскладок две, и они отличаются не размерами, а устройством. На широком
  * экране всё стоит в ряд — места хватает, и лишний клик там ничем не оправдан.
  * На телефоне ряд разваливается на три строки и съедает пол-экрана ещё до
- * первой карточки, поэтому фильтры уезжают за кнопку в окно, а переключатель
- * вида — в выпадающий список: три кнопки «Список / Доска / Календарь» в
- * четверть экрана шириной перестают быть кнопками.
+ * первой карточки, поэтому всё, что настраивает список, уезжает в окно за одну
+ * кнопку слева от поиска: и фильтры, и выбор вида. Три кнопки «Список / Доска /
+ * Календарь» в четверть экрана шириной всё равно перестают быть кнопками, а
+ * меняют вид куда реже, чем ищут.
  *
  * Обе раскладки рисуются всегда и скрываются CSS, а не выбираются по
  * `matchMedia`: медиазапрос в JS даёт кадр неправильной раскладки при первой
@@ -58,7 +59,7 @@ export function FilterToolbar({
 
   return (
     <>
-      <div className="mt-5 flex flex-col gap-2">
+      <div className="mt-6 flex flex-col gap-2 sm:mt-5">
         {/* Широкий экран: всё в один ряд. */}
         <div className="hidden flex-wrap items-center gap-2 sm:flex">
           {filters.map((filter) => (
@@ -90,40 +91,46 @@ export function FilterToolbar({
           {search && <div className="ml-auto">{search}</div>}
         </div>
 
-        {/* Телефон: вид списком, фильтры за кнопкой, поиск отдельной строкой. */}
+        {/* Телефон: всё, что настраивает список, — за одной кнопкой слева от
+            поиска. Вид туда же: он меняется куда реже, чем ищут, и держать под
+            него половину строки на узком экране не за что. Подпись у кнопки
+            снята — значок с числом занимает четверть места и оставляет поиску
+            всю строку. */}
         <div className="flex items-center gap-2 sm:hidden">
-          {view && (
-            <Select
-              value={view.value}
-              onChange={view.onChange}
-              ariaLabel={view.ariaLabel}
-              icon={<LayoutList size={14} strokeWidth={2} />}
-              options={view.options}
-              className="min-w-0 flex-1"
-            />
-          )}
           <Button
             type="button"
             variant="ghost"
             onClick={() => setOpen(true)}
+            aria-label="Фильтры"
             className={cn(
-              "border-border shrink-0 border",
-              !view && "flex-1",
+              "border-border shrink-0 border px-3",
               activeCount > 0 && "border-accent-border bg-accent-soft text-foreground",
             )}
           >
-            <SlidersHorizontal size={15} strokeWidth={2} />
-            Фильтры
-            {activeCount > 0 && ` · ${activeCount}`}
+            <SlidersHorizontal size={16} strokeWidth={2} />
+            {activeCount > 0 && (
+              <span className="text-xs font-semibold">{activeCount}</span>
+            )}
           </Button>
+          {search && <div className="min-w-0 flex-1">{search}</div>}
         </div>
-
-        {search && <div className="sm:hidden">{search}</div>}
       </div>
 
       {open && (
         <Modal title="Фильтры" onClose={() => setOpen(false)}>
           <div className="space-y-4">
+            {view && (
+              <Field label="Вид">
+                <Select
+                  value={view.value}
+                  onChange={view.onChange}
+                  ariaLabel={view.ariaLabel}
+                  icon={<LayoutList size={14} strokeWidth={2} />}
+                  options={view.options}
+                  className="w-full"
+                />
+              </Field>
+            )}
             {filters.map((filter) => (
               <Field key={filter.label} label={filter.label}>
                 {filter.render(true)}
