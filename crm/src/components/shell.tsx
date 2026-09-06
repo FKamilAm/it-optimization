@@ -16,7 +16,7 @@ import {
   Trash2,
   X,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router";
 import { useAuth, useCurrentUser } from "@/auth/auth-context";
 import { GlobalSearch } from "@/components/global-search";
@@ -182,10 +182,17 @@ export function Shell() {
   // означает заставить закрывать её вручную после каждого нажатия.
   useEffect(() => setMenuOpen(false), [pathname]);
 
-  // Новый раздел начинается сверху. Прокрутка живёт внутри <main>, поэтому сама
-  // она не сбрасывается: без этого раздел, открытый из середины длинного
-  // списка, показывался бы с середины — и выглядел бы полупустым.
-  useEffect(() => {
+  /*
+   * Новый раздел начинается сверху. Прокрутка живёт внутри <main> и сама не
+   * сбрасывается: без этого раздел, открытый из середины длинного списка,
+   * показывался бы с середины и выглядел полупустым.
+   *
+   * `useLayoutEffect`, а не `useEffect`, и это как раз то, что дёргалось при
+   * смене раздела: обычный эффект выполняется после отрисовки, поэтому новый
+   * раздел успевал показаться прокрученным на позицию предыдущего и только
+   * потом прыгал наверх. Здесь сброс происходит до кадра, и прыжка нет.
+   */
+  useLayoutEffect(() => {
     main.current?.scrollTo({ top: 0 });
   }, [pathname]);
 
