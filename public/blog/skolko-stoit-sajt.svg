@@ -1,0 +1,66 @@
+<svg width="1200" height="750" viewBox="0 0 1200 750" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Сколько стоит сайт">
+  <defs>
+    <linearGradient id="priceBg" x1="0" y1="0" x2="1200" y2="750" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f0f0f"/>
+      <stop offset="1" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <radialGradient id="priceGlow" cx="0.55" cy="0.45" r="0.55">
+      <stop stop-color="#b4e02d" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#b4e02d" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#priceBg)"/>
+  <g stroke="#ffffff" stroke-opacity="0.05">
+    <path d="M0 150H1200M0 300H1200M0 450H1200M0 600H1200"/>
+    <path d="M150 0V750M300 0V750M450 0V750M600 0V750M750 0V750M900 0V750M1050 0V750"/>
+  </g>
+  <rect width="1200" height="750" fill="url(#priceGlow)"/>
+
+  <!-- browser window: the site being priced -->
+  <g>
+    <rect x="330" y="190" width="460" height="370" rx="28" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.14" stroke-width="2"/>
+    <line x1="330" y1="246" x2="790" y2="246" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2"/>
+    <circle cx="362" cy="218" r="6" fill="#ffffff" fill-opacity="0.25"/>
+    <circle cx="384" cy="218" r="6" fill="#ffffff" fill-opacity="0.25"/>
+    <circle cx="406" cy="218" r="6" fill="#b4e02d" fill-opacity="0.8"/>
+    <rect x="440" y="211" width="220" height="14" rx="7" fill="#ffffff" fill-opacity="0.08"/>
+
+    <!-- six site types, cheapest to most complex -->
+    <line x1="370" y1="520" x2="750" y2="520" stroke="#ffffff" stroke-opacity="0.16" stroke-width="2"/>
+    <rect x="380" y="480" width="44" height="40" rx="8" fill="#ffffff" fill-opacity="0.1"/>
+    <rect x="442" y="450" width="44" height="70" rx="8" fill="#ffffff" fill-opacity="0.13"/>
+    <rect x="504" y="420" width="44" height="100" rx="8" fill="#ffffff" fill-opacity="0.16"/>
+    <rect x="566" y="385" width="44" height="135" rx="8" fill="#ffffff" fill-opacity="0.2"/>
+    <rect x="628" y="345" width="44" height="175" rx="8" fill="#ffffff" fill-opacity="0.24"/>
+    <rect x="690" y="300" width="44" height="220" rx="8" fill="#b4e02d"/>
+
+    <path d="M402 468L464 438L526 408L588 373L650 333L712 288" stroke="#b4e02d" stroke-opacity="0.45" stroke-width="2.5" stroke-dasharray="3 10" stroke-linecap="round"/>
+    <circle cx="402" cy="468" r="4" fill="#ffffff" fill-opacity="0.45"/>
+    <circle cx="712" cy="288" r="5" fill="#b4e02d"/>
+  </g>
+
+  <!-- price tag with the ruble sign -->
+  <g transform="translate(800 220) rotate(-12)">
+    <path d="M0 60L50 4Q54 0 60 0H214Q230 0 230 16V104Q230 120 214 120H60Q54 120 50 116Z" fill="#b4e02d"/>
+    <circle cx="56" cy="60" r="10" fill="#0f0f0f"/>
+    <g stroke="#0a0a0a" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M134 98V28H156a19 19 0 0 1 0 38H118"/>
+      <path d="M118 83H164"/>
+    </g>
+  </g>
+  <path d="M867 267C828 252 790 238 772 198" stroke="#b4e02d" stroke-opacity="0.5" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- connection nodes -->
+  <g stroke="#b4e02d" stroke-opacity="0.4" stroke-width="2.5" fill="none" stroke-dasharray="3 12" stroke-linecap="round">
+    <path d="M330 470C250 470 230 360 200 310"/>
+    <path d="M790 470C880 470 930 540 975 560"/>
+  </g>
+  <circle cx="196" cy="302" r="14" fill="#b4e02d" fill-opacity="0.12" stroke="#b4e02d" stroke-width="2.5"/>
+  <circle cx="196" cy="302" r="5" fill="#b4e02d"/>
+  <circle cx="982" cy="564" r="14" fill="#b4e02d" fill-opacity="0.12" stroke="#b4e02d" stroke-width="2.5"/>
+  <circle cx="982" cy="564" r="5" fill="#b4e02d"/>
+
+  <circle cx="250" cy="580" r="6" fill="#ffffff" fill-opacity="0.3"/>
+  <circle cx="1070" cy="140" r="5" fill="#ffffff" fill-opacity="0.3"/>
+</svg>
