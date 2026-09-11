@@ -55,6 +55,7 @@ services:
       # content/ лежит уровнем выше и монтируется отдельно.
       CASES_SNAPSHOT: /app/content/cases.json
       BLOG_SNAPSHOT: /app/content/blog.json
+      CATALOG_SNAPSHOT: /app/content/service-catalog.json
     # Имя api.telegram.org внутри этой сети указывает на контейнер tg-tunnel
     # (см. его aliases ниже), а тот передаёт соединение через сервер Вадима.
     #
