@@ -1,0 +1,19 @@
+# Учётка на сервере Вадима умеет только пробрасывать порты. Обычный вход
+# ответит «This account is currently not available» — так задумано.
+Host it-opt-proxy
+    HostName 153.75.82.153
+    User kamil
+    # Ключ и отпечаток хоста лежат на нашем сервере в /etc/tg-tunnel и в
+    # репозиторий не попадают: ключ — секрет, и живёт только на этой машине.
+    IdentityFile /etc/tg-tunnel/id_ed25519
+    IdentitiesOnly yes
+    UserKnownHostsFile /etc/tg-tunnel/known_hosts
+    # Ключ хоста закреплён тем, что сверили с Вадимом. Другой — значит на пути
+    # кто-то чужой, и соединяться нельзя.
+    StrictHostKeyChecking yes
+    BatchMode yes
+    ServerAliveInterval 30
+    ServerAliveCountMax 3
+    # Не смогли занять порт — выходим, и autossh поднимет заново, а не висим
+    # с живым соединением и мёртвым пробросом.
+    ExitOnForwardFailure yes
