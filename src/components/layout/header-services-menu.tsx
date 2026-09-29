@@ -39,10 +39,15 @@ import {
   Wrench,
 } from "lucide-react";
 import { TelegramIcon } from "@/components/icons/brand-icons";
-import { SERVICE_NAV } from "@/lib/constants";
+import { HEADER_SERVICE_KEYS, SERVICE_NAV } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 // Per-service glyph for the dropdown rows (mirrors the homepage service cards).
+//
+// Карта намеренно покрывает все тридцать две услуги, хотя меню показывает
+// двенадцать: иконки остальных — готовый материал, и вернуть услугу в меню
+// должно стоить одной правки `HEADER_SERVICE_KEYS`, а не поиска подходящего
+// глифа заново. Удалять отсюда ничего не нужно, даже если строка из меню ушла.
 const SERVICE_ICON: Record<string, ComponentType<{ className?: string }>> = {
   corporate: Building2,
   websites: LayoutTemplate,
@@ -77,6 +82,17 @@ const SERVICE_ICON: Record<string, ComponentType<{ className?: string }>> = {
   businessSystemsCustom: Wrench,
   industrial: Factory,
 };
+
+/**
+ * Строки меню: двенадцать ключей из витрины, приведённые к записям каталога.
+ *
+ * Через SERVICE_NAV, а не напрямую по ключу: там уже отброшены черновики, и
+ * услуга, снятая с публикации, молча исчезнет из меню вместо ссылки на
+ * страницу, закрытую от индексации.
+ */
+const MENU_SERVICES = HEADER_SERVICE_KEYS.map((key) =>
+  SERVICE_NAV.find((entry) => entry.key === key),
+).filter((entry): entry is (typeof SERVICE_NAV)[number] => Boolean(entry));
 
 interface HeaderServicesMenuProps {
   /** True while the fullscreen menu is open (header sits on a dark surface). */
@@ -124,11 +140,15 @@ export function HeaderServicesMenu({ dark, onNavigate }: HeaderServicesMenuProps
         if (!e.currentTarget.contains(e.relatedTarget as Node)) setOpen(false);
       }}
     >
-      <button
-        type="button"
+      {/* Ссылка, а не кнопка: меню показывает двенадцать услуг из тридцати
+          двух, и «Услуги» должны вести в каталог, где есть все. Панель при
+          этом открывается наведением и фокусом, так что клик никому не нужен,
+          чтобы её увидеть. */}
+      <Link
+        href="/uslugi/"
         aria-expanded={open}
         aria-haspopup="true"
-        onClick={() => setOpen((v) => !v)}
+        onClick={handleNavigate}
         className={cn(
           "inline-flex cursor-pointer items-center gap-1 text-base transition-colors duration-300",
           dark
@@ -144,7 +164,7 @@ export function HeaderServicesMenu({ dark, onNavigate }: HeaderServicesMenuProps
           )}
           aria-hidden="true"
         />
-      </button>
+      </Link>
 
       {/* Panel. The pt-3 padding is a hover bridge: it keeps the gap between the
           trigger and the card hoverable so the menu never flickers. */}
@@ -156,9 +176,12 @@ export function HeaderServicesMenu({ dark, onNavigate }: HeaderServicesMenuProps
             : "invisible -translate-y-1 opacity-0",
         )}
       >
-        <div className="border-border bg-background w-[680px] max-w-[92vw] overflow-hidden rounded-2xl border p-2 shadow-[0_24px_60px_rgba(0,0,0,0.12)]">
-          <ul className="grid grid-cols-2 gap-x-2">
-            {SERVICE_NAV.map(({ key, slug }) => {
+        <div className="border-border bg-background w-[940px] max-w-[92vw] overflow-hidden rounded-2xl border p-2 shadow-[0_24px_60px_rgba(0,0,0,0.12)]">
+          {/* grid-flow-col + grid-rows-4: колонки читаются сверху вниз, поэтому
+              каждая из трёх — своя группа (сайты, продукты, автоматизация), а
+              не случайный срез общего списка. */}
+          <ul className="grid grid-flow-col grid-rows-4 gap-x-2">
+            {MENU_SERVICES.map(({ key, slug }) => {
               const Icon = SERVICE_ICON[key];
               return (
                 <li key={key}>
@@ -191,6 +214,11 @@ export function HeaderServicesMenu({ dark, onNavigate }: HeaderServicesMenuProps
             className="border-border text-foreground hover:border-accent hover:bg-accent-muted focus-visible:outline-accent mt-1 flex items-center justify-center gap-2 rounded-xl border px-3 py-3 text-base font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             {t("services.allServices")}
+            {/* Число говорит, что за ссылкой ещё два десятка услуг: без него
+                панель выглядит как полный список, и по ссылке никто не идёт. */}
+            <span className="text-muted-foreground tabular-nums">
+              {SERVICE_NAV.length}
+            </span>
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
