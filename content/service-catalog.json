@@ -98,7 +98,7 @@
       "key": "collaboration",
       "slug": "korporativnye-kommunikacii",
       "category": "products",
-      "draft": true
+      "draft": false
     },
     {
       "key": "blockchain",
@@ -134,31 +134,31 @@
       "key": "infrastructure",
       "slug": "proektirovanie-it-infrastruktury",
       "category": "itInfra",
-      "draft": true
+      "draft": false
     },
     {
       "key": "migration",
       "slug": "migraciya-it-infrastruktury",
       "category": "itInfra",
-      "draft": true
+      "draft": false
     },
     {
       "key": "os",
       "slug": "vnedrenie-operacionnyh-sistem",
       "category": "itInfra",
-      "draft": true
+      "draft": false
     },
     {
       "key": "itOutsourcing",
       "slug": "it-autsorsing",
       "category": "itInfra",
-      "draft": true
+      "draft": false
     },
     {
       "key": "infosecAudit",
       "slug": "audit-informacionnoj-bezopasnosti",
       "category": "infosec",
-      "draft": true
+      "draft": false
     },
     {
       "key": "security",
@@ -170,37 +170,37 @@
       "key": "infosecTools",
       "slug": "vnedrenie-sredstv-zashchity",
       "category": "infosec",
-      "draft": true
+      "draft": false
     },
     {
       "key": "infosecMonitoring",
       "slug": "monitoring-i-reagirovanie",
       "category": "infosec",
-      "draft": true
+      "draft": false
     },
     {
       "key": "infosecConsulting",
       "slug": "konsalting-po-informacionnoj-bezopasnosti",
       "category": "infosec",
-      "draft": true
+      "draft": false
     },
     {
       "key": "businessSystems",
       "slug": "vnedrenie-biznes-sistem",
       "category": "business",
-      "draft": true
+      "draft": false
     },
     {
       "key": "businessSystemsCustom",
       "slug": "dorabotka-biznes-sistem",
       "category": "business",
-      "draft": true
+      "draft": false
     },
     {
       "key": "industrial",
       "slug": "integraciya-s-oborudovaniem",
       "category": "business",
-      "draft": true
+      "draft": false
     },
     {
       "key": "commercialAudit",
