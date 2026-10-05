@@ -43,7 +43,7 @@ const FAQ_KEYS = ["1", "2", "3", "4", "5", "6", "7", "8"] as const;
 
 export async function HomePage({ locale }: { locale: Locale }) {
   const companyName = SITE.name;
-  const cases = await getHomeCases();
+  const cases = await getHomeCases(locale);
   const faq = await getTranslations({ locale, namespace: "faq.items" });
 
   // Разметка блока #faq. Раньше жила в StructuredData и вместе с layout

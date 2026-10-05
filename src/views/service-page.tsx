@@ -95,7 +95,7 @@ export async function ServiceDetailPage({
       <SiteShell>
         <ServicePageContent
           servicePage={page}
-          cases={await getAllCases()}
+          cases={await getAllCases(locale)}
           articles={await getPostsForService(page.key)}
         />
       </SiteShell>
