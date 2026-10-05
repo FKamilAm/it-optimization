@@ -14,6 +14,7 @@ import {
 } from "@/i18n/routes";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { DRAFT_SERVICES, SERVICE_PAGES } from "@/lib/constants";
+import { isPostTranslated, isServiceTranslated } from "@/lib/coverage";
 import { BlogPostPage } from "@/views/blog-post-page";
 import { contentMetadata } from "@/views/page-metadata";
 import { requireServicePage, ServiceDetailPage } from "@/views/service-page";
@@ -63,7 +64,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: page.metaTitle,
       description: page.metaDescription,
       path: (item) => servicePath(key, item),
-      noindex: DRAFT_SERVICES.has(key),
+      // Черновик — рано; непереведённая страница объявлена английской,
+      // а внутри русская, и это тоже рано.
+      noindex: DRAFT_SERVICES.has(key) || !isServiceTranslated(key, locale),
     });
   }
 
@@ -76,6 +79,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: post.metaTitle,
       description: post.metaDescription,
       path: (item) => postPath(ruSlug, item),
+      noindex: !isPostTranslated(ruSlug, locale),
     });
   }
 

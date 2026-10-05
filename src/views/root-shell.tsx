@@ -6,6 +6,7 @@ import { CursorFollower } from "@/components/layout/cursor-follower";
 import { LocaleRedirect } from "@/components/layout/locale-redirect";
 import { StructuredData } from "@/components/seo/structured-data";
 import {
+  AUTO_DETECT_LOCALE,
   BRAND_NAME,
   DEFAULT_LOCALE,
   LOCALES,
@@ -138,7 +139,7 @@ export async function RootShell({
             посетитель, не выбиравший язык. На /en/ и /es/ он уже пришёл
             осознанно — либо по ссылке, либо этим же скриптом, и повторно
             решать за него нечего. */}
-        {locale === DEFAULT_LOCALE && <LocaleRedirect />}
+        {AUTO_DETECT_LOCALE && locale === DEFAULT_LOCALE && <LocaleRedirect />}
       </head>
       <body className={`${manrope.variable} ${unbounded.variable} font-sans antialiased`}>
         <StructuredData />

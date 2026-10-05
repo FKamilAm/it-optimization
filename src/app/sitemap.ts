@@ -12,6 +12,7 @@ import {
 import { getAllPosts } from "@/lib/blog";
 import { getAllCases } from "@/lib/cases";
 import { SERVICE_NAV } from "@/lib/constants";
+import { isPostTranslated, isPrivacyTranslated, isServiceTranslated } from "@/lib/coverage";
 import { getSiteUrl } from "@/lib/site-url";
 import privacy from "../../content/privacy.json";
 
@@ -34,17 +35,30 @@ export const dynamic = "force-static";
  * протоколу оно необязательное, и его отсутствие честнее выдуманного.
  */
 
-/** Одна страница → три записи, у каждой полный список переводов. */
+/**
+ * Одна страница → запись на каждый язык, у каждой полный список переводов.
+ *
+ * `only` отсеивает языки, на которые страница ещё не переведена. В карту
+ * сайта не должен попадать адрес, который объявлен английским, а внутри
+ * русский: карта — прямое приглашение проиндексировать, и звать поисковика
+ * на страницу с несовпадающим языком незачем. Такие страницы при этом
+ * открываются и отдаются с noindex — см. lib/coverage.
+ *
+ * В alternates остаются только те же отобранные языки: ссылка на перевод,
+ * который ещё не перевод, вводит в заблуждение ровно так же.
+ */
 function entry(
   build: (locale: Locale) => string,
   extra: Omit<MetadataRoute.Sitemap[number], "url" | "alternates"> = {},
+  only: (locale: Locale) => boolean = () => true,
 ): MetadataRoute.Sitemap {
   const siteUrl = getSiteUrl();
+  const ready = LOCALES.filter(only);
   const languages = Object.fromEntries(
-    LOCALES.map((locale) => [locale, `${siteUrl}${build(locale)}`]),
+    ready.map((locale) => [locale, `${siteUrl}${build(locale)}`]),
   );
 
-  return LOCALES.map((locale) => ({
+  return ready.map((locale) => ({
     url: `${siteUrl}${build(locale)}`,
     alternates: { languages },
     ...extra,
@@ -78,24 +92,33 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // SERVICE_NAV, а не все ключи: в перечне адресов лежат и черновики,
     // которым в карте сайта делать нечего.
     ...SERVICE_NAV.flatMap(({ key }) =>
-      entry((locale) => servicePath(key, locale), {
-        changeFrequency: "monthly",
-        priority: 0.8,
-      }),
+      entry(
+        (locale) => servicePath(key, locale),
+        { changeFrequency: "monthly", priority: 0.8 },
+        (locale) => isServiceTranslated(key, locale),
+      ),
     ),
     ...posts.flatMap((post) =>
-      entry((locale) => postPath(post.slug, locale), {
-        lastModified: new Date(post.updatedAt),
-        changeFrequency: "monthly",
-        priority: 0.6,
-      }),
+      entry(
+        (locale) => postPath(post.slug, locale),
+        {
+          lastModified: new Date(post.updatedAt),
+          changeFrequency: "monthly",
+          priority: 0.6,
+        },
+        (locale) => isPostTranslated(post.slug, locale),
+      ),
     ),
     // Политика — не маркетинговая страница, но индексируемая: публикация
     // подтверждается тем, что документ доступен и находится поиском.
-    ...entry(privacyPath, {
-      lastModified: new Date(privacy.updatedAt),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    }),
+    ...entry(
+      privacyPath,
+      {
+        lastModified: new Date(privacy.updatedAt),
+        changeFrequency: "yearly",
+        priority: 0.3,
+      },
+      isPrivacyTranslated,
+    ),
   ];
 }

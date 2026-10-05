@@ -11,6 +11,7 @@ import {
   segment,
   servicesPath,
 } from "@/i18n/routes";
+import { isPrivacyTranslated } from "@/lib/coverage";
 import { BlogListPage } from "@/views/blog-list-page";
 import { pageMetadata } from "@/views/page-metadata";
 import { PrivacyPage } from "@/views/privacy-page";
@@ -61,6 +62,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     locale,
     namespace: NAMESPACE[resolved],
     path: PATH[resolved],
+    noindex: resolved === "privacy" && !isPrivacyTranslated(locale),
   });
 }
 
