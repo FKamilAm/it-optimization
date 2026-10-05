@@ -1,0 +1,728 @@
+{
+  "meta": {
+    "title": "IT Optimization — websites, CRM, bots and AI, built end to end",
+    "description": "IT Optimization studio: web platforms, CRM systems, websites, Telegram bots, Mini Apps, mobile apps and AI agents. Architecture, development and support.",
+    "keywords": "web development, website development, CRM, Telegram bot, mini app, mobile apps, AI agents, blockchain, IT studio, custom software, end-to-end development, IT Optimization",
+    "ogImageAlt": "IT Optimization — a studio building digital products"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "industries": "Industries",
+    "solutions": "Solutions",
+    "projects": "Work",
+    "blog": "Blog",
+    "process": "Process",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "cta": "Start a project"
+  },
+  "hero": {
+    "label": "Digital studio",
+    "title": "We build complex digital products for business",
+    "subtitle": "Web platforms, CRM systems, websites, Telegram bots, Mini Apps, mobile apps, AI agents, blockchain solutions and internal tools — from the idea and the architecture through launch and support.",
+    "ctaPrimary": "Start a project",
+    "ctaSecondary": "See our services",
+    "flow": {
+      "website": "Website",
+      "bot": "Bot",
+      "crm": "CRM",
+      "app": "App",
+      "ai": "AI",
+      "blockchain": "Blockchain"
+    }
+  },
+  "about": {
+    "label": "About us",
+    "title": "A technology partner, not a one-off contractor",
+    "description": "We design and build whole digital products — business logic, architecture, interface, integrations and long-term support.",
+    "values": {
+      "system": {
+        "title": "A systematic approach",
+        "description": "We design around business problems, not around a list of technologies."
+      },
+      "flexibility": {
+        "title": "Technical flexibility",
+        "description": "We build the whole system: interface, backend, integrations, analytics."
+      },
+      "complexity": {
+        "title": "Any level of complexity",
+        "description": "We take on projects of any size — from an MVP to an enterprise platform."
+      },
+      "support": {
+        "title": "Support and growth",
+        "description": "We stay with the product after launch and grow it alongside the business."
+      }
+    }
+  },
+  "services": {
+    "label": "Services",
+    "allServices": "All services",
+    "title": "Popular directions",
+    "cardCta": "Start a project: {service}",
+    "detail": {
+      "budgetLabel": "Budget",
+      "deadlineLabel": "Timeline"
+    },
+    "items": {
+      "corporate": {
+        "title": "Corporate website development",
+        "description": "We build corporate websites that earn trust and bring in enquiries: a considered structure, custom design, fast loading and SEO. Price and timeline are fixed after the brief.",
+        "budget": "from ₽120,000",
+        "deadline": "from 10 days",
+        "tags": [
+          "Multi-page sites",
+          "Corporate identity",
+          "SEO",
+          "Integrations"
+        ]
+      },
+      "websites": {
+        "title": "Landing page, built end to end",
+        "description": "A landing page built to sell one offer, campaign or launch: a structure that holds attention, design, fast markup and enquiry forms wired into your CRM. Price and timeline are fixed after the brief.",
+        "budget": "from ₽59,000",
+        "deadline": "from 7–10 days",
+        "tags": [
+          "Promo pages",
+          "SEO landing pages",
+          "A/B tests",
+          "Enquiry forms"
+        ]
+      },
+      "websiteTurnkey": {
+        "title": "Website, end to end",
+        "description": "A complete website — structure, design, markup, content, analytics and launch. You get a working product without having to think about the technical side.",
+        "budget": "from ₽89,000",
+        "deadline": "from 10 days",
+        "tags": [
+          "End to end",
+          "Design + markup",
+          "Content",
+          "Analytics"
+        ]
+      },
+      "ecommerce": {
+        "title": "Online store, end to end",
+        "description": "Online stores with a catalogue, cart, payments and an admin panel people can actually use. We connect delivery, payment providers and integrations with accounting systems and CRM.",
+        "budget": "from ₽190,000",
+        "deadline": "from 3 weeks",
+        "tags": [
+          "Catalogue and cart",
+          "Online payments",
+          "Accounting integration",
+          "Admin panel"
+        ]
+      },
+      "businessCard": {
+        "title": "Business-card website",
+        "description": "A compact site that says who you are, briefly and convincingly: services, strengths, contacts and a way to get in touch. Quick to launch, clear on price.",
+        "budget": "from ₽29,000",
+        "deadline": "from 5 days",
+        "tags": [
+          "Single page",
+          "Fast launch",
+          "Contacts",
+          "Mobile version"
+        ]
+      },
+      "webDesign": {
+        "title": "Web design systems",
+        "description": "We design the interface of a site or service and build a design system around it: grid, typography, components and states. After that, pages are assembled from ready blocks instead of drawn from scratch.",
+        "budget": "from ₽60,000",
+        "deadline": "from 2 weeks",
+        "tags": [
+          "UI/UX",
+          "Design system",
+          "Prototypes",
+          "Responsive"
+        ]
+      },
+      "branding": {
+        "title": "Design and branding",
+        "description": "We develop a visual identity: mark, colours, typefaces and the rules for using them. It all goes into a brand book so the company looks the same on the site, in documents and in advertising.",
+        "budget": "from ₽45,000",
+        "deadline": "from 2 weeks",
+        "tags": [
+          "Logo",
+          "Visual identity",
+          "Brand book",
+          "Collateral"
+        ]
+      },
+      "b2b": {
+        "title": "B2B website development",
+        "description": "Sites and portals for B2B: a clear presentation of the product, price calculation, a partner portal and integrations with internal systems. Built for a long sales cycle.",
+        "budget": "from ₽180,000",
+        "deadline": "from 3 weeks",
+        "tags": [
+          "B2B portal",
+          "Partner portal",
+          "Catalogue and price lists",
+          "Integrations"
+        ]
+      },
+      "telegram": {
+        "title": "Telegram bots and Mini Apps",
+        "description": "A Telegram bot or Mini App for lead generation, automation and support. We work out the scenarios, the integrations and an interface people can use, so the bot actually brings in enquiries. Price and timeline follow the brief.",
+        "budget": "from ₽50,000",
+        "deadline": "from 1 week",
+        "tags": [
+          "Lead generation",
+          "Automation",
+          "Support",
+          "Internal processes"
+        ]
+      },
+      "mobile": {
+        "title": "Mobile applications",
+        "description": "Mobile apps for iOS and Android — from an MVP to a finished product with considered UX and a dependable backend.",
+        "budget": "from ₽300,000",
+        "deadline": "from 4 weeks",
+        "tags": [
+          "iOS / Android",
+          "MVP",
+          "Customer apps",
+          "Enterprise apps"
+        ]
+      },
+      "ai": {
+        "title": "AI agents and automation",
+        "description": "We bring AI agents and automation into the business: handling enquiries, assistants, content generation and integrations with your systems. We will tell you what price and timeline make sense once the requirements are clear.",
+        "budget": "from ₽90,000",
+        "deadline": "from 2 weeks",
+        "tags": [
+          "Custom AI agents",
+          "Business automation",
+          "AI interfaces"
+        ]
+      },
+      "integrations": {
+        "title": "Data parsing and integrations",
+        "description": "We set up data parsing and integrations between services — APIs, system synchronisation and automatic data exchange.",
+        "budget": "from ₽50,000",
+        "deadline": "from 1 week",
+        "tags": [
+          "Open data parsing",
+          "API integrations",
+          "System synchronisation"
+        ]
+      },
+      "blockchain": {
+        "title": "Crypto / Blockchain",
+        "description": "Web3 interfaces, wallet and smart-contract integration, multichain logic and dashboards that are actually readable.",
+        "budget": "from ₽300,000",
+        "deadline": "from 4 weeks",
+        "tags": [
+          "Web3 interfaces",
+          "Smart-contract integrations",
+          "Multichain"
+        ]
+      },
+      "support": {
+        "title": "Website support and growth",
+        "description": "We look after and grow what is already live — a site, a platform or an app: improvements, monitoring, updates and technical support.",
+        "budget": "from ₽40,000/mo",
+        "deadline": "monthly",
+        "tags": [
+          "Website support",
+          "Feature growth",
+          "Monitoring"
+        ]
+      },
+      "contentAnalysis": {
+        "title": "Website content analysis",
+        "description": "We go through the site's content: how well it answers what the audience and the search engines are asking, where enquiries are lost and what is holding traffic back. You get clear conclusions and a plan.",
+        "budget": "from ₽30,000",
+        "deadline": "from 3 days",
+        "tags": [
+          "Content audit",
+          "Keywords",
+          "User behaviour",
+          "Recommendations"
+        ]
+      },
+      "techContent": {
+        "title": "Technical website content",
+        "description": "We prepare and tidy the technical layer: page structure, meta tags, structured data, headings and internal links — so the site is indexed correctly and understood by search engines.",
+        "budget": "from ₽40,000",
+        "deadline": "from 1 week",
+        "tags": [
+          "Meta tags",
+          "Structured data",
+          "Structure",
+          "Indexing"
+        ]
+      },
+      "commercialAudit": {
+        "title": "Commercial website audit",
+        "description": "We assess the site as a sales tool: how it turns traffic into enquiries, where the money leaks and what to strengthen in the offers, prices and calls to action. The result is higher conversion.",
+        "budget": "from ₽50,000",
+        "deadline": "from 1 week",
+        "tags": [
+          "Conversion",
+          "Offers and USP",
+          "Enquiry funnel",
+          "Growth points"
+        ]
+      },
+      "platforms": {
+        "title": "CRM platform development",
+        "description": "We design and build CRM systems, client portals and internal platforms around your processes — with roles, integrations, analytics and an architecture that scales.",
+        "budget": "from ₽400,000",
+        "deadline": "from 4 weeks",
+        "tags": [
+          "CRM",
+          "Client portals",
+          "Internal systems",
+          "SaaS",
+          "Dashboards"
+        ]
+      },
+      "security": {
+        "title": "Website security audit",
+        "description": "We check the site against the OWASP Top 10: injections, access rights, authentication, server configuration and dependencies. Manual testing finds what a scanner misses. You get a report ordered by priority, and on the extended plan we fix what we found.",
+        "budget": "from ₽60,000",
+        "deadline": "from 3 days",
+        "tags": [
+          "OWASP",
+          "Vulnerabilities",
+          "Access rights",
+          "Report"
+        ]
+      },
+      "messenger": {
+        "title": "Messenger development",
+        "description": "We build messaging systems: a corporate messenger for staff, a chat inside your product, a channel for talking to customers. Chats, channels, files, roles and integrations with your systems. Deployed on your own servers — the conversations stay with you.",
+        "budget": "from ₽200,000",
+        "deadline": "from 1 month",
+        "tags": [
+          "Corporate",
+          "Private network",
+          "Mobile clients",
+          "Integrations"
+        ]
+      },
+      "infrastructure": {
+        "title": "IT infrastructure design",
+        "description": "We design servers, network, virtualisation and backups around how the company actually works and how it will grow. Diagram, specification and a rollout plan.",
+        "budget": "from ₽90,000",
+        "deadline": "from 2 weeks",
+        "tags": [
+          "Servers and network",
+          "Virtualisation",
+          "Fault tolerance",
+          "Specification"
+        ]
+      },
+      "migration": {
+        "title": "Migration and modernisation",
+        "description": "We move servers, services and data to the cloud or to new hardware without stopping the business — with a rollback plan at every stage.",
+        "budget": "from ₽120,000",
+        "deadline": "from 3 weeks",
+        "tags": [
+          "Cloud migration",
+          "Platform change",
+          "No downtime",
+          "Rollback plan"
+        ]
+      },
+      "os": {
+        "title": "Operating system rollout",
+        "description": "We deploy and configure operating systems on servers and workstations, including moves to alternative platforms: domain, policies, updates and fleet management.",
+        "budget": "from ₽150,000",
+        "deadline": "from 3 weeks",
+        "tags": [
+          "Alternative OS",
+          "Linux",
+          "Domain and policies",
+          "Fleet management"
+        ]
+      },
+      "itOutsourcing": {
+        "title": "IT outsourcing",
+        "description": "We take on the company's IT: servers, network, workstations, email and backups. A ticket system, agreed response times and reporting you can read.",
+        "budget": "from ₽30,000/mo",
+        "deadline": "monthly",
+        "tags": [
+          "Managed service",
+          "Response SLA",
+          "Monitoring",
+          "Backups"
+        ]
+      },
+      "infosecAudit": {
+        "title": "Information security audit",
+        "description": "We assess the whole company's defences: network, servers, access, backups and organisational measures. A report with risk levels and a plan.",
+        "budget": "from ₽150,000",
+        "deadline": "from 3 weeks",
+        "tags": [
+          "Infrastructure",
+          "Access rights",
+          "Risk levels",
+          "Remediation plan"
+        ]
+      },
+      "infosecTools": {
+        "title": "Security tooling rollout",
+        "description": "We select and configure protection for workstations, email and network: EDR, firewalls, VPN, encryption and access control.",
+        "budget": "from ₽200,000",
+        "deadline": "from 3 weeks",
+        "tags": [
+          "Endpoint protection",
+          "Firewalls",
+          "VPN",
+          "Encryption"
+        ]
+      },
+      "infosecConsulting": {
+        "title": "Security and data-protection consulting",
+        "description": "We bring personal data handling in line with the law: regulator notification, policies, a threat model and preparation for an inspection.",
+        "budget": "from ₽80,000",
+        "deadline": "from 2 weeks",
+        "tags": [
+          "Data protection law",
+          "Regulator notification",
+          "Policies",
+          "Threat model"
+        ]
+      },
+      "infosecMonitoring": {
+        "title": "Security monitoring and response",
+        "description": "We collect security events and work through them: suspicious logins, password guessing, ransomware. With an incident response procedure.",
+        "budget": "from ₽60,000/mo",
+        "deadline": "monthly",
+        "tags": [
+          "Log collection",
+          "Detection",
+          "Response",
+          "Investigation"
+        ]
+      },
+      "collaboration": {
+        "title": "Corporate communications",
+        "description": "We roll out a portal, a messenger and document collaboration: choosing the platform, configuring the processes, integrations and training the team.",
+        "budget": "from ₽120,000",
+        "deadline": "from 3 weeks",
+        "tags": [
+          "Corporate portal",
+          "Messenger",
+          "Knowledge base",
+          "Self-hosted"
+        ]
+      },
+      "businessSystems": {
+        "title": "Business system rollout",
+        "description": "We roll out accounting and management systems: choosing the configuration, migrating data, configuring processes, integrations and training the team.",
+        "budget": "from ₽150,000",
+        "deadline": "from 4 weeks",
+        "tags": [
+          "ERP",
+          "Data migration",
+          "Roles and rights",
+          "Integrations"
+        ]
+      },
+      "businessSystemsCustom": {
+        "title": "Business system customisation",
+        "description": "We extend systems already in use to fit your processes: reports, printed forms, data exchange and logic — without breaking the ability to update.",
+        "budget": "from ₽25,000",
+        "deadline": "from 3 days",
+        "tags": [
+          "Reports and forms",
+          "Data exchange",
+          "Extensions",
+          "Stays updatable"
+        ]
+      },
+      "industrial": {
+        "title": "Equipment integration",
+        "description": "We pull data from machines, production lines and meters and feed it into the accounting system. Dashboards for output, downtime and equipment condition.",
+        "budget": "from ₽250,000",
+        "deadline": "from 4 weeks",
+        "tags": [
+          "Industrial control",
+          "Data collection",
+          "Dashboards",
+          "Downtime tracking"
+        ]
+      }
+    }
+  },
+  "industries": {
+    "label": "Expertise",
+    "title": "Strong answers to business problems",
+    "manifest": "We look for unconventional, strong answers to business problems. We go beyond the standard playbook to build products that genuinely make our clients stronger.",
+    "metric1Value": "5+",
+    "metric1Label": "years of experience",
+    "metric2Value": "70+",
+    "metric2Label": "projects",
+    "metric3Value": "50+",
+    "metric3Label": "clients"
+  },
+  "solutions": {
+    "label": "Solutions",
+    "title": "Selected work",
+    "description": "The kinds of systems we build for different business problems: CRM and AI agents, marketplaces, mini apps and Web3 interfaces.",
+    "allProjects": "All projects"
+  },
+  "privacyPage": {
+    "metaTitle": "Privacy policy",
+    "metaDescription": "How IT Optimization LLC handles personal data: what is processed, for what purposes, on what legal basis, and how to exercise your rights as a data subject.",
+    "breadcrumb": "Privacy policy",
+    "breadcrumbHome": "Home",
+    "title": "Personal data processing policy",
+    "updated": "Revision of"
+  },
+  "projectsPage": {
+    "metaTitle": "Projects and case studies",
+    "metaDescription": "Selected projects by IT Optimization: CRM and web platforms, AI agents, Telegram Mini Apps, marketplaces, Web3 interfaces and corporate websites.",
+    "breadcrumb": "Work",
+    "breadcrumbHome": "Home",
+    "title": "Projects and case studies",
+    "description": "Systems built for very different business problems — CRM and AI agents, marketplaces, mini apps and Web3 interfaces. Open a case to see the detail.",
+    "filterLabel": "Filter work by service",
+    "filterAll": "All work",
+    "ctaTitle": "Want the same result for your business?",
+    "ctaSubtitle": "Describe the problem and we will propose a way of working, a price and a timeline.",
+    "cta": "Start a project"
+  },
+  "servicesPage": {
+    "metaTitle": "Services: websites, platforms, bots and AI",
+    "metaDescription": "Everything IT Optimization does, in one place: corporate websites and online stores, CRM and web platforms, Telegram bots, mobile apps, AI agents, integrations and IT support. With prices and timelines for each.",
+    "breadcrumb": "Services",
+    "breadcrumbHome": "Home",
+    "title": "Development services",
+    "description": "Every area we work in — from a landing page or corporate website to CRM platforms, Telegram bots and AI agents. Open one to see what the work covers, how long it takes, what it costs and what we have built before.",
+    "faqTitle": "Common questions about our services",
+    "faq": [
+      {
+        "question": "How do I know which service I need?",
+        "answer": "You don't — and that's fine. Clients arrive with a problem, not a service: \"too few enquiries\", \"sales keeps losing leads\", \"staff copy data between spreadsheets by hand\". Breaking that into concrete work is our job, not yours. Describe the situation in your own words in any messenger and we will tell you what the solution consists of and what it costs. If it turns out the problem is cheaper to solve than you expected, we will say so."
+      },
+      {
+        "question": "What is the difference between a landing page, a one-page site and a corporate website?",
+        "answer": "Scope and purpose. A landing page is a single page for one product and one advertising channel; its job is to capture an enquiry right now. A business-card site is a minimum presence: who you are, what you do, how to reach you. A corporate website is a multi-page structure with service sections, case studies and a blog, and it works over the long term for search and for the trust of larger clients. More expensive does not mean better: for a single-product ad campaign, a corporate website is wasted money."
+      },
+      {
+        "question": "Can several services be combined into one project?",
+        "answer": "That is usually how it goes. A website whose enquiries land in a CRM, plus a Telegram bot that notifies the sales manager, is three items on the list but one project with one team and one deadline. The split into services exists so you can see what the estimate is made of, not so we can sell them separately. A combined estimate is almost always lower than the sum of the parts, because some of the work is shared."
+      },
+      {
+        "question": "What if my problem isn't on this list?",
+        "answer": "Write to us. The list is what we do regularly and already have estimates for — it is not the limit of what we can do. Unusual work, such as integrating with a rare accounting system, a parser for one specific site, or an internal tool shaped around your process, is estimated the same way, just separately. If it isn't our kind of work we will say so plainly and, where we can, point you to someone better suited."
+      },
+      {
+        "question": "Do you only build from scratch, or work with an existing site too?",
+        "answer": "Both. Improving an existing product is routine for us: adding payments, speeding up loading, rebuilding the layout for mobile, adding an integration, cleaning up code left by a previous team. We start by looking at what exists and telling you honestly where it is cheaper to improve and where to rebuild. We do not propose rewriting everything for the sake of tidy code."
+      },
+      {
+        "question": "Can we start small and grow later?",
+        "answer": "Yes, and for most problems that is the smarter route. Launching a first version, watching real users and building on what you learn is cheaper than designing the whole system for six months and discovering half the features were unnecessary. We plan for it in the architecture: so that a client portal can be added to the website later, and payments to the bot, without rewriting everything."
+      }
+    ],
+    "filterAll": "All services",
+    "filterLabel": "Filter services by category"
+  },
+  "blog": {
+    "metaTitle": "Blog",
+    "metaDescription": "Articles by IT Optimization on development, security and data: website security audits, building messengers, data parsing and other engineering topics.",
+    "breadcrumb": "Blog",
+    "breadcrumbHome": "Home",
+    "eyebrow": "Blog",
+    "title": "A blog about development and technology",
+    "description": "How digital products work on the inside — from security audits to messenger architecture and data parsing. Written plainly and to the point.",
+    "readMore": "Read the article",
+    "allPosts": "All articles",
+    "backToList": "All articles",
+    "tocTitle": "In this article",
+    "takeawaysTitle": "The short version",
+    "relatedTitle": "Read next",
+    "servicesTitle": "Hand it to us",
+    "servicesSubtitle": "Understanding it yourself is one thing; getting it built and working is another. These are the areas where we solve the problems this article is about.",
+    "ctaTitle": "Need help with a project like this?",
+    "ctaSubtitle": "Describe the problem — we will look at it free of charge and propose a way of working, a price and a timeline."
+  },
+  "technologies": {
+    "eyebrow": "Stack",
+    "title": "Technology",
+    "subtitle": "The tools we use to build fast, dependable products."
+  },
+  "process": {
+    "label": "Process",
+    "title": "From brief to launch and growth",
+    "description": "A transparent process without chaos — every stage is clear and tied to a result.",
+    "statusActive": "In progress",
+    "steps": {
+      "1": {
+        "title": "We study the problem and the market",
+        "description": "We dig into the business context, the goals, the audience and the competitive landscape."
+      },
+      "2": {
+        "title": "We design the architecture",
+        "description": "We shape the technical and product architecture, the stack and the roadmap."
+      },
+      "3": {
+        "title": "We design the interface and UX",
+        "description": "UX/UI, prototypes and the product's design system."
+      },
+      "4": {
+        "title": "We build frontend and backend",
+        "description": "Client and server side, built for quality and for scale."
+      },
+      "5": {
+        "title": "We connect integrations, AI, bots and blockchain",
+        "description": "We wire the product into external services, automation and specialised modules."
+      },
+      "6": {
+        "title": "We test and launch",
+        "description": "QA, optimisation and a controlled release."
+      },
+      "7": {
+        "title": "We support and grow it",
+        "description": "We look after the product, add features and scale the solution."
+      }
+    }
+  },
+  "audit": {
+    "label": "Competitive audit",
+    "title": "Stronger than the market — through analysis, not imitation",
+    "description": "We study the websites, offers, user journeys and conversion points in your niche, then build something of your own: cleaner, stronger and better aimed at your business.",
+    "cards": {
+      "1": {
+        "title": "We analyse the market",
+        "description": "Competitors, their structure, landing pages, offers, enquiry forms and user journeys.",
+        "tags": "Competitors · UX patterns · Offers · Conversion"
+      },
+      "2": {
+        "title": "We find what actually works",
+        "description": "We isolate the decisions that genuinely move enquiries, trust, navigation and conversion.",
+        "tags": "User flow · Trust · Leadgen · Analytics"
+      },
+      "3": {
+        "title": "We build your own system",
+        "description": "A distinct interface, structure and product logic — without copying anyone's code, design or content.",
+        "tags": "Custom design · Clean code · Architecture · Growth"
+      }
+    }
+  },
+  "faq": {
+    "label": "FAQ",
+    "title": "Common questions",
+    "items": {
+      "1": {
+        "question": "What kinds of products do you build end to end?",
+        "answer": "We build around business problems: web platforms and CRM, corporate websites and eCommerce, Telegram bots and Mini Apps, mobile apps (from MVP to a full product), AI agents and automation, plus blockchain/web3 solutions and internal tools. We run projects in stages: brief, architecture, build, launch, support."
+      },
+      "2": {
+        "question": "Can I order just a website, just a Telegram bot or just an AI agent?",
+        "answer": "Yes. We take on single pieces of work as well as complete products. We will suggest the right format, size up the work and propose a launch plan for your goal."
+      },
+      "3": {
+        "question": "Do you build MVPs and fast launches?",
+        "answer": "Yes. An MVP is a common format for us. We help you test a hypothesis quickly, build the core functionality and lay a foundation for growth. An MVP usually takes one to two months — we can be precise about scope and budget after a brief."
+      },
+      "4": {
+        "question": "Do you support the project after launch?",
+        "answer": "Yes. We offer ongoing IT support: improvements, updates, monitoring and technical help. You can take it as one-off work or as planned development in agreed stages."
+      },
+      "5": {
+        "question": "Can you bring AI agents and automation into a business?",
+        "answer": "Yes. We build AI agents for handling enquiries, assistants and content generation, and we connect automation to your existing services and CRM. We also build blockchain/web3 modules where the project calls for them. Price and timeline follow once the requirements are clear."
+      },
+      "6": {
+        "question": "How do you work out the price of a project?",
+        "answer": "We usually start with an audit of the problem: goals, context, competitive landscape and the key user journeys. From there we shape a concept, agree the stages, and give you a budget and a timeline after the brief."
+      },
+      "7": {
+        "question": "What does a website, a Telegram bot or an AI agent cost?",
+        "answer": "As a guide: websites and landing pages from ₽80,000 (from one week), Telegram bots from ₽50,000 (from one week), Mini Apps from ₽100,000 (from two weeks), AI agents and automation from ₽100,000 (from two weeks). Complex work costs more — we agree the exact figure after the brief."
+      },
+      "8": {
+        "question": "Do you work with clients outside your region?",
+        "answer": "Yes. We run projects remotely and work with clients anywhere. We start with a brief, then run the project in stages: analysis → architecture → UX → development → launch → support."
+      }
+    }
+  },
+  "contact": {
+    "label": "Contact",
+    "title": "Tell us what you need built",
+    "subtitle": "Write to us whichever way suits you — messenger, phone or email. We will reply and suggest a way of working.",
+    "starter": {
+      "default": "Hello! I'd like to discuss a project.",
+      "service": "Hello! I'd like to discuss a project — {service}."
+    },
+    "perks": {
+      "reply": {
+        "title": "We reply the same day",
+        "text": "In whichever messenger you prefer, during working hours."
+      },
+      "consult": {
+        "title": "Free consultation",
+        "text": "We will talk the problem through, suggest a format and estimate the timeline."
+      },
+      "approach": {
+        "title": "Clear, stage by stage",
+        "text": "Deadlines, budget and what we agreed are fixed up front."
+      }
+    },
+    "modal": {
+      "title": "Write to us",
+      "subtitle": "Leave your problem in whichever channel suits you — we will discuss the detail and propose a format and a timeline.",
+      "close": "Close"
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use",
+    "legalName": "Legal entity",
+    "inn": "TIN",
+    "kpp": "KPP",
+    "ogrn": "PSRN"
+  },
+  "floating": {
+    "label": "Free consultation",
+    "open": "Open contact menu",
+    "close": "Close contact menu",
+    "telegram": "Telegram",
+    "max": "MAX",
+    "email": "Email",
+    "form": "Start a project",
+    "application": "Start a project"
+  },
+  "menu": {
+    "close": "Close menu"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "mainNav": "Main navigation",
+    "openMenu": "Open menu",
+    "logo": "IT Optimization — go to homepage"
+  },
+  "servicePages": {
+    "common": {
+      "breadcrumbHome": "Home",
+      "breadcrumbServices": "Services",
+      "budgetLabel": "Budget",
+      "deadlineLabel": "Timeline",
+      "ctaPrimary": "Start a project",
+      "includesTitle": "What the work covers",
+      "forWhomTitle": "Who it suits",
+      "stepsTitle": "How we work",
+      "caseTitle": "Our work",
+      "faqTitle": "Common questions about this service",
+      "caseMore": "More about this case",
+      "contactTitle": "Let's talk about your project",
+      "contactSubtitle": "Write whichever way suits you — we will reply, clarify the problem and propose a way of working, a price and a timeline.",
+      "otherServices": "Other services",
+      "viewTariffs": "See pricing",
+      "tariffsTitle": "Pricing",
+      "tariffsSubtitle": "Three formats for different needs and budgets — from a quick start to fully custom development.",
+      "recommendedLabel": "Most popular",
+      "tariffCta": "Discuss this plan",
+      "tariffsNote": "Prices are indicative. The final cost and timeline are fixed after the brief.",
+      "relatedTitle": "Related services",
+      "relatedArticlesTitle": "From the blog"
+    }
+  }
+}
