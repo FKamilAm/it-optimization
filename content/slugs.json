@@ -1,0 +1,63 @@
+{
+  "_": "Слуги английских и испанских страниц. Русские живут там же, где жили: у услуг в content/service-catalog.json, у статей в content/blog.json. Отдельным файлом — чтобы не менять форму тех двух: их правит /panel и повторяет схема PostgreSQL, а здесь лежит то, что принадлежит переводу, а не контенту.",
+  "services": {
+    "corporate": { "en": "corporate-website", "es": "web-corporativa" },
+    "websiteTurnkey": { "en": "website-development", "es": "desarrollo-web" },
+    "websites": { "en": "landing-page", "es": "landing-page" },
+    "ecommerce": { "en": "online-store", "es": "tienda-online" },
+    "businessCard": { "en": "business-card-website", "es": "web-de-presentacion" },
+    "b2b": { "en": "b2b-website", "es": "web-b2b" },
+    "platforms": { "en": "crm-development", "es": "desarrollo-crm" },
+    "telegram": { "en": "telegram-bot-development", "es": "desarrollo-bots-telegram" },
+    "mobile": { "en": "mobile-app-development", "es": "desarrollo-apps-moviles" },
+    "messenger": { "en": "messenger-development", "es": "desarrollo-de-mensajeria" },
+    "collaboration": { "en": "corporate-communications", "es": "comunicaciones-corporativas" },
+    "blockchain": { "en": "blockchain-development", "es": "desarrollo-blockchain" },
+    "ai": { "en": "ai-agents", "es": "agentes-de-ia" },
+    "integrations": { "en": "data-parsing-integrations", "es": "extraccion-de-datos" },
+    "webDesign": { "en": "web-design", "es": "diseno-web" },
+    "branding": { "en": "branding", "es": "branding" },
+    "infrastructure": { "en": "it-infrastructure", "es": "infraestructura-it" },
+    "migration": { "en": "it-migration", "es": "migracion-it" },
+    "os": { "en": "os-deployment", "es": "sistemas-operativos" },
+    "itOutsourcing": { "en": "it-outsourcing", "es": "outsourcing-it" },
+    "infosecAudit": { "en": "information-security-audit", "es": "auditoria-seguridad-informacion" },
+    "security": { "en": "website-security-audit", "es": "auditoria-seguridad-web" },
+    "infosecTools": { "en": "security-tools", "es": "herramientas-de-seguridad" },
+    "infosecMonitoring": { "en": "security-monitoring", "es": "monitorizacion-seguridad" },
+    "infosecConsulting": { "en": "security-consulting", "es": "consultoria-seguridad" },
+    "businessSystems": { "en": "erp-implementation", "es": "implantacion-erp" },
+    "businessSystemsCustom": { "en": "erp-customisation", "es": "personalizacion-erp" },
+    "industrial": { "en": "industrial-integration", "es": "integracion-industrial" },
+    "commercialAudit": { "en": "commercial-website-audit", "es": "auditoria-comercial" },
+    "contentAnalysis": { "en": "content-audit", "es": "analisis-de-contenido" },
+    "techContent": { "en": "technical-seo", "es": "seo-tecnico" },
+    "support": { "en": "website-support", "es": "soporte-web" }
+  },
+  "posts": {
+    "svoya-crm-ili-gotovaya": {
+      "en": "custom-crm-vs-off-the-shelf",
+      "es": "crm-a-medida-o-estandar"
+    },
+    "skolko-stoit-sajt": {
+      "en": "how-much-does-a-website-cost",
+      "es": "cuanto-cuesta-una-web"
+    },
+    "telegram-bot-dlya-biznesa": {
+      "en": "telegram-bot-for-business",
+      "es": "bot-de-telegram-para-empresas"
+    },
+    "audit-bezopasnosti-sajtov": {
+      "en": "website-security-audit-explained",
+      "es": "auditoria-de-seguridad-web-explicada"
+    },
+    "razrabotka-messendzherov": {
+      "en": "building-a-corporate-messenger",
+      "es": "como-crear-un-mensajero-corporativo"
+    },
+    "parsing-dannyh": {
+      "en": "data-parsing-explained",
+      "es": "extraccion-de-datos-explicada"
+    }
+  }
+}
