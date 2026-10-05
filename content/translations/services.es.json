@@ -1106,5 +1106,909 @@
         ]
       }
     ]
+  },
+  "mobile": {
+    "metaTitle": "Desarrollo de aplicaciones móviles para iOS y Android",
+    "metaDescription": "Desarrollo de aplicaciones móviles para iOS y Android llave en mano: del MVP al producto acabado, con una UX cuidada y un backend fiable. Desde {price:300000}.",
+    "breadcrumb": "Aplicaciones móviles",
+    "h1": "Desarrollo de aplicaciones móviles",
+    "lead": "Desarrollamos aplicaciones para iOS y Android: desde un MVP que valida la idea hasta un producto completo con una interfaz cuidada y un backend fiable. Lo diseñamos, lo construimos y lo acompañamos.",
+    "includes": [
+      "Definición de los escenarios, las pantallas y la lógica de la aplicación",
+      "Diseño UX/UI para iOS y Android",
+      "Desarrollo de la aplicación y de la parte servidor (API)",
+      "Integraciones con pagos, notificaciones y servicios externos",
+      "Publicación en App Store y Google Play",
+      "Pruebas, lanzamiento y soporte posterior"
+    ],
+    "forWhom": [
+      {
+        "title": "Startups y MVP",
+        "text": "Un lanzamiento rápido para validar la idea y captar los primeros usuarios."
+      },
+      {
+        "title": "Servicios para clientes",
+        "text": "Una app para tus clientes: pedidos, área personal, avisos y pago."
+      },
+      {
+        "title": "Uso interno",
+        "text": "Aplicaciones para la plantilla: solicitudes, registro, procesos en campo."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing y concepto",
+        "text": "Fijamos los objetivos, las plataformas y la funcionalidad esencial."
+      },
+      {
+        "title": "Diseño y prototipo",
+        "text": "Diseñamos las pantallas y los recorridos de usuario."
+      },
+      {
+        "title": "Desarrollo",
+        "text": "Construimos la app y la parte servidor y conectamos los servicios."
+      },
+      {
+        "title": "Publicación",
+        "text": "Publicamos en las tiendas, probamos y damos soporte."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta una aplicación móvil?",
+        "answer": "Parte de {price:300000} y depende de las plataformas (iOS/Android), del alcance de la funcionalidad y de la parte servidor. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿Desarrolláis para iOS y Android a la vez?",
+        "answer": "Sí. Podemos publicar en ambas plataformas. Al principio solemos recomendar un MVP, para validar el producto antes."
+      },
+      {
+        "question": "¿Ayudáis a publicar en App Store y Google Play?",
+        "answer": "Sí. Preparamos las compilaciones, montamos las fichas de las tiendas y publicamos la aplicación."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Un MVP suele salir desde cuatro semanas. Un producto completo tarda más; fijamos el plazo tras el briefing."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "MVP en una plataforma",
+          "Pantallas y escenarios clave",
+          "Parte servidor básica",
+          "Publicación en una tienda",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 8 semanas",
+        "features": [
+          "iOS y Android",
+          "Diseño UX/UI cuidado",
+          "Integraciones y notificaciones",
+          "Publicación en App Store y Google Play",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 12 semanas",
+        "features": [
+          "Funcionalidad y lógica complejas",
+          "Alta carga y fiabilidad",
+          "Integraciones a medida",
+          "Analítica y panel de administración",
+          "Soporte y evolución"
+        ]
+      }
+    ]
+  },
+  "messenger": {
+    "metaTitle": "Desarrollo de mensajerías llave en mano — precio y plazos",
+    "metaDescription": "Desarrollo de mensajerías: mensajero corporativo para la plantilla, chat dentro de tu producto, canal para hablar con clientes. Chats, canales, archivos, roles e integraciones. Desplegado en tus servidores. Desde {price:200000}.",
+    "breadcrumb": "Desarrollo de mensajerías",
+    "h1": "Desarrollo de mensajerías",
+    "lead": "Construimos sistemas de mensajería a la medida: un mensajero corporativo para la plantilla, un chat dentro de tu producto o un canal para hablar con clientes. Las conversaciones, los archivos y los avisos viven en tus servidores, no en la nube de otro.",
+    "includes": [
+      "Chats individuales y de grupo, canales e hilos",
+      "Intercambio de archivos con almacenamiento en tu lado",
+      "Versión web y clientes móviles para iOS y Android",
+      "Roles, permisos y administración",
+      "Integraciones con tus sistemas y avisos desde ellos",
+      "Despliegue en tu servidor o en una red cerrada"
+    ],
+    "forWhom": [
+      {
+        "title": "Mensajero corporativo",
+        "text": "Comunicación interna en servidores propios: sustituir Slack y Teams, red cerrada, confidencialidad comercial."
+      },
+      {
+        "title": "Chat dentro de un producto",
+        "text": "Mensajería como parte de una plataforma o app: comprador y vendedor, cliente y proveedor, partes de una operación."
+      },
+      {
+        "title": "Hablar con clientes",
+        "text": "Tu propio canal de soporte en lugar del widget de otro: el historial se queda contigo y se enlaza con el CRM."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Entender la tarea",
+        "text": "Miramos quién habla con quién y de qué hoy, qué se pierde y qué escenarios tienen que estar en la primera versión."
+      },
+      {
+        "title": "Arquitectura y prototipo",
+        "text": "Diseñamos el almacenamiento, la entrega de mensajes y los permisos, y enseñamos la interfaz antes de empezar a desarrollar."
+      },
+      {
+        "title": "Desarrollo por etapas",
+        "text": "Primero conversaciones y canales; después archivos, integraciones y clientes móviles. Cada etapa es utilizable."
+      },
+      {
+        "title": "Lanzamiento y acompañamiento",
+        "text": "Lo desplegamos en tu lado, movemos a la gente y seguimos dando soporte mientras el sistema se asienta."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta desarrollar una mensajería?",
+        "answer": "Una primera versión operativa con chats, canales e interfaz web parte de {price:200000}. Una versión con archivos, clientes móviles e integraciones parte de {price:300000}. Un sistema en red cerrada y con mayores exigencias de resiliencia parte de {price:500000}. Afinamos la estimación cuando entendemos la tarea: el precio depende del número de usuarios, de los requisitos de almacenamiento y de con qué sistemas tiene que hablar la mensajería."
+      },
+      {
+        "question": "¿En qué se diferencia de un bot de Telegram?",
+        "answer": "Un bot vive dentro de la mensajería de otro y resuelve una tarea concreta: recoger una solicitud, enviar un aviso. Aquí recibes un producto propio, con tu base de mensajes, tus permisos y tu servidor. Si lo que quieres es automatizar la conversación con clientes en Telegram, necesitas un bot: ese es otro servicio."
+      },
+      {
+        "question": "¿Los datos se quedan con nosotros?",
+        "answer": "Sí, ese suele ser todo el sentido. El sistema se despliega en tu servidor o en una red cerrada, la base de mensajes y los archivos están contigo y nada sale fuera. Entregamos el código fuente y la documentación, así que después no quedas atado a un proveedor."
+      },
+      {
+        "question": "¿Se puede lanzar por partes?",
+        "answer": "Es lo que recomendamos. La primera etapa son las conversaciones y los canales: suficiente para que la gente empiece a usarlo. Archivos, apps móviles, llamadas e integraciones llegan después, según lo que falte de verdad y no según una lista escrita al principio."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "1–1,5 meses",
+        "features": [
+          "Chats individuales y de grupo",
+          "Canales y avisos",
+          "Versión web",
+          "Cuentas y roles",
+          "Despliegue en tu servidor"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "2–3 meses",
+        "features": [
+          "Todo lo del Básico",
+          "Intercambio de archivos con almacenamiento en tu lado",
+          "Clientes móviles iOS y Android",
+          "Integraciones con tus sistemas",
+          "Administración y estadísticas"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 4 meses",
+        "features": [
+          "Todo lo del Estándar",
+          "Red cerrada y mayores exigencias de seguridad",
+          "Resiliencia y escalado",
+          "Evolución según hoja de ruta",
+          "Acompañamiento tras el lanzamiento"
+        ]
+      }
+    ]
+  },
+  "integrations": {
+    "metaTitle": "Extracción de datos e integraciones llave en mano",
+    "metaDescription": "Montamos extracción de datos e integraciones entre servicios: API, sincronización de sistemas e intercambio automático de datos. Desde {price:50000}.",
+    "breadcrumb": "Extracción de datos e integraciones",
+    "h1": "Extracción de datos e integraciones",
+    "lead": "Montamos la extracción de datos abiertos y las integraciones entre servicios: API, sincronización de sistemas e intercambio automático de datos. Quitamos el copiado manual y conectamos tus herramientas en un solo flujo.",
+    "includes": [
+      "Recogida y extracción de datos de fuentes abiertas",
+      "Integraciones entre CRM, webs, hojas de cálculo y servicios",
+      "Configuración del intercambio por API y de los webhooks",
+      "Sincronización y actualización de datos programadas",
+      "Limpieza, normalización y exportación de datos",
+      "Monitorización y soporte de las integraciones"
+    ],
+    "forWhom": [
+      {
+        "title": "Analítica y datos",
+        "text": "Recogida automática de datos de fuentes externas para analizarlos."
+      },
+      {
+        "title": "Conectar servicios",
+        "text": "Intercambio de datos entre CRM, la web, hojas de cálculo y sistemas externos."
+      },
+      {
+        "title": "Automatizar la rutina",
+        "text": "Quitamos el traspaso manual de datos y las operaciones duplicadas."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Definición de la tarea",
+        "text": "Fijamos las fuentes, los formatos y la lógica del intercambio."
+      },
+      {
+        "title": "Diseño",
+        "text": "Describimos el esquema de integración y las reglas de procesamiento."
+      },
+      {
+        "title": "Desarrollo",
+        "text": "Montamos la extracción, la API y la sincronización."
+      },
+      {
+        "title": "Lanzamiento y monitorización",
+        "text": "Lo ponemos en marcha y vigilamos la estabilidad y la corrección."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta una extracción o una integración?",
+        "answer": "Parte de {price:50000} y depende del número de fuentes, del volumen de datos y de lo compleja que sea la lógica. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿Es legal la extracción de datos?",
+        "answer": "Trabajamos con datos abiertos y fuentes públicas, respetando sus restricciones. Lo dudoso lo hablamos de antemano."
+      },
+      {
+        "question": "¿Con qué servicios integráis?",
+        "answer": "Con CRM, webs, Google Sheets, sistemas de pago y de contabilidad, y con cualquier servicio que tenga API."
+      },
+      {
+        "question": "¿Cuánto tarda la configuración?",
+        "answer": "Las integraciones sencillas salen desde una semana. Los escenarios complejos tardan más; fijamos el plazo tras el briefing."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 1 semana",
+        "features": [
+          "Un extractor o una integración",
+          "Exportación de datos a una hoja de cálculo",
+          "Configurado a tu formato",
+          "Comprobado con datos reales",
+          "Lanzamiento e instrucciones"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Varias fuentes o servicios",
+          "Recogida automática programada",
+          "Exportación a base de datos o CRM",
+          "Normalización y limpieza de los datos",
+          "Lanzamiento y acompañamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "Fuentes difíciles y con protecciones",
+          "Un sistema de recogida que aguanta",
+          "Monitorización y avisos de error",
+          "Integraciones con sistemas internos",
+          "Soporte y evolución"
+        ]
+      }
+    ]
+  },
+  "blockchain": {
+    "metaTitle": "Desarrollo crypto y blockchain (Web3)",
+    "metaDescription": "Desarrollamos interfaces Web3, integración con monederos y contratos inteligentes, lógica multicadena y paneles que de verdad se leen. Desde {price:300000}.",
+    "breadcrumb": "Crypto / Blockchain",
+    "h1": "Desarrollo crypto y blockchain",
+    "lead": "Desarrollamos interfaces Web3, integraciones con monederos y contratos inteligentes, lógica multicadena y paneles legibles. Hacemos accesible una lógica blockchain compleja a través de una interfaz cuidada.",
+    "includes": [
+      "Interfaces Web3 y conexión de monederos",
+      "Integración con contratos inteligentes y gestión de transacciones",
+      "Lógica multicadena y visualización de datos on-chain",
+      "Paneles, áreas de usuario y analítica",
+      "Seguridad y tratamiento de transacciones fallidas",
+      "Pruebas, lanzamiento y soporte"
+    ],
+    "forWhom": [
+      {
+        "title": "Productos Web3",
+        "text": "Interfaces para dApps, monederos y trabajo con transacciones."
+      },
+      {
+        "title": "Servicios cripto",
+        "text": "Paneles y áreas de usuario que presentan datos on-chain."
+      },
+      {
+        "title": "Integraciones",
+        "text": "Conectar contratos inteligentes y lógica multicadena a un producto."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing y requisitos",
+        "text": "Analizamos la tarea, las redes, los contratos y los escenarios."
+      },
+      {
+        "title": "Diseño",
+        "text": "Diseñamos la interfaz y la lógica de interacción con la blockchain."
+      },
+      {
+        "title": "Desarrollo",
+        "text": "Construimos la interfaz, las integraciones y la gestión de transacciones."
+      },
+      {
+        "title": "Lanzamiento",
+        "text": "Probamos, lanzamos y damos soporte."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta una solución blockchain?",
+        "answer": "Parte de {price:300000} y depende de las redes, los contratos y lo compleja que sea la interfaz. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿Con qué redes trabajáis?",
+        "answer": "Trabajamos con las redes EVM habituales y con lógica multicadena. Las redes concretas se acuerdan en cada proyecto."
+      },
+      {
+        "question": "¿Escribís contratos inteligentes?",
+        "answer": "Hacemos la integración con contratos inteligentes y las interfaces para ellos; cuando hace falta incorporamos experiencia específica en contratos."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Normalmente desde cuatro semanas, según el alcance. Fijamos el plazo exacto tras el briefing."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "Interfaz Web3 para la tarea",
+          "Conexión de monederos",
+          "Trabajo con una sola red",
+          "Panel básico",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 6 semanas",
+        "features": [
+          "Integración de contratos inteligentes",
+          "Lógica multicadena",
+          "Paneles y estados legibles",
+          "Gestión de transacciones",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 10 semanas",
+        "features": [
+          "Lógica on-chain compleja",
+          "Mayores exigencias de fiabilidad",
+          "Auditoría y seguridad",
+          "Integraciones a medida",
+          "Soporte y evolución"
+        ]
+      }
+    ]
+  },
+  "support": {
+    "metaTitle": "Soporte y evolución de una web, plataforma o app",
+    "metaDescription": "Soporte y evolución de una web, plataforma o app tras el lanzamiento: mejoras, monitorización, actualizaciones y ayuda técnica. Desde {price:40000/mo}.",
+    "breadcrumb": "Soporte web",
+    "h1": "Soporte y evolución del sitio",
+    "lead": "Mantenemos y hacemos crecer lo que ya está en producción: una web, una plataforma o una app. Mejoras, monitorización, actualizaciones y ayuda técnica: el producto se mantiene estable y su evolución, previsible.",
+    "includes": [
+      "Soporte técnico y respuesta rápida",
+      "Mejoras y nuevas funcionalidades",
+      "Monitorización de disponibilidad y avisos de fallo",
+      "Actualizaciones, copias de seguridad y mantenimiento de la infraestructura",
+      "Corrección de errores y optimización",
+      "Informes claros del trabajo realizado"
+    ],
+    "forWhom": [
+      {
+        "title": "Productos ya en producción",
+        "text": "Webs, plataformas y apps que necesitan estabilidad y evolución constante."
+      },
+      {
+        "title": "Negocios sin equipo IT",
+        "text": "Un equipo externo que asume el soporte y las mejoras."
+      },
+      {
+        "title": "Crecimiento activo",
+        "text": "Mejoras periódicas y nuevas funciones según un plan acordado."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Auditoría",
+        "text": "Evaluamos el estado actual del producto y de la infraestructura."
+      },
+      {
+        "title": "Plan de soporte",
+        "text": "Acordamos el formato, las prioridades y las reglas de trabajo."
+      },
+      {
+        "title": "Trabajo por tareas",
+        "text": "Llevamos las mejoras, la monitorización y el soporte."
+      },
+      {
+        "title": "Evolución",
+        "text": "Mejoramos y escalamos el producto según lo planificado."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta el soporte web?",
+        "answer": "Parte de {price:40000/mo} y depende del tamaño del producto y del nivel de soporte necesario. También es posible un formato puntual."
+      },
+      {
+        "question": "¿Daríais soporte a un proyecto que no habéis hecho vosotros?",
+        "answer": "Sí. Hacemos una auditoría, nos metemos en el proyecto y lo asumimos para soporte y evolución."
+      },
+      {
+        "question": "¿Con qué rapidez respondéis a los problemas?",
+        "answer": "Los tiempos de respuesta quedan fijados en el acuerdo de soporte, ajustados a tu caso y a su criticidad."
+      },
+      {
+        "question": "¿Podemos empezar sin un contrato largo?",
+        "answer": "Sí. Se puede empezar con tareas puntuales o un periodo corto y pasar después a un acompañamiento regular."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "mensual",
+        "features": [
+          "Monitorización de disponibilidad",
+          "Correcciones menores y actualizaciones",
+          "Copias de seguridad",
+          "Bolsa de horas para tareas",
+          "Informes del trabajo"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "mensual",
+        "features": [
+          "Soporte prioritario",
+          "Mejoras y nuevas funcionalidades",
+          "Monitorización y actualizaciones",
+          "Bolsa de horas ampliada",
+          "Informes periódicos"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "según SLA",
+        "features": [
+          "Equipo dedicado",
+          "Garantías por SLA",
+          "Evolución del producto según hoja de ruta",
+          "Monitorización proactiva",
+          "Llamadas e informes periódicos"
+        ]
+      }
+    ]
+  },
+  "security": {
+    "metaTitle": "Auditoría de seguridad web — precio y plazos",
+    "metaDescription": "Auditoría de seguridad web: revisión según el OWASP Top 10, pruebas manuales de lógica y permisos, configuración del servidor y dependencias. Informe priorizado y, en la tarifa ampliada, corrección de lo encontrado. Desde {price:60000}.",
+    "breadcrumb": "Auditoría de seguridad",
+    "h1": "Auditoría de seguridad web",
+    "lead": "Revisamos el sitio y su infraestructura en busca de vulnerabilidades antes de que las encuentre otro. Lo que recibes no es una lista de avisos de un escáner, sino un informe legible: qué encontramos, qué puede costar y en qué orden arreglarlo.",
+    "includes": [
+      "Revisión según el OWASP Top 10: inyecciones, accesos, autenticación, configuración",
+      "Pruebas manuales de la lógica: saltarse permisos y errores en los escenarios de negocio",
+      "Análisis de dependencias y del gestor de contenidos por vulnerabilidades conocidas",
+      "Revisión de la configuración del servidor, HTTPS y cabeceras de seguridad",
+      "Informe con niveles de criticidad y recomendaciones concretas",
+      "Corrección de lo encontrado por nuestro equipo, en la tarifa ampliada"
+    ],
+    "forWhom": [
+      {
+        "title": "Webs con área de cliente",
+        "text": "Donde hay login y datos de usuarios, un fallo en los permisos es el que más cuesta."
+      },
+      {
+        "title": "Tiendas y cobros",
+        "text": "Revisamos cómo funcionan los pagos, cómo se guardan los datos de pedido y cómo se evita la manipulación de parámetros."
+      },
+      {
+        "title": "Antes de lanzar o tras un incidente",
+        "text": "O para no dejar agujeros en producción, o para entender cómo entraron."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Reconocimiento",
+        "text": "Levantamos el mapa: tecnologías, puntos de entrada, servicios externos; exactamente qué hay que revisar."
+      },
+      {
+        "title": "Escaneo automático",
+        "text": "Pasamos las herramientas que detectan rápido lo habitual: componentes obsoletos y errores de configuración."
+      },
+      {
+        "title": "Revisión manual",
+        "text": "La parte más valiosa: lógica de la aplicación, permisos, cadenas de vulnerabilidades; lo que un escáner no ve."
+      },
+      {
+        "title": "Informe y revisión posterior",
+        "text": "Recogemos los hallazgos por prioridad y, tras vuestras correcciones, comprobamos que realmente han cerrado el problema."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta una auditoría de seguridad web?",
+        "answer": "Una revisión exprés parte de {price:60000}, una auditoría estándar con pruebas manuales de {price:120000}, y una ampliada con infraestructura y revisión posterior de {price:240000}. Damos la cifra exacta cuando hemos visto el sitio: el precio depende del número de roles, escenarios e integraciones externas."
+      },
+      {
+        "question": "¿En qué se diferencia de un escáner automático?",
+        "answer": "Un escáner encuentra problemas conocidos: versiones obsoletas, puertos abiertos, errores de configuración habituales. No entiende tu lógica de negocio y no se dará cuenta de que un comercial puede ver la operación de otro cambiando un identificador en la URL. Eso solo se encuentra a mano, y suele ser lo más caro."
+      },
+      {
+        "question": "¿Solo encontráis problemas o también los arregláis?",
+        "answer": "Depende de la tarifa. Exprés y Estándar terminan con un informe: tu desarrollador trabaja con él mientras nosotros respondemos dudas y luego comprobamos que las correcciones han cerrado el problema. La tarifa Ampliada incluye corregir lo encontrado nosotros mismos: parcheamos las vulnerabilidades y volvemos a revisar el resultado. Es lo cómodo cuando no hay equipo propio o no tiene experiencia en seguridad."
+      },
+      {
+        "question": "¿No romperéis el sitio en producción?",
+        "answer": "No. Las pruebas no son destructivas, y lo potencialmente arriesgado lo acordamos de antemano y lo hacemos sobre una copia cuando es posible. Antes de empezar acordamos el horario de trabajo y qué hacer si algo sale mal."
+      },
+      {
+        "question": "¿Qué recibimos al final?",
+        "answer": "Un documento con el que puede trabajar un desarrollador: cada hallazgo con su criticidad, cómo reproducirlo y la recomendación para corregirlo. Más un resumen breve para dirección: qué es crítico, qué se puede planificar y qué conviene simplemente saber."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Exprés",
+        "deadline": "3–5 días",
+        "features": [
+          "Escaneo automático",
+          "Revisión de la configuración y HTTPS",
+          "Análisis de dependencias y del gestor de contenidos",
+          "Informe priorizado",
+          "Consulta sobre los resultados"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "1,5–2 semanas",
+        "features": [
+          "Todo lo del Exprés",
+          "Pruebas manuales de la lógica",
+          "Revisión de permisos y roles",
+          "Autenticación y sesiones",
+          "Recomendaciones detalladas de cada hallazgo"
+        ]
+      },
+      {
+        "name": "Ampliada",
+        "deadline": "3–4 semanas",
+        "features": [
+          "Todo lo del Estándar",
+          "Infraestructura y configuración del servidor",
+          "Corrección de las vulnerabilidades por nuestro equipo",
+          "Revisión posterior a las correcciones",
+          "Recomendaciones para revisiones periódicas"
+        ]
+      }
+    ]
+  },
+  "contentAnalysis": {
+    "metaTitle": "Análisis de contenido del sitio — auditoría y recomendaciones",
+    "metaDescription": "Auditoría del contenido de la web: hasta qué punto responde a lo que buscan tu público y los buscadores, dónde se pierden las solicitudes y qué frena el tráfico. Conclusiones claras y un plan. Desde {price:30000}.",
+    "breadcrumb": "Análisis de contenido del sitio",
+    "h1": "Análisis de contenido del sitio",
+    "lead": "Revisamos el contenido de tu web: hasta qué punto responde a lo que buscan tu público y los buscadores, dónde el texto deja de vender y dónde se pierden las solicitudes. Recibes conclusiones claras y un plan por orden de prioridad.",
+    "includes": [
+      "Evaluación de hasta qué punto el contenido responde al público y a los buscadores",
+      "Análisis de la estructura de las páginas, los titulares y los textos",
+      "Revisión de si la información es completa y si resuelve las objeciones",
+      "Estudio de los puntos donde se pierden la atención y las solicitudes",
+      "Comparación de contenido con la competencia",
+      "Informe con conclusiones y un plan priorizado"
+    ],
+    "forWhom": [
+      {
+        "title": "Webs sin solicitudes",
+        "text": "Hay tráfico pero pocas solicitudes: encontramos dónde el contenido no convence."
+      },
+      {
+        "title": "Crecimiento de tráfico",
+        "text": "Comprobamos si el contenido responde a las búsquedas y qué conviene reforzar."
+      },
+      {
+        "title": "Antes de un rediseño",
+        "text": "Saber qué funciona y qué reescribir antes de invertir en una web nueva."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Recogida de datos",
+        "text": "Estudiamos la web, el público, las búsquedas y la analítica."
+      },
+      {
+        "title": "Análisis del contenido",
+        "text": "Revisamos las páginas, los textos, la estructura y la competencia."
+      },
+      {
+        "title": "Conclusiones",
+        "text": "Elaboramos la lista de problemas y puntos de mejora por prioridad."
+      },
+      {
+        "title": "Plan de mejoras",
+        "text": "Damos recomendaciones concretas sobre qué corregir y cómo."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Qué recibo al final?",
+        "answer": "Un informe legible: dónde el contenido no funciona, por qué se pierden solicitudes y qué mejorar primero, con recomendaciones concretas."
+      },
+      {
+        "question": "¿Cuánto cuesta el análisis de contenido?",
+        "answer": "Parte de {price:30000} y depende del tamaño del sitio. Damos la cifra exacta tras una primera revisión."
+      },
+      {
+        "question": "¿Ayudáis a aplicar las recomendaciones?",
+        "answer": "Sí. Tras el análisis podemos encargarnos nosotros de rehacer el contenido y las páginas."
+      },
+      {
+        "question": "¿Cuánto tarda el análisis?",
+        "answer": "Normalmente desde tres días. El plazo depende del número de páginas y de la profundidad del estudio."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Exprés",
+        "deadline": "desde 3 días",
+        "features": [
+          "Revisión exprés de las páginas clave",
+          "Evaluación frente a las búsquedas",
+          "Informe breve con conclusiones",
+          "Principales problemas y puntos de mejora",
+          "Llamada para repasar los resultados"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 1 semana",
+        "features": [
+          "Auditoría completa del contenido",
+          "Análisis de semántica y estructura",
+          "Comparación con la competencia",
+          "Plan de mejoras priorizado",
+          "Llamada para repasar los resultados"
+        ]
+      },
+      {
+        "name": "Ampliado",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Análisis profundo de cada página",
+          "Recomendaciones detalladas de contenido",
+          "Semántica y agrupación de búsquedas",
+          "Plan de implantación",
+          "Acompañamiento durante los cambios"
+        ]
+      }
+    ]
+  },
+  "techContent": {
+    "metaTitle": "Contenido técnico del sitio — preparación y optimización",
+    "metaDescription": "Preparación de la capa técnica del sitio: estructura de páginas, metaetiquetas, datos estructurados, titulares y enlaces internos, para que la web se indexe bien y la entiendan los buscadores. Desde {price:40000}.",
+    "breadcrumb": "Contenido técnico del sitio",
+    "h1": "Contenido técnico del sitio",
+    "lead": "Ponemos en orden la parte técnica del contenido: estructura de páginas, metaetiquetas, datos estructurados, titulares y enlaces internos; todo lo que ayuda a los buscadores a entender e indexar bien el sitio.",
+    "includes": [
+      "Trabajo sobre la estructura de titulares (H1–H3) en las páginas",
+      "Metaetiquetas title y description ajustadas a las búsquedas",
+      "Datos estructurados Schema.org para los resultados enriquecidos",
+      "Configuración del enlazado interno",
+      "Revisión de la indexación, robots.txt y el mapa del sitio",
+      "Textos técnicos y descripciones redactados para SEO"
+    ],
+    "forWhom": [
+      {
+        "title": "Mala indexación",
+        "text": "La web existe pero los buscadores la entienden mal: ponemos en orden la parte técnica."
+      },
+      {
+        "title": "Preparación para posicionamiento",
+        "text": "Una base de metaetiquetas, datos estructurados y estructura antes de una campaña de SEO."
+      },
+      {
+        "title": "Catálogos grandes",
+        "text": "Trabajo masivo de metaetiquetas y datos estructurados en cientos de páginas."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Auditoría técnica",
+        "text": "Revisamos la estructura, las metaetiquetas, los datos estructurados y la indexación."
+      },
+      {
+        "title": "Preparación",
+        "text": "Preparamos metaetiquetas, titulares, datos estructurados y enlazado interno."
+      },
+      {
+        "title": "Implantación",
+        "text": "Aplicamos los cambios al sitio o entregamos los datos listos."
+      },
+      {
+        "title": "Comprobación",
+        "text": "Verificamos la indexación y que los datos estructurados sean válidos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿En qué se diferencia del análisis de contenido?",
+        "answer": "El análisis de contenido trata del sentido y de lo convincente que es el texto. El contenido técnico trata de cómo están construidas las páginas para los buscadores: metaetiquetas, datos estructurados, estructura, indexación."
+      },
+      {
+        "question": "¿Aplicáis vosotros los cambios?",
+        "answer": "Sí. Podemos aplicarlos al sitio o preparar los datos para tu equipo o tu gestor de contenidos."
+      },
+      {
+        "question": "¿Cuánto cuesta?",
+        "answer": "Parte de {price:40000} y depende del número de páginas. Damos la cifra exacta tras la auditoría."
+      },
+      {
+        "question": "¿Cuánto dura el trabajo?",
+        "answer": "Normalmente desde una semana. El plazo depende del número de páginas y del tipo de cambios."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 1 semana",
+        "features": [
+          "Metaetiquetas y titulares de las páginas clave",
+          "Comprobación de la indexación",
+          "robots.txt y mapa del sitio configurados",
+          "Informe de los cambios",
+          "Recomendaciones de implantación"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Metaetiquetas en todo el sitio",
+          "Datos estructurados Schema.org",
+          "Enlazado interno",
+          "Textos técnicos redactados para SEO",
+          "Cambios aplicados"
+        ]
+      },
+      {
+        "name": "Ampliado",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Trabajo masivo sobre el catálogo",
+          "Plantillas de metaetiquetas y datos estructurados",
+          "Optimización de la estructura",
+          "Seguimiento de la indexación",
+          "Aplicado y verificado"
+        ]
+      }
+    ]
+  },
+  "commercialAudit": {
+    "metaTitle": "Auditoría comercial del sitio — más solicitudes con el mismo tráfico",
+    "metaDescription": "Auditoría comercial de la web: cómo convierte el tráfico en solicitudes, por dónde se escapa el dinero y qué reforzar en ofertas, precios y llamadas a la acción. El resultado es un plan de conversión. Desde {price:50000}.",
+    "breadcrumb": "Auditoría comercial del sitio",
+    "h1": "Auditoría comercial del sitio",
+    "lead": "Miramos la web como una herramienta de venta: hasta qué punto convierte visitas en solicitudes, por dónde se escapa el dinero y qué reforzar en las ofertas, los precios, las señales de confianza y las llamadas a la acción. Recibes un plan de conversión.",
+    "includes": [
+      "Evaluación de las ofertas, la propuesta única y la propuesta de valor",
+      "Revisión del recorrido del usuario y del embudo hasta la solicitud",
+      "Análisis de las llamadas a la acción, los formularios y los puntos de contacto",
+      "Revisión de los bloques de confianza: casos, reseñas, garantías",
+      "Comparación con la competencia en factores comerciales",
+      "Informe con un plan priorizado para subir la conversión"
+    ],
+    "forWhom": [
+      {
+        "title": "Conversión baja",
+        "text": "Hay tráfico pero pocas solicitudes: encontramos dónde la web pierde clientes."
+      },
+      {
+        "title": "Publicidad cara",
+        "text": "Subimos el rendimiento del tráfico que ya tienes, antes de aumentar el presupuesto."
+      },
+      {
+        "title": "Puntos de mejora",
+        "text": "Saber qué cambios darán el mayor aumento de solicitudes."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Recogida de datos",
+        "text": "Estudiamos la web, la analítica, el público y la competencia."
+      },
+      {
+        "title": "Auditoría del embudo",
+        "text": "Revisamos las ofertas, el recorrido del cliente y los puntos donde se pierden solicitudes."
+      },
+      {
+        "title": "Conclusiones",
+        "text": "Localizamos los puntos débiles y estimamos el margen de mejora."
+      },
+      {
+        "title": "Plan de crecimiento",
+        "text": "Damos recomendaciones priorizadas de conversión."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Qué recibo al final?",
+        "answer": "Un informe sobre dónde la web pierde solicitudes y dinero, y un plan priorizado de cambios para subir la conversión, con recomendaciones concretas."
+      },
+      {
+        "question": "¿En qué se diferencia del análisis de contenido?",
+        "answer": "La auditoría comercial trata de ventas y conversión: ofertas, precios, confianza, llamadas a la acción. El análisis de contenido es más amplio, sobre la calidad y la pertinencia de los textos."
+      },
+      {
+        "question": "¿Ayudáis a aplicar los cambios?",
+        "answer": "Sí. Tras la auditoría podemos rehacer las páginas, las ofertas y los formularios para subir la conversión."
+      },
+      {
+        "question": "¿Cuánto dura la auditoría?",
+        "answer": "Normalmente desde una semana. El plazo depende del tamaño del sitio y de la profundidad del análisis."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Exprés",
+        "deadline": "desde 1 semana",
+        "features": [
+          "Auditoría exprés del embudo y las ofertas",
+          "Evaluación de las llamadas a la acción",
+          "Informe breve con conclusiones",
+          "Principales puntos de pérdida de solicitudes",
+          "Llamada para repasar los resultados"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Auditoría completa de conversión",
+          "Análisis de ofertas, precios y confianza",
+          "Comparación con la competencia",
+          "Plan de crecimiento priorizado",
+          "Llamada para repasar los resultados"
+        ]
+      },
+      {
+        "name": "Ampliado",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Auditoría profunda del embudo de ventas",
+          "Recomendaciones detalladas de conversión",
+          "Trabajo sobre las ofertas y la propuesta única",
+          "Plan de implantación de los cambios",
+          "Acompañamiento durante la implantación"
+        ]
+      }
+    ]
   }
 }

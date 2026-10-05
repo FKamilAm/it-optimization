@@ -1106,5 +1106,909 @@
         ]
       }
     ]
+  },
+  "mobile": {
+    "metaTitle": "Mobile app development for iOS and Android",
+    "metaDescription": "Mobile app development for iOS and Android, end to end: from an MVP to a finished product with considered UX and a dependable backend. From {price:300000}.",
+    "breadcrumb": "Mobile applications",
+    "h1": "Mobile app development",
+    "lead": "We build mobile apps for iOS and Android — from an MVP that tests the idea to a full product with a considered interface and a dependable backend. We design it, build it and stay with it.",
+    "includes": [
+      "Working out the scenarios, the screens and the app's logic",
+      "UX/UI design for iOS and Android",
+      "Building the app and the server side (API)",
+      "Integrations with payments, notifications and external services",
+      "Publishing to the App Store and Google Play",
+      "Testing, launch and ongoing support"
+    ],
+    "forWhom": [
+      {
+        "title": "Startups and MVPs",
+        "text": "A fast launch to test the idea and win the first users."
+      },
+      {
+        "title": "Customer-facing services",
+        "text": "An app for clients: orders, account, notifications and payment."
+      },
+      {
+        "title": "Internal work",
+        "text": "Apps for staff: requests, record keeping, processes in the field."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief and concept",
+        "text": "We settle the goals, the platforms and the core functionality."
+      },
+      {
+        "title": "Design and prototype",
+        "text": "We design the screens and the user journeys."
+      },
+      {
+        "title": "Build",
+        "text": "We build the app and the server side and connect the services."
+      },
+      {
+        "title": "Publication",
+        "text": "We release to the stores, test and stay on support."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does a mobile app cost?",
+        "answer": "It starts at {price:300000} and depends on the platforms (iOS/Android), the scope of the functionality and the server side. We give an exact figure after the brief."
+      },
+      {
+        "question": "Do you build for iOS and Android at once?",
+        "answer": "Yes. We can release on both platforms. At the start we often recommend an MVP, to test the product sooner."
+      },
+      {
+        "question": "Will you help publish to the App Store and Google Play?",
+        "answer": "Yes. We prepare the builds, set up the store listings and publish the app."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "An MVP usually launches from four weeks. A full product takes longer; we fix the timeline after the brief."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 4 weeks",
+        "features": [
+          "MVP on one platform",
+          "Key screens and scenarios",
+          "Basic server side",
+          "Publication to one store",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 8 weeks",
+        "features": [
+          "iOS and Android",
+          "Considered UX/UI design",
+          "Integrations and notifications",
+          "Publication to the App Store and Google Play",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 12 weeks",
+        "features": [
+          "Complex functionality and logic",
+          "High load and reliability",
+          "Custom integrations",
+          "Analytics and admin panel",
+          "Support and ongoing development"
+        ]
+      }
+    ]
+  },
+  "messenger": {
+    "metaTitle": "Messenger development, end to end — price and timelines",
+    "metaDescription": "Messenger development: a corporate messenger for staff, a chat inside your product, a channel for talking to clients. Chats, channels, files, roles and integrations. Deployed on your own servers. From {price:200000}.",
+    "breadcrumb": "Messenger development",
+    "h1": "Messenger development",
+    "lead": "We build messaging systems to fit the task: a corporate messenger for staff, a chat inside your product, or a channel for talking to clients. The conversations, the files and the notifications live on your servers, not in someone else's cloud.",
+    "includes": [
+      "Direct and group chats, channels and threads",
+      "File exchange with storage on your side",
+      "A web version and mobile clients for iOS and Android",
+      "Roles, access rights and administration",
+      "Integrations with your systems and notifications from them",
+      "Deployment on your server or inside a closed network"
+    ],
+    "forWhom": [
+      {
+        "title": "Corporate messenger",
+        "text": "Internal communication on your own servers: replacing Slack and Teams, a closed network, commercial confidentiality."
+      },
+      {
+        "title": "Chat inside a product",
+        "text": "Messaging as part of a platform or app: buyer and seller, client and contractor, parties to a deal."
+      },
+      {
+        "title": "Talking to clients",
+        "text": "Your own support channel instead of someone else's widget: the conversation history stays with you and links to the CRM."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Understanding the task",
+        "text": "We look at who talks to whom and about what today, what gets lost, and which scenarios have to be in the first version."
+      },
+      {
+        "title": "Architecture and prototype",
+        "text": "We design storage, message delivery and access rights, and show the interface before development starts."
+      },
+      {
+        "title": "Development in stages",
+        "text": "First conversations and channels, then files, integrations and mobile clients — every stage is usable."
+      },
+      {
+        "title": "Launch and support",
+        "text": "We deploy it on your side, move people across and stay on support while the system takes hold."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does building a messenger cost?",
+        "answer": "A first working version with chats, channels and a web interface starts at {price:200000}. A version with files, mobile clients and integrations starts at {price:300000}. A system in a closed network with higher resilience requirements starts at {price:500000}. We refine the estimate once we understand the task: the price depends on the number of users, the storage requirements and which systems the messenger has to talk to."
+      },
+      {
+        "question": "How is this different from a Telegram bot?",
+        "answer": "A bot lives inside someone else's messenger and solves one specific job: take an enquiry, send a notification. Here you get a product of your own, with your own message database, your own access rights and your own server. If the job is to automate talking to clients in Telegram, you need a bot — that is a separate service."
+      },
+      {
+        "question": "Does the data stay with us?",
+        "answer": "Yes, that is usually the whole point. The system is deployed on your server or inside a closed network, the message database and the files sit with you, and nothing leaves. We hand over the source code and the documentation, so you are not tied to one contractor afterwards."
+      },
+      {
+        "question": "Can we launch in parts?",
+        "answer": "That is what we recommend. The first stage is conversations and channels — enough for people to start using it. Files, mobile apps, calls and integrations come after, based on what is actually missing rather than on a list written at the start."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "1–1.5 months",
+        "features": [
+          "Direct and group chats",
+          "Channels and notifications",
+          "Web version",
+          "Accounts and roles",
+          "Deployment on your server"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "2–3 months",
+        "features": [
+          "Everything in Basic",
+          "File exchange with storage on your side",
+          "Mobile clients for iOS and Android",
+          "Integrations with your systems",
+          "Administration and statistics"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 4 months",
+        "features": [
+          "Everything in Standard",
+          "Closed network and higher security requirements",
+          "Resilience and scaling",
+          "Development against a roadmap",
+          "Support after launch"
+        ]
+      }
+    ]
+  },
+  "integrations": {
+    "metaTitle": "Data parsing and service integrations, end to end",
+    "metaDescription": "We set up data parsing and integrations between services: APIs, system synchronisation and automatic data exchange. From {price:50000}.",
+    "breadcrumb": "Data parsing and integrations",
+    "h1": "Data parsing and integrations",
+    "lead": "We set up parsing of open data and integrations between services: APIs, system synchronisation and automatic data exchange. We remove the manual copying and connect your tools into one flow.",
+    "includes": [
+      "Collecting and parsing data from open sources",
+      "Integrations between CRM, websites, spreadsheets and services",
+      "Setting up API exchange and webhooks",
+      "Scheduled synchronisation and data refresh",
+      "Cleaning, normalising and exporting data",
+      "Monitoring and support of the integrations"
+    ],
+    "forWhom": [
+      {
+        "title": "Analytics and data",
+        "text": "Automatic collection of data from external sources for analysis."
+      },
+      {
+        "title": "Connecting services",
+        "text": "Data exchange between CRM, the website, spreadsheets and external systems."
+      },
+      {
+        "title": "Automating the routine",
+        "text": "We remove manual data copying and duplicated operations."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Defining the task",
+        "text": "We settle the sources, the formats and the logic of the exchange."
+      },
+      {
+        "title": "Design",
+        "text": "We describe the integration scheme and the processing rules."
+      },
+      {
+        "title": "Build",
+        "text": "We set up the parsing, the API and the synchronisation."
+      },
+      {
+        "title": "Launch and monitoring",
+        "text": "We launch it and watch for stability and correctness."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does parsing or an integration cost?",
+        "answer": "It starts at {price:50000} and depends on the number of sources, the volume of data and how complex the logic is. We give an exact figure after the brief."
+      },
+      {
+        "question": "Is data parsing legal?",
+        "answer": "We work with open data and public sources, respecting their restrictions. Anything questionable we discuss up front."
+      },
+      {
+        "question": "Which services do you integrate with?",
+        "answer": "CRM systems, websites, Google Sheets, payment and accounting systems, and any service that has an API."
+      },
+      {
+        "question": "How long does it take to set up?",
+        "answer": "Simple integrations go live from one week. Complex scenarios take longer; we fix the timeline after the brief."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 1 week",
+        "features": [
+          "One parser or one integration",
+          "Data exported to a spreadsheet",
+          "Configured to your format",
+          "Checked against real data",
+          "Launch and instructions"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Several sources or services",
+          "Automatic collection on a schedule",
+          "Export to a database or CRM",
+          "Normalising and cleaning the data",
+          "Launch and support"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Difficult sources and protections",
+          "A collection system that holds up",
+          "Monitoring and error alerts",
+          "Integrations with internal systems",
+          "Support and ongoing development"
+        ]
+      }
+    ]
+  },
+  "blockchain": {
+    "metaTitle": "Crypto and blockchain development (Web3)",
+    "metaDescription": "We build Web3 interfaces, wallet and smart-contract integration, multichain logic and dashboards that are actually readable. From {price:300000}.",
+    "breadcrumb": "Crypto / Blockchain",
+    "h1": "Crypto and blockchain development",
+    "lead": "We build Web3 interfaces, wallet and smart-contract integrations, multichain logic and readable dashboards. We make complicated blockchain logic approachable through a careful interface.",
+    "includes": [
+      "Web3 interfaces and wallet connection",
+      "Smart-contract integration and transaction handling",
+      "Multichain logic and display of on-chain data",
+      "Dashboards, user areas and analytics",
+      "Security and handling of failed transactions",
+      "Testing, launch and support"
+    ],
+    "forWhom": [
+      {
+        "title": "Web3 products",
+        "text": "Interfaces for dApps, wallets and working with transactions."
+      },
+      {
+        "title": "Crypto services",
+        "text": "Dashboards and user areas that present on-chain data."
+      },
+      {
+        "title": "Integrations",
+        "text": "Connecting smart contracts and multichain logic to a product."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief and requirements",
+        "text": "We work through the task, the networks, the contracts and the scenarios."
+      },
+      {
+        "title": "Design",
+        "text": "We design the interface and the logic of interacting with the blockchain."
+      },
+      {
+        "title": "Build",
+        "text": "We build the interface, the integrations and the transaction handling."
+      },
+      {
+        "title": "Launch",
+        "text": "We test, launch and stay on support."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does a blockchain solution cost?",
+        "answer": "It starts at {price:300000} and depends on the networks, the contracts and how complex the interface is. We give an exact figure after the brief."
+      },
+      {
+        "question": "Which networks do you work with?",
+        "answer": "We work with the common EVM networks and with multichain logic. The specific networks are agreed for each project."
+      },
+      {
+        "question": "Do you write smart contracts?",
+        "answer": "We build smart-contract integrations and the interfaces for them; where needed we bring in dedicated contract expertise."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Usually from four weeks, depending on the scope. We fix the exact timeline after the brief."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Web3 interface for the task",
+          "Wallet connection",
+          "Work with a single network",
+          "Basic dashboard",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 6 weeks",
+        "features": [
+          "Smart-contract integration",
+          "Multichain logic",
+          "Readable dashboards and statuses",
+          "Transaction handling",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 10 weeks",
+        "features": [
+          "Complex on-chain logic",
+          "Higher reliability requirements",
+          "Audit and security",
+          "Custom integrations",
+          "Support and ongoing development"
+        ]
+      }
+    ]
+  },
+  "support": {
+    "metaTitle": "Support and growth for a site, platform or app",
+    "metaDescription": "Support and growth for a site, platform or app after launch: improvements, monitoring, updates and technical help. From {price:40000/mo}.",
+    "breadcrumb": "Website support",
+    "h1": "Website support and growth",
+    "lead": "We look after and grow what is already live — a site, a platform or an app. Improvements, monitoring, updates and technical help: the product stays stable and its development stays predictable.",
+    "includes": [
+      "Technical support and quick response",
+      "Improvements and new functionality",
+      "Uptime monitoring and failure alerts",
+      "Updates, backups and infrastructure maintenance",
+      "Bug fixing and optimisation",
+      "Clear reporting on the work done"
+    ],
+    "forWhom": [
+      {
+        "title": "Products already live",
+        "text": "Sites, platforms and apps that need stability and steady development."
+      },
+      {
+        "title": "Businesses without an IT team",
+        "text": "An outside team that takes on the support and the improvements."
+      },
+      {
+        "title": "Active growth",
+        "text": "Regular improvements and new features to an agreed plan."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Audit",
+        "text": "We assess the current state of the product and the infrastructure."
+      },
+      {
+        "title": "Support plan",
+        "text": "We agree the format, the priorities and the rules of engagement."
+      },
+      {
+        "title": "Work on tasks",
+        "text": "We handle improvements, monitoring and support."
+      },
+      {
+        "title": "Growth",
+        "text": "We improve and scale the product to plan."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does website support cost?",
+        "answer": "It starts at {price:40000/mo} and depends on the size of the product and the level of support needed. One-off work is also possible."
+      },
+      {
+        "question": "Will you support a project you did not build?",
+        "answer": "Yes. We run an audit, get to know the project and take it on for support and development."
+      },
+      {
+        "question": "How quickly do you respond to problems?",
+        "answer": "Response times are fixed in the support agreement, matched to your work and how critical it is."
+      },
+      {
+        "question": "Can we start without a long contract?",
+        "answer": "Yes. You can start with one-off tasks or a short period and move to regular support afterwards."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "monthly",
+        "features": [
+          "Uptime monitoring",
+          "Small fixes and updates",
+          "Backups",
+          "A pool of hours for tasks",
+          "Reporting on the work"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "monthly",
+        "features": [
+          "Priority support",
+          "Improvements and new functionality",
+          "Monitoring and updates",
+          "A larger pool of hours",
+          "Regular reporting"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "by SLA",
+        "features": [
+          "A dedicated team",
+          "SLA guarantees",
+          "Product development against a roadmap",
+          "Proactive monitoring",
+          "Regular calls and reports"
+        ]
+      }
+    ]
+  },
+  "security": {
+    "metaTitle": "Website security audit — book a check, price and timelines",
+    "metaDescription": "Book a website security audit: a check against the OWASP Top 10, manual testing of logic and access rights, server configuration and dependencies. A report ordered by priority, and on the extended plan we fix what we found. From {price:60000}.",
+    "breadcrumb": "Security audit",
+    "h1": "Website security audit",
+    "lead": "We check the site and its infrastructure for vulnerabilities before someone else does. What you get is not a list of scanner warnings but a readable report: what we found, what it could cost you, and in what order to fix it.",
+    "includes": [
+      "A check against the OWASP Top 10 — injections, access, authentication, configuration",
+      "Manual testing of the logic: bypassing access rights and errors in business scenarios",
+      "Analysis of dependencies and the CMS for known vulnerabilities",
+      "A check of server settings, HTTPS and security headers",
+      "A report with severity levels and specific recommendations",
+      "Fixing what we found, by our team — on the extended plan"
+    ],
+    "forWhom": [
+      {
+        "title": "Sites with client accounts",
+        "text": "Where there is login and user data, a mistake in access rights costs the most."
+      },
+      {
+        "title": "Stores and payments",
+        "text": "We check how payments work, how order data is stored and how parameter tampering is prevented."
+      },
+      {
+        "title": "Before launch or after an incident",
+        "text": "Either to keep holes out of production, or to work out how someone got in."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Reconnaissance",
+        "text": "We map it out: technologies, entry points, external services — exactly what has to be checked."
+      },
+      {
+        "title": "Automated scanning",
+        "text": "We run the tools that quickly catch the routine: outdated components and configuration errors."
+      },
+      {
+        "title": "Manual testing",
+        "text": "The most valuable part: application logic, access rights, chains of vulnerabilities — what a scanner cannot see."
+      },
+      {
+        "title": "Report and re-check",
+        "text": "We write up the findings in order of priority, and after your fixes we verify they actually closed the problem."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does a website security audit cost?",
+        "answer": "An express check starts at {price:60000}, a standard audit with manual testing at {price:120000}, and an extended one covering infrastructure and a re-check at {price:240000}. We give an exact figure once we have looked at the site: the price depends on the number of roles, scenarios and external integrations."
+      },
+      {
+        "question": "How is this different from an automated scanner?",
+        "answer": "A scanner finds known problems: outdated versions, open ports, routine configuration errors. It does not understand your business logic and will not notice that a manager can see someone else's deal by changing an identifier in the URL. Things like that are only found by hand, and they are usually the most expensive ones."
+      },
+      {
+        "question": "Do you only find problems, or can you fix them?",
+        "answer": "It depends on the plan. Express and Standard end with a report — your developer works from it while we answer questions and later verify that the fixes closed the problem. The Extended plan includes fixing what we found ourselves: we patch the vulnerabilities and re-check the result. That suits teams who have no in-house developer, or none with security experience."
+      },
+      {
+        "question": "Will you break the live site?",
+        "answer": "No. The testing is non-destructive, and anything potentially risky we agree in advance and run on a copy where possible. Before we start we agree the timing and what to do if something does go wrong."
+      },
+      {
+        "question": "What do we get at the end?",
+        "answer": "A document a developer can work from: every finding with its severity, a description of how to reproduce it and a recommendation for fixing it. Plus a short summary for management — what is critical, what can be scheduled and what is simply worth knowing."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Express",
+        "deadline": "3–5 days",
+        "features": [
+          "Automated scanning",
+          "Check of configuration and HTTPS",
+          "Analysis of dependencies and the CMS",
+          "Report ordered by priority",
+          "A consultation on the findings"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "1.5–2 weeks",
+        "features": [
+          "Everything in Express",
+          "Manual testing of the logic",
+          "Check of access rights and roles",
+          "Authentication and sessions",
+          "Detailed recommendations for each finding"
+        ]
+      },
+      {
+        "name": "Extended",
+        "deadline": "3–4 weeks",
+        "features": [
+          "Everything in Standard",
+          "Infrastructure and server settings",
+          "Fixing the vulnerabilities found, by our team",
+          "A re-check after the fixes",
+          "Recommendations for regular checks"
+        ]
+      }
+    ]
+  },
+  "contentAnalysis": {
+    "metaTitle": "Website content analysis — audit and recommendations",
+    "metaDescription": "A website content audit: how well it answers what the audience and the search engines are asking, where enquiries are lost and what is holding traffic back. Clear conclusions and a plan. From {price:30000}.",
+    "breadcrumb": "Website content analysis",
+    "h1": "Website content analysis",
+    "lead": "We go through your site's content: how well it answers what the audience and the search engines are asking, where the writing stops selling and where enquiries are lost. You get clear conclusions and a plan in order of priority.",
+    "includes": [
+      "An assessment of how far the content answers the audience and the search engines",
+      "Analysis of page structure, headings and copy",
+      "A check of completeness and of whether objections are answered",
+      "A look at the points where attention and enquiries are lost",
+      "A content comparison with competitors",
+      "A report with conclusions and a prioritised plan"
+    ],
+    "forWhom": [
+      {
+        "title": "Sites without enquiries",
+        "text": "There is traffic but few enquiries — we find where the content fails to convince."
+      },
+      {
+        "title": "Growing traffic",
+        "text": "We check whether the content answers search queries, and what to strengthen."
+      },
+      {
+        "title": "Before a redesign",
+        "text": "To know what works and what to rewrite before spending on a new site."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Gathering data",
+        "text": "We study the site, the audience, the queries and the analytics."
+      },
+      {
+        "title": "Content analysis",
+        "text": "We go through the pages, the copy, the structure and the competitors."
+      },
+      {
+        "title": "Conclusions",
+        "text": "We draw up the list of problems and growth points in order of priority."
+      },
+      {
+        "title": "Improvement plan",
+        "text": "We give specific recommendations on what to fix and how."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What do I get at the end?",
+        "answer": "A readable report: where the content is not working, why enquiries are lost and what to improve first — with specific recommendations."
+      },
+      {
+        "question": "What does a content analysis cost?",
+        "answer": "It starts at {price:30000} and depends on the size of the site. We give an exact figure after an initial look."
+      },
+      {
+        "question": "Will you help implement the recommendations?",
+        "answer": "Yes. After the analysis we can take on reworking the content and the pages ourselves."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Usually from three days. The timeline depends on the number of pages and the depth of the review."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Express",
+        "deadline": "from 3 days",
+        "features": [
+          "Express review of the key pages",
+          "Assessment against search queries",
+          "A short report with conclusions",
+          "The top problems and growth points",
+          "A call to go through the results"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 1 week",
+        "features": [
+          "Full audit of the site's content",
+          "Analysis of keywords and structure",
+          "Comparison with competitors",
+          "A prioritised improvement plan",
+          "A call to go through the results"
+        ]
+      },
+      {
+        "name": "Extended",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Deep analysis of every page",
+          "Detailed content recommendations",
+          "Keywords and query clustering",
+          "An implementation plan",
+          "Support while the work is done"
+        ]
+      }
+    ]
+  },
+  "techContent": {
+    "metaTitle": "Technical website content — preparation and optimisation",
+    "metaDescription": "Preparing the technical layer of a site: page structure, meta tags, structured data, headings and internal links — so the site is indexed correctly and understood by search engines. From {price:40000}.",
+    "breadcrumb": "Technical website content",
+    "h1": "Technical website content",
+    "lead": "We put the technical side of the content in order: page structure, meta tags, structured data, headings and internal links — everything that helps search engines understand and index the site correctly.",
+    "includes": [
+      "Working out the heading structure (H1–H3) across the pages",
+      "Title and description meta tags matched to search queries",
+      "Schema.org structured data for rich results and comprehension",
+      "Setting up internal linking",
+      "Checking indexing, robots.txt and the sitemap",
+      "Technical copy and descriptions written for SEO"
+    ],
+    "forWhom": [
+      {
+        "title": "Poor indexing",
+        "text": "The site exists but search engines understand it badly — we put the technical side in order."
+      },
+      {
+        "title": "Preparing for promotion",
+        "text": "A base of meta tags, structured data and structure before an SEO campaign."
+      },
+      {
+        "title": "Large catalogues",
+        "text": "Bulk work on meta tags and structured data across hundreds of pages."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Technical audit",
+        "text": "We check the structure, the meta tags, the structured data and the indexing."
+      },
+      {
+        "title": "Preparation",
+        "text": "We prepare the meta tags, headings, structured data and internal links."
+      },
+      {
+        "title": "Implementation",
+        "text": "We apply the changes to the site or hand over ready data."
+      },
+      {
+        "title": "Verification",
+        "text": "We check the indexing and that the structured data is valid."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is this different from a content analysis?",
+        "answer": "A content analysis is about meaning and persuasiveness. Technical content is about how the pages are built for search engines: meta tags, structured data, structure, indexing."
+      },
+      {
+        "question": "Will you apply the changes yourselves?",
+        "answer": "Yes. We can apply them to the site or prepare the data for your team or your CMS."
+      },
+      {
+        "question": "What does it cost?",
+        "answer": "It starts at {price:40000} and depends on the number of pages. We give an exact figure after the audit."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Usually from one week. The timeline depends on the number of pages and the nature of the changes."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 1 week",
+        "features": [
+          "Meta tags and headings for the key pages",
+          "Indexing check",
+          "robots.txt and sitemap configured",
+          "A report on the changes",
+          "Recommendations for implementation"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Meta tags across the whole site",
+          "Schema.org structured data",
+          "Internal linking",
+          "Technical copy written for SEO",
+          "Changes applied"
+        ]
+      },
+      {
+        "name": "Extended",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Bulk work across the catalogue",
+          "Templates for meta tags and structured data",
+          "Structure optimisation",
+          "Indexing monitored",
+          "Applied and verified"
+        ]
+      }
+    ]
+  },
+  "commercialAudit": {
+    "metaTitle": "Commercial website audit — more enquiries from the same traffic",
+    "metaDescription": "A commercial website audit: how the site turns traffic into enquiries, where the money leaks and what to strengthen in the offers, prices and calls to action. The result is a plan for higher conversion. From {price:50000}.",
+    "breadcrumb": "Commercial website audit",
+    "h1": "Commercial website audit",
+    "lead": "We look at the site as a sales tool: how well it turns visitors into enquiries, where the money leaks and what to strengthen in the offers, the prices, the trust signals and the calls to action. You get a plan for higher conversion.",
+    "includes": [
+      "An assessment of the offers, the USP and the value proposition",
+      "A review of the user's path and the funnel down to the enquiry",
+      "Analysis of calls to action, forms and points of contact",
+      "A check of the trust blocks: case studies, reviews, guarantees",
+      "A comparison with competitors on commercial factors",
+      "A report with a prioritised plan for raising conversion"
+    ],
+    "forWhom": [
+      {
+        "title": "Low conversion",
+        "text": "There is traffic but few enquiries — we find where the site loses clients."
+      },
+      {
+        "title": "Expensive advertising",
+        "text": "We raise the return on the traffic you already have, before increasing the budget."
+      },
+      {
+        "title": "Growth points",
+        "text": "To know which changes will bring the biggest increase in enquiries."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Gathering data",
+        "text": "We study the site, the analytics, the audience and the competitors."
+      },
+      {
+        "title": "Funnel audit",
+        "text": "We go through the offers, the client's path and the points where enquiries are lost."
+      },
+      {
+        "title": "Conclusions",
+        "text": "We find the weak spots and estimate the potential gain."
+      },
+      {
+        "title": "Growth plan",
+        "text": "We give prioritised recommendations for conversion."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What do I get at the end?",
+        "answer": "A report on where the site loses enquiries and money, and a prioritised plan of changes for higher conversion — with specific recommendations."
+      },
+      {
+        "question": "How is it different from a content analysis?",
+        "answer": "A commercial audit is about sales and conversion: offers, prices, trust, calls to action. A content analysis is broader, about the quality and relevance of the copy."
+      },
+      {
+        "question": "Will you help implement the changes?",
+        "answer": "Yes. After the audit we can rework the pages, the offers and the forms to raise conversion."
+      },
+      {
+        "question": "How long does the audit take?",
+        "answer": "Usually from one week. The timeline depends on the size of the site and the depth of the analysis."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Express",
+        "deadline": "from 1 week",
+        "features": [
+          "Express audit of the funnel and the offers",
+          "Assessment of the calls to action",
+          "A short report with conclusions",
+          "The top points where enquiries are lost",
+          "A call to go through the results"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Full conversion audit",
+          "Analysis of offers, prices and trust",
+          "Comparison with competitors",
+          "A prioritised growth plan",
+          "A call to go through the results"
+        ]
+      },
+      {
+        "name": "Extended",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Deep audit of the sales funnel",
+          "Detailed conversion recommendations",
+          "Work on the offers and the USP",
+          "A plan for implementing the changes",
+          "Support while they are implemented"
+        ]
+      }
+    ]
   }
 }
