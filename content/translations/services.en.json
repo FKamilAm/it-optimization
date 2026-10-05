@@ -2010,5 +2010,1205 @@
         ]
       }
     ]
+  },
+  "infrastructure": {
+    "metaTitle": "IT infrastructure design for a company",
+    "metaDescription": "IT infrastructure design: servers, network, virtualisation, storage and backups. You get a diagram, an equipment specification and a staged rollout plan. From {price:90000}.",
+    "breadcrumb": "IT infrastructure design",
+    "h1": "IT infrastructure design",
+    "lead": "We design infrastructure around how the company works today and how it will grow over the next couple of years: servers, network, virtualisation, storage and backups. What you get is a diagram, a specification and a rollout plan — not a list of hardware picked at random.",
+    "includes": [
+      "A survey: what already exists, what is overloaded, what is held together with tape",
+      "A network and server diagram with room to grow, not sized to the millimetre",
+      "A choice of virtualisation, storage and backup scheme",
+      "Resilience planning: what gets duplicated and what can survive downtime",
+      "An equipment and licence specification with options by budget",
+      "A staged rollout plan, so work does not stop during the transition"
+    ],
+    "forWhom": [
+      {
+        "title": "Grown out of \"however it happened\"",
+        "text": "The infrastructure was assembled piece by piece over years, and nobody can now say what depends on what."
+      },
+      {
+        "title": "A new office or site",
+        "text": "Everything has to be designed from scratch — network, server room, workstations — before anything is bought."
+      },
+      {
+        "title": "Before a large investment",
+        "text": "The design shows what genuinely needs buying and where the money can stay in the account."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Survey",
+        "text": "We map what exists: equipment, services, loads, bottlenecks."
+      },
+      {
+        "title": "Requirements",
+        "text": "We settle what must run without downtime and what can tolerate it, and with how much room to grow."
+      },
+      {
+        "title": "Design",
+        "text": "Diagram, specification, resilience calculations and options for different budgets."
+      },
+      {
+        "title": "Rollout plan",
+        "text": "We break it into stages with a clear order of work and points to fall back to."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is a design different from a list of equipment?",
+        "answer": "A list answers \"what to buy\"; a design answers \"why this\". It shows which load sits where, what is duplicated for resilience and where you can save without risk. Without it, purchasing usually ends up either over-provisioned or with a hole in the most important place."
+      },
+      {
+        "question": "Can we implement the design ourselves or with our own contractor?",
+        "answer": "Yes. The design is a standalone document: the diagrams, the specification and the plan are readable by any implementer. Implementation by us is a separate service, not a condition."
+      },
+      {
+        "question": "How long does the design take?",
+        "answer": "It depends on the size of the infrastructure: from a few days for a small office to several weeks for a distributed network with a production site. We give the timeline after the survey."
+      },
+      {
+        "question": "Does work have to stop during the survey?",
+        "answer": "No. The survey runs in the background: inventory, collecting load data and talking to the people responsible for the systems. Downtime only arises during implementation, and it is planned in advance."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Survey of the current infrastructure",
+          "Network and server diagram with headroom",
+          "Backup scheme",
+          "Equipment and licence specification",
+          "A staged rollout plan"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Resilience calculations",
+          "Choice of virtualisation and storage",
+          "Network segmentation and access scheme",
+          "Specification options by budget",
+          "Help selecting suppliers"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 6 weeks",
+        "features": [
+          "Several sites and branches",
+          "Redundant links and power",
+          "A design built to security requirements",
+          "Working documentation and diagrams",
+          "Design supervision during rollout"
+        ]
+      }
+    ]
+  },
+  "migration": {
+    "metaTitle": "IT infrastructure migration and modernisation",
+    "metaDescription": "Moving servers, services and data without stopping work: migration to the cloud or to new hardware, replacing outdated systems, platform changes. With a rollback plan at every step. From {price:120000}.",
+    "breadcrumb": "Migration and modernisation",
+    "h1": "IT infrastructure migration and modernisation",
+    "lead": "We move servers, services and data so that the business barely notices: to the cloud, to new hardware or to a different platform. Every step is reversible — if something goes wrong, rolling back takes minutes rather than a day.",
+    "includes": [
+      "Inventory: what moves, what gets retired, what depends on what",
+      "Choosing the target: cloud, your own servers or a hybrid",
+      "A migration plan with maintenance windows and a rollback plan at each stage",
+      "Moving virtual machines, databases, file storage and mail",
+      "Updating outdated systems and replacing anything out of support",
+      "Checks after the move: load, access, backups, monitoring"
+    ],
+    "forWhom": [
+      {
+        "title": "Hardware near the end",
+        "text": "The servers are out of warranty, there are no spare parts, and an outage would cost more than replacement."
+      },
+      {
+        "title": "Moving to the cloud",
+        "text": "You want to stop maintaining hardware and pay for what is actually used."
+      },
+      {
+        "title": "Changing platform",
+        "text": "You need to leave systems that are no longer updated or no longer available to you."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Inventory",
+        "text": "We map the systems and the links between them — a move usually breaks on exactly the links everyone forgot."
+      },
+      {
+        "title": "Plan and rehearsal",
+        "text": "We agree the windows, the order of the move and the rollback plan. The critical parts are rehearsed on a test copy."
+      },
+      {
+        "title": "The move",
+        "text": "We move in stages, starting with the least critical, and verify at every step."
+      },
+      {
+        "title": "Stabilisation",
+        "text": "For a couple of weeks we keep watch: load, errors, backups and feedback from the people using it."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Will the company have to stop working?",
+        "answer": "As a rule, no — we move in parts and in windows when the load is lowest. A full stop is rarely needed and only for individual systems; those windows are agreed in advance and usually fit into a night or a weekend."
+      },
+      {
+        "question": "What if something does not work after the move?",
+        "answer": "The old environment stays untouched until the new one is verified, so rolling back means switching back, not restoring from a copy. The rollback plan is written before the work starts, not improvised on the spot."
+      },
+      {
+        "question": "Will you help with changing platform?",
+        "answer": "Yes. We find replacements for products that are out of support or unavailable, check compatibility on a test environment and move gradually. It is usually not a single move but several stages over a few months."
+      },
+      {
+        "question": "Can we move only some of the systems?",
+        "answer": "Yes, a hybrid arrangement is common and sensible: whatever needs speed or sits close to the equipment stays put, and the rest goes to the cloud."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Inventory and dependency map",
+          "Choice of target platform",
+          "Work plan with windows and rollback",
+          "Moving virtual machines and files",
+          "Verification after the move"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 5 weeks",
+        "features": [
+          "Moving databases and mail",
+          "Rehearsal of the move on a copy",
+          "Replacing systems out of support",
+          "Monitoring and backups configured",
+          "Stabilisation after launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 8 weeks",
+        "features": [
+          "A move without stopping work",
+          "Hybrid of cloud and your own servers",
+          "Moving the domain infrastructure",
+          "Department-by-department transition",
+          "Support after the migration"
+        ]
+      }
+    ]
+  },
+  "os": {
+    "metaTitle": "Operating system rollout and platform change",
+    "metaDescription": "Deploying and configuring operating systems on servers and workstations: alternative platforms, Linux, domain infrastructure, policies and centralised fleet management. From {price:150000}.",
+    "breadcrumb": "Operating system rollout",
+    "h1": "Operating system rollout",
+    "lead": "We deploy and configure operating systems on servers and workstations, including moves to alternative platforms. Not \"installed and gone\": domain, policies, rights, updates and centralised management of the whole fleet.",
+    "includes": [
+      "Choosing the OS for the task and checking compatibility with your software",
+      "A pilot on a handful of workstations before the mass rollout",
+      "Deployment to servers and workstations from a single image",
+      "Domain infrastructure, accounts, rights and group policies",
+      "Centralised updates, monitoring and fleet management",
+      "Migrating user data and training the staff"
+    ],
+    "forWhom": [
+      {
+        "title": "Moving to another platform",
+        "text": "A requirement from a regulator or a client, while the whole fleet is still on the previous system."
+      },
+      {
+        "title": "A fleet with no two machines alike",
+        "text": "Every computer is different, nobody installs updates, and setting up a new machine takes a day."
+      },
+      {
+        "title": "New workstations",
+        "text": "Dozens of identically configured machines are needed quickly, rather than assembled one by one."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Compatibility audit",
+        "text": "We check which of your software and hardware will work and what needs a replacement or a workaround."
+      },
+      {
+        "title": "Pilot",
+        "text": "We deploy to a few workstations and see what gets in people's way."
+      },
+      {
+        "title": "Rollout",
+        "text": "We prepare the image, deploy department by department and move data and settings."
+      },
+      {
+        "title": "Management",
+        "text": "We configure policies, updates and monitoring, and hand instructions to your team."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What about software with no version for the new OS?",
+        "answer": "The compatibility audit finds such software before the move, not after. From there the options are usually three: an equivalent, running it in a compatibility layer, or leaving a small island of machines on the old system. Which one fits depends on how critical the software is."
+      },
+      {
+        "question": "Will staff be able to work on the new system?",
+        "answer": "The everyday work — browser, mail, documents — transfers with almost no retraining. The difficulties start with specialised software, which is why the pilot runs on real tasks with real people rather than on a demo bench."
+      },
+      {
+        "question": "Can we move gradually?",
+        "answer": "That is what we recommend: department by department, starting with those who use the simplest set of programs. A mixed fleet is a normal state during the transition, and the domain infrastructure copes with it."
+      },
+      {
+        "question": "Do you migrate user data?",
+        "answer": "Yes: files, mail, bookmarks, signatures and desktop settings. It is part of the work, not an extra — otherwise the move costs every employee a lost working day."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Compatibility audit of your software",
+          "Pilot on a few workstations",
+          "A single workstation image",
+          "Migration of user data",
+          "Instructions for staff"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 5 weeks",
+        "features": [
+          "Domain infrastructure and policies",
+          "Mass rollout by department",
+          "Centralised updates",
+          "Training for staff and administrators",
+          "Support through the transition period"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 8 weeks",
+        "features": [
+          "Finding replacements for incompatible software",
+          "Moving the server side",
+          "Integration with the existing domain environment",
+          "Department-by-department transition",
+          "Support under an agreed procedure"
+        ]
+      }
+    ]
+  },
+  "itOutsourcing": {
+    "metaTitle": "IT outsourcing and infrastructure management",
+    "metaDescription": "Managed IT infrastructure: servers, network, workstations, mail and backups. A ticket system, agreed response times and readable reporting instead of a visiting administrator. From {price:30000/mo}.",
+    "breadcrumb": "IT outsourcing",
+    "h1": "IT outsourcing and infrastructure management",
+    "lead": "We take on the company's IT in full: servers, network, workstations, mail, access and backups. We work to an agreed procedure with fixed response times — instead of a visiting administrator who knows everything, but is the only one who does.",
+    "includes": [
+      "Managing servers, the network and staff workstations",
+      "A ticket system with fixed response times under an agreed procedure",
+      "Monitoring that reports failures before people notice them",
+      "Backups and regular tests that they actually restore",
+      "Managing accounts, access and licences",
+      "Infrastructure documentation and readable reporting"
+    ],
+    "forWhom": [
+      {
+        "title": "No IT department",
+        "text": "The company has grown, but the computers are still looked after by someone in between other work."
+      },
+      {
+        "title": "Everything rests on one person",
+        "text": "There is one administrator, the passwords are in his head, and his holiday is a business risk."
+      },
+      {
+        "title": "Reinforcing your own team",
+        "text": "You have IT staff, but not enough hands, or you need expertise in specific systems."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Audit",
+        "text": "We look at what exists, what is on fire and what to fix first, and map the infrastructure."
+      },
+      {
+        "title": "Agreed procedure",
+        "text": "We settle the scope of responsibility, response times, ticket channels and escalation."
+      },
+      {
+        "title": "Handover",
+        "text": "We take the access, document it and close the urgent items — usually the first few weeks."
+      },
+      {
+        "title": "Management",
+        "text": "We work to tickets and to plan, and report monthly on what was done and what we suggest next."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is this different from website support?",
+        "answer": "They are different services for different jobs. This is about the company's IT: servers, network, staff computers, mail, access. Support and development of a site or platform is a separate area, and it can be taken together with this or on its own."
+      },
+      {
+        "question": "Do you replace our system administrator?",
+        "answer": "Whichever you prefer. We often cover the IT of a small company entirely, but just as often we work alongside an in-house administrator — taking the routine, the on-call duty and the narrow areas like virtualisation or backups."
+      },
+      {
+        "question": "How quickly do you respond to problems?",
+        "answer": "Response times are fixed in the agreement and depend on severity: a department unable to work and one inconvenienced employee are different priorities. The agreement is settled before the work starts, not after the first incident."
+      },
+      {
+        "question": "What happens if we decide to part ways?",
+        "answer": "We hand over everything: access, passwords, documentation and the ticket history. Infrastructure that cannot be passed to another contractor without us is not a service, it is a lock-in, and we do not work that way."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "monthly",
+        "features": [
+          "Managing workstations and the network",
+          "Tickets accepted during working hours",
+          "Monitoring and failure alerts",
+          "Backups",
+          "Reporting on the work"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "monthly",
+        "features": [
+          "Servers and virtualisation",
+          "Fixed response times",
+          "Managing access and licences",
+          "Planned work and updates",
+          "Infrastructure documentation"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "by SLA",
+        "features": [
+          "A dedicated engineer",
+          "SLA guarantees and on-call cover",
+          "Tested restores from backups",
+          "Baseline security oversight",
+          "Infrastructure development to plan"
+        ]
+      }
+    ]
+  },
+  "infosecAudit": {
+    "metaTitle": "Information security audit for a company",
+    "metaDescription": "An information security audit: infrastructure, access, data protection and organisational measures. A report with risk levels and a remediation plan, not a scanner dump. From {price:150000}.",
+    "breadcrumb": "Information security audit",
+    "h1": "Information security audit",
+    "lead": "We assess the security of the whole company rather than a single website: network and servers, access rights, backups, mail, workstations and how people handle data. What you get is a report with risk levels and a plan of what to fix first.",
+    "includes": [
+      "Inventory: what data exists, where it sits and who can reach it",
+      "Checking the network, servers and workstations for known vulnerabilities",
+      "A review of access rights: surplus accounts, shared passwords, forgotten administrators",
+      "Testing that backups actually restore, not merely that they exist",
+      "An assessment of organisational measures: procedures, leavers, contractors, devices",
+      "A report with risk levels and a remediation plan in order of priority"
+    ],
+    "forWhom": [
+      {
+        "title": "Nobody has ever checked",
+        "text": "The infrastructure grew over years and its security has never been assessed by anyone."
+      },
+      {
+        "title": "Someone is asking for it",
+        "text": "An audit is required by a client, a partner, an insurer or your own board."
+      },
+      {
+        "title": "After an incident",
+        "text": "Something has already happened, and you need to know where else the same door is open."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Scope",
+        "text": "We agree what is inside the perimeter: systems, sites, depth of testing."
+      },
+      {
+        "title": "Data gathering",
+        "text": "Inventory, scanning, configuration review and interviews with the people responsible."
+      },
+      {
+        "title": "Analysis",
+        "text": "We separate scanner noise from real risk and verify the findings by hand."
+      },
+      {
+        "title": "Report and walkthrough",
+        "text": "We hand over the report and talk it through out loud: what is critical, what can wait, where to start."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is this different from a website security audit?",
+        "answer": "In scale and in subject. A website audit checks one web application: code, access, dependencies, server settings. This checks the company: network, servers, workstations, rights, backups and how the processes are built. One does not replace the other, and both are often needed."
+      },
+      {
+        "question": "Will you just run a scanner?",
+        "answer": "The scanner is the first step and the cheapest part of the work. A hundred-page dump where half the findings do not apply is of no use. The value is in what comes after: verifying findings by hand, filtering false positives and setting priorities from your business's point of view."
+      },
+      {
+        "question": "Is it safe for systems that are in use?",
+        "answer": "Yes. Any check that could affect operations is agreed separately and run in an agreed window or on a test copy. Everything else runs in observation mode and does not touch day-to-day work."
+      },
+      {
+        "question": "What do we do with the report afterwards?",
+        "answer": "You can fix things yourselves — the report is written so your own administrator can work from it, not only its author. Or you can hand the remediation to us: that is separate work, and we always quote it before you decide."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Inventory of data and access",
+          "Check for known vulnerabilities",
+          "Review of rights and forgotten accounts",
+          "Testing that backups restore",
+          "Report with remediation priorities"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 5 weeks",
+        "features": [
+          "External perimeter and mail",
+          "Assessment of organisational measures",
+          "Review of contractors and devices",
+          "A walkthrough of the report with your team",
+          "A staged remediation plan"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 8 weeks",
+        "features": [
+          "Several sites and systems",
+          "Compliance checking against requirements",
+          "Interviews with system owners",
+          "A re-check after the fixes",
+          "Support through remediation"
+        ]
+      }
+    ]
+  },
+  "infosecTools": {
+    "metaTitle": "Rolling out information security tooling",
+    "metaDescription": "Deploying and configuring security tooling: antivirus and EDR, firewalls, VPN, encryption, access control and mail protection. Integrated with the infrastructure you already have. From {price:200000}.",
+    "breadcrumb": "Security tooling rollout",
+    "h1": "Rolling out information security tooling",
+    "lead": "We select, install and configure security tooling so that it genuinely works rather than sitting there on default settings: protection for workstations and mail, firewalls, VPN, encryption and access control.",
+    "includes": [
+      "Choosing products for your risks and your budget, not for the longest price list",
+      "Protection for workstations and servers: antivirus, EDR, application control",
+      "Firewalls, network segmentation and secure remote access",
+      "Mail protection against phishing and malicious attachments",
+      "Encryption of disks, backups and data in transit",
+      "Integration with what already runs, and handover of the configured systems to your team"
+    ],
+    "forWhom": [
+      {
+        "title": "No protection, or protection on paper",
+        "text": "There is an antivirus, but nobody reads its alerts, and the firewall is configured however it ended up."
+      },
+      {
+        "title": "Remote work",
+        "text": "Staff connect from home and from personal devices, and none of it is controlled."
+      },
+      {
+        "title": "After an audit",
+        "text": "There is a report with findings, and they need closing with working tooling rather than advice."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Threat model",
+        "text": "We decide what is being protected and from what — otherwise everything gets bought and nothing helps."
+      },
+      {
+        "title": "Selection and pilot",
+        "text": "We offer options with prices and test the chosen one on part of the infrastructure."
+      },
+      {
+        "title": "Rollout",
+        "text": "We deploy in stages, configure the policies and make sure the protection does not get in the way of work."
+      },
+      {
+        "title": "Handover",
+        "text": "We train your team and hand over documentation and settings. Ongoing support is optional from there."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Will the protection get in the way of staff?",
+        "answer": "Badly configured protection will, and then people start working around it, which is worse than having none. That is why policies are introduced gradually and with a pilot: observation mode first, then a review of what fires needlessly, and only then blocking."
+      },
+      {
+        "question": "Can we manage with locally available products?",
+        "answer": "Yes, and often it is a requirement rather than a choice. We select from what is available and supported in your market, and say plainly where a local equivalent is weaker and how to compensate."
+      },
+      {
+        "question": "Do we have to start with an audit?",
+        "answer": "Not necessarily, but it helps: without understanding the risks, choosing tools turns into shopping from a list in an article. If the budget is limited, an audit helps spend it on what closes real holes."
+      },
+      {
+        "question": "Who manages all this after the rollout?",
+        "answer": "By default, your team: we hand over configured systems, documentation and training. If you have no spare hands, managing it and triaging the alerts can be handed to us as a separate monitoring service."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Threat model and product selection",
+          "Protection for workstations and servers",
+          "Firewall and segmentation",
+          "Mail protection against phishing",
+          "Handover of the configured systems"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 6 weeks",
+        "features": [
+          "EDR and application control",
+          "Secure remote access",
+          "Encryption of disks and backups",
+          "Integration with existing systems",
+          "Training for administrators"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 10 weeks",
+        "features": [
+          "A pilot of several products",
+          "Complex network segmentation",
+          "Data leak prevention",
+          "Linked to incident monitoring",
+          "Support and ongoing tuning"
+        ]
+      }
+    ]
+  },
+  "infosecConsulting": {
+    "metaTitle": "Security consulting and data protection compliance",
+    "metaDescription": "Information security consulting: bringing personal data handling in line with the law, notifying the regulator, procedures, a threat model and preparation for an inspection. From {price:80000}.",
+    "breadcrumb": "Security consulting",
+    "h1": "Security and compliance consulting",
+    "lead": "We put data handling in order both on paper and in practice: personal data and the law that governs it, notifying the regulator, policies and procedures, a threat model, preparation for an inspection. Without formal documents that do not match reality.",
+    "includes": [
+      "A review of what personal data you collect and on what legal basis",
+      "Notification to the regulator, with purposes of processing worded correctly",
+      "A privacy policy, consent forms and internal procedures",
+      "A threat model and determination of the required protection level",
+      "A compliance plan with priorities set out",
+      "Preparation for an inspection: what they ask, what to show, where it usually falls apart"
+    ],
+    "forWhom": [
+      {
+        "title": "You collect client data",
+        "text": "Forms on the site, a database in the CRM, copies of documents — and none of it is formally arranged."
+      },
+      {
+        "title": "A counterparty requires it",
+        "text": "A large client or a tender requires proof that your security is in order."
+      },
+      {
+        "title": "An inspection is coming",
+        "text": "You need to know where you are formally exposed and close it before, not after."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Survey",
+        "text": "We look at what data and processes actually exist, rather than what the documents say."
+      },
+      {
+        "title": "The gap",
+        "text": "We record the difference between the requirements and the current state of affairs."
+      },
+      {
+        "title": "Documents and measures",
+        "text": "We prepare the set of documents and the list of technical measures that back them up."
+      },
+      {
+        "title": "Rollout and support",
+        "text": "We help implement it, train the responsible people and stay available when things change."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Do we really have to notify the regulator?",
+        "answer": "Almost certainly yes: the obligation arises as soon as you process client and employee data, and very few exemptions remain. The difficulty is not the notification itself but making sure the purposes and categories of data it states match what you actually do."
+      },
+      {
+        "question": "Is it enough to download a policy template from the internet?",
+        "answer": "As a document on the site, formally yes. As protection during an inspection, no: a template describes someone else's processes, and the first discrepancy with reality turns it from an argument into evidence. The documents have to describe what happens at your company."
+      },
+      {
+        "question": "Do you only do documents, or the technical side too?",
+        "answer": "Both, but they are different pieces of work. Consulting answers \"what should exist\"; rolling out security tooling answers \"how to make it so\". We can close both parts or only the first, if your team handles the technical side."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "A survey and a set of documents for a small company usually take a few weeks. Full compliance including technical measures stretches over months, so the work runs by priority: first what closes the most visible risk."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Review of the personal data collected",
+          "Notification to the regulator",
+          "Privacy policy and consent forms",
+          "A list of the measures required",
+          "Consultations as the work goes"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Threat model and protection level",
+          "Internal procedures and orders",
+          "A compliance plan",
+          "A review of the site and its data collection forms",
+          "Training for the responsible staff"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 6 weeks",
+        "features": [
+          "Several systems and sites",
+          "Preparation for a regulator's inspection",
+          "An audit of contractor agreements",
+          "Support with the correspondence",
+          "Support after everything is in order"
+        ]
+      }
+    ]
+  },
+  "infosecMonitoring": {
+    "metaTitle": "Security monitoring and incident response",
+    "metaDescription": "Monitoring security events and responding to incidents: log collection, detection rules, alert triage and a procedure for what to do under attack. With an agreed response procedure. From {price:60000/mo}.",
+    "breadcrumb": "Monitoring and response",
+    "h1": "Security monitoring and incident response",
+    "lead": "We set up collection of security events and work through what is happening in them: suspicious logins, password guessing, ransomware, data leaks. An incident has to be spotted while it is still small — that is what monitoring is for.",
+    "includes": [
+      "Log collection from servers, workstations, the network and cloud services",
+      "Detection rules written for your infrastructure, not a default set",
+      "Triage of alerts: what is a real incident and what is noise",
+      "A response procedure — who does what in the first thirty minutes",
+      "Incident investigation: what happened, how they got in, what they reached",
+      "Reporting and tuning of the rules after each review"
+    ],
+    "forWhom": [
+      {
+        "title": "Logs exist, but nobody reads them",
+        "text": "The data piles up and is only consulted once everything has already happened."
+      },
+      {
+        "title": "Business-critical systems",
+        "text": "Downtime or a leak is expensive, and hearing about it from clients is unacceptable."
+      },
+      {
+        "title": "No security team",
+        "text": "Keeping an on-call specialist on staff is expensive, but watching has to be continuous."
+      }
+    ],
+    "steps": [
+      {
+        "title": "What we protect",
+        "text": "We identify the critical systems and the events that must not be missed."
+      },
+      {
+        "title": "Collection and rules",
+        "text": "We connect the log sources and write detection rules for your environment."
+      },
+      {
+        "title": "Tuning out the noise",
+        "text": "We remove false positives: a system that shouts constantly stops being heard."
+      },
+      {
+        "title": "Watch and review",
+        "text": "We watch the alerts, respond under the agreed procedure, investigate incidents and tune the rules."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is this different from uptime monitoring?",
+        "answer": "Uptime monitoring answers \"is the service running\"; security monitoring answers \"is anything suspicious happening to it\". A service can run perfectly while handing data to someone who should not have it."
+      },
+      {
+        "question": "Will you respond for us, or only report?",
+        "answer": "As agreed. The minimum is a notification with analysis and recommendations. The extended option is active steps under an agreed procedure: isolating a machine, locking an account, cutting access. The limits of authority are fixed in advance."
+      },
+      {
+        "question": "Do we have to buy an expensive event collection system?",
+        "answer": "Not always. For a small infrastructure, open-source tooling is enough and a sensible place to start. An industrial system is justified when there are many sources and the volume of events stops fitting into simple tools."
+      },
+      {
+        "question": "What if an incident has already happened?",
+        "answer": "Then the work starts with an investigation: how they got in, what they reached, what has to be closed immediately. Monitoring is set up afterwards — with rules for the scenario that actually happened to you."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "monthly",
+        "features": [
+          "Log collection from the key systems",
+          "Rules written for your infrastructure",
+          "Alert triage during working hours",
+          "A procedure for the first steps",
+          "Monthly report and tuning"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "monthly",
+        "features": [
+          "Workstations and cloud services",
+          "Incident investigation",
+          "Hypothesis checking and threat hunting",
+          "A review after every case",
+          "Extended reporting"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "24/7 cover",
+        "features": [
+          "Round-the-clock cover",
+          "Guaranteed response times",
+          "Reconstructing the timeline of an attack",
+          "Built into your processes",
+          "Regular response exercises"
+        ]
+      }
+    ]
+  },
+  "collaboration": {
+    "metaTitle": "Rolling out corporate communications and collaboration",
+    "metaDescription": "Rolling out a corporate portal, messenger, video calls and document collaboration: platform choice, process configuration, integration with mail and CRM, staff training. From {price:120000}.",
+    "breadcrumb": "Corporate communications",
+    "h1": "Rolling out corporate communications",
+    "lead": "We assemble a working environment where conversations, files, tasks and calls live in one place rather than across seven chats and a shared folder. We pick the platform for how you actually work, configure the processes and see it through to people genuinely using it.",
+    "includes": [
+      "A look at where tasks, files and agreements get lost today",
+      "Choosing a platform for the size of the company, the budget and the data requirements",
+      "Deployment — in the cloud or on your own servers if the data cannot leave",
+      "A structure of spaces, groups and access rights for your departments",
+      "Configuring the working processes: tasks, approvals, knowledge base",
+      "Integration with mail, calendar and CRM, and training for staff"
+    ],
+    "forWhom": [
+      {
+        "title": "Work has spread across messengers",
+        "text": "Some of it in private chats, some in mail, files on USB sticks — and nobody knows which version is current."
+      },
+      {
+        "title": "Data cannot go to someone else's cloud",
+        "text": "You need a portal and a messenger on your own servers, not a subscription to a foreign service."
+      },
+      {
+        "title": "Bought it, nobody uses it",
+        "text": "The platform exists, the licences are paid for, and people still work the way they did before."
+      }
+    ],
+    "steps": [
+      {
+        "title": "How you work now",
+        "text": "We look at the real routes tasks and documents take, not the diagram in the procedure."
+      },
+      {
+        "title": "Choosing a platform",
+        "text": "We offer options with their pros, cons and cost of ownership, rather than one \"correct\" answer."
+      },
+      {
+        "title": "Configuration",
+        "text": "We deploy it, build the structure and processes, and connect mail, calendar and CRM."
+      },
+      {
+        "title": "Launch with people",
+        "text": "We move the first processes across, train, and adjust from the feedback of the first weeks."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is this different from building your own messenger?",
+        "answer": "Here we roll out a ready platform — faster and cheaper, and right for most companies. Building your own is for when nothing off the shelf meets the requirements: a special network, unusual integrations, or a messenger inside your own product. That is a separate service."
+      },
+      {
+        "question": "How do you get staff to actually switch?",
+        "answer": "By not leaving parallel routes open. As long as an approval can be obtained in a private chat, nobody will go to the portal. So we move processes one at a time and together with the managers, rather than sending round an instruction and hoping."
+      },
+      {
+        "question": "Can everything be deployed on our own servers?",
+        "answer": "Yes, many platforms have an on-premise option. It costs more to maintain, but the conversations and files stay with you — for some companies that is a hard requirement."
+      },
+      {
+        "question": "How long does the rollout take?",
+        "answer": "A basic deployment with mail and structure takes weeks. Moving processes and habits across takes months, and that is normal: a platform switched on over a weekend usually stays empty."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Cloud platform, end to end",
+          "Structure of spaces and rights",
+          "Tasks, files and knowledge base",
+          "Migration of conversations and documents",
+          "Launch and team training"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 5 weeks",
+        "features": [
+          "Approvals and processes configured",
+          "Integration with mail, calendar and CRM",
+          "Roles and rights by department",
+          "Workspace templates",
+          "Support through the first month"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 8 weeks",
+        "features": [
+          "Deployment on your own servers",
+          "Integrations with internal systems",
+          "Migration from a previous platform",
+          "A complex access model",
+          "Role-based training and support"
+        ]
+      }
+    ]
+  },
+  "businessSystems": {
+    "metaTitle": "Business system rollout: ERP, accounting, CRM",
+    "metaDescription": "Rolling out accounting and management systems: choosing the configuration, migrating data, configuring processes and rights, integration with the website and stock, staff training and launch. From {price:150000}.",
+    "breadcrumb": "Business system rollout",
+    "h1": "Business system rollout",
+    "lead": "We roll out accounting and management systems so that people actually work in them: choosing the configuration, migrating data, configuring it around your processes, integrations and training. A system with no data in it and nobody using it does not count as rolled out.",
+    "includes": [
+      "A review of the processes: what gets recorded, who enters it, who uses it",
+      "Choosing the system and configuration for the job, not for the contractor's habit",
+      "Migrating data from spreadsheets and previous systems, checked for completeness",
+      "Configuring reference data, documents, access rights and roles",
+      "Integration with the website, stock, bank, point of sale and telephony",
+      "Staff training and support through the first reporting period"
+    ],
+    "forWhom": [
+      {
+        "title": "Accounting in spreadsheets",
+        "text": "Excel has stopped coping: versions diverge, data is duplicated, the report is assembled by hand."
+      },
+      {
+        "title": "There is a system, but it misses",
+        "text": "It was rolled out long ago, configured for someone else, and half the work still happens outside it."
+      },
+      {
+        "title": "Growth and new directions",
+        "text": "A warehouse, retail or production has appeared, and the accounts no longer reconcile."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Survey",
+        "text": "We describe how the processes work today and exactly where data and time are lost."
+      },
+      {
+        "title": "Choice and plan",
+        "text": "We select the system and configuration and fix the stages, timelines and cost of ownership."
+      },
+      {
+        "title": "Configuration and migration",
+        "text": "We configure it around the processes, migrate the data and connect the integrations."
+      },
+      {
+        "title": "Launch",
+        "text": "We train, go live and stay close through the first period close."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is a rollout different from building your own system?",
+        "answer": "A rollout takes a ready product and configures it for you — faster and cheaper, and the standard accounting is already there. Building your own is justified when the process is genuinely unique and an off-the-shelf product would have to be broken to fit. We do both and say honestly which is cheaper in your case."
+      },
+      {
+        "question": "What happens to the old data?",
+        "answer": "We migrate what is needed for work and reporting: reference data, balances, transaction history to an agreed depth. Migration always comes with reconciliation — a discrepancy in balances is better found before launch than in the first report."
+      },
+      {
+        "question": "How many staff will need retraining?",
+        "answer": "Everyone who enters data, but differently: a salesperson needs one screen, an accountant the whole module. Training therefore runs by role rather than as one general lecture."
+      },
+      {
+        "question": "Can it be rolled out in parts?",
+        "answer": "Yes, and usually that is wiser: one area first — sales or stock, say — then the next. Trying to launch everything at once most often ends with nothing working."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Survey of the accounting processes",
+          "Standard configuration for the job",
+          "Migration of reference data and balances",
+          "Rights and roles configured",
+          "Training and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 7 weeks",
+        "features": [
+          "Data migration from previous systems",
+          "Documents and reports configured",
+          "Integration with the website and the bank",
+          "Instructions for staff",
+          "Support through the first period"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 12 weeks",
+        "features": [
+          "Several legal entities and warehouses",
+          "Point of sale, telephony, marketplaces",
+          "Customisation for your processes",
+          "Role-based training",
+          "Support and ongoing development"
+        ]
+      }
+    ]
+  },
+  "businessSystemsCustom": {
+    "metaTitle": "Customising and adapting business systems",
+    "metaDescription": "Customising accounting and CRM systems to fit the company's processes: printed forms, reports, data exchange, non-standard logic. Keeping the ability to update. From {price:25000}.",
+    "breadcrumb": "Business system customisation",
+    "h1": "Customising and adapting business systems",
+    "lead": "We extend systems already in use to fit your processes: reports, printed forms, data exchange, non-standard logic. The guiding rule is that the system must still be updatable afterwards, rather than frozen on its current version for good.",
+    "includes": [
+      "A review of the request: what is genuinely needed and what standard settings already solve",
+      "Reports and printed forms to your requirements and your counterparties'",
+      "Changes to document logic, calculations and approvals",
+      "Data exchange with the website, stock, marketplaces and other systems",
+      "Tidying up previous customisations if updating has become impossible",
+      "Documenting the changes — so someone other than the author can maintain them"
+    ],
+    "forWhom": [
+      {
+        "title": "The standard version falls short",
+        "text": "The system is broadly fine, but a couple of needed reports or forms simply are not in it."
+      },
+      {
+        "title": "Updating is impossible",
+        "text": "It was customised for years, now an update breaks everything, and the system is stuck on an old version."
+      },
+      {
+        "title": "Manual work alongside the system",
+        "text": "Data is exported to Excel, calculated by hand and loaded back — every month."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Reviewing the request",
+        "text": "We check whether settings already solve it: the cheapest customisation is the one that was not needed."
+      },
+      {
+        "title": "Estimate",
+        "text": "We estimate the work and warn you if the solution would complicate future updates."
+      },
+      {
+        "title": "Implementation",
+        "text": "We build on a copy, test against your data and show the result before anything moves."
+      },
+      {
+        "title": "Transfer and support",
+        "text": "We move it into the working database, document it and stay available for further work."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Will customisation break updates?",
+        "answer": "It can — which is exactly why customisations are built as extensions and by the platform's rules, rather than by editing the standard configuration. Sometimes touching the standard part is unavoidable; we say so before the work starts, so the decision is yours rather than a discovery at the next update."
+      },
+      {
+        "question": "Will you take on someone else's customisations?",
+        "answer": "Yes. We start by reviewing what is already written: often half of it turns out to be unnecessary or to duplicate standard features. Tidying up is frequently cheaper than endlessly maintaining what has accumulated."
+      },
+      {
+        "question": "Can we ask for one small thing?",
+        "answer": "Yes, one-off work is a normal format: a report, a printed form, an export. A long-term contract is not for that — it is for those with a constant flow of changes."
+      },
+      {
+        "question": "How do we know whether to customise or replace the system?",
+        "answer": "By how much is not covered as standard. If there is more customisation than standard functionality, the system does not suit you and replacement is worth costing. We say so plainly, even when customising would be more profitable for us."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 3 days",
+        "features": [
+          "Review of the request and an estimate",
+          "A report or a printed form",
+          "Tested on a copy of the database",
+          "Moved into the working database",
+          "Changes documented"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 1 week",
+        "features": [
+          "Changes to document logic",
+          "Calculations and approvals",
+          "Exchange with the website or stock",
+          "A check that updating still works",
+          "User training"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 2 weeks",
+        "features": [
+          "A package of changes to plan",
+          "Tidying up previous customisations",
+          "Exchange with several systems",
+          "An update procedure",
+          "Support after handover"
+        ]
+      }
+    ]
+  },
+  "industrial": {
+    "metaTitle": "Integration with equipment and production systems",
+    "metaDescription": "Integrating IT systems with equipment and industrial control: collecting data from lines and meters, feeding it into the accounting system, control-room dashboards and production reporting. From {price:250000}.",
+    "breadcrumb": "Equipment integration",
+    "h1": "Integration with equipment and production systems",
+    "lead": "We connect production equipment to accounting systems: we take data off machines, lines, sensors and meters, feed it into the accounts and show it on readable dashboards. So the output figures appear by themselves, instead of being copied out of a logbook at the end of a shift.",
+    "includes": [
+      "A survey of the equipment: what data it gives out and over which protocols",
+      "Data collection from machines, lines, controllers and meters",
+      "Feeding the figures into the accounting system without manual entry",
+      "Control-room dashboards: output, downtime, faults, line status",
+      "Reporting by shift, area and piece of equipment",
+      "Alerts on stoppages and on readings outside the permitted range"
+    ],
+    "forWhom": [
+      {
+        "title": "Figures are copied by hand",
+        "text": "Readings are kept in a logbook and reach the accounts a day later, with mistakes."
+      },
+      {
+        "title": "Nobody counts the downtime",
+        "text": "It is clear the line stood idle, but not for how long, why, or what it cost."
+      },
+      {
+        "title": "Equipment of different generations",
+        "text": "Some machines are modern, some are old, and no overall picture of the shop floor emerges."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Survey",
+        "text": "We look at what the equipment is, what interfaces it has and what can be taken off it at all."
+      },
+      {
+        "title": "Pilot on one area",
+        "text": "We connect a single line and check that the data matches reality."
+      },
+      {
+        "title": "Scaling up",
+        "text": "We connect the rest of the equipment and link it to the accounting system."
+      },
+      {
+        "title": "Dashboards and reports",
+        "text": "We build what people actually look at: line status, downtime, output per shift."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Our equipment is old — can anything be taken off it at all?",
+        "answer": "Often yes — through a controller, meters or external sensors, even if the machine has no modern interface. The survey gives the answer: sometimes recording the fact of running and stopping is enough, and that already answers the main question about downtime."
+      },
+      {
+        "question": "Will this interfere with the line?",
+        "answer": "Data collection is read-only and does not affect the process. Work that requires a stop — fitting sensors or connecting to a controller — is scheduled for planned shutdowns."
+      },
+      {
+        "question": "Do we have to connect everything at once?",
+        "answer": "No, and you should not. We start with one area where the effect shows soonest, confirm that the figures match reality, and only then go further."
+      },
+      {
+        "question": "Who owns the data collected?",
+        "answer": "You do. The data is stored inside your network or on your server, the formats are open and an export is available at any time. We do not propose solutions you cannot take your own figures out of."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Survey of equipment and protocols",
+          "Data collection from one area",
+          "Figures fed into the accounting system",
+          "A line status dashboard",
+          "Shift report"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 8 weeks",
+        "features": [
+          "Scaling up to the whole shop floor",
+          "Control-room dashboards by area",
+          "Alerts on stoppages",
+          "Reporting by equipment",
+          "Training for the control room"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 12 weeks",
+        "features": [
+          "Several shops and sites",
+          "Integration with accounting and planning",
+          "History of readings and analytics",
+          "Redundant data collection",
+          "Support and ongoing development"
+        ]
+      }
+    ]
   }
 }
