@@ -6,7 +6,7 @@ import { CursorFollower } from "@/components/layout/cursor-follower";
 import { StructuredData } from "@/components/seo/structured-data";
 import { SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
-import "./globals.css";
+import "../globals.css";
 
 const manrope = Manrope({
   subsets: ["latin", "cyrillic"],

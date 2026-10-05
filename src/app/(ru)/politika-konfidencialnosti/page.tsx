@@ -6,7 +6,7 @@ import { SiteShell } from "@/components/layout/site-shell";
 import { SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 import { formatPostDate } from "@/lib/blog/types";
-import privacy from "../../../content/privacy.json";
+import privacy from "../../../../content/privacy.json";
 
 // Текст политики лежит в content/privacy.json, а не в messages/ru.json, по той же
 // причине, что и тексты страниц услуг: каталог целиком уезжает в каждую страницу
