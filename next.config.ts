@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
   devIndicators: false,
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
+    // Одна 404 на оба корневых макета, (ru) и (intl): без этого в out/404.html
+    // попадает заглушка Next без стилей. См. src/app/global-not-found.tsx.
+    globalNotFound: true,
   },
   images: {
     // The export target has no image optimizer server, so images are served as-is.

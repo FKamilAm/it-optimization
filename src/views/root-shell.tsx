@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Manrope, Unbounded } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { CursorFollower } from "@/components/layout/cursor-follower";
@@ -18,6 +17,7 @@ import {
 } from "@/i18n/config";
 import { SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
+import { manrope, unbounded } from "@/views/fonts";
 import "../app/globals.css";
 
 /**
@@ -29,19 +29,6 @@ import "../app/globals.css";
  * адреса и локаль узнать не может. Два макета, одна оболочка — иначе правка
  * шапки делалась бы дважды и однажды разошлась бы.
  */
-
-const manrope = Manrope({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-manrope",
-  display: "swap",
-});
-
-const unbounded = Unbounded({
-  subsets: ["latin", "cyrillic"],
-  weight: ["900"],
-  variable: "--font-unbounded",
-  display: "swap",
-});
 
 /**
  * Метаданные корня для локали.
