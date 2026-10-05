@@ -21,6 +21,7 @@ import { DRAFT_SERVICES, RELATED_SERVICES } from "@/lib/constants";
 import type { ServicePage } from "@/lib/services/types";
 import type { BlogPost } from "@/lib/blog";
 import { cn, typographicNbsp } from "@/lib/utils";
+import { usePaths } from "@/i18n/use-paths";
 
 // Service page key → dedicated 3D hero visual. Every service has its own scene.
 const HERO_VISUAL: Partial<Record<string, ServiceHeroVariant>> = {
@@ -78,6 +79,7 @@ export function ServicePageContent({
   articles: BlogPost[];
 }) {
   const c = useTranslations("servicePages.common");
+  const paths = usePaths();
   const service = useTranslations("services.items");
   const blog = useTranslations("blog");
   const { openContactModal } = useContactModal();
@@ -249,7 +251,7 @@ export function ServicePageContent({
               />
               <li>
                 <a
-                  href="/uslugi/"
+                  href={paths.services}
                   className={cn(
                     "cursor-pointer transition-colors",
                     lightHero ? "hover:text-foreground" : "hover:text-white",
@@ -363,7 +365,7 @@ export function ServicePageContent({
                   </button>
                 )}
                 <a
-                  href="/uslugi/"
+                  href={paths.services}
                   className={cn(
                     "hover:border-accent hover:text-accent inline-flex h-14 w-full cursor-pointer items-center justify-center gap-2 rounded-full border px-8 text-base font-medium transition-colors duration-300 sm:w-auto",
                     lightHero
@@ -772,7 +774,7 @@ export function ServicePageContent({
               {articles.map((post) => (
                 <div key={post.slug} className="h-full">
                   <Link
-                    href={`/blog/${post.slug}/`}
+                    href={paths.post(post.slug)}
                     className="group border-border bg-background hover:border-accent focus-visible:outline-accent flex h-full flex-col overflow-hidden rounded-2xl border transition-[border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_0_38px_rgba(180,224,45,0.22)] focus-visible:outline-2 focus-visible:outline-offset-2"
                   >
                     <div className="bg-surface relative aspect-[16/10] overflow-hidden">

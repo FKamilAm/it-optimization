@@ -6,6 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { ServiceCard } from "@/components/sections/service-card";
 import { HOME_SERVICE_KEYS } from "@/lib/constants";
+import { usePaths } from "@/i18n/use-paths";
 
 /**
  * Витрина услуг на главной. Показывает четыре направления из
@@ -14,6 +15,7 @@ import { HOME_SERVICE_KEYS } from "@/lib/constants";
  */
 export function ServicesSection() {
   const t = useTranslations("services");
+  const paths = usePaths();
 
   return (
     <section id="services" className="surface-light section-padding relative">
@@ -23,7 +25,7 @@ export function ServicesSection() {
             <h2 className="heading-section max-w-3xl">{t("title")}</h2>
           </Reveal>
           <Link
-            href="/uslugi/"
+            href={paths.services}
             className="group/all border-foreground bg-foreground text-background hover:text-accent-foreground focus-visible:outline-accent relative inline-flex h-12 shrink-0 cursor-pointer items-center gap-2 overflow-hidden rounded-full border px-6 text-base font-medium transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             <span

@@ -10,6 +10,7 @@ import { useContactModal } from "@/components/providers/contact-modal-provider";
 import { Button } from "@/components/ui/button";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 import { SITE } from "@/lib/constants";
+import { usePaths } from "@/i18n/use-paths";
 
 interface FullscreenMenuProps {
   open: boolean;
@@ -26,6 +27,7 @@ export function FullscreenMenu({
   sectionPrefix = "",
 }: FullscreenMenuProps) {
   const t = useTranslations();
+  const paths = usePaths();
   const { scrollToSection } = useSmoothScroll();
   const { openContactModal } = useContactModal();
 
@@ -66,8 +68,8 @@ export function FullscreenMenu({
     { key: "home", href: `${sectionPrefix}#home`, page: false },
     { key: "process", href: `${sectionPrefix}#process`, page: false },
     { key: "services", href: `${sectionPrefix}#services`, page: false },
-    { key: "projects", href: "/proekty/", page: true },
-    { key: "blog", href: "/blog/", page: true },
+    { key: "projects", href: paths.projects, page: true },
+    { key: "blog", href: paths.blog, page: true },
     { key: "faq", href: `${sectionPrefix}#faq`, page: false },
     { key: "contact", href: `${sectionPrefix}#contact`, page: false },
   ];

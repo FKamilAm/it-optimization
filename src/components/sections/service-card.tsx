@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { SERVICE_PAGES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { usePaths } from "@/i18n/use-paths";
 
 /**
  * Homepage-style service card — shared by the homepage services grid, the
@@ -27,6 +28,7 @@ export function ServiceCard({
   headingAs?: "h2" | "h3";
 }) {
   const t = useTranslations("services");
+  const paths = usePaths();
   const tags = t.raw(`items.${serviceKey}.tags`) as string[];
   const isDark = index % 3 === 1;
   const pageSlug = SERVICE_PAGES[serviceKey];
@@ -42,7 +44,7 @@ export function ServiceCard({
   return (
     <TiltCard
       as="a"
-      href={`/uslugi/${pageSlug}/`}
+      href={paths.service(serviceKey)}
       aria-label={t(`items.${serviceKey}.title`)}
       max={2.5}
       data-cursor="dark"

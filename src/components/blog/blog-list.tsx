@@ -7,9 +7,11 @@ import { ArrowUpRight, ChevronRight, Clock } from "lucide-react";
 import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { ContactSection } from "@/components/sections/contact-section";
 import { formatPostDate, formatReadingTime, type BlogPost } from "@/lib/blog";
+import { usePaths } from "@/i18n/use-paths";
 
 export function BlogList({ posts }: { posts: BlogPost[] }) {
   const t = useTranslations("blog");
+  const paths = usePaths();
 
   return (
     <>
@@ -40,7 +42,7 @@ export function BlogList({ posts }: { posts: BlogPost[] }) {
             {posts.map((post) => (
               <article key={post.slug} className="h-full">
                 <Link
-                  href={`/blog/${post.slug}/`}
+                  href={paths.post(post.slug)}
                   className="group border-border bg-background hover:border-accent focus-visible:outline-accent flex h-full flex-col overflow-hidden rounded-2xl border transition-[border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_0_38px_rgba(180,224,45,0.22)] focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
                   <div className="bg-surface relative aspect-[16/10] overflow-hidden">

@@ -8,9 +8,11 @@ import { StaggerReveal } from "@/components/animations/reveal";
 import { CaseLightbox } from "@/components/sections/case-lightbox";
 import { ProjectCard } from "@/components/sections/project-card";
 import type { CaseItem } from "@/lib/cases";
+import { usePaths } from "@/i18n/use-paths";
 
 export function SolutionsSection({ cases }: { cases: CaseItem[] }) {
   const t = useTranslations("solutions");
+  const paths = usePaths();
   const [openCase, setOpenCase] = useState<CaseItem | null>(null);
 
   return (
@@ -22,7 +24,7 @@ export function SolutionsSection({ cases }: { cases: CaseItem[] }) {
             <p className="body-large text-muted-foreground mt-6">{t("description")}</p>
           </div>
           <Link
-            href="/proekty/"
+            href={paths.projects}
             className="group/all border-foreground bg-foreground text-background hover:text-accent-foreground focus-visible:outline-accent relative inline-flex h-12 shrink-0 cursor-pointer items-center gap-2 overflow-hidden rounded-full border px-6 text-base font-medium transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             <span
