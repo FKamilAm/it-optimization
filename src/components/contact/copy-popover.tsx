@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Check, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -33,6 +34,8 @@ export function CopyPopover({
   placement = "top",
   className,
 }: CopyPopoverProps) {
+  const t = useTranslations("contact.copy");
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.94, y: placement === "top" ? 6 : 0 }}
@@ -62,7 +65,7 @@ export function CopyPopover({
         className="mt-3 w-full"
       >
         {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-        {copied ? "Скопировано" : "Скопировать данные"}
+        {copied ? t("done") : t("action")}
       </Button>
     </motion.div>
   );

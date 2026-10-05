@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
@@ -16,6 +17,7 @@ interface CaseLightboxProps {
 }
 
 export function CaseLightbox({ src, srcMobile, alt, onClose }: CaseLightboxProps) {
+  const t = useTranslations();
   const panelRef = useRef<HTMLDivElement>(null);
   // Portal to <body> so the overlay escapes the section's `content-visibility`
   // containment (otherwise `position: fixed` is trapped inside the section and
@@ -70,7 +72,7 @@ export function CaseLightbox({ src, srcMobile, alt, onClose }: CaseLightboxProps
           {/* Darkened, blurred backdrop — click anywhere to dismiss. */}
           <motion.button
             type="button"
-            aria-label="Закрыть"
+            aria-label={t("a11y.close")}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -83,7 +85,7 @@ export function CaseLightbox({ src, srcMobile, alt, onClose }: CaseLightboxProps
           <button
             type="button"
             onClick={onClose}
-            aria-label="Закрыть"
+            aria-label={t("a11y.close")}
             className="absolute top-4 right-4 z-20 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:top-6 sm:right-6 sm:h-12 sm:w-12"
           >
             <X className="h-5 w-5 sm:h-6 sm:w-6" />

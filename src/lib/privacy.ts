@@ -1,7 +1,7 @@
 import ru from "../../content/privacy.json";
 import en from "../../content/translations/privacy.en.json";
 import es from "../../content/translations/privacy.es.json";
-import { DEFAULT_LOCALE, LOCALE_OG, type Locale } from "@/i18n/config";
+import { DEFAULT_LOCALE, type Locale } from "@/i18n/config";
 import { formatPostDate } from "@/lib/blog/types";
 
 /**
@@ -51,21 +51,9 @@ export function getPrivacy(locale: Locale): PrivacyDocument {
 
   return {
     updatedAt: ru.updatedAt,
-    updatedLabel: translation
-      ? formatDate(ru.updatedAt, locale)
-      : formatPostDate(ru.updatedAt),
+    // Непереведённая страница показывает русский текст — и дату по-русски.
+    updatedLabel: formatPostDate(ru.updatedAt, translation ? locale : DEFAULT_LOCALE),
     notice: translation?.notice,
     sections: translation?.sections ?? (ru.sections as PrivacySection[]),
   };
-}
-
-// «September 3, 2026», «3 de septiembre de 2026». Русская дата идёт через
-// formatPostDate, как в блоге: Intl дописал бы к ней «г.».
-function formatDate(isoDate: string, locale: Locale): string {
-  return new Intl.DateTimeFormat(LOCALE_OG[locale].replace("_", "-"), {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(new Date(`${isoDate.slice(0, 10)}T00:00:00Z`));
 }

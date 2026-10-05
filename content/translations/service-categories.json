@@ -1,0 +1,11 @@
+{
+  "_": "Названия разделов каталога услуг на английском и испанском. Русские живут в content/service-catalog.json, где их правит /panel; здесь — перевод, по тому же принципу, что и content/slugs.json. Раздел, заведённый в панели без перевода, показывается по-русски, а scripts/check-translations.mjs называет его поимённо.",
+  "sites": { "en": "Websites", "es": "Sitios web" },
+  "products": { "en": "Platforms and apps", "es": "Plataformas y aplicaciones" },
+  "automation": { "en": "Automation", "es": "Automatización" },
+  "design": { "en": "Design", "es": "Diseño" },
+  "itInfra": { "en": "Infrastructure", "es": "Infraestructura" },
+  "infosec": { "en": "Security", "es": "Seguridad" },
+  "business": { "en": "Business systems", "es": "Sistemas empresariales" },
+  "audit": { "en": "Audit and support", "es": "Auditoría y soporte" }
+}

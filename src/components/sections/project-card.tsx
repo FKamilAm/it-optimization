@@ -2,6 +2,7 @@
 
 import { type KeyboardEvent } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Maximize2 } from "lucide-react";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { formatTags, type CaseItem } from "@/lib/cases";
@@ -14,6 +15,7 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ item, index, onOpen }: ProjectCardProps) {
+  const t = useTranslations("cases");
   const { title, description, quote, tags, cover } = item;
 
   const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
@@ -31,7 +33,7 @@ export function ProjectCard({ item, index, onOpen }: ProjectCardProps) {
       tabIndex={0}
       onClick={onOpen}
       onKeyDown={handleKeyDown}
-      aria-label={`Открыть кейс: ${title}`}
+      aria-label={t("openCase", { title })}
       data-cursor="hover"
       className="group border-border/70 bg-background hover:border-accent/60 focus-visible:ring-accent/70 focus-visible:ring-offset-background relative flex h-full cursor-pointer flex-col rounded-[2rem] border p-4 transition-[border-color,box-shadow] duration-500 hover:shadow-[0_30px_75px_rgba(0,0,0,0.14)] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none md:p-5 lg:p-6"
     >
@@ -51,7 +53,7 @@ export function ProjectCard({ item, index, onOpen }: ProjectCardProps) {
         <span className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex items-end justify-center pb-6">
           <span className="inline-flex translate-y-2 items-center gap-2 rounded-full border border-white/25 bg-black/55 px-4 py-2 text-sm font-medium text-white opacity-0 backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             <Maximize2 className="h-4 w-4" />
-            Открыть
+            {t("open")}
           </span>
         </span>
       </div>

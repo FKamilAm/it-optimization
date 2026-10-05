@@ -2,7 +2,6 @@ export {
   countPostsByService,
   estimateReadingTime,
   formatPostDate,
-  formatReadingTime,
   otherPosts,
   postsForService,
   type BlogPost,

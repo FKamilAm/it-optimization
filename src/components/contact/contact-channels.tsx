@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ComponentType } from "react";
 import { AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Mail, Phone } from "lucide-react";
 import { MaxIcon, TelegramIcon, WhatsAppIcon } from "@/components/icons/brand-icons";
 import { CopyPopover } from "@/components/contact/copy-popover";
@@ -48,6 +49,7 @@ export function ContactChannels({
   message,
   onNavigate,
 }: ContactChannelsProps) {
+  const t = useTranslations("contact.channels");
   const [openKey, setOpenKey] = useState<ContactChannelKey | null>(null);
   const { copied, copy } = useCopy();
   const rootRef = useRef<HTMLDivElement>(null);
@@ -89,7 +91,7 @@ export function ContactChannels({
             </span>
             <span className="flex min-w-0 flex-col">
               <span className="text-foreground text-base font-medium">
-                {channel.label}
+                {t(channel.key)}
               </span>
               <span className="text-muted-foreground truncate text-sm">
                 {channel.value}
@@ -114,7 +116,7 @@ export function ContactChannels({
               <AnimatePresence>
                 {isOpen && (
                   <CopyPopover
-                    label={channel.label}
+                    label={t(channel.key)}
                     value={channel.value}
                     copied={copied}
                     onCopy={() => copy(channel.value)}

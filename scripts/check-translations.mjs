@@ -22,6 +22,7 @@ const cases = await read("content/cases.json");
 const privacy = await read("content/privacy.json");
 const catalog = await read("content/service-catalog.json");
 const catalogKeys = new Set(catalog.services.map((s) => s.key));
+const categoryTitles = await read("content/translations/service-categories.json");
 
 const problems = [];
 const note = (locale, where, text) => problems.push(`${locale} · ${where}: ${text}`);
@@ -127,6 +128,15 @@ for (const locale of ["en", "es"]) {
     if (CYRILLIC.test(JSON.stringify(tr))) note(locale, `кейс ${slug}`, "кириллица");
   }
   console.log(`${locale}: кейсов ${Object.keys(tc).length}/${cases.length}`);
+
+  // ------------------------------------------------------- разделы каталога
+  // Раздел заводится в панели, и перевода у него поначалу нет — на /en/ его
+  // кнопка-фильтр выйдет по-русски. Ровно так и вышло с первыми восемью.
+  for (const category of catalog.categories) {
+    const title = categoryTitles[category.key]?.[locale];
+    if (!title) note(locale, `раздел ${category.key}`, `нет перевода для «${category.title}»`);
+    else if (CYRILLIC.test(title)) note(locale, `раздел ${category.key}`, "кириллица");
+  }
 
   // -------------------------------------------------------------- политика
   // Документ юридический, поэтому сверяется по блокам: пропавший пункт в

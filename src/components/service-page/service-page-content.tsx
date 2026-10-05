@@ -84,6 +84,7 @@ export function ServicePageContent({
   const service = useTranslations("services.items");
   const money = useMoneyText("services.items");
   const blog = useTranslations("blog");
+  const caseNav = useTranslations("cases");
   const { openContactModal } = useContactModal();
   const { scrollToSection } = useSmoothScroll();
 
@@ -458,7 +459,7 @@ export function ServicePageContent({
               <button
                 type="button"
                 onClick={goPrev}
-                aria-label="Предыдущий кейс"
+                aria-label={caseNav("prev")}
                 className="group/arrow bg-surface hover:border-accent hover:text-accent-foreground absolute top-1/2 left-0 z-20 hidden h-16 w-16 -translate-y-1/2 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-white/20 text-white transition-colors duration-300 lg:-left-7 lg:flex"
               >
                 <span
@@ -470,7 +471,7 @@ export function ServicePageContent({
               <button
                 type="button"
                 onClick={goNext}
-                aria-label="Следующий кейс"
+                aria-label={caseNav("next")}
                 className="group/arrow bg-surface hover:border-accent hover:text-accent-foreground absolute top-1/2 right-0 z-20 hidden h-16 w-16 -translate-y-1/2 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-white/20 text-white transition-colors duration-300 lg:-right-7 lg:flex"
               >
                 <span
@@ -490,7 +491,7 @@ export function ServicePageContent({
                 key={item.slug}
                 type="button"
                 onClick={() => goToReal(i)}
-                aria-label={`Кейс ${i + 1}`}
+                aria-label={caseNav("goTo", { number: i + 1 })}
                 aria-current={i === realIndex}
                 className={cn(
                   "h-1.5 cursor-pointer rounded-full transition-all duration-300",
@@ -508,8 +509,8 @@ export function ServicePageContent({
         {hasSlider && (
           <div className="mt-6 flex justify-center gap-4 lg:hidden">
             {[
-              { label: "Предыдущий кейс", onClick: goPrev, Icon: ChevronLeft },
-              { label: "Следующий кейс", onClick: goNext, Icon: ChevronRight },
+              { label: caseNav("prev"), onClick: goPrev, Icon: ChevronLeft },
+              { label: caseNav("next"), onClick: goNext, Icon: ChevronRight },
             ].map(({ label, onClick, Icon }) => (
               <button
                 key={label}

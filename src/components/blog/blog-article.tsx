@@ -7,7 +7,7 @@ import { ArrowLeft, ArrowUpRight, Check, ChevronRight, Clock } from "lucide-reac
 import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { ContactSection } from "@/components/sections/contact-section";
 import { ServiceCard } from "@/components/sections/service-card";
-import { formatPostDate, formatReadingTime, type BlogPost } from "@/lib/blog";
+import { formatPostDate, type BlogPost } from "@/lib/blog";
 import { cn } from "@/lib/utils";
 import { usePaths } from "@/i18n/use-paths";
 
@@ -63,11 +63,11 @@ export function BlogArticle({
                 <span className="border-border bg-muted text-foreground rounded-full border px-3 py-1 text-xs font-medium tracking-[0.12em] uppercase">
                   {post.category}
                 </span>
-                <span>{formatPostDate(post.publishedAt)}</span>
+                <span>{formatPostDate(post.publishedAt, paths.locale)}</span>
                 <span className="text-border">•</span>
                 <span className="inline-flex items-center gap-1.5">
                   <Clock className="h-3.5 w-3.5" aria-hidden="true" />
-                  {formatReadingTime(post.readingTime)}
+                  {t("readingTime", { minutes: post.readingTime })}
                 </span>
               </div>
             </Reveal>

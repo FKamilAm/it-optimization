@@ -540,7 +540,8 @@
     "servicesTitle": "Déjanoslo a nosotros",
     "servicesSubtitle": "Una cosa es entenderlo y otra tenerlo construido y funcionando. Estas son las áreas en las que resolvemos los problemas de los que habla este artículo.",
     "ctaTitle": "¿Necesitas ayuda con un proyecto así?",
-    "ctaSubtitle": "Cuéntanos el problema: lo estudiamos sin coste y te proponemos una forma de trabajar, un precio y unos plazos."
+    "ctaSubtitle": "Cuéntanos el problema: lo estudiamos sin coste y te proponemos una forma de trabajar, un precio y unos plazos.",
+    "readingTime": "{minutes} min"
   },
   "technologies": {
     "eyebrow": "Stack",
@@ -669,6 +670,17 @@
       "title": "Escríbenos",
       "subtitle": "Deja tu consulta en el canal que prefieras: hablamos de los detalles y proponemos formato y plazos.",
       "close": "Cerrar"
+    },
+    "channels": {
+      "telegram": "Telegram",
+      "whatsapp": "WhatsApp",
+      "max": "MAX",
+      "phone": "Teléfono",
+      "email": "Correo"
+    },
+    "copy": {
+      "action": "Copiar datos",
+      "done": "Copiado"
     }
   },
   "footer": {
@@ -697,7 +709,8 @@
     "skipToContent": "Ir al contenido",
     "mainNav": "Navegación principal",
     "openMenu": "Abrir menú",
-    "logo": "IT Optimization — ir al inicio"
+    "logo": "IT Optimization — ir al inicio",
+    "close": "Cerrar"
   },
   "servicePages": {
     "common": {
@@ -724,5 +737,16 @@
       "relatedTitle": "Servicios relacionados",
       "relatedArticlesTitle": "En el blog"
     }
+  },
+  "cases": {
+    "open": "Abrir",
+    "openCase": "Abrir caso: {title}",
+    "prev": "Caso anterior",
+    "next": "Caso siguiente",
+    "goTo": "Caso {number}"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "home": "Volver al inicio"
   }
 }

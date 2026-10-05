@@ -1,4 +1,6 @@
 import serviceCatalog from "../../content/service-catalog.json";
+import categoryTranslations from "../../content/translations/service-categories.json";
+import { DEFAULT_LOCALE, type Locale } from "@/i18n/config";
 
 export const SITE = {
   name: "Айти-Оптимизация",
@@ -40,10 +42,11 @@ export const ORG = {
 //   action "link" — open the target directly (works well for Telegram / WhatsApp)
 //   action "copy" — show a small popover with the value + "copy" button
 //                   (better for phone, e-mail and MAX, which has no chat link)
+// Labels live in the catalog (contact.channels.<key>), not here: «Телефон» on
+// the English site was exactly a label hardcoded in this list.
 export const CONTACT_CHANNELS = [
   {
     key: "telegram",
-    label: "Telegram",
     value: "@dujaii",
     href: SITE.telegram,
     external: true,
@@ -51,7 +54,6 @@ export const CONTACT_CHANNELS = [
   },
   {
     key: "whatsapp",
-    label: "WhatsApp",
     value: "+7 996 326-61-61",
     href: SITE.whatsapp,
     external: true,
@@ -59,7 +61,6 @@ export const CONTACT_CHANNELS = [
   },
   {
     key: "max",
-    label: "MAX",
     value: "+7 996 326-61-61",
     href: SITE.max,
     external: false,
@@ -67,7 +68,6 @@ export const CONTACT_CHANNELS = [
   },
   {
     key: "phone",
-    label: "Телефон",
     value: "+7 993 726-60-61",
     href: `tel:${SITE.phone}`,
     external: false,
@@ -75,7 +75,6 @@ export const CONTACT_CHANNELS = [
   },
   {
     key: "email",
-    label: "Email",
     value: SITE.email,
     href: `mailto:${SITE.email}`,
     external: false,
@@ -175,6 +174,22 @@ const CATALOG = serviceCatalog as {
 
 /** Разделы каталога в порядке показа. Раздел — фильтр на /uslugi/, не маршрут. */
 export const SERVICE_CATEGORIES = CATALOG.categories;
+
+const CATEGORY_TITLES = categoryTranslations as Record<
+  string,
+  Partial<Record<Locale, string>>
+>;
+
+/**
+ * Название раздела на языке страницы. Русское живёт в каталоге и правится в
+ * панели, переводы — в content/translations/service-categories.json. Раздел,
+ * заведённый в панели без перевода, показывается по-русски: кнопка с русской
+ * подписью лучше пропавшей кнопки.
+ */
+export function categoryTitle(key: string, locale: Locale): string {
+  const ru = SERVICE_CATEGORIES.find((category) => category.key === key)?.title ?? key;
+  return locale === DEFAULT_LOCALE ? ru : (CATEGORY_TITLES[key]?.[locale] ?? ru);
+}
 
 /**
  * Ключ услуги → слуг её страницы (/uslugi/…). Перечень всех страниц, включая

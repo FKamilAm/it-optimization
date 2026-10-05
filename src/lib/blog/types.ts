@@ -9,6 +9,8 @@
  * туда редактируемый контент значило бы тащить тело всех статей в бандл
  * главной. Теперь статья — данные, ровно как кейс.
  */
+import { DEFAULT_LOCALE, LOCALE_OG, type Locale } from "@/i18n/config";
+
 export interface BlogSection {
   heading: string;
   /** Абзацы. Хранятся списком, а не одной строкой с переносами. */
@@ -70,16 +72,27 @@ const MONTHS = [
  * «2026-07-18» → «18 июля 2026». Дата выводится, а не хранится второй строкой:
  * пока их было две, ничто не мешало им разъехаться, а в панели пришлось бы
  * просить владельца писать месяц словом.
+ *
+ * На других языках — по правилам языка через Intl: «July 18, 2026»,
+ * «18 de julio de 2026». Русская дата собирается руками, потому что Intl
+ * дописал бы к ней «г.».
  */
-export function formatPostDate(publishedAt: string): string {
+export function formatPostDate(
+  publishedAt: string,
+  locale: Locale = DEFAULT_LOCALE,
+): string {
   const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(publishedAt.slice(0, 10));
   if (!match) return publishedAt;
   const [, year, month, day] = match;
+  if (locale !== DEFAULT_LOCALE) {
+    return new Intl.DateTimeFormat(LOCALE_OG[locale].replace("_", "-"), {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      timeZone: "UTC",
+    }).format(new Date(Date.UTC(Number(year), Number(month) - 1, Number(day))));
+  }
   return `${Number(day)} ${MONTHS[Number(month) - 1]} ${year}`;
-}
-
-export function formatReadingTime(minutes: number): string {
-  return `${minutes} мин`;
 }
 
 /**

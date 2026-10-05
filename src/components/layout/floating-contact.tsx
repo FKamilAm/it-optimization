@@ -91,7 +91,7 @@ export function FloatingContact() {
                       role="menuitem"
                       onClick={() => setCopyKey(isOpen ? null : channel.key)}
                       aria-expanded={isOpen}
-                      aria-label={channel.label}
+                      aria-label={t(`contact.channels.${channel.key}`)}
                       data-cursor="dark"
                       className={cn(
                         BUBBLE_CLASS,
@@ -103,7 +103,7 @@ export function FloatingContact() {
                     <AnimatePresence>
                       {isOpen && (
                         <CopyPopover
-                          label={channel.label}
+                          label={t(`contact.channels.${channel.key}`)}
                           value={channel.value}
                           copied={copied}
                           onCopy={() => copy(channel.value)}
@@ -126,7 +126,7 @@ export function FloatingContact() {
                   onClick={() => setOpen(false)}
                   data-cursor="dark"
                   className={BUBBLE_CLASS}
-                  aria-label={channel.label}
+                  aria-label={t(`contact.channels.${channel.key}`)}
                 >
                   <Icon className="h-[22px] w-[22px]" />
                 </motion.a>

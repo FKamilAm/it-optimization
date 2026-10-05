@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { ArrowUpRight, ChevronRight, Clock } from "lucide-react";
 import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { ContactSection } from "@/components/sections/contact-section";
-import { formatPostDate, formatReadingTime, type BlogPost } from "@/lib/blog";
+import { formatPostDate, type BlogPost } from "@/lib/blog";
 import { usePaths } from "@/i18n/use-paths";
 
 export function BlogList({ posts }: { posts: BlogPost[] }) {
@@ -60,11 +60,11 @@ export function BlogList({ posts }: { posts: BlogPost[] }) {
 
                   <div className="flex flex-1 flex-col p-7 md:p-8">
                     <div className="text-muted-foreground flex items-center gap-3 text-sm">
-                      <span>{formatPostDate(post.publishedAt)}</span>
+                      <span>{formatPostDate(post.publishedAt, paths.locale)}</span>
                       <span className="text-border">•</span>
                       <span className="inline-flex items-center gap-1.5">
                         <Clock className="h-3.5 w-3.5" aria-hidden="true" />
-                        {formatReadingTime(post.readingTime)}
+                        {t("readingTime", { minutes: post.readingTime })}
                       </span>
                     </div>
 

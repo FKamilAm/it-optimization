@@ -8,7 +8,7 @@ import { ContactSection } from "@/components/sections/contact-section";
 import { ServiceCard } from "@/components/sections/service-card";
 import { FaqAccordion, type FaqItem } from "@/components/ui/faq-accordion";
 import { FilterChips, type FilterChipOption } from "@/components/ui/filter-chips";
-import { SERVICE_CATEGORY_NAV, SERVICE_NAV } from "@/lib/constants";
+import { SERVICE_CATEGORY_NAV, SERVICE_NAV, categoryTitle } from "@/lib/constants";
 import { usePaths } from "@/i18n/use-paths";
 
 /**
@@ -33,17 +33,18 @@ export function ServicesHubContent() {
   const [filter, setFilter] = useState<string | null>(null);
 
   // Названия разделов приходят из данных каталога, а не из `messages/ru.json`:
-  // раздел заводится в панели, и подпись должна заводиться там же. Разделы из
-  // одних черновиков `SERVICE_CATEGORY_NAV` уже отбросил.
+  // раздел заводится в панели, и подпись должна заводиться там же. Переводы
+  // подписей — в content/translations/service-categories.json (categoryTitle).
+  // Разделы из одних черновиков `SERVICE_CATEGORY_NAV` уже отбросил.
   const options = useMemo<FilterChipOption[]>(
     () => [
       { value: null, label: t("filterAll") },
       ...SERVICE_CATEGORY_NAV.map((category) => ({
         value: category.key,
-        label: category.title,
+        label: categoryTitle(category.key, paths.locale),
       })),
     ],
-    [t],
+    [t, paths.locale],
   );
 
   const visible = useMemo(() => {

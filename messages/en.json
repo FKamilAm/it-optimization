@@ -540,7 +540,8 @@
     "servicesTitle": "Hand it to us",
     "servicesSubtitle": "Understanding it yourself is one thing; getting it built and working is another. These are the areas where we solve the problems this article is about.",
     "ctaTitle": "Need help with a project like this?",
-    "ctaSubtitle": "Describe the problem — we will look at it free of charge and propose a way of working, a price and a timeline."
+    "ctaSubtitle": "Describe the problem — we will look at it free of charge and propose a way of working, a price and a timeline.",
+    "readingTime": "{minutes} min"
   },
   "technologies": {
     "eyebrow": "Stack",
@@ -669,6 +670,17 @@
       "title": "Write to us",
       "subtitle": "Leave your problem in whichever channel suits you — we will discuss the detail and propose a format and a timeline.",
       "close": "Close"
+    },
+    "channels": {
+      "telegram": "Telegram",
+      "whatsapp": "WhatsApp",
+      "max": "MAX",
+      "phone": "Phone",
+      "email": "Email"
+    },
+    "copy": {
+      "action": "Copy details",
+      "done": "Copied"
     }
   },
   "footer": {
@@ -697,7 +709,8 @@
     "skipToContent": "Skip to content",
     "mainNav": "Main navigation",
     "openMenu": "Open menu",
-    "logo": "IT Optimization — go to homepage"
+    "logo": "IT Optimization — go to homepage",
+    "close": "Close"
   },
   "servicePages": {
     "common": {
@@ -724,5 +737,16 @@
       "relatedTitle": "Related services",
       "relatedArticlesTitle": "From the blog"
     }
+  },
+  "cases": {
+    "open": "Open",
+    "openCase": "Open case study: {title}",
+    "prev": "Previous case study",
+    "next": "Next case study",
+    "goTo": "Case study {number}"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "home": "Back to homepage"
   }
 }
