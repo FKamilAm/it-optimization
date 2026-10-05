@@ -15,8 +15,8 @@ import { getSiteUrl } from "@/lib/site-url";
  * («razrabotka-crm», «crm-development», «desarrollo-crm»), а ключ один на все
  * три и именно он связывает страницу с кейсами, статьями и 3D-сценой.
  */
-export async function requireServicePage(key: string) {
-  const page = await getServicePage(key);
+export async function requireServicePage(key: string, locale: Locale = "ru") {
+  const page = await getServicePage(key, locale);
   if (!page) {
     throw new Error(
       `Услуга «${key}» есть в каталоге, но её нет в content/services.json`,
@@ -32,7 +32,7 @@ export async function ServiceDetailPage({
   locale: Locale;
   serviceKey: string;
 }) {
-  const page = await getServicePage(serviceKey);
+  const page = await getServicePage(serviceKey, locale);
   if (!page) notFound();
 
   const c = await getTranslations({ locale, namespace: "servicePages.common" });

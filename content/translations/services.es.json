@@ -1,0 +1,105 @@
+{
+  "corporate": {
+    "metaTitle": "Desarrollo de sitio corporativo llave en mano",
+    "metaDescription": "Desarrollo de sitio corporativo llave en mano: estructura pensada, diseño a medida, carga rápida, SEO e integraciones. Una web que genera confianza y trae solicitudes. Desde 120 000 ₽.",
+    "breadcrumb": "Desarrollo de sitio corporativo",
+    "h1": "Desarrollo de sitio corporativo",
+    "lead": "Creamos sitios corporativos que generan confianza en la empresa y convierten visitas en solicitudes: estructura pensada, diseño a medida, carga rápida, base de SEO e integraciones con tus sistemas.",
+    "includes": [
+      "Definición de la estructura, las secciones y los recorridos de usuario",
+      "Diseño a medida con tu identidad visual, adaptado a todos los dispositivos",
+      "Maquetación rápida, pensada para la velocidad y el SEO",
+      "Catálogo de servicios, casos, equipo y formularios de contacto",
+      "Integraciones con CRM, mensajerías, analítica y gestor de contenidos",
+      "Alta de dominio y hosting, SEO básico y lanzamiento"
+    ],
+    "forWhom": [
+      {
+        "title": "Empresas y servicios",
+        "text": "Una web que presenta el negocio con solidez y responde las dudas del cliente antes de que llame."
+      },
+      {
+        "title": "Crecimiento y reputación",
+        "text": "Una estructura clara, casos y confianza: la base del tráfico orgánico y de las solicitudes."
+      },
+      {
+        "title": "Sustituir una web anticuada",
+        "text": "Un sitio moderno, rápido y manejable en lugar de uno pesado e incómodo."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing y estructura",
+        "text": "Fijamos los objetivos, el público y el mapa de secciones."
+      },
+      {
+        "title": "Diseño",
+        "text": "Dibujamos las maquetas en torno a tu marca y a los recorridos de tus usuarios."
+      },
+      {
+        "title": "Maquetación e integraciones",
+        "text": "Montamos el sitio y conectamos el gestor, los formularios, el CRM y la analítica."
+      },
+      {
+        "title": "Lanzamiento",
+        "text": "Publicamos, probamos, optimizamos y entregamos los accesos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta un sitio corporativo?",
+        "answer": "Parte de 120 000 ₽ y depende del número de secciones, de la complejidad del diseño y de las integraciones. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿Podré editar yo mismo el contenido?",
+        "answer": "Sí. Conectamos un gestor de contenidos usable para que cambies textos, noticias y secciones sin un desarrollador."
+      },
+      {
+        "question": "¿Estará optimizado para buscadores?",
+        "answer": "Sí. Dejamos una estructura correcta, velocidad, metaetiquetas y datos estructurados: la base para el SEO."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Normalmente desde dos semanas. El plazo exacto depende del volumen de secciones e integraciones."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "price": "desde 120 000 ₽",
+        "deadline": "desde 10 días",
+        "features": [
+          "Sitio llave en mano sobre una base ya preparada",
+          "Diseño adaptado a tu marca",
+          "Hasta 7 páginas con contenido",
+          "Formulario de contacto y SEO básico",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "price": "desde 220 000 ₽",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Diseño a medida para la marca",
+          "Hasta 15 páginas con redacción",
+          "Integración con CRM y mensajerías",
+          "SEO ampliado y analítica",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "price": "desde 400 000 ₽",
+        "deadline": "desde 5 semanas",
+        "features": [
+          "Diseño y animaciones propios",
+          "Estructura y funcionalidad complejas",
+          "Integraciones a medida",
+          "Redacción y contenidos",
+          "Soporte tras el lanzamiento"
+        ]
+      }
+    ]
+  }
+}

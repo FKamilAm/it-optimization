@@ -1,0 +1,105 @@
+{
+  "corporate": {
+    "metaTitle": "Corporate website development, end to end",
+    "metaDescription": "Corporate website development end to end: a considered structure, custom design, fast loading, SEO and integrations. A site that earns trust and brings in enquiries. From ₽120,000.",
+    "breadcrumb": "Corporate website development",
+    "h1": "Corporate website development",
+    "lead": "We build corporate websites that earn trust in the company and turn visitors into enquiries: a considered structure, custom design, fast loading, an SEO foundation and integrations with your systems.",
+    "includes": [
+      "Working out the structure, the sections and the user journeys",
+      "Custom design in your visual identity, responsive on every device",
+      "Fast markup built with page speed and SEO in mind",
+      "Service catalogue, case studies, team, enquiry and contact forms",
+      "Integrations with CRM, messengers, analytics and a content system",
+      "Domain and hosting setup, baseline SEO and launch"
+    ],
+    "forWhom": [
+      {
+        "title": "Companies and services",
+        "text": "A site that presents the business seriously and answers the client's questions before they call."
+      },
+      {
+        "title": "Growth and reputation",
+        "text": "A clear structure, case studies and trust — the basis for organic traffic and enquiries."
+      },
+      {
+        "title": "Replacing an outdated site",
+        "text": "A modern, fast, manageable site instead of a heavy and awkward old one."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief and structure",
+        "text": "We settle the goals, the audience and the map of sections."
+      },
+      {
+        "title": "Design",
+        "text": "We draw the layouts around your brand and your users' journeys."
+      },
+      {
+        "title": "Build and integrations",
+        "text": "We assemble the site and connect the CMS, forms, CRM and analytics."
+      },
+      {
+        "title": "Launch",
+        "text": "We publish, test, optimise and hand over the access."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does a corporate website cost?",
+        "answer": "It starts at ₽120,000 and depends on the number of sections, the complexity of the design and the integrations. We give an exact figure after the brief."
+      },
+      {
+        "question": "Will I be able to edit the content myself?",
+        "answer": "Yes. We connect a content system you can work in, so you can change text, news and sections without a developer."
+      },
+      {
+        "question": "Will the site be optimised for search?",
+        "answer": "Yes. We lay in a correct structure, page speed, meta tags and structured data — the foundation for SEO."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Usually from two weeks. The exact timeline depends on how many sections and integrations there are."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "price": "from ₽120,000",
+        "deadline": "from 10 days",
+        "features": [
+          "Complete site on a ready-made foundation",
+          "Design adapted to your brand",
+          "Up to 7 pages with content",
+          "Enquiry form and baseline SEO",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "price": "from ₽220,000",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Custom design built for the brand",
+          "Up to 15 pages with copywriting",
+          "Integration with CRM and messengers",
+          "Extended SEO and analytics",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "price": "from ₽400,000",
+        "deadline": "from 5 weeks",
+        "features": [
+          "Original design and animation",
+          "Complex structure and functionality",
+          "Custom integrations",
+          "Copywriting and content",
+          "Support after launch"
+        ]
+      }
+    ]
+  }
+}

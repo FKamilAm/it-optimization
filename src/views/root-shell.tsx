@@ -6,6 +6,7 @@ import { CursorFollower } from "@/components/layout/cursor-follower";
 import { LocaleRedirect } from "@/components/layout/locale-redirect";
 import { StructuredData } from "@/components/seo/structured-data";
 import {
+  BRAND_NAME,
   DEFAULT_LOCALE,
   LOCALES,
   LOCALE_HTML_LANG,
@@ -66,7 +67,7 @@ export async function buildRootMetadata(locale: Locale): Promise<Metadata> {
     metadataBase: new URL(siteUrl),
     title: {
       default: t("title"),
-      template: `%s — ${SITE.name}`,
+      template: `%s — ${BRAND_NAME[locale]}`,
     },
     description: t("description"),
     keywords,
@@ -80,7 +81,7 @@ export async function buildRootMetadata(locale: Locale): Promise<Metadata> {
       locale: LOCALE_OG[locale],
       type: "website",
       url,
-      siteName: SITE.name,
+      siteName: BRAND_NAME[locale],
       images: [
         { url: "/og-image.webp", width: 1200, height: 630, alt: t("ogImageAlt") },
       ],

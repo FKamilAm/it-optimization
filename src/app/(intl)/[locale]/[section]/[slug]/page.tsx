@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (resolved === "services") {
     const key = serviceKeyBySlug(slug, locale);
     if (!key) notFound();
-    const page = await requireServicePage(key);
+    const page = await requireServicePage(key, locale);
     return contentMetadata({
       locale,
       title: page.metaTitle,
