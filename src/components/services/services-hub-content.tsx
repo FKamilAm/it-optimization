@@ -9,6 +9,7 @@ import { ServiceCard } from "@/components/sections/service-card";
 import { FaqAccordion, type FaqItem } from "@/components/ui/faq-accordion";
 import { FilterChips, type FilterChipOption } from "@/components/ui/filter-chips";
 import { SERVICE_CATEGORY_NAV, SERVICE_NAV } from "@/lib/constants";
+import { usePaths } from "@/i18n/use-paths";
 
 /**
  * Полный каталог услуг. Главная показывает четыре направления из
@@ -25,6 +26,7 @@ import { SERVICE_CATEGORY_NAV, SERVICE_NAV } from "@/lib/constants";
  */
 export function ServicesHubContent() {
   const t = useTranslations("servicesPage");
+  const paths = usePaths();
   const faq = t.raw("faq") as FaqItem[];
 
   /** Выбранный раздел; null — весь каталог. */
@@ -60,7 +62,7 @@ export function ServicesHubContent() {
             <ol className="text-foreground/50 flex flex-wrap items-center gap-2 text-sm">
               <li>
                 <a
-                  href="/"
+                  href={paths.home}
                   className="hover:text-foreground cursor-pointer transition-colors"
                 >
                   {t("breadcrumbHome")}

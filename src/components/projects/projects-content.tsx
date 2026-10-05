@@ -10,9 +10,11 @@ import { ProjectCard } from "@/components/sections/project-card";
 import { countCasesByService, type CaseItem } from "@/lib/cases";
 import { SERVICE_NAV } from "@/lib/constants";
 import { FilterSelect, type FilterOption } from "@/components/ui/filter-select";
+import { usePaths } from "@/i18n/use-paths";
 
 export function ProjectsContent({ cases }: { cases: CaseItem[] }) {
   const t = useTranslations("projectsPage");
+  const paths = usePaths();
   const services = useTranslations("services.items");
   const [openCase, setOpenCase] = useState<CaseItem | null>(null);
   /** Выбранная услуга; null — весь каталог. */
@@ -46,7 +48,7 @@ export function ProjectsContent({ cases }: { cases: CaseItem[] }) {
             <ol className="text-foreground/50 flex flex-wrap items-center gap-2 text-sm">
               <li>
                 <a
-                  href="/"
+                  href={paths.home}
                   className="hover:text-foreground cursor-pointer transition-colors"
                 >
                   {t("breadcrumbHome")}

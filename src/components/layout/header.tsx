@@ -46,7 +46,7 @@ export function Header({ companyName, sectionPrefix = "" }: HeaderProps) {
       >
         <div className="container-premium relative flex h-[72px] items-center md:h-20">
           <AnchorLink
-            href={sectionPrefix ? "/" : "#home"}
+            href={sectionPrefix ? paths.home : "#home"}
             className="relative z-10 shrink-0"
             aria-label={t("a11y.logo")}
             onClick={() => setMenuOpen(false)}

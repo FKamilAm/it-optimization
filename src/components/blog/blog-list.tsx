@@ -21,7 +21,7 @@ export function BlogList({ posts }: { posts: BlogPost[] }) {
             <ol className="text-foreground/50 flex flex-wrap items-center gap-2 text-sm">
               <li>
                 <a
-                  href="/"
+                  href={paths.home}
                   className="hover:text-foreground cursor-pointer transition-colors"
                 >
                   {t("breadcrumbHome")}

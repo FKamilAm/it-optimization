@@ -7,19 +7,24 @@ import {
   LOCALE_NAMES,
   LOCALE_STORAGE_KEY,
   isLocale,
-  localePath,
   splitLocalePath,
   type Locale,
 } from "@/i18n/config";
+import { translatePath } from "@/i18n/routes";
 import { cn } from "@/lib/utils";
 
 /**
  * Переключатель языка.
  *
- * Ссылки ведут на тот же адрес в другой локали: текущий путь разбирается на
- * префикс и остаток, подставляется новый префикс. Поэтому со страницы услуги
- * посетитель попадает на её же перевод, а не на главную — промах, из-за
- * которого переключателями обычно пользуются один раз.
+ * Ссылки ведут на тот же адрес в другой локали. Это не снятие префикса:
+ * у разделов и страниц свои слуги в каждом языке, и `/en/services/
+ * crm-development/` без настоящего перевода превращается в
+ * `/services/crm-development/` — адрес, которого не существует. Поэтому путь
+ * разбирается в описание страницы и собирается заново на нужном языке
+ * (`translatePath`), и со страницы услуги посетитель попадает на её перевод.
+ *
+ * Страница, у которой перевода нет, уводит на главную нужного языка: это
+ * лучше, чем ссылка в 404.
  *
  * Клик записывает выбор в localStorage, и с этого момента автоопределение
  * языка молчит навсегда (см. `locale-redirect.tsx`). Это и есть главная
@@ -35,7 +40,6 @@ export function LanguageSwitcher({ className }: { className?: string }) {
   const pathname = usePathname();
   const active = useLocale();
   const current: Locale = isLocale(active) ? active : splitLocalePath(pathname).locale;
-  const { path } = splitLocalePath(pathname);
 
   const remember = (locale: Locale) => {
     try {
@@ -57,7 +61,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
         return (
           <a
             key={locale}
-            href={localePath(locale, path)}
+            href={translatePath(pathname, locale)}
             hrefLang={locale}
             lang={locale}
             aria-current={isActive ? "true" : undefined}

@@ -233,7 +233,7 @@ export function ServicePageContent({
             >
               <li>
                 <a
-                  href="/"
+                  href={paths.home}
                   className={cn(
                     "cursor-pointer transition-colors",
                     lightHero ? "hover:text-foreground" : "hover:text-white",

@@ -1,6 +1,12 @@
 import catalog from "../../content/service-catalog.json";
 import slugs from "../../content/slugs.json";
-import { DEFAULT_LOCALE, LOCALES, localePath, type Locale } from "./config";
+import {
+  DEFAULT_LOCALE,
+  LOCALES,
+  localePath,
+  splitLocalePath,
+  type Locale,
+} from "./config";
 
 /**
  * Адреса разделов и страниц на трёх языках.
@@ -124,4 +130,70 @@ export function alternates(build: (locale: Locale) => string): Record<Locale, st
     Locale,
     string
   >;
+}
+
+// ------------------------------------------------- Перевод адреса на другой язык
+
+/** Что за страница перед нами. `unknown` — всё, чему перевода нет (например /panel/). */
+type Resolved =
+  | { kind: "home" }
+  | { kind: "section"; section: Section }
+  | { kind: "service"; key: string }
+  | { kind: "post"; ruSlug: string }
+  | { kind: "unknown" };
+
+/**
+ * Разбирает адрес в описание страницы, не привязанное к языку.
+ *
+ * Нужно переключателю языков. Снять префикс локали недостаточно: у разделов
+ * и страниц свои слуги в каждом языке, и `/en/services/crm-development/` без
+ * перевода превращается в `/services/crm-development/` — адрес, которого не
+ * существует. Ровно так переключатель и ломался везде, кроме главной.
+ */
+export function resolvePath(pathname: string): { locale: Locale; page: Resolved } {
+  const { locale, path } = splitLocalePath(pathname);
+  const parts = path.split("/").filter(Boolean);
+
+  if (parts.length === 0) return { locale, page: { kind: "home" } };
+
+  const section = sectionBySegment(parts[0], locale);
+  if (!section) return { locale, page: { kind: "unknown" } };
+  if (parts.length === 1) return { locale, page: { kind: "section", section } };
+
+  if (section === "services") {
+    const key = serviceKeyBySlug(parts[1], locale);
+    return { locale, page: key ? { kind: "service", key } : { kind: "unknown" } };
+  }
+  if (section === "blog") {
+    const ruSlug = postRuSlugBySlug(parts[1], locale);
+    return { locale, page: ruSlug ? { kind: "post", ruSlug } : { kind: "unknown" } };
+  }
+  return { locale, page: { kind: "unknown" } };
+}
+
+const SECTION_PATH: Record<Section, (locale: Locale) => string> = {
+  services: servicesPath,
+  projects: projectsPath,
+  blog: blogPath,
+  privacy: privacyPath,
+};
+
+/**
+ * Тот же адрес на другом языке. Страница без перевода уводит на главную
+ * нужного языка — это лучше, чем ссылка в 404.
+ */
+export function translatePath(pathname: string, target: Locale): string {
+  const { page } = resolvePath(pathname);
+  switch (page.kind) {
+    case "home":
+      return homePath(target);
+    case "section":
+      return SECTION_PATH[page.section](target);
+    case "service":
+      return servicePath(page.key, target);
+    case "post":
+      return postPath(page.ruSlug, target);
+    default:
+      return homePath(target);
+  }
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/config";
+import { homePath } from "@/i18n/routes";
 
 import { SiteShell } from "@/components/layout/site-shell";
 import { SITE } from "@/lib/constants";
@@ -27,7 +28,7 @@ export async function PrivacyPage({ locale }: { locale: Locale }) {
           <nav aria-label="breadcrumb" className="mb-10">
             <ol className="text-foreground/50 flex flex-wrap items-center gap-2 text-sm">
               <li>
-                <Link href="/" className="hover:text-foreground transition-colors">
+                <Link href={homePath(locale)} className="hover:text-foreground transition-colors">
                   {t("breadcrumbHome")}
                 </Link>
               </li>
