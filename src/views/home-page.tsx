@@ -8,8 +8,7 @@ import { FloatingContact } from "@/components/layout/floating-contact";
 import { SkipLink } from "@/components/layout/skip-link";
 import { HeroSection } from "@/components/sections/hero-section";
 import { getHomeCases } from "@/lib/cases";
-import type { Locale } from "@/i18n/config";
-import { SITE } from "@/lib/constants";
+import { BRAND_NAME, type Locale } from "@/i18n/config";
 
 const AboutSection = dynamic(() =>
   import("@/components/sections/about-section").then((m) => m.AboutSection),
@@ -42,7 +41,7 @@ const ContactSection = dynamic(() =>
 const FAQ_KEYS = ["1", "2", "3", "4", "5", "6", "7", "8"] as const;
 
 export async function HomePage({ locale }: { locale: Locale }) {
-  const companyName = SITE.name;
+  const companyName = BRAND_NAME[locale];
   const cases = await getHomeCases(locale);
   const faq = await getTranslations({ locale, namespace: "faq.items" });
 

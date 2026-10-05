@@ -12,6 +12,7 @@ import {
   LOCALES,
   LOCALE_HTML_LANG,
   LOCALE_OG,
+  OG_IMAGE,
   localePath,
   type Locale,
 } from "@/i18n/config";
@@ -83,15 +84,13 @@ export async function buildRootMetadata(locale: Locale): Promise<Metadata> {
       type: "website",
       url,
       siteName: BRAND_NAME[locale],
-      images: [
-        { url: "/og-image.webp", width: 1200, height: 630, alt: t("ogImageAlt") },
-      ],
+      images: [{ url: OG_IMAGE[locale], width: 1200, height: 630, alt: t("ogImageAlt") }],
     },
     twitter: {
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
-      images: ["/og-image.webp"],
+      images: [OG_IMAGE[locale]],
     },
     robots: {
       index: true,
@@ -142,7 +141,7 @@ export async function RootShell({
         {AUTO_DETECT_LOCALE && locale === DEFAULT_LOCALE && <LocaleRedirect />}
       </head>
       <body className={`${manrope.variable} ${unbounded.variable} font-sans antialiased`}>
-        <StructuredData />
+        <StructuredData locale={locale} />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <CursorFollower />
           {children}

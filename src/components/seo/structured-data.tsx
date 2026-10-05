@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { BRAND_NAME, LOCALE_OG, OG_IMAGE, type Locale } from "@/i18n/config";
 import { ORG, PROFILES, SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -11,15 +12,21 @@ import { getSiteUrl } from "@/lib/site-url";
  * разметка контента, которого на странице нет, а на страницах услуг она
  * сталкивалась со второй, настоящей FAQPage. Теперь блок вопросов объявляет
  * себя сам — там, где он действительно есть.
+ *
+ * Язык передаётся явно: без него getTranslations в корневом макете отдавал
+ * русский каталог, и английская страница описывала себя по-русски, с
+ * inLanguage "ru-RU". Адрес и юридическое название не переводятся — это
+ * реквизиты, а не текст.
  */
-export async function StructuredData() {
+export async function StructuredData({ locale }: { locale: Locale }) {
   const siteUrl = getSiteUrl();
-  const meta = await getTranslations("meta");
+  const meta = await getTranslations({ locale, namespace: "meta" });
+  const name = BRAND_NAME[locale];
 
   const organization = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: SITE.name,
+    name,
     legalName: ORG.legalName,
     url: siteUrl,
     logo: `${siteUrl}/LOGO.svg`,
@@ -39,18 +46,18 @@ export async function StructuredData() {
   const website = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: SITE.name,
+    name,
     url: siteUrl,
     description: meta("description"),
-    inLanguage: "ru-RU",
+    inLanguage: LOCALE_OG[locale].replace("_", "-"),
   };
 
   const professionalService = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: SITE.name,
+    name,
     url: siteUrl,
-    image: `${siteUrl}/og-image.webp`,
+    image: `${siteUrl}${OG_IMAGE[locale]}`,
     description: meta("description"),
     telephone: ORG.phone,
     email: SITE.email,

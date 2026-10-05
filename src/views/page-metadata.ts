@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { BRAND_NAME, LOCALE_OG, type Locale } from "@/i18n/config";
+import { BRAND_NAME, LOCALE_OG, OG_IMAGE, type Locale } from "@/i18n/config";
 import { alternates } from "@/i18n/routes";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -50,7 +50,7 @@ export async function pageMetadata({
       type: "website",
       locale: LOCALE_OG[locale],
       siteName: BRAND_NAME[locale],
-      images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
+      images: [{ url: OG_IMAGE[locale], width: 1200, height: 630 }],
     },
   };
 }
@@ -90,7 +90,7 @@ export function contentMetadata({
       type: "website",
       locale: LOCALE_OG[locale],
       siteName: BRAND_NAME[locale],
-      images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
+      images: [{ url: OG_IMAGE[locale], width: 1200, height: 630 }],
     },
   };
 }

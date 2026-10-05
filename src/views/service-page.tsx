@@ -2,13 +2,12 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { SiteShell } from "@/components/layout/site-shell";
 import { ServicePageContent } from "@/components/service-page/service-page-content";
-import type { Locale } from "@/i18n/config";
+import { BRAND_NAME, type Locale } from "@/i18n/config";
 import { homePath, servicePath, servicesPath } from "@/i18n/routes";
 import { getPostsForService } from "@/lib/blog";
 import { getAllCases } from "@/lib/cases";
 import { getServicePage, tariffPriceRange } from "@/lib/services";
 import { CURRENCY } from "@/lib/money";
-import { SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 
 /**
@@ -19,9 +18,7 @@ import { getSiteUrl } from "@/lib/site-url";
 export async function requireServicePage(key: string, locale: Locale = "ru") {
   const page = await getServicePage(key, locale);
   if (!page) {
-    throw new Error(
-      `Услуга «${key}» есть в каталоге, но её нет в content/services.json`,
-    );
+    throw new Error(`Услуга «${key}» есть в каталоге, но её нет в content/services.json`);
   }
   return page;
 }
@@ -53,7 +50,7 @@ export async function ServiceDetailPage({
       serviceType: page.breadcrumb,
       description: page.metaDescription,
       url,
-      provider: { "@type": "Organization", name: SITE.name, url: siteUrl },
+      provider: { "@type": "Organization", name: BRAND_NAME[locale], url: siteUrl },
       areaServed: { "@type": "Country", name: "Россия" },
       ...(offers ? { offers } : {}),
     },

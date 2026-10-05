@@ -110,6 +110,17 @@ export const BRAND_NAME: Record<Locale, string> = {
 };
 
 /**
+ * Картинка превью ссылки (OpenGraph). На ней логотип, а надпись в логотипе
+ * следует языку — как и в шапке, см. components/layout/logo.tsx. Обе
+ * картинки собирает scripts/generate-og.mjs перед каждой сборкой.
+ */
+export const OG_IMAGE: Record<Locale, string> = {
+  ru: "/og-image.webp",
+  en: "/og-image-en.webp",
+  es: "/og-image-en.webp",
+};
+
+/**
  * Включено ли автоопределение языка по языку браузера.
  *
  * Включено: витрина переведена целиком — главная, каталог, все 32 страницы
