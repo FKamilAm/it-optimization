@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { BRAND_NAME, LOCALE_OG, OG_IMAGE, type Locale } from "@/i18n/config";
-import { ORG, PROFILES, SITE } from "@/lib/constants";
+import { PROFILES, SITE, orgFor } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 
 /**
@@ -15,28 +15,27 @@ import { getSiteUrl } from "@/lib/site-url";
  *
  * Язык передаётся явно: без него getTranslations в корневом макете отдавал
  * русский каталог, и английская страница описывала себя по-русски, с
- * inLanguage "ru-RU". Адрес и юридическое название не переводятся — это
- * реквизиты, а не текст.
+ * inLanguage "ru-RU". Название и адрес — по-английски на обеих языковых
+ * версиях, как в подвале (ORG_INTL).
  */
 export async function StructuredData({ locale }: { locale: Locale }) {
   const siteUrl = getSiteUrl();
   const meta = await getTranslations({ locale, namespace: "meta" });
   const name = BRAND_NAME[locale];
+  const org = orgFor(locale);
 
   const organization = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name,
-    legalName: ORG.legalName,
+    legalName: org.legalName,
     url: siteUrl,
     logo: `${siteUrl}/LOGO.svg`,
     email: SITE.email,
-    telephone: ORG.phone,
+    telephone: org.phone,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "ул. Молодости, д. 1, кв. 68",
-      addressLocality: "Белоярский",
-      addressRegion: "Ханты-Мансийский автономный округ — Югра",
+      ...org.postal,
       postalCode: "628162",
       addressCountry: "RU",
     },
@@ -59,7 +58,7 @@ export async function StructuredData({ locale }: { locale: Locale }) {
     url: siteUrl,
     image: `${siteUrl}${OG_IMAGE[locale]}`,
     description: meta("description"),
-    telephone: ORG.phone,
+    telephone: org.phone,
     email: SITE.email,
     address: organization.address,
     areaServed: {

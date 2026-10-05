@@ -34,8 +34,37 @@ export const ORG = {
   ogrn: "1268600004463",
   address:
     "628162, Ханты-Мансийский - Югра автономный округ, Белоярский р-н, г. Белоярский, ул. Молодости, д. 1, кв. 68",
+  /** Тот же адрес по частям — для PostalAddress в микроразметке. */
+  postal: {
+    streetAddress: "ул. Молодости, д. 1, кв. 68",
+    addressLocality: "Белоярский",
+    addressRegion: "Ханты-Мансийский автономный округ — Югра",
+  },
   phone: "+7 996 326-61-61",
 } as const;
+
+/**
+ * Название и адрес для /en/ и /es/ — по-английски на обеих: испанская версия
+ * тоже показывает английские реквизиты, как их пишут в международных
+ * документах. Название переведено, а не транслитерировано, — так же, как бренд
+ * в логотипе и BRAND_NAME. Коды (ИНН, КПП, ОГРН) и телефон одни на все языки и
+ * берутся из ORG.
+ */
+export const ORG_INTL = {
+  legalName: "IT OPTIMIZATION LLC",
+  address:
+    "1 Molodosti St., apt. 68, Beloyarsky, Beloyarsky District, Khanty-Mansi Autonomous Okrug — Yugra, 628162, Russian Federation",
+  postal: {
+    streetAddress: "1 Molodosti St., apt. 68",
+    addressLocality: "Beloyarsky",
+    addressRegion: "Khanty-Mansi Autonomous Okrug — Yugra",
+  },
+} as const;
+
+/** Реквизиты на языке страницы. */
+export function orgFor(locale: Locale) {
+  return locale === DEFAULT_LOCALE ? ORG : { ...ORG, ...ORG_INTL };
+}
 
 // Direct contact channels — the site links straight into a messenger / call /
 // email instead of collecting personal data through a form.

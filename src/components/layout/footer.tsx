@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { FooterWordmark } from "@/components/layout/footer-wordmark";
-import { ORG, SITE } from "@/lib/constants";
+import { SITE, orgFor } from "@/lib/constants";
 import { usePaths } from "@/i18n/use-paths";
 
 interface FooterProps {
@@ -14,6 +14,7 @@ interface FooterProps {
 export function Footer({ companyName }: FooterProps) {
   const t = useTranslations();
   const paths = usePaths();
+  const org = orgFor(paths.locale);
   const year = new Date().getFullYear();
 
   return (
@@ -26,14 +27,14 @@ export function Footer({ companyName }: FooterProps) {
                 <dt className="text-xs tracking-[0.18em] text-white/60 uppercase">
                   {t("footer.legalName")}
                 </dt>
-                <dd className="text-base font-medium text-white/90">{ORG.legalName}</dd>
+                <dd className="text-base font-medium text-white/90">{org.legalName}</dd>
               </div>
               <div className="flex flex-col gap-1.5">
                 <dt className="text-xs tracking-[0.18em] text-white/60 uppercase">
                   {t("footer.inn")}
                 </dt>
                 <dd className="font-mono text-base tracking-wide text-white/90">
-                  {ORG.inn}
+                  {org.inn}
                 </dd>
               </div>
               <div className="flex flex-col gap-1.5">
@@ -41,7 +42,7 @@ export function Footer({ companyName }: FooterProps) {
                   {t("footer.kpp")}
                 </dt>
                 <dd className="font-mono text-base tracking-wide text-white/90">
-                  {ORG.kpp}
+                  {org.kpp}
                 </dd>
               </div>
               <div className="flex flex-col gap-1.5">
@@ -49,7 +50,7 @@ export function Footer({ companyName }: FooterProps) {
                   {t("footer.ogrn")}
                 </dt>
                 <dd className="font-mono text-base tracking-wide text-white/90">
-                  {ORG.ogrn}
+                  {org.ogrn}
                 </dd>
               </div>
             </dl>
@@ -61,7 +62,7 @@ export function Footer({ companyName }: FooterProps) {
                 className="mt-0.5 h-5 w-5 shrink-0 text-white/55"
                 aria-hidden="true"
               />
-              <span>{ORG.address}</span>
+              <span>{org.address}</span>
             </p>
             <a
               href={`mailto:${SITE.email}`}
@@ -71,11 +72,11 @@ export function Footer({ companyName }: FooterProps) {
               <span>{SITE.email}</span>
             </a>
             <a
-              href={`tel:${ORG.phone.replace(/[^\d+]/g, "")}`}
+              href={`tel:${org.phone.replace(/[^\d+]/g, "")}`}
               className="flex cursor-pointer items-center gap-3 transition-colors hover:text-white"
             >
               <Phone className="h-5 w-5 shrink-0 text-white/55" aria-hidden="true" />
-              <span>{ORG.phone}</span>
+              <span>{org.phone}</span>
             </a>
           </div>
         </div>
