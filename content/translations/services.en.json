@@ -98,5 +98,405 @@
         ]
       }
     ]
+  },
+  "platforms": {
+    "metaTitle": "CRM platform development, end to end",
+    "metaDescription": "We design and build CRM platforms, client portals and internal systems around your processes: roles, integrations, analytics and an architecture that scales. From {price:400000}.",
+    "breadcrumb": "CRM platform development",
+    "h1": "CRM platform development",
+    "lead": "We build CRM systems, client portals and internal platforms around your processes — with roles, access rights, integrations and analytics. We design an architecture that survives growth instead of turning into a pile of workarounds.",
+    "includes": [
+      "Architecture and data model designed around your processes",
+      "Roles, access rights and separation by department",
+      "Managing enquiries, clients, deals and tasks",
+      "Integrations with the website, telephony, payments and external services",
+      "Dashboards, reports and exports for running the business",
+      "Testing, data migration, launch and training the team"
+    ],
+    "forWhom": [
+      {
+        "title": "Sales teams",
+        "text": "One system for enquiries, clients and deals instead of scattered spreadsheets and chats."
+      },
+      {
+        "title": "Service and operations",
+        "text": "Managing tasks, statuses, documents and the company's internal processes."
+      },
+      {
+        "title": "A growing business",
+        "text": "A platform that scales and can be extended to new lines of work and higher load."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Process audit",
+        "text": "We work through the business logic, the roles and how the team actually works."
+      },
+      {
+        "title": "Architecture and prototype",
+        "text": "We design the data structure, the interfaces and the roles."
+      },
+      {
+        "title": "Build and integrations",
+        "text": "We assemble the system, connect the services and migrate the data."
+      },
+      {
+        "title": "Launch and growth",
+        "text": "We train the team, launch, and keep developing the platform."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does a CRM or web platform cost?",
+        "answer": "It starts at {price:400000} and depends on the number of roles, modules and integrations. We give an exact figure after a process audit and a brief."
+      },
+      {
+        "question": "Can you improve our existing system?",
+        "answer": "Yes. We can extend an existing platform, add modules and integrations, or design a new system if the old one is holding growth back."
+      },
+      {
+        "question": "Will you migrate data from spreadsheets and our old CRM?",
+        "answer": "Yes. We set up migration from Excel, Google Sheets and other systems so the team carries on without losing anything."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "We usually get a first working version out from four weeks. The exact timeline depends on the scope and the integrations."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 4 weeks",
+        "features": [
+          "CRM on a ready-made architecture",
+          "Core modules and roles",
+          "Basic integrations",
+          "Migration of the main data",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 8 weeks",
+        "features": [
+          "Business processes built to fit",
+          "Dashboards and reports",
+          "Integrations with services and telephony",
+          "Data migration and team training",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 12 weeks",
+        "features": [
+          "Complex platform shaped around the processes",
+          "High load and scalability",
+          "Multiple integrations",
+          "Access rights split by department",
+          "Support and ongoing development"
+        ]
+      }
+    ]
+  },
+  "telegram": {
+    "metaTitle": "Telegram bot and Mini App development, end to end",
+    "metaDescription": "Telegram bot or Mini App development: lead generation, automation, support and integrations. We design the scenarios, build it and launch it end to end. From {price:50000}. Timelines after the brief.",
+    "breadcrumb": "Telegram bots and Mini Apps",
+    "h1": "Telegram bot and Mini App development",
+    "lead": "We design and build Telegram bots and Mini Apps that bring in enquiries, take the routine off your hands and live inside the messenger your clients already use. From the scenario and the interface to integrations with CRM, payments and notifications — end to end.",
+    "includes": [
+      "Working out the scenarios and the dialogue logic for your case",
+      "The bot interface and/or Mini App with usable menus, buttons and forms",
+      "Integrations with CRM, Google Sheets, payment providers and notifications",
+      "Taking enquiries, payments and feedback right inside Telegram",
+      "An admin panel or data access for your team",
+      "Testing, launch and connection to your account"
+    ],
+    "forWhom": [
+      {
+        "title": "Lead generation and sales",
+        "text": "The bot collects enquiries, answers the routine questions and hands warm clients to a manager or into the CRM."
+      },
+      {
+        "title": "Process automation",
+        "text": "Bookings, reminders, broadcasts, order statuses and internal operations without manual work."
+      },
+      {
+        "title": "Service and support",
+        "text": "A Mini App with a client area, catalogue, payment and request history inside Telegram."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief and scenario",
+        "text": "We work through the problem and describe the bot's logic and the user's path."
+      },
+      {
+        "title": "Interface and prototype",
+        "text": "We assemble the menus, the Mini App screens and the structure of the dialogues."
+      },
+      {
+        "title": "Build and integrations",
+        "text": "We connect CRM, payments, notifications and external services."
+      },
+      {
+        "title": "Launch and support",
+        "text": "We test, publish on your account and stay with it afterwards."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does a Telegram bot cost?",
+        "answer": "It starts at {price:50000} and depends on how complex the scenarios and integrations are. A Mini App with an interface and a client area starts at {price:100000}. We give an exact figure after the brief."
+      },
+      {
+        "question": "How is a Mini App different from an ordinary bot?",
+        "answer": "A bot works through messages, buttons and commands. A Mini App is a full interface — effectively a small site — inside Telegram: screens, catalogue, forms, payment. The two are often combined."
+      },
+      {
+        "question": "Can you connect payments and a CRM?",
+        "answer": "Yes. We connect payment providers, integrations with CRM and Google Sheets, notifications and external APIs, so enquiries and payments land straight in your processes."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "A simple bot goes live from one week, a Mini App from two. The final timeline depends on the scope and the integrations."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 1 week",
+        "features": [
+          "Bot built to a ready scenario",
+          "Menus, buttons and enquiry capture",
+          "Notifications to a chat or CRM",
+          "Connection to your account",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Mini App with an interface",
+          "Integration with CRM and payments",
+          "Client area and admin access",
+          "Automation scenarios",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Complex scenarios and logic",
+          "Custom integrations",
+          "Built to hold up under load",
+          "Analytics and admin panel",
+          "Support after launch"
+        ]
+      }
+    ]
+  },
+  "ai": {
+    "metaTitle": "AI agents and automation for business",
+    "metaDescription": "We bring in AI agents and automation: handling enquiries, assistants, content generation and integrations with your systems and CRM. From {price:90000}.",
+    "breadcrumb": "AI agents and automation",
+    "h1": "Bringing in AI agents and automation",
+    "lead": "We bring AI agents and automation into the business: handling enquiries, assistants, content generation and a link to your existing systems. The point is less routine work and faster answers to clients.",
+    "includes": [
+      "Working out where AI and automation actually pay off",
+      "AI agents that handle enquiries and answer questions",
+      "Assistants and content generation for your scenarios",
+      "Integrations with CRM, messengers, knowledge base and APIs",
+      "Tuning the logic and training on your own data",
+      "Testing, launch and support"
+    ],
+    "forWhom": [
+      {
+        "title": "Support and sales",
+        "text": "AI answers the routine questions, qualifies leads and hands them to a manager."
+      },
+      {
+        "title": "Content and marketing",
+        "text": "Generating copy, descriptions and drafts for your tasks."
+      },
+      {
+        "title": "Operations",
+        "text": "Automating the routine: data handling, documents, internal processes."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Audit of the work",
+        "text": "We find the processes where AI and automation pay off soonest."
+      },
+      {
+        "title": "Design",
+        "text": "We describe the agent's logic, the scenarios and the integrations."
+      },
+      {
+        "title": "Rollout",
+        "text": "We configure it, connect it to your systems and train it on your data."
+      },
+      {
+        "title": "Launch and growth",
+        "text": "We launch, watch the quality of the answers and improve them."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does bringing in AI cost?",
+        "answer": "It starts at {price:90000} and depends on how complex the scenarios and integrations are and how much data there is. We give an exact figure once the task is clear."
+      },
+      {
+        "question": "What data does the AI agent work from?",
+        "answer": "We set the agent up on your knowledge base, your documents and your typical enquiries, so the answers are accurate and sound like you."
+      },
+      {
+        "question": "Can the AI be connected to our CRM and messengers?",
+        "answer": "Yes. We connect AI to CRM, Telegram, the website and other channels, so enquiries and leads land in your processes."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "The first scenarios go live from two weeks. The final timeline depends on the integrations."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 2 weeks",
+        "features": [
+          "One AI scenario for one task",
+          "Integration with a single channel",
+          "Tuned to your data",
+          "Tested on real requests",
+          "Launch and instructions"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Several automation scenarios",
+          "Integration with CRM and knowledge base",
+          "Trained on your subject matter",
+          "Monitoring of answer quality",
+          "Launch and support"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 5 weeks",
+        "features": [
+          "End-to-end process automation",
+          "Several connected agents",
+          "Complex integrations with your systems",
+          "Analytics and oversight",
+          "Support and ongoing development"
+        ]
+      }
+    ]
+  },
+  "ecommerce": {
+    "metaTitle": "Online store development, end to end",
+    "metaDescription": "Online store development end to end: catalogue, cart, online payment, delivery and an admin panel that works. Integrations with accounting systems and CRM. Fast and built to sell. From {price:190000}.",
+    "breadcrumb": "Online store, end to end",
+    "h1": "Online store development, end to end",
+    "lead": "We build online stores that are easy to run and easy to buy from: a catalogue with filters, a cart, online payment, delivery and an admin panel people can use. We connect accounting systems, CRM and payment providers.",
+    "includes": [
+      "Designing the catalogue, the product pages and the filters",
+      "Cart, checkout and a customer account",
+      "Connecting online payment and delivery services",
+      "Integrations with accounting, CRM and stock control",
+      "A workable admin panel for products, orders and stock",
+      "Responsive design, testing and launch"
+    ],
+    "forWhom": [
+      {
+        "title": "Retailers",
+        "text": "A proper store with a catalogue, payment and delivery instead of selling over chat."
+      },
+      {
+        "title": "Manufacturers and brands",
+        "text": "Your own storefront with direct sales and control over how the product is presented."
+      },
+      {
+        "title": "Growing online sales",
+        "text": "A store wired into your accounting and advertising, so sales can scale."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief and catalogue",
+        "text": "We go through the range, the order logic, payment and delivery."
+      },
+      {
+        "title": "Design and structure",
+        "text": "We design the storefront, the product pages and the buyer's path."
+      },
+      {
+        "title": "Build and integrations",
+        "text": "We assemble the store and connect payment, delivery, accounting and CRM."
+      },
+      {
+        "title": "Launch",
+        "text": "We fill the catalogue, test the orders and publish."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does an online store cost?",
+        "answer": "It starts at {price:190000} and depends on the size of the catalogue, the integrations and the functionality. We give an exact figure after the brief."
+      },
+      {
+        "question": "Will you connect payment, delivery and our accounting system?",
+        "answer": "Yes. We connect payment providers, delivery services and synchronisation with your accounting, CRM and stock control."
+      },
+      {
+        "question": "Will I be able to add products myself?",
+        "answer": "Yes. You get an admin panel for managing products, prices, stock and orders."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Usually from three weeks. The timeline depends on the size of the catalogue and the number of integrations."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Store on a ready-made foundation",
+          "Catalogue of up to 100 products, plus cart",
+          "Online payment connected",
+          "Delivery configured",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 5 weeks",
+        "features": [
+          "Custom design and filters",
+          "Customer account",
+          "Integration with accounting and CRM",
+          "Online payment and delivery",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 8 weeks",
+        "features": [
+          "Original functionality and logic",
+          "Large catalogue and marketplace scenarios",
+          "Complex integrations and stock control",
+          "Catalogue population",
+          "Support and ongoing development"
+        ]
+      }
+    ]
   }
 }

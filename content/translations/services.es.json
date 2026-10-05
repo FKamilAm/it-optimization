@@ -98,5 +98,405 @@
         ]
       }
     ]
+  },
+  "platforms": {
+    "metaTitle": "Desarrollo de plataforma CRM llave en mano",
+    "metaDescription": "Diseñamos y construimos plataformas CRM, áreas de cliente y sistemas internos en torno a tus procesos: roles, integraciones, analítica y una arquitectura que escala. Desde {price:400000}.",
+    "breadcrumb": "Desarrollo de plataforma CRM",
+    "h1": "Desarrollo de plataforma CRM",
+    "lead": "Construimos sistemas CRM, áreas de cliente y plataformas internas a la medida de tus procesos, con roles, permisos, integraciones y analítica. Diseñamos una arquitectura que aguanta el crecimiento en lugar de convertirse en un montón de parches.",
+    "includes": [
+      "Arquitectura y modelo de datos diseñados en torno a tus procesos",
+      "Roles, permisos y separación por departamentos",
+      "Gestión de solicitudes, clientes, operaciones y tareas",
+      "Integraciones con la web, la telefonía, los pagos y servicios externos",
+      "Paneles, informes y exportaciones para dirigir el negocio",
+      "Pruebas, migración de datos, lanzamiento y formación del equipo"
+    ],
+    "forWhom": [
+      {
+        "title": "Equipos comerciales",
+        "text": "Un solo sistema para solicitudes, clientes y operaciones, en vez de hojas de cálculo y chats dispersos."
+      },
+      {
+        "title": "Servicio y operaciones",
+        "text": "Gestión de tareas, estados, documentos y procesos internos de la empresa."
+      },
+      {
+        "title": "Negocios en crecimiento",
+        "text": "Una plataforma que escala y se puede ampliar a nuevas líneas de trabajo y más carga."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Auditoría de procesos",
+        "text": "Analizamos la lógica de negocio, los roles y cómo trabaja realmente el equipo."
+      },
+      {
+        "title": "Arquitectura y prototipo",
+        "text": "Diseñamos la estructura de datos, las interfaces y los roles."
+      },
+      {
+        "title": "Desarrollo e integraciones",
+        "text": "Montamos el sistema, conectamos los servicios y migramos los datos."
+      },
+      {
+        "title": "Lanzamiento y evolución",
+        "text": "Formamos al equipo, lanzamos y seguimos desarrollando la plataforma."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta un CRM o una plataforma web?",
+        "answer": "Parte de {price:400000} y depende del número de roles, módulos e integraciones. Damos la cifra exacta tras una auditoría de procesos y el briefing."
+      },
+      {
+        "question": "¿Podéis mejorar nuestro sistema actual?",
+        "answer": "Sí. Podemos ampliar una plataforma existente, añadir módulos e integraciones, o diseñar un sistema nuevo si el antiguo frena el crecimiento."
+      },
+      {
+        "question": "¿Migraréis los datos de las hojas de cálculo y del CRM antiguo?",
+        "answer": "Sí. Preparamos la migración desde Excel, Google Sheets y otros sistemas para que el equipo siga trabajando sin perder nada."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Solemos sacar una primera versión operativa desde cuatro semanas. El plazo exacto depende del alcance y de las integraciones."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "CRM sobre una arquitectura ya preparada",
+          "Módulos y roles esenciales",
+          "Integraciones básicas",
+          "Migración de los datos principales",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 8 semanas",
+        "features": [
+          "Procesos de negocio a medida",
+          "Paneles e informes",
+          "Integraciones con servicios y telefonía",
+          "Migración de datos y formación del equipo",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 12 semanas",
+        "features": [
+          "Plataforma compleja ajustada a los procesos",
+          "Alta carga y escalabilidad",
+          "Múltiples integraciones",
+          "Permisos separados por departamento",
+          "Soporte y evolución"
+        ]
+      }
+    ]
+  },
+  "telegram": {
+    "metaTitle": "Desarrollo de bots de Telegram y Mini Apps llave en mano",
+    "metaDescription": "Desarrollo de bots de Telegram y Mini Apps: captación, automatización, soporte e integraciones. Diseñamos los escenarios, lo construimos y lo lanzamos llave en mano. Desde {price:50000}. Plazos tras el briefing.",
+    "breadcrumb": "Bots de Telegram y Mini Apps",
+    "h1": "Desarrollo de bots de Telegram y Mini Apps",
+    "lead": "Diseñamos y construimos bots de Telegram y Mini Apps que traen solicitudes, quitan de encima la rutina y viven dentro de la mensajería que tus clientes ya usan. Del escenario y la interfaz a las integraciones con CRM, pagos y avisos, llave en mano.",
+    "includes": [
+      "Definición de los escenarios y la lógica de los diálogos para tu caso",
+      "Interfaz del bot y/o Mini App con menús, botones y formularios usables",
+      "Integraciones con CRM, Google Sheets, pasarelas de pago y avisos",
+      "Recepción de solicitudes, pagos y comentarios dentro de Telegram",
+      "Panel de administración o acceso a los datos para tu equipo",
+      "Pruebas, lanzamiento y conexión a tu cuenta"
+    ],
+    "forWhom": [
+      {
+        "title": "Captación y ventas",
+        "text": "El bot recoge solicitudes, responde las preguntas habituales y pasa los clientes calientes a un comercial o al CRM."
+      },
+      {
+        "title": "Automatización de procesos",
+        "text": "Citas, recordatorios, envíos, estados de pedido y operaciones internas sin trabajo manual."
+      },
+      {
+        "title": "Servicio y soporte",
+        "text": "Una Mini App con área de cliente, catálogo, pago e historial de solicitudes dentro de Telegram."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing y escenario",
+        "text": "Analizamos el problema y describimos la lógica del bot y el recorrido del usuario."
+      },
+      {
+        "title": "Interfaz y prototipo",
+        "text": "Montamos los menús, las pantallas de la Mini App y la estructura de los diálogos."
+      },
+      {
+        "title": "Desarrollo e integraciones",
+        "text": "Conectamos CRM, pagos, avisos y servicios externos."
+      },
+      {
+        "title": "Lanzamiento y soporte",
+        "text": "Probamos, publicamos en tu cuenta y seguimos acompañando."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta un bot de Telegram?",
+        "answer": "Parte de {price:50000} y depende de lo complejos que sean los escenarios y las integraciones. Una Mini App con interfaz y área de cliente parte de {price:100000}. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿En qué se diferencia una Mini App de un bot normal?",
+        "answer": "Un bot funciona con mensajes, botones y comandos. Una Mini App es una interfaz completa —en la práctica, una web pequeña— dentro de Telegram: pantallas, catálogo, formularios, pago. A menudo se combinan."
+      },
+      {
+        "question": "¿Se pueden conectar los pagos y el CRM?",
+        "answer": "Sí. Conectamos pasarelas de pago, integraciones con CRM y Google Sheets, avisos y APIs externas, para que las solicitudes y los pagos caigan directamente en tus procesos."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Un bot sencillo sale desde una semana; una Mini App, desde dos. El plazo final depende del alcance y de las integraciones."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 1 semana",
+        "features": [
+          "Bot sobre un escenario ya definido",
+          "Menús, botones y recepción de solicitudes",
+          "Avisos a un chat o al CRM",
+          "Conexión a tu cuenta",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Mini App con interfaz",
+          "Integración con CRM y pagos",
+          "Área de cliente y acceso de administración",
+          "Escenarios de automatización",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "Escenarios y lógica complejos",
+          "Integraciones a medida",
+          "Preparado para aguantar carga",
+          "Analítica y panel de administración",
+          "Soporte tras el lanzamiento"
+        ]
+      }
+    ]
+  },
+  "ai": {
+    "metaTitle": "Agentes de IA y automatización para empresas",
+    "metaDescription": "Implantamos agentes de IA y automatización: atención de solicitudes, asistentes, generación de contenido e integraciones con tus sistemas y tu CRM. Desde {price:90000}.",
+    "breadcrumb": "Agentes de IA y automatización",
+    "h1": "Implantación de agentes de IA y automatización",
+    "lead": "Llevamos agentes de IA y automatización al negocio: atención de solicitudes, asistentes, generación de contenido y conexión con tus sistemas actuales. El objetivo es menos trabajo rutinario y respuestas más rápidas al cliente.",
+    "includes": [
+      "Análisis de dónde la IA y la automatización salen realmente a cuenta",
+      "Agentes de IA que atienden solicitudes y responden preguntas",
+      "Asistentes y generación de contenido para tus escenarios",
+      "Integraciones con CRM, mensajerías, base de conocimiento y APIs",
+      "Ajuste de la lógica y entrenamiento con tus propios datos",
+      "Pruebas, lanzamiento y soporte"
+    ],
+    "forWhom": [
+      {
+        "title": "Soporte y ventas",
+        "text": "La IA responde las preguntas habituales, cualifica contactos y los pasa a un comercial."
+      },
+      {
+        "title": "Contenido y marketing",
+        "text": "Generación de textos, descripciones y borradores para tus necesidades."
+      },
+      {
+        "title": "Operaciones",
+        "text": "Automatización de la rutina: tratamiento de datos, documentos, procesos internos."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Auditoría del trabajo",
+        "text": "Localizamos los procesos donde la IA y la automatización se amortizan antes."
+      },
+      {
+        "title": "Diseño",
+        "text": "Describimos la lógica del agente, los escenarios y las integraciones."
+      },
+      {
+        "title": "Implantación",
+        "text": "Lo configuramos, lo conectamos a tus sistemas y lo entrenamos con tus datos."
+      },
+      {
+        "title": "Lanzamiento y evolución",
+        "text": "Lanzamos, vigilamos la calidad de las respuestas y las mejoramos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta implantar IA?",
+        "answer": "Parte de {price:90000} y depende de lo complejos que sean los escenarios y las integraciones y del volumen de datos. Damos la cifra exacta cuando la tarea está clara."
+      },
+      {
+        "question": "¿Con qué datos trabaja el agente de IA?",
+        "answer": "Configuramos el agente sobre tu base de conocimiento, tus documentos y tus solicitudes habituales, para que las respuestas sean precisas y suenen como tú."
+      },
+      {
+        "question": "¿Se puede conectar la IA con nuestro CRM y nuestras mensajerías?",
+        "answer": "Sí. Conectamos la IA con el CRM, Telegram, la web y otros canales, para que las solicitudes y los contactos entren en tus procesos."
+      },
+      {
+        "question": "¿Cuánto tarda la implantación?",
+        "answer": "Los primeros escenarios salen desde dos semanas. El plazo final depende de las integraciones."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Un escenario de IA para una tarea",
+          "Integración con un solo canal",
+          "Ajustado a tus datos",
+          "Probado con solicitudes reales",
+          "Lanzamiento e instrucciones"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Varios escenarios de automatización",
+          "Integración con CRM y base de conocimiento",
+          "Entrenado en tu ámbito",
+          "Seguimiento de la calidad de las respuestas",
+          "Lanzamiento y acompañamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 5 semanas",
+        "features": [
+          "Automatización completa de procesos",
+          "Varios agentes conectados entre sí",
+          "Integraciones complejas con tus sistemas",
+          "Analítica y control",
+          "Soporte y evolución"
+        ]
+      }
+    ]
+  },
+  "ecommerce": {
+    "metaTitle": "Desarrollo de tienda online llave en mano",
+    "metaDescription": "Desarrollo de tienda online llave en mano: catálogo, carrito, pago online, envíos y un panel de administración usable. Integraciones con sistemas contables y CRM. Rápida y hecha para vender. Desde {price:190000}.",
+    "breadcrumb": "Tienda online llave en mano",
+    "h1": "Desarrollo de tienda online llave en mano",
+    "lead": "Creamos tiendas online fáciles de gestionar y fáciles de comprar: catálogo con filtros, carrito, pago online, envíos y un panel de administración que se entiende. Conectamos sistemas contables, CRM y pasarelas de pago.",
+    "includes": [
+      "Diseño del catálogo, las fichas de producto y los filtros",
+      "Carrito, proceso de compra y área de cliente",
+      "Conexión del pago online y de los servicios de envío",
+      "Integraciones con contabilidad, CRM y control de stock",
+      "Un panel de administración usable para productos, pedidos y existencias",
+      "Diseño responsive, pruebas y lanzamiento"
+    ],
+    "forWhom": [
+      {
+        "title": "Comercios",
+        "text": "Una tienda de verdad con catálogo, pago y envío, en lugar de vender por chat."
+      },
+      {
+        "title": "Fabricantes y marcas",
+        "text": "Tu propio escaparate con venta directa y control sobre cómo se presenta el producto."
+      },
+      {
+        "title": "Crecimiento online",
+        "text": "Una tienda conectada con tu contabilidad y tu publicidad, para poder escalar las ventas."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing y catálogo",
+        "text": "Repasamos la gama, la lógica del pedido, el pago y el envío."
+      },
+      {
+        "title": "Diseño y estructura",
+        "text": "Diseñamos el escaparate, las fichas y el recorrido del comprador."
+      },
+      {
+        "title": "Desarrollo e integraciones",
+        "text": "Montamos la tienda y conectamos pago, envíos, contabilidad y CRM."
+      },
+      {
+        "title": "Lanzamiento",
+        "text": "Cargamos el catálogo, probamos los pedidos y publicamos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta una tienda online?",
+        "answer": "Parte de {price:190000} y depende del tamaño del catálogo, de las integraciones y de la funcionalidad. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿Conectaréis el pago, los envíos y nuestro sistema contable?",
+        "answer": "Sí. Conectamos pasarelas de pago, servicios de envío y la sincronización con tu contabilidad, tu CRM y el control de stock."
+      },
+      {
+        "question": "¿Podré añadir productos yo mismo?",
+        "answer": "Sí. Recibes un panel de administración para gestionar productos, precios, existencias y pedidos."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Normalmente desde tres semanas. El plazo depende del tamaño del catálogo y del número de integraciones."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Tienda sobre una base ya preparada",
+          "Catálogo de hasta 100 productos y carrito",
+          "Pago online conectado",
+          "Envíos configurados",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 5 semanas",
+        "features": [
+          "Diseño a medida y filtros",
+          "Área de cliente",
+          "Integración con contabilidad y CRM",
+          "Pago online y envíos",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 8 semanas",
+        "features": [
+          "Funcionalidad y lógica propias",
+          "Catálogo grande y escenarios de marketplace",
+          "Integraciones complejas y control de stock",
+          "Carga del catálogo",
+          "Soporte y evolución"
+        ]
+      }
+    ]
   }
 }
