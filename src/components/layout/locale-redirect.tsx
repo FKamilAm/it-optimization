@@ -1,4 +1,8 @@
-import { DEFAULT_LOCALE, PREFIXED_LOCALES } from "@/i18n/config";
+import {
+  DEFAULT_LOCALE,
+  LOCALE_STORAGE_KEY,
+  PREFIXED_LOCALES,
+} from "@/i18n/config";
 
 /**
  * Автовыбор языка по языку браузера.
@@ -25,8 +29,6 @@ import { DEFAULT_LOCALE, PREFIXED_LOCALES } from "@/i18n/config";
  * только язык интерфейса (`navigator.languages`), и это именно он.
  */
 
-const STORAGE_KEY = "itopt-locale";
-
 // Скрипт выполняется до отрисовки, поэтому он маленький и без зависимостей.
 // Любая ошибка внутри не должна мешать странице открыться — отсюда try/catch
 // вокруг всего: приватный режим умеет бросать прямо на чтении localStorage.
@@ -34,7 +36,7 @@ const script = `
 (function(){
   try {
     var PREFIXES = ${JSON.stringify(PREFIXED_LOCALES)};
-    var KEY = ${JSON.stringify(STORAGE_KEY)};
+    var KEY = ${JSON.stringify(LOCALE_STORAGE_KEY)};
     var path = location.pathname;
 
     // Уже на языковой версии — ничего не решаем.
@@ -89,5 +91,3 @@ const script = `
 export function LocaleRedirect() {
   return <script dangerouslySetInnerHTML={{ __html: script }} />;
 }
-
-export const LOCALE_STORAGE_KEY = STORAGE_KEY;

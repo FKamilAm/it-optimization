@@ -25,6 +25,28 @@ export function isLocale(value: string): value is Locale {
 }
 
 /**
+ * Где лежит выбранный язык. Один ключ на двоих: его пишет переключатель и
+ * читает скрипт автоопределения — иначе выбранный руками язык сбрасывался бы
+ * при следующем заходе.
+ */
+export const LOCALE_STORAGE_KEY = "itopt-locale";
+
+/**
+ * Разбирает путь на локаль и остаток без префикса.
+ * «/en/uslugi/» → { locale: "en", path: "/uslugi/" }
+ * «/uslugi/»    → { locale: "ru", path: "/uslugi/" }
+ */
+export function splitLocalePath(pathname: string): { locale: Locale; path: string } {
+  const segments = pathname.split("/").filter(Boolean);
+  const first = segments[0];
+  if (first && isLocale(first) && first !== DEFAULT_LOCALE) {
+    const rest = `/${segments.slice(1).join("/")}`;
+    return { locale: first, path: rest === "/" ? "/" : `${rest}/` };
+  }
+  return { locale: DEFAULT_LOCALE, path: pathname };
+}
+
+/**
  * Название языка на нём самом — так его узнают те, кто не читает по-русски.
  * Для переключателя языков.
  */

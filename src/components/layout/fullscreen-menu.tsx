@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Mail, Send } from "lucide-react";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { Logo } from "@/components/layout/logo";
 import { useContactModal } from "@/components/providers/contact-modal-provider";
 import { Button } from "@/components/ui/button";
@@ -131,6 +132,11 @@ export function FullscreenMenu({
                 transition={{ delay: 0.4, duration: 0.5 }}
                 className="flex flex-col gap-8 border-t border-white/10 pt-8 lg:border-t-0 lg:pt-0"
               >
+                {/* Над контактами, а не под кнопкой: тот, кого автоопределение
+                    увело на чужой язык, ищет переключатель раньше, чем читает
+                    остальное меню. */}
+                <LanguageSwitcher className="-ml-3" />
+
                 <div className="flex flex-col gap-3 text-base text-white/60">
                   <a
                     href={`mailto:${SITE.email}`}
