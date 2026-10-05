@@ -1,6 +1,7 @@
 import en from "../../../content/translations/services.en.json";
 import es from "../../../content/translations/services.es.json";
 import { DEFAULT_LOCALE, type Locale } from "@/i18n/config";
+import { applyPrices, localizePrice } from "@/lib/money";
 import type { ServicePage } from "./types";
 
 /**
@@ -31,9 +32,13 @@ interface Faq {
   answer: string;
 }
 
+/**
+ * Цены в переводе НЕТ намеренно: она выводится из рублёвой по курсу ЦБ.
+ * Второй список цен рано или поздно разойдётся с первым, и клиенту покажут
+ * не то, что обещает прайс.
+ */
 interface TariffText {
   name: string;
-  price: string;
   deadline: string;
   features: string[];
 }
@@ -61,23 +66,34 @@ export function translateServicePage(page: ServicePage, locale: Locale): Service
   const t = TABLES[locale]?.[page.key];
   if (!t) return page;
 
+  // Цены стоят и посреди текста — в описании для поиска и в ответах FAQ.
+  // В переводе они помечены как {price:120000}, здесь метка превращается в
+  // сумму нужной валюты.
+  const text = (value: string) => applyPrices(value, locale);
+
   return {
     ...page,
-    metaTitle: t.metaTitle ?? page.metaTitle,
-    metaDescription: t.metaDescription ?? page.metaDescription,
+    metaTitle: text(t.metaTitle ?? page.metaTitle),
+    metaDescription: text(t.metaDescription ?? page.metaDescription),
     breadcrumb: t.breadcrumb ?? page.breadcrumb,
     h1: t.h1 ?? page.h1,
-    lead: t.lead ?? page.lead,
-    includes: t.includes ?? page.includes,
+    lead: text(t.lead ?? page.lead),
+    includes: (t.includes ?? page.includes).map(text),
     forWhom: t.forWhom ?? page.forWhom,
     steps: t.steps ?? page.steps,
-    faq: t.faq ?? page.faq,
+    faq: (t.faq ?? page.faq).map((item) => ({
+      question: item.question,
+      answer: text(item.answer),
+    })),
     // Тариф собирается наложением: признак «Популярный» живёт в русском
     // объекте и не должен зависеть от того, перевели его уже или нет.
-    tariffs: page.tariffs?.map((tariff, index) => {
-      const text = t.tariffs?.[index];
-      return text ? { ...tariff, ...text } : tariff;
-    }),
+    // Цена всегда из русского тарифа, переведённая в валюту локали: один
+    // источник правды. Перевод задаёт только название, срок и состав.
+    tariffs: page.tariffs?.map((tariff, index) => ({
+      ...tariff,
+      ...(t.tariffs?.[index] ?? {}),
+      price: localizePrice(tariff.price, locale),
+    })),
   };
 }
 

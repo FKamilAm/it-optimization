@@ -7,6 +7,7 @@ import { homePath, servicePath, servicesPath } from "@/i18n/routes";
 import { getPostsForService } from "@/lib/blog";
 import { getAllCases } from "@/lib/cases";
 import { getServicePage, tariffPriceRange } from "@/lib/services";
+import { CURRENCY } from "@/lib/money";
 import { SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -41,7 +42,7 @@ export async function ServiceDetailPage({
 
   const range = tariffPriceRange(page.tariffs);
   const offers = range
-    ? { "@type": "AggregateOffer", priceCurrency: "RUB", ...range }
+    ? { "@type": "AggregateOffer", priceCurrency: CURRENCY[locale], ...range }
     : undefined;
 
   const jsonLd = [

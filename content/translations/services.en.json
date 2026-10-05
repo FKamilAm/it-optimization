@@ -1,7 +1,7 @@
 {
   "corporate": {
     "metaTitle": "Corporate website development, end to end",
-    "metaDescription": "Corporate website development end to end: a considered structure, custom design, fast loading, SEO and integrations. A site that earns trust and brings in enquiries. From ₽120,000.",
+    "metaDescription": "Corporate website development end to end: a considered structure, custom design, fast loading, SEO and integrations. A site that earns trust and brings in enquiries. From {price:120000}.",
     "breadcrumb": "Corporate website development",
     "h1": "Corporate website development",
     "lead": "We build corporate websites that earn trust in the company and turn visitors into enquiries: a considered structure, custom design, fast loading, an SEO foundation and integrations with your systems.",
@@ -48,7 +48,7 @@
     "faq": [
       {
         "question": "What does a corporate website cost?",
-        "answer": "It starts at ₽120,000 and depends on the number of sections, the complexity of the design and the integrations. We give an exact figure after the brief."
+        "answer": "It starts at {price:120000} and depends on the number of sections, the complexity of the design and the integrations. We give an exact figure after the brief."
       },
       {
         "question": "Will I be able to edit the content myself?",
@@ -66,7 +66,6 @@
     "tariffs": [
       {
         "name": "Basic",
-        "price": "from ₽120,000",
         "deadline": "from 10 days",
         "features": [
           "Complete site on a ready-made foundation",
@@ -78,7 +77,6 @@
       },
       {
         "name": "Standard",
-        "price": "from ₽220,000",
         "deadline": "from 3 weeks",
         "features": [
           "Custom design built for the brand",
@@ -90,7 +88,6 @@
       },
       {
         "name": "Bespoke",
-        "price": "from ₽400,000",
         "deadline": "from 5 weeks",
         "features": [
           "Original design and animation",

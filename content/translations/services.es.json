@@ -1,7 +1,7 @@
 {
   "corporate": {
     "metaTitle": "Desarrollo de sitio corporativo llave en mano",
-    "metaDescription": "Desarrollo de sitio corporativo llave en mano: estructura pensada, diseño a medida, carga rápida, SEO e integraciones. Una web que genera confianza y trae solicitudes. Desde 120 000 ₽.",
+    "metaDescription": "Desarrollo de sitio corporativo llave en mano: estructura pensada, diseño a medida, carga rápida, SEO e integraciones. Una web que genera confianza y trae solicitudes. Desde {price:120000}.",
     "breadcrumb": "Desarrollo de sitio corporativo",
     "h1": "Desarrollo de sitio corporativo",
     "lead": "Creamos sitios corporativos que generan confianza en la empresa y convierten visitas en solicitudes: estructura pensada, diseño a medida, carga rápida, base de SEO e integraciones con tus sistemas.",
@@ -48,7 +48,7 @@
     "faq": [
       {
         "question": "¿Cuánto cuesta un sitio corporativo?",
-        "answer": "Parte de 120 000 ₽ y depende del número de secciones, de la complejidad del diseño y de las integraciones. Damos la cifra exacta tras el briefing."
+        "answer": "Parte de {price:120000} y depende del número de secciones, de la complejidad del diseño y de las integraciones. Damos la cifra exacta tras el briefing."
       },
       {
         "question": "¿Podré editar yo mismo el contenido?",
@@ -66,7 +66,6 @@
     "tariffs": [
       {
         "name": "Básico",
-        "price": "desde 120 000 ₽",
         "deadline": "desde 10 días",
         "features": [
           "Sitio llave en mano sobre una base ya preparada",
@@ -78,7 +77,6 @@
       },
       {
         "name": "Estándar",
-        "price": "desde 220 000 ₽",
         "deadline": "desde 3 semanas",
         "features": [
           "Diseño a medida para la marca",
@@ -90,7 +88,6 @@
       },
       {
         "name": "A medida",
-        "price": "desde 400 000 ₽",
         "deadline": "desde 5 semanas",
         "features": [
           "Diseño y animaciones propios",
