@@ -498,5 +498,613 @@
         ]
       }
     ]
+  },
+  "websites": {
+    "metaTitle": "Creación de landing page llave en mano",
+    "metaDescription": "Creación de landing page llave en mano: estructura que retiene la atención, diseño, maquetación rápida y formularios conectados a tu CRM. Pensada para la publicidad y la conversión. Desde {price:59000}.",
+    "breadcrumb": "Landing page llave en mano",
+    "h1": "Creación de landing page llave en mano",
+    "lead": "Creamos landings que venden una oferta, una campaña o el lanzamiento de un producto: estructura que retiene la atención, diseño cuidado, carga rápida y formularios que llevan las solicitudes directamente a tu CRM.",
+    "includes": [
+      "Definición de la estructura y de los bloques en torno a tu oferta",
+      "Diseño a medida, adaptado a móvil y escritorio",
+      "Maquetación rápida, pensada para la velocidad y la conversión",
+      "Formularios, cuestionarios e integraciones con CRM, mensajerías y analítica",
+      "Alta de dominio y hosting, y objetivos de conversión para tus anuncios",
+      "Pruebas, lanzamiento e instrucciones de uso"
+    ],
+    "forWhom": [
+      {
+        "title": "Publicidad y tráfico",
+        "text": "Una página de aterrizaje para anuncios de buscador y redes, hecha para convertir clics en solicitudes."
+      },
+      {
+        "title": "Lanzamiento de producto",
+        "text": "Una página para un producto, servicio o promoción con una llamada a la acción clara."
+      },
+      {
+        "title": "Validar la demanda",
+        "text": "Una página rápida para probar una oferta y recoger las primeras solicitudes."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing y oferta",
+        "text": "Fijamos el objetivo, el público y la propuesta central de la página."
+      },
+      {
+        "title": "Estructura y diseño",
+        "text": "Montamos un prototipo bloque a bloque y dibujamos la maqueta para la marca."
+      },
+      {
+        "title": "Maquetación e integraciones",
+        "text": "Montamos la landing y conectamos formularios, CRM, analítica y objetivos."
+      },
+      {
+        "title": "Lanzamiento",
+        "text": "Publicamos, probamos los formularios y entregamos los accesos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta una landing llave en mano?",
+        "answer": "Parte de {price:59000} y depende del número de bloques, del diseño y de las integraciones. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿La hacéis adaptada a móvil?",
+        "answer": "Sí. La página se ve correctamente y convierte igual de bien en móvil, tablet y escritorio."
+      },
+      {
+        "question": "¿Configuraréis la analítica y los objetivos para la publicidad?",
+        "answer": "Sí. Conectamos la analítica y configuramos los objetivos de solicitud para que las campañas se puedan optimizar bien."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Una landing suele salir desde una semana. El plazo exacto depende del número de bloques y de las integraciones."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 7–10 días",
+        "features": [
+          "Landing sobre una base ya preparada",
+          "Diseño adaptado a la marca",
+          "Hasta 6 pantallas de contenido",
+          "Formulario y analítica conectados",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Diseño a medida en torno a la oferta",
+          "Cuestionario o calculadora de solicitud",
+          "Integración con CRM y mensajerías",
+          "Objetivos de publicidad configurados",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Diseño y animaciones propios",
+          "Versiones A/B para distintos tráficos",
+          "Redacción y trabajo de estructura",
+          "Integraciones complejas",
+          "Pruebas y lanzamiento"
+        ]
+      }
+    ]
+  },
+  "websiteTurnkey": {
+    "metaTitle": "Sitio web llave en mano — de la estructura al lanzamiento",
+    "metaDescription": "Desarrollo de sitio web llave en mano: estructura, diseño, maquetación, contenidos, analítica y lanzamiento. Recibes una web acabada y funcionando, sin ocuparte de la parte técnica. Desde {price:89000}.",
+    "breadcrumb": "Sitio web llave en mano",
+    "h1": "Sitio web llave en mano",
+    "lead": "Asumimos todo el ciclo de creación del sitio: de la estructura y el diseño a la maquetación, los contenidos, la analítica y el lanzamiento. Recibes un producto acabado y funcionando sin entrar en la parte técnica.",
+    "includes": [
+      "Definición de la estructura y del prototipo según tus objetivos",
+      "Diseño propio y responsive con tu identidad",
+      "Maquetación pensada para la velocidad y el SEO",
+      "Carga de contenidos: textos, imágenes, bloques",
+      "Formularios e integraciones con CRM, mensajerías y analítica",
+      "Alta de dominio y hosting, pruebas y lanzamiento"
+    ],
+    "forWhom": [
+      {
+        "title": "Propietarios sin tiempo",
+        "text": "Necesitas una web acabada sin entrar en detalles: lo cerramos todo nosotros."
+      },
+      {
+        "title": "Negocios nuevos",
+        "text": "Arranque rápido desde cero: dominio, diseño, contenidos y lanzamiento en un solo proyecto."
+      },
+      {
+        "title": "Renovar la presencia",
+        "text": "Una web moderna en lugar de una anticuada, con la parte técnica de nuestra cuenta."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing",
+        "text": "Recogemos objetivos, preferencias y materiales para el sitio."
+      },
+      {
+        "title": "Diseño y estructura",
+        "text": "Diseñamos las páginas y dibujamos las maquetas para la marca."
+      },
+      {
+        "title": "Maquetación y contenidos",
+        "text": "Montamos el sitio, cargamos los contenidos y conectamos los servicios."
+      },
+      {
+        "title": "Lanzamiento",
+        "text": "Probamos, publicamos y entregamos el sitio acabado con los accesos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Qué significa «llave en mano»?",
+        "answer": "Cerramos todo el ciclo: estructura, diseño, maquetación, contenidos, integraciones y lanzamiento. De ti solo necesitamos el material y tus comentarios."
+      },
+      {
+        "question": "¿Ayudáis con los textos y las imágenes?",
+        "answer": "Sí. Preparamos y maquetamos el contenido, seleccionamos imágenes y dejamos el material con un aspecto homogéneo."
+      },
+      {
+        "question": "¿Cuánto cuesta un sitio llave en mano?",
+        "answer": "Parte de {price:89000} y depende del número de páginas y de la funcionalidad. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Normalmente desde dos semanas. El plazo final depende del alcance y de lo preparado que esté el material."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 10 días",
+        "features": [
+          "Sitio llave en mano sobre plantilla",
+          "Adaptado a la marca",
+          "Contenido de hasta 8 páginas",
+          "Formulario y analítica",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Diseño a medida",
+          "Contenidos y redacción",
+          "Integraciones con CRM y servicios",
+          "Base de SEO y analítica",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "Desarrollo desde cero para la tarea",
+          "Funcionalidad y escenarios complejos",
+          "Integraciones a medida",
+          "Redacción y contenidos",
+          "Soporte tras el lanzamiento"
+        ]
+      }
+    ]
+  },
+  "businessCard": {
+    "metaTitle": "Web de presentación llave en mano",
+    "metaDescription": "Web de presentación llave en mano: un sitio compacto sobre la empresa o el profesional — servicios, ventajas, contacto y formulario. Rápida de lanzar, responsive, con precio claro. Desde {price:29000}.",
+    "breadcrumb": "Web de presentación",
+    "h1": "Creación de web de presentación",
+    "lead": "Hacemos webs de presentación compactas que cuentan en una pantalla quién eres y en qué eres útil, y cómo contactarte. Rápidas de lanzar y con precio claro.",
+    "includes": [
+      "Estructura con los bloques clave: quién eres, servicios, ventajas, contacto",
+      "Diseño propio y responsive con tu identidad",
+      "Formulario de contacto y botones de mensajería",
+      "Mapa, datos de la empresa y contacto rápido",
+      "Configuración básica de SEO y analítica",
+      "Dominio, hosting, pruebas y lanzamiento"
+    ],
+    "forWhom": [
+      {
+        "title": "Profesionales y expertos",
+        "text": "Una página cuidada que puedes compartir con un cliente o en redes."
+      },
+      {
+        "title": "Empresas pequeñas",
+        "text": "Un sitio breve con servicios y contacto, para generar confianza y recibir solicitudes."
+      },
+      {
+        "title": "Arranque rápido",
+        "text": "Presupuesto y plazo mínimos, simplemente para estar en internet con buen aspecto."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing",
+        "text": "Recogemos la información sobre ti, tus servicios y tus contactos."
+      },
+      {
+        "title": "Diseño",
+        "text": "Dibujamos una maqueta cuidada con tu estilo."
+      },
+      {
+        "title": "Maquetación",
+        "text": "Montamos la página responsive y conectamos el formulario."
+      },
+      {
+        "title": "Lanzamiento",
+        "text": "Publicamos en tu dominio y entregamos los accesos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta una web de presentación?",
+        "answer": "Parte de {price:29000} y depende del número de bloques y del diseño. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿En cuánto tiempo puede estar lista?",
+        "answer": "Normalmente desde cinco días si el material está preparado. Es el formato de web más rápido que hay."
+      },
+      {
+        "question": "¿Se puede ampliar después a una web completa?",
+        "answer": "Sí. Una web de presentación puede crecer hasta un sitio corporativo añadiendo secciones, catálogo e integraciones."
+      },
+      {
+        "question": "¿Funcionará en el móvil?",
+        "answer": "Sí. La web es responsive y se ve correctamente en todos los dispositivos."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 5 días",
+        "features": [
+          "Sitio de una página sobre base preparada",
+          "Adaptado a la marca",
+          "Bloques de servicios, ventajas y contacto",
+          "Formulario y mapa",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 7 días",
+        "features": [
+          "Diseño a medida",
+          "Hasta 3 pantallas de contenido",
+          "Botones de contacto por mensajería",
+          "SEO básico y analítica",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Diseño y animaciones propios",
+          "Funcionalidad ampliada",
+          "Redacción y contenidos",
+          "Integraciones según necesidad",
+          "Pruebas y lanzamiento"
+        ]
+      }
+    ]
+  },
+  "b2b": {
+    "metaTitle": "Desarrollo de web B2B llave en mano",
+    "metaDescription": "Desarrollo de web y portal B2B llave en mano: presentación clara del producto, cálculo de precios, área de partner e integraciones con los sistemas internos. Pensado para ciclos de venta largos. Desde {price:180000}.",
+    "breadcrumb": "Desarrollo de web B2B",
+    "h1": "Desarrollo de web B2B",
+    "lead": "Diseñamos webs y portales para B2B, donde lo que cuenta es la confianza, un producto que se entienda y un ciclo de venta largo: catálogo estructurado, cálculo de precios, área de partner e integraciones con tus sistemas.",
+    "includes": [
+      "Una estructura pensada para un producto complejo y el recorrido del comprador B2B",
+      "Catálogo, tarifas y calculadoras de precio",
+      "Área de partner con pedidos y documentos",
+      "Formularios, solicitud de presupuesto e integraciones con CRM",
+      "Integraciones con sistemas internos y de contabilidad",
+      "Diseño responsive, pruebas y lanzamiento"
+    ],
+    "forWhom": [
+      {
+        "title": "Fabricantes y proveedores",
+        "text": "Un escaparate claro del producto, con tarifas y una vía para pedir presupuesto."
+      },
+      {
+        "title": "Venta mayorista",
+        "text": "Un portal para distribuidores y partners con pedidos y documentos."
+      },
+      {
+        "title": "Servicios complejos",
+        "text": "Una web que explica el valor y acompaña al cliente durante un ciclo de venta largo."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing y lógica de la venta",
+        "text": "Analizamos el producto, el público y el recorrido del comprador B2B."
+      },
+      {
+        "title": "Estructura y diseño",
+        "text": "Diseñamos las secciones, el catálogo y el área de partner."
+      },
+      {
+        "title": "Desarrollo e integraciones",
+        "text": "Montamos la web y conectamos CRM, contabilidad y sistemas internos."
+      },
+      {
+        "title": "Lanzamiento",
+        "text": "Probamos los escenarios, publicamos y entregamos los accesos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿En qué se diferencia una web B2B de una normal?",
+        "answer": "Está hecha para un producto complejo y un ciclo de venta largo: el acento está en la confianza, los cálculos, las tarifas, el área de partner y las integraciones con los sistemas internos."
+      },
+      {
+        "question": "¿Haréis un área para partners?",
+        "answer": "Sí. Construimos un área con pedidos, documentos, estados y condiciones particulares."
+      },
+      {
+        "question": "¿Cuánto cuesta una web B2B?",
+        "answer": "Parte de {price:180000} y depende de la funcionalidad y de las integraciones. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Normalmente desde tres semanas. El plazo depende de lo complejos que sean el catálogo, el área de partner y las integraciones."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Web sobre una base ya preparada",
+          "Catálogo y tarifas",
+          "Formulario de solicitud de presupuesto",
+          "Integraciones básicas",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 5 semanas",
+        "features": [
+          "Diseño a medida",
+          "Calculadora de precios",
+          "Área de partner",
+          "Integración con CRM",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 8 semanas",
+        "features": [
+          "Lógica y escenarios de venta complejos",
+          "Integraciones con contabilidad y sistemas internos",
+          "Portal para distribuidores y partners",
+          "Contenidos y documentación",
+          "Soporte tras el lanzamiento"
+        ]
+      }
+    ]
+  },
+  "webDesign": {
+    "metaTitle": "Diseño web y sistemas de diseño",
+    "metaDescription": "Diseño web y sistema de diseño: investigación, prototipos, maquetas de todos los estados, biblioteca de componentes y entrega a desarrollo. Desde {price:60000}.",
+    "breadcrumb": "Sistemas de diseño web",
+    "h1": "Sistemas de diseño web",
+    "lead": "Diseñamos interfaces que no se desmontan al crecer: primero la estructura y la lógica de las pantallas, después el lenguaje visual, después la biblioteca de componentes. A partir de ahí una página nueva se monta con bloques listos en horas, en vez de dibujarse de cero durante semanas.",
+    "includes": [
+      "Investigación: recorridos de usuario, competencia, requisitos del negocio",
+      "Estructura y prototipos de las pantallas clave antes de cualquier trabajo visual",
+      "Retícula modular, escala tipográfica y tokens de color",
+      "Biblioteca de componentes con todos los estados: hover, foco, error, carga",
+      "Maquetas para escritorio, tablet y móvil",
+      "Entrega a desarrollo: especificaciones, espaciados, recursos y guía de maquetación"
+    ],
+    "forWhom": [
+      {
+        "title": "Webs que crecen",
+        "text": "Cuando hay muchas páginas y cada nueva empieza a desviarse del resto."
+      },
+      {
+        "title": "Servicios y áreas de cliente",
+        "text": "Interfaces con formularios, tablas y estados, donde importa más la previsibilidad que la decoración."
+      },
+      {
+        "title": "Rediseño sin parar el negocio",
+        "text": "Actualizamos el aspecto por partes, apoyándonos en un sistema común en vez de rehacerlo todo de golpe."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing e investigación",
+        "text": "Averiguamos quién es el usuario, qué intenta hacer y qué se lo impide ahora."
+      },
+      {
+        "title": "Estructura y prototipos",
+        "text": "Mapeamos las pantallas y montamos prototipos en bruto: la lógica se acuerda antes que lo visual."
+      },
+      {
+        "title": "Lenguaje visual",
+        "text": "Fijamos la retícula, las tipografías, los colores y el carácter en un par de pantallas clave."
+      },
+      {
+        "title": "Sistema de diseño",
+        "text": "Descomponemos las maquetas en componentes y describimos sus estados y las reglas de uso."
+      },
+      {
+        "title": "Entrega a desarrollo",
+        "text": "Entregamos maquetas, recursos y especificaciones, acompañamos la maquetación y revisamos el resultado."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿En qué se diferencia esto de una maqueta de web normal?",
+        "answer": "Una maqueta es la imagen de unas páginas concretas. Un sistema de diseño son las reglas y el conjunto de componentes con los que se monta cualquier página, incluidas las que todavía no existen. Se amortiza alrededor de la vigésima pantalla."
+      },
+      {
+        "question": "¿Con qué trabajáis y qué recibo al final?",
+        "answer": "Trabajamos en Figma. Recibes un archivo con prototipos, maquetas, biblioteca de componentes y permisos de acceso: se queda contigo aunque más adelante trabaje otro equipo."
+      },
+      {
+        "question": "¿Puedo encargar solo el diseño, sin desarrollo?",
+        "answer": "Sí. Entregamos las maquetas y las especificaciones a tus desarrolladores y seguimos disponibles durante la maquetación para que el resultado coincida con lo diseñado."
+      },
+      {
+        "question": "¿Cuánto tarda?",
+        "answer": "Una web pequeña, desde dos semanas. Un servicio con área de cliente y muchos estados, desde unas seis semanas. Damos el plazo exacto cuando vemos cuántas pantallas hay."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Páginas",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Prototipos de las pantallas clave",
+          "Diseño de hasta 5 páginas",
+          "Responsive para móvil y tablet",
+          "Conjunto básico de componentes",
+          "Entrega de maquetas a desarrollo"
+        ]
+      },
+      {
+        "name": "Sistema",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "Investigación y recorridos de usuario",
+          "Diseño de hasta 15 pantallas",
+          "Retícula, tipografía y tokens de color",
+          "Biblioteca de componentes con todos los estados",
+          "Especificaciones y acompañamiento de la maquetación"
+        ]
+      },
+      {
+        "name": "Producto",
+        "deadline": "desde 8 semanas",
+        "features": [
+          "Diseño del servicio completo",
+          "Área de cliente, tablas, formularios, estados",
+          "Sistema de diseño con documentación",
+          "Prototipo para probar con usuarios",
+          "Acompañamiento hasta el lanzamiento"
+        ]
+      }
+    ]
+  },
+  "branding": {
+    "metaTitle": "Identidad visual y branding",
+    "metaDescription": "Logotipo e identidad visual: símbolo, colores, tipografías, aplicaciones y manual de marca con las reglas de uso. Desde {price:45000}.",
+    "breadcrumb": "Diseño y branding",
+    "h1": "Diseño y branding",
+    "lead": "Construimos la imagen visual de la empresa para que funcione más allá de la presentación: símbolo, paleta, tipografías y reglas de aplicación. El resultado es que la web, los documentos, el rótulo y la publicidad parezcan una sola empresa y no cuatro distintas.",
+    "includes": [
+      "Una mirada al mercado y al posicionamiento: qué os distingue y cómo mostrarlo",
+      "Desarrollo del símbolo y el logotipo en varias opciones a elegir",
+      "Paleta de color y pareja tipográfica, comprobadas en legibilidad",
+      "Maquetas de aplicaciones: tarjetas, papelería, presentación, redes sociales",
+      "Reglas de uso: márgenes, tamaños mínimos, lo que no debe hacerse",
+      "Manual de marca y archivos fuente en todos los formatos necesarios"
+    ],
+    "forWhom": [
+      {
+        "title": "Empresas nuevas",
+        "text": "Necesitas una imagen desde cero: parecer un negocio asentado desde el primer día y no una solución provisional."
+      },
+      {
+        "title": "Renovar la imagen",
+        "text": "El estilo ha envejecido o se formó por acumulación, con cada proveedor añadiendo algo propio."
+      },
+      {
+        "title": "Antes de la web",
+        "text": "Para que el diseño del sitio se apoye en una identidad ya hecha en lugar de improvisarla sobre la marcha."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Inmersión",
+        "text": "Entramos en el negocio, el público y la competencia, y acordamos el carácter de la futura imagen."
+      },
+      {
+        "title": "Conceptos del símbolo",
+        "text": "Mostramos varias opciones radicalmente distintas, cada una con su idea explicada."
+      },
+      {
+        "title": "Afinado del elegido",
+        "text": "Rematamos el concepto escogido: proporciones, versiones para distintos tamaños, pruebas en situaciones reales."
+      },
+      {
+        "title": "Identidad visual",
+        "text": "Construimos la paleta, las tipografías y las aplicaciones alrededor del símbolo aprobado."
+      },
+      {
+        "title": "Manual y entrega",
+        "text": "Redactamos las reglas, reunimos los archivos fuente y lo entregamos todo junto con los derechos de uso."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Qué diferencia hay entre un logotipo y una identidad visual?",
+        "answer": "El logotipo es solo el símbolo. La identidad visual es el sistema a su alrededor: colores, tipografías, aplicaciones y las reglas con las que se combinan. Un símbolo sin reglas suele desmontarse en la tercera maqueta."
+      },
+      {
+        "question": "¿Cuántas opciones de símbolo mostráis?",
+        "answer": "Tres conceptos radicalmente distintos, cada uno con su idea explicada. Después afinamos el que elijas: las revisiones están incluidas, no se pagan aparte."
+      },
+      {
+        "question": "¿Los derechos del logotipo son nuestros?",
+        "answer": "Sí, los derechos exclusivos pasan a vosotros junto con los archivos fuente. También os diremos qué hace falta si decidís registrarlo como marca."
+      },
+      {
+        "question": "¿Se puede encargar junto con la web?",
+        "answer": "Es el orden correcto: primero la identidad visual y después el diseño del sitio sobre ella. Como un único proyecto sale más rápido y más barato que por separado."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Logotipo",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Tres conceptos de símbolo",
+          "Afinado de la opción elegida",
+          "Versiones para fondo claro y oscuro",
+          "Archivos fuente en vector y mapa de bits",
+          "Cesión de derechos"
+        ]
+      },
+      {
+        "name": "Identidad visual",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Todo lo de la tarifa Logotipo",
+          "Paleta y pareja tipográfica",
+          "Tarjetas, papelería, presentación",
+          "Plantillas para redes sociales",
+          "Guía breve de aplicación"
+        ]
+      },
+      {
+        "name": "Manual de marca",
+        "deadline": "desde 6 semanas",
+        "features": [
+          "Todo lo de la tarifa Identidad visual",
+          "Análisis de mercado y posicionamiento",
+          "Conjunto ampliado de aplicaciones",
+          "Manual de marca completo con las reglas",
+          "Acompañamiento durante la implantación"
+        ]
+      }
+    ]
   }
 }

@@ -498,5 +498,613 @@
         ]
       }
     ]
+  },
+  "websites": {
+    "metaTitle": "Landing page development, end to end",
+    "metaDescription": "Landing page development end to end: a structure that holds attention, design, fast markup and enquiry forms wired into your CRM. Built for advertising and conversion. From {price:59000}.",
+    "breadcrumb": "Landing page, end to end",
+    "h1": "Landing page development, end to end",
+    "lead": "We build landing pages that sell one offer, one campaign or one product launch: a structure that holds attention, careful design, fast loading and forms that deliver enquiries straight into your CRM.",
+    "includes": [
+      "Working out the structure and the blocks around your offer",
+      "Custom design, responsive on mobile and desktop",
+      "Fast markup built with page speed and conversion in mind",
+      "Enquiry forms, quizzes and integrations with CRM, messengers and analytics",
+      "Domain and hosting setup, plus conversion goals for your ads",
+      "Testing, launch and instructions for running it"
+    ],
+    "forWhom": [
+      {
+        "title": "Advertising and traffic",
+        "text": "A landing page for search and social ads, built to turn clicks into enquiries."
+      },
+      {
+        "title": "Product launch",
+        "text": "A page for one product, service or promotion with a clear call to action."
+      },
+      {
+        "title": "Testing demand",
+        "text": "A quick page to try an offer and collect the first enquiries."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief and offer",
+        "text": "We settle the goal, the audience and the page's core proposition."
+      },
+      {
+        "title": "Structure and design",
+        "text": "We build a prototype block by block and draw the layout for the brand."
+      },
+      {
+        "title": "Build and integrations",
+        "text": "We assemble the page and connect forms, CRM, analytics and goals."
+      },
+      {
+        "title": "Launch",
+        "text": "We publish, test the forms and hand over the access."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does a landing page cost?",
+        "answer": "It starts at {price:59000} and depends on how many blocks there are, the design and the integrations. We give an exact figure after the brief."
+      },
+      {
+        "question": "Do you make it responsive for mobile?",
+        "answer": "Yes. The page displays correctly and converts just as well on phones, tablets and desktop."
+      },
+      {
+        "question": "Will you set up analytics and goals for advertising?",
+        "answer": "Yes. We connect analytics and configure enquiry goals so the ad campaigns can be optimised properly."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "A landing page usually goes live from one week. The exact timeline depends on the number of blocks and the integrations."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 7–10 days",
+        "features": [
+          "Landing page on a ready-made foundation",
+          "Design adapted to the brand",
+          "Up to 6 content screens",
+          "Enquiry form and analytics connected",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Custom design built around the offer",
+          "Quiz or enquiry calculator",
+          "Integration with CRM and messengers",
+          "Advertising goals configured",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Original design and animation",
+          "A/B versions for different traffic",
+          "Copywriting and structure work",
+          "Complex integrations",
+          "Testing and launch"
+        ]
+      }
+    ]
+  },
+  "websiteTurnkey": {
+    "metaTitle": "Website development, end to end — from structure to launch",
+    "metaDescription": "Website development end to end: structure, design, markup, content, analytics and launch. You get a finished, working site without having to think about the technical side. From {price:89000}.",
+    "breadcrumb": "Website, end to end",
+    "h1": "Website, end to end",
+    "lead": "We take on the whole cycle of building a site — from structure and design to markup, content, analytics and launch. You get a finished, working product without having to get into the technical side.",
+    "includes": [
+      "Working out the structure and the prototype around your goals",
+      "Custom responsive design in your brand",
+      "Markup built with page speed and SEO in mind",
+      "Filling the site with content: text, images, blocks",
+      "Enquiry forms, integrations with CRM, messengers and analytics",
+      "Domain and hosting setup, testing and launch"
+    ],
+    "forWhom": [
+      {
+        "title": "Busy owners",
+        "text": "You need a finished site without getting into the detail — we close the whole thing."
+      },
+      {
+        "title": "New businesses",
+        "text": "A fast start from nothing: domain, design, content and launch in one project."
+      },
+      {
+        "title": "Refreshing your presence",
+        "text": "A modern site instead of an outdated one, with the technical side on us."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief",
+        "text": "We gather the goals, the preferences and the material for the site."
+      },
+      {
+        "title": "Design and structure",
+        "text": "We design the pages and draw the layouts for the brand."
+      },
+      {
+        "title": "Build and content",
+        "text": "We assemble the site, fill it with content and connect the services."
+      },
+      {
+        "title": "Launch",
+        "text": "We test, publish and hand over the finished site with the access."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does \"end to end\" mean?",
+        "answer": "We close the whole cycle: structure, design, markup, content, integrations and launch. From you we need only the material and your feedback."
+      },
+      {
+        "question": "Will you help with text and images?",
+        "answer": "Yes. We prepare and lay out the content, select images and bring the material into one consistent form."
+      },
+      {
+        "question": "What does an end-to-end site cost?",
+        "answer": "It starts at {price:89000} and depends on the number of pages and the functionality. We give an exact figure after the brief."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Usually from two weeks. The final timeline depends on the scope and on how ready the material is."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 10 days",
+        "features": [
+          "End-to-end site on a ready template",
+          "Adapted to the brand",
+          "Content for up to 8 pages",
+          "Enquiry form and analytics",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Custom design",
+          "Content and copywriting",
+          "Integrations with CRM and services",
+          "SEO foundation and analytics",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Built from scratch for the task",
+          "Complex functionality and scenarios",
+          "Custom integrations",
+          "Copywriting and content",
+          "Support after launch"
+        ]
+      }
+    ]
+  },
+  "businessCard": {
+    "metaTitle": "Business-card website development, end to end",
+    "metaDescription": "A business-card website end to end: a compact site about the company or the specialist — services, strengths, contacts and an enquiry form. Fast to launch, responsive, clear on price. From {price:29000}.",
+    "breadcrumb": "Business-card website",
+    "h1": "Business-card website development",
+    "lead": "We make compact business-card sites that say who you are and why you are useful in a single screen, and how to reach you. Quick to launch, clear on price.",
+    "includes": [
+      "A structure of the key blocks: about you, services, strengths, contacts",
+      "Custom responsive design in your brand",
+      "An enquiry form and messenger contact buttons",
+      "Map, company details and quick contacts",
+      "Baseline SEO setup and analytics",
+      "Domain, hosting, testing and launch"
+    ],
+    "forWhom": [
+      {
+        "title": "Specialists and experts",
+        "text": "A tidy page you can share with a client or on social media."
+      },
+      {
+        "title": "Small companies",
+        "text": "A short site with services and contacts, to earn trust and collect enquiries."
+      },
+      {
+        "title": "A fast start",
+        "text": "Minimum budget and time, simply to be present online and look professional."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief",
+        "text": "We gather the information about you, your services and your contacts."
+      },
+      {
+        "title": "Design",
+        "text": "We draw a tidy layout in your style."
+      },
+      {
+        "title": "Build",
+        "text": "We assemble the responsive page and connect the contact form."
+      },
+      {
+        "title": "Launch",
+        "text": "We publish it on your domain and hand over the access."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does a business-card website cost?",
+        "answer": "It starts at {price:29000} and depends on the number of blocks and the design. We give an exact figure after the brief."
+      },
+      {
+        "question": "How fast can it go live?",
+        "answer": "Usually from five days if the material is ready. It is the fastest format of site there is."
+      },
+      {
+        "question": "Can it be expanded into a full site later?",
+        "answer": "Yes. A business-card site can grow into a corporate website by adding sections, a catalogue and integrations."
+      },
+      {
+        "question": "Will it work on a phone?",
+        "answer": "Yes. The site is responsive and displays correctly on every device."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 5 days",
+        "features": [
+          "Single-page site on a ready-made foundation",
+          "Adapted to the brand",
+          "Blocks for services, strengths and contacts",
+          "Enquiry form and map",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 7 days",
+        "features": [
+          "Custom design",
+          "Up to 3 screens of content",
+          "Messenger contact buttons",
+          "Baseline SEO and analytics",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Original design and animation",
+          "Extended functionality",
+          "Copywriting and content",
+          "Integrations as needed",
+          "Testing and launch"
+        ]
+      }
+    ]
+  },
+  "b2b": {
+    "metaTitle": "B2B website development, end to end",
+    "metaDescription": "B2B website and portal development end to end: a clear presentation of the product, price calculation, a partner portal and integrations with internal systems. Built for a long sales cycle. From {price:180000}.",
+    "breadcrumb": "B2B website development",
+    "h1": "B2B website development",
+    "lead": "We design sites and portals for B2B, where what matters is trust, a product people can understand, and a long sales cycle: a structured catalogue, price calculation, a partner portal and integrations with your systems.",
+    "includes": [
+      "A structure built for a complex product and the B2B buyer's path",
+      "Catalogue, price lists and cost calculators",
+      "A partner portal with orders and documents",
+      "Enquiry forms, quote requests and CRM integrations",
+      "Integrations with internal and accounting systems",
+      "Responsive design, testing and launch"
+    ],
+    "forWhom": [
+      {
+        "title": "Manufacturers and suppliers",
+        "text": "A clear product storefront with price lists and a way to request a quote."
+      },
+      {
+        "title": "Wholesale",
+        "text": "A portal for dealers and partners with orders and documents."
+      },
+      {
+        "title": "Complex services",
+        "text": "A site that explains the value and carries the client through a long sales cycle."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief and deal logic",
+        "text": "We work through the product, the audience and the B2B buyer's path."
+      },
+      {
+        "title": "Structure and design",
+        "text": "We design the sections, the catalogue and the partner portal."
+      },
+      {
+        "title": "Build and integrations",
+        "text": "We assemble the site and connect CRM, accounting and internal systems."
+      },
+      {
+        "title": "Launch",
+        "text": "We test the scenarios, publish and hand over the access."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is a B2B site different from an ordinary one?",
+        "answer": "It is built for a complex product and a long sales cycle: the emphasis is on trust, calculations, price lists, the partner portal and integrations with internal systems."
+      },
+      {
+        "question": "Will you build a partner portal?",
+        "answer": "Yes. We build an area with orders, documents, statuses and individual terms."
+      },
+      {
+        "question": "What does a B2B site cost?",
+        "answer": "It starts at {price:180000} and depends on the functionality and the integrations. We give an exact figure after the brief."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Usually from three weeks. The timeline depends on how complex the catalogue, the portal and the integrations are."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Site on a ready-made foundation",
+          "Catalogue and price lists",
+          "Quote request form",
+          "Basic integrations",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 5 weeks",
+        "features": [
+          "Custom design",
+          "Cost calculator",
+          "Partner portal",
+          "CRM integration",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 8 weeks",
+        "features": [
+          "Complex logic and deal scenarios",
+          "Integrations with accounting and internal systems",
+          "A portal for dealers and partners",
+          "Content and documentation",
+          "Support after launch"
+        ]
+      }
+    ]
+  },
+  "webDesign": {
+    "metaTitle": "Web design and design systems",
+    "metaDescription": "Web design and a design system: research, prototypes, layouts for every state, a component library and handover to development. From {price:60000}.",
+    "breadcrumb": "Web design systems",
+    "h1": "Web design systems",
+    "lead": "We design interfaces that do not fall apart as they grow: first the structure and the logic of the screens, then the visual language, then the component library. After that a new page is assembled from ready blocks in hours, instead of being drawn from scratch over weeks.",
+    "includes": [
+      "Research: user journeys, competitors, business requirements",
+      "Structure and prototypes of the key screens before any visual work",
+      "A modular grid, a type scale and colour tokens",
+      "A component library with every state: hover, focus, error, loading",
+      "Layouts for desktop, tablet and phone",
+      "Handover to development: specs, spacing, assets and a build guide"
+    ],
+    "forWhom": [
+      {
+        "title": "Sites that grow",
+        "text": "When there are many pages and each new one starts drifting away from the rest."
+      },
+      {
+        "title": "Services and client portals",
+        "text": "Interfaces with forms, tables and states, where predictability matters more than decoration."
+      },
+      {
+        "title": "Redesign without stopping the business",
+        "text": "We update the look in parts, leaning on a shared system instead of redoing everything at once."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief and research",
+        "text": "We work out who the user is, what they are trying to do and what gets in their way now."
+      },
+      {
+        "title": "Structure and prototypes",
+        "text": "We map the screens and build rough prototypes — the logic is agreed before any visuals."
+      },
+      {
+        "title": "Visual language",
+        "text": "We settle the grid, the typefaces, the colours and the character on a couple of key screens."
+      },
+      {
+        "title": "Design system",
+        "text": "We break the layouts into components and describe their states and the rules for using them."
+      },
+      {
+        "title": "Handover to development",
+        "text": "We hand over layouts, assets and specs, support the build and review the result."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is this different from just a site mockup?",
+        "answer": "A mockup is a picture of particular pages. A design system is the rules and the set of components any page is assembled from, including pages that do not exist yet. It pays for itself around the twentieth screen."
+      },
+      {
+        "question": "What do you work in and what do I get at the end?",
+        "answer": "We work in Figma. You get a file with prototypes, layouts, a component library and access rights — it stays yours even if a different team takes over later."
+      },
+      {
+        "question": "Can I order design only, without development?",
+        "answer": "Yes. We hand the layouts and specs to your developers and stay available during the build so the result matches what was designed."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "A small site, from two weeks. A service with a client portal and many states, from about six weeks. We name the exact timeline once we have seen how many screens there are."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Pages",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Prototypes of the key screens",
+          "Design for up to 5 pages",
+          "Responsive for phone and tablet",
+          "A basic set of components",
+          "Handover of layouts to development"
+        ]
+      },
+      {
+        "name": "System",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Research and user journeys",
+          "Design for up to 15 screens",
+          "Grid, typography and colour tokens",
+          "Component library with every state",
+          "Specs and support during the build"
+        ]
+      },
+      {
+        "name": "Product",
+        "deadline": "from 8 weeks",
+        "features": [
+          "Designing the whole service",
+          "Client portal, tables, forms, states",
+          "Design system with documentation",
+          "A prototype for testing with users",
+          "Support through to release"
+        ]
+      }
+    ]
+  },
+  "branding": {
+    "metaTitle": "Visual identity and branding",
+    "metaDescription": "Logo and visual identity: mark, colours, typefaces, collateral and a brand book with the rules for using them. From {price:45000}.",
+    "breadcrumb": "Design and branding",
+    "h1": "Design and branding",
+    "lead": "We build the company's visual image so that it works beyond the presentation deck: mark, palette, typefaces and the rules for applying them. The result is that the site, the documents, the signage and the advertising look like one company rather than four different ones.",
+    "includes": [
+      "A look at the market and the positioning: what sets you apart and how to show it",
+      "A mark and logo developed in several options to choose from",
+      "A colour palette and a type pairing, checked for legibility",
+      "Collateral layouts: business cards, letterhead, presentation, social media",
+      "Rules of use: spacing, minimum sizes, what must not be done",
+      "A brand book and source files in every format you need"
+    ],
+    "forWhom": [
+      {
+        "title": "New companies",
+        "text": "You need an image from scratch: to look like an established business from day one, not like a temporary arrangement."
+      },
+      {
+        "title": "Refreshing an image",
+        "text": "The style has aged or grew by accident, with every contractor adding something of their own."
+      },
+      {
+        "title": "Before a website",
+        "text": "So the site design rests on a finished visual identity instead of inventing one as it goes."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Immersion",
+        "text": "We get into the business, the audience and the competitors, and agree on the character of the future image."
+      },
+      {
+        "title": "Mark concepts",
+        "text": "We show several fundamentally different options, each with the idea behind it explained."
+      },
+      {
+        "title": "Refining the chosen one",
+        "text": "We finish the selected concept: proportions, versions for different sizes, checks in real situations."
+      },
+      {
+        "title": "Visual identity",
+        "text": "We build the palette, the typefaces and the collateral around the approved mark."
+      },
+      {
+        "title": "Brand book and handover",
+        "text": "We write the rules, collect the source files and hand everything over together with the rights to use it."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What is the difference between a logo and a visual identity?",
+        "answer": "A logo is only the mark. A visual identity is the system around it: colours, typefaces, collateral and the rules by which they combine. One mark without rules usually falls apart by the third layout."
+      },
+      {
+        "question": "How many options for the mark do you show?",
+        "answer": "Three fundamentally different concepts, each with its idea explained. We then refine the one you choose — revisions are included, you do not pay extra for them."
+      },
+      {
+        "question": "Do we own the rights to the logo?",
+        "answer": "Yes, exclusive rights pass to you along with the source files. We will also tell you what you need if you decide to register it as a trademark."
+      },
+      {
+        "question": "Can it be ordered together with a website?",
+        "answer": "That is the better order: visual identity first, then the site design built on it. As one project it is both faster and cheaper than doing them separately."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Logo",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Three concepts for the mark",
+          "Refinement of the chosen option",
+          "Versions for dark and light backgrounds",
+          "Source files in vector and raster",
+          "Transfer of rights"
+        ]
+      },
+      {
+        "name": "Visual identity",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Everything in the Logo plan",
+          "Palette and type pairing",
+          "Business cards, letterhead, presentation",
+          "Social media templates",
+          "A short guide to applying it"
+        ]
+      },
+      {
+        "name": "Brand book",
+        "deadline": "from 6 weeks",
+        "features": [
+          "Everything in the Visual identity plan",
+          "Market analysis and positioning",
+          "An extended set of collateral",
+          "A full brand book with the rules",
+          "Support while it is rolled out"
+        ]
+      }
+    ]
   }
 }
