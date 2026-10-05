@@ -120,16 +120,6 @@ export const TECHNOLOGIES = [
   "Framer Motion",
 ] as const;
 
-export const NAV_ITEMS = [
-  { key: "home", href: "#home" },
-  { key: "process", href: "#process" },
-  { key: "services", href: "#services" },
-  { key: "industries", href: "#industries" },
-  { key: "solutions", href: "#solutions" },
-  { key: "faq", href: "#faq" },
-  { key: "contact", href: "#contact" },
-] as const;
-
 export const INDUSTRIES = [
   "FinTech",
   "E-Commerce",

@@ -10,7 +10,6 @@ import { Logo } from "@/components/layout/logo";
 import { useContactModal } from "@/components/providers/contact-modal-provider";
 import { AnchorLink } from "@/components/ui/anchor-link";
 import { Button } from "@/components/ui/button";
-import { NAV_ITEMS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { usePaths } from "@/i18n/use-paths";
 
@@ -64,19 +63,6 @@ export function Header({ companyName, sectionPrefix = "" }: HeaderProps) {
             className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 xl:flex"
             aria-label={t("a11y.mainNav")}
           >
-            <AnchorLink
-              href={`${sectionPrefix}${NAV_ITEMS[1].href}`}
-              onClick={() => setMenuOpen(false)}
-              className={cn(
-                "cursor-pointer text-base transition-colors duration-300",
-                menuOpen
-                  ? "text-white/70 hover:text-white"
-                  : "text-muted-foreground hover:text-foreground",
-              )}
-            >
-              {t(`nav.${NAV_ITEMS[1].key}`)}
-            </AnchorLink>
-
             <HeaderServicesMenu dark={menuOpen} onNavigate={() => setMenuOpen(false)} />
 
             <Link
