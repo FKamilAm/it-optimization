@@ -1,40 +1,15 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
-import { SiteShell } from "@/components/layout/site-shell";
-import { BlogList } from "@/components/blog/blog-list";
-import { getAllPosts } from "@/lib/blog";
-import { SITE } from "@/lib/constants";
-import { getSiteUrl } from "@/lib/site-url";
+import { setRequestLocale } from "next-intl/server";
+import { DEFAULT_LOCALE } from "@/i18n/config";
+import { blogPath } from "@/i18n/routes";
+import { BlogListPage } from "@/views/blog-list-page";
+import { pageMetadata } from "@/views/page-metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("blog");
-  const siteUrl = getSiteUrl();
-  const url = `${siteUrl}/blog/`;
-
-  return {
-    title: t("metaTitle"),
-    description: t("metaDescription"),
-    alternates: { canonical: url },
-    openGraph: {
-      title: t("metaTitle"),
-      description: t("metaDescription"),
-      url,
-      type: "website",
-      locale: "ru_RU",
-      siteName: SITE.name,
-      images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
-    },
-  };
+  return pageMetadata({ locale: DEFAULT_LOCALE, namespace: "blog", path: blogPath });
 }
 
-export default async function BlogPage() {
-  // Статьи читает серверный компонент и передаёт вниз пропсами — клиент не
-  // импортирует JSON, и источник данных однажды сможет стать базой.
-  const posts = await getAllPosts();
-
-  return (
-    <SiteShell>
-      <BlogList posts={posts} />
-    </SiteShell>
-  );
+export default function Page() {
+  setRequestLocale(DEFAULT_LOCALE);
+  return <BlogListPage locale={DEFAULT_LOCALE} />;
 }

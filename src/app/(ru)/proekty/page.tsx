@@ -1,38 +1,19 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
-import { SiteShell } from "@/components/layout/site-shell";
-import { ProjectsContent } from "@/components/projects/projects-content";
-import { getAllCases } from "@/lib/cases";
-import { SITE } from "@/lib/constants";
-import { getSiteUrl } from "@/lib/site-url";
+import { setRequestLocale } from "next-intl/server";
+import { DEFAULT_LOCALE } from "@/i18n/config";
+import { projectsPath } from "@/i18n/routes";
+import { pageMetadata } from "@/views/page-metadata";
+import { ProjectsPage } from "@/views/projects-page";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("projectsPage");
-  const siteUrl = getSiteUrl();
-  const url = `${siteUrl}/proekty/`;
-
-  return {
-    title: t("metaTitle"),
-    description: t("metaDescription"),
-    alternates: { canonical: url },
-    openGraph: {
-      title: t("metaTitle"),
-      description: t("metaDescription"),
-      url,
-      type: "website",
-      locale: "ru_RU",
-      siteName: SITE.name,
-      images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
-    },
-  };
+  return pageMetadata({
+    locale: DEFAULT_LOCALE,
+    namespace: "projectsPage",
+    path: projectsPath,
+  });
 }
 
-export default async function ProjectsPage() {
-  const cases = await getAllCases();
-
-  return (
-    <SiteShell>
-      <ProjectsContent cases={cases} />
-    </SiteShell>
-  );
+export default function Page() {
+  setRequestLocale(DEFAULT_LOCALE);
+  return <ProjectsPage locale={DEFAULT_LOCALE} />;
 }

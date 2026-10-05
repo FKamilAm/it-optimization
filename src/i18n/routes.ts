@@ -47,6 +47,19 @@ export function segment(section: Section, locale: Locale): string {
   return SEGMENTS[section][locale];
 }
 
+export const SECTIONS = Object.keys(SEGMENTS) as Section[];
+
+/**
+ * Обратный разбор: сегмент из адреса → раздел.
+ *
+ * Нужен, потому что в маршрутах `/en/services/` и `/es/servicios/` второй
+ * сегмент разный, а статическая папка в App Router одна на все локали.
+ * Значит сегмент приходится делать динамическим, а разделы различать здесь.
+ */
+export function sectionBySegment(value: string, locale: Locale): Section | undefined {
+  return SECTIONS.find((section) => SEGMENTS[section][locale] === value);
+}
+
 /** Слуг услуги в нужной локали. Нет перевода — остаётся русский, страница не пропадает. */
 export function serviceSlug(key: string, locale: Locale): string {
   if (locale === DEFAULT_LOCALE) return RU_SERVICE_SLUG[key] ?? key;
