@@ -1,0 +1,193 @@
+{
+  "notice": "This is a translation of the Russian original. If the two versions differ, the Russian version prevails.",
+  "sections": [
+    {
+      "heading": "1. General provisions",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "This Personal Data Processing Policy (the \"Policy\") sets out how personal data is processed and the measures taken to keep it secure by Limited Liability Company \"IT OPTIMIZATSIYA\" (the \"Operator\")."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Full name: Limited Liability Company \"IT OPTIMIZATSIYA\" (in Russian: ООО «ИТ ОПТИМИЗАЦИЯ»)",
+            "Taxpayer ID (INN) 8600002653, KPP 860001001, OGRN 1268600004463",
+            "Address: 1 Molodosti St., apt. 68, Beloyarsky, Beloyarsky District, Khanty-Mansi Autonomous Okrug — Yugra, 628162, Russian Federation",
+            "Email: info@itoptimizations.ru",
+            "Phone: +7 996 326-61-61"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Policy has been drawn up in accordance with Federal Law No. 152-FZ of 27 July 2006 \"On Personal Data\" and is published as required by Part 2 of Article 18.1 of that Law. The Policy applies to the website it-optimization.ru and all of its pages."
+        },
+        {
+          "type": "p",
+          "text": "The Operator assumes that the data subject provides accurate information and keeps it up to date. The Operator does not verify the accuracy of the information provided and is unable to assess the data subject's legal capacity."
+        }
+      ]
+    },
+    {
+      "heading": "2. What data the Operator processes",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The website has no contact forms, order forms or user accounts: it does not collect personal data through forms of its own. Data reaches the Operator in two ways."
+        },
+        {
+          "type": "p",
+          "text": "First, when a visitor contacts the Operator on their own initiative using the contact details listed on the website: via messengers (Telegram, WhatsApp, MAX), by phone or by email. In this case the Operator processes the information the data subject has provided themselves:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "surname, first name and patronymic, or the first name or alias the data subject introduced themselves by",
+            "phone number, email address, messenger username or ID",
+            "name and details of the organisation represented, job title",
+            "the content of the enquiry and of the subsequent correspondence, including information about the task and its terms"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Second, technical information that the hosting server records when the website is accessed: IP address, date and time of the request, address of the requested page, and browser information. These records are kept automatically, are needed for the website to work and stay secure, and are not used to build a profile of the visitor."
+        },
+        {
+          "type": "p",
+          "text": "As of this revision, the website does not use web analytics systems, advertising or other third-party counters, and does not store cookies in the visitor's browser to track their behaviour. If such tools are introduced, a corresponding section will be added to this Policy before they are put into use."
+        },
+        {
+          "type": "p",
+          "text": "The Operator does not process special categories of personal data (concerning racial or ethnic origin, political opinions, religious or philosophical beliefs, health or intimate life), nor biometric personal data. The Operator does not process personal data of minors: the website is intended for representatives of organisations and for sole proprietors."
+        }
+      ]
+    },
+    {
+      "heading": "3. Purposes of processing and legal grounds",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Operator processes personal data solely for the purposes stated in its notification to the Register of Personal Data Operators. As of this revision, processing is actually carried out for the first of the purposes listed below."
+        },
+        {
+          "type": "p",
+          "text": "Purpose 1. Preparing, concluding and performing a civil-law contract for information technology services. The data received with an enquiry is processed in order to respond to it, agree on the scope of work, timeline and cost, conclude and perform the contract, settle payments and provide warranty support. Legal ground: clause 5 of Part 1 of Article 6 of Federal Law No. 152-FZ — processing is necessary for the performance of a contract to which the data subject is a party, and for concluding a contract at the data subject's initiative. No separate consent is required for this purpose."
+        },
+        {
+          "type": "p",
+          "text": "Purpose 2. Promoting the Operator's goods, works and services on the market. This purpose is stated in the notification, but as of this revision no processing is carried out for it: no web analytics tools are connected to the website and no mailings are sent. Processing for this purpose will begin no earlier than after this Policy has been supplemented, and only on the basis of the data subject's consent (Article 9 of Federal Law No. 152-FZ), which may be withdrawn at any time."
+        },
+        {
+          "type": "p",
+          "text": "The Operator does not make decisions that produce legal consequences for the data subject based solely on automated processing of their personal data."
+        }
+      ]
+    },
+    {
+      "heading": "4. Procedure, conditions and retention periods",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Processing is carried out both with and without automation tools and includes the collection, recording, systematisation, accumulation, storage, updating, retrieval, use, transfer to the extent described in Section 5, blocking, deletion and destruction of personal data."
+        },
+        {
+          "type": "p",
+          "text": "Databases containing personal data of citizens of the Russian Federation are located in the Russian Federation, as required by Part 5 of Article 18 of Federal Law No. 152-FZ. The Operator does not carry out cross-border transfers of personal data."
+        },
+        {
+          "type": "p",
+          "text": "Personal data is kept no longer than the purposes of processing require, unless a different period is established by law or by contract:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "data received with an enquiry that did not lead to a contract — for one year from the date of the last contact",
+            "data related to a concluded contract — for the term of the contract and five years after its performance, in line with the retention periods for primary accounting documents",
+            "technical records of the hosting server — for no more than six months from the date the website was accessed"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Once the purposes of processing have been achieved, and likewise upon withdrawal of consent or receipt of a request for destruction, personal data is destroyed or anonymised within the time limits set by Articles 20 and 21 of Federal Law No. 152-FZ."
+        }
+      ]
+    },
+    {
+      "heading": "5. Transfer of personal data to third parties",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Operator does not sell personal data or transfer it to third parties for marketing purposes. Data may be transferred only in the following cases:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "to the party providing the Operator with hosting and server placement services in the Russian Federation — to the extent necessary for the operation of the website and the Operator's information systems",
+            "to government authorities — on the grounds and in the manner established by the laws of the Russian Federation"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Whenever processing is entrusted to another party, this is formalised by a contract that obliges that party to maintain confidentiality and to comply with personal data protection requirements."
+        }
+      ]
+    },
+    {
+      "heading": "6. Rights of the data subject",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The data subject has the right to:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "receive the information about the processing of their personal data provided for by Part 7 of Article 14 of Federal Law No. 152-FZ, including the purposes, methods and periods of processing and the parties to whom the data is transferred",
+            "demand that their personal data be updated, blocked or destroyed if it is incomplete, outdated, inaccurate, unlawfully obtained or not necessary for the stated purpose of processing",
+            "withdraw consent to the processing of personal data where processing is based on consent",
+            "appeal against the actions or inaction of the Operator to Roskomnadzor, the Russian data protection authority, or in court"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "To exercise any of these rights, it is enough to send a request to info@itoptimizations.ru stating the data subject's surname, first name and patronymic, along with information that allows the data subject to be identified and their connection to the requested data to be confirmed. The Operator responds within ten working days of receiving the request; this period may be extended by no more than five working days, with notice of the reasons for the extension."
+        },
+        {
+          "type": "p",
+          "text": "A request may be submitted by the data subject in person or by their representative whose authority is confirmed by a power of attorney."
+        }
+      ]
+    },
+    {
+      "heading": "7. Security measures",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Operator takes the legal, organisational and technical measures necessary to protect personal data against unlawful access, destruction, modification, blocking, copying and dissemination, including:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "determining who is authorised to process personal data and keeping records of access to information systems",
+            "transmitting data over the network only via the secure HTTPS protocol",
+            "storing passwords and other secrets in encrypted form and making backups",
+            "monitoring the measures taken and assessing the harm that may be caused to data subjects"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "8. Final provisions",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Operator may amend this Policy. The current revision is always available at it-optimization.ru/en/privacy-policy/, and the Russian original at it-optimization.ru/politika-konfidencialnosti/. Amendments take effect once the new revision is published, unless the revision itself provides otherwise."
+        },
+        {
+          "type": "p",
+          "text": "For any questions related to the processing of personal data, please write to info@itoptimizations.ru."
+        }
+      ]
+    }
+  ]
+}

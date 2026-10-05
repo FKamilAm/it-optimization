@@ -1,0 +1,193 @@
+{
+  "notice": "Este texto es una traducción del original en ruso. En caso de discrepancia entre ambas versiones, prevalece la versión rusa.",
+  "sections": [
+    {
+      "heading": "1. Disposiciones generales",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "La presente Política de tratamiento de datos personales (en adelante, la «Política») establece el procedimiento de tratamiento de los datos personales y las medidas para garantizar su seguridad que adopta la sociedad de responsabilidad limitada «IT OPTIMIZATSIYA» (en adelante, el «Operador»)."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Denominación completa: sociedad de responsabilidad limitada «IT OPTIMIZATSIYA» (en ruso: ООО «ИТ ОПТИМИЗАЦИЯ»)",
+            "Número de identificación fiscal (INN) 8600002653, KPP 860001001, OGRN 1268600004463",
+            "Dirección: calle Molodosti, 1, apto. 68, Beloyarski, distrito de Beloyarski, Distrito Autónomo de Janti-Mansi — Yugrá, 628162, Federación de Rusia",
+            "Correo electrónico: info@itoptimizations.ru",
+            "Teléfono: +7 996 326-61-61"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "La Política se ha elaborado de conformidad con la Ley Federal n.º 152-FZ, de 27 de julio de 2006, «Sobre los datos personales» y se publica según lo previsto en la parte 2 del artículo 18.1 de dicha ley. La Política se aplica al sitio web it-optimization.ru y a todas sus páginas."
+        },
+        {
+          "type": "p",
+          "text": "El Operador parte de la premisa de que el interesado facilita información veraz y la mantiene actualizada. El Operador no verifica la veracidad de la información facilitada y no tiene la posibilidad de evaluar la capacidad jurídica del interesado."
+        }
+      ]
+    },
+    {
+      "heading": "2. Qué datos trata el Operador",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El sitio web no tiene formularios de contacto, formularios de pedido ni áreas privadas de usuario: no recoge datos personales mediante formularios propios. Los datos llegan al Operador por dos vías."
+        },
+        {
+          "type": "p",
+          "text": "La primera, cuando un visitante se dirige al Operador por iniciativa propia a través de los contactos indicados en el sitio web: por mensajería (Telegram, WhatsApp, MAX), por teléfono o por correo electrónico. En este caso se trata la información que el propio interesado ha comunicado:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "apellidos, nombre y patronímico, o bien el nombre o seudónimo con el que se haya presentado el interesado",
+            "número de teléfono, dirección de correo electrónico, nombre de usuario o identificador en la aplicación de mensajería",
+            "denominación y datos de la organización que representa, cargo",
+            "el contenido de la consulta y de la correspondencia posterior, incluida la información sobre la tarea y sus condiciones"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "La segunda, la información técnica que registra el servidor de alojamiento al acceder al sitio web: dirección IP, fecha y hora de la solicitud, dirección de la página solicitada e información sobre el navegador. Estos registros se generan automáticamente, son necesarios para el funcionamiento y la seguridad del sitio web y no se utilizan para elaborar perfiles de los visitantes."
+        },
+        {
+          "type": "p",
+          "text": "A la fecha de la presente versión, el sitio web no utiliza sistemas de analítica web, contadores publicitarios ni otros contadores de terceros, y no almacena en el navegador del visitante cookies destinadas a rastrear su comportamiento. Si se incorporan herramientas de este tipo, la presente Política se completará con el apartado correspondiente antes de empezar a utilizarlas."
+        },
+        {
+          "type": "p",
+          "text": "El Operador no trata categorías especiales de datos personales (relativos al origen racial o étnico, las opiniones políticas, las convicciones religiosas o filosóficas, la salud o la vida íntima), ni datos personales biométricos. El Operador no trata datos personales de menores de edad: el sitio web está dirigido a representantes de organizaciones y a empresarios individuales."
+        }
+      ]
+    },
+    {
+      "heading": "3. Finalidades del tratamiento y bases jurídicas",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El Operador trata los datos personales exclusivamente para las finalidades declaradas en su notificación al Registro de operadores que realizan el tratamiento de datos personales. A la fecha de la presente versión, el tratamiento se realiza efectivamente para la primera de las finalidades indicadas a continuación."
+        },
+        {
+          "type": "p",
+          "text": "Finalidad 1. Preparación, celebración y ejecución de un contrato civil de prestación de servicios en el ámbito de las tecnologías de la información. Se tratan los datos recibidos con la consulta: son necesarios para responder a ella, acordar el alcance de los trabajos, los plazos y el coste, celebrar y ejecutar el contrato, gestionar los pagos y prestar el soporte en garantía. Base jurídica: punto 5 de la parte 1 del artículo 6 de la Ley Federal n.º 152-FZ: el tratamiento es necesario para la ejecución de un contrato en el que el interesado es parte, así como para la celebración de un contrato a iniciativa suya. Para esta finalidad no se requiere un consentimiento específico."
+        },
+        {
+          "type": "p",
+          "text": "Finalidad 2. Promoción en el mercado de los bienes, obras y servicios del Operador. Esta finalidad figura en la notificación, pero a la fecha de la presente versión no se realiza ningún tratamiento con ella: el sitio web no tiene herramientas de analítica web conectadas y no se envían comunicaciones comerciales. El tratamiento con esta finalidad no comenzará antes de que se complete la presente Política y solo sobre la base del consentimiento del interesado (artículo 9 de la Ley Federal n.º 152-FZ), que puede retirarse en cualquier momento."
+        },
+        {
+          "type": "p",
+          "text": "El Operador no adopta decisiones que produzcan efectos jurídicos para el interesado basadas únicamente en el tratamiento automatizado de sus datos personales."
+        }
+      ]
+    },
+    {
+      "heading": "4. Procedimiento, condiciones y plazos del tratamiento",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El tratamiento se realiza con y sin medios automatizados e incluye la recogida, el registro, la sistematización, la acumulación, la conservación, la actualización, la extracción, el uso, la comunicación en el alcance descrito en el apartado 5, el bloqueo, la supresión y la destrucción de los datos personales."
+        },
+        {
+          "type": "p",
+          "text": "Las bases de datos que contienen datos personales de ciudadanos de la Federación de Rusia se encuentran en el territorio de la Federación de Rusia, como exige la parte 5 del artículo 18 de la Ley Federal n.º 152-FZ. El Operador no realiza transferencias internacionales de datos personales."
+        },
+        {
+          "type": "p",
+          "text": "Los datos personales se conservan durante un plazo no superior al que exijan las finalidades del tratamiento, salvo que la ley o el contrato establezcan otro plazo:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "los datos recibidos con una consulta que no dio lugar a un contrato, durante un año desde la fecha del último contacto",
+            "los datos relacionados con un contrato celebrado, durante la vigencia del contrato y cinco años después de su ejecución, en consonancia con los plazos de conservación de los documentos contables primarios",
+            "los registros técnicos del servidor de alojamiento, durante un máximo de seis meses desde la fecha de acceso al sitio web"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Una vez alcanzadas las finalidades del tratamiento, así como en caso de retirada del consentimiento o de recepción de una solicitud de destrucción, los datos personales se destruyen o se anonimizan en los plazos establecidos por los artículos 20 y 21 de la Ley Federal n.º 152-FZ."
+        }
+      ]
+    },
+    {
+      "heading": "5. Comunicación de datos personales a terceros",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El Operador no vende datos personales ni los comunica a terceros con fines de marketing. La comunicación solo es posible en los siguientes casos:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "a quien presta al Operador servicios de alojamiento y ubicación de servidores en el territorio de la Federación de Rusia, en la medida necesaria para el funcionamiento del sitio web y de los sistemas de información del Operador",
+            "a los organismos públicos, por los motivos y en la forma establecidos por la legislación de la Federación de Rusia"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Siempre que el tratamiento se encomiende a otra persona, el encargo se formaliza mediante un contrato que la obliga a mantener la confidencialidad y a cumplir los requisitos de protección de los datos personales."
+        }
+      ]
+    },
+    {
+      "heading": "6. Derechos del interesado",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El interesado tiene derecho a:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "obtener la información sobre el tratamiento de sus datos personales prevista en la parte 7 del artículo 14 de la Ley Federal n.º 152-FZ, incluidas las finalidades, los métodos y los plazos del tratamiento y las personas a las que se comunican los datos",
+            "exigir la actualización, el bloqueo o la destrucción de sus datos personales si son incompletos, están desactualizados, son inexactos, se han obtenido ilícitamente o no son necesarios para la finalidad declarada del tratamiento",
+            "retirar el consentimiento al tratamiento de los datos personales cuando el tratamiento se base en el consentimiento",
+            "recurrir las acciones u omisiones del Operador ante Roskomnadzor, la autoridad rusa de protección de datos, o por vía judicial"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Para ejercer cualquiera de estos derechos basta con enviar una solicitud a info@itoptimizations.ru indicando los apellidos, el nombre y el patronímico del interesado, así como información que permita identificarlo y confirmar su relación con los datos solicitados. El Operador responde en un plazo máximo de diez días hábiles desde la recepción de la solicitud; este plazo puede prorrogarse un máximo de cinco días hábiles, comunicando los motivos de la prórroga."
+        },
+        {
+          "type": "p",
+          "text": "La solicitud puede presentarla el propio interesado o su representante, cuyas facultades estén acreditadas mediante un poder."
+        }
+      ]
+    },
+    {
+      "heading": "7. Medidas de seguridad",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El Operador adopta las medidas jurídicas, organizativas y técnicas necesarias para proteger los datos personales frente al acceso ilícito, la destrucción, la modificación, el bloqueo, la copia y la difusión, entre ellas:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "determina el círculo de personas autorizadas para tratar datos personales y lleva un registro de los accesos a los sistemas de información",
+            "transmite los datos por la red únicamente mediante el protocolo seguro HTTPS",
+            "conserva las contraseñas y otros secretos cifrados y realiza copias de seguridad",
+            "supervisa las medidas adoptadas y evalúa el daño que podría causarse a los interesados"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "8. Disposiciones finales",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El Operador puede modificar la presente Política. La versión vigente está siempre disponible en it-optimization.ru/es/politica-de-privacidad/, y el original en ruso, en it-optimization.ru/politika-konfidencialnosti/. Las modificaciones entran en vigor desde la publicación de la nueva versión, salvo que esta disponga otra cosa."
+        },
+        {
+          "type": "p",
+          "text": "Para cualquier cuestión relacionada con el tratamiento de datos personales, escriba a info@itoptimizations.ru."
+        }
+      ]
+    }
+  ]
+}

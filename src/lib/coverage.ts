@@ -3,6 +3,7 @@ import servicesEs from "../../content/translations/services.es.json";
 import casesEn from "../../content/translations/cases.en.json";
 import casesEs from "../../content/translations/cases.es.json";
 import { DEFAULT_LOCALE, type Locale } from "@/i18n/config";
+import { PRIVACY_TRANSLATIONS } from "@/lib/privacy";
 
 /**
  * Что уже переведено, а что ещё нет.
@@ -41,13 +42,13 @@ export function isCaseTranslated(slug: string, locale: Locale): boolean {
 }
 
 /**
- * Статьи блога и политика пока не переводились вовсе. Когда появятся
- * переводы, здесь будет такая же проверка по таблице, а не правка по месту.
+ * Статьи блога пока не переводились вовсе. Когда появятся переводы, здесь
+ * будет такая же проверка по таблице, а не правка по месту.
  */
 export function isPostTranslated(_slug: string, locale: Locale): boolean {
   return locale === DEFAULT_LOCALE;
 }
 
 export function isPrivacyTranslated(locale: Locale): boolean {
-  return locale === DEFAULT_LOCALE;
+  return locale === DEFAULT_LOCALE || Boolean(PRIVACY_TRANSLATIONS[locale]);
 }

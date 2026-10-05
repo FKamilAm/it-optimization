@@ -1,5 +1,5 @@
 /**
- * Проверка переводов услуг и кейсов.
+ * Проверка переводов услуг, кейсов и политики конфиденциальности.
  *
  * Запускается руками после каждой партии перевода. Ловит то, что сборка
  * пропускает молча: расхождение длин списков (в русском шесть пунктов, в
@@ -19,6 +19,7 @@ const read = async (p) => JSON.parse(await readFile(join(ROOT, p), "utf8"));
 
 const services = await read("content/services.json");
 const cases = await read("content/cases.json");
+const privacy = await read("content/privacy.json");
 const catalog = await read("content/service-catalog.json");
 const catalogKeys = new Set(catalog.services.map((s) => s.key));
 
@@ -126,6 +127,36 @@ for (const locale of ["en", "es"]) {
     if (CYRILLIC.test(JSON.stringify(tr))) note(locale, `кейс ${slug}`, "кириллица");
   }
   console.log(`${locale}: кейсов ${Object.keys(tc).length}/${cases.length}`);
+
+  // -------------------------------------------------------------- политика
+  // Документ юридический, поэтому сверяется по блокам: пропавший пункт в
+  // списке прав субъекта — это уже другая политика, а не неточный перевод.
+  const tp = await read(`content/translations/privacy.${locale}.json`);
+  if (!tp.notice) note(locale, "политика", "нет оговорки о том, что это перевод");
+  if (tp.sections.length !== privacy.sections.length) {
+    note(locale, "политика", `разделов ${tp.sections.length} вместо ${privacy.sections.length}`);
+  }
+  privacy.sections.forEach((ruSection, i) => {
+    const section = tp.sections[i];
+    if (!section) return;
+    if (section.blocks.length !== ruSection.blocks.length) {
+      note(locale, `политика, раздел ${i + 1}`, `блоков ${section.blocks.length} вместо ${ruSection.blocks.length}`);
+      return;
+    }
+    ruSection.blocks.forEach((ruBlock, j) => {
+      const block = section.blocks[j];
+      if (block.type !== ruBlock.type) {
+        note(locale, `политика, раздел ${i + 1}`, `блок ${j + 1}: ${block.type} вместо ${ruBlock.type}`);
+      } else if (block.type === "list" && block.items.length !== ruBlock.items.length) {
+        note(locale, `политика, раздел ${i + 1}`, `пунктов ${block.items.length} вместо ${ruBlock.items.length}`);
+      }
+    });
+  });
+  // Юридическое наименование остаётся русским: это реквизит, а не текст.
+  if (CYRILLIC.test(JSON.stringify(tp).replaceAll("ООО «ИТ ОПТИМИЗАЦИЯ»", ""))) {
+    note(locale, "политика", "осталась кириллица");
+  }
+  console.log(`${locale}: политика ${tp.sections.length}/${privacy.sections.length} разделов`);
 }
 
 console.log();

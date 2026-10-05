@@ -8,18 +8,16 @@ import { homePath } from "@/i18n/routes";
 import { SiteShell } from "@/components/layout/site-shell";
 import { SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
-import { formatPostDate } from "@/lib/blog/types";
-import privacy from "../../content/privacy.json";
+import { getPrivacy } from "@/lib/privacy";
 
-// Текст политики лежит в content/privacy.json, а не в messages/ru.json, по той же
-// причине, что и тексты страниц услуг: каталог целиком уезжает в каждую страницу
-// экспорта, а этот документ нужен ровно одной. Страница — серверный компонент,
-// поэтому JSON не попадает в клиентский бандл.
-type Block = { type: "p"; text: string } | { type: "list"; items: string[] };
+// Текст политики лежит в content/privacy.json (переводы — в content/translations),
+// а не в messages/*.json, по той же причине, что и тексты страниц услуг: каталог
+// целиком уезжает в каждую страницу экспорта, а этот документ нужен ровно одной.
+// Страница — серверный компонент, поэтому JSON не попадает в клиентский бандл.
 
 export async function PrivacyPage({ locale }: { locale: Locale }) {
   const t = await getTranslations({ locale, namespace: "privacyPage" });
-  const sections = privacy.sections as { heading: string; blocks: Block[] }[];
+  const { sections, updatedLabel, notice } = getPrivacy(locale);
 
   return (
     <SiteShell>
@@ -28,7 +26,10 @@ export async function PrivacyPage({ locale }: { locale: Locale }) {
           <nav aria-label="breadcrumb" className="mb-10">
             <ol className="text-foreground/50 flex flex-wrap items-center gap-2 text-sm">
               <li>
-                <Link href={homePath(locale)} className="hover:text-foreground transition-colors">
+                <Link
+                  href={homePath(locale)}
+                  className="hover:text-foreground transition-colors"
+                >
                   {t("breadcrumbHome")}
                 </Link>
               </li>
@@ -42,8 +43,9 @@ export async function PrivacyPage({ locale }: { locale: Locale }) {
           <div className="mx-auto max-w-4xl">
             <h1 className="heading-display">{t("title")}</h1>
             <p className="text-muted-foreground mt-6 text-sm">
-              {t("updated")} {formatPostDate(privacy.updatedAt)}
+              {t("updated")} {updatedLabel}
             </p>
+            {notice && <p className="text-muted-foreground mt-2 text-sm">{notice}</p>}
           </div>
         </div>
       </article>
