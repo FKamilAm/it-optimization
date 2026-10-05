@@ -1,0 +1,128 @@
+{
+  "crm": {
+    "title": "CRM for a real-estate agency",
+    "description": "One interface for listings, enquiries, clients and deals.",
+    "quote": "The team turned scattered enquiries and spreadsheets into a sales system we can actually read.",
+    "tags": ["Real Estate", "CRM", "Automation"]
+  },
+  "aiAgent": {
+    "title": "AI agent for handling enquiries",
+    "description": "An AI module classifies incoming messages, answers the routine questions and passes leads into the CRM.",
+    "quote": "We cut the manual work on enquiries and started reaching new clients faster.",
+    "tags": ["AI", "Automation", "CRM"]
+  },
+  "miniapp": {
+    "title": "Telegram Mini App for enquiries",
+    "description": "A mini app for taking enquiries, tracking status, sending notifications and talking to clients inside Telegram.",
+    "quote": "Clients got a fast way to deal with us without installing anything.",
+    "tags": ["Telegram", "Mini App", "Leadgen"]
+  },
+  "marketplace": {
+    "title": "Marketplace platform",
+    "description": "A platform with a catalogue, roles, seller dashboards, orders and payment logic.",
+    "quote": "The architecture let us launch an MVP and still leave room to scale.",
+    "tags": ["Marketplace", "eCommerce", "Payments"]
+  },
+  "web3": {
+    "title": "Web3 / crypto dashboard",
+    "description": "An interface for on-chain data, wallets, transactions and multichain logic.",
+    "quote": "Complicated blockchain logic became readable through a clean, careful interface.",
+    "tags": ["Web3", "Blockchain", "Dashboard"]
+  },
+  "corporate": {
+    "title": "Corporate website with automation",
+    "description": "A corporate site with forms, analytics, Telegram notifications and integration with spreadsheets and CRM.",
+    "quote": "The site stopped being a business card and became a working channel for enquiries.",
+    "tags": ["Website", "CRM", "Analytics"]
+  },
+  "svpr": {
+    "title": "Proektnye Resheniya — IT for cities",
+    "description": "A corporate site for an IT company building innovation for the urban environment: services, projects and team in one visual language.",
+    "quote": "The site conveyed the scale of the company and made complex IT work easy to grasp.",
+    "tags": ["Website", "Corporate", "IT"]
+  },
+  "tiger": {
+    "title": "Tiger — property developer website",
+    "description": "A corporate site for a property developer: projects, company and apartment search, with the emphasis on aesthetics and quality.",
+    "quote": "The premium presentation strengthened trust in the brand and made choosing a property simpler.",
+    "tags": ["Website", "Real Estate", "Development"]
+  },
+  "mebel": {
+    "title": "Forma Casa — interior furniture",
+    "description": "A furniture brand's site with a catalogue, collections and original design for modern interiors.",
+    "quote": "The storefront showed off the quality of the furniture and brought more people into the showroom.",
+    "tags": ["Website", "eCommerce", "Furniture"]
+  },
+  "renegade": {
+    "title": "ANG — tuning and carbon body kits",
+    "description": "A site for a car tuning studio: services, projects and a gallery of work in a premium dark presentation.",
+    "quote": "The dark design carried across the premium feel of the brand and of its carbon work.",
+    "tags": ["Website", "Automotive", "Portfolio"]
+  },
+  "visit": {
+    "title": "Visit Tatarstan — tourism portal",
+    "description": "A regional tourism portal: events, routes, trip ideas and 3D tours in one convenient guide.",
+    "quote": "The portal pulled events and routes together into a guide travellers actually use.",
+    "tags": ["Website", "Tourism", "Portal"]
+  },
+  "tgMiniApp": {
+    "title": "MiniFlow — financial Mini App",
+    "description": "A Telegram Mini App for managing balances, transfers and multi-currency accounts without leaving the messenger.",
+    "quote": "People manage their money in a couple of taps, without leaving Telegram.",
+    "tags": ["Telegram", "Mini App", "Fintech"]
+  },
+  "nori": {
+    "title": "NORI GO — sushi delivery",
+    "description": "A delivery app: menu, sets, cart and checkout, with delivery from 30 minutes.",
+    "quote": "Ordering got faster and easier — straight from the app in a couple of minutes.",
+    "tags": ["Mobile", "Delivery", "Food"]
+  },
+  "street": {
+    "title": "Street.RF — commercial space rental",
+    "description": "A mobile platform for finding and booking commercial space: filters, a map and detailed listings.",
+    "quote": "Finding and booking space for a business got several times faster.",
+    "tags": ["Mobile", "PropTech", "Booking"]
+  },
+  "crypto": {
+    "title": "Crypto Robotics — trading bots",
+    "description": "An automated crypto trading platform: bots, strategies, subscription plans and portfolio analytics.",
+    "quote": "Complex trading became approachable through bots and strategies people can understand.",
+    "tags": ["Web3", "Crypto", "Trading"]
+  },
+  "score99": {
+    "title": "99 Points — exam preparation",
+    "description": "An EdTech platform for exam preparation: courses, teachers, subject tracks and an easy way to pick a programme.",
+    "quote": "The platform organised our courses and teachers into a system students can follow.",
+    "tags": ["Platform", "EdTech", "Education"]
+  },
+  "veb-dizayn-sayta-dlya-it-autsors-kompani": {
+    "title": "Web design for an IT outsourcing company",
+    "description": "A corporate site concept for a company building websites, mobile apps, Telegram bots, CRM systems and digital services for business.",
+    "quote": "We built a visual system that conveys the brand's engineering depth, highlights the team's expertise and presents development services clearly.",
+    "tags": ["Web Design", "IT Outsourcing", "Corporate Website"]
+  },
+  "crm-sistema-dlya-seti-deteyling-centrov": {
+    "title": "CRM for a chain of detailing centres",
+    "description": "A single CRM for running a chain of detailing studios. It automates bookings, assigns cars to specialists, tracks bay utilisation, keeps the service history and lets the owner see how each location is performing in real time.",
+    "quote": "We stopped losing clients to chaos in the booking book. The whole chain now works as one mechanism, and managers see the full picture of the business.",
+    "tags": ["CRM", "Automation", "Automotive", "Dashboard"]
+  },
+  "frontal-internet-magazin-zapchastey-dlya": {
+    "title": "Frontal — online store for loader parts",
+    "description": "An online store for Chinese front loader parts: a catalogue of 100,000 items, interactive exploded diagrams of assemblies, and automatic synchronisation of prices, stock and photos with the client's accounting system.",
+    "quote": "Finding a part used to mean emails and phone calls. Now the client finds it on the diagram of their own machine and places the order, and the site pulls prices and stock from our system without us touching it.",
+    "tags": ["E-commerce", "Catalog", "ERP sync"]
+  },
+  "veb-dizayn-sayta-portfolio-dlya-art-dire": {
+    "title": "Portfolio website design for an art director",
+    "description": "A personal site concept for a creative professional, built around visual impact, a strong personal brand and a clear presentation of services.",
+    "quote": "The site turned out stylish and memorable, and it captured my visual approach exactly. The portfolio looks far more professional now.",
+    "tags": ["Web Design", "Portfolio", "Personal Brand"]
+  },
+  "vizitka-dlya-konditerskoy-na-domu": {
+    "title": "Business card for a home bakery",
+    "description": "A business card design in a refined burgundy and cream palette that carries the brand's elegance and warmth. The front is built around the logo; the back combines a QR code, the dessert range and contact details in a clean, readable composition. Particular care went into the typography, the balance of elements and the presentation, so the card reads as a genuine part of the bakery's identity.",
+    "quote": "We wanted to convey a home bakery with a premium feel — and got exactly the style that reflects the quality of our desserts and the mood of the brand.",
+    "tags": ["Branding", "Graphic Design", "Print Design"]
+  }
+}

@@ -4,11 +4,13 @@ import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Mail, Send } from "lucide-react";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { Logo } from "@/components/layout/logo";
 import { useContactModal } from "@/components/providers/contact-modal-provider";
 import { Button } from "@/components/ui/button";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 import { SITE } from "@/lib/constants";
+import { usePaths } from "@/i18n/use-paths";
 
 interface FullscreenMenuProps {
   open: boolean;
@@ -25,6 +27,7 @@ export function FullscreenMenu({
   sectionPrefix = "",
 }: FullscreenMenuProps) {
   const t = useTranslations();
+  const paths = usePaths();
   const { scrollToSection } = useSmoothScroll();
   const { openContactModal } = useContactModal();
 
@@ -65,8 +68,8 @@ export function FullscreenMenu({
     { key: "home", href: `${sectionPrefix}#home`, page: false },
     { key: "process", href: `${sectionPrefix}#process`, page: false },
     { key: "services", href: `${sectionPrefix}#services`, page: false },
-    { key: "projects", href: "/proekty/", page: true },
-    { key: "blog", href: "/blog/", page: true },
+    { key: "projects", href: paths.projects, page: true },
+    { key: "blog", href: paths.blog, page: true },
     { key: "faq", href: `${sectionPrefix}#faq`, page: false },
     { key: "contact", href: `${sectionPrefix}#contact`, page: false },
   ];
@@ -131,6 +134,11 @@ export function FullscreenMenu({
                 transition={{ delay: 0.4, duration: 0.5 }}
                 className="flex flex-col gap-8 border-t border-white/10 pt-8 lg:border-t-0 lg:pt-0"
               >
+                {/* Над контактами, а не под кнопкой: тот, кого автоопределение
+                    увело на чужой язык, ищет переключатель раньше, чем читает
+                    остальное меню. */}
+                <LanguageSwitcher className="-ml-3" />
+
                 <div className="flex flex-col gap-3 text-base text-white/60">
                   <a
                     href={`mailto:${SITE.email}`}

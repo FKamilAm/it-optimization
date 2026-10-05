@@ -12,6 +12,7 @@ import { AnchorLink } from "@/components/ui/anchor-link";
 import { Button } from "@/components/ui/button";
 import { NAV_ITEMS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { usePaths } from "@/i18n/use-paths";
 
 interface HeaderProps {
   companyName: string;
@@ -24,6 +25,7 @@ interface HeaderProps {
 
 export function Header({ companyName, sectionPrefix = "" }: HeaderProps) {
   const t = useTranslations();
+  const paths = usePaths();
   const { openContactModal } = useContactModal();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -78,7 +80,7 @@ export function Header({ companyName, sectionPrefix = "" }: HeaderProps) {
             <HeaderServicesMenu dark={menuOpen} onNavigate={() => setMenuOpen(false)} />
 
             <Link
-              href="/proekty/"
+              href={paths.projects}
               onClick={() => setMenuOpen(false)}
               className={cn(
                 "cursor-pointer text-base transition-colors duration-300",
@@ -91,7 +93,7 @@ export function Header({ companyName, sectionPrefix = "" }: HeaderProps) {
             </Link>
 
             <Link
-              href="/blog/"
+              href={paths.blog}
               onClick={() => setMenuOpen(false)}
               className={cn(
                 "cursor-pointer text-base transition-colors duration-300",

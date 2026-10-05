@@ -1,58 +1,32 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { SiteShell } from "@/components/layout/site-shell";
 import { BlogArticle } from "@/components/blog/blog-article";
-import { getAllPosts, getPostBySlug, otherPosts } from "@/lib/blog";
+import { SiteShell } from "@/components/layout/site-shell";
+import type { Locale } from "@/i18n/config";
+import { blogPath, homePath, postPath } from "@/i18n/routes";
+import { getAllPosts, otherPosts } from "@/lib/blog";
 import { SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 
-export const dynamicParams = false;
-
-export async function generateStaticParams() {
+/**
+ * Страница статьи. На вход — русский слуг: он идентификатор статьи в данных,
+ * а у английской и испанской версий свои адреса. Маршрут приводит слуг из
+ * адреса к русскому до вызова.
+ */
+export async function BlogPostPage({
+  locale,
+  ruSlug,
+}: {
+  locale: Locale;
+  ruSlug: string;
+}) {
   const posts = await getAllPosts();
-  return posts.map((post) => ({ slug: post.slug }));
-}
-
-interface PageProps {
-  params: Promise<{ slug: string }>;
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
-  if (!post) return {};
-
-  const siteUrl = getSiteUrl();
-  const url = `${siteUrl}/blog/${slug}/`;
-
-  return {
-    title: post.metaTitle,
-    description: post.metaDescription,
-    alternates: { canonical: url },
-    openGraph: {
-      title: post.metaTitle,
-      description: post.metaDescription,
-      url,
-      type: "article",
-      publishedTime: post.publishedAt,
-      modifiedTime: post.updatedAt,
-      locale: "ru_RU",
-      siteName: SITE.name,
-      images: [{ url: post.cover, width: 1200, height: 750 }],
-    },
-  };
-}
-
-export default async function BlogPostPage({ params }: PageProps) {
-  const { slug } = await params;
-  const posts = await getAllPosts();
-  const post = posts.find((item) => item.slug === slug);
+  const post = posts.find((item) => item.slug === ruSlug);
   if (!post) notFound();
 
-  const t = await getTranslations("blog");
+  const t = await getTranslations({ locale, namespace: "blog" });
   const siteUrl = getSiteUrl();
-  const url = `${siteUrl}/blog/${slug}/`;
+  const url = `${siteUrl}${postPath(ruSlug, locale)}`;
 
   const jsonLd = [
     {
@@ -65,6 +39,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       url,
       datePublished: post.publishedAt,
       dateModified: post.updatedAt,
+      inLanguage: locale,
       author: { "@type": "Organization", name: SITE.name, url: siteUrl },
       publisher: {
         "@type": "Organization",
@@ -82,20 +57,15 @@ export default async function BlogPostPage({ params }: PageProps) {
           "@type": "ListItem",
           position: 1,
           name: t("breadcrumbHome"),
-          item: `${siteUrl}/`,
+          item: `${siteUrl}${homePath(locale)}`,
         },
         {
           "@type": "ListItem",
           position: 2,
           name: t("breadcrumb"),
-          item: `${siteUrl}/blog/`,
+          item: `${siteUrl}${blogPath(locale)}`,
         },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: post.title,
-          item: url,
-        },
+        { "@type": "ListItem", position: 3, name: post.title, item: url },
       ],
     },
   ];

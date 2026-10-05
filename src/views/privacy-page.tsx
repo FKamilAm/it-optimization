@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
+import type { Locale } from "@/i18n/config";
+
 import { SiteShell } from "@/components/layout/site-shell";
 import { SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 import { formatPostDate } from "@/lib/blog/types";
-import privacy from "../../../content/privacy.json";
+import privacy from "../../content/privacy.json";
 
 // Текст политики лежит в content/privacy.json, а не в messages/ru.json, по той же
 // причине, что и тексты страниц услуг: каталог целиком уезжает в каждую страницу
@@ -14,29 +16,8 @@ import privacy from "../../../content/privacy.json";
 // поэтому JSON не попадает в клиентский бандл.
 type Block = { type: "p"; text: string } | { type: "list"; items: string[] };
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("privacyPage");
-  const siteUrl = getSiteUrl();
-  const url = `${siteUrl}/politika-konfidencialnosti/`;
-
-  return {
-    title: t("metaTitle"),
-    description: t("metaDescription"),
-    alternates: { canonical: url },
-    openGraph: {
-      title: t("metaTitle"),
-      description: t("metaDescription"),
-      url,
-      type: "website",
-      locale: "ru_RU",
-      siteName: SITE.name,
-      images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
-    },
-  };
-}
-
-export default async function PrivacyPage() {
-  const t = await getTranslations("privacyPage");
+export async function PrivacyPage({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: "privacyPage" });
   const sections = privacy.sections as { heading: string; blocks: Block[] }[];
 
   return (

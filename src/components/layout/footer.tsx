@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { FooterWordmark } from "@/components/layout/footer-wordmark";
 import { ORG, SITE } from "@/lib/constants";
+import { usePaths } from "@/i18n/use-paths";
 
 interface FooterProps {
   companyName: string;
@@ -12,6 +13,7 @@ interface FooterProps {
 
 export function Footer({ companyName }: FooterProps) {
   const t = useTranslations();
+  const paths = usePaths();
   const year = new Date().getFullYear();
 
   return (
@@ -85,7 +87,7 @@ export function Footer({ companyName }: FooterProps) {
           {/* Публикация политики — требование ч. 2 ст. 18.1 152-ФЗ, поэтому
               ссылка стоит в подвале каждой страницы, а не только на главной. */}
           <Link
-            href="/politika-konfidencialnosti/"
+            href={paths.privacy}
             className="underline-offset-4 transition-colors hover:text-white hover:underline"
           >
             {t("footer.privacy")}

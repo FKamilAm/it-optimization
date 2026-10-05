@@ -1,0 +1,3214 @@
+{
+  "corporate": {
+    "metaTitle": "Desarrollo de sitio corporativo llave en mano",
+    "metaDescription": "Desarrollo de sitio corporativo llave en mano: estructura pensada, diseño a medida, carga rápida, SEO e integraciones. Una web que genera confianza y trae solicitudes. Desde {price:120000}.",
+    "breadcrumb": "Desarrollo de sitio corporativo",
+    "h1": "Desarrollo de sitio corporativo",
+    "lead": "Creamos sitios corporativos que generan confianza en la empresa y convierten visitas en solicitudes: estructura pensada, diseño a medida, carga rápida, base de SEO e integraciones con tus sistemas.",
+    "includes": [
+      "Definición de la estructura, las secciones y los recorridos de usuario",
+      "Diseño a medida con tu identidad visual, adaptado a todos los dispositivos",
+      "Maquetación rápida, pensada para la velocidad y el SEO",
+      "Catálogo de servicios, casos, equipo y formularios de contacto",
+      "Integraciones con CRM, mensajerías, analítica y gestor de contenidos",
+      "Alta de dominio y hosting, SEO básico y lanzamiento"
+    ],
+    "forWhom": [
+      {
+        "title": "Empresas y servicios",
+        "text": "Una web que presenta el negocio con solidez y responde las dudas del cliente antes de que llame."
+      },
+      {
+        "title": "Crecimiento y reputación",
+        "text": "Una estructura clara, casos y confianza: la base del tráfico orgánico y de las solicitudes."
+      },
+      {
+        "title": "Sustituir una web anticuada",
+        "text": "Un sitio moderno, rápido y manejable en lugar de uno pesado e incómodo."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing y estructura",
+        "text": "Fijamos los objetivos, el público y el mapa de secciones."
+      },
+      {
+        "title": "Diseño",
+        "text": "Dibujamos las maquetas en torno a tu marca y a los recorridos de tus usuarios."
+      },
+      {
+        "title": "Maquetación e integraciones",
+        "text": "Montamos el sitio y conectamos el gestor, los formularios, el CRM y la analítica."
+      },
+      {
+        "title": "Lanzamiento",
+        "text": "Publicamos, probamos, optimizamos y entregamos los accesos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta un sitio corporativo?",
+        "answer": "Parte de {price:120000} y depende del número de secciones, de la complejidad del diseño y de las integraciones. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿Podré editar yo mismo el contenido?",
+        "answer": "Sí. Conectamos un gestor de contenidos usable para que cambies textos, noticias y secciones sin un desarrollador."
+      },
+      {
+        "question": "¿Estará optimizado para buscadores?",
+        "answer": "Sí. Dejamos una estructura correcta, velocidad, metaetiquetas y datos estructurados: la base para el SEO."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Normalmente desde dos semanas. El plazo exacto depende del volumen de secciones e integraciones."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 10 días",
+        "features": [
+          "Sitio llave en mano sobre una base ya preparada",
+          "Diseño adaptado a tu marca",
+          "Hasta 7 páginas con contenido",
+          "Formulario de contacto y SEO básico",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Diseño a medida para la marca",
+          "Hasta 15 páginas con redacción",
+          "Integración con CRM y mensajerías",
+          "SEO ampliado y analítica",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 5 semanas",
+        "features": [
+          "Diseño y animaciones propios",
+          "Estructura y funcionalidad complejas",
+          "Integraciones a medida",
+          "Redacción y contenidos",
+          "Soporte tras el lanzamiento"
+        ]
+      }
+    ]
+  },
+  "platforms": {
+    "metaTitle": "Desarrollo de plataforma CRM llave en mano",
+    "metaDescription": "Diseñamos y construimos plataformas CRM, áreas de cliente y sistemas internos en torno a tus procesos: roles, integraciones, analítica y una arquitectura que escala. Desde {price:400000}.",
+    "breadcrumb": "Desarrollo de plataforma CRM",
+    "h1": "Desarrollo de plataforma CRM",
+    "lead": "Construimos sistemas CRM, áreas de cliente y plataformas internas a la medida de tus procesos, con roles, permisos, integraciones y analítica. Diseñamos una arquitectura que aguanta el crecimiento en lugar de convertirse en un montón de parches.",
+    "includes": [
+      "Arquitectura y modelo de datos diseñados en torno a tus procesos",
+      "Roles, permisos y separación por departamentos",
+      "Gestión de solicitudes, clientes, operaciones y tareas",
+      "Integraciones con la web, la telefonía, los pagos y servicios externos",
+      "Paneles, informes y exportaciones para dirigir el negocio",
+      "Pruebas, migración de datos, lanzamiento y formación del equipo"
+    ],
+    "forWhom": [
+      {
+        "title": "Equipos comerciales",
+        "text": "Un solo sistema para solicitudes, clientes y operaciones, en vez de hojas de cálculo y chats dispersos."
+      },
+      {
+        "title": "Servicio y operaciones",
+        "text": "Gestión de tareas, estados, documentos y procesos internos de la empresa."
+      },
+      {
+        "title": "Negocios en crecimiento",
+        "text": "Una plataforma que escala y se puede ampliar a nuevas líneas de trabajo y más carga."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Auditoría de procesos",
+        "text": "Analizamos la lógica de negocio, los roles y cómo trabaja realmente el equipo."
+      },
+      {
+        "title": "Arquitectura y prototipo",
+        "text": "Diseñamos la estructura de datos, las interfaces y los roles."
+      },
+      {
+        "title": "Desarrollo e integraciones",
+        "text": "Montamos el sistema, conectamos los servicios y migramos los datos."
+      },
+      {
+        "title": "Lanzamiento y evolución",
+        "text": "Formamos al equipo, lanzamos y seguimos desarrollando la plataforma."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta un CRM o una plataforma web?",
+        "answer": "Parte de {price:400000} y depende del número de roles, módulos e integraciones. Damos la cifra exacta tras una auditoría de procesos y el briefing."
+      },
+      {
+        "question": "¿Podéis mejorar nuestro sistema actual?",
+        "answer": "Sí. Podemos ampliar una plataforma existente, añadir módulos e integraciones, o diseñar un sistema nuevo si el antiguo frena el crecimiento."
+      },
+      {
+        "question": "¿Migraréis los datos de las hojas de cálculo y del CRM antiguo?",
+        "answer": "Sí. Preparamos la migración desde Excel, Google Sheets y otros sistemas para que el equipo siga trabajando sin perder nada."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Solemos sacar una primera versión operativa desde cuatro semanas. El plazo exacto depende del alcance y de las integraciones."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "CRM sobre una arquitectura ya preparada",
+          "Módulos y roles esenciales",
+          "Integraciones básicas",
+          "Migración de los datos principales",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 8 semanas",
+        "features": [
+          "Procesos de negocio a medida",
+          "Paneles e informes",
+          "Integraciones con servicios y telefonía",
+          "Migración de datos y formación del equipo",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 12 semanas",
+        "features": [
+          "Plataforma compleja ajustada a los procesos",
+          "Alta carga y escalabilidad",
+          "Múltiples integraciones",
+          "Permisos separados por departamento",
+          "Soporte y evolución"
+        ]
+      }
+    ]
+  },
+  "telegram": {
+    "metaTitle": "Desarrollo de bots de Telegram y Mini Apps llave en mano",
+    "metaDescription": "Desarrollo de bots de Telegram y Mini Apps: captación, automatización, soporte e integraciones. Diseñamos los escenarios, lo construimos y lo lanzamos llave en mano. Desde {price:50000}. Plazos tras el briefing.",
+    "breadcrumb": "Bots de Telegram y Mini Apps",
+    "h1": "Desarrollo de bots de Telegram y Mini Apps",
+    "lead": "Diseñamos y construimos bots de Telegram y Mini Apps que traen solicitudes, quitan de encima la rutina y viven dentro de la mensajería que tus clientes ya usan. Del escenario y la interfaz a las integraciones con CRM, pagos y avisos, llave en mano.",
+    "includes": [
+      "Definición de los escenarios y la lógica de los diálogos para tu caso",
+      "Interfaz del bot y/o Mini App con menús, botones y formularios usables",
+      "Integraciones con CRM, Google Sheets, pasarelas de pago y avisos",
+      "Recepción de solicitudes, pagos y comentarios dentro de Telegram",
+      "Panel de administración o acceso a los datos para tu equipo",
+      "Pruebas, lanzamiento y conexión a tu cuenta"
+    ],
+    "forWhom": [
+      {
+        "title": "Captación y ventas",
+        "text": "El bot recoge solicitudes, responde las preguntas habituales y pasa los clientes calientes a un comercial o al CRM."
+      },
+      {
+        "title": "Automatización de procesos",
+        "text": "Citas, recordatorios, envíos, estados de pedido y operaciones internas sin trabajo manual."
+      },
+      {
+        "title": "Servicio y soporte",
+        "text": "Una Mini App con área de cliente, catálogo, pago e historial de solicitudes dentro de Telegram."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing y escenario",
+        "text": "Analizamos el problema y describimos la lógica del bot y el recorrido del usuario."
+      },
+      {
+        "title": "Interfaz y prototipo",
+        "text": "Montamos los menús, las pantallas de la Mini App y la estructura de los diálogos."
+      },
+      {
+        "title": "Desarrollo e integraciones",
+        "text": "Conectamos CRM, pagos, avisos y servicios externos."
+      },
+      {
+        "title": "Lanzamiento y soporte",
+        "text": "Probamos, publicamos en tu cuenta y seguimos acompañando."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta un bot de Telegram?",
+        "answer": "Parte de {price:50000} y depende de lo complejos que sean los escenarios y las integraciones. Una Mini App con interfaz y área de cliente parte de {price:100000}. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿En qué se diferencia una Mini App de un bot normal?",
+        "answer": "Un bot funciona con mensajes, botones y comandos. Una Mini App es una interfaz completa —en la práctica, una web pequeña— dentro de Telegram: pantallas, catálogo, formularios, pago. A menudo se combinan."
+      },
+      {
+        "question": "¿Se pueden conectar los pagos y el CRM?",
+        "answer": "Sí. Conectamos pasarelas de pago, integraciones con CRM y Google Sheets, avisos y APIs externas, para que las solicitudes y los pagos caigan directamente en tus procesos."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Un bot sencillo sale desde una semana; una Mini App, desde dos. El plazo final depende del alcance y de las integraciones."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 1 semana",
+        "features": [
+          "Bot sobre un escenario ya definido",
+          "Menús, botones y recepción de solicitudes",
+          "Avisos a un chat o al CRM",
+          "Conexión a tu cuenta",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Mini App con interfaz",
+          "Integración con CRM y pagos",
+          "Área de cliente y acceso de administración",
+          "Escenarios de automatización",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "Escenarios y lógica complejos",
+          "Integraciones a medida",
+          "Preparado para aguantar carga",
+          "Analítica y panel de administración",
+          "Soporte tras el lanzamiento"
+        ]
+      }
+    ]
+  },
+  "ai": {
+    "metaTitle": "Agentes de IA y automatización para empresas",
+    "metaDescription": "Implantamos agentes de IA y automatización: atención de solicitudes, asistentes, generación de contenido e integraciones con tus sistemas y tu CRM. Desde {price:90000}.",
+    "breadcrumb": "Agentes de IA y automatización",
+    "h1": "Implantación de agentes de IA y automatización",
+    "lead": "Llevamos agentes de IA y automatización al negocio: atención de solicitudes, asistentes, generación de contenido y conexión con tus sistemas actuales. El objetivo es menos trabajo rutinario y respuestas más rápidas al cliente.",
+    "includes": [
+      "Análisis de dónde la IA y la automatización salen realmente a cuenta",
+      "Agentes de IA que atienden solicitudes y responden preguntas",
+      "Asistentes y generación de contenido para tus escenarios",
+      "Integraciones con CRM, mensajerías, base de conocimiento y APIs",
+      "Ajuste de la lógica y entrenamiento con tus propios datos",
+      "Pruebas, lanzamiento y soporte"
+    ],
+    "forWhom": [
+      {
+        "title": "Soporte y ventas",
+        "text": "La IA responde las preguntas habituales, cualifica contactos y los pasa a un comercial."
+      },
+      {
+        "title": "Contenido y marketing",
+        "text": "Generación de textos, descripciones y borradores para tus necesidades."
+      },
+      {
+        "title": "Operaciones",
+        "text": "Automatización de la rutina: tratamiento de datos, documentos, procesos internos."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Auditoría del trabajo",
+        "text": "Localizamos los procesos donde la IA y la automatización se amortizan antes."
+      },
+      {
+        "title": "Diseño",
+        "text": "Describimos la lógica del agente, los escenarios y las integraciones."
+      },
+      {
+        "title": "Implantación",
+        "text": "Lo configuramos, lo conectamos a tus sistemas y lo entrenamos con tus datos."
+      },
+      {
+        "title": "Lanzamiento y evolución",
+        "text": "Lanzamos, vigilamos la calidad de las respuestas y las mejoramos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta implantar IA?",
+        "answer": "Parte de {price:90000} y depende de lo complejos que sean los escenarios y las integraciones y del volumen de datos. Damos la cifra exacta cuando la tarea está clara."
+      },
+      {
+        "question": "¿Con qué datos trabaja el agente de IA?",
+        "answer": "Configuramos el agente sobre tu base de conocimiento, tus documentos y tus solicitudes habituales, para que las respuestas sean precisas y suenen como tú."
+      },
+      {
+        "question": "¿Se puede conectar la IA con nuestro CRM y nuestras mensajerías?",
+        "answer": "Sí. Conectamos la IA con el CRM, Telegram, la web y otros canales, para que las solicitudes y los contactos entren en tus procesos."
+      },
+      {
+        "question": "¿Cuánto tarda la implantación?",
+        "answer": "Los primeros escenarios salen desde dos semanas. El plazo final depende de las integraciones."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Un escenario de IA para una tarea",
+          "Integración con un solo canal",
+          "Ajustado a tus datos",
+          "Probado con solicitudes reales",
+          "Lanzamiento e instrucciones"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Varios escenarios de automatización",
+          "Integración con CRM y base de conocimiento",
+          "Entrenado en tu ámbito",
+          "Seguimiento de la calidad de las respuestas",
+          "Lanzamiento y acompañamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 5 semanas",
+        "features": [
+          "Automatización completa de procesos",
+          "Varios agentes conectados entre sí",
+          "Integraciones complejas con tus sistemas",
+          "Analítica y control",
+          "Soporte y evolución"
+        ]
+      }
+    ]
+  },
+  "ecommerce": {
+    "metaTitle": "Desarrollo de tienda online llave en mano",
+    "metaDescription": "Desarrollo de tienda online llave en mano: catálogo, carrito, pago online, envíos y un panel de administración usable. Integraciones con sistemas contables y CRM. Rápida y hecha para vender. Desde {price:190000}.",
+    "breadcrumb": "Tienda online llave en mano",
+    "h1": "Desarrollo de tienda online llave en mano",
+    "lead": "Creamos tiendas online fáciles de gestionar y fáciles de comprar: catálogo con filtros, carrito, pago online, envíos y un panel de administración que se entiende. Conectamos sistemas contables, CRM y pasarelas de pago.",
+    "includes": [
+      "Diseño del catálogo, las fichas de producto y los filtros",
+      "Carrito, proceso de compra y área de cliente",
+      "Conexión del pago online y de los servicios de envío",
+      "Integraciones con contabilidad, CRM y control de stock",
+      "Un panel de administración usable para productos, pedidos y existencias",
+      "Diseño responsive, pruebas y lanzamiento"
+    ],
+    "forWhom": [
+      {
+        "title": "Comercios",
+        "text": "Una tienda de verdad con catálogo, pago y envío, en lugar de vender por chat."
+      },
+      {
+        "title": "Fabricantes y marcas",
+        "text": "Tu propio escaparate con venta directa y control sobre cómo se presenta el producto."
+      },
+      {
+        "title": "Crecimiento online",
+        "text": "Una tienda conectada con tu contabilidad y tu publicidad, para poder escalar las ventas."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing y catálogo",
+        "text": "Repasamos la gama, la lógica del pedido, el pago y el envío."
+      },
+      {
+        "title": "Diseño y estructura",
+        "text": "Diseñamos el escaparate, las fichas y el recorrido del comprador."
+      },
+      {
+        "title": "Desarrollo e integraciones",
+        "text": "Montamos la tienda y conectamos pago, envíos, contabilidad y CRM."
+      },
+      {
+        "title": "Lanzamiento",
+        "text": "Cargamos el catálogo, probamos los pedidos y publicamos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta una tienda online?",
+        "answer": "Parte de {price:190000} y depende del tamaño del catálogo, de las integraciones y de la funcionalidad. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿Conectaréis el pago, los envíos y nuestro sistema contable?",
+        "answer": "Sí. Conectamos pasarelas de pago, servicios de envío y la sincronización con tu contabilidad, tu CRM y el control de stock."
+      },
+      {
+        "question": "¿Podré añadir productos yo mismo?",
+        "answer": "Sí. Recibes un panel de administración para gestionar productos, precios, existencias y pedidos."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Normalmente desde tres semanas. El plazo depende del tamaño del catálogo y del número de integraciones."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Tienda sobre una base ya preparada",
+          "Catálogo de hasta 100 productos y carrito",
+          "Pago online conectado",
+          "Envíos configurados",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 5 semanas",
+        "features": [
+          "Diseño a medida y filtros",
+          "Área de cliente",
+          "Integración con contabilidad y CRM",
+          "Pago online y envíos",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 8 semanas",
+        "features": [
+          "Funcionalidad y lógica propias",
+          "Catálogo grande y escenarios de marketplace",
+          "Integraciones complejas y control de stock",
+          "Carga del catálogo",
+          "Soporte y evolución"
+        ]
+      }
+    ]
+  },
+  "websites": {
+    "metaTitle": "Creación de landing page llave en mano",
+    "metaDescription": "Creación de landing page llave en mano: estructura que retiene la atención, diseño, maquetación rápida y formularios conectados a tu CRM. Pensada para la publicidad y la conversión. Desde {price:59000}.",
+    "breadcrumb": "Landing page llave en mano",
+    "h1": "Creación de landing page llave en mano",
+    "lead": "Creamos landings que venden una oferta, una campaña o el lanzamiento de un producto: estructura que retiene la atención, diseño cuidado, carga rápida y formularios que llevan las solicitudes directamente a tu CRM.",
+    "includes": [
+      "Definición de la estructura y de los bloques en torno a tu oferta",
+      "Diseño a medida, adaptado a móvil y escritorio",
+      "Maquetación rápida, pensada para la velocidad y la conversión",
+      "Formularios, cuestionarios e integraciones con CRM, mensajerías y analítica",
+      "Alta de dominio y hosting, y objetivos de conversión para tus anuncios",
+      "Pruebas, lanzamiento e instrucciones de uso"
+    ],
+    "forWhom": [
+      {
+        "title": "Publicidad y tráfico",
+        "text": "Una página de aterrizaje para anuncios de buscador y redes, hecha para convertir clics en solicitudes."
+      },
+      {
+        "title": "Lanzamiento de producto",
+        "text": "Una página para un producto, servicio o promoción con una llamada a la acción clara."
+      },
+      {
+        "title": "Validar la demanda",
+        "text": "Una página rápida para probar una oferta y recoger las primeras solicitudes."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing y oferta",
+        "text": "Fijamos el objetivo, el público y la propuesta central de la página."
+      },
+      {
+        "title": "Estructura y diseño",
+        "text": "Montamos un prototipo bloque a bloque y dibujamos la maqueta para la marca."
+      },
+      {
+        "title": "Maquetación e integraciones",
+        "text": "Montamos la landing y conectamos formularios, CRM, analítica y objetivos."
+      },
+      {
+        "title": "Lanzamiento",
+        "text": "Publicamos, probamos los formularios y entregamos los accesos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta una landing llave en mano?",
+        "answer": "Parte de {price:59000} y depende del número de bloques, del diseño y de las integraciones. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿La hacéis adaptada a móvil?",
+        "answer": "Sí. La página se ve correctamente y convierte igual de bien en móvil, tablet y escritorio."
+      },
+      {
+        "question": "¿Configuraréis la analítica y los objetivos para la publicidad?",
+        "answer": "Sí. Conectamos la analítica y configuramos los objetivos de solicitud para que las campañas se puedan optimizar bien."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Una landing suele salir desde una semana. El plazo exacto depende del número de bloques y de las integraciones."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 7–10 días",
+        "features": [
+          "Landing sobre una base ya preparada",
+          "Diseño adaptado a la marca",
+          "Hasta 6 pantallas de contenido",
+          "Formulario y analítica conectados",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Diseño a medida en torno a la oferta",
+          "Cuestionario o calculadora de solicitud",
+          "Integración con CRM y mensajerías",
+          "Objetivos de publicidad configurados",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Diseño y animaciones propios",
+          "Versiones A/B para distintos tráficos",
+          "Redacción y trabajo de estructura",
+          "Integraciones complejas",
+          "Pruebas y lanzamiento"
+        ]
+      }
+    ]
+  },
+  "websiteTurnkey": {
+    "metaTitle": "Sitio web llave en mano — de la estructura al lanzamiento",
+    "metaDescription": "Desarrollo de sitio web llave en mano: estructura, diseño, maquetación, contenidos, analítica y lanzamiento. Recibes una web acabada y funcionando, sin ocuparte de la parte técnica. Desde {price:89000}.",
+    "breadcrumb": "Sitio web llave en mano",
+    "h1": "Sitio web llave en mano",
+    "lead": "Asumimos todo el ciclo de creación del sitio: de la estructura y el diseño a la maquetación, los contenidos, la analítica y el lanzamiento. Recibes un producto acabado y funcionando sin entrar en la parte técnica.",
+    "includes": [
+      "Definición de la estructura y del prototipo según tus objetivos",
+      "Diseño propio y responsive con tu identidad",
+      "Maquetación pensada para la velocidad y el SEO",
+      "Carga de contenidos: textos, imágenes, bloques",
+      "Formularios e integraciones con CRM, mensajerías y analítica",
+      "Alta de dominio y hosting, pruebas y lanzamiento"
+    ],
+    "forWhom": [
+      {
+        "title": "Propietarios sin tiempo",
+        "text": "Necesitas una web acabada sin entrar en detalles: lo cerramos todo nosotros."
+      },
+      {
+        "title": "Negocios nuevos",
+        "text": "Arranque rápido desde cero: dominio, diseño, contenidos y lanzamiento en un solo proyecto."
+      },
+      {
+        "title": "Renovar la presencia",
+        "text": "Una web moderna en lugar de una anticuada, con la parte técnica de nuestra cuenta."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing",
+        "text": "Recogemos objetivos, preferencias y materiales para el sitio."
+      },
+      {
+        "title": "Diseño y estructura",
+        "text": "Diseñamos las páginas y dibujamos las maquetas para la marca."
+      },
+      {
+        "title": "Maquetación y contenidos",
+        "text": "Montamos el sitio, cargamos los contenidos y conectamos los servicios."
+      },
+      {
+        "title": "Lanzamiento",
+        "text": "Probamos, publicamos y entregamos el sitio acabado con los accesos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Qué significa «llave en mano»?",
+        "answer": "Cerramos todo el ciclo: estructura, diseño, maquetación, contenidos, integraciones y lanzamiento. De ti solo necesitamos el material y tus comentarios."
+      },
+      {
+        "question": "¿Ayudáis con los textos y las imágenes?",
+        "answer": "Sí. Preparamos y maquetamos el contenido, seleccionamos imágenes y dejamos el material con un aspecto homogéneo."
+      },
+      {
+        "question": "¿Cuánto cuesta un sitio llave en mano?",
+        "answer": "Parte de {price:89000} y depende del número de páginas y de la funcionalidad. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Normalmente desde dos semanas. El plazo final depende del alcance y de lo preparado que esté el material."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 10 días",
+        "features": [
+          "Sitio llave en mano sobre plantilla",
+          "Adaptado a la marca",
+          "Contenido de hasta 8 páginas",
+          "Formulario y analítica",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Diseño a medida",
+          "Contenidos y redacción",
+          "Integraciones con CRM y servicios",
+          "Base de SEO y analítica",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "Desarrollo desde cero para la tarea",
+          "Funcionalidad y escenarios complejos",
+          "Integraciones a medida",
+          "Redacción y contenidos",
+          "Soporte tras el lanzamiento"
+        ]
+      }
+    ]
+  },
+  "businessCard": {
+    "metaTitle": "Web de presentación llave en mano",
+    "metaDescription": "Web de presentación llave en mano: un sitio compacto sobre la empresa o el profesional — servicios, ventajas, contacto y formulario. Rápida de lanzar, responsive, con precio claro. Desde {price:29000}.",
+    "breadcrumb": "Web de presentación",
+    "h1": "Creación de web de presentación",
+    "lead": "Hacemos webs de presentación compactas que cuentan en una pantalla quién eres y en qué eres útil, y cómo contactarte. Rápidas de lanzar y con precio claro.",
+    "includes": [
+      "Estructura con los bloques clave: quién eres, servicios, ventajas, contacto",
+      "Diseño propio y responsive con tu identidad",
+      "Formulario de contacto y botones de mensajería",
+      "Mapa, datos de la empresa y contacto rápido",
+      "Configuración básica de SEO y analítica",
+      "Dominio, hosting, pruebas y lanzamiento"
+    ],
+    "forWhom": [
+      {
+        "title": "Profesionales y expertos",
+        "text": "Una página cuidada que puedes compartir con un cliente o en redes."
+      },
+      {
+        "title": "Empresas pequeñas",
+        "text": "Un sitio breve con servicios y contacto, para generar confianza y recibir solicitudes."
+      },
+      {
+        "title": "Arranque rápido",
+        "text": "Presupuesto y plazo mínimos, simplemente para estar en internet con buen aspecto."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing",
+        "text": "Recogemos la información sobre ti, tus servicios y tus contactos."
+      },
+      {
+        "title": "Diseño",
+        "text": "Dibujamos una maqueta cuidada con tu estilo."
+      },
+      {
+        "title": "Maquetación",
+        "text": "Montamos la página responsive y conectamos el formulario."
+      },
+      {
+        "title": "Lanzamiento",
+        "text": "Publicamos en tu dominio y entregamos los accesos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta una web de presentación?",
+        "answer": "Parte de {price:29000} y depende del número de bloques y del diseño. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿En cuánto tiempo puede estar lista?",
+        "answer": "Normalmente desde cinco días si el material está preparado. Es el formato de web más rápido que hay."
+      },
+      {
+        "question": "¿Se puede ampliar después a una web completa?",
+        "answer": "Sí. Una web de presentación puede crecer hasta un sitio corporativo añadiendo secciones, catálogo e integraciones."
+      },
+      {
+        "question": "¿Funcionará en el móvil?",
+        "answer": "Sí. La web es responsive y se ve correctamente en todos los dispositivos."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 5 días",
+        "features": [
+          "Sitio de una página sobre base preparada",
+          "Adaptado a la marca",
+          "Bloques de servicios, ventajas y contacto",
+          "Formulario y mapa",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 7 días",
+        "features": [
+          "Diseño a medida",
+          "Hasta 3 pantallas de contenido",
+          "Botones de contacto por mensajería",
+          "SEO básico y analítica",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Diseño y animaciones propios",
+          "Funcionalidad ampliada",
+          "Redacción y contenidos",
+          "Integraciones según necesidad",
+          "Pruebas y lanzamiento"
+        ]
+      }
+    ]
+  },
+  "b2b": {
+    "metaTitle": "Desarrollo de web B2B llave en mano",
+    "metaDescription": "Desarrollo de web y portal B2B llave en mano: presentación clara del producto, cálculo de precios, área de partner e integraciones con los sistemas internos. Pensado para ciclos de venta largos. Desde {price:180000}.",
+    "breadcrumb": "Desarrollo de web B2B",
+    "h1": "Desarrollo de web B2B",
+    "lead": "Diseñamos webs y portales para B2B, donde lo que cuenta es la confianza, un producto que se entienda y un ciclo de venta largo: catálogo estructurado, cálculo de precios, área de partner e integraciones con tus sistemas.",
+    "includes": [
+      "Una estructura pensada para un producto complejo y el recorrido del comprador B2B",
+      "Catálogo, tarifas y calculadoras de precio",
+      "Área de partner con pedidos y documentos",
+      "Formularios, solicitud de presupuesto e integraciones con CRM",
+      "Integraciones con sistemas internos y de contabilidad",
+      "Diseño responsive, pruebas y lanzamiento"
+    ],
+    "forWhom": [
+      {
+        "title": "Fabricantes y proveedores",
+        "text": "Un escaparate claro del producto, con tarifas y una vía para pedir presupuesto."
+      },
+      {
+        "title": "Venta mayorista",
+        "text": "Un portal para distribuidores y partners con pedidos y documentos."
+      },
+      {
+        "title": "Servicios complejos",
+        "text": "Una web que explica el valor y acompaña al cliente durante un ciclo de venta largo."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing y lógica de la venta",
+        "text": "Analizamos el producto, el público y el recorrido del comprador B2B."
+      },
+      {
+        "title": "Estructura y diseño",
+        "text": "Diseñamos las secciones, el catálogo y el área de partner."
+      },
+      {
+        "title": "Desarrollo e integraciones",
+        "text": "Montamos la web y conectamos CRM, contabilidad y sistemas internos."
+      },
+      {
+        "title": "Lanzamiento",
+        "text": "Probamos los escenarios, publicamos y entregamos los accesos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿En qué se diferencia una web B2B de una normal?",
+        "answer": "Está hecha para un producto complejo y un ciclo de venta largo: el acento está en la confianza, los cálculos, las tarifas, el área de partner y las integraciones con los sistemas internos."
+      },
+      {
+        "question": "¿Haréis un área para partners?",
+        "answer": "Sí. Construimos un área con pedidos, documentos, estados y condiciones particulares."
+      },
+      {
+        "question": "¿Cuánto cuesta una web B2B?",
+        "answer": "Parte de {price:180000} y depende de la funcionalidad y de las integraciones. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Normalmente desde tres semanas. El plazo depende de lo complejos que sean el catálogo, el área de partner y las integraciones."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Web sobre una base ya preparada",
+          "Catálogo y tarifas",
+          "Formulario de solicitud de presupuesto",
+          "Integraciones básicas",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 5 semanas",
+        "features": [
+          "Diseño a medida",
+          "Calculadora de precios",
+          "Área de partner",
+          "Integración con CRM",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 8 semanas",
+        "features": [
+          "Lógica y escenarios de venta complejos",
+          "Integraciones con contabilidad y sistemas internos",
+          "Portal para distribuidores y partners",
+          "Contenidos y documentación",
+          "Soporte tras el lanzamiento"
+        ]
+      }
+    ]
+  },
+  "webDesign": {
+    "metaTitle": "Diseño web y sistemas de diseño",
+    "metaDescription": "Diseño web y sistema de diseño: investigación, prototipos, maquetas de todos los estados, biblioteca de componentes y entrega a desarrollo. Desde {price:60000}.",
+    "breadcrumb": "Sistemas de diseño web",
+    "h1": "Sistemas de diseño web",
+    "lead": "Diseñamos interfaces que no se desmontan al crecer: primero la estructura y la lógica de las pantallas, después el lenguaje visual, después la biblioteca de componentes. A partir de ahí una página nueva se monta con bloques listos en horas, en vez de dibujarse de cero durante semanas.",
+    "includes": [
+      "Investigación: recorridos de usuario, competencia, requisitos del negocio",
+      "Estructura y prototipos de las pantallas clave antes de cualquier trabajo visual",
+      "Retícula modular, escala tipográfica y tokens de color",
+      "Biblioteca de componentes con todos los estados: hover, foco, error, carga",
+      "Maquetas para escritorio, tablet y móvil",
+      "Entrega a desarrollo: especificaciones, espaciados, recursos y guía de maquetación"
+    ],
+    "forWhom": [
+      {
+        "title": "Webs que crecen",
+        "text": "Cuando hay muchas páginas y cada nueva empieza a desviarse del resto."
+      },
+      {
+        "title": "Servicios y áreas de cliente",
+        "text": "Interfaces con formularios, tablas y estados, donde importa más la previsibilidad que la decoración."
+      },
+      {
+        "title": "Rediseño sin parar el negocio",
+        "text": "Actualizamos el aspecto por partes, apoyándonos en un sistema común en vez de rehacerlo todo de golpe."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing e investigación",
+        "text": "Averiguamos quién es el usuario, qué intenta hacer y qué se lo impide ahora."
+      },
+      {
+        "title": "Estructura y prototipos",
+        "text": "Mapeamos las pantallas y montamos prototipos en bruto: la lógica se acuerda antes que lo visual."
+      },
+      {
+        "title": "Lenguaje visual",
+        "text": "Fijamos la retícula, las tipografías, los colores y el carácter en un par de pantallas clave."
+      },
+      {
+        "title": "Sistema de diseño",
+        "text": "Descomponemos las maquetas en componentes y describimos sus estados y las reglas de uso."
+      },
+      {
+        "title": "Entrega a desarrollo",
+        "text": "Entregamos maquetas, recursos y especificaciones, acompañamos la maquetación y revisamos el resultado."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿En qué se diferencia esto de una maqueta de web normal?",
+        "answer": "Una maqueta es la imagen de unas páginas concretas. Un sistema de diseño son las reglas y el conjunto de componentes con los que se monta cualquier página, incluidas las que todavía no existen. Se amortiza alrededor de la vigésima pantalla."
+      },
+      {
+        "question": "¿Con qué trabajáis y qué recibo al final?",
+        "answer": "Trabajamos en Figma. Recibes un archivo con prototipos, maquetas, biblioteca de componentes y permisos de acceso: se queda contigo aunque más adelante trabaje otro equipo."
+      },
+      {
+        "question": "¿Puedo encargar solo el diseño, sin desarrollo?",
+        "answer": "Sí. Entregamos las maquetas y las especificaciones a tus desarrolladores y seguimos disponibles durante la maquetación para que el resultado coincida con lo diseñado."
+      },
+      {
+        "question": "¿Cuánto tarda?",
+        "answer": "Una web pequeña, desde dos semanas. Un servicio con área de cliente y muchos estados, desde unas seis semanas. Damos el plazo exacto cuando vemos cuántas pantallas hay."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Páginas",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Prototipos de las pantallas clave",
+          "Diseño de hasta 5 páginas",
+          "Responsive para móvil y tablet",
+          "Conjunto básico de componentes",
+          "Entrega de maquetas a desarrollo"
+        ]
+      },
+      {
+        "name": "Sistema",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "Investigación y recorridos de usuario",
+          "Diseño de hasta 15 pantallas",
+          "Retícula, tipografía y tokens de color",
+          "Biblioteca de componentes con todos los estados",
+          "Especificaciones y acompañamiento de la maquetación"
+        ]
+      },
+      {
+        "name": "Producto",
+        "deadline": "desde 8 semanas",
+        "features": [
+          "Diseño del servicio completo",
+          "Área de cliente, tablas, formularios, estados",
+          "Sistema de diseño con documentación",
+          "Prototipo para probar con usuarios",
+          "Acompañamiento hasta el lanzamiento"
+        ]
+      }
+    ]
+  },
+  "branding": {
+    "metaTitle": "Identidad visual y branding",
+    "metaDescription": "Logotipo e identidad visual: símbolo, colores, tipografías, aplicaciones y manual de marca con las reglas de uso. Desde {price:45000}.",
+    "breadcrumb": "Diseño y branding",
+    "h1": "Diseño y branding",
+    "lead": "Construimos la imagen visual de la empresa para que funcione más allá de la presentación: símbolo, paleta, tipografías y reglas de aplicación. El resultado es que la web, los documentos, el rótulo y la publicidad parezcan una sola empresa y no cuatro distintas.",
+    "includes": [
+      "Una mirada al mercado y al posicionamiento: qué os distingue y cómo mostrarlo",
+      "Desarrollo del símbolo y el logotipo en varias opciones a elegir",
+      "Paleta de color y pareja tipográfica, comprobadas en legibilidad",
+      "Maquetas de aplicaciones: tarjetas, papelería, presentación, redes sociales",
+      "Reglas de uso: márgenes, tamaños mínimos, lo que no debe hacerse",
+      "Manual de marca y archivos fuente en todos los formatos necesarios"
+    ],
+    "forWhom": [
+      {
+        "title": "Empresas nuevas",
+        "text": "Necesitas una imagen desde cero: parecer un negocio asentado desde el primer día y no una solución provisional."
+      },
+      {
+        "title": "Renovar la imagen",
+        "text": "El estilo ha envejecido o se formó por acumulación, con cada proveedor añadiendo algo propio."
+      },
+      {
+        "title": "Antes de la web",
+        "text": "Para que el diseño del sitio se apoye en una identidad ya hecha en lugar de improvisarla sobre la marcha."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Inmersión",
+        "text": "Entramos en el negocio, el público y la competencia, y acordamos el carácter de la futura imagen."
+      },
+      {
+        "title": "Conceptos del símbolo",
+        "text": "Mostramos varias opciones radicalmente distintas, cada una con su idea explicada."
+      },
+      {
+        "title": "Afinado del elegido",
+        "text": "Rematamos el concepto escogido: proporciones, versiones para distintos tamaños, pruebas en situaciones reales."
+      },
+      {
+        "title": "Identidad visual",
+        "text": "Construimos la paleta, las tipografías y las aplicaciones alrededor del símbolo aprobado."
+      },
+      {
+        "title": "Manual y entrega",
+        "text": "Redactamos las reglas, reunimos los archivos fuente y lo entregamos todo junto con los derechos de uso."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Qué diferencia hay entre un logotipo y una identidad visual?",
+        "answer": "El logotipo es solo el símbolo. La identidad visual es el sistema a su alrededor: colores, tipografías, aplicaciones y las reglas con las que se combinan. Un símbolo sin reglas suele desmontarse en la tercera maqueta."
+      },
+      {
+        "question": "¿Cuántas opciones de símbolo mostráis?",
+        "answer": "Tres conceptos radicalmente distintos, cada uno con su idea explicada. Después afinamos el que elijas: las revisiones están incluidas, no se pagan aparte."
+      },
+      {
+        "question": "¿Los derechos del logotipo son nuestros?",
+        "answer": "Sí, los derechos exclusivos pasan a vosotros junto con los archivos fuente. También os diremos qué hace falta si decidís registrarlo como marca."
+      },
+      {
+        "question": "¿Se puede encargar junto con la web?",
+        "answer": "Es el orden correcto: primero la identidad visual y después el diseño del sitio sobre ella. Como un único proyecto sale más rápido y más barato que por separado."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Logotipo",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Tres conceptos de símbolo",
+          "Afinado de la opción elegida",
+          "Versiones para fondo claro y oscuro",
+          "Archivos fuente en vector y mapa de bits",
+          "Cesión de derechos"
+        ]
+      },
+      {
+        "name": "Identidad visual",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Todo lo de la tarifa Logotipo",
+          "Paleta y pareja tipográfica",
+          "Tarjetas, papelería, presentación",
+          "Plantillas para redes sociales",
+          "Guía breve de aplicación"
+        ]
+      },
+      {
+        "name": "Manual de marca",
+        "deadline": "desde 6 semanas",
+        "features": [
+          "Todo lo de la tarifa Identidad visual",
+          "Análisis de mercado y posicionamiento",
+          "Conjunto ampliado de aplicaciones",
+          "Manual de marca completo con las reglas",
+          "Acompañamiento durante la implantación"
+        ]
+      }
+    ]
+  },
+  "mobile": {
+    "metaTitle": "Desarrollo de aplicaciones móviles para iOS y Android",
+    "metaDescription": "Desarrollo de aplicaciones móviles para iOS y Android llave en mano: del MVP al producto acabado, con una UX cuidada y un backend fiable. Desde {price:300000}.",
+    "breadcrumb": "Aplicaciones móviles",
+    "h1": "Desarrollo de aplicaciones móviles",
+    "lead": "Desarrollamos aplicaciones para iOS y Android: desde un MVP que valida la idea hasta un producto completo con una interfaz cuidada y un backend fiable. Lo diseñamos, lo construimos y lo acompañamos.",
+    "includes": [
+      "Definición de los escenarios, las pantallas y la lógica de la aplicación",
+      "Diseño UX/UI para iOS y Android",
+      "Desarrollo de la aplicación y de la parte servidor (API)",
+      "Integraciones con pagos, notificaciones y servicios externos",
+      "Publicación en App Store y Google Play",
+      "Pruebas, lanzamiento y soporte posterior"
+    ],
+    "forWhom": [
+      {
+        "title": "Startups y MVP",
+        "text": "Un lanzamiento rápido para validar la idea y captar los primeros usuarios."
+      },
+      {
+        "title": "Servicios para clientes",
+        "text": "Una app para tus clientes: pedidos, área personal, avisos y pago."
+      },
+      {
+        "title": "Uso interno",
+        "text": "Aplicaciones para la plantilla: solicitudes, registro, procesos en campo."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing y concepto",
+        "text": "Fijamos los objetivos, las plataformas y la funcionalidad esencial."
+      },
+      {
+        "title": "Diseño y prototipo",
+        "text": "Diseñamos las pantallas y los recorridos de usuario."
+      },
+      {
+        "title": "Desarrollo",
+        "text": "Construimos la app y la parte servidor y conectamos los servicios."
+      },
+      {
+        "title": "Publicación",
+        "text": "Publicamos en las tiendas, probamos y damos soporte."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta una aplicación móvil?",
+        "answer": "Parte de {price:300000} y depende de las plataformas (iOS/Android), del alcance de la funcionalidad y de la parte servidor. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿Desarrolláis para iOS y Android a la vez?",
+        "answer": "Sí. Podemos publicar en ambas plataformas. Al principio solemos recomendar un MVP, para validar el producto antes."
+      },
+      {
+        "question": "¿Ayudáis a publicar en App Store y Google Play?",
+        "answer": "Sí. Preparamos las compilaciones, montamos las fichas de las tiendas y publicamos la aplicación."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Un MVP suele salir desde cuatro semanas. Un producto completo tarda más; fijamos el plazo tras el briefing."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "MVP en una plataforma",
+          "Pantallas y escenarios clave",
+          "Parte servidor básica",
+          "Publicación en una tienda",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 8 semanas",
+        "features": [
+          "iOS y Android",
+          "Diseño UX/UI cuidado",
+          "Integraciones y notificaciones",
+          "Publicación en App Store y Google Play",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 12 semanas",
+        "features": [
+          "Funcionalidad y lógica complejas",
+          "Alta carga y fiabilidad",
+          "Integraciones a medida",
+          "Analítica y panel de administración",
+          "Soporte y evolución"
+        ]
+      }
+    ]
+  },
+  "messenger": {
+    "metaTitle": "Desarrollo de mensajerías llave en mano — precio y plazos",
+    "metaDescription": "Desarrollo de mensajerías: mensajero corporativo para la plantilla, chat dentro de tu producto, canal para hablar con clientes. Chats, canales, archivos, roles e integraciones. Desplegado en tus servidores. Desde {price:200000}.",
+    "breadcrumb": "Desarrollo de mensajerías",
+    "h1": "Desarrollo de mensajerías",
+    "lead": "Construimos sistemas de mensajería a la medida: un mensajero corporativo para la plantilla, un chat dentro de tu producto o un canal para hablar con clientes. Las conversaciones, los archivos y los avisos viven en tus servidores, no en la nube de otro.",
+    "includes": [
+      "Chats individuales y de grupo, canales e hilos",
+      "Intercambio de archivos con almacenamiento en tu lado",
+      "Versión web y clientes móviles para iOS y Android",
+      "Roles, permisos y administración",
+      "Integraciones con tus sistemas y avisos desde ellos",
+      "Despliegue en tu servidor o en una red cerrada"
+    ],
+    "forWhom": [
+      {
+        "title": "Mensajero corporativo",
+        "text": "Comunicación interna en servidores propios: sustituir Slack y Teams, red cerrada, confidencialidad comercial."
+      },
+      {
+        "title": "Chat dentro de un producto",
+        "text": "Mensajería como parte de una plataforma o app: comprador y vendedor, cliente y proveedor, partes de una operación."
+      },
+      {
+        "title": "Hablar con clientes",
+        "text": "Tu propio canal de soporte en lugar del widget de otro: el historial se queda contigo y se enlaza con el CRM."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Entender la tarea",
+        "text": "Miramos quién habla con quién y de qué hoy, qué se pierde y qué escenarios tienen que estar en la primera versión."
+      },
+      {
+        "title": "Arquitectura y prototipo",
+        "text": "Diseñamos el almacenamiento, la entrega de mensajes y los permisos, y enseñamos la interfaz antes de empezar a desarrollar."
+      },
+      {
+        "title": "Desarrollo por etapas",
+        "text": "Primero conversaciones y canales; después archivos, integraciones y clientes móviles. Cada etapa es utilizable."
+      },
+      {
+        "title": "Lanzamiento y acompañamiento",
+        "text": "Lo desplegamos en tu lado, movemos a la gente y seguimos dando soporte mientras el sistema se asienta."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta desarrollar una mensajería?",
+        "answer": "Una primera versión operativa con chats, canales e interfaz web parte de {price:200000}. Una versión con archivos, clientes móviles e integraciones parte de {price:300000}. Un sistema en red cerrada y con mayores exigencias de resiliencia parte de {price:500000}. Afinamos la estimación cuando entendemos la tarea: el precio depende del número de usuarios, de los requisitos de almacenamiento y de con qué sistemas tiene que hablar la mensajería."
+      },
+      {
+        "question": "¿En qué se diferencia de un bot de Telegram?",
+        "answer": "Un bot vive dentro de la mensajería de otro y resuelve una tarea concreta: recoger una solicitud, enviar un aviso. Aquí recibes un producto propio, con tu base de mensajes, tus permisos y tu servidor. Si lo que quieres es automatizar la conversación con clientes en Telegram, necesitas un bot: ese es otro servicio."
+      },
+      {
+        "question": "¿Los datos se quedan con nosotros?",
+        "answer": "Sí, ese suele ser todo el sentido. El sistema se despliega en tu servidor o en una red cerrada, la base de mensajes y los archivos están contigo y nada sale fuera. Entregamos el código fuente y la documentación, así que después no quedas atado a un proveedor."
+      },
+      {
+        "question": "¿Se puede lanzar por partes?",
+        "answer": "Es lo que recomendamos. La primera etapa son las conversaciones y los canales: suficiente para que la gente empiece a usarlo. Archivos, apps móviles, llamadas e integraciones llegan después, según lo que falte de verdad y no según una lista escrita al principio."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "1–1,5 meses",
+        "features": [
+          "Chats individuales y de grupo",
+          "Canales y avisos",
+          "Versión web",
+          "Cuentas y roles",
+          "Despliegue en tu servidor"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "2–3 meses",
+        "features": [
+          "Todo lo del Básico",
+          "Intercambio de archivos con almacenamiento en tu lado",
+          "Clientes móviles iOS y Android",
+          "Integraciones con tus sistemas",
+          "Administración y estadísticas"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 4 meses",
+        "features": [
+          "Todo lo del Estándar",
+          "Red cerrada y mayores exigencias de seguridad",
+          "Resiliencia y escalado",
+          "Evolución según hoja de ruta",
+          "Acompañamiento tras el lanzamiento"
+        ]
+      }
+    ]
+  },
+  "integrations": {
+    "metaTitle": "Extracción de datos e integraciones llave en mano",
+    "metaDescription": "Montamos extracción de datos e integraciones entre servicios: API, sincronización de sistemas e intercambio automático de datos. Desde {price:50000}.",
+    "breadcrumb": "Extracción de datos e integraciones",
+    "h1": "Extracción de datos e integraciones",
+    "lead": "Montamos la extracción de datos abiertos y las integraciones entre servicios: API, sincronización de sistemas e intercambio automático de datos. Quitamos el copiado manual y conectamos tus herramientas en un solo flujo.",
+    "includes": [
+      "Recogida y extracción de datos de fuentes abiertas",
+      "Integraciones entre CRM, webs, hojas de cálculo y servicios",
+      "Configuración del intercambio por API y de los webhooks",
+      "Sincronización y actualización de datos programadas",
+      "Limpieza, normalización y exportación de datos",
+      "Monitorización y soporte de las integraciones"
+    ],
+    "forWhom": [
+      {
+        "title": "Analítica y datos",
+        "text": "Recogida automática de datos de fuentes externas para analizarlos."
+      },
+      {
+        "title": "Conectar servicios",
+        "text": "Intercambio de datos entre CRM, la web, hojas de cálculo y sistemas externos."
+      },
+      {
+        "title": "Automatizar la rutina",
+        "text": "Quitamos el traspaso manual de datos y las operaciones duplicadas."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Definición de la tarea",
+        "text": "Fijamos las fuentes, los formatos y la lógica del intercambio."
+      },
+      {
+        "title": "Diseño",
+        "text": "Describimos el esquema de integración y las reglas de procesamiento."
+      },
+      {
+        "title": "Desarrollo",
+        "text": "Montamos la extracción, la API y la sincronización."
+      },
+      {
+        "title": "Lanzamiento y monitorización",
+        "text": "Lo ponemos en marcha y vigilamos la estabilidad y la corrección."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta una extracción o una integración?",
+        "answer": "Parte de {price:50000} y depende del número de fuentes, del volumen de datos y de lo compleja que sea la lógica. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿Es legal la extracción de datos?",
+        "answer": "Trabajamos con datos abiertos y fuentes públicas, respetando sus restricciones. Lo dudoso lo hablamos de antemano."
+      },
+      {
+        "question": "¿Con qué servicios integráis?",
+        "answer": "Con CRM, webs, Google Sheets, sistemas de pago y de contabilidad, y con cualquier servicio que tenga API."
+      },
+      {
+        "question": "¿Cuánto tarda la configuración?",
+        "answer": "Las integraciones sencillas salen desde una semana. Los escenarios complejos tardan más; fijamos el plazo tras el briefing."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 1 semana",
+        "features": [
+          "Un extractor o una integración",
+          "Exportación de datos a una hoja de cálculo",
+          "Configurado a tu formato",
+          "Comprobado con datos reales",
+          "Lanzamiento e instrucciones"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Varias fuentes o servicios",
+          "Recogida automática programada",
+          "Exportación a base de datos o CRM",
+          "Normalización y limpieza de los datos",
+          "Lanzamiento y acompañamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "Fuentes difíciles y con protecciones",
+          "Un sistema de recogida que aguanta",
+          "Monitorización y avisos de error",
+          "Integraciones con sistemas internos",
+          "Soporte y evolución"
+        ]
+      }
+    ]
+  },
+  "blockchain": {
+    "metaTitle": "Desarrollo crypto y blockchain (Web3)",
+    "metaDescription": "Desarrollamos interfaces Web3, integración con monederos y contratos inteligentes, lógica multicadena y paneles que de verdad se leen. Desde {price:300000}.",
+    "breadcrumb": "Crypto / Blockchain",
+    "h1": "Desarrollo crypto y blockchain",
+    "lead": "Desarrollamos interfaces Web3, integraciones con monederos y contratos inteligentes, lógica multicadena y paneles legibles. Hacemos accesible una lógica blockchain compleja a través de una interfaz cuidada.",
+    "includes": [
+      "Interfaces Web3 y conexión de monederos",
+      "Integración con contratos inteligentes y gestión de transacciones",
+      "Lógica multicadena y visualización de datos on-chain",
+      "Paneles, áreas de usuario y analítica",
+      "Seguridad y tratamiento de transacciones fallidas",
+      "Pruebas, lanzamiento y soporte"
+    ],
+    "forWhom": [
+      {
+        "title": "Productos Web3",
+        "text": "Interfaces para dApps, monederos y trabajo con transacciones."
+      },
+      {
+        "title": "Servicios cripto",
+        "text": "Paneles y áreas de usuario que presentan datos on-chain."
+      },
+      {
+        "title": "Integraciones",
+        "text": "Conectar contratos inteligentes y lógica multicadena a un producto."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Briefing y requisitos",
+        "text": "Analizamos la tarea, las redes, los contratos y los escenarios."
+      },
+      {
+        "title": "Diseño",
+        "text": "Diseñamos la interfaz y la lógica de interacción con la blockchain."
+      },
+      {
+        "title": "Desarrollo",
+        "text": "Construimos la interfaz, las integraciones y la gestión de transacciones."
+      },
+      {
+        "title": "Lanzamiento",
+        "text": "Probamos, lanzamos y damos soporte."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta una solución blockchain?",
+        "answer": "Parte de {price:300000} y depende de las redes, los contratos y lo compleja que sea la interfaz. Damos la cifra exacta tras el briefing."
+      },
+      {
+        "question": "¿Con qué redes trabajáis?",
+        "answer": "Trabajamos con las redes EVM habituales y con lógica multicadena. Las redes concretas se acuerdan en cada proyecto."
+      },
+      {
+        "question": "¿Escribís contratos inteligentes?",
+        "answer": "Hacemos la integración con contratos inteligentes y las interfaces para ellos; cuando hace falta incorporamos experiencia específica en contratos."
+      },
+      {
+        "question": "¿Cuánto tarda el desarrollo?",
+        "answer": "Normalmente desde cuatro semanas, según el alcance. Fijamos el plazo exacto tras el briefing."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "Interfaz Web3 para la tarea",
+          "Conexión de monederos",
+          "Trabajo con una sola red",
+          "Panel básico",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 6 semanas",
+        "features": [
+          "Integración de contratos inteligentes",
+          "Lógica multicadena",
+          "Paneles y estados legibles",
+          "Gestión de transacciones",
+          "Pruebas y lanzamiento"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 10 semanas",
+        "features": [
+          "Lógica on-chain compleja",
+          "Mayores exigencias de fiabilidad",
+          "Auditoría y seguridad",
+          "Integraciones a medida",
+          "Soporte y evolución"
+        ]
+      }
+    ]
+  },
+  "support": {
+    "metaTitle": "Soporte y evolución de una web, plataforma o app",
+    "metaDescription": "Soporte y evolución de una web, plataforma o app tras el lanzamiento: mejoras, monitorización, actualizaciones y ayuda técnica. Desde {price:40000/mo}.",
+    "breadcrumb": "Soporte web",
+    "h1": "Soporte y evolución del sitio",
+    "lead": "Mantenemos y hacemos crecer lo que ya está en producción: una web, una plataforma o una app. Mejoras, monitorización, actualizaciones y ayuda técnica: el producto se mantiene estable y su evolución, previsible.",
+    "includes": [
+      "Soporte técnico y respuesta rápida",
+      "Mejoras y nuevas funcionalidades",
+      "Monitorización de disponibilidad y avisos de fallo",
+      "Actualizaciones, copias de seguridad y mantenimiento de la infraestructura",
+      "Corrección de errores y optimización",
+      "Informes claros del trabajo realizado"
+    ],
+    "forWhom": [
+      {
+        "title": "Productos ya en producción",
+        "text": "Webs, plataformas y apps que necesitan estabilidad y evolución constante."
+      },
+      {
+        "title": "Negocios sin equipo IT",
+        "text": "Un equipo externo que asume el soporte y las mejoras."
+      },
+      {
+        "title": "Crecimiento activo",
+        "text": "Mejoras periódicas y nuevas funciones según un plan acordado."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Auditoría",
+        "text": "Evaluamos el estado actual del producto y de la infraestructura."
+      },
+      {
+        "title": "Plan de soporte",
+        "text": "Acordamos el formato, las prioridades y las reglas de trabajo."
+      },
+      {
+        "title": "Trabajo por tareas",
+        "text": "Llevamos las mejoras, la monitorización y el soporte."
+      },
+      {
+        "title": "Evolución",
+        "text": "Mejoramos y escalamos el producto según lo planificado."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta el soporte web?",
+        "answer": "Parte de {price:40000/mo} y depende del tamaño del producto y del nivel de soporte necesario. También es posible un formato puntual."
+      },
+      {
+        "question": "¿Daríais soporte a un proyecto que no habéis hecho vosotros?",
+        "answer": "Sí. Hacemos una auditoría, nos metemos en el proyecto y lo asumimos para soporte y evolución."
+      },
+      {
+        "question": "¿Con qué rapidez respondéis a los problemas?",
+        "answer": "Los tiempos de respuesta quedan fijados en el acuerdo de soporte, ajustados a tu caso y a su criticidad."
+      },
+      {
+        "question": "¿Podemos empezar sin un contrato largo?",
+        "answer": "Sí. Se puede empezar con tareas puntuales o un periodo corto y pasar después a un acompañamiento regular."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "mensual",
+        "features": [
+          "Monitorización de disponibilidad",
+          "Correcciones menores y actualizaciones",
+          "Copias de seguridad",
+          "Bolsa de horas para tareas",
+          "Informes del trabajo"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "mensual",
+        "features": [
+          "Soporte prioritario",
+          "Mejoras y nuevas funcionalidades",
+          "Monitorización y actualizaciones",
+          "Bolsa de horas ampliada",
+          "Informes periódicos"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "según SLA",
+        "features": [
+          "Equipo dedicado",
+          "Garantías por SLA",
+          "Evolución del producto según hoja de ruta",
+          "Monitorización proactiva",
+          "Llamadas e informes periódicos"
+        ]
+      }
+    ]
+  },
+  "security": {
+    "metaTitle": "Auditoría de seguridad web — precio y plazos",
+    "metaDescription": "Auditoría de seguridad web: revisión según el OWASP Top 10, pruebas manuales de lógica y permisos, configuración del servidor y dependencias. Informe priorizado y, en la tarifa ampliada, corrección de lo encontrado. Desde {price:60000}.",
+    "breadcrumb": "Auditoría de seguridad",
+    "h1": "Auditoría de seguridad web",
+    "lead": "Revisamos el sitio y su infraestructura en busca de vulnerabilidades antes de que las encuentre otro. Lo que recibes no es una lista de avisos de un escáner, sino un informe legible: qué encontramos, qué puede costar y en qué orden arreglarlo.",
+    "includes": [
+      "Revisión según el OWASP Top 10: inyecciones, accesos, autenticación, configuración",
+      "Pruebas manuales de la lógica: saltarse permisos y errores en los escenarios de negocio",
+      "Análisis de dependencias y del gestor de contenidos por vulnerabilidades conocidas",
+      "Revisión de la configuración del servidor, HTTPS y cabeceras de seguridad",
+      "Informe con niveles de criticidad y recomendaciones concretas",
+      "Corrección de lo encontrado por nuestro equipo, en la tarifa ampliada"
+    ],
+    "forWhom": [
+      {
+        "title": "Webs con área de cliente",
+        "text": "Donde hay login y datos de usuarios, un fallo en los permisos es el que más cuesta."
+      },
+      {
+        "title": "Tiendas y cobros",
+        "text": "Revisamos cómo funcionan los pagos, cómo se guardan los datos de pedido y cómo se evita la manipulación de parámetros."
+      },
+      {
+        "title": "Antes de lanzar o tras un incidente",
+        "text": "O para no dejar agujeros en producción, o para entender cómo entraron."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Reconocimiento",
+        "text": "Levantamos el mapa: tecnologías, puntos de entrada, servicios externos; exactamente qué hay que revisar."
+      },
+      {
+        "title": "Escaneo automático",
+        "text": "Pasamos las herramientas que detectan rápido lo habitual: componentes obsoletos y errores de configuración."
+      },
+      {
+        "title": "Revisión manual",
+        "text": "La parte más valiosa: lógica de la aplicación, permisos, cadenas de vulnerabilidades; lo que un escáner no ve."
+      },
+      {
+        "title": "Informe y revisión posterior",
+        "text": "Recogemos los hallazgos por prioridad y, tras vuestras correcciones, comprobamos que realmente han cerrado el problema."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuánto cuesta una auditoría de seguridad web?",
+        "answer": "Una revisión exprés parte de {price:60000}, una auditoría estándar con pruebas manuales de {price:120000}, y una ampliada con infraestructura y revisión posterior de {price:240000}. Damos la cifra exacta cuando hemos visto el sitio: el precio depende del número de roles, escenarios e integraciones externas."
+      },
+      {
+        "question": "¿En qué se diferencia de un escáner automático?",
+        "answer": "Un escáner encuentra problemas conocidos: versiones obsoletas, puertos abiertos, errores de configuración habituales. No entiende tu lógica de negocio y no se dará cuenta de que un comercial puede ver la operación de otro cambiando un identificador en la URL. Eso solo se encuentra a mano, y suele ser lo más caro."
+      },
+      {
+        "question": "¿Solo encontráis problemas o también los arregláis?",
+        "answer": "Depende de la tarifa. Exprés y Estándar terminan con un informe: tu desarrollador trabaja con él mientras nosotros respondemos dudas y luego comprobamos que las correcciones han cerrado el problema. La tarifa Ampliada incluye corregir lo encontrado nosotros mismos: parcheamos las vulnerabilidades y volvemos a revisar el resultado. Es lo cómodo cuando no hay equipo propio o no tiene experiencia en seguridad."
+      },
+      {
+        "question": "¿No romperéis el sitio en producción?",
+        "answer": "No. Las pruebas no son destructivas, y lo potencialmente arriesgado lo acordamos de antemano y lo hacemos sobre una copia cuando es posible. Antes de empezar acordamos el horario de trabajo y qué hacer si algo sale mal."
+      },
+      {
+        "question": "¿Qué recibimos al final?",
+        "answer": "Un documento con el que puede trabajar un desarrollador: cada hallazgo con su criticidad, cómo reproducirlo y la recomendación para corregirlo. Más un resumen breve para dirección: qué es crítico, qué se puede planificar y qué conviene simplemente saber."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Exprés",
+        "deadline": "3–5 días",
+        "features": [
+          "Escaneo automático",
+          "Revisión de la configuración y HTTPS",
+          "Análisis de dependencias y del gestor de contenidos",
+          "Informe priorizado",
+          "Consulta sobre los resultados"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "1,5–2 semanas",
+        "features": [
+          "Todo lo del Exprés",
+          "Pruebas manuales de la lógica",
+          "Revisión de permisos y roles",
+          "Autenticación y sesiones",
+          "Recomendaciones detalladas de cada hallazgo"
+        ]
+      },
+      {
+        "name": "Ampliada",
+        "deadline": "3–4 semanas",
+        "features": [
+          "Todo lo del Estándar",
+          "Infraestructura y configuración del servidor",
+          "Corrección de las vulnerabilidades por nuestro equipo",
+          "Revisión posterior a las correcciones",
+          "Recomendaciones para revisiones periódicas"
+        ]
+      }
+    ]
+  },
+  "contentAnalysis": {
+    "metaTitle": "Análisis de contenido del sitio — auditoría y recomendaciones",
+    "metaDescription": "Auditoría del contenido de la web: hasta qué punto responde a lo que buscan tu público y los buscadores, dónde se pierden las solicitudes y qué frena el tráfico. Conclusiones claras y un plan. Desde {price:30000}.",
+    "breadcrumb": "Análisis de contenido del sitio",
+    "h1": "Análisis de contenido del sitio",
+    "lead": "Revisamos el contenido de tu web: hasta qué punto responde a lo que buscan tu público y los buscadores, dónde el texto deja de vender y dónde se pierden las solicitudes. Recibes conclusiones claras y un plan por orden de prioridad.",
+    "includes": [
+      "Evaluación de hasta qué punto el contenido responde al público y a los buscadores",
+      "Análisis de la estructura de las páginas, los titulares y los textos",
+      "Revisión de si la información es completa y si resuelve las objeciones",
+      "Estudio de los puntos donde se pierden la atención y las solicitudes",
+      "Comparación de contenido con la competencia",
+      "Informe con conclusiones y un plan priorizado"
+    ],
+    "forWhom": [
+      {
+        "title": "Webs sin solicitudes",
+        "text": "Hay tráfico pero pocas solicitudes: encontramos dónde el contenido no convence."
+      },
+      {
+        "title": "Crecimiento de tráfico",
+        "text": "Comprobamos si el contenido responde a las búsquedas y qué conviene reforzar."
+      },
+      {
+        "title": "Antes de un rediseño",
+        "text": "Saber qué funciona y qué reescribir antes de invertir en una web nueva."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Recogida de datos",
+        "text": "Estudiamos la web, el público, las búsquedas y la analítica."
+      },
+      {
+        "title": "Análisis del contenido",
+        "text": "Revisamos las páginas, los textos, la estructura y la competencia."
+      },
+      {
+        "title": "Conclusiones",
+        "text": "Elaboramos la lista de problemas y puntos de mejora por prioridad."
+      },
+      {
+        "title": "Plan de mejoras",
+        "text": "Damos recomendaciones concretas sobre qué corregir y cómo."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Qué recibo al final?",
+        "answer": "Un informe legible: dónde el contenido no funciona, por qué se pierden solicitudes y qué mejorar primero, con recomendaciones concretas."
+      },
+      {
+        "question": "¿Cuánto cuesta el análisis de contenido?",
+        "answer": "Parte de {price:30000} y depende del tamaño del sitio. Damos la cifra exacta tras una primera revisión."
+      },
+      {
+        "question": "¿Ayudáis a aplicar las recomendaciones?",
+        "answer": "Sí. Tras el análisis podemos encargarnos nosotros de rehacer el contenido y las páginas."
+      },
+      {
+        "question": "¿Cuánto tarda el análisis?",
+        "answer": "Normalmente desde tres días. El plazo depende del número de páginas y de la profundidad del estudio."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Exprés",
+        "deadline": "desde 3 días",
+        "features": [
+          "Revisión exprés de las páginas clave",
+          "Evaluación frente a las búsquedas",
+          "Informe breve con conclusiones",
+          "Principales problemas y puntos de mejora",
+          "Llamada para repasar los resultados"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 1 semana",
+        "features": [
+          "Auditoría completa del contenido",
+          "Análisis de semántica y estructura",
+          "Comparación con la competencia",
+          "Plan de mejoras priorizado",
+          "Llamada para repasar los resultados"
+        ]
+      },
+      {
+        "name": "Ampliado",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Análisis profundo de cada página",
+          "Recomendaciones detalladas de contenido",
+          "Semántica y agrupación de búsquedas",
+          "Plan de implantación",
+          "Acompañamiento durante los cambios"
+        ]
+      }
+    ]
+  },
+  "techContent": {
+    "metaTitle": "Contenido técnico del sitio — preparación y optimización",
+    "metaDescription": "Preparación de la capa técnica del sitio: estructura de páginas, metaetiquetas, datos estructurados, titulares y enlaces internos, para que la web se indexe bien y la entiendan los buscadores. Desde {price:40000}.",
+    "breadcrumb": "Contenido técnico del sitio",
+    "h1": "Contenido técnico del sitio",
+    "lead": "Ponemos en orden la parte técnica del contenido: estructura de páginas, metaetiquetas, datos estructurados, titulares y enlaces internos; todo lo que ayuda a los buscadores a entender e indexar bien el sitio.",
+    "includes": [
+      "Trabajo sobre la estructura de titulares (H1–H3) en las páginas",
+      "Metaetiquetas title y description ajustadas a las búsquedas",
+      "Datos estructurados Schema.org para los resultados enriquecidos",
+      "Configuración del enlazado interno",
+      "Revisión de la indexación, robots.txt y el mapa del sitio",
+      "Textos técnicos y descripciones redactados para SEO"
+    ],
+    "forWhom": [
+      {
+        "title": "Mala indexación",
+        "text": "La web existe pero los buscadores la entienden mal: ponemos en orden la parte técnica."
+      },
+      {
+        "title": "Preparación para posicionamiento",
+        "text": "Una base de metaetiquetas, datos estructurados y estructura antes de una campaña de SEO."
+      },
+      {
+        "title": "Catálogos grandes",
+        "text": "Trabajo masivo de metaetiquetas y datos estructurados en cientos de páginas."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Auditoría técnica",
+        "text": "Revisamos la estructura, las metaetiquetas, los datos estructurados y la indexación."
+      },
+      {
+        "title": "Preparación",
+        "text": "Preparamos metaetiquetas, titulares, datos estructurados y enlazado interno."
+      },
+      {
+        "title": "Implantación",
+        "text": "Aplicamos los cambios al sitio o entregamos los datos listos."
+      },
+      {
+        "title": "Comprobación",
+        "text": "Verificamos la indexación y que los datos estructurados sean válidos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿En qué se diferencia del análisis de contenido?",
+        "answer": "El análisis de contenido trata del sentido y de lo convincente que es el texto. El contenido técnico trata de cómo están construidas las páginas para los buscadores: metaetiquetas, datos estructurados, estructura, indexación."
+      },
+      {
+        "question": "¿Aplicáis vosotros los cambios?",
+        "answer": "Sí. Podemos aplicarlos al sitio o preparar los datos para tu equipo o tu gestor de contenidos."
+      },
+      {
+        "question": "¿Cuánto cuesta?",
+        "answer": "Parte de {price:40000} y depende del número de páginas. Damos la cifra exacta tras la auditoría."
+      },
+      {
+        "question": "¿Cuánto dura el trabajo?",
+        "answer": "Normalmente desde una semana. El plazo depende del número de páginas y del tipo de cambios."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 1 semana",
+        "features": [
+          "Metaetiquetas y titulares de las páginas clave",
+          "Comprobación de la indexación",
+          "robots.txt y mapa del sitio configurados",
+          "Informe de los cambios",
+          "Recomendaciones de implantación"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Metaetiquetas en todo el sitio",
+          "Datos estructurados Schema.org",
+          "Enlazado interno",
+          "Textos técnicos redactados para SEO",
+          "Cambios aplicados"
+        ]
+      },
+      {
+        "name": "Ampliado",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Trabajo masivo sobre el catálogo",
+          "Plantillas de metaetiquetas y datos estructurados",
+          "Optimización de la estructura",
+          "Seguimiento de la indexación",
+          "Aplicado y verificado"
+        ]
+      }
+    ]
+  },
+  "commercialAudit": {
+    "metaTitle": "Auditoría comercial del sitio — más solicitudes con el mismo tráfico",
+    "metaDescription": "Auditoría comercial de la web: cómo convierte el tráfico en solicitudes, por dónde se escapa el dinero y qué reforzar en ofertas, precios y llamadas a la acción. El resultado es un plan de conversión. Desde {price:50000}.",
+    "breadcrumb": "Auditoría comercial del sitio",
+    "h1": "Auditoría comercial del sitio",
+    "lead": "Miramos la web como una herramienta de venta: hasta qué punto convierte visitas en solicitudes, por dónde se escapa el dinero y qué reforzar en las ofertas, los precios, las señales de confianza y las llamadas a la acción. Recibes un plan de conversión.",
+    "includes": [
+      "Evaluación de las ofertas, la propuesta única y la propuesta de valor",
+      "Revisión del recorrido del usuario y del embudo hasta la solicitud",
+      "Análisis de las llamadas a la acción, los formularios y los puntos de contacto",
+      "Revisión de los bloques de confianza: casos, reseñas, garantías",
+      "Comparación con la competencia en factores comerciales",
+      "Informe con un plan priorizado para subir la conversión"
+    ],
+    "forWhom": [
+      {
+        "title": "Conversión baja",
+        "text": "Hay tráfico pero pocas solicitudes: encontramos dónde la web pierde clientes."
+      },
+      {
+        "title": "Publicidad cara",
+        "text": "Subimos el rendimiento del tráfico que ya tienes, antes de aumentar el presupuesto."
+      },
+      {
+        "title": "Puntos de mejora",
+        "text": "Saber qué cambios darán el mayor aumento de solicitudes."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Recogida de datos",
+        "text": "Estudiamos la web, la analítica, el público y la competencia."
+      },
+      {
+        "title": "Auditoría del embudo",
+        "text": "Revisamos las ofertas, el recorrido del cliente y los puntos donde se pierden solicitudes."
+      },
+      {
+        "title": "Conclusiones",
+        "text": "Localizamos los puntos débiles y estimamos el margen de mejora."
+      },
+      {
+        "title": "Plan de crecimiento",
+        "text": "Damos recomendaciones priorizadas de conversión."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Qué recibo al final?",
+        "answer": "Un informe sobre dónde la web pierde solicitudes y dinero, y un plan priorizado de cambios para subir la conversión, con recomendaciones concretas."
+      },
+      {
+        "question": "¿En qué se diferencia del análisis de contenido?",
+        "answer": "La auditoría comercial trata de ventas y conversión: ofertas, precios, confianza, llamadas a la acción. El análisis de contenido es más amplio, sobre la calidad y la pertinencia de los textos."
+      },
+      {
+        "question": "¿Ayudáis a aplicar los cambios?",
+        "answer": "Sí. Tras la auditoría podemos rehacer las páginas, las ofertas y los formularios para subir la conversión."
+      },
+      {
+        "question": "¿Cuánto dura la auditoría?",
+        "answer": "Normalmente desde una semana. El plazo depende del tamaño del sitio y de la profundidad del análisis."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Exprés",
+        "deadline": "desde 1 semana",
+        "features": [
+          "Auditoría exprés del embudo y las ofertas",
+          "Evaluación de las llamadas a la acción",
+          "Informe breve con conclusiones",
+          "Principales puntos de pérdida de solicitudes",
+          "Llamada para repasar los resultados"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Auditoría completa de conversión",
+          "Análisis de ofertas, precios y confianza",
+          "Comparación con la competencia",
+          "Plan de crecimiento priorizado",
+          "Llamada para repasar los resultados"
+        ]
+      },
+      {
+        "name": "Ampliado",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Auditoría profunda del embudo de ventas",
+          "Recomendaciones detalladas de conversión",
+          "Trabajo sobre las ofertas y la propuesta única",
+          "Plan de implantación de los cambios",
+          "Acompañamiento durante la implantación"
+        ]
+      }
+    ]
+  },
+  "infrastructure": {
+    "metaTitle": "Diseño de infraestructura IT para empresas",
+    "metaDescription": "Diseño de infraestructura IT: servidores, red, virtualización, almacenamiento y copias de seguridad. Recibes un esquema, una especificación de equipamiento y un plan de implantación por etapas. Desde {price:90000}.",
+    "breadcrumb": "Diseño de infraestructura IT",
+    "h1": "Diseño de infraestructura IT",
+    "lead": "Diseñamos la infraestructura según cómo trabaja la empresa hoy y cómo crecerá en un par de años: servidores, red, virtualización, almacenamiento y copias de seguridad. Lo que recibes es un esquema, una especificación y un plan de implantación, no una lista de equipos elegida al azar.",
+    "includes": [
+      "Un relevamiento: qué hay ya, qué está saturado y qué se sostiene con cinta adhesiva",
+      "Esquema de red y servidores con margen de crecimiento, no ajustado al milímetro",
+      "Elección de virtualización, almacenamiento y esquema de copias",
+      "Cálculo de resiliencia: qué se duplica y qué puede soportar una parada",
+      "Especificación de equipamiento y licencias con opciones por presupuesto",
+      "Plan de implantación por etapas, para que el trabajo no se detenga durante la transición"
+    ],
+    "forWhom": [
+      {
+        "title": "Crecisteis «como salió»",
+        "text": "La infraestructura se fue montando a trozos durante años y ya nadie sabe qué depende de qué."
+      },
+      {
+        "title": "Oficina o sede nueva",
+        "text": "Hay que diseñarlo todo desde cero —red, sala de servidores, puestos— antes de comprar nada."
+      },
+      {
+        "title": "Antes de una inversión grande",
+        "text": "El proyecto muestra qué hace falta comprar de verdad y dónde el dinero puede quedarse en la cuenta."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Relevamiento",
+        "text": "Levantamos el mapa de lo que hay: equipos, servicios, cargas, cuellos de botella."
+      },
+      {
+        "title": "Requisitos",
+        "text": "Fijamos qué debe funcionar sin paradas y qué las tolera, y con cuánto margen de crecimiento."
+      },
+      {
+        "title": "Proyecto",
+        "text": "Esquema, especificación, cálculo de resiliencia y opciones para distintos presupuestos."
+      },
+      {
+        "title": "Plan de implantación",
+        "text": "Lo dividimos en etapas con un orden claro y puntos a los que volver."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿En qué se diferencia un proyecto de una lista de equipos?",
+        "answer": "La lista responde a «qué comprar»; el proyecto, a «por qué esto». Muestra qué carga va a dónde, qué se duplica por resiliencia y dónde se puede ahorrar sin riesgo. Sin eso, la compra suele salir o sobrada o con un agujero en el punto más importante."
+      },
+      {
+        "question": "¿Podemos implantar el proyecto nosotros o con nuestro proveedor?",
+        "answer": "Sí. El proyecto es un documento autónomo: los esquemas, la especificación y el plan los entiende cualquier ejecutor. Que lo implantemos nosotros es un servicio aparte, no una condición."
+      },
+      {
+        "question": "¿Cuánto dura el diseño?",
+        "answer": "Depende del tamaño de la infraestructura: de unos días para una oficina pequeña a varias semanas para una red distribuida con una planta. Damos el plazo tras el relevamiento."
+      },
+      {
+        "question": "¿Hay que parar el trabajo durante el relevamiento?",
+        "answer": "No. El relevamiento va en segundo plano: inventario, recogida de datos de carga y conversaciones con quienes llevan los sistemas. Las paradas solo aparecen en la implantación, y se planifican de antemano."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Relevamiento de la infraestructura actual",
+          "Esquema de red y servidores con margen",
+          "Esquema de copias de seguridad",
+          "Especificación de equipamiento y licencias",
+          "Plan de implantación por etapas"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "Cálculo de resiliencia",
+          "Elección de virtualización y almacenamiento",
+          "Segmentación de red y esquema de accesos",
+          "Opciones de especificación por presupuesto",
+          "Ayuda en la selección de proveedores"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 6 semanas",
+        "features": [
+          "Varias sedes y delegaciones",
+          "Redundancia de enlaces y alimentación",
+          "Proyecto ajustado a requisitos de seguridad",
+          "Documentación de trabajo y esquemas",
+          "Supervisión durante la implantación"
+        ]
+      }
+    ]
+  },
+  "migration": {
+    "metaTitle": "Migración y modernización de infraestructura IT",
+    "metaDescription": "Traslado de servidores, servicios y datos sin parar la actividad: migración a la nube o a hardware nuevo, sustitución de sistemas obsoletos, cambio de plataforma. Con plan de vuelta atrás en cada paso. Desde {price:120000}.",
+    "breadcrumb": "Migración y modernización",
+    "h1": "Migración y modernización de infraestructura IT",
+    "lead": "Trasladamos servidores, servicios y datos de forma que el negocio casi no lo note: a la nube, a hardware nuevo o a otra plataforma. Cada paso es reversible: si algo sale mal, volver atrás lleva minutos, no un día.",
+    "includes": [
+      "Inventario: qué se traslada, qué se retira y qué depende de qué",
+      "Elección del destino: nube, servidores propios o híbrido",
+      "Plan de migración con ventanas de trabajo y vuelta atrás en cada etapa",
+      "Traslado de máquinas virtuales, bases de datos, almacenamiento y correo",
+      "Actualización de sistemas obsoletos y sustitución de lo que ya no tiene soporte",
+      "Comprobaciones tras el traslado: carga, accesos, copias, monitorización"
+    ],
+    "forWhom": [
+      {
+        "title": "Hardware al final de su vida",
+        "text": "Los servidores están fuera de garantía, no hay repuestos y una parada costaría más que la sustitución."
+      },
+      {
+        "title": "Paso a la nube",
+        "text": "Queréis dejar de mantener hierro y pagar por lo que realmente se usa."
+      },
+      {
+        "title": "Cambio de plataforma",
+        "text": "Hay que abandonar sistemas que ya no se actualizan o no están disponibles para vosotros."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Inventario",
+        "text": "Mapeamos los sistemas y sus dependencias: un traslado se rompe justo en las conexiones que todos olvidaron."
+      },
+      {
+        "title": "Plan y ensayo",
+        "text": "Acordamos ventanas, orden del traslado y plan de vuelta atrás. Lo crítico se ensaya sobre una copia de prueba."
+      },
+      {
+        "title": "El traslado",
+        "text": "Movemos por etapas, empezando por lo menos crítico, y verificamos en cada paso."
+      },
+      {
+        "title": "Estabilización",
+        "text": "Durante un par de semanas seguimos de cerca: carga, errores, copias y la opinión de quienes lo usan."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Habrá que parar la actividad de la empresa?",
+        "answer": "Por norma, no: movemos por partes y en ventanas de carga baja. Una parada completa hace falta pocas veces y solo para sistemas concretos; esas ventanas se acuerdan antes y suelen caber en una noche o un fin de semana."
+      },
+      {
+        "question": "¿Y si algo no funciona tras el traslado?",
+        "answer": "El entorno antiguo queda intacto hasta que el nuevo está verificado, así que volver atrás es conmutar, no restaurar de una copia. El plan de reversión se escribe antes de empezar, no se improvisa sobre la marcha."
+      },
+      {
+        "question": "¿Ayudáis con el cambio de plataforma?",
+        "answer": "Sí. Buscamos sustitutos para productos sin soporte o no disponibles, comprobamos la compatibilidad en un entorno de pruebas y movemos gradualmente. Suele no ser un traslado único, sino varias etapas a lo largo de unos meses."
+      },
+      {
+        "question": "¿Se puede mover solo una parte de los sistemas?",
+        "answer": "Sí, el esquema híbrido es habitual y sensato: lo que necesita velocidad o está cerca de la maquinaria se queda, y el resto se va a la nube."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Inventario y mapa de dependencias",
+          "Elección de la plataforma de destino",
+          "Plan de trabajo con ventanas y reversión",
+          "Traslado de máquinas virtuales y archivos",
+          "Verificación tras el traslado"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 5 semanas",
+        "features": [
+          "Traslado de bases de datos y correo",
+          "Ensayo del traslado sobre una copia",
+          "Sustitución de sistemas sin soporte",
+          "Monitorización y copias configuradas",
+          "Estabilización tras el arranque"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 8 semanas",
+        "features": [
+          "Traslado sin parar la actividad",
+          "Híbrido de nube y servidores propios",
+          "Traslado de la infraestructura de dominio",
+          "Transición departamento a departamento",
+          "Acompañamiento tras la migración"
+        ]
+      }
+    ]
+  },
+  "os": {
+    "metaTitle": "Implantación de sistemas operativos y cambio de plataforma",
+    "metaDescription": "Despliegue y configuración de sistemas operativos en servidores y puestos de trabajo: plataformas alternativas, Linux, infraestructura de dominio, políticas y gestión centralizada del parque. Desde {price:150000}.",
+    "breadcrumb": "Implantación de sistemas operativos",
+    "h1": "Implantación de sistemas operativos",
+    "lead": "Desplegamos y configuramos sistemas operativos en servidores y puestos de trabajo, incluidos los cambios a plataformas alternativas. No «instalado y adiós»: dominio, políticas, permisos, actualizaciones y gestión centralizada de todo el parque.",
+    "includes": [
+      "Elección del sistema según la tarea y comprobación de compatibilidad con tu software",
+      "Un piloto en unos pocos puestos antes del despliegue masivo",
+      "Despliegue en servidores y puestos a partir de una imagen única",
+      "Infraestructura de dominio, cuentas, permisos y políticas de grupo",
+      "Actualizaciones centralizadas, monitorización y gestión del parque",
+      "Traslado de los datos de usuario y formación del personal"
+    ],
+    "forWhom": [
+      {
+        "title": "Cambio a otra plataforma",
+        "text": "Un requisito de un regulador o de un cliente, con todo el parque aún en el sistema anterior."
+      },
+      {
+        "title": "Un parque donde no hay dos máquinas iguales",
+        "text": "Cada ordenador es distinto, nadie instala actualizaciones y preparar una máquina nueva lleva un día."
+      },
+      {
+        "title": "Puestos nuevos",
+        "text": "Hacen falta decenas de máquinas configuradas igual y rápido, no montadas una a una."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Auditoría de compatibilidad",
+        "text": "Comprobamos qué software y hardware vuestro funcionará y qué necesita sustituto o rodeo."
+      },
+      {
+        "title": "Piloto",
+        "text": "Desplegamos en unos pocos puestos y vemos qué estorba a la gente."
+      },
+      {
+        "title": "Despliegue",
+        "text": "Preparamos la imagen, desplegamos por departamentos y trasladamos datos y ajustes."
+      },
+      {
+        "title": "Gestión",
+        "text": "Configuramos políticas, actualizaciones y monitorización, y entregamos instrucciones a vuestro equipo."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Qué pasa con los programas que no existen para el nuevo sistema?",
+        "answer": "La auditoría de compatibilidad encuentra esos programas antes del cambio, no después. A partir de ahí suele haber tres opciones: un equivalente, ejecutarlo en una capa de compatibilidad o dejar una isla de unas pocas máquinas con el sistema anterior. Cuál encaja depende de lo crítico que sea el programa."
+      },
+      {
+        "question": "¿Podrá el personal trabajar con el nuevo sistema?",
+        "answer": "El trabajo diario —navegador, correo, documentos— se traslada casi sin reaprendizaje. Las dificultades empiezan con el software especializado, y por eso el piloto se hace con tareas reales de personas reales, no en un banco de demostración."
+      },
+      {
+        "question": "¿Se puede cambiar poco a poco?",
+        "answer": "Es lo que recomendamos: departamento a departamento, empezando por los que usan el conjunto de programas más sencillo. Un parque mixto es un estado normal durante la transición, y la infraestructura de dominio lo soporta."
+      },
+      {
+        "question": "¿Trasladáis los datos de los usuarios?",
+        "answer": "Sí: archivos, correo, marcadores, firmas y ajustes del escritorio. Es parte del trabajo, no un extra: de lo contrario el cambio le cuesta a cada empleado una jornada perdida."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Auditoría de compatibilidad de vuestro software",
+          "Piloto en unos pocos puestos",
+          "Imagen única de puesto de trabajo",
+          "Traslado de los datos de usuario",
+          "Instrucciones para el personal"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 5 semanas",
+        "features": [
+          "Infraestructura de dominio y políticas",
+          "Despliegue masivo por departamentos",
+          "Actualizaciones centralizadas",
+          "Formación de personal y administradores",
+          "Acompañamiento durante la transición"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 8 semanas",
+        "features": [
+          "Búsqueda de sustitutos al software incompatible",
+          "Traslado de la parte servidor",
+          "Integración con el entorno de dominio actual",
+          "Transición departamento a departamento",
+          "Soporte según procedimiento acordado"
+        ]
+      }
+    ]
+  },
+  "itOutsourcing": {
+    "metaTitle": "Externalización de IT y gestión de la infraestructura",
+    "metaDescription": "Gestión externalizada de la infraestructura IT: servidores, red, puestos de trabajo, correo y copias de seguridad. Sistema de tickets, tiempos de respuesta acordados e informes legibles en lugar de un administrador que pasa de vez en cuando. Desde {price:30000/mo}.",
+    "breadcrumb": "Externalización de IT",
+    "h1": "Externalización de IT y gestión de la infraestructura",
+    "lead": "Asumimos el IT de la empresa por completo: servidores, red, puestos de trabajo, correo, accesos y copias de seguridad. Trabajamos según un procedimiento con tiempos de respuesta fijados, en lugar de un administrador que lo sabe todo pero es el único que lo sabe.",
+    "includes": [
+      "Gestión de servidores, red y puestos de trabajo del personal",
+      "Sistema de tickets con tiempos de respuesta fijados por procedimiento",
+      "Monitorización que avisa de los fallos antes de que la gente los note",
+      "Copias de seguridad y pruebas periódicas de que realmente se restauran",
+      "Gestión de cuentas, accesos y licencias",
+      "Documentación de la infraestructura e informes legibles"
+    ],
+    "forWhom": [
+      {
+        "title": "Sin departamento de IT",
+        "text": "La empresa ha crecido, pero de los ordenadores sigue encargándose alguien entre otras tareas."
+      },
+      {
+        "title": "Todo depende de una persona",
+        "text": "Hay un solo administrador, las contraseñas están en su cabeza y sus vacaciones son un riesgo para el negocio."
+      },
+      {
+        "title": "Reforzar el equipo propio",
+        "text": "Tenéis IT, pero faltan manos o hace falta experiencia en sistemas concretos."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Auditoría",
+        "text": "Vemos qué hay, qué arde y qué arreglar primero, y levantamos el mapa de la infraestructura."
+      },
+      {
+        "title": "Procedimiento",
+        "text": "Acordamos el alcance de responsabilidad, los tiempos de respuesta, los canales de tickets y el escalado."
+      },
+      {
+        "title": "Toma de relevo",
+        "text": "Recogemos los accesos, documentamos y cerramos lo urgente: normalmente las primeras semanas."
+      },
+      {
+        "title": "Gestión",
+        "text": "Trabajamos por tickets y por plan, e informamos cada mes de lo hecho y de lo que proponemos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿En qué se diferencia del soporte web?",
+        "answer": "Son servicios distintos para tareas distintas. Esto es el IT de la empresa: servidores, red, ordenadores del personal, correo, accesos. El soporte y la evolución de una web o plataforma es otra área, y se puede contratar junto con esto o por separado."
+      },
+      {
+        "question": "¿Sustituís a nuestro administrador de sistemas?",
+        "answer": "Como prefiráis. A menudo cubrimos por completo el IT de una empresa pequeña, pero igual de a menudo trabajamos junto a un administrador interno, asumiendo la rutina, las guardias y las áreas concretas como la virtualización o las copias."
+      },
+      {
+        "question": "¿Con qué rapidez respondéis a los problemas?",
+        "answer": "Los tiempos quedan fijados en el procedimiento y dependen de la criticidad: un departamento parado y una molestia de un empleado son prioridades distintas. El procedimiento se acuerda antes de empezar, no tras la primera avería."
+      },
+      {
+        "question": "¿Qué pasa si decidimos separarnos?",
+        "answer": "Entregamos todo: accesos, contraseñas, documentación e historial de tickets. Una infraestructura que no se puede pasar a otro proveedor sin nosotros no es un servicio, es una atadura, y no trabajamos así."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "mensual",
+        "features": [
+          "Gestión de puestos de trabajo y red",
+          "Tickets en horario laboral",
+          "Monitorización y avisos de fallo",
+          "Copias de seguridad",
+          "Informes del trabajo"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "mensual",
+        "features": [
+          "Servidores y virtualización",
+          "Tiempo de respuesta fijado",
+          "Gestión de accesos y licencias",
+          "Trabajos planificados y actualizaciones",
+          "Documentación de la infraestructura"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "según SLA",
+        "features": [
+          "Ingeniero dedicado",
+          "Garantías por SLA y guardias",
+          "Pruebas de restauración desde copias",
+          "Control de seguridad básica",
+          "Evolución de la infraestructura según plan"
+        ]
+      }
+    ]
+  },
+  "infosecAudit": {
+    "metaTitle": "Auditoría de seguridad de la información de la empresa",
+    "metaDescription": "Auditoría de seguridad de la información: infraestructura, accesos, protección de datos y medidas organizativas. Un informe con niveles de riesgo y un plan de corrección, no un volcado de escáner. Desde {price:150000}.",
+    "breadcrumb": "Auditoría de seguridad de la información",
+    "h1": "Auditoría de seguridad de la información",
+    "lead": "Evaluamos la seguridad de toda la empresa, no de una sola web: red y servidores, permisos, copias de seguridad, correo, puestos de trabajo y cómo trata la gente los datos. Recibes un informe con niveles de riesgo y un plan de qué arreglar primero.",
+    "includes": [
+      "Inventario: qué datos hay, dónde están y quién llega a ellos",
+      "Revisión de la red, los servidores y los puestos en busca de vulnerabilidades conocidas",
+      "Análisis de los permisos: cuentas sobrantes, contraseñas compartidas, administradores olvidados",
+      "Comprobación de que las copias se restauran de verdad, no solo de que existen",
+      "Evaluación de las medidas organizativas: procedimientos, bajas, proveedores, dispositivos",
+      "Informe con niveles de riesgo y un plan de corrección por prioridad"
+    ],
+    "forWhom": [
+      {
+        "title": "Nunca lo ha revisado nadie",
+        "text": "La infraestructura creció durante años y su seguridad no la ha evaluado nunca nadie."
+      },
+      {
+        "title": "Alguien lo exige",
+        "text": "La auditoría la pide un cliente, un socio, una aseguradora o vuestro propio consejo."
+      },
+      {
+        "title": "Tras un incidente",
+        "text": "Ya ha pasado algo y hay que saber dónde más está abierta la misma puerta."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Alcance",
+        "text": "Acordamos qué entra en el perímetro: sistemas, sedes, profundidad de las pruebas."
+      },
+      {
+        "title": "Recogida de datos",
+        "text": "Inventario, escaneo, revisión de configuraciones y entrevistas con los responsables."
+      },
+      {
+        "title": "Análisis",
+        "text": "Separamos el ruido del escáner del riesgo real y comprobamos los hallazgos a mano."
+      },
+      {
+        "title": "Informe y repaso",
+        "text": "Entregamos el informe y lo hablamos en voz alta: qué es crítico, qué puede esperar, por dónde empezar."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿En qué se diferencia de una auditoría de seguridad web?",
+        "answer": "En la escala y en el objeto. Una auditoría web revisa una aplicación: código, accesos, dependencias, configuración del servidor. Esta revisa la empresa: red, servidores, puestos, permisos, copias y cómo están montados los procesos. Una no sustituye a la otra, y a menudo hacen falta las dos."
+      },
+      {
+        "question": "¿Vais a pasar simplemente un escáner?",
+        "answer": "El escáner es el primer paso y la parte más barata del trabajo. Un volcado de cien páginas donde la mitad de los hallazgos no aplican no sirve de nada. El valor está en lo que viene después: comprobar los hallazgos a mano, filtrar los falsos positivos y priorizar desde el punto de vista de vuestro negocio."
+      },
+      {
+        "question": "¿Es seguro para los sistemas en uso?",
+        "answer": "Sí. Cualquier prueba que pueda afectar al funcionamiento se acuerda aparte y se hace en una ventana pactada o sobre una copia de prueba. Todo lo demás va en modo observación y no toca el día a día."
+      },
+      {
+        "question": "¿Qué hacemos después con el informe?",
+        "answer": "Podéis arreglarlo vosotros: el informe está escrito para que trabaje con él vuestro administrador, no solo su autor. O podéis encargarnos la corrección: es un trabajo aparte, y siempre lo presupuestamos antes de que decidáis."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Inventario de datos y accesos",
+          "Revisión de vulnerabilidades conocidas",
+          "Análisis de permisos y cuentas olvidadas",
+          "Comprobación de restauración de copias",
+          "Informe con prioridades de corrección"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 5 semanas",
+        "features": [
+          "Perímetro externo y correo",
+          "Evaluación de las medidas organizativas",
+          "Revisión de proveedores y dispositivos",
+          "Repaso del informe con vuestro equipo",
+          "Plan de corrección por etapas"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 8 semanas",
+        "features": [
+          "Varias sedes y sistemas",
+          "Comprobación de cumplimiento de requisitos",
+          "Entrevistas con los responsables de los sistemas",
+          "Revisión posterior a las correcciones",
+          "Acompañamiento durante la corrección"
+        ]
+      }
+    ]
+  },
+  "infosecTools": {
+    "metaTitle": "Implantación de herramientas de seguridad",
+    "metaDescription": "Despliegue y configuración de herramientas de seguridad: antivirus y EDR, cortafuegos, VPN, cifrado, control de accesos y protección del correo. Integrado con la infraestructura que ya tenéis. Desde {price:200000}.",
+    "breadcrumb": "Implantación de herramientas de seguridad",
+    "h1": "Implantación de herramientas de seguridad",
+    "lead": "Seleccionamos, instalamos y configuramos las herramientas de seguridad para que funcionen de verdad y no se queden con los ajustes por defecto: protección de puestos y correo, cortafuegos, VPN, cifrado y control de accesos.",
+    "includes": [
+      "Selección de productos según vuestros riesgos y presupuesto, no según la lista de precios más larga",
+      "Protección de puestos y servidores: antivirus, EDR, control de aplicaciones",
+      "Cortafuegos, segmentación de red y acceso remoto seguro",
+      "Protección del correo frente a phishing y adjuntos maliciosos",
+      "Cifrado de discos, copias de seguridad y datos en tránsito",
+      "Integración con lo que ya funciona y entrega de lo configurado a vuestro equipo"
+    ],
+    "forWhom": [
+      {
+        "title": "Sin protección o solo sobre el papel",
+        "text": "Hay antivirus, pero nadie mira sus avisos, y el cortafuegos está configurado como salió."
+      },
+      {
+        "title": "Trabajo remoto",
+        "text": "La plantilla se conecta desde casa y desde dispositivos personales, y nada de eso está controlado."
+      },
+      {
+        "title": "Después de una auditoría",
+        "text": "Hay un informe con hallazgos y hay que cerrarlos con herramientas que funcionen, no con consejos."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Modelo de amenazas",
+        "text": "Definimos qué se protege y de qué: si no, se compra de todo y no sirve nada."
+      },
+      {
+        "title": "Selección y piloto",
+        "text": "Proponemos opciones con precios y probamos la elegida en parte de la infraestructura."
+      },
+      {
+        "title": "Implantación",
+        "text": "Desplegamos por etapas, configuramos las políticas y vigilamos que la protección no estorbe al trabajo."
+      },
+      {
+        "title": "Entrega",
+        "text": "Formamos a vuestro equipo y entregamos documentación y ajustes. El acompañamiento posterior es opcional."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿La protección estorbará a la plantilla?",
+        "answer": "Mal configurada, sí, y entonces la gente empieza a sortearla, que es peor que no tenerla. Por eso las políticas se introducen poco a poco y con piloto: primero modo observación, luego revisión de lo que salta sin motivo, y solo después bloqueos."
+      },
+      {
+        "question": "¿Se puede resolver con productos disponibles localmente?",
+        "answer": "Sí, y a menudo es un requisito y no una elección. Seleccionamos entre lo disponible y soportado en vuestro mercado, y decimos con franqueza dónde el equivalente local es más débil y cómo compensarlo."
+      },
+      {
+        "question": "¿Hay que empezar por una auditoría?",
+        "answer": "No es obligatorio, pero ayuda: sin entender los riesgos, elegir herramientas se convierte en comprar por una lista de un artículo. Si el presupuesto es limitado, la auditoría ayuda a gastarlo en lo que cierra agujeros reales."
+      },
+      {
+        "question": "¿Quién gestionará todo esto tras la implantación?",
+        "answer": "Por defecto, vuestro equipo: entregamos sistemas configurados, documentación y formación. Si no hay manos, la gestión y el triaje de avisos se nos puede encargar como servicio de monitorización aparte."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Modelo de amenazas y selección de productos",
+          "Protección de puestos y servidores",
+          "Cortafuegos y segmentación",
+          "Protección del correo frente a phishing",
+          "Entrega de lo configurado"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 6 semanas",
+        "features": [
+          "EDR y control de aplicaciones",
+          "Acceso remoto seguro",
+          "Cifrado de discos y copias",
+          "Integración con los sistemas actuales",
+          "Formación de administradores"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 10 semanas",
+        "features": [
+          "Piloto de varios productos",
+          "Segmentación de red compleja",
+          "Prevención de fugas de datos",
+          "Enlazado con la monitorización de incidentes",
+          "Acompañamiento y ajuste continuo"
+        ]
+      }
+    ]
+  },
+  "infosecConsulting": {
+    "metaTitle": "Consultoría de seguridad y cumplimiento en protección de datos",
+    "metaDescription": "Consultoría de seguridad de la información: adecuar el tratamiento de datos personales a la ley, notificar al regulador, procedimientos, modelo de amenazas y preparación para una inspección. Desde {price:80000}.",
+    "breadcrumb": "Consultoría de seguridad",
+    "h1": "Consultoría de seguridad y cumplimiento",
+    "lead": "Ponemos en orden el tratamiento de datos, sobre el papel y en la práctica: datos personales y la ley que los regula, notificación al regulador, políticas y procedimientos, modelo de amenazas, preparación para una inspección. Sin documentos formales que no coinciden con la realidad.",
+    "includes": [
+      "Revisión de qué datos personales recogéis y con qué base legal",
+      "Notificación al regulador, con las finalidades de tratamiento bien redactadas",
+      "Política de privacidad, consentimientos y procedimientos internos",
+      "Modelo de amenazas y determinación del nivel de protección exigido",
+      "Plan de adecuación con las prioridades marcadas",
+      "Preparación para una inspección: qué preguntan, qué enseñar, dónde suele fallar"
+    ],
+    "forWhom": [
+      {
+        "title": "Recogéis datos de clientes",
+        "text": "Formularios en la web, una base en el CRM, copias de documentos, y nada de ello está formalizado."
+      },
+      {
+        "title": "Lo exige un contratante",
+        "text": "Un cliente grande o un concurso exige demostrar que vuestra seguridad está en orden."
+      },
+      {
+        "title": "Se acerca una inspección",
+        "text": "Hay que saber dónde estáis expuestos formalmente y cerrarlo antes, no después."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Relevamiento",
+        "text": "Miramos qué datos y procesos existen de verdad, no lo que dicen los documentos."
+      },
+      {
+        "title": "La brecha",
+        "text": "Registramos la diferencia entre los requisitos y la situación actual."
+      },
+      {
+        "title": "Documentos y medidas",
+        "text": "Preparamos el conjunto de documentos y la lista de medidas técnicas que los respaldan."
+      },
+      {
+        "title": "Implantación y acompañamiento",
+        "text": "Ayudamos a implantarlo, formamos a los responsables y seguimos disponibles cuando algo cambie."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿De verdad tenemos que notificar al regulador?",
+        "answer": "Casi con seguridad, sí: la obligación aparece en cuanto tratáis datos de clientes y empleados, y quedan muy pocas excepciones. La dificultad no está en la notificación en sí, sino en que las finalidades y categorías de datos que declara coincidan con lo que hacéis realmente."
+      },
+      {
+        "question": "¿Basta con descargar una plantilla de política de internet?",
+        "answer": "Como documento en la web, formalmente sí. Como defensa en una inspección, no: una plantilla describe procesos ajenos, y la primera discrepancia con la realidad la convierte de argumento en prueba. Los documentos tienen que describir lo que pasa en vuestra empresa."
+      },
+      {
+        "question": "¿Hacéis solo documentos o también la parte técnica?",
+        "answer": "Ambas, pero son trabajos distintos. La consultoría responde a «qué debe existir»; la implantación de herramientas, a «cómo conseguirlo». Podemos cerrar las dos partes o solo la primera, si la técnica la lleva vuestro equipo."
+      },
+      {
+        "question": "¿Cuánto tiempo lleva?",
+        "answer": "El relevamiento y el conjunto de documentos para una empresa pequeña suelen llevar unas semanas. La adecuación completa con medidas técnicas se alarga meses, así que el trabajo va por prioridades: primero lo que cierra el riesgo más visible."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Revisión de los datos personales recogidos",
+          "Notificación al regulador",
+          "Política de privacidad y consentimientos",
+          "Lista de las medidas necesarias",
+          "Consultas durante el trabajo"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "Modelo de amenazas y nivel de protección",
+          "Procedimientos y órdenes internas",
+          "Plan de adecuación",
+          "Revisión de la web y sus formularios",
+          "Formación de los responsables"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 6 semanas",
+        "features": [
+          "Varios sistemas y sedes",
+          "Preparación para una inspección del regulador",
+          "Auditoría de los contratos con proveedores",
+          "Acompañamiento en la correspondencia",
+          "Soporte una vez todo está en orden"
+        ]
+      }
+    ]
+  },
+  "infosecMonitoring": {
+    "metaTitle": "Monitorización de seguridad y respuesta a incidentes",
+    "metaDescription": "Monitorización de eventos de seguridad y respuesta a incidentes: recogida de logs, reglas de detección, triaje de avisos y un procedimiento de actuación ante un ataque. Con procedimiento de respuesta acordado. Desde {price:60000/mo}.",
+    "breadcrumb": "Monitorización y respuesta",
+    "h1": "Monitorización de seguridad y respuesta a incidentes",
+    "lead": "Montamos la recogida de eventos de seguridad y analizamos lo que ocurre en ellos: accesos sospechosos, intentos de fuerza bruta, ransomware, fugas. Un incidente hay que detectarlo mientras aún es pequeño: para eso sirve la monitorización.",
+    "includes": [
+      "Recogida de logs de servidores, puestos, red y servicios en la nube",
+      "Reglas de detección escritas para vuestra infraestructura, no un conjunto por defecto",
+      "Triaje de avisos: qué es un incidente real y qué es ruido",
+      "Procedimiento de respuesta: quién hace qué en los primeros treinta minutos",
+      "Investigación de incidentes: qué pasó, cómo entraron, hasta dónde llegaron",
+      "Informes y ajuste de las reglas tras cada revisión"
+    ],
+    "forWhom": [
+      {
+        "title": "Hay logs, pero nadie los mira",
+        "text": "Los datos se acumulan y solo se consultan cuando ya ha ocurrido todo."
+      },
+      {
+        "title": "Sistemas críticos para el negocio",
+        "text": "Una parada o una fuga salen caras, y enterarse por los clientes es inaceptable."
+      },
+      {
+        "title": "Sin equipo de seguridad propio",
+        "text": "Tener un especialista de guardia en plantilla es caro, pero vigilar hay que vigilar siempre."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Qué protegemos",
+        "text": "Identificamos los sistemas críticos y los eventos que no se pueden pasar por alto."
+      },
+      {
+        "title": "Recogida y reglas",
+        "text": "Conectamos las fuentes de logs y escribimos reglas de detección para vuestro entorno."
+      },
+      {
+        "title": "Quitar el ruido",
+        "text": "Eliminamos los falsos positivos: un sistema que grita siempre deja de oírse."
+      },
+      {
+        "title": "Guardia y análisis",
+        "text": "Vigilamos los avisos, respondemos según el procedimiento, investigamos incidentes y ajustamos las reglas."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿En qué se diferencia de la monitorización de disponibilidad?",
+        "answer": "La monitorización de disponibilidad responde a «¿funciona el servicio?»; la de seguridad, a «¿le está pasando algo sospechoso?». Un servicio puede funcionar perfectamente y a la vez estar entregando datos a quien no debe."
+      },
+      {
+        "question": "¿Responderéis por nosotros o solo avisaréis?",
+        "answer": "Según se acuerde. El mínimo es un aviso con análisis y recomendaciones. La opción ampliada son acciones activas según procedimiento: aislar una máquina, bloquear una cuenta, cortar un acceso. Los límites de actuación se fijan de antemano."
+      },
+      {
+        "question": "¿Hay que comprar un sistema caro de recogida de eventos?",
+        "answer": "No siempre. Para una infraestructura pequeña basta con herramientas abiertas, y es razonable empezar por ahí. Un sistema industrial se justifica cuando hay muchas fuentes y el volumen de eventos deja de caber en herramientas sencillas."
+      },
+      {
+        "question": "¿Y si el incidente ya ha ocurrido?",
+        "answer": "Entonces el trabajo empieza por la investigación: cómo entraron, hasta dónde llegaron, qué hay que cerrar de inmediato. La monitorización se configura después, ya con reglas para el escenario que de verdad os ha pasado."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "mensual",
+        "features": [
+          "Recogida de logs de los sistemas clave",
+          "Reglas escritas para vuestra infraestructura",
+          "Triaje de avisos en horario laboral",
+          "Procedimiento de primeras actuaciones",
+          "Informe mensual y ajuste"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "mensual",
+        "features": [
+          "Puestos de trabajo y servicios en la nube",
+          "Investigación de incidentes",
+          "Verificación de hipótesis y búsqueda de rastros",
+          "Revisión tras cada caso",
+          "Informes ampliados"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "guardia 24/7",
+        "features": [
+          "Guardia las veinticuatro horas",
+          "Garantías de tiempo de respuesta",
+          "Reconstrucción de la cronología del ataque",
+          "Integrado en vuestros procesos",
+          "Simulacros de respuesta periódicos"
+        ]
+      }
+    ]
+  },
+  "collaboration": {
+    "metaTitle": "Implantación de comunicaciones corporativas y trabajo colaborativo",
+    "metaDescription": "Implantación de portal corporativo, mensajería, videollamadas y trabajo colaborativo con documentos: elección de plataforma, configuración de procesos, integración con correo y CRM, formación del personal. Desde {price:120000}.",
+    "breadcrumb": "Comunicaciones corporativas",
+    "h1": "Implantación de comunicaciones corporativas",
+    "lead": "Montamos un entorno de trabajo donde las conversaciones, los archivos, las tareas y las llamadas viven en un solo sitio, y no repartidos en siete chats y una carpeta compartida. Elegimos la plataforma según cómo trabajáis de verdad, configuramos los procesos y lo llevamos hasta que la gente la use.",
+    "includes": [
+      "Un repaso de dónde se pierden hoy las tareas, los archivos y los acuerdos",
+      "Elección de plataforma según el tamaño de la empresa, el presupuesto y los requisitos de datos",
+      "Despliegue en la nube o en vuestros servidores si los datos no pueden salir",
+      "Estructura de espacios, grupos y permisos para vuestros departamentos",
+      "Configuración de los procesos de trabajo: tareas, aprobaciones, base de conocimiento",
+      "Integración con correo, calendario y CRM, y formación del personal"
+    ],
+    "forWhom": [
+      {
+        "title": "El trabajo se ha repartido entre mensajerías",
+        "text": "Una parte en chats privados, otra en el correo, archivos en memorias USB, y nadie sabe cuál es la versión actual."
+      },
+      {
+        "title": "Los datos no pueden ir a una nube ajena",
+        "text": "Hace falta un portal y una mensajería en servidores propios, no una suscripción a un servicio extranjero."
+      },
+      {
+        "title": "Lo compramos y nadie lo usa",
+        "text": "La plataforma está, las licencias están pagadas, y la gente sigue trabajando como antes."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Cómo trabajáis ahora",
+        "text": "Miramos las rutas reales de las tareas y los documentos, no el esquema del procedimiento."
+      },
+      {
+        "title": "Elección de plataforma",
+        "text": "Proponemos opciones con sus ventajas, inconvenientes y coste de propiedad, no una única «correcta»."
+      },
+      {
+        "title": "Configuración",
+        "text": "Desplegamos, montamos la estructura y los procesos, y conectamos correo, calendario y CRM."
+      },
+      {
+        "title": "Arranque con la gente",
+        "text": "Trasladamos los primeros procesos, formamos y ajustamos con los comentarios de las primeras semanas."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿En qué se diferencia de desarrollar una mensajería propia?",
+        "answer": "Aquí implantamos una plataforma ya hecha: más rápido y más barato, y adecuado para la mayoría. El desarrollo propio hace falta cuando nada de lo existente cubre los requisitos: una red especial, integraciones poco comunes o una mensajería dentro de vuestro producto. Eso es otro servicio."
+      },
+      {
+        "question": "¿Cómo se consigue que el personal cambie de verdad?",
+        "answer": "No dejando rutas paralelas abiertas. Mientras una aprobación se pueda conseguir en un chat privado, nadie entrará en el portal. Por eso trasladamos los procesos de uno en uno y junto a los responsables, en vez de enviar un instructivo y confiar."
+      },
+      {
+        "question": "¿Se puede desplegar todo en nuestros servidores?",
+        "answer": "Sí, muchas plataformas tienen opción local. Mantenerlo sale más caro, pero las conversaciones y los archivos se quedan con vosotros: para algunas empresas es una condición obligatoria."
+      },
+      {
+        "question": "¿Cuánto dura la implantación?",
+        "answer": "Un despliegue básico con correo y estructura lleva semanas. Trasladar los procesos y las costumbres lleva meses, y es normal: una plataforma encendida en un fin de semana suele quedarse vacía."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 3 semanas",
+        "features": [
+          "Plataforma en la nube llave en mano",
+          "Estructura de espacios y permisos",
+          "Tareas, archivos y base de conocimiento",
+          "Traslado de conversaciones y documentos",
+          "Arranque y formación del equipo"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 5 semanas",
+        "features": [
+          "Aprobaciones y procesos configurados",
+          "Integración con correo, calendario y CRM",
+          "Roles y permisos por departamento",
+          "Plantillas de espacios de trabajo",
+          "Acompañamiento el primer mes"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 8 semanas",
+        "features": [
+          "Despliegue en vuestros servidores",
+          "Integraciones con sistemas internos",
+          "Migración desde la plataforma anterior",
+          "Modelo de accesos complejo",
+          "Formación por roles y soporte"
+        ]
+      }
+    ]
+  },
+  "businessSystems": {
+    "metaTitle": "Implantación de sistemas de gestión: ERP, contabilidad, CRM",
+    "metaDescription": "Implantación de sistemas contables y de gestión: elección de la configuración, migración de datos, configuración de procesos y permisos, integración con la web y el almacén, formación del personal y arranque. Desde {price:150000}.",
+    "breadcrumb": "Implantación de sistemas de gestión",
+    "h1": "Implantación de sistemas de gestión",
+    "lead": "Implantamos sistemas contables y de gestión de forma que la gente trabaje realmente en ellos: elección de la configuración, migración de datos, ajuste a vuestros procesos, integraciones y formación. Un sistema sin datos y sin usuarios no cuenta como implantado.",
+    "includes": [
+      "Repaso de los procesos: qué se registra, quién lo introduce y quién lo usa",
+      "Elección del sistema y la configuración según la tarea, no según la costumbre del proveedor",
+      "Migración de datos desde hojas de cálculo y sistemas anteriores, con control de integridad",
+      "Configuración de maestros, documentos, permisos y roles",
+      "Integración con la web, el almacén, el banco, la caja y la telefonía",
+      "Formación del personal y acompañamiento durante el primer cierre"
+    ],
+    "forWhom": [
+      {
+        "title": "Contabilidad en hojas de cálculo",
+        "text": "Excel ya no da más de sí: las versiones divergen, los datos se duplican, el informe se monta a mano."
+      },
+      {
+        "title": "Hay sistema, pero no encaja",
+        "text": "Se implantó hace tiempo, está configurado para otros, y la mitad del trabajo sigue ocurriendo fuera."
+      },
+      {
+        "title": "Crecimiento y nuevas líneas",
+        "text": "Han aparecido almacén, tienda o producción, y las cuentas ya no cuadran."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Relevamiento",
+        "text": "Describimos cómo funcionan hoy los procesos y dónde se pierden exactamente datos y tiempo."
+      },
+      {
+        "title": "Elección y plan",
+        "text": "Seleccionamos sistema y configuración y fijamos etapas, plazos y coste de propiedad."
+      },
+      {
+        "title": "Configuración y migración",
+        "text": "Lo ajustamos a los procesos, migramos los datos y conectamos las integraciones."
+      },
+      {
+        "title": "Arranque",
+        "text": "Formamos, ponemos en marcha y nos quedamos cerca durante el primer cierre."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿En qué se diferencia una implantación de desarrollar un sistema propio?",
+        "answer": "La implantación coge un producto ya hecho y lo configura para vosotros: más rápido y más barato, y la contabilidad estándar ya está dentro. El desarrollo propio se justifica cuando el proceso es realmente único y habría que romper el producto estándar para encajarlo. Hacemos las dos cosas y decimos con franqueza cuál sale más barata en vuestro caso."
+      },
+      {
+        "question": "¿Qué pasa con los datos antiguos?",
+        "answer": "Migramos lo necesario para trabajar e informar: maestros, saldos, historial de operaciones con la profundidad acordada. La migración siempre va con una conciliación: una diferencia en los saldos es mejor encontrarla antes del arranque que en el primer informe."
+      },
+      {
+        "question": "¿A cuántos empleados habrá que formar?",
+        "answer": "A todos los que introducen datos, pero de forma distinta: un comercial necesita una pantalla; un contable, el módulo entero. Por eso la formación va por roles y no como una charla general."
+      },
+      {
+        "question": "¿Se puede implantar por partes?",
+        "answer": "Sí, y suele ser lo más sensato: primero un área —ventas o almacén, por ejemplo— y luego la siguiente. Intentar arrancarlo todo a la vez acaba casi siempre con que no funciona nada."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "Relevamiento de los procesos contables",
+          "Configuración estándar para la tarea",
+          "Migración de maestros y saldos",
+          "Permisos y roles configurados",
+          "Formación y arranque"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 7 semanas",
+        "features": [
+          "Migración de datos de sistemas anteriores",
+          "Documentos e informes configurados",
+          "Integración con la web y el banco",
+          "Instrucciones para el personal",
+          "Acompañamiento del primer periodo"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 12 semanas",
+        "features": [
+          "Varias sociedades y almacenes",
+          "Caja, telefonía, marketplaces",
+          "Adaptaciones a vuestros procesos",
+          "Formación por roles",
+          "Acompañamiento y evolución"
+        ]
+      }
+    ]
+  },
+  "businessSystemsCustom": {
+    "metaTitle": "Adaptación y personalización de sistemas de gestión",
+    "metaDescription": "Personalización de sistemas contables y CRM según los procesos de la empresa: formatos de impresión, informes, intercambio de datos, lógica a medida. Conservando la capacidad de actualizar. Desde {price:25000}.",
+    "breadcrumb": "Personalización de sistemas de gestión",
+    "h1": "Adaptación y personalización de sistemas de gestión",
+    "lead": "Ampliamos sistemas ya en uso para que encajen con vuestros procesos: informes, formatos de impresión, intercambio de datos, lógica a medida. La regla principal es que el sistema siga pudiendo actualizarse después, y no quede congelado para siempre en la versión actual.",
+    "includes": [
+      "Revisión de la petición: qué hace falta de verdad y qué resuelve ya la configuración estándar",
+      "Informes y formatos de impresión según vuestros requisitos y los de vuestros clientes",
+      "Cambios en la lógica de documentos, cálculos y aprobaciones",
+      "Intercambio de datos con la web, el almacén, los marketplaces y otros sistemas",
+      "Ordenar adaptaciones anteriores si ya no se puede actualizar",
+      "Documentar los cambios, para que pueda mantenerlos alguien más que su autor"
+    ],
+    "forWhom": [
+      {
+        "title": "Lo estándar se queda corto",
+        "text": "El sistema en general sirve, pero un par de informes o formatos necesarios simplemente no están."
+      },
+      {
+        "title": "No se puede actualizar",
+        "text": "Se personalizó durante años, ahora una actualización lo rompe todo y el sistema está atascado en una versión antigua."
+      },
+      {
+        "title": "Trabajo manual junto al sistema",
+        "text": "Los datos se exportan a Excel, se calculan a mano y se vuelven a cargar, cada mes."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Revisión de la petición",
+        "text": "Comprobamos si lo resuelve la configuración: la adaptación más barata es la que no hizo falta hacer."
+      },
+      {
+        "title": "Estimación",
+        "text": "Valoramos el trabajo y avisamos si la solución complicará las futuras actualizaciones."
+      },
+      {
+        "title": "Ejecución",
+        "text": "Lo hacemos sobre una copia, lo probamos con vuestros datos y enseñamos el resultado antes de moverlo."
+      },
+      {
+        "title": "Traslado y soporte",
+        "text": "Lo pasamos a la base de trabajo, lo documentamos y seguimos disponibles para más ajustes."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿La adaptación romperá las actualizaciones?",
+        "answer": "Puede: por eso las adaptaciones se hacen como extensiones y siguiendo las reglas de la plataforma, no editando la configuración estándar. A veces tocar lo estándar es inevitable; lo decimos antes de empezar, para que la decisión sea vuestra y no un descubrimiento en la siguiente actualización."
+      },
+      {
+        "question": "¿Asumiríais adaptaciones hechas por otros?",
+        "answer": "Sí. Empezamos revisando lo ya escrito: a menudo la mitad resulta innecesaria o duplica funciones estándar. Ordenarlo suele salir más barato que mantener indefinidamente lo acumulado."
+      },
+      {
+        "question": "¿Se puede pedir solo una cosa pequeña?",
+        "answer": "Sí, el trabajo puntual es un formato normal: un informe, un formato de impresión, una exportación. Un contrato largo no es para eso, sino para quien tiene un flujo constante de cambios."
+      },
+      {
+        "question": "¿Cómo saber si sale más barato adaptar o cambiar de sistema?",
+        "answer": "Por el volumen de lo que no cubre lo estándar. Si hay más adaptación que funcionalidad estándar, el sistema no os encaja y conviene valorar el cambio. Lo decimos claramente, incluso cuando adaptar nos resultaría más rentable."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 3 días",
+        "features": [
+          "Revisión de la petición y estimación",
+          "Un informe o un formato de impresión",
+          "Probado sobre una copia de la base",
+          "Trasladado a la base de trabajo",
+          "Cambios documentados"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 1 semana",
+        "features": [
+          "Cambios en la lógica de documentos",
+          "Cálculos y aprobaciones",
+          "Intercambio con la web o el almacén",
+          "Comprobación de que sigue actualizándose",
+          "Formación de usuarios"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 2 semanas",
+        "features": [
+          "Un paquete de cambios según plan",
+          "Puesta en orden de adaptaciones anteriores",
+          "Intercambio con varios sistemas",
+          "Procedimiento de actualizaciones",
+          "Soporte tras la entrega"
+        ]
+      }
+    ]
+  },
+  "industrial": {
+    "metaTitle": "Integración con maquinaria y sistemas de producción",
+    "metaDescription": "Integración de sistemas IT con maquinaria y control industrial: recogida de datos de líneas y contadores, envío al sistema de gestión, paneles de control y informes de producción. Desde {price:250000}.",
+    "breadcrumb": "Integración con maquinaria",
+    "h1": "Integración con maquinaria y sistemas de producción",
+    "lead": "Conectamos la maquinaria de producción con los sistemas de gestión: extraemos datos de máquinas, líneas, sensores y contadores, los llevamos a la contabilidad y los mostramos en paneles legibles. Para que las cifras de producción aparezcan solas, en vez de copiarse de un cuaderno al final del turno.",
+    "includes": [
+      "Relevamiento de la maquinaria: qué datos entrega y por qué protocolos",
+      "Recogida de datos de máquinas, líneas, controladores y contadores",
+      "Envío de los indicadores al sistema de gestión sin introducción manual",
+      "Paneles de control: producción, paradas, averías, estado de las líneas",
+      "Informes por turno, área y equipo",
+      "Avisos de paradas y de valores fuera del rango permitido"
+    ],
+    "forWhom": [
+      {
+        "title": "Las cifras se copian a mano",
+        "text": "Los datos se llevan en un cuaderno y llegan a la contabilidad un día después y con errores."
+      },
+      {
+        "title": "Nadie contabiliza las paradas",
+        "text": "Está claro que la línea estuvo parada, pero no cuánto, ni por qué, ni cuánto costó."
+      },
+      {
+        "title": "Equipos de distintas generaciones",
+        "text": "Parte de la maquinaria es moderna y parte antigua, y no se forma una visión conjunta del taller."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Relevamiento",
+        "text": "Vemos qué maquinaria hay, qué interfaces tiene y qué se puede extraer de ella."
+      },
+      {
+        "title": "Piloto en un área",
+        "text": "Conectamos una línea y comprobamos que los datos cuadran con la realidad."
+      },
+      {
+        "title": "Escalado",
+        "text": "Conectamos el resto de la maquinaria y lo enlazamos con el sistema de gestión."
+      },
+      {
+        "title": "Paneles e informes",
+        "text": "Montamos lo que de verdad se mira: estado de las líneas, paradas, producción por turno."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Nuestra maquinaria es antigua, ¿se le puede sacar algo?",
+        "answer": "A menudo sí: mediante el controlador, contadores o sensores externos, aunque la máquina no tenga una interfaz moderna. La respuesta la da el relevamiento: a veces basta con registrar el hecho de funcionar y parar, y eso ya responde a la pregunta principal sobre las paradas."
+      },
+      {
+        "question": "¿Esto molestará al funcionamiento de la línea?",
+        "answer": "La recogida de datos es de solo lectura y no afecta al proceso. Los trabajos que exigen parada —colocar sensores o conectarse a un controlador— se programan para las paradas previstas."
+      },
+      {
+        "question": "¿Hay que conectarlo todo a la vez?",
+        "answer": "No, y no conviene. Empezamos por un área donde el efecto se ve antes, confirmamos que las cifras cuadran con la realidad y solo después seguimos."
+      },
+      {
+        "question": "¿De quién son los datos recogidos?",
+        "answer": "Vuestros. Los datos se guardan en vuestra red o en vuestro servidor, los formatos son abiertos y la exportación está disponible en cualquier momento. No proponemos soluciones de las que no se puedan sacar los propios indicadores."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Básico",
+        "deadline": "desde 4 semanas",
+        "features": [
+          "Relevamiento de maquinaria y protocolos",
+          "Recogida de datos de un área",
+          "Indicadores enviados al sistema de gestión",
+          "Panel de estado de la línea",
+          "Informe por turnos"
+        ]
+      },
+      {
+        "name": "Estándar",
+        "deadline": "desde 8 semanas",
+        "features": [
+          "Escalado a todo el taller",
+          "Paneles de control por áreas",
+          "Avisos de paradas",
+          "Informes por equipo",
+          "Formación de los operadores de control"
+        ]
+      },
+      {
+        "name": "A medida",
+        "deadline": "desde 12 semanas",
+        "features": [
+          "Varios talleres y sedes",
+          "Integración con gestión y planificación",
+          "Histórico de indicadores y analítica",
+          "Redundancia en la recogida de datos",
+          "Acompañamiento y evolución"
+        ]
+      }
+    ]
+  }
+}

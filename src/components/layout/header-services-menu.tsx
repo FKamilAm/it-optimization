@@ -41,6 +41,7 @@ import {
 import { TelegramIcon } from "@/components/icons/brand-icons";
 import { HEADER_SERVICE_KEYS, SERVICE_NAV } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { usePaths } from "@/i18n/use-paths";
 
 // Per-service glyph for the dropdown rows (mirrors the homepage service cards).
 //
@@ -102,6 +103,7 @@ interface HeaderServicesMenuProps {
 
 export function HeaderServicesMenu({ dark, onNavigate }: HeaderServicesMenuProps) {
   const t = useTranslations();
+  const paths = usePaths();
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<number | null>(null);
 
@@ -145,7 +147,7 @@ export function HeaderServicesMenu({ dark, onNavigate }: HeaderServicesMenuProps
           этом открывается наведением и фокусом, так что клик никому не нужен,
           чтобы её увидеть. */}
       <Link
-        href="/uslugi/"
+        href={paths.services}
         aria-expanded={open}
         aria-haspopup="true"
         onClick={handleNavigate}
@@ -186,7 +188,7 @@ export function HeaderServicesMenu({ dark, onNavigate }: HeaderServicesMenuProps
               return (
                 <li key={key}>
                   <Link
-                    href={`/uslugi/${slug}/`}
+                    href={paths.service(key)}
                     onClick={handleNavigate}
                     className="group hover:bg-muted focus-visible:outline-accent flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2"
                   >
@@ -209,7 +211,7 @@ export function HeaderServicesMenu({ dark, onNavigate }: HeaderServicesMenuProps
           {/* Ведёт на страницу-каталог, а не на якорь #services главной: под
               этой подписью человек ждёт полный список, а не блок на главной. */}
           <Link
-            href="/uslugi/"
+            href={paths.services}
             onClick={handleNavigate}
             className="border-border text-foreground hover:border-accent hover:bg-accent-muted focus-visible:outline-accent mt-1 flex items-center justify-center gap-2 rounded-xl border px-3 py-3 text-base font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2"
           >

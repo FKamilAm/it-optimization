@@ -1,0 +1,128 @@
+{
+  "crm": {
+    "title": "CRM para una inmobiliaria",
+    "description": "Una sola interfaz para inmuebles, solicitudes, clientes y operaciones.",
+    "quote": "El equipo convirtió solicitudes dispersas y hojas de cálculo en un sistema de ventas que se entiende.",
+    "tags": ["Inmobiliaria", "CRM", "Automatización"]
+  },
+  "aiAgent": {
+    "title": "Agente de IA para atender solicitudes",
+    "description": "Un módulo de IA clasifica los mensajes entrantes, responde las preguntas habituales y pasa los contactos al CRM.",
+    "quote": "Redujimos el trabajo manual con las solicitudes y empezamos a responder antes a los clientes nuevos.",
+    "tags": ["IA", "Automatización", "CRM"]
+  },
+  "miniapp": {
+    "title": "Mini App de Telegram para solicitudes",
+    "description": "Una mini app para recibir solicitudes, seguir su estado, enviar avisos y hablar con los clientes dentro de Telegram.",
+    "quote": "Los clientes consiguieron una vía rápida de contacto sin instalar nada.",
+    "tags": ["Telegram", "Mini App", "Captación"]
+  },
+  "marketplace": {
+    "title": "Plataforma de marketplace",
+    "description": "Una plataforma con catálogo, roles, paneles de vendedor, pedidos y lógica de pagos.",
+    "quote": "La arquitectura nos permitió lanzar un MVP y dejar margen para crecer.",
+    "tags": ["Marketplace", "eCommerce", "Pagos"]
+  },
+  "web3": {
+    "title": "Panel Web3 / cripto",
+    "description": "Una interfaz para datos on-chain, monederos, transacciones y lógica multicadena.",
+    "quote": "La lógica blockchain, que es compleja, se volvió legible gracias a una interfaz limpia.",
+    "tags": ["Web3", "Blockchain", "Panel"]
+  },
+  "corporate": {
+    "title": "Sitio corporativo con automatización",
+    "description": "Un sitio corporativo con formularios, analítica, avisos por Telegram e integración con hojas de cálculo y CRM.",
+    "quote": "El sitio dejó de ser una tarjeta de presentación y pasó a ser un canal real de solicitudes.",
+    "tags": ["Sitio web", "CRM", "Analítica"]
+  },
+  "svpr": {
+    "title": "Proektnye Resheniya — IT para ciudades",
+    "description": "Sitio corporativo de una empresa IT que crea innovación para el entorno urbano: servicios, proyectos y equipo en un mismo lenguaje visual.",
+    "quote": "El sitio transmitió la dimensión de la empresa y presentó un trabajo IT complejo de forma comprensible.",
+    "tags": ["Sitio web", "Corporativo", "IT"]
+  },
+  "tiger": {
+    "title": "Tiger — web de una promotora inmobiliaria",
+    "description": "Sitio corporativo de una promotora: proyectos, empresa y búsqueda de viviendas, con el acento en la estética y la calidad.",
+    "quote": "La presentación premium reforzó la confianza en la marca y simplificó la elección de inmueble.",
+    "tags": ["Sitio web", "Inmobiliaria", "Promoción"]
+  },
+  "mebel": {
+    "title": "Forma Casa — mobiliario de interior",
+    "description": "Sitio de una marca de muebles con catálogo, colecciones y diseño propio para interiores contemporáneos.",
+    "quote": "El escaparate puso en valor la calidad de los muebles y aumentó las visitas al showroom.",
+    "tags": ["Sitio web", "eCommerce", "Mobiliario"]
+  },
+  "renegade": {
+    "title": "ANG — tuning y kits de carbono",
+    "description": "Sitio de un estudio de tuning: servicios, proyectos y galería de trabajos con una presentación oscura y premium.",
+    "quote": "El diseño oscuro transmitió el carácter premium de la marca y de sus trabajos en carbono.",
+    "tags": ["Sitio web", "Automoción", "Portfolio"]
+  },
+  "visit": {
+    "title": "Visit Tatarstan — portal turístico",
+    "description": "Portal turístico de la región: eventos, rutas, ideas de viaje y tours en 3D en una guía única.",
+    "quote": "El portal reunió eventos y rutas en una guía que los viajeros usan de verdad.",
+    "tags": ["Sitio web", "Turismo", "Portal"]
+  },
+  "tgMiniApp": {
+    "title": "MiniFlow — Mini App financiera",
+    "description": "Mini App de Telegram para gestionar saldos, transferencias y cuentas multidivisa sin salir de la mensajería.",
+    "quote": "La gente gestiona su dinero en un par de toques, sin salir de Telegram.",
+    "tags": ["Telegram", "Mini App", "Fintech"]
+  },
+  "nori": {
+    "title": "NORI GO — reparto de sushi",
+    "description": "Aplicación de reparto: carta, menús, carrito y pedido, con entrega desde 30 minutos.",
+    "quote": "Pedir se volvió más rápido y más cómodo: desde la app, en un par de minutos.",
+    "tags": ["Móvil", "Reparto", "Restauración"]
+  },
+  "street": {
+    "title": "Street.RF — alquiler de locales",
+    "description": "Plataforma móvil para buscar y reservar locales comerciales: filtros, mapa y fichas detalladas.",
+    "quote": "Buscar y reservar un local para el negocio se volvió varias veces más rápido.",
+    "tags": ["Móvil", "PropTech", "Reservas"]
+  },
+  "crypto": {
+    "title": "Crypto Robotics — bots de trading",
+    "description": "Plataforma de trading automatizado de criptomonedas: bots, estrategias, tarifas y analítica de cartera.",
+    "quote": "El trading complejo se volvió accesible con bots y estrategias que se entienden.",
+    "tags": ["Web3", "Cripto", "Trading"]
+  },
+  "score99": {
+    "title": "99 Puntos — preparación de exámenes",
+    "description": "Plataforma EdTech de preparación de exámenes: cursos, profesores, itinerarios y una forma sencilla de elegir programa.",
+    "quote": "La plataforma ordenó nuestros cursos y profesores en un sistema que el alumno puede seguir.",
+    "tags": ["Plataforma", "EdTech", "Educación"]
+  },
+  "veb-dizayn-sayta-dlya-it-autsors-kompani": {
+    "title": "Diseño web para una empresa de outsourcing IT",
+    "description": "Concepto de sitio corporativo para una empresa que desarrolla webs, aplicaciones móviles, bots de Telegram, CRM y servicios digitales para empresas.",
+    "quote": "Creamos un sistema visual que transmite la solidez técnica de la marca, destaca la experiencia del equipo y presenta los servicios de desarrollo con claridad.",
+    "tags": ["Diseño web", "Outsourcing IT", "Sitio corporativo"]
+  },
+  "crm-sistema-dlya-seti-deteyling-centrov": {
+    "title": "CRM para una cadena de centros de detailing",
+    "description": "Un CRM único para gestionar una cadena de estudios de detailing. Automatiza las citas, reparte los vehículos entre los técnicos, controla la ocupación de los boxes, guarda el historial de servicio y permite al responsable ver el rendimiento de cada centro en tiempo real.",
+    "quote": "Dejamos de perder clientes por el caos en la agenda. Ahora toda la cadena funciona como un solo mecanismo y los responsables ven la foto completa del negocio.",
+    "tags": ["CRM", "Automatización", "Automoción", "Panel"]
+  },
+  "frontal-internet-magazin-zapchastey-dlya": {
+    "title": "Frontal — tienda online de recambios para cargadoras",
+    "description": "Tienda online de recambios para cargadoras frontales chinas: catálogo de 100 000 referencias, despieces interactivos de los conjuntos y sincronización automática de precios, stock y fotos con el sistema de gestión del cliente.",
+    "quote": "Antes encontrar una pieza era correo y llamadas. Ahora el cliente la localiza en el despiece de su propia máquina y hace el pedido, y la web toma precios y stock de nuestro sistema sin que intervengamos.",
+    "tags": ["E-commerce", "Catálogo", "Sincronización ERP"]
+  },
+  "veb-dizayn-sayta-portfolio-dlya-art-dire": {
+    "title": "Diseño de portfolio web para un director de arte",
+    "description": "Concepto de sitio personal para un profesional creativo, construido sobre el impacto visual, una marca personal fuerte y una presentación clara de los servicios.",
+    "quote": "El sitio quedó con estilo, se recuerda y recogió exactamente mi enfoque visual. El portfolio se ve mucho más profesional ahora.",
+    "tags": ["Diseño web", "Portfolio", "Marca personal"]
+  },
+  "vizitka-dlya-konditerskoy-na-domu": {
+    "title": "Tarjeta de visita para una pastelería artesanal",
+    "description": "Diseño de tarjeta en una paleta burdeos y crema que recoge la elegancia y la calidez de la marca. El anverso se construye alrededor del logotipo; el reverso combina un código QR, la carta de postres y los datos de contacto en una composición limpia y legible. Cuidamos especialmente la tipografía, el equilibrio de los elementos y la presentación, para que la tarjeta se lea como parte real de la identidad de la pastelería.",
+    "quote": "Queríamos transmitir una pastelería artesanal con un acabado premium, y obtuvimos justo el estilo que refleja la calidad de nuestros postres y el ambiente de la marca.",
+    "tags": ["Branding", "Diseño gráfico", "Diseño impreso"]
+  }
+}

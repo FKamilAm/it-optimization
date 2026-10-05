@@ -1,0 +1,3214 @@
+{
+  "corporate": {
+    "metaTitle": "Corporate website development, end to end",
+    "metaDescription": "Corporate website development end to end: a considered structure, custom design, fast loading, SEO and integrations. A site that earns trust and brings in enquiries. From {price:120000}.",
+    "breadcrumb": "Corporate website development",
+    "h1": "Corporate website development",
+    "lead": "We build corporate websites that earn trust in the company and turn visitors into enquiries: a considered structure, custom design, fast loading, an SEO foundation and integrations with your systems.",
+    "includes": [
+      "Working out the structure, the sections and the user journeys",
+      "Custom design in your visual identity, responsive on every device",
+      "Fast markup built with page speed and SEO in mind",
+      "Service catalogue, case studies, team, enquiry and contact forms",
+      "Integrations with CRM, messengers, analytics and a content system",
+      "Domain and hosting setup, baseline SEO and launch"
+    ],
+    "forWhom": [
+      {
+        "title": "Companies and services",
+        "text": "A site that presents the business seriously and answers the client's questions before they call."
+      },
+      {
+        "title": "Growth and reputation",
+        "text": "A clear structure, case studies and trust — the basis for organic traffic and enquiries."
+      },
+      {
+        "title": "Replacing an outdated site",
+        "text": "A modern, fast, manageable site instead of a heavy and awkward old one."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief and structure",
+        "text": "We settle the goals, the audience and the map of sections."
+      },
+      {
+        "title": "Design",
+        "text": "We draw the layouts around your brand and your users' journeys."
+      },
+      {
+        "title": "Build and integrations",
+        "text": "We assemble the site and connect the CMS, forms, CRM and analytics."
+      },
+      {
+        "title": "Launch",
+        "text": "We publish, test, optimise and hand over the access."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does a corporate website cost?",
+        "answer": "It starts at {price:120000} and depends on the number of sections, the complexity of the design and the integrations. We give an exact figure after the brief."
+      },
+      {
+        "question": "Will I be able to edit the content myself?",
+        "answer": "Yes. We connect a content system you can work in, so you can change text, news and sections without a developer."
+      },
+      {
+        "question": "Will the site be optimised for search?",
+        "answer": "Yes. We lay in a correct structure, page speed, meta tags and structured data — the foundation for SEO."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Usually from two weeks. The exact timeline depends on how many sections and integrations there are."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 10 days",
+        "features": [
+          "Complete site on a ready-made foundation",
+          "Design adapted to your brand",
+          "Up to 7 pages with content",
+          "Enquiry form and baseline SEO",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Custom design built for the brand",
+          "Up to 15 pages with copywriting",
+          "Integration with CRM and messengers",
+          "Extended SEO and analytics",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 5 weeks",
+        "features": [
+          "Original design and animation",
+          "Complex structure and functionality",
+          "Custom integrations",
+          "Copywriting and content",
+          "Support after launch"
+        ]
+      }
+    ]
+  },
+  "platforms": {
+    "metaTitle": "CRM platform development, end to end",
+    "metaDescription": "We design and build CRM platforms, client portals and internal systems around your processes: roles, integrations, analytics and an architecture that scales. From {price:400000}.",
+    "breadcrumb": "CRM platform development",
+    "h1": "CRM platform development",
+    "lead": "We build CRM systems, client portals and internal platforms around your processes — with roles, access rights, integrations and analytics. We design an architecture that survives growth instead of turning into a pile of workarounds.",
+    "includes": [
+      "Architecture and data model designed around your processes",
+      "Roles, access rights and separation by department",
+      "Managing enquiries, clients, deals and tasks",
+      "Integrations with the website, telephony, payments and external services",
+      "Dashboards, reports and exports for running the business",
+      "Testing, data migration, launch and training the team"
+    ],
+    "forWhom": [
+      {
+        "title": "Sales teams",
+        "text": "One system for enquiries, clients and deals instead of scattered spreadsheets and chats."
+      },
+      {
+        "title": "Service and operations",
+        "text": "Managing tasks, statuses, documents and the company's internal processes."
+      },
+      {
+        "title": "A growing business",
+        "text": "A platform that scales and can be extended to new lines of work and higher load."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Process audit",
+        "text": "We work through the business logic, the roles and how the team actually works."
+      },
+      {
+        "title": "Architecture and prototype",
+        "text": "We design the data structure, the interfaces and the roles."
+      },
+      {
+        "title": "Build and integrations",
+        "text": "We assemble the system, connect the services and migrate the data."
+      },
+      {
+        "title": "Launch and growth",
+        "text": "We train the team, launch, and keep developing the platform."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does a CRM or web platform cost?",
+        "answer": "It starts at {price:400000} and depends on the number of roles, modules and integrations. We give an exact figure after a process audit and a brief."
+      },
+      {
+        "question": "Can you improve our existing system?",
+        "answer": "Yes. We can extend an existing platform, add modules and integrations, or design a new system if the old one is holding growth back."
+      },
+      {
+        "question": "Will you migrate data from spreadsheets and our old CRM?",
+        "answer": "Yes. We set up migration from Excel, Google Sheets and other systems so the team carries on without losing anything."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "We usually get a first working version out from four weeks. The exact timeline depends on the scope and the integrations."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 4 weeks",
+        "features": [
+          "CRM on a ready-made architecture",
+          "Core modules and roles",
+          "Basic integrations",
+          "Migration of the main data",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 8 weeks",
+        "features": [
+          "Business processes built to fit",
+          "Dashboards and reports",
+          "Integrations with services and telephony",
+          "Data migration and team training",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 12 weeks",
+        "features": [
+          "Complex platform shaped around the processes",
+          "High load and scalability",
+          "Multiple integrations",
+          "Access rights split by department",
+          "Support and ongoing development"
+        ]
+      }
+    ]
+  },
+  "telegram": {
+    "metaTitle": "Telegram bot and Mini App development, end to end",
+    "metaDescription": "Telegram bot or Mini App development: lead generation, automation, support and integrations. We design the scenarios, build it and launch it end to end. From {price:50000}. Timelines after the brief.",
+    "breadcrumb": "Telegram bots and Mini Apps",
+    "h1": "Telegram bot and Mini App development",
+    "lead": "We design and build Telegram bots and Mini Apps that bring in enquiries, take the routine off your hands and live inside the messenger your clients already use. From the scenario and the interface to integrations with CRM, payments and notifications — end to end.",
+    "includes": [
+      "Working out the scenarios and the dialogue logic for your case",
+      "The bot interface and/or Mini App with usable menus, buttons and forms",
+      "Integrations with CRM, Google Sheets, payment providers and notifications",
+      "Taking enquiries, payments and feedback right inside Telegram",
+      "An admin panel or data access for your team",
+      "Testing, launch and connection to your account"
+    ],
+    "forWhom": [
+      {
+        "title": "Lead generation and sales",
+        "text": "The bot collects enquiries, answers the routine questions and hands warm clients to a manager or into the CRM."
+      },
+      {
+        "title": "Process automation",
+        "text": "Bookings, reminders, broadcasts, order statuses and internal operations without manual work."
+      },
+      {
+        "title": "Service and support",
+        "text": "A Mini App with a client area, catalogue, payment and request history inside Telegram."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief and scenario",
+        "text": "We work through the problem and describe the bot's logic and the user's path."
+      },
+      {
+        "title": "Interface and prototype",
+        "text": "We assemble the menus, the Mini App screens and the structure of the dialogues."
+      },
+      {
+        "title": "Build and integrations",
+        "text": "We connect CRM, payments, notifications and external services."
+      },
+      {
+        "title": "Launch and support",
+        "text": "We test, publish on your account and stay with it afterwards."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does a Telegram bot cost?",
+        "answer": "It starts at {price:50000} and depends on how complex the scenarios and integrations are. A Mini App with an interface and a client area starts at {price:100000}. We give an exact figure after the brief."
+      },
+      {
+        "question": "How is a Mini App different from an ordinary bot?",
+        "answer": "A bot works through messages, buttons and commands. A Mini App is a full interface — effectively a small site — inside Telegram: screens, catalogue, forms, payment. The two are often combined."
+      },
+      {
+        "question": "Can you connect payments and a CRM?",
+        "answer": "Yes. We connect payment providers, integrations with CRM and Google Sheets, notifications and external APIs, so enquiries and payments land straight in your processes."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "A simple bot goes live from one week, a Mini App from two. The final timeline depends on the scope and the integrations."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 1 week",
+        "features": [
+          "Bot built to a ready scenario",
+          "Menus, buttons and enquiry capture",
+          "Notifications to a chat or CRM",
+          "Connection to your account",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Mini App with an interface",
+          "Integration with CRM and payments",
+          "Client area and admin access",
+          "Automation scenarios",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Complex scenarios and logic",
+          "Custom integrations",
+          "Built to hold up under load",
+          "Analytics and admin panel",
+          "Support after launch"
+        ]
+      }
+    ]
+  },
+  "ai": {
+    "metaTitle": "AI agents and automation for business",
+    "metaDescription": "We bring in AI agents and automation: handling enquiries, assistants, content generation and integrations with your systems and CRM. From {price:90000}.",
+    "breadcrumb": "AI agents and automation",
+    "h1": "Bringing in AI agents and automation",
+    "lead": "We bring AI agents and automation into the business: handling enquiries, assistants, content generation and a link to your existing systems. The point is less routine work and faster answers to clients.",
+    "includes": [
+      "Working out where AI and automation actually pay off",
+      "AI agents that handle enquiries and answer questions",
+      "Assistants and content generation for your scenarios",
+      "Integrations with CRM, messengers, knowledge base and APIs",
+      "Tuning the logic and training on your own data",
+      "Testing, launch and support"
+    ],
+    "forWhom": [
+      {
+        "title": "Support and sales",
+        "text": "AI answers the routine questions, qualifies leads and hands them to a manager."
+      },
+      {
+        "title": "Content and marketing",
+        "text": "Generating copy, descriptions and drafts for your tasks."
+      },
+      {
+        "title": "Operations",
+        "text": "Automating the routine: data handling, documents, internal processes."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Audit of the work",
+        "text": "We find the processes where AI and automation pay off soonest."
+      },
+      {
+        "title": "Design",
+        "text": "We describe the agent's logic, the scenarios and the integrations."
+      },
+      {
+        "title": "Rollout",
+        "text": "We configure it, connect it to your systems and train it on your data."
+      },
+      {
+        "title": "Launch and growth",
+        "text": "We launch, watch the quality of the answers and improve them."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does bringing in AI cost?",
+        "answer": "It starts at {price:90000} and depends on how complex the scenarios and integrations are and how much data there is. We give an exact figure once the task is clear."
+      },
+      {
+        "question": "What data does the AI agent work from?",
+        "answer": "We set the agent up on your knowledge base, your documents and your typical enquiries, so the answers are accurate and sound like you."
+      },
+      {
+        "question": "Can the AI be connected to our CRM and messengers?",
+        "answer": "Yes. We connect AI to CRM, Telegram, the website and other channels, so enquiries and leads land in your processes."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "The first scenarios go live from two weeks. The final timeline depends on the integrations."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 2 weeks",
+        "features": [
+          "One AI scenario for one task",
+          "Integration with a single channel",
+          "Tuned to your data",
+          "Tested on real requests",
+          "Launch and instructions"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Several automation scenarios",
+          "Integration with CRM and knowledge base",
+          "Trained on your subject matter",
+          "Monitoring of answer quality",
+          "Launch and support"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 5 weeks",
+        "features": [
+          "End-to-end process automation",
+          "Several connected agents",
+          "Complex integrations with your systems",
+          "Analytics and oversight",
+          "Support and ongoing development"
+        ]
+      }
+    ]
+  },
+  "ecommerce": {
+    "metaTitle": "Online store development, end to end",
+    "metaDescription": "Online store development end to end: catalogue, cart, online payment, delivery and an admin panel that works. Integrations with accounting systems and CRM. Fast and built to sell. From {price:190000}.",
+    "breadcrumb": "Online store, end to end",
+    "h1": "Online store development, end to end",
+    "lead": "We build online stores that are easy to run and easy to buy from: a catalogue with filters, a cart, online payment, delivery and an admin panel people can use. We connect accounting systems, CRM and payment providers.",
+    "includes": [
+      "Designing the catalogue, the product pages and the filters",
+      "Cart, checkout and a customer account",
+      "Connecting online payment and delivery services",
+      "Integrations with accounting, CRM and stock control",
+      "A workable admin panel for products, orders and stock",
+      "Responsive design, testing and launch"
+    ],
+    "forWhom": [
+      {
+        "title": "Retailers",
+        "text": "A proper store with a catalogue, payment and delivery instead of selling over chat."
+      },
+      {
+        "title": "Manufacturers and brands",
+        "text": "Your own storefront with direct sales and control over how the product is presented."
+      },
+      {
+        "title": "Growing online sales",
+        "text": "A store wired into your accounting and advertising, so sales can scale."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief and catalogue",
+        "text": "We go through the range, the order logic, payment and delivery."
+      },
+      {
+        "title": "Design and structure",
+        "text": "We design the storefront, the product pages and the buyer's path."
+      },
+      {
+        "title": "Build and integrations",
+        "text": "We assemble the store and connect payment, delivery, accounting and CRM."
+      },
+      {
+        "title": "Launch",
+        "text": "We fill the catalogue, test the orders and publish."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does an online store cost?",
+        "answer": "It starts at {price:190000} and depends on the size of the catalogue, the integrations and the functionality. We give an exact figure after the brief."
+      },
+      {
+        "question": "Will you connect payment, delivery and our accounting system?",
+        "answer": "Yes. We connect payment providers, delivery services and synchronisation with your accounting, CRM and stock control."
+      },
+      {
+        "question": "Will I be able to add products myself?",
+        "answer": "Yes. You get an admin panel for managing products, prices, stock and orders."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Usually from three weeks. The timeline depends on the size of the catalogue and the number of integrations."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Store on a ready-made foundation",
+          "Catalogue of up to 100 products, plus cart",
+          "Online payment connected",
+          "Delivery configured",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 5 weeks",
+        "features": [
+          "Custom design and filters",
+          "Customer account",
+          "Integration with accounting and CRM",
+          "Online payment and delivery",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 8 weeks",
+        "features": [
+          "Original functionality and logic",
+          "Large catalogue and marketplace scenarios",
+          "Complex integrations and stock control",
+          "Catalogue population",
+          "Support and ongoing development"
+        ]
+      }
+    ]
+  },
+  "websites": {
+    "metaTitle": "Landing page development, end to end",
+    "metaDescription": "Landing page development end to end: a structure that holds attention, design, fast markup and enquiry forms wired into your CRM. Built for advertising and conversion. From {price:59000}.",
+    "breadcrumb": "Landing page, end to end",
+    "h1": "Landing page development, end to end",
+    "lead": "We build landing pages that sell one offer, one campaign or one product launch: a structure that holds attention, careful design, fast loading and forms that deliver enquiries straight into your CRM.",
+    "includes": [
+      "Working out the structure and the blocks around your offer",
+      "Custom design, responsive on mobile and desktop",
+      "Fast markup built with page speed and conversion in mind",
+      "Enquiry forms, quizzes and integrations with CRM, messengers and analytics",
+      "Domain and hosting setup, plus conversion goals for your ads",
+      "Testing, launch and instructions for running it"
+    ],
+    "forWhom": [
+      {
+        "title": "Advertising and traffic",
+        "text": "A landing page for search and social ads, built to turn clicks into enquiries."
+      },
+      {
+        "title": "Product launch",
+        "text": "A page for one product, service or promotion with a clear call to action."
+      },
+      {
+        "title": "Testing demand",
+        "text": "A quick page to try an offer and collect the first enquiries."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief and offer",
+        "text": "We settle the goal, the audience and the page's core proposition."
+      },
+      {
+        "title": "Structure and design",
+        "text": "We build a prototype block by block and draw the layout for the brand."
+      },
+      {
+        "title": "Build and integrations",
+        "text": "We assemble the page and connect forms, CRM, analytics and goals."
+      },
+      {
+        "title": "Launch",
+        "text": "We publish, test the forms and hand over the access."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does a landing page cost?",
+        "answer": "It starts at {price:59000} and depends on how many blocks there are, the design and the integrations. We give an exact figure after the brief."
+      },
+      {
+        "question": "Do you make it responsive for mobile?",
+        "answer": "Yes. The page displays correctly and converts just as well on phones, tablets and desktop."
+      },
+      {
+        "question": "Will you set up analytics and goals for advertising?",
+        "answer": "Yes. We connect analytics and configure enquiry goals so the ad campaigns can be optimised properly."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "A landing page usually goes live from one week. The exact timeline depends on the number of blocks and the integrations."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 7–10 days",
+        "features": [
+          "Landing page on a ready-made foundation",
+          "Design adapted to the brand",
+          "Up to 6 content screens",
+          "Enquiry form and analytics connected",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Custom design built around the offer",
+          "Quiz or enquiry calculator",
+          "Integration with CRM and messengers",
+          "Advertising goals configured",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Original design and animation",
+          "A/B versions for different traffic",
+          "Copywriting and structure work",
+          "Complex integrations",
+          "Testing and launch"
+        ]
+      }
+    ]
+  },
+  "websiteTurnkey": {
+    "metaTitle": "Website development, end to end — from structure to launch",
+    "metaDescription": "Website development end to end: structure, design, markup, content, analytics and launch. You get a finished, working site without having to think about the technical side. From {price:89000}.",
+    "breadcrumb": "Website, end to end",
+    "h1": "Website, end to end",
+    "lead": "We take on the whole cycle of building a site — from structure and design to markup, content, analytics and launch. You get a finished, working product without having to get into the technical side.",
+    "includes": [
+      "Working out the structure and the prototype around your goals",
+      "Custom responsive design in your brand",
+      "Markup built with page speed and SEO in mind",
+      "Filling the site with content: text, images, blocks",
+      "Enquiry forms, integrations with CRM, messengers and analytics",
+      "Domain and hosting setup, testing and launch"
+    ],
+    "forWhom": [
+      {
+        "title": "Busy owners",
+        "text": "You need a finished site without getting into the detail — we close the whole thing."
+      },
+      {
+        "title": "New businesses",
+        "text": "A fast start from nothing: domain, design, content and launch in one project."
+      },
+      {
+        "title": "Refreshing your presence",
+        "text": "A modern site instead of an outdated one, with the technical side on us."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief",
+        "text": "We gather the goals, the preferences and the material for the site."
+      },
+      {
+        "title": "Design and structure",
+        "text": "We design the pages and draw the layouts for the brand."
+      },
+      {
+        "title": "Build and content",
+        "text": "We assemble the site, fill it with content and connect the services."
+      },
+      {
+        "title": "Launch",
+        "text": "We test, publish and hand over the finished site with the access."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does \"end to end\" mean?",
+        "answer": "We close the whole cycle: structure, design, markup, content, integrations and launch. From you we need only the material and your feedback."
+      },
+      {
+        "question": "Will you help with text and images?",
+        "answer": "Yes. We prepare and lay out the content, select images and bring the material into one consistent form."
+      },
+      {
+        "question": "What does an end-to-end site cost?",
+        "answer": "It starts at {price:89000} and depends on the number of pages and the functionality. We give an exact figure after the brief."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Usually from two weeks. The final timeline depends on the scope and on how ready the material is."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 10 days",
+        "features": [
+          "End-to-end site on a ready template",
+          "Adapted to the brand",
+          "Content for up to 8 pages",
+          "Enquiry form and analytics",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Custom design",
+          "Content and copywriting",
+          "Integrations with CRM and services",
+          "SEO foundation and analytics",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Built from scratch for the task",
+          "Complex functionality and scenarios",
+          "Custom integrations",
+          "Copywriting and content",
+          "Support after launch"
+        ]
+      }
+    ]
+  },
+  "businessCard": {
+    "metaTitle": "Business-card website development, end to end",
+    "metaDescription": "A business-card website end to end: a compact site about the company or the specialist — services, strengths, contacts and an enquiry form. Fast to launch, responsive, clear on price. From {price:29000}.",
+    "breadcrumb": "Business-card website",
+    "h1": "Business-card website development",
+    "lead": "We make compact business-card sites that say who you are and why you are useful in a single screen, and how to reach you. Quick to launch, clear on price.",
+    "includes": [
+      "A structure of the key blocks: about you, services, strengths, contacts",
+      "Custom responsive design in your brand",
+      "An enquiry form and messenger contact buttons",
+      "Map, company details and quick contacts",
+      "Baseline SEO setup and analytics",
+      "Domain, hosting, testing and launch"
+    ],
+    "forWhom": [
+      {
+        "title": "Specialists and experts",
+        "text": "A tidy page you can share with a client or on social media."
+      },
+      {
+        "title": "Small companies",
+        "text": "A short site with services and contacts, to earn trust and collect enquiries."
+      },
+      {
+        "title": "A fast start",
+        "text": "Minimum budget and time, simply to be present online and look professional."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief",
+        "text": "We gather the information about you, your services and your contacts."
+      },
+      {
+        "title": "Design",
+        "text": "We draw a tidy layout in your style."
+      },
+      {
+        "title": "Build",
+        "text": "We assemble the responsive page and connect the contact form."
+      },
+      {
+        "title": "Launch",
+        "text": "We publish it on your domain and hand over the access."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does a business-card website cost?",
+        "answer": "It starts at {price:29000} and depends on the number of blocks and the design. We give an exact figure after the brief."
+      },
+      {
+        "question": "How fast can it go live?",
+        "answer": "Usually from five days if the material is ready. It is the fastest format of site there is."
+      },
+      {
+        "question": "Can it be expanded into a full site later?",
+        "answer": "Yes. A business-card site can grow into a corporate website by adding sections, a catalogue and integrations."
+      },
+      {
+        "question": "Will it work on a phone?",
+        "answer": "Yes. The site is responsive and displays correctly on every device."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 5 days",
+        "features": [
+          "Single-page site on a ready-made foundation",
+          "Adapted to the brand",
+          "Blocks for services, strengths and contacts",
+          "Enquiry form and map",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 7 days",
+        "features": [
+          "Custom design",
+          "Up to 3 screens of content",
+          "Messenger contact buttons",
+          "Baseline SEO and analytics",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Original design and animation",
+          "Extended functionality",
+          "Copywriting and content",
+          "Integrations as needed",
+          "Testing and launch"
+        ]
+      }
+    ]
+  },
+  "b2b": {
+    "metaTitle": "B2B website development, end to end",
+    "metaDescription": "B2B website and portal development end to end: a clear presentation of the product, price calculation, a partner portal and integrations with internal systems. Built for a long sales cycle. From {price:180000}.",
+    "breadcrumb": "B2B website development",
+    "h1": "B2B website development",
+    "lead": "We design sites and portals for B2B, where what matters is trust, a product people can understand, and a long sales cycle: a structured catalogue, price calculation, a partner portal and integrations with your systems.",
+    "includes": [
+      "A structure built for a complex product and the B2B buyer's path",
+      "Catalogue, price lists and cost calculators",
+      "A partner portal with orders and documents",
+      "Enquiry forms, quote requests and CRM integrations",
+      "Integrations with internal and accounting systems",
+      "Responsive design, testing and launch"
+    ],
+    "forWhom": [
+      {
+        "title": "Manufacturers and suppliers",
+        "text": "A clear product storefront with price lists and a way to request a quote."
+      },
+      {
+        "title": "Wholesale",
+        "text": "A portal for dealers and partners with orders and documents."
+      },
+      {
+        "title": "Complex services",
+        "text": "A site that explains the value and carries the client through a long sales cycle."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief and deal logic",
+        "text": "We work through the product, the audience and the B2B buyer's path."
+      },
+      {
+        "title": "Structure and design",
+        "text": "We design the sections, the catalogue and the partner portal."
+      },
+      {
+        "title": "Build and integrations",
+        "text": "We assemble the site and connect CRM, accounting and internal systems."
+      },
+      {
+        "title": "Launch",
+        "text": "We test the scenarios, publish and hand over the access."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is a B2B site different from an ordinary one?",
+        "answer": "It is built for a complex product and a long sales cycle: the emphasis is on trust, calculations, price lists, the partner portal and integrations with internal systems."
+      },
+      {
+        "question": "Will you build a partner portal?",
+        "answer": "Yes. We build an area with orders, documents, statuses and individual terms."
+      },
+      {
+        "question": "What does a B2B site cost?",
+        "answer": "It starts at {price:180000} and depends on the functionality and the integrations. We give an exact figure after the brief."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Usually from three weeks. The timeline depends on how complex the catalogue, the portal and the integrations are."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Site on a ready-made foundation",
+          "Catalogue and price lists",
+          "Quote request form",
+          "Basic integrations",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 5 weeks",
+        "features": [
+          "Custom design",
+          "Cost calculator",
+          "Partner portal",
+          "CRM integration",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 8 weeks",
+        "features": [
+          "Complex logic and deal scenarios",
+          "Integrations with accounting and internal systems",
+          "A portal for dealers and partners",
+          "Content and documentation",
+          "Support after launch"
+        ]
+      }
+    ]
+  },
+  "webDesign": {
+    "metaTitle": "Web design and design systems",
+    "metaDescription": "Web design and a design system: research, prototypes, layouts for every state, a component library and handover to development. From {price:60000}.",
+    "breadcrumb": "Web design systems",
+    "h1": "Web design systems",
+    "lead": "We design interfaces that do not fall apart as they grow: first the structure and the logic of the screens, then the visual language, then the component library. After that a new page is assembled from ready blocks in hours, instead of being drawn from scratch over weeks.",
+    "includes": [
+      "Research: user journeys, competitors, business requirements",
+      "Structure and prototypes of the key screens before any visual work",
+      "A modular grid, a type scale and colour tokens",
+      "A component library with every state: hover, focus, error, loading",
+      "Layouts for desktop, tablet and phone",
+      "Handover to development: specs, spacing, assets and a build guide"
+    ],
+    "forWhom": [
+      {
+        "title": "Sites that grow",
+        "text": "When there are many pages and each new one starts drifting away from the rest."
+      },
+      {
+        "title": "Services and client portals",
+        "text": "Interfaces with forms, tables and states, where predictability matters more than decoration."
+      },
+      {
+        "title": "Redesign without stopping the business",
+        "text": "We update the look in parts, leaning on a shared system instead of redoing everything at once."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief and research",
+        "text": "We work out who the user is, what they are trying to do and what gets in their way now."
+      },
+      {
+        "title": "Structure and prototypes",
+        "text": "We map the screens and build rough prototypes — the logic is agreed before any visuals."
+      },
+      {
+        "title": "Visual language",
+        "text": "We settle the grid, the typefaces, the colours and the character on a couple of key screens."
+      },
+      {
+        "title": "Design system",
+        "text": "We break the layouts into components and describe their states and the rules for using them."
+      },
+      {
+        "title": "Handover to development",
+        "text": "We hand over layouts, assets and specs, support the build and review the result."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is this different from just a site mockup?",
+        "answer": "A mockup is a picture of particular pages. A design system is the rules and the set of components any page is assembled from, including pages that do not exist yet. It pays for itself around the twentieth screen."
+      },
+      {
+        "question": "What do you work in and what do I get at the end?",
+        "answer": "We work in Figma. You get a file with prototypes, layouts, a component library and access rights — it stays yours even if a different team takes over later."
+      },
+      {
+        "question": "Can I order design only, without development?",
+        "answer": "Yes. We hand the layouts and specs to your developers and stay available during the build so the result matches what was designed."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "A small site, from two weeks. A service with a client portal and many states, from about six weeks. We name the exact timeline once we have seen how many screens there are."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Pages",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Prototypes of the key screens",
+          "Design for up to 5 pages",
+          "Responsive for phone and tablet",
+          "A basic set of components",
+          "Handover of layouts to development"
+        ]
+      },
+      {
+        "name": "System",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Research and user journeys",
+          "Design for up to 15 screens",
+          "Grid, typography and colour tokens",
+          "Component library with every state",
+          "Specs and support during the build"
+        ]
+      },
+      {
+        "name": "Product",
+        "deadline": "from 8 weeks",
+        "features": [
+          "Designing the whole service",
+          "Client portal, tables, forms, states",
+          "Design system with documentation",
+          "A prototype for testing with users",
+          "Support through to release"
+        ]
+      }
+    ]
+  },
+  "branding": {
+    "metaTitle": "Visual identity and branding",
+    "metaDescription": "Logo and visual identity: mark, colours, typefaces, collateral and a brand book with the rules for using them. From {price:45000}.",
+    "breadcrumb": "Design and branding",
+    "h1": "Design and branding",
+    "lead": "We build the company's visual image so that it works beyond the presentation deck: mark, palette, typefaces and the rules for applying them. The result is that the site, the documents, the signage and the advertising look like one company rather than four different ones.",
+    "includes": [
+      "A look at the market and the positioning: what sets you apart and how to show it",
+      "A mark and logo developed in several options to choose from",
+      "A colour palette and a type pairing, checked for legibility",
+      "Collateral layouts: business cards, letterhead, presentation, social media",
+      "Rules of use: spacing, minimum sizes, what must not be done",
+      "A brand book and source files in every format you need"
+    ],
+    "forWhom": [
+      {
+        "title": "New companies",
+        "text": "You need an image from scratch: to look like an established business from day one, not like a temporary arrangement."
+      },
+      {
+        "title": "Refreshing an image",
+        "text": "The style has aged or grew by accident, with every contractor adding something of their own."
+      },
+      {
+        "title": "Before a website",
+        "text": "So the site design rests on a finished visual identity instead of inventing one as it goes."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Immersion",
+        "text": "We get into the business, the audience and the competitors, and agree on the character of the future image."
+      },
+      {
+        "title": "Mark concepts",
+        "text": "We show several fundamentally different options, each with the idea behind it explained."
+      },
+      {
+        "title": "Refining the chosen one",
+        "text": "We finish the selected concept: proportions, versions for different sizes, checks in real situations."
+      },
+      {
+        "title": "Visual identity",
+        "text": "We build the palette, the typefaces and the collateral around the approved mark."
+      },
+      {
+        "title": "Brand book and handover",
+        "text": "We write the rules, collect the source files and hand everything over together with the rights to use it."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What is the difference between a logo and a visual identity?",
+        "answer": "A logo is only the mark. A visual identity is the system around it: colours, typefaces, collateral and the rules by which they combine. One mark without rules usually falls apart by the third layout."
+      },
+      {
+        "question": "How many options for the mark do you show?",
+        "answer": "Three fundamentally different concepts, each with its idea explained. We then refine the one you choose — revisions are included, you do not pay extra for them."
+      },
+      {
+        "question": "Do we own the rights to the logo?",
+        "answer": "Yes, exclusive rights pass to you along with the source files. We will also tell you what you need if you decide to register it as a trademark."
+      },
+      {
+        "question": "Can it be ordered together with a website?",
+        "answer": "That is the better order: visual identity first, then the site design built on it. As one project it is both faster and cheaper than doing them separately."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Logo",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Three concepts for the mark",
+          "Refinement of the chosen option",
+          "Versions for dark and light backgrounds",
+          "Source files in vector and raster",
+          "Transfer of rights"
+        ]
+      },
+      {
+        "name": "Visual identity",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Everything in the Logo plan",
+          "Palette and type pairing",
+          "Business cards, letterhead, presentation",
+          "Social media templates",
+          "A short guide to applying it"
+        ]
+      },
+      {
+        "name": "Brand book",
+        "deadline": "from 6 weeks",
+        "features": [
+          "Everything in the Visual identity plan",
+          "Market analysis and positioning",
+          "An extended set of collateral",
+          "A full brand book with the rules",
+          "Support while it is rolled out"
+        ]
+      }
+    ]
+  },
+  "mobile": {
+    "metaTitle": "Mobile app development for iOS and Android",
+    "metaDescription": "Mobile app development for iOS and Android, end to end: from an MVP to a finished product with considered UX and a dependable backend. From {price:300000}.",
+    "breadcrumb": "Mobile applications",
+    "h1": "Mobile app development",
+    "lead": "We build mobile apps for iOS and Android — from an MVP that tests the idea to a full product with a considered interface and a dependable backend. We design it, build it and stay with it.",
+    "includes": [
+      "Working out the scenarios, the screens and the app's logic",
+      "UX/UI design for iOS and Android",
+      "Building the app and the server side (API)",
+      "Integrations with payments, notifications and external services",
+      "Publishing to the App Store and Google Play",
+      "Testing, launch and ongoing support"
+    ],
+    "forWhom": [
+      {
+        "title": "Startups and MVPs",
+        "text": "A fast launch to test the idea and win the first users."
+      },
+      {
+        "title": "Customer-facing services",
+        "text": "An app for clients: orders, account, notifications and payment."
+      },
+      {
+        "title": "Internal work",
+        "text": "Apps for staff: requests, record keeping, processes in the field."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief and concept",
+        "text": "We settle the goals, the platforms and the core functionality."
+      },
+      {
+        "title": "Design and prototype",
+        "text": "We design the screens and the user journeys."
+      },
+      {
+        "title": "Build",
+        "text": "We build the app and the server side and connect the services."
+      },
+      {
+        "title": "Publication",
+        "text": "We release to the stores, test and stay on support."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does a mobile app cost?",
+        "answer": "It starts at {price:300000} and depends on the platforms (iOS/Android), the scope of the functionality and the server side. We give an exact figure after the brief."
+      },
+      {
+        "question": "Do you build for iOS and Android at once?",
+        "answer": "Yes. We can release on both platforms. At the start we often recommend an MVP, to test the product sooner."
+      },
+      {
+        "question": "Will you help publish to the App Store and Google Play?",
+        "answer": "Yes. We prepare the builds, set up the store listings and publish the app."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "An MVP usually launches from four weeks. A full product takes longer; we fix the timeline after the brief."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 4 weeks",
+        "features": [
+          "MVP on one platform",
+          "Key screens and scenarios",
+          "Basic server side",
+          "Publication to one store",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 8 weeks",
+        "features": [
+          "iOS and Android",
+          "Considered UX/UI design",
+          "Integrations and notifications",
+          "Publication to the App Store and Google Play",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 12 weeks",
+        "features": [
+          "Complex functionality and logic",
+          "High load and reliability",
+          "Custom integrations",
+          "Analytics and admin panel",
+          "Support and ongoing development"
+        ]
+      }
+    ]
+  },
+  "messenger": {
+    "metaTitle": "Messenger development, end to end — price and timelines",
+    "metaDescription": "Messenger development: a corporate messenger for staff, a chat inside your product, a channel for talking to clients. Chats, channels, files, roles and integrations. Deployed on your own servers. From {price:200000}.",
+    "breadcrumb": "Messenger development",
+    "h1": "Messenger development",
+    "lead": "We build messaging systems to fit the task: a corporate messenger for staff, a chat inside your product, or a channel for talking to clients. The conversations, the files and the notifications live on your servers, not in someone else's cloud.",
+    "includes": [
+      "Direct and group chats, channels and threads",
+      "File exchange with storage on your side",
+      "A web version and mobile clients for iOS and Android",
+      "Roles, access rights and administration",
+      "Integrations with your systems and notifications from them",
+      "Deployment on your server or inside a closed network"
+    ],
+    "forWhom": [
+      {
+        "title": "Corporate messenger",
+        "text": "Internal communication on your own servers: replacing Slack and Teams, a closed network, commercial confidentiality."
+      },
+      {
+        "title": "Chat inside a product",
+        "text": "Messaging as part of a platform or app: buyer and seller, client and contractor, parties to a deal."
+      },
+      {
+        "title": "Talking to clients",
+        "text": "Your own support channel instead of someone else's widget: the conversation history stays with you and links to the CRM."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Understanding the task",
+        "text": "We look at who talks to whom and about what today, what gets lost, and which scenarios have to be in the first version."
+      },
+      {
+        "title": "Architecture and prototype",
+        "text": "We design storage, message delivery and access rights, and show the interface before development starts."
+      },
+      {
+        "title": "Development in stages",
+        "text": "First conversations and channels, then files, integrations and mobile clients — every stage is usable."
+      },
+      {
+        "title": "Launch and support",
+        "text": "We deploy it on your side, move people across and stay on support while the system takes hold."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does building a messenger cost?",
+        "answer": "A first working version with chats, channels and a web interface starts at {price:200000}. A version with files, mobile clients and integrations starts at {price:300000}. A system in a closed network with higher resilience requirements starts at {price:500000}. We refine the estimate once we understand the task: the price depends on the number of users, the storage requirements and which systems the messenger has to talk to."
+      },
+      {
+        "question": "How is this different from a Telegram bot?",
+        "answer": "A bot lives inside someone else's messenger and solves one specific job: take an enquiry, send a notification. Here you get a product of your own, with your own message database, your own access rights and your own server. If the job is to automate talking to clients in Telegram, you need a bot — that is a separate service."
+      },
+      {
+        "question": "Does the data stay with us?",
+        "answer": "Yes, that is usually the whole point. The system is deployed on your server or inside a closed network, the message database and the files sit with you, and nothing leaves. We hand over the source code and the documentation, so you are not tied to one contractor afterwards."
+      },
+      {
+        "question": "Can we launch in parts?",
+        "answer": "That is what we recommend. The first stage is conversations and channels — enough for people to start using it. Files, mobile apps, calls and integrations come after, based on what is actually missing rather than on a list written at the start."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "1–1.5 months",
+        "features": [
+          "Direct and group chats",
+          "Channels and notifications",
+          "Web version",
+          "Accounts and roles",
+          "Deployment on your server"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "2–3 months",
+        "features": [
+          "Everything in Basic",
+          "File exchange with storage on your side",
+          "Mobile clients for iOS and Android",
+          "Integrations with your systems",
+          "Administration and statistics"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 4 months",
+        "features": [
+          "Everything in Standard",
+          "Closed network and higher security requirements",
+          "Resilience and scaling",
+          "Development against a roadmap",
+          "Support after launch"
+        ]
+      }
+    ]
+  },
+  "integrations": {
+    "metaTitle": "Data parsing and service integrations, end to end",
+    "metaDescription": "We set up data parsing and integrations between services: APIs, system synchronisation and automatic data exchange. From {price:50000}.",
+    "breadcrumb": "Data parsing and integrations",
+    "h1": "Data parsing and integrations",
+    "lead": "We set up parsing of open data and integrations between services: APIs, system synchronisation and automatic data exchange. We remove the manual copying and connect your tools into one flow.",
+    "includes": [
+      "Collecting and parsing data from open sources",
+      "Integrations between CRM, websites, spreadsheets and services",
+      "Setting up API exchange and webhooks",
+      "Scheduled synchronisation and data refresh",
+      "Cleaning, normalising and exporting data",
+      "Monitoring and support of the integrations"
+    ],
+    "forWhom": [
+      {
+        "title": "Analytics and data",
+        "text": "Automatic collection of data from external sources for analysis."
+      },
+      {
+        "title": "Connecting services",
+        "text": "Data exchange between CRM, the website, spreadsheets and external systems."
+      },
+      {
+        "title": "Automating the routine",
+        "text": "We remove manual data copying and duplicated operations."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Defining the task",
+        "text": "We settle the sources, the formats and the logic of the exchange."
+      },
+      {
+        "title": "Design",
+        "text": "We describe the integration scheme and the processing rules."
+      },
+      {
+        "title": "Build",
+        "text": "We set up the parsing, the API and the synchronisation."
+      },
+      {
+        "title": "Launch and monitoring",
+        "text": "We launch it and watch for stability and correctness."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does parsing or an integration cost?",
+        "answer": "It starts at {price:50000} and depends on the number of sources, the volume of data and how complex the logic is. We give an exact figure after the brief."
+      },
+      {
+        "question": "Is data parsing legal?",
+        "answer": "We work with open data and public sources, respecting their restrictions. Anything questionable we discuss up front."
+      },
+      {
+        "question": "Which services do you integrate with?",
+        "answer": "CRM systems, websites, Google Sheets, payment and accounting systems, and any service that has an API."
+      },
+      {
+        "question": "How long does it take to set up?",
+        "answer": "Simple integrations go live from one week. Complex scenarios take longer; we fix the timeline after the brief."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 1 week",
+        "features": [
+          "One parser or one integration",
+          "Data exported to a spreadsheet",
+          "Configured to your format",
+          "Checked against real data",
+          "Launch and instructions"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Several sources or services",
+          "Automatic collection on a schedule",
+          "Export to a database or CRM",
+          "Normalising and cleaning the data",
+          "Launch and support"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Difficult sources and protections",
+          "A collection system that holds up",
+          "Monitoring and error alerts",
+          "Integrations with internal systems",
+          "Support and ongoing development"
+        ]
+      }
+    ]
+  },
+  "blockchain": {
+    "metaTitle": "Crypto and blockchain development (Web3)",
+    "metaDescription": "We build Web3 interfaces, wallet and smart-contract integration, multichain logic and dashboards that are actually readable. From {price:300000}.",
+    "breadcrumb": "Crypto / Blockchain",
+    "h1": "Crypto and blockchain development",
+    "lead": "We build Web3 interfaces, wallet and smart-contract integrations, multichain logic and readable dashboards. We make complicated blockchain logic approachable through a careful interface.",
+    "includes": [
+      "Web3 interfaces and wallet connection",
+      "Smart-contract integration and transaction handling",
+      "Multichain logic and display of on-chain data",
+      "Dashboards, user areas and analytics",
+      "Security and handling of failed transactions",
+      "Testing, launch and support"
+    ],
+    "forWhom": [
+      {
+        "title": "Web3 products",
+        "text": "Interfaces for dApps, wallets and working with transactions."
+      },
+      {
+        "title": "Crypto services",
+        "text": "Dashboards and user areas that present on-chain data."
+      },
+      {
+        "title": "Integrations",
+        "text": "Connecting smart contracts and multichain logic to a product."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Brief and requirements",
+        "text": "We work through the task, the networks, the contracts and the scenarios."
+      },
+      {
+        "title": "Design",
+        "text": "We design the interface and the logic of interacting with the blockchain."
+      },
+      {
+        "title": "Build",
+        "text": "We build the interface, the integrations and the transaction handling."
+      },
+      {
+        "title": "Launch",
+        "text": "We test, launch and stay on support."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does a blockchain solution cost?",
+        "answer": "It starts at {price:300000} and depends on the networks, the contracts and how complex the interface is. We give an exact figure after the brief."
+      },
+      {
+        "question": "Which networks do you work with?",
+        "answer": "We work with the common EVM networks and with multichain logic. The specific networks are agreed for each project."
+      },
+      {
+        "question": "Do you write smart contracts?",
+        "answer": "We build smart-contract integrations and the interfaces for them; where needed we bring in dedicated contract expertise."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Usually from four weeks, depending on the scope. We fix the exact timeline after the brief."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Web3 interface for the task",
+          "Wallet connection",
+          "Work with a single network",
+          "Basic dashboard",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 6 weeks",
+        "features": [
+          "Smart-contract integration",
+          "Multichain logic",
+          "Readable dashboards and statuses",
+          "Transaction handling",
+          "Testing and launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 10 weeks",
+        "features": [
+          "Complex on-chain logic",
+          "Higher reliability requirements",
+          "Audit and security",
+          "Custom integrations",
+          "Support and ongoing development"
+        ]
+      }
+    ]
+  },
+  "support": {
+    "metaTitle": "Support and growth for a site, platform or app",
+    "metaDescription": "Support and growth for a site, platform or app after launch: improvements, monitoring, updates and technical help. From {price:40000/mo}.",
+    "breadcrumb": "Website support",
+    "h1": "Website support and growth",
+    "lead": "We look after and grow what is already live — a site, a platform or an app. Improvements, monitoring, updates and technical help: the product stays stable and its development stays predictable.",
+    "includes": [
+      "Technical support and quick response",
+      "Improvements and new functionality",
+      "Uptime monitoring and failure alerts",
+      "Updates, backups and infrastructure maintenance",
+      "Bug fixing and optimisation",
+      "Clear reporting on the work done"
+    ],
+    "forWhom": [
+      {
+        "title": "Products already live",
+        "text": "Sites, platforms and apps that need stability and steady development."
+      },
+      {
+        "title": "Businesses without an IT team",
+        "text": "An outside team that takes on the support and the improvements."
+      },
+      {
+        "title": "Active growth",
+        "text": "Regular improvements and new features to an agreed plan."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Audit",
+        "text": "We assess the current state of the product and the infrastructure."
+      },
+      {
+        "title": "Support plan",
+        "text": "We agree the format, the priorities and the rules of engagement."
+      },
+      {
+        "title": "Work on tasks",
+        "text": "We handle improvements, monitoring and support."
+      },
+      {
+        "title": "Growth",
+        "text": "We improve and scale the product to plan."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does website support cost?",
+        "answer": "It starts at {price:40000/mo} and depends on the size of the product and the level of support needed. One-off work is also possible."
+      },
+      {
+        "question": "Will you support a project you did not build?",
+        "answer": "Yes. We run an audit, get to know the project and take it on for support and development."
+      },
+      {
+        "question": "How quickly do you respond to problems?",
+        "answer": "Response times are fixed in the support agreement, matched to your work and how critical it is."
+      },
+      {
+        "question": "Can we start without a long contract?",
+        "answer": "Yes. You can start with one-off tasks or a short period and move to regular support afterwards."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "monthly",
+        "features": [
+          "Uptime monitoring",
+          "Small fixes and updates",
+          "Backups",
+          "A pool of hours for tasks",
+          "Reporting on the work"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "monthly",
+        "features": [
+          "Priority support",
+          "Improvements and new functionality",
+          "Monitoring and updates",
+          "A larger pool of hours",
+          "Regular reporting"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "by SLA",
+        "features": [
+          "A dedicated team",
+          "SLA guarantees",
+          "Product development against a roadmap",
+          "Proactive monitoring",
+          "Regular calls and reports"
+        ]
+      }
+    ]
+  },
+  "security": {
+    "metaTitle": "Website security audit — book a check, price and timelines",
+    "metaDescription": "Book a website security audit: a check against the OWASP Top 10, manual testing of logic and access rights, server configuration and dependencies. A report ordered by priority, and on the extended plan we fix what we found. From {price:60000}.",
+    "breadcrumb": "Security audit",
+    "h1": "Website security audit",
+    "lead": "We check the site and its infrastructure for vulnerabilities before someone else does. What you get is not a list of scanner warnings but a readable report: what we found, what it could cost you, and in what order to fix it.",
+    "includes": [
+      "A check against the OWASP Top 10 — injections, access, authentication, configuration",
+      "Manual testing of the logic: bypassing access rights and errors in business scenarios",
+      "Analysis of dependencies and the CMS for known vulnerabilities",
+      "A check of server settings, HTTPS and security headers",
+      "A report with severity levels and specific recommendations",
+      "Fixing what we found, by our team — on the extended plan"
+    ],
+    "forWhom": [
+      {
+        "title": "Sites with client accounts",
+        "text": "Where there is login and user data, a mistake in access rights costs the most."
+      },
+      {
+        "title": "Stores and payments",
+        "text": "We check how payments work, how order data is stored and how parameter tampering is prevented."
+      },
+      {
+        "title": "Before launch or after an incident",
+        "text": "Either to keep holes out of production, or to work out how someone got in."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Reconnaissance",
+        "text": "We map it out: technologies, entry points, external services — exactly what has to be checked."
+      },
+      {
+        "title": "Automated scanning",
+        "text": "We run the tools that quickly catch the routine: outdated components and configuration errors."
+      },
+      {
+        "title": "Manual testing",
+        "text": "The most valuable part: application logic, access rights, chains of vulnerabilities — what a scanner cannot see."
+      },
+      {
+        "title": "Report and re-check",
+        "text": "We write up the findings in order of priority, and after your fixes we verify they actually closed the problem."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What does a website security audit cost?",
+        "answer": "An express check starts at {price:60000}, a standard audit with manual testing at {price:120000}, and an extended one covering infrastructure and a re-check at {price:240000}. We give an exact figure once we have looked at the site: the price depends on the number of roles, scenarios and external integrations."
+      },
+      {
+        "question": "How is this different from an automated scanner?",
+        "answer": "A scanner finds known problems: outdated versions, open ports, routine configuration errors. It does not understand your business logic and will not notice that a manager can see someone else's deal by changing an identifier in the URL. Things like that are only found by hand, and they are usually the most expensive ones."
+      },
+      {
+        "question": "Do you only find problems, or can you fix them?",
+        "answer": "It depends on the plan. Express and Standard end with a report — your developer works from it while we answer questions and later verify that the fixes closed the problem. The Extended plan includes fixing what we found ourselves: we patch the vulnerabilities and re-check the result. That suits teams who have no in-house developer, or none with security experience."
+      },
+      {
+        "question": "Will you break the live site?",
+        "answer": "No. The testing is non-destructive, and anything potentially risky we agree in advance and run on a copy where possible. Before we start we agree the timing and what to do if something does go wrong."
+      },
+      {
+        "question": "What do we get at the end?",
+        "answer": "A document a developer can work from: every finding with its severity, a description of how to reproduce it and a recommendation for fixing it. Plus a short summary for management — what is critical, what can be scheduled and what is simply worth knowing."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Express",
+        "deadline": "3–5 days",
+        "features": [
+          "Automated scanning",
+          "Check of configuration and HTTPS",
+          "Analysis of dependencies and the CMS",
+          "Report ordered by priority",
+          "A consultation on the findings"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "1.5–2 weeks",
+        "features": [
+          "Everything in Express",
+          "Manual testing of the logic",
+          "Check of access rights and roles",
+          "Authentication and sessions",
+          "Detailed recommendations for each finding"
+        ]
+      },
+      {
+        "name": "Extended",
+        "deadline": "3–4 weeks",
+        "features": [
+          "Everything in Standard",
+          "Infrastructure and server settings",
+          "Fixing the vulnerabilities found, by our team",
+          "A re-check after the fixes",
+          "Recommendations for regular checks"
+        ]
+      }
+    ]
+  },
+  "contentAnalysis": {
+    "metaTitle": "Website content analysis — audit and recommendations",
+    "metaDescription": "A website content audit: how well it answers what the audience and the search engines are asking, where enquiries are lost and what is holding traffic back. Clear conclusions and a plan. From {price:30000}.",
+    "breadcrumb": "Website content analysis",
+    "h1": "Website content analysis",
+    "lead": "We go through your site's content: how well it answers what the audience and the search engines are asking, where the writing stops selling and where enquiries are lost. You get clear conclusions and a plan in order of priority.",
+    "includes": [
+      "An assessment of how far the content answers the audience and the search engines",
+      "Analysis of page structure, headings and copy",
+      "A check of completeness and of whether objections are answered",
+      "A look at the points where attention and enquiries are lost",
+      "A content comparison with competitors",
+      "A report with conclusions and a prioritised plan"
+    ],
+    "forWhom": [
+      {
+        "title": "Sites without enquiries",
+        "text": "There is traffic but few enquiries — we find where the content fails to convince."
+      },
+      {
+        "title": "Growing traffic",
+        "text": "We check whether the content answers search queries, and what to strengthen."
+      },
+      {
+        "title": "Before a redesign",
+        "text": "To know what works and what to rewrite before spending on a new site."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Gathering data",
+        "text": "We study the site, the audience, the queries and the analytics."
+      },
+      {
+        "title": "Content analysis",
+        "text": "We go through the pages, the copy, the structure and the competitors."
+      },
+      {
+        "title": "Conclusions",
+        "text": "We draw up the list of problems and growth points in order of priority."
+      },
+      {
+        "title": "Improvement plan",
+        "text": "We give specific recommendations on what to fix and how."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What do I get at the end?",
+        "answer": "A readable report: where the content is not working, why enquiries are lost and what to improve first — with specific recommendations."
+      },
+      {
+        "question": "What does a content analysis cost?",
+        "answer": "It starts at {price:30000} and depends on the size of the site. We give an exact figure after an initial look."
+      },
+      {
+        "question": "Will you help implement the recommendations?",
+        "answer": "Yes. After the analysis we can take on reworking the content and the pages ourselves."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Usually from three days. The timeline depends on the number of pages and the depth of the review."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Express",
+        "deadline": "from 3 days",
+        "features": [
+          "Express review of the key pages",
+          "Assessment against search queries",
+          "A short report with conclusions",
+          "The top problems and growth points",
+          "A call to go through the results"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 1 week",
+        "features": [
+          "Full audit of the site's content",
+          "Analysis of keywords and structure",
+          "Comparison with competitors",
+          "A prioritised improvement plan",
+          "A call to go through the results"
+        ]
+      },
+      {
+        "name": "Extended",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Deep analysis of every page",
+          "Detailed content recommendations",
+          "Keywords and query clustering",
+          "An implementation plan",
+          "Support while the work is done"
+        ]
+      }
+    ]
+  },
+  "techContent": {
+    "metaTitle": "Technical website content — preparation and optimisation",
+    "metaDescription": "Preparing the technical layer of a site: page structure, meta tags, structured data, headings and internal links — so the site is indexed correctly and understood by search engines. From {price:40000}.",
+    "breadcrumb": "Technical website content",
+    "h1": "Technical website content",
+    "lead": "We put the technical side of the content in order: page structure, meta tags, structured data, headings and internal links — everything that helps search engines understand and index the site correctly.",
+    "includes": [
+      "Working out the heading structure (H1–H3) across the pages",
+      "Title and description meta tags matched to search queries",
+      "Schema.org structured data for rich results and comprehension",
+      "Setting up internal linking",
+      "Checking indexing, robots.txt and the sitemap",
+      "Technical copy and descriptions written for SEO"
+    ],
+    "forWhom": [
+      {
+        "title": "Poor indexing",
+        "text": "The site exists but search engines understand it badly — we put the technical side in order."
+      },
+      {
+        "title": "Preparing for promotion",
+        "text": "A base of meta tags, structured data and structure before an SEO campaign."
+      },
+      {
+        "title": "Large catalogues",
+        "text": "Bulk work on meta tags and structured data across hundreds of pages."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Technical audit",
+        "text": "We check the structure, the meta tags, the structured data and the indexing."
+      },
+      {
+        "title": "Preparation",
+        "text": "We prepare the meta tags, headings, structured data and internal links."
+      },
+      {
+        "title": "Implementation",
+        "text": "We apply the changes to the site or hand over ready data."
+      },
+      {
+        "title": "Verification",
+        "text": "We check the indexing and that the structured data is valid."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is this different from a content analysis?",
+        "answer": "A content analysis is about meaning and persuasiveness. Technical content is about how the pages are built for search engines: meta tags, structured data, structure, indexing."
+      },
+      {
+        "question": "Will you apply the changes yourselves?",
+        "answer": "Yes. We can apply them to the site or prepare the data for your team or your CMS."
+      },
+      {
+        "question": "What does it cost?",
+        "answer": "It starts at {price:40000} and depends on the number of pages. We give an exact figure after the audit."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Usually from one week. The timeline depends on the number of pages and the nature of the changes."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 1 week",
+        "features": [
+          "Meta tags and headings for the key pages",
+          "Indexing check",
+          "robots.txt and sitemap configured",
+          "A report on the changes",
+          "Recommendations for implementation"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Meta tags across the whole site",
+          "Schema.org structured data",
+          "Internal linking",
+          "Technical copy written for SEO",
+          "Changes applied"
+        ]
+      },
+      {
+        "name": "Extended",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Bulk work across the catalogue",
+          "Templates for meta tags and structured data",
+          "Structure optimisation",
+          "Indexing monitored",
+          "Applied and verified"
+        ]
+      }
+    ]
+  },
+  "commercialAudit": {
+    "metaTitle": "Commercial website audit — more enquiries from the same traffic",
+    "metaDescription": "A commercial website audit: how the site turns traffic into enquiries, where the money leaks and what to strengthen in the offers, prices and calls to action. The result is a plan for higher conversion. From {price:50000}.",
+    "breadcrumb": "Commercial website audit",
+    "h1": "Commercial website audit",
+    "lead": "We look at the site as a sales tool: how well it turns visitors into enquiries, where the money leaks and what to strengthen in the offers, the prices, the trust signals and the calls to action. You get a plan for higher conversion.",
+    "includes": [
+      "An assessment of the offers, the USP and the value proposition",
+      "A review of the user's path and the funnel down to the enquiry",
+      "Analysis of calls to action, forms and points of contact",
+      "A check of the trust blocks: case studies, reviews, guarantees",
+      "A comparison with competitors on commercial factors",
+      "A report with a prioritised plan for raising conversion"
+    ],
+    "forWhom": [
+      {
+        "title": "Low conversion",
+        "text": "There is traffic but few enquiries — we find where the site loses clients."
+      },
+      {
+        "title": "Expensive advertising",
+        "text": "We raise the return on the traffic you already have, before increasing the budget."
+      },
+      {
+        "title": "Growth points",
+        "text": "To know which changes will bring the biggest increase in enquiries."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Gathering data",
+        "text": "We study the site, the analytics, the audience and the competitors."
+      },
+      {
+        "title": "Funnel audit",
+        "text": "We go through the offers, the client's path and the points where enquiries are lost."
+      },
+      {
+        "title": "Conclusions",
+        "text": "We find the weak spots and estimate the potential gain."
+      },
+      {
+        "title": "Growth plan",
+        "text": "We give prioritised recommendations for conversion."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What do I get at the end?",
+        "answer": "A report on where the site loses enquiries and money, and a prioritised plan of changes for higher conversion — with specific recommendations."
+      },
+      {
+        "question": "How is it different from a content analysis?",
+        "answer": "A commercial audit is about sales and conversion: offers, prices, trust, calls to action. A content analysis is broader, about the quality and relevance of the copy."
+      },
+      {
+        "question": "Will you help implement the changes?",
+        "answer": "Yes. After the audit we can rework the pages, the offers and the forms to raise conversion."
+      },
+      {
+        "question": "How long does the audit take?",
+        "answer": "Usually from one week. The timeline depends on the size of the site and the depth of the analysis."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Express",
+        "deadline": "from 1 week",
+        "features": [
+          "Express audit of the funnel and the offers",
+          "Assessment of the calls to action",
+          "A short report with conclusions",
+          "The top points where enquiries are lost",
+          "A call to go through the results"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Full conversion audit",
+          "Analysis of offers, prices and trust",
+          "Comparison with competitors",
+          "A prioritised growth plan",
+          "A call to go through the results"
+        ]
+      },
+      {
+        "name": "Extended",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Deep audit of the sales funnel",
+          "Detailed conversion recommendations",
+          "Work on the offers and the USP",
+          "A plan for implementing the changes",
+          "Support while they are implemented"
+        ]
+      }
+    ]
+  },
+  "infrastructure": {
+    "metaTitle": "IT infrastructure design for a company",
+    "metaDescription": "IT infrastructure design: servers, network, virtualisation, storage and backups. You get a diagram, an equipment specification and a staged rollout plan. From {price:90000}.",
+    "breadcrumb": "IT infrastructure design",
+    "h1": "IT infrastructure design",
+    "lead": "We design infrastructure around how the company works today and how it will grow over the next couple of years: servers, network, virtualisation, storage and backups. What you get is a diagram, a specification and a rollout plan — not a list of hardware picked at random.",
+    "includes": [
+      "A survey: what already exists, what is overloaded, what is held together with tape",
+      "A network and server diagram with room to grow, not sized to the millimetre",
+      "A choice of virtualisation, storage and backup scheme",
+      "Resilience planning: what gets duplicated and what can survive downtime",
+      "An equipment and licence specification with options by budget",
+      "A staged rollout plan, so work does not stop during the transition"
+    ],
+    "forWhom": [
+      {
+        "title": "Grown out of \"however it happened\"",
+        "text": "The infrastructure was assembled piece by piece over years, and nobody can now say what depends on what."
+      },
+      {
+        "title": "A new office or site",
+        "text": "Everything has to be designed from scratch — network, server room, workstations — before anything is bought."
+      },
+      {
+        "title": "Before a large investment",
+        "text": "The design shows what genuinely needs buying and where the money can stay in the account."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Survey",
+        "text": "We map what exists: equipment, services, loads, bottlenecks."
+      },
+      {
+        "title": "Requirements",
+        "text": "We settle what must run without downtime and what can tolerate it, and with how much room to grow."
+      },
+      {
+        "title": "Design",
+        "text": "Diagram, specification, resilience calculations and options for different budgets."
+      },
+      {
+        "title": "Rollout plan",
+        "text": "We break it into stages with a clear order of work and points to fall back to."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is a design different from a list of equipment?",
+        "answer": "A list answers \"what to buy\"; a design answers \"why this\". It shows which load sits where, what is duplicated for resilience and where you can save without risk. Without it, purchasing usually ends up either over-provisioned or with a hole in the most important place."
+      },
+      {
+        "question": "Can we implement the design ourselves or with our own contractor?",
+        "answer": "Yes. The design is a standalone document: the diagrams, the specification and the plan are readable by any implementer. Implementation by us is a separate service, not a condition."
+      },
+      {
+        "question": "How long does the design take?",
+        "answer": "It depends on the size of the infrastructure: from a few days for a small office to several weeks for a distributed network with a production site. We give the timeline after the survey."
+      },
+      {
+        "question": "Does work have to stop during the survey?",
+        "answer": "No. The survey runs in the background: inventory, collecting load data and talking to the people responsible for the systems. Downtime only arises during implementation, and it is planned in advance."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Survey of the current infrastructure",
+          "Network and server diagram with headroom",
+          "Backup scheme",
+          "Equipment and licence specification",
+          "A staged rollout plan"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Resilience calculations",
+          "Choice of virtualisation and storage",
+          "Network segmentation and access scheme",
+          "Specification options by budget",
+          "Help selecting suppliers"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 6 weeks",
+        "features": [
+          "Several sites and branches",
+          "Redundant links and power",
+          "A design built to security requirements",
+          "Working documentation and diagrams",
+          "Design supervision during rollout"
+        ]
+      }
+    ]
+  },
+  "migration": {
+    "metaTitle": "IT infrastructure migration and modernisation",
+    "metaDescription": "Moving servers, services and data without stopping work: migration to the cloud or to new hardware, replacing outdated systems, platform changes. With a rollback plan at every step. From {price:120000}.",
+    "breadcrumb": "Migration and modernisation",
+    "h1": "IT infrastructure migration and modernisation",
+    "lead": "We move servers, services and data so that the business barely notices: to the cloud, to new hardware or to a different platform. Every step is reversible — if something goes wrong, rolling back takes minutes rather than a day.",
+    "includes": [
+      "Inventory: what moves, what gets retired, what depends on what",
+      "Choosing the target: cloud, your own servers or a hybrid",
+      "A migration plan with maintenance windows and a rollback plan at each stage",
+      "Moving virtual machines, databases, file storage and mail",
+      "Updating outdated systems and replacing anything out of support",
+      "Checks after the move: load, access, backups, monitoring"
+    ],
+    "forWhom": [
+      {
+        "title": "Hardware near the end",
+        "text": "The servers are out of warranty, there are no spare parts, and an outage would cost more than replacement."
+      },
+      {
+        "title": "Moving to the cloud",
+        "text": "You want to stop maintaining hardware and pay for what is actually used."
+      },
+      {
+        "title": "Changing platform",
+        "text": "You need to leave systems that are no longer updated or no longer available to you."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Inventory",
+        "text": "We map the systems and the links between them — a move usually breaks on exactly the links everyone forgot."
+      },
+      {
+        "title": "Plan and rehearsal",
+        "text": "We agree the windows, the order of the move and the rollback plan. The critical parts are rehearsed on a test copy."
+      },
+      {
+        "title": "The move",
+        "text": "We move in stages, starting with the least critical, and verify at every step."
+      },
+      {
+        "title": "Stabilisation",
+        "text": "For a couple of weeks we keep watch: load, errors, backups and feedback from the people using it."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Will the company have to stop working?",
+        "answer": "As a rule, no — we move in parts and in windows when the load is lowest. A full stop is rarely needed and only for individual systems; those windows are agreed in advance and usually fit into a night or a weekend."
+      },
+      {
+        "question": "What if something does not work after the move?",
+        "answer": "The old environment stays untouched until the new one is verified, so rolling back means switching back, not restoring from a copy. The rollback plan is written before the work starts, not improvised on the spot."
+      },
+      {
+        "question": "Will you help with changing platform?",
+        "answer": "Yes. We find replacements for products that are out of support or unavailable, check compatibility on a test environment and move gradually. It is usually not a single move but several stages over a few months."
+      },
+      {
+        "question": "Can we move only some of the systems?",
+        "answer": "Yes, a hybrid arrangement is common and sensible: whatever needs speed or sits close to the equipment stays put, and the rest goes to the cloud."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Inventory and dependency map",
+          "Choice of target platform",
+          "Work plan with windows and rollback",
+          "Moving virtual machines and files",
+          "Verification after the move"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 5 weeks",
+        "features": [
+          "Moving databases and mail",
+          "Rehearsal of the move on a copy",
+          "Replacing systems out of support",
+          "Monitoring and backups configured",
+          "Stabilisation after launch"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 8 weeks",
+        "features": [
+          "A move without stopping work",
+          "Hybrid of cloud and your own servers",
+          "Moving the domain infrastructure",
+          "Department-by-department transition",
+          "Support after the migration"
+        ]
+      }
+    ]
+  },
+  "os": {
+    "metaTitle": "Operating system rollout and platform change",
+    "metaDescription": "Deploying and configuring operating systems on servers and workstations: alternative platforms, Linux, domain infrastructure, policies and centralised fleet management. From {price:150000}.",
+    "breadcrumb": "Operating system rollout",
+    "h1": "Operating system rollout",
+    "lead": "We deploy and configure operating systems on servers and workstations, including moves to alternative platforms. Not \"installed and gone\": domain, policies, rights, updates and centralised management of the whole fleet.",
+    "includes": [
+      "Choosing the OS for the task and checking compatibility with your software",
+      "A pilot on a handful of workstations before the mass rollout",
+      "Deployment to servers and workstations from a single image",
+      "Domain infrastructure, accounts, rights and group policies",
+      "Centralised updates, monitoring and fleet management",
+      "Migrating user data and training the staff"
+    ],
+    "forWhom": [
+      {
+        "title": "Moving to another platform",
+        "text": "A requirement from a regulator or a client, while the whole fleet is still on the previous system."
+      },
+      {
+        "title": "A fleet with no two machines alike",
+        "text": "Every computer is different, nobody installs updates, and setting up a new machine takes a day."
+      },
+      {
+        "title": "New workstations",
+        "text": "Dozens of identically configured machines are needed quickly, rather than assembled one by one."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Compatibility audit",
+        "text": "We check which of your software and hardware will work and what needs a replacement or a workaround."
+      },
+      {
+        "title": "Pilot",
+        "text": "We deploy to a few workstations and see what gets in people's way."
+      },
+      {
+        "title": "Rollout",
+        "text": "We prepare the image, deploy department by department and move data and settings."
+      },
+      {
+        "title": "Management",
+        "text": "We configure policies, updates and monitoring, and hand instructions to your team."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What about software with no version for the new OS?",
+        "answer": "The compatibility audit finds such software before the move, not after. From there the options are usually three: an equivalent, running it in a compatibility layer, or leaving a small island of machines on the old system. Which one fits depends on how critical the software is."
+      },
+      {
+        "question": "Will staff be able to work on the new system?",
+        "answer": "The everyday work — browser, mail, documents — transfers with almost no retraining. The difficulties start with specialised software, which is why the pilot runs on real tasks with real people rather than on a demo bench."
+      },
+      {
+        "question": "Can we move gradually?",
+        "answer": "That is what we recommend: department by department, starting with those who use the simplest set of programs. A mixed fleet is a normal state during the transition, and the domain infrastructure copes with it."
+      },
+      {
+        "question": "Do you migrate user data?",
+        "answer": "Yes: files, mail, bookmarks, signatures and desktop settings. It is part of the work, not an extra — otherwise the move costs every employee a lost working day."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Compatibility audit of your software",
+          "Pilot on a few workstations",
+          "A single workstation image",
+          "Migration of user data",
+          "Instructions for staff"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 5 weeks",
+        "features": [
+          "Domain infrastructure and policies",
+          "Mass rollout by department",
+          "Centralised updates",
+          "Training for staff and administrators",
+          "Support through the transition period"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 8 weeks",
+        "features": [
+          "Finding replacements for incompatible software",
+          "Moving the server side",
+          "Integration with the existing domain environment",
+          "Department-by-department transition",
+          "Support under an agreed procedure"
+        ]
+      }
+    ]
+  },
+  "itOutsourcing": {
+    "metaTitle": "IT outsourcing and infrastructure management",
+    "metaDescription": "Managed IT infrastructure: servers, network, workstations, mail and backups. A ticket system, agreed response times and readable reporting instead of a visiting administrator. From {price:30000/mo}.",
+    "breadcrumb": "IT outsourcing",
+    "h1": "IT outsourcing and infrastructure management",
+    "lead": "We take on the company's IT in full: servers, network, workstations, mail, access and backups. We work to an agreed procedure with fixed response times — instead of a visiting administrator who knows everything, but is the only one who does.",
+    "includes": [
+      "Managing servers, the network and staff workstations",
+      "A ticket system with fixed response times under an agreed procedure",
+      "Monitoring that reports failures before people notice them",
+      "Backups and regular tests that they actually restore",
+      "Managing accounts, access and licences",
+      "Infrastructure documentation and readable reporting"
+    ],
+    "forWhom": [
+      {
+        "title": "No IT department",
+        "text": "The company has grown, but the computers are still looked after by someone in between other work."
+      },
+      {
+        "title": "Everything rests on one person",
+        "text": "There is one administrator, the passwords are in his head, and his holiday is a business risk."
+      },
+      {
+        "title": "Reinforcing your own team",
+        "text": "You have IT staff, but not enough hands, or you need expertise in specific systems."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Audit",
+        "text": "We look at what exists, what is on fire and what to fix first, and map the infrastructure."
+      },
+      {
+        "title": "Agreed procedure",
+        "text": "We settle the scope of responsibility, response times, ticket channels and escalation."
+      },
+      {
+        "title": "Handover",
+        "text": "We take the access, document it and close the urgent items — usually the first few weeks."
+      },
+      {
+        "title": "Management",
+        "text": "We work to tickets and to plan, and report monthly on what was done and what we suggest next."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is this different from website support?",
+        "answer": "They are different services for different jobs. This is about the company's IT: servers, network, staff computers, mail, access. Support and development of a site or platform is a separate area, and it can be taken together with this or on its own."
+      },
+      {
+        "question": "Do you replace our system administrator?",
+        "answer": "Whichever you prefer. We often cover the IT of a small company entirely, but just as often we work alongside an in-house administrator — taking the routine, the on-call duty and the narrow areas like virtualisation or backups."
+      },
+      {
+        "question": "How quickly do you respond to problems?",
+        "answer": "Response times are fixed in the agreement and depend on severity: a department unable to work and one inconvenienced employee are different priorities. The agreement is settled before the work starts, not after the first incident."
+      },
+      {
+        "question": "What happens if we decide to part ways?",
+        "answer": "We hand over everything: access, passwords, documentation and the ticket history. Infrastructure that cannot be passed to another contractor without us is not a service, it is a lock-in, and we do not work that way."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "monthly",
+        "features": [
+          "Managing workstations and the network",
+          "Tickets accepted during working hours",
+          "Monitoring and failure alerts",
+          "Backups",
+          "Reporting on the work"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "monthly",
+        "features": [
+          "Servers and virtualisation",
+          "Fixed response times",
+          "Managing access and licences",
+          "Planned work and updates",
+          "Infrastructure documentation"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "by SLA",
+        "features": [
+          "A dedicated engineer",
+          "SLA guarantees and on-call cover",
+          "Tested restores from backups",
+          "Baseline security oversight",
+          "Infrastructure development to plan"
+        ]
+      }
+    ]
+  },
+  "infosecAudit": {
+    "metaTitle": "Information security audit for a company",
+    "metaDescription": "An information security audit: infrastructure, access, data protection and organisational measures. A report with risk levels and a remediation plan, not a scanner dump. From {price:150000}.",
+    "breadcrumb": "Information security audit",
+    "h1": "Information security audit",
+    "lead": "We assess the security of the whole company rather than a single website: network and servers, access rights, backups, mail, workstations and how people handle data. What you get is a report with risk levels and a plan of what to fix first.",
+    "includes": [
+      "Inventory: what data exists, where it sits and who can reach it",
+      "Checking the network, servers and workstations for known vulnerabilities",
+      "A review of access rights: surplus accounts, shared passwords, forgotten administrators",
+      "Testing that backups actually restore, not merely that they exist",
+      "An assessment of organisational measures: procedures, leavers, contractors, devices",
+      "A report with risk levels and a remediation plan in order of priority"
+    ],
+    "forWhom": [
+      {
+        "title": "Nobody has ever checked",
+        "text": "The infrastructure grew over years and its security has never been assessed by anyone."
+      },
+      {
+        "title": "Someone is asking for it",
+        "text": "An audit is required by a client, a partner, an insurer or your own board."
+      },
+      {
+        "title": "After an incident",
+        "text": "Something has already happened, and you need to know where else the same door is open."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Scope",
+        "text": "We agree what is inside the perimeter: systems, sites, depth of testing."
+      },
+      {
+        "title": "Data gathering",
+        "text": "Inventory, scanning, configuration review and interviews with the people responsible."
+      },
+      {
+        "title": "Analysis",
+        "text": "We separate scanner noise from real risk and verify the findings by hand."
+      },
+      {
+        "title": "Report and walkthrough",
+        "text": "We hand over the report and talk it through out loud: what is critical, what can wait, where to start."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is this different from a website security audit?",
+        "answer": "In scale and in subject. A website audit checks one web application: code, access, dependencies, server settings. This checks the company: network, servers, workstations, rights, backups and how the processes are built. One does not replace the other, and both are often needed."
+      },
+      {
+        "question": "Will you just run a scanner?",
+        "answer": "The scanner is the first step and the cheapest part of the work. A hundred-page dump where half the findings do not apply is of no use. The value is in what comes after: verifying findings by hand, filtering false positives and setting priorities from your business's point of view."
+      },
+      {
+        "question": "Is it safe for systems that are in use?",
+        "answer": "Yes. Any check that could affect operations is agreed separately and run in an agreed window or on a test copy. Everything else runs in observation mode and does not touch day-to-day work."
+      },
+      {
+        "question": "What do we do with the report afterwards?",
+        "answer": "You can fix things yourselves — the report is written so your own administrator can work from it, not only its author. Or you can hand the remediation to us: that is separate work, and we always quote it before you decide."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Inventory of data and access",
+          "Check for known vulnerabilities",
+          "Review of rights and forgotten accounts",
+          "Testing that backups restore",
+          "Report with remediation priorities"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 5 weeks",
+        "features": [
+          "External perimeter and mail",
+          "Assessment of organisational measures",
+          "Review of contractors and devices",
+          "A walkthrough of the report with your team",
+          "A staged remediation plan"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 8 weeks",
+        "features": [
+          "Several sites and systems",
+          "Compliance checking against requirements",
+          "Interviews with system owners",
+          "A re-check after the fixes",
+          "Support through remediation"
+        ]
+      }
+    ]
+  },
+  "infosecTools": {
+    "metaTitle": "Rolling out information security tooling",
+    "metaDescription": "Deploying and configuring security tooling: antivirus and EDR, firewalls, VPN, encryption, access control and mail protection. Integrated with the infrastructure you already have. From {price:200000}.",
+    "breadcrumb": "Security tooling rollout",
+    "h1": "Rolling out information security tooling",
+    "lead": "We select, install and configure security tooling so that it genuinely works rather than sitting there on default settings: protection for workstations and mail, firewalls, VPN, encryption and access control.",
+    "includes": [
+      "Choosing products for your risks and your budget, not for the longest price list",
+      "Protection for workstations and servers: antivirus, EDR, application control",
+      "Firewalls, network segmentation and secure remote access",
+      "Mail protection against phishing and malicious attachments",
+      "Encryption of disks, backups and data in transit",
+      "Integration with what already runs, and handover of the configured systems to your team"
+    ],
+    "forWhom": [
+      {
+        "title": "No protection, or protection on paper",
+        "text": "There is an antivirus, but nobody reads its alerts, and the firewall is configured however it ended up."
+      },
+      {
+        "title": "Remote work",
+        "text": "Staff connect from home and from personal devices, and none of it is controlled."
+      },
+      {
+        "title": "After an audit",
+        "text": "There is a report with findings, and they need closing with working tooling rather than advice."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Threat model",
+        "text": "We decide what is being protected and from what — otherwise everything gets bought and nothing helps."
+      },
+      {
+        "title": "Selection and pilot",
+        "text": "We offer options with prices and test the chosen one on part of the infrastructure."
+      },
+      {
+        "title": "Rollout",
+        "text": "We deploy in stages, configure the policies and make sure the protection does not get in the way of work."
+      },
+      {
+        "title": "Handover",
+        "text": "We train your team and hand over documentation and settings. Ongoing support is optional from there."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Will the protection get in the way of staff?",
+        "answer": "Badly configured protection will, and then people start working around it, which is worse than having none. That is why policies are introduced gradually and with a pilot: observation mode first, then a review of what fires needlessly, and only then blocking."
+      },
+      {
+        "question": "Can we manage with locally available products?",
+        "answer": "Yes, and often it is a requirement rather than a choice. We select from what is available and supported in your market, and say plainly where a local equivalent is weaker and how to compensate."
+      },
+      {
+        "question": "Do we have to start with an audit?",
+        "answer": "Not necessarily, but it helps: without understanding the risks, choosing tools turns into shopping from a list in an article. If the budget is limited, an audit helps spend it on what closes real holes."
+      },
+      {
+        "question": "Who manages all this after the rollout?",
+        "answer": "By default, your team: we hand over configured systems, documentation and training. If you have no spare hands, managing it and triaging the alerts can be handed to us as a separate monitoring service."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Threat model and product selection",
+          "Protection for workstations and servers",
+          "Firewall and segmentation",
+          "Mail protection against phishing",
+          "Handover of the configured systems"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 6 weeks",
+        "features": [
+          "EDR and application control",
+          "Secure remote access",
+          "Encryption of disks and backups",
+          "Integration with existing systems",
+          "Training for administrators"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 10 weeks",
+        "features": [
+          "A pilot of several products",
+          "Complex network segmentation",
+          "Data leak prevention",
+          "Linked to incident monitoring",
+          "Support and ongoing tuning"
+        ]
+      }
+    ]
+  },
+  "infosecConsulting": {
+    "metaTitle": "Security consulting and data protection compliance",
+    "metaDescription": "Information security consulting: bringing personal data handling in line with the law, notifying the regulator, procedures, a threat model and preparation for an inspection. From {price:80000}.",
+    "breadcrumb": "Security consulting",
+    "h1": "Security and compliance consulting",
+    "lead": "We put data handling in order both on paper and in practice: personal data and the law that governs it, notifying the regulator, policies and procedures, a threat model, preparation for an inspection. Without formal documents that do not match reality.",
+    "includes": [
+      "A review of what personal data you collect and on what legal basis",
+      "Notification to the regulator, with purposes of processing worded correctly",
+      "A privacy policy, consent forms and internal procedures",
+      "A threat model and determination of the required protection level",
+      "A compliance plan with priorities set out",
+      "Preparation for an inspection: what they ask, what to show, where it usually falls apart"
+    ],
+    "forWhom": [
+      {
+        "title": "You collect client data",
+        "text": "Forms on the site, a database in the CRM, copies of documents — and none of it is formally arranged."
+      },
+      {
+        "title": "A counterparty requires it",
+        "text": "A large client or a tender requires proof that your security is in order."
+      },
+      {
+        "title": "An inspection is coming",
+        "text": "You need to know where you are formally exposed and close it before, not after."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Survey",
+        "text": "We look at what data and processes actually exist, rather than what the documents say."
+      },
+      {
+        "title": "The gap",
+        "text": "We record the difference between the requirements and the current state of affairs."
+      },
+      {
+        "title": "Documents and measures",
+        "text": "We prepare the set of documents and the list of technical measures that back them up."
+      },
+      {
+        "title": "Rollout and support",
+        "text": "We help implement it, train the responsible people and stay available when things change."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Do we really have to notify the regulator?",
+        "answer": "Almost certainly yes: the obligation arises as soon as you process client and employee data, and very few exemptions remain. The difficulty is not the notification itself but making sure the purposes and categories of data it states match what you actually do."
+      },
+      {
+        "question": "Is it enough to download a policy template from the internet?",
+        "answer": "As a document on the site, formally yes. As protection during an inspection, no: a template describes someone else's processes, and the first discrepancy with reality turns it from an argument into evidence. The documents have to describe what happens at your company."
+      },
+      {
+        "question": "Do you only do documents, or the technical side too?",
+        "answer": "Both, but they are different pieces of work. Consulting answers \"what should exist\"; rolling out security tooling answers \"how to make it so\". We can close both parts or only the first, if your team handles the technical side."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "A survey and a set of documents for a small company usually take a few weeks. Full compliance including technical measures stretches over months, so the work runs by priority: first what closes the most visible risk."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 2 weeks",
+        "features": [
+          "Review of the personal data collected",
+          "Notification to the regulator",
+          "Privacy policy and consent forms",
+          "A list of the measures required",
+          "Consultations as the work goes"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Threat model and protection level",
+          "Internal procedures and orders",
+          "A compliance plan",
+          "A review of the site and its data collection forms",
+          "Training for the responsible staff"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 6 weeks",
+        "features": [
+          "Several systems and sites",
+          "Preparation for a regulator's inspection",
+          "An audit of contractor agreements",
+          "Support with the correspondence",
+          "Support after everything is in order"
+        ]
+      }
+    ]
+  },
+  "infosecMonitoring": {
+    "metaTitle": "Security monitoring and incident response",
+    "metaDescription": "Monitoring security events and responding to incidents: log collection, detection rules, alert triage and a procedure for what to do under attack. With an agreed response procedure. From {price:60000/mo}.",
+    "breadcrumb": "Monitoring and response",
+    "h1": "Security monitoring and incident response",
+    "lead": "We set up collection of security events and work through what is happening in them: suspicious logins, password guessing, ransomware, data leaks. An incident has to be spotted while it is still small — that is what monitoring is for.",
+    "includes": [
+      "Log collection from servers, workstations, the network and cloud services",
+      "Detection rules written for your infrastructure, not a default set",
+      "Triage of alerts: what is a real incident and what is noise",
+      "A response procedure — who does what in the first thirty minutes",
+      "Incident investigation: what happened, how they got in, what they reached",
+      "Reporting and tuning of the rules after each review"
+    ],
+    "forWhom": [
+      {
+        "title": "Logs exist, but nobody reads them",
+        "text": "The data piles up and is only consulted once everything has already happened."
+      },
+      {
+        "title": "Business-critical systems",
+        "text": "Downtime or a leak is expensive, and hearing about it from clients is unacceptable."
+      },
+      {
+        "title": "No security team",
+        "text": "Keeping an on-call specialist on staff is expensive, but watching has to be continuous."
+      }
+    ],
+    "steps": [
+      {
+        "title": "What we protect",
+        "text": "We identify the critical systems and the events that must not be missed."
+      },
+      {
+        "title": "Collection and rules",
+        "text": "We connect the log sources and write detection rules for your environment."
+      },
+      {
+        "title": "Tuning out the noise",
+        "text": "We remove false positives: a system that shouts constantly stops being heard."
+      },
+      {
+        "title": "Watch and review",
+        "text": "We watch the alerts, respond under the agreed procedure, investigate incidents and tune the rules."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is this different from uptime monitoring?",
+        "answer": "Uptime monitoring answers \"is the service running\"; security monitoring answers \"is anything suspicious happening to it\". A service can run perfectly while handing data to someone who should not have it."
+      },
+      {
+        "question": "Will you respond for us, or only report?",
+        "answer": "As agreed. The minimum is a notification with analysis and recommendations. The extended option is active steps under an agreed procedure: isolating a machine, locking an account, cutting access. The limits of authority are fixed in advance."
+      },
+      {
+        "question": "Do we have to buy an expensive event collection system?",
+        "answer": "Not always. For a small infrastructure, open-source tooling is enough and a sensible place to start. An industrial system is justified when there are many sources and the volume of events stops fitting into simple tools."
+      },
+      {
+        "question": "What if an incident has already happened?",
+        "answer": "Then the work starts with an investigation: how they got in, what they reached, what has to be closed immediately. Monitoring is set up afterwards — with rules for the scenario that actually happened to you."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "monthly",
+        "features": [
+          "Log collection from the key systems",
+          "Rules written for your infrastructure",
+          "Alert triage during working hours",
+          "A procedure for the first steps",
+          "Monthly report and tuning"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "monthly",
+        "features": [
+          "Workstations and cloud services",
+          "Incident investigation",
+          "Hypothesis checking and threat hunting",
+          "A review after every case",
+          "Extended reporting"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "24/7 cover",
+        "features": [
+          "Round-the-clock cover",
+          "Guaranteed response times",
+          "Reconstructing the timeline of an attack",
+          "Built into your processes",
+          "Regular response exercises"
+        ]
+      }
+    ]
+  },
+  "collaboration": {
+    "metaTitle": "Rolling out corporate communications and collaboration",
+    "metaDescription": "Rolling out a corporate portal, messenger, video calls and document collaboration: platform choice, process configuration, integration with mail and CRM, staff training. From {price:120000}.",
+    "breadcrumb": "Corporate communications",
+    "h1": "Rolling out corporate communications",
+    "lead": "We assemble a working environment where conversations, files, tasks and calls live in one place rather than across seven chats and a shared folder. We pick the platform for how you actually work, configure the processes and see it through to people genuinely using it.",
+    "includes": [
+      "A look at where tasks, files and agreements get lost today",
+      "Choosing a platform for the size of the company, the budget and the data requirements",
+      "Deployment — in the cloud or on your own servers if the data cannot leave",
+      "A structure of spaces, groups and access rights for your departments",
+      "Configuring the working processes: tasks, approvals, knowledge base",
+      "Integration with mail, calendar and CRM, and training for staff"
+    ],
+    "forWhom": [
+      {
+        "title": "Work has spread across messengers",
+        "text": "Some of it in private chats, some in mail, files on USB sticks — and nobody knows which version is current."
+      },
+      {
+        "title": "Data cannot go to someone else's cloud",
+        "text": "You need a portal and a messenger on your own servers, not a subscription to a foreign service."
+      },
+      {
+        "title": "Bought it, nobody uses it",
+        "text": "The platform exists, the licences are paid for, and people still work the way they did before."
+      }
+    ],
+    "steps": [
+      {
+        "title": "How you work now",
+        "text": "We look at the real routes tasks and documents take, not the diagram in the procedure."
+      },
+      {
+        "title": "Choosing a platform",
+        "text": "We offer options with their pros, cons and cost of ownership, rather than one \"correct\" answer."
+      },
+      {
+        "title": "Configuration",
+        "text": "We deploy it, build the structure and processes, and connect mail, calendar and CRM."
+      },
+      {
+        "title": "Launch with people",
+        "text": "We move the first processes across, train, and adjust from the feedback of the first weeks."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is this different from building your own messenger?",
+        "answer": "Here we roll out a ready platform — faster and cheaper, and right for most companies. Building your own is for when nothing off the shelf meets the requirements: a special network, unusual integrations, or a messenger inside your own product. That is a separate service."
+      },
+      {
+        "question": "How do you get staff to actually switch?",
+        "answer": "By not leaving parallel routes open. As long as an approval can be obtained in a private chat, nobody will go to the portal. So we move processes one at a time and together with the managers, rather than sending round an instruction and hoping."
+      },
+      {
+        "question": "Can everything be deployed on our own servers?",
+        "answer": "Yes, many platforms have an on-premise option. It costs more to maintain, but the conversations and files stay with you — for some companies that is a hard requirement."
+      },
+      {
+        "question": "How long does the rollout take?",
+        "answer": "A basic deployment with mail and structure takes weeks. Moving processes and habits across takes months, and that is normal: a platform switched on over a weekend usually stays empty."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 3 weeks",
+        "features": [
+          "Cloud platform, end to end",
+          "Structure of spaces and rights",
+          "Tasks, files and knowledge base",
+          "Migration of conversations and documents",
+          "Launch and team training"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 5 weeks",
+        "features": [
+          "Approvals and processes configured",
+          "Integration with mail, calendar and CRM",
+          "Roles and rights by department",
+          "Workspace templates",
+          "Support through the first month"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 8 weeks",
+        "features": [
+          "Deployment on your own servers",
+          "Integrations with internal systems",
+          "Migration from a previous platform",
+          "A complex access model",
+          "Role-based training and support"
+        ]
+      }
+    ]
+  },
+  "businessSystems": {
+    "metaTitle": "Business system rollout: ERP, accounting, CRM",
+    "metaDescription": "Rolling out accounting and management systems: choosing the configuration, migrating data, configuring processes and rights, integration with the website and stock, staff training and launch. From {price:150000}.",
+    "breadcrumb": "Business system rollout",
+    "h1": "Business system rollout",
+    "lead": "We roll out accounting and management systems so that people actually work in them: choosing the configuration, migrating data, configuring it around your processes, integrations and training. A system with no data in it and nobody using it does not count as rolled out.",
+    "includes": [
+      "A review of the processes: what gets recorded, who enters it, who uses it",
+      "Choosing the system and configuration for the job, not for the contractor's habit",
+      "Migrating data from spreadsheets and previous systems, checked for completeness",
+      "Configuring reference data, documents, access rights and roles",
+      "Integration with the website, stock, bank, point of sale and telephony",
+      "Staff training and support through the first reporting period"
+    ],
+    "forWhom": [
+      {
+        "title": "Accounting in spreadsheets",
+        "text": "Excel has stopped coping: versions diverge, data is duplicated, the report is assembled by hand."
+      },
+      {
+        "title": "There is a system, but it misses",
+        "text": "It was rolled out long ago, configured for someone else, and half the work still happens outside it."
+      },
+      {
+        "title": "Growth and new directions",
+        "text": "A warehouse, retail or production has appeared, and the accounts no longer reconcile."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Survey",
+        "text": "We describe how the processes work today and exactly where data and time are lost."
+      },
+      {
+        "title": "Choice and plan",
+        "text": "We select the system and configuration and fix the stages, timelines and cost of ownership."
+      },
+      {
+        "title": "Configuration and migration",
+        "text": "We configure it around the processes, migrate the data and connect the integrations."
+      },
+      {
+        "title": "Launch",
+        "text": "We train, go live and stay close through the first period close."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How is a rollout different from building your own system?",
+        "answer": "A rollout takes a ready product and configures it for you — faster and cheaper, and the standard accounting is already there. Building your own is justified when the process is genuinely unique and an off-the-shelf product would have to be broken to fit. We do both and say honestly which is cheaper in your case."
+      },
+      {
+        "question": "What happens to the old data?",
+        "answer": "We migrate what is needed for work and reporting: reference data, balances, transaction history to an agreed depth. Migration always comes with reconciliation — a discrepancy in balances is better found before launch than in the first report."
+      },
+      {
+        "question": "How many staff will need retraining?",
+        "answer": "Everyone who enters data, but differently: a salesperson needs one screen, an accountant the whole module. Training therefore runs by role rather than as one general lecture."
+      },
+      {
+        "question": "Can it be rolled out in parts?",
+        "answer": "Yes, and usually that is wiser: one area first — sales or stock, say — then the next. Trying to launch everything at once most often ends with nothing working."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Survey of the accounting processes",
+          "Standard configuration for the job",
+          "Migration of reference data and balances",
+          "Rights and roles configured",
+          "Training and launch"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 7 weeks",
+        "features": [
+          "Data migration from previous systems",
+          "Documents and reports configured",
+          "Integration with the website and the bank",
+          "Instructions for staff",
+          "Support through the first period"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 12 weeks",
+        "features": [
+          "Several legal entities and warehouses",
+          "Point of sale, telephony, marketplaces",
+          "Customisation for your processes",
+          "Role-based training",
+          "Support and ongoing development"
+        ]
+      }
+    ]
+  },
+  "businessSystemsCustom": {
+    "metaTitle": "Customising and adapting business systems",
+    "metaDescription": "Customising accounting and CRM systems to fit the company's processes: printed forms, reports, data exchange, non-standard logic. Keeping the ability to update. From {price:25000}.",
+    "breadcrumb": "Business system customisation",
+    "h1": "Customising and adapting business systems",
+    "lead": "We extend systems already in use to fit your processes: reports, printed forms, data exchange, non-standard logic. The guiding rule is that the system must still be updatable afterwards, rather than frozen on its current version for good.",
+    "includes": [
+      "A review of the request: what is genuinely needed and what standard settings already solve",
+      "Reports and printed forms to your requirements and your counterparties'",
+      "Changes to document logic, calculations and approvals",
+      "Data exchange with the website, stock, marketplaces and other systems",
+      "Tidying up previous customisations if updating has become impossible",
+      "Documenting the changes — so someone other than the author can maintain them"
+    ],
+    "forWhom": [
+      {
+        "title": "The standard version falls short",
+        "text": "The system is broadly fine, but a couple of needed reports or forms simply are not in it."
+      },
+      {
+        "title": "Updating is impossible",
+        "text": "It was customised for years, now an update breaks everything, and the system is stuck on an old version."
+      },
+      {
+        "title": "Manual work alongside the system",
+        "text": "Data is exported to Excel, calculated by hand and loaded back — every month."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Reviewing the request",
+        "text": "We check whether settings already solve it: the cheapest customisation is the one that was not needed."
+      },
+      {
+        "title": "Estimate",
+        "text": "We estimate the work and warn you if the solution would complicate future updates."
+      },
+      {
+        "title": "Implementation",
+        "text": "We build on a copy, test against your data and show the result before anything moves."
+      },
+      {
+        "title": "Transfer and support",
+        "text": "We move it into the working database, document it and stay available for further work."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Will customisation break updates?",
+        "answer": "It can — which is exactly why customisations are built as extensions and by the platform's rules, rather than by editing the standard configuration. Sometimes touching the standard part is unavoidable; we say so before the work starts, so the decision is yours rather than a discovery at the next update."
+      },
+      {
+        "question": "Will you take on someone else's customisations?",
+        "answer": "Yes. We start by reviewing what is already written: often half of it turns out to be unnecessary or to duplicate standard features. Tidying up is frequently cheaper than endlessly maintaining what has accumulated."
+      },
+      {
+        "question": "Can we ask for one small thing?",
+        "answer": "Yes, one-off work is a normal format: a report, a printed form, an export. A long-term contract is not for that — it is for those with a constant flow of changes."
+      },
+      {
+        "question": "How do we know whether to customise or replace the system?",
+        "answer": "By how much is not covered as standard. If there is more customisation than standard functionality, the system does not suit you and replacement is worth costing. We say so plainly, even when customising would be more profitable for us."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 3 days",
+        "features": [
+          "Review of the request and an estimate",
+          "A report or a printed form",
+          "Tested on a copy of the database",
+          "Moved into the working database",
+          "Changes documented"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 1 week",
+        "features": [
+          "Changes to document logic",
+          "Calculations and approvals",
+          "Exchange with the website or stock",
+          "A check that updating still works",
+          "User training"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 2 weeks",
+        "features": [
+          "A package of changes to plan",
+          "Tidying up previous customisations",
+          "Exchange with several systems",
+          "An update procedure",
+          "Support after handover"
+        ]
+      }
+    ]
+  },
+  "industrial": {
+    "metaTitle": "Integration with equipment and production systems",
+    "metaDescription": "Integrating IT systems with equipment and industrial control: collecting data from lines and meters, feeding it into the accounting system, control-room dashboards and production reporting. From {price:250000}.",
+    "breadcrumb": "Equipment integration",
+    "h1": "Integration with equipment and production systems",
+    "lead": "We connect production equipment to accounting systems: we take data off machines, lines, sensors and meters, feed it into the accounts and show it on readable dashboards. So the output figures appear by themselves, instead of being copied out of a logbook at the end of a shift.",
+    "includes": [
+      "A survey of the equipment: what data it gives out and over which protocols",
+      "Data collection from machines, lines, controllers and meters",
+      "Feeding the figures into the accounting system without manual entry",
+      "Control-room dashboards: output, downtime, faults, line status",
+      "Reporting by shift, area and piece of equipment",
+      "Alerts on stoppages and on readings outside the permitted range"
+    ],
+    "forWhom": [
+      {
+        "title": "Figures are copied by hand",
+        "text": "Readings are kept in a logbook and reach the accounts a day later, with mistakes."
+      },
+      {
+        "title": "Nobody counts the downtime",
+        "text": "It is clear the line stood idle, but not for how long, why, or what it cost."
+      },
+      {
+        "title": "Equipment of different generations",
+        "text": "Some machines are modern, some are old, and no overall picture of the shop floor emerges."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Survey",
+        "text": "We look at what the equipment is, what interfaces it has and what can be taken off it at all."
+      },
+      {
+        "title": "Pilot on one area",
+        "text": "We connect a single line and check that the data matches reality."
+      },
+      {
+        "title": "Scaling up",
+        "text": "We connect the rest of the equipment and link it to the accounting system."
+      },
+      {
+        "title": "Dashboards and reports",
+        "text": "We build what people actually look at: line status, downtime, output per shift."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Our equipment is old — can anything be taken off it at all?",
+        "answer": "Often yes — through a controller, meters or external sensors, even if the machine has no modern interface. The survey gives the answer: sometimes recording the fact of running and stopping is enough, and that already answers the main question about downtime."
+      },
+      {
+        "question": "Will this interfere with the line?",
+        "answer": "Data collection is read-only and does not affect the process. Work that requires a stop — fitting sensors or connecting to a controller — is scheduled for planned shutdowns."
+      },
+      {
+        "question": "Do we have to connect everything at once?",
+        "answer": "No, and you should not. We start with one area where the effect shows soonest, confirm that the figures match reality, and only then go further."
+      },
+      {
+        "question": "Who owns the data collected?",
+        "answer": "You do. The data is stored inside your network or on your server, the formats are open and an export is available at any time. We do not propose solutions you cannot take your own figures out of."
+      }
+    ],
+    "tariffs": [
+      {
+        "name": "Basic",
+        "deadline": "from 4 weeks",
+        "features": [
+          "Survey of equipment and protocols",
+          "Data collection from one area",
+          "Figures fed into the accounting system",
+          "A line status dashboard",
+          "Shift report"
+        ]
+      },
+      {
+        "name": "Standard",
+        "deadline": "from 8 weeks",
+        "features": [
+          "Scaling up to the whole shop floor",
+          "Control-room dashboards by area",
+          "Alerts on stoppages",
+          "Reporting by equipment",
+          "Training for the control room"
+        ]
+      },
+      {
+        "name": "Bespoke",
+        "deadline": "from 12 weeks",
+        "features": [
+          "Several shops and sites",
+          "Integration with accounting and planning",
+          "History of readings and analytics",
+          "Redundant data collection",
+          "Support and ongoing development"
+        ]
+      }
+    ]
+  }
+}

@@ -9,6 +9,7 @@ import { ContactSection } from "@/components/sections/contact-section";
 import { ServiceCard } from "@/components/sections/service-card";
 import { formatPostDate, formatReadingTime, type BlogPost } from "@/lib/blog";
 import { cn } from "@/lib/utils";
+import { usePaths } from "@/i18n/use-paths";
 
 export function BlogArticle({
   post,
@@ -19,6 +20,7 @@ export function BlogArticle({
   related: BlogPost[];
 }) {
   const t = useTranslations("blog");
+  const paths = usePaths();
 
   const { cover, sections, takeaways } = post;
   // Услуги, о которых статья, теперь свойство самой статьи: связь правится в
@@ -42,7 +44,7 @@ export function BlogArticle({
               <ChevronRight className="text-foreground/30 h-4 w-4" aria-hidden="true" />
               <li>
                 <Link
-                  href="/blog/"
+                  href={paths.blog}
                   className="hover:text-foreground cursor-pointer transition-colors"
                 >
                   {t("breadcrumb")}
@@ -167,7 +169,7 @@ export function BlogArticle({
 
             <div className="mt-14">
               <Link
-                href="/blog/"
+                href={paths.blog}
                 className="text-foreground hover:text-accent-foreground inline-flex items-center gap-2 text-base font-medium transition-colors"
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -223,7 +225,7 @@ export function BlogArticle({
               {related.map((item) => (
                 <div key={item.slug} className="h-full">
                   <Link
-                    href={`/blog/${item.slug}/`}
+                    href={paths.post(item.slug)}
                     className="group border-border bg-background hover:border-accent focus-visible:outline-accent flex h-full gap-5 rounded-2xl border p-5 transition-[border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_0_38px_rgba(180,224,45,0.22)] focus-visible:outline-2 focus-visible:outline-offset-2"
                   >
                     <div className="bg-surface relative aspect-square w-28 shrink-0 overflow-hidden rounded-xl">
