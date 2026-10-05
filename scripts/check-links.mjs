@@ -91,6 +91,58 @@ if (broken.size) {
 
 console.log("все внутренние ссылки ведут на существующие страницы");
 
+// ------------------------------------- Ссылка не должна уводить с языка
+
+/**
+ * Каждая ссылка со страницы под /en/ обязана вести внутрь /en/ — и так же
+ * для /es/. Проверка существования адреса этого не ловит: `/` и `/#process`
+ * существуют, просто ведут на русскую главную. Ровно так и прятались две
+ * ошибки подряд — логотип с хлебными крошками и якоря разделов в шапке.
+ *
+ * Из правила выпадают только файлы: картинки, шрифты и прочая статика одна
+ * на все языки, и префикса у неё нет и быть не должно.
+ */
+const FILE = /\.[a-z0-9]{2,5}$/i;
+const leaks = new Map();
+let localeChecked = 0;
+
+for (const page of all) {
+  const { locale } = ((u) => {
+    const first = u.split("/").filter(Boolean)[0];
+    return { locale: first === "en" || first === "es" ? first : "ru" };
+  })(page.url);
+  if (locale === "ru") continue;
+  if (page.url.startsWith("/panel")) continue;
+
+  const html = await readFile(page.file, "utf8");
+  const visible = html.replace(/<script[\s\S]*?<\/script>/g, "");
+
+  for (const [, href] of visible.matchAll(/href="(\/[^"]*)"/g)) {
+    if (SKIP(href)) continue;
+    const bare = href.split(/[#?]/)[0];
+    if (FILE.test(bare)) continue;
+    localeChecked += 1;
+    if (!href.startsWith(`/${locale}/`)) {
+      const key = `${locale}: ${href}`;
+      if (!leaks.has(key)) leaks.set(key, new Set());
+      leaks.get(key).add(page.url);
+    }
+  }
+}
+
+console.log(`
+ссылок на языковых страницах проверено: ${localeChecked}`);
+if (leaks.size) {
+  console.error(`УВОДЯТ С ЯЗЫКА: ${leaks.size}`);
+  for (const [key, from] of [...leaks].slice(0, 15)) {
+    const list = [...from];
+    console.error(`  ${key}`);
+    console.error(`      со страниц: ${list.slice(0, 2).join(", ")}${list.length > 2 ? ` и ещё ${list.length - 2}` : ""}`);
+  }
+  process.exit(1);
+}
+console.log("ни одна ссылка не уводит с языковой версии на другой язык");
+
 // ---------------------------------------------- Переключатель языков
 
 /**
