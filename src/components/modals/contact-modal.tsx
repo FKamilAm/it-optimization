@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { X } from "lucide-react";
 import { ContactChannels } from "@/components/contact/contact-channels";
 import { ContactPerks } from "@/components/contact/contact-perks";
+import { useMoneyText } from "@/i18n/use-money-text";
 
 interface ContactModalProps {
   open: boolean;
@@ -16,6 +17,7 @@ interface ContactModalProps {
 
 export function ContactModal({ open, service, onClose }: ContactModalProps) {
   const t = useTranslations();
+  const money = useMoneyText();
   const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -106,7 +108,7 @@ export function ContactModal({ open, service, onClose }: ContactModalProps) {
                       {t("services.detail.budgetLabel")}
                     </dt>
                     <dd className="text-foreground text-xl font-semibold md:text-2xl">
-                      {t(`${base}.budget`)}
+                      {money(`${base}.budget`)}
                     </dd>
                   </div>
                   <div className="flex flex-col gap-1">

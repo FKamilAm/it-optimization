@@ -22,6 +22,7 @@ import type { ServicePage } from "@/lib/services/types";
 import type { BlogPost } from "@/lib/blog";
 import { cn, typographicNbsp } from "@/lib/utils";
 import { usePaths } from "@/i18n/use-paths";
+import { useMoneyText } from "@/i18n/use-money-text";
 
 // Service page key → dedicated 3D hero visual. Every service has its own scene.
 const HERO_VISUAL: Partial<Record<string, ServiceHeroVariant>> = {
@@ -81,6 +82,7 @@ export function ServicePageContent({
   const c = useTranslations("servicePages.common");
   const paths = usePaths();
   const service = useTranslations("services.items");
+  const money = useMoneyText("services.items");
   const blog = useTranslations("blog");
   const { openContactModal } = useContactModal();
   const { scrollToSection } = useSmoothScroll();
@@ -318,7 +320,7 @@ export function ServicePageContent({
                       lightHero ? "text-foreground" : "text-white",
                     )}
                   >
-                    {service(`${pageKey}.budget`)}
+                    {money(`${pageKey}.budget`)}
                   </dd>
                 </div>
                 <div className="flex flex-col gap-1">

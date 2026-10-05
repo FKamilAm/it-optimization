@@ -68,7 +68,7 @@
       "corporate": {
         "title": "Desarrollo de sitio corporativo",
         "description": "Creamos sitios corporativos que generan confianza y traen solicitudes: una estructura pensada, diseño a medida, carga rápida y SEO. El precio y los plazos se fijan tras el briefing.",
-        "budget": "desde 120 000 ₽",
+        "budget": "desde {price:120000}",
         "deadline": "desde 10 días",
         "tags": [
           "Sitios multipágina",
@@ -80,7 +80,7 @@
       "websites": {
         "title": "Landing page llave en mano",
         "description": "Una landing hecha para vender una oferta, una campaña o un lanzamiento: estructura que retiene la atención, diseño, maquetación rápida y formularios conectados a tu CRM. El precio y los plazos se fijan tras el briefing.",
-        "budget": "desde 59 000 ₽",
+        "budget": "desde {price:59000}",
         "deadline": "desde 7–10 días",
         "tags": [
           "Páginas promocionales",
@@ -92,7 +92,7 @@
       "websiteTurnkey": {
         "title": "Sitio web llave en mano",
         "description": "Un sitio completo: estructura, diseño, maquetación, contenidos, analítica y lanzamiento. Recibes un producto funcionando sin tener que ocuparte de la parte técnica.",
-        "budget": "desde 89 000 ₽",
+        "budget": "desde {price:89000}",
         "deadline": "desde 10 días",
         "tags": [
           "Llave en mano",
@@ -104,7 +104,7 @@
       "ecommerce": {
         "title": "Tienda online llave en mano",
         "description": "Tiendas online con catálogo, carrito, pagos y un panel de administración usable. Conectamos envíos, pasarelas de pago e integraciones con sistemas contables y CRM.",
-        "budget": "desde 190 000 ₽",
+        "budget": "desde {price:190000}",
         "deadline": "desde 3 semanas",
         "tags": [
           "Catálogo y carrito",
@@ -116,7 +116,7 @@
       "businessCard": {
         "title": "Web de presentación",
         "description": "Un sitio compacto que cuenta quién eres de forma breve y convincente: servicios, ventajas, contacto y una vía para escribirte. Rápido de lanzar y con precio claro.",
-        "budget": "desde 29 000 ₽",
+        "budget": "desde {price:29000}",
         "deadline": "desde 5 días",
         "tags": [
           "Una sola página",
@@ -128,7 +128,7 @@
       "webDesign": {
         "title": "Sistemas de diseño web",
         "description": "Diseñamos la interfaz de un sitio o servicio y construimos un sistema de diseño alrededor: retícula, tipografía, componentes y estados. A partir de ahí las páginas se montan con bloques listos en vez de dibujarse de cero.",
-        "budget": "desde 60 000 ₽",
+        "budget": "desde {price:60000}",
         "deadline": "desde 2 semanas",
         "tags": [
           "UI/UX",
@@ -140,7 +140,7 @@
       "branding": {
         "title": "Diseño y branding",
         "description": "Desarrollamos la identidad visual: símbolo, colores, tipografías y las reglas de uso. Todo queda recogido en un manual de marca para que la empresa se vea igual en la web, en los documentos y en la publicidad.",
-        "budget": "desde 45 000 ₽",
+        "budget": "desde {price:45000}",
         "deadline": "desde 2 semanas",
         "tags": [
           "Logotipo",
@@ -152,7 +152,7 @@
       "b2b": {
         "title": "Desarrollo de web B2B",
         "description": "Sitios y portales para B2B: presentación clara del producto, cálculo de precios, área de partner e integraciones con los sistemas internos. Pensados para ciclos de venta largos.",
-        "budget": "desde 180 000 ₽",
+        "budget": "desde {price:180000}",
         "deadline": "desde 3 semanas",
         "tags": [
           "Portal B2B",
@@ -164,7 +164,7 @@
       "telegram": {
         "title": "Bots de Telegram y Mini Apps",
         "description": "Un bot de Telegram o una Mini App para captar contactos, automatizar y dar soporte. Trabajamos los escenarios, las integraciones y una interfaz usable para que el bot traiga solicitudes de verdad. Precio y plazos tras el briefing.",
-        "budget": "desde 50 000 ₽",
+        "budget": "desde {price:50000}",
         "deadline": "desde 1 semana",
         "tags": [
           "Captación",
@@ -176,7 +176,7 @@
       "mobile": {
         "title": "Aplicaciones móviles",
         "description": "Aplicaciones para iOS y Android, desde un MVP hasta un producto acabado con una UX cuidada y un backend fiable.",
-        "budget": "desde 300 000 ₽",
+        "budget": "desde {price:300000}",
         "deadline": "desde 4 semanas",
         "tags": [
           "iOS / Android",
@@ -188,7 +188,7 @@
       "ai": {
         "title": "Agentes de IA y automatización",
         "description": "Llevamos agentes de IA y automatización al negocio: atención de solicitudes, asistentes, generación de contenido e integraciones con tus sistemas. Te diremos qué precio y qué plazos tienen sentido cuando estén claros los requisitos.",
-        "budget": "desde 90 000 ₽",
+        "budget": "desde {price:90000}",
         "deadline": "desde 2 semanas",
         "tags": [
           "Agentes de IA a medida",
@@ -199,7 +199,7 @@
       "integrations": {
         "title": "Extracción de datos e integraciones",
         "description": "Montamos extracción de datos e integraciones entre servicios: API, sincronización de sistemas e intercambio automático de datos.",
-        "budget": "desde 50 000 ₽",
+        "budget": "desde {price:50000}",
         "deadline": "desde 1 semana",
         "tags": [
           "Datos abiertos",
@@ -210,7 +210,7 @@
       "blockchain": {
         "title": "Crypto / Blockchain",
         "description": "Interfaces Web3, integración con monederos y contratos inteligentes, lógica multicadena y paneles que de verdad se leen.",
-        "budget": "desde 300 000 ₽",
+        "budget": "desde {price:300000}",
         "deadline": "desde 4 semanas",
         "tags": [
           "Interfaces Web3",
@@ -221,7 +221,7 @@
       "support": {
         "title": "Soporte y evolución del sitio",
         "description": "Mantenemos y hacemos crecer lo que ya está en producción —un sitio, una plataforma o una app—: mejoras, monitorización, actualizaciones y soporte técnico.",
-        "budget": "desde 40 000 ₽/mes",
+        "budget": "desde {price:40000}/mes",
         "deadline": "mensual",
         "tags": [
           "Soporte web",
@@ -232,7 +232,7 @@
       "contentAnalysis": {
         "title": "Análisis de contenido del sitio",
         "description": "Revisamos el contenido: hasta qué punto responde a lo que buscan tu público y los buscadores, dónde se pierden las solicitudes y qué frena el tráfico. Te entregamos conclusiones claras y un plan.",
-        "budget": "desde 30 000 ₽",
+        "budget": "desde {price:30000}",
         "deadline": "desde 3 días",
         "tags": [
           "Auditoría de contenido",
@@ -244,7 +244,7 @@
       "techContent": {
         "title": "Contenido técnico del sitio",
         "description": "Preparamos y ordenamos la capa técnica: estructura de páginas, metaetiquetas, datos estructurados, encabezados y enlaces internos, para que el sitio se indexe bien y lo entiendan los buscadores.",
-        "budget": "desde 40 000 ₽",
+        "budget": "desde {price:40000}",
         "deadline": "desde 1 semana",
         "tags": [
           "Metaetiquetas",
@@ -256,7 +256,7 @@
       "commercialAudit": {
         "title": "Auditoría comercial del sitio",
         "description": "Evaluamos el sitio como herramienta de venta: cómo convierte el tráfico en solicitudes, por dónde se escapa el dinero y qué reforzar en ofertas, precios y llamadas a la acción. El resultado es más conversión.",
-        "budget": "desde 50 000 ₽",
+        "budget": "desde {price:50000}",
         "deadline": "desde 1 semana",
         "tags": [
           "Conversión",
@@ -268,7 +268,7 @@
       "platforms": {
         "title": "Desarrollo de plataforma CRM",
         "description": "Diseñamos y construimos CRM, áreas de cliente y plataformas internas en torno a tus procesos, con roles, integraciones, analítica y una arquitectura que escala.",
-        "budget": "desde 400 000 ₽",
+        "budget": "desde {price:400000}",
         "deadline": "desde 4 semanas",
         "tags": [
           "CRM",
@@ -281,7 +281,7 @@
       "security": {
         "title": "Auditoría de seguridad web",
         "description": "Revisamos el sitio frente al OWASP Top 10: inyecciones, permisos, autenticación, configuración del servidor y dependencias. Las pruebas manuales encuentran lo que un escáner no ve. Recibes un informe priorizado y, en la tarifa ampliada, corregimos nosotros lo encontrado.",
-        "budget": "desde 60 000 ₽",
+        "budget": "desde {price:60000}",
         "deadline": "desde 3 días",
         "tags": [
           "OWASP",
@@ -293,7 +293,7 @@
       "messenger": {
         "title": "Desarrollo de mensajerías",
         "description": "Construimos sistemas de mensajería: un mensajero corporativo para la plantilla, un chat dentro de tu producto, un canal para hablar con clientes. Chats, canales, archivos, roles e integraciones con tus sistemas. Desplegado en tus propios servidores: las conversaciones se quedan contigo.",
-        "budget": "desde 200 000 ₽",
+        "budget": "desde {price:200000}",
         "deadline": "desde 1 mes",
         "tags": [
           "Corporativo",
@@ -305,7 +305,7 @@
       "infrastructure": {
         "title": "Diseño de infraestructura IT",
         "description": "Diseñamos servidores, red, virtualización y copias de seguridad según cómo trabaja la empresa y cómo va a crecer. Esquema, especificación y plan de implantación.",
-        "budget": "desde 90 000 ₽",
+        "budget": "desde {price:90000}",
         "deadline": "desde 2 semanas",
         "tags": [
           "Servidores y red",
@@ -317,7 +317,7 @@
       "migration": {
         "title": "Migración y modernización",
         "description": "Trasladamos servidores, servicios y datos a la nube o a hardware nuevo sin parar la actividad, con plan de vuelta atrás en cada etapa.",
-        "budget": "desde 120 000 ₽",
+        "budget": "desde {price:120000}",
         "deadline": "desde 3 semanas",
         "tags": [
           "Migración a la nube",
@@ -329,7 +329,7 @@
       "os": {
         "title": "Implantación de sistemas operativos",
         "description": "Desplegamos y configuramos sistemas operativos en servidores y puestos de trabajo, incluidos cambios de plataforma: dominio, políticas, actualizaciones y gestión del parque.",
-        "budget": "desde 150 000 ₽",
+        "budget": "desde {price:150000}",
         "deadline": "desde 3 semanas",
         "tags": [
           "Sistemas alternativos",
@@ -341,7 +341,7 @@
       "itOutsourcing": {
         "title": "Externalización de IT",
         "description": "Nos hacemos cargo del IT de la empresa: servidores, red, puestos, correo y copias de seguridad. Sistema de tickets, tiempos de respuesta acordados e informes legibles.",
-        "budget": "desde 30 000 ₽/mes",
+        "budget": "desde {price:30000}/mes",
         "deadline": "mensual",
         "tags": [
           "Servicio gestionado",
@@ -353,7 +353,7 @@
       "infosecAudit": {
         "title": "Auditoría de seguridad de la información",
         "description": "Evaluamos la protección de toda la empresa: red, servidores, accesos, copias de seguridad y medidas organizativas. Informe con niveles de riesgo y un plan.",
-        "budget": "desde 150 000 ₽",
+        "budget": "desde {price:150000}",
         "deadline": "desde 3 semanas",
         "tags": [
           "Infraestructura",
@@ -365,7 +365,7 @@
       "infosecTools": {
         "title": "Implantación de herramientas de seguridad",
         "description": "Seleccionamos y configuramos la protección de puestos, correo y red: EDR, cortafuegos, VPN, cifrado y control de accesos.",
-        "budget": "desde 200 000 ₽",
+        "budget": "desde {price:200000}",
         "deadline": "desde 3 semanas",
         "tags": [
           "Protección de puestos",
@@ -377,7 +377,7 @@
       "infosecConsulting": {
         "title": "Consultoría de seguridad y protección de datos",
         "description": "Ajustamos el tratamiento de datos personales a lo que exige la ley: notificación al regulador, políticas, modelo de amenazas y preparación para una inspección.",
-        "budget": "desde 80 000 ₽",
+        "budget": "desde {price:80000}",
         "deadline": "desde 2 semanas",
         "tags": [
           "Protección de datos",
@@ -389,7 +389,7 @@
       "infosecMonitoring": {
         "title": "Monitorización y respuesta",
         "description": "Recogemos eventos de seguridad y los analizamos: accesos sospechosos, ataques de fuerza bruta, ransomware. Con un procedimiento de respuesta a incidentes.",
-        "budget": "desde 60 000 ₽/mes",
+        "budget": "desde {price:60000}/mes",
         "deadline": "mensual",
         "tags": [
           "Recogida de logs",
@@ -401,7 +401,7 @@
       "collaboration": {
         "title": "Comunicaciones corporativas",
         "description": "Implantamos portal, mensajería y trabajo colaborativo con documentos: elección de plataforma, configuración de procesos, integraciones y formación del equipo.",
-        "budget": "desde 120 000 ₽",
+        "budget": "desde {price:120000}",
         "deadline": "desde 3 semanas",
         "tags": [
           "Portal corporativo",
@@ -413,7 +413,7 @@
       "businessSystems": {
         "title": "Implantación de sistemas de gestión",
         "description": "Implantamos sistemas contables y de gestión: elección de la configuración, migración de datos, configuración de procesos, integraciones y formación del equipo.",
-        "budget": "desde 150 000 ₽",
+        "budget": "desde {price:150000}",
         "deadline": "desde 4 semanas",
         "tags": [
           "ERP",
@@ -425,7 +425,7 @@
       "businessSystemsCustom": {
         "title": "Personalización de sistemas de gestión",
         "description": "Ampliamos sistemas ya en uso para que encajen con tus procesos: informes, formatos de impresión, intercambio de datos y lógica, sin romper la capacidad de actualizar.",
-        "budget": "desde 25 000 ₽",
+        "budget": "desde {price:25000}",
         "deadline": "desde 3 días",
         "tags": [
           "Informes y formularios",
@@ -437,7 +437,7 @@
       "industrial": {
         "title": "Integración con maquinaria",
         "description": "Extraemos datos de máquinas, líneas de producción y contadores y los llevamos al sistema de gestión. Paneles de producción, paradas y estado del equipamiento.",
-        "budget": "desde 250 000 ₽",
+        "budget": "desde {price:250000}",
         "deadline": "desde 4 semanas",
         "tags": [
           "Control industrial",
@@ -478,7 +478,7 @@
     "metaDescription": "Proyectos seleccionados de IT Optimization: CRM y plataformas web, agentes de IA, Mini Apps de Telegram, marketplaces, interfaces Web3 y sitios corporativos.",
     "breadcrumb": "Proyectos",
     "breadcrumbHome": "Inicio",
-    "title": "Proyectos y casos",
+    "title": "Proyectos",
     "description": "Sistemas creados para problemas de negocio muy distintos: CRM y agentes de IA, marketplaces, mini apps e interfaces Web3. Abre un caso para ver el detalle.",
     "filterLabel": "Filtrar proyectos por servicio",
     "filterAll": "Todos los proyectos",
@@ -529,7 +529,7 @@
     "breadcrumb": "Blog",
     "breadcrumbHome": "Inicio",
     "eyebrow": "Blog",
-    "title": "Un blog sobre desarrollo y tecnología",
+    "title": "Desarrollo y tecnología",
     "description": "Cómo funcionan por dentro los productos digitales: de las auditorías de seguridad a la arquitectura de una mensajería o la extracción de datos. Escrito claro y al grano.",
     "readMore": "Leer el artículo",
     "allPosts": "Todos los artículos",
@@ -635,7 +635,7 @@
       },
       "7": {
         "question": "¿Cuánto cuesta una web, un bot de Telegram o un agente de IA?",
-        "answer": "Como orientación: webs y landings desde 80 000 ₽ (desde una semana), bots de Telegram desde 50 000 ₽ (desde una semana), Mini Apps desde 100 000 ₽ (desde dos semanas), agentes de IA y automatización desde 100 000 ₽ (desde dos semanas). Los encargos complejos cuestan más; la cifra exacta se acuerda tras el briefing."
+        "answer": "Como orientación: webs y landings desde {price:80000} (desde una semana), bots de Telegram desde {price:50000} (desde una semana), Mini Apps desde {price:100000} (desde dos semanas), agentes de IA y automatización desde {price:100000} (desde dos semanas). Los encargos complejos cuestan más; la cifra exacta se acuerda tras el briefing."
       },
       "8": {
         "question": "¿Trabajáis con clientes de fuera de vuestra región?",
