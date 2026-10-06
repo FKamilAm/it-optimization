@@ -22,8 +22,36 @@ import { DEFAULT_LOCALE, LOCALE_STORAGE_KEY, PREFIXED_LOCALES } from "@/i18n/con
  *   браузера поисковики не любят и могут не проиндексировать то, что за ним.
  *
  * Раскладку клавиатуры определить нельзя — браузер её не отдаёт. Доступен
- * только язык интерфейса (`navigator.languages`), и это именно он.
+ * только язык интерфейса (`navigator.languages`), и это именно он. Страну по
+ * IP тоже не узнать: у статического сайта нет своего сервера.
+ *
+ * Кто куда попадает при первом заходе:
+ * - испанский или английский идут в списке раньше русского — на свою версию;
+ * - русский или язык из RUSSIAN_READING раньше прочих — остаётся на русской;
+ * - ни одного из них (португальский, немецкий, китайский…) — на английскую.
  */
+
+/**
+ * Языки, чьи носители обычно читают по-русски: Беларусь, Центральная Азия,
+ * Закавказье, республики России. Для них русская версия понятнее английской.
+ * Коды — первая часть BCP 47 (`kk` из `kk-KZ`).
+ */
+const RUSSIAN_READING = [
+  "ru",
+  "be",
+  "kk",
+  "ky",
+  "uz",
+  "tg",
+  "tk",
+  "hy",
+  "az",
+  "tt",
+  "ba",
+];
+
+/** Язык для всех, чей язык браузера сайт не знает. */
+const FALLBACK_LOCALE: (typeof PREFIXED_LOCALES)[number] = "en";
 
 // Скрипт выполняется до отрисовки, поэтому он маленький и без зависимостей.
 // Любая ошибка внутри не должна мешать странице открыться — отсюда try/catch
@@ -78,18 +106,25 @@ const script = `
       ? navigator.languages
       : [navigator.language || ''];
 
+    /* Языки, носители которых обычно читают по-русски: посетителю из
+       Казахстана с браузером на казахском русская версия понятнее английской. */
+    var STAY = ${JSON.stringify(RUSSIAN_READING)};
+
     var match = null;
-    for (var j = 0; j < langs.length && !match; j++) {
-      var tag = String(langs[j]).toLowerCase();
-      /* Русский встретился раньше прочих — остаёмся здесь. */
-      if (tag === 'ru' || tag.indexOf('ru-') === 0) break;
-      for (var k = 0; k < PREFIXES.length; k++) {
-        if (tag === PREFIXES[k] || tag.indexOf(PREFIXES[k] + '-') === 0) {
-          match = PREFIXES[k];
-          break;
-        }
-      }
+    var stay = false;
+    var known = false;
+    for (var j = 0; j < langs.length && !match && !stay; j++) {
+      var base = String(langs[j]).toLowerCase().split('-')[0];
+      if (!base) continue;
+      known = true;
+      /* Русский (или близкий к нему) встретился раньше прочих — остаёмся здесь. */
+      if (STAY.indexOf(base) !== -1) stay = true;
+      else if (PREFIXES.indexOf(base) !== -1) match = base;
     }
+
+    /* Ни одного из наших языков: португальцу или немцу английский понятнее
+       русского. Пустой список языков — не сигнал, тогда остаёмся на русском. */
+    if (!match && !stay && known) match = ${JSON.stringify(FALLBACK_LOCALE)};
 
     /* Решение принимается один раз, каким бы оно ни было. */
     try { localStorage.setItem(KEY, match || ${JSON.stringify(DEFAULT_LOCALE)}); } catch (e) {}
