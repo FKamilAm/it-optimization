@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { BRAND_NAME, LOCALE_OG, OG_IMAGE, type Locale } from "@/i18n/config";
-import { PROFILES, SITE, orgFor } from "@/lib/constants";
+import { ACCREDITATION, PROFILES, SITE, orgFor } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 
 /**
@@ -23,6 +23,7 @@ export async function StructuredData({ locale }: { locale: Locale }) {
   const meta = await getTranslations({ locale, namespace: "meta" });
   const name = BRAND_NAME[locale];
   const org = orgFor(locale);
+  const accreditation = await getTranslations({ locale, namespace: "accreditation" });
 
   const organization = {
     "@context": "https://schema.org",
@@ -40,6 +41,21 @@ export async function StructuredData({ locale }: { locale: Locale }) {
       addressCountry: "RU",
     },
     sameAs: Object.values(PROFILES),
+    // Госаккредитация Минцифры — с номером записи в реестре и ссылкой на
+    // выписку, чтобы поисковик видел не голое заявление, а документ.
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      name: accreditation("badge"),
+      credentialCategory: "accreditation",
+      identifier: ACCREDITATION.registryNumber,
+      dateCreated: ACCREDITATION.decisionDate,
+      url: `${siteUrl}${ACCREDITATION.document}`,
+      recognizedBy: {
+        "@type": "GovernmentOrganization",
+        name: ACCREDITATION.authority.name,
+        url: ACCREDITATION.authority.url,
+      },
+    },
   };
 
   const website = {

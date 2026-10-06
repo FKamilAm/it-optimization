@@ -748,5 +748,12 @@
   "notFound": {
     "title": "Page not found",
     "home": "Back to homepage"
+  },
+  "accreditation": {
+    "badge": "State-accredited IT company · Ministry of Digital Development of Russia",
+    "badgeHint": "Open the extract from the register of accredited IT companies (PDF, in Russian)",
+    "label": "Accreditation",
+    "record": "Ministry of Digital Development of Russia, register entry No. {number} of {date}",
+    "document": "Register extract (PDF, in Russian)"
   }
 }

@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { FileText, Mail, MapPin, Phone } from "lucide-react";
 import { FooterWordmark } from "@/components/layout/footer-wordmark";
-import { SITE, orgFor } from "@/lib/constants";
+import { ACCREDITATION, SITE, orgFor } from "@/lib/constants";
+import { formatPostDate } from "@/lib/blog/types";
 import { usePaths } from "@/i18n/use-paths";
 
 interface FooterProps {
@@ -51,6 +52,28 @@ export function Footer({ companyName }: FooterProps) {
                 </dt>
                 <dd className="font-mono text-base tracking-wide text-white/90">
                   {org.ogrn}
+                </dd>
+              </div>
+              <div className="flex flex-col gap-1.5 sm:col-span-2">
+                <dt className="text-xs tracking-[0.18em] text-white/60 uppercase">
+                  {t("accreditation.label")}
+                </dt>
+                <dd className="flex flex-col gap-1.5 text-base text-white/90">
+                  <span>
+                    {t("accreditation.record", {
+                      number: ACCREDITATION.registryNumber,
+                      date: formatPostDate(ACCREDITATION.decisionDate, paths.locale),
+                    })}
+                  </span>
+                  <a
+                    href={ACCREDITATION.document}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-fit items-center gap-2 text-white/60 underline-offset-4 transition-colors hover:text-white hover:underline"
+                  >
+                    <FileText className="h-4 w-4 shrink-0" aria-hidden="true" />
+                    {t("accreditation.document")}
+                  </a>
                 </dd>
               </div>
             </dl>

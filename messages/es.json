@@ -748,5 +748,12 @@
   "notFound": {
     "title": "Página no encontrada",
     "home": "Volver al inicio"
+  },
+  "accreditation": {
+    "badge": "Empresa de TI acreditada · Ministerio de Desarrollo Digital de Rusia",
+    "badgeHint": "Abrir el extracto del registro de empresas de TI acreditadas (PDF, en ruso)",
+    "label": "Acreditación",
+    "record": "Ministerio de Desarrollo Digital de Rusia, registro n.º {number} del {date}",
+    "document": "Extracto del registro (PDF, en ruso)"
   }
 }

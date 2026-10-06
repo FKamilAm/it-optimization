@@ -1,15 +1,17 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { ArrowDownRight } from "lucide-react";
+import { ArrowDownRight, BadgeCheck } from "lucide-react";
 import { Reveal } from "@/components/animations/reveal";
 import { useContactModal } from "@/components/providers/contact-modal-provider";
 import { Button } from "@/components/ui/button";
 import { HeroLogo } from "@/components/hero/hero-logo";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
+import { ACCREDITATION } from "@/lib/constants";
 
 export function HeroSection() {
   const t = useTranslations("hero");
+  const accreditation = useTranslations("accreditation");
   const { openContactModal } = useContactModal();
   const { scrollToSection } = useSmoothScroll();
 
@@ -27,6 +29,24 @@ export function HeroSection() {
       </div>
 
       <div className="container-premium relative z-10 pt-8 pb-12 md:py-[var(--spacing-section)]">
+        {/* Аккредитация — над заголовком, а не в подвале одной строкой: это
+            первое, что проверяет заказчик, выбирая подрядчика. Плашка ведёт на
+            саму выписку из реестра, чтобы слова было чем подтвердить. */}
+        <Reveal>
+          <a
+            href={ACCREDITATION.document}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={accreditation("badgeHint")}
+            className="border-accent-border bg-accent-soft text-foreground/85 hover:border-accent hover:text-foreground mb-6 inline-flex max-w-full items-center gap-2 rounded-full border py-1.5 pr-4 pl-2 text-sm font-medium transition-colors duration-300 sm:mb-8"
+          >
+            <BadgeCheck
+              className="fill-accent text-foreground h-5 w-5 shrink-0"
+              aria-hidden="true"
+            />
+            <span>{accreditation("badge")}</span>
+          </a>
+        </Reveal>
         <Reveal>
           <h1 className="heading-display max-w-[1450px] text-balance lg:max-w-[58%]">
             {t("title")}
