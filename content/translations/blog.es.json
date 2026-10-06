@@ -1,0 +1,836 @@
+{
+  "svoya-crm-ili-gotovaya": {
+    "title": "¿CRM propio o uno ya hecho? Cuándo basta una solución estándar y cuándo no",
+    "excerpt": "En qué se diferencia un CRM ya hecho de uno propio, no por sus funciones sino por sus consecuencias: con qué techos chocan los sistemas estándar, qué decisiones tendrás que tomar tú mismo, cuánto cuesta el desarrollo y por qué la respuesta correcta casi siempre no es «o», sino «y».",
+    "category": "Desarrollo",
+    "lead": "La pregunta «¿usamos un CRM ya hecho o desarrollamos el nuestro?» casi nunca va de funciones. Las listas de prestaciones de los sistemas estándar son más largas que las de cualquier desarrollo a medida, y en una tabla comparativa el producto ya hecho gana siempre. La diferencia aparece más tarde, cuando los procesos de la empresa dejan de caber en un modelo de datos ajeno. Vemos dónde ocurre eso, qué tendrás que resolver por tu cuenta y cuánto cuesta cada camino.",
+    "metaTitle": "CRM propio o ya hecho: qué elegir y cuánto cuesta",
+    "metaDescription": "Comparamos un CRM ya hecho con uno a medida: dónde tocan techo los sistemas estándar, cuánto cuesta uno propio y cuándo basta uno ya hecho con ajustes.",
+    "sections": [
+      {
+        "heading": "«Necesitamos un CRM» todavía no es un requisito",
+        "body": [
+          "Cada empresa entiende cosas distintas por CRM. Para el departamento de ventas es el embudo de oportunidades y los recordatorios de llamadas. Para una agencia, el control de proyectos, horas y facturas. Para una empresa de servicio técnico, las solicitudes, los técnicos asignados y el almacén de repuestos. Para una fábrica, los pedidos, los envíos y la conexión con la maquinaria. Las cuatro cosas se llaman con la misma palabra, y esa es la primera razón por la que la comparación «propio o ya hecho» sale torcida: no se comparan sistemas, sino ideas sobre lo que el sistema debería hacer.",
+          "Por eso conviene empezar la conversación no eligiendo un producto, sino con una sola pregunta: ¿qué proceso quieres dejar de llevar en la cabeza y en los mensajes? Una respuesta como «perdemos solicitudes» apunta al embudo y a los recordatorios, justo lo que los sistemas ya hechos hacen bien. Una respuesta como «no sabemos cuánto ganamos en cada proyecto, porque parte del trabajo se cobra en dólares y parte en rublos, y a los subcontratistas les pagamos según lo realizado» apunta a un control que el producto estándar no ofrece en la forma necesaria.",
+          "La buena noticia es que al primer tipo de necesidad no hace falta responder con desarrollo, y no conviene hacerlo. La mala es que al segundo tipo un sistema ya hecho solo responde hasta cierta escala, y el límite no se ve de inmediato."
+        ]
+      },
+      {
+        "heading": "Lo que un sistema ya hecho sí te da",
+        "body": [
+          "Un CRM ya hecho gana donde se le suele subestimar: no en las funciones, sino en todo lo que las rodea.",
+          "Funciona hoy. No dentro de cuatro semanas ni de tres meses: esta misma tarde, después de registrarte e importar los contactos desde una hoja de cálculo. Para una empresa que está perdiendo solicitudes ahora mismo, eso pesa más que casi cualquier argumento de arquitectura.",
+          "Tiene una aplicación móvil que alguien mantiene. Una aplicación propia es un proyecto aparte, con su propio presupuesto, dos tiendas de aplicaciones, revisión de cada actualización y un ciclo de versiones. Normalmente no se incluye en el presupuesto de desarrollo del CRM, y después resulta que los comerciales necesitan trabajar desde el móvil.",
+          "Tiene integraciones listas con telefonía, correo, mensajerías, contabilidad y cajas registradoras. Cada una de ellas, en un sistema propio, son varios días de trabajo y unos cuantos días más hasta que deja de romperse.",
+          "Y tiene gente en el mercado laboral. A un especialista en configurar un CRM extendido se le puede contratar en una semana. A alguien que entienda tu propio sistema no se le puede contratar en absoluto: solo puedes formarlo o seguir pagando a quienes lo escribieron.",
+          "Es una lista seria. Solo vale la pena renunciar a ella cuando a cambio obtienes algo que el producto estándar, por principio, no tiene."
+        ]
+      },
+      {
+        "heading": "Tres techos con los que se choca",
+        "body": [
+          "El primero es el modelo de datos. Un sistema ya hecho está construido en torno a las entidades «lead», «contacto», «empresa» y «oportunidad». Mientras tu proceso encaje en ellas, todo va bien. En cuanto aparece una entidad que ese modelo no tiene, se empieza a simularla con lo que haya a mano: el proyecto se convierte en una oportunidad con campos adicionales, la fase de producción en una etapa del embudo, el subcontratista en un contacto con una etiqueta. Cada una de estas sustituciones funciona, pero añade una regla que solo existe en la cabeza del equipo. Al cabo de un año se acumulan una veintena de reglas así, y un empleado nuevo no logra entender por qué una oportunidad significa una venta y otra, una fase de montaje.",
+          "El segundo son los informes. En los sistemas ya hechos, los informes se construyen sobre los campos que el sistema considera importantes. Cuando la mitad del significado vive en campos adicionales y en convenciones internas, el informe empieza a mentir: no porque calcule mal, sino porque calcula lo que no es. El desenlace típico: los datos se exportan a Excel y se calculan a mano, es decir, se vuelve exactamente al punto de partida.",
+          "El tercero es el coste total de propiedad a varios años vista. Le dedicamos un apartado más abajo, porque casi siempre se calcula mal.",
+          "Lo importante es que ninguno de estos techos llega el primer mes. Los tres son consecuencia del crecimiento, y precisamente por eso «empezar con uno ya hecho» casi nunca es un error."
+        ]
+      },
+      {
+        "heading": "Qué significa de verdad «un CRM propio»",
+        "body": [
+          "Un sistema propio no es «lo mismo, pero con nuestros campos». Es asumir decisiones que en un sistema ya hecho alguien ya tomó por ti, y de cuya existencia no sabías, porque no se ven desde la interfaz.",
+          "No lo sabemos por haberlo leído: tenemos un CRM propio, que escribimos para nosotros mismos y en el que llevamos leads, clientes, proyectos, tareas y accesos. A continuación, cinco decisiones tomadas en él. Parecen detalles técnicos, pero detrás de cada una hay un error concreto que, de lo contrario, ocurre sin falta."
+        ]
+      },
+      {
+        "heading": "Dinero: por qué los importes se guardan en céntimos",
+        "body": [
+          "El dinero no se puede guardar como un número con decimales. Un ordenador no sabe representar con exactitud 0,1 y 0,2: su suma no es 0,3, sino que difiere en una cantidad ínfima. En una sola operación no se nota. Con varios miles de filas, el informe empieza a desviarse de la realidad en céntimos, luego en unidades enteras, y nadie entiende de dónde sale la diferencia.",
+          "Por eso en nuestro sistema todos los importes se guardan como un número entero de céntimos, y solo pasan a su forma habitual en pantalla y en el momento de introducirlos. El campo no se llama «importe», sino «importe en unidades menores», y es a propósito: si el campo hubiera cambiado de significado en silencio, cada sitio donde se olvidó corregirlo mostraría un valor cien veces mayor.",
+          "En un CRM ya hecho no hace falta pensar en esto: ya está resuelto. En uno propio hay que pensarlo antes de que la base de datos tenga sus primeras mil filas, no después."
+        ]
+      },
+      {
+        "heading": "Dos monedas que no se pueden sumar",
+        "body": [
+          "Parte del trabajo lo facturamos en rublos y parte en dólares. La solución obvia es convertirlo todo a una sola moneda y mostrar un total general. Conscientemente, no lo hacemos.",
+          "Para sumar rublos y dólares hace falta un tipo de cambio. El tipo de cambio varía. Eso significa que el importe que el informe mostró ayer será otro mañana, aunque no haya cambiado ninguna operación. Un total que cambia por sí solo no se puede cuadrar con nada, y la confianza en él desaparece con la primera discrepancia con contabilidad.",
+          "Por eso los totales se calculan por separado para cada moneda: dos líneas en lugar de una. Es algo menos cómodo y completamente honesto. Si la empresa necesita precisamente un total único, también necesita un tipo de cambio fijado en la fecha de cada operación, y eso ya no es un campo, sino un mecanismo aparte que hay que diseñar a conciencia."
+        ]
+      },
+      {
+        "heading": "Contraseñas: por qué el servidor no debe verlas",
+        "body": [
+          "En un CRM acaban apareciendo, inevitablemente, accesos: hosting, dominios, paneles de administración de los sitios de los clientes, correo. La tentación es guardarlos en un campo normal, como todo lo demás. El problema es que la base de datos sale del servidor cada noche en forma de copia de seguridad, y cualquiera de esas copias es una lista servida en bandeja de todas las contraseñas de la empresa.",
+          "En nuestro caso, las contraseñas se cifran directamente en el navegador, con una clave que se deriva de una frase maestra y que nunca se envía al servidor. El servidor guarda un texto ilegible y no puede descifrarlo ni siquiera en teoría. La copia de seguridad, por su parte, vale exactamente lo mismo que una secuencia aleatoria de caracteres.",
+          "Esta decisión tiene un precio, y hay que conocerlo de antemano: una frase maestra olvidada no la recupera nadie, ni siquiera el dueño del servidor. Tampoco se pueden buscar ni comprobar contraseñas en el servidor: para eso haría falta la clave, y con la clave en el servidor se pierde todo el sentido. No es un fallo; son las condiciones del trato.",
+          "Los sistemas ya hechos suelen ofrecer un almacén de accesos en el que el descifrado se hace de su lado. Es más cómodo y protege frente a otro modelo de amenazas. Elegir entre los dos enfoques es elegir de qué te proteges exactamente, y esa decisión también tienes que tomarla tú."
+        ]
+      },
+      {
+        "heading": "Un borrado que no borra enseguida",
+        "body": [
+          "El botón «eliminar» de un sistema de gestión casi nunca debería borrar de inmediato. La gente se equivoca, y un proyecto eliminado por error junto con toda su correspondencia es una pérdida que no hay forma de reponer.",
+          "La solución estándar es el borrado lógico: el registro se marca como eliminado y desaparece de las listas. Tiene un efecto secundario que se suele olvidar: si nada elimina esos registros de verdad, se acumulan para siempre y acaban en cada copia de seguridad nocturna. En el caso de los contactos de clientes, eso choca directamente con la Ley Federal 152-FZ, la ley rusa de datos personales, que espera que los datos personales se eliminen cuando se ha cumplido la finalidad de su tratamiento.",
+          "Por eso, para nosotros, eliminar significa treinta días de prórroga, no un cementerio: durante un mes el registro se puede recuperar de la papelera, y después una tarea diaria lo borra definitivamente. Las notas se borran junto con el registro, no antes; de lo contrario, un proyecto restaurado volvería sin su discusión, lo que es casi tan malo como no volver en absoluto."
+        ]
+      },
+      {
+        "heading": "Los estados no recuerdan nada",
+        "body": [
+          "La causa más frecuente de una venta perdida no es la falta de un CRM, sino que la ficha lleva cuatro meses tranquilamente en el estado «en conversaciones». Un estado no sabe recordarse a sí mismo: describe una situación, no un compromiso.",
+          "Por eso el campo principal de nuestros leads no es el estado, sino el siguiente paso: una fecha y una línea sobre qué hay que hacer exactamente. Un siguiente paso vencido es lo único que lleva un lead a la pantalla principal y al resumen de la mañana. La línea de descripción importa tanto como la fecha: el recordatorio «llamar por el presupuesto — vencido hace 3 días» se entiende sin abrir la ficha, mientras que un simple «lead vencido» obliga a abrirla y hacer memoria.",
+          "El resumen llega al chat del equipo por la mañana, y no llega en absoluto si no hay nada que recordar. Un «todo en orden» diario acostumbra a no abrir el bot, y entonces un día también se pasa por alto lo importante.",
+          "Los sistemas ya hechos tienen mecanismos de recordatorio casi siempre. La cuestión es si son obligatorios: si el campo «siguiente paso» se puede dejar vacío, nadie lo rellenará."
+        ]
+      },
+      {
+        "heading": "Cuánto cuesta un CRM propio",
+        "body": [
+          "Con nosotros, el desarrollo de un CRM empieza desde {price:400000} y las primeras cuatro semanas: un sistema sobre una arquitectura ya preparada, con los módulos clave, roles, integraciones básicas y migración de datos. Procesos a medida, dashboards, integraciones con servicios y telefonía y formación del equipo: desde {price:700000} y ocho semanas. Una plataforma compleja, con permisos diferenciados por departamento y preparada para soportar carga: desde {price:1200000} y doce semanas.",
+          "A esto hay que sumar, con honestidad, lo que no suele entrar en el presupuesto de desarrollo. Los ajustes tras el lanzamiento: los primeros meses el sistema cambia sin parar, porque el trabajo real siempre difiere del descrito al principio. El hosting y las copias de seguridad. Las actualizaciones de dependencias y de seguridad. Y lo más caro: la disponibilidad de personas capaces de hacer cambios.",
+          "Para el mantenimiento conviene reservar en torno al 15–20 % del coste de desarrollo al año. Menos significa que el sistema irá envejeciendo y un día no pedirá ajustes, sino reescribirse."
+        ]
+      },
+      {
+        "heading": "Cuánto cuesta uno ya hecho a tres años",
+        "body": [
+          "El coste de un sistema ya hecho casi siempre se calcula por el precio de la licencia, y casi siempre es un error. Hay que sumar cuatro cosas.",
+          "La suscripción: normalmente por usuario y mes, y crece con el equipo. La implantación: configurar embudos, permisos y plantillas e importar los datos; es un trabajo aparte que hace un integrador. Los desarrollos adicionales: todo lo que no se configura marcando casillas y exige módulos o scripts; a largo plazo es la partida más impredecible. Y la migración: el coste de salida, si algún día decides irte.",
+          "El último punto es el que todo el mundo advierte más tarde. Los datos de un sistema ya hecho se pueden exportar, pero se exportan en su modelo: oportunidades con etapas, campos con nombres internos, archivos en un paquete aparte. Las relaciones entre entidades y la lógica de los procesos no se exportan en absoluto, porque viven en la configuración. Cuanto más tiempo y más a fondo estés en el sistema, más caro sale irte.",
+          "A un año vista, el ya hecho es casi siempre más barato. A tres o cinco años, para un equipo que adapta el sistema activamente, la diferencia se reduce y a veces cambia de signo. Aquí no hay una respuesta universal: hay una aritmética que vale la pena hacer con tus propias cifras."
+        ]
+      },
+      {
+        "heading": "El híbrido, que es lo que más a menudo hace falta",
+        "body": [
+          "La disyuntiva «propio o ya hecho» es falsa con más frecuencia de lo que parece. La opción que funciona suele estar en medio: el CRM ya hecho se queda donde es fuerte —embudo, llamadas, mensajes, aplicación móvil— y a su lado aparecen servicios propios para lo que no encaja en su modelo.",
+          "Un área de cliente o de socio con tu lógica de cálculo. El control de la producción o de los trabajos de campo. Un panel para un departamento que necesita algo distinto de lo que muestra el CRM. El cálculo de precios con tu propia fórmula. Todo eso vive por separado e intercambia datos con el CRM mediante una integración.",
+          "Este enfoque tiene un precio: la sincronización. Dos sistemas con datos compartidos acabarán desincronizándose si no se decide de antemano cuál manda en cada entidad. La regla es sencilla y obligatoria: cada entidad tiene exactamente un dueño, los demás leen. El cliente se da de alta en el CRM y el área de cliente lo lee; el pedido se crea en el área de cliente y el CRM lo lee. En cuanto ambos lados empiezan a escribir en el mismo campo, empieza la conciliación manual.",
+          "A cambio, el desarrollo es menor, el techo desaparece y no hay que mudarse a ningún sitio."
+        ]
+      },
+      {
+        "heading": "Cómo elegir: una lista de comprobación breve",
+        "body": [
+          "Uno ya hecho es suficiente si tu proceso consiste en solicitudes, llamadas y oportunidades; si el equipo tiene hasta 15–20 personas; si necesitas empezar en las próximas semanas; si no estás dispuesto a mantener un desarrollo de forma permanente.",
+          "Uno propio merece considerarse si la entidad clave de tu negocio no se llama «oportunidad» y no se puede representar como tal sin forzarla; si la mitad de los datos vive en campos adicionales y convenciones internas; si los informes se acaban calculando en Excel de todos modos; si los datos no pueden salir de la empresa por exigencia del cliente o del regulador; si ya pagas tanto al integrador que la suma a tres años es comparable a la del desarrollo.",
+          "Y aparte: si no puedes describir tu proceso en una página, ningún sistema te ayudará. Automatizar un proceso sin describir da como resultado un proceso sin describir que, además, ahora tiene una base de datos."
+        ]
+      },
+      {
+        "heading": "Cuándo no necesitas un CRM propio",
+        "body": [
+          "No lo necesitas si el problema principal es la disciplina, no la herramienta. El sistema no obligará a nadie a llamar; solo mostrará que no se llamó.",
+          "No lo necesitas si el proceso cambia cada mes. El desarrollo fija el proceso en código, y fijar lo que todavía no se ha asentado significa reescribir. En esta fase es más útil un sistema ya hecho, e incluso una hoja de cálculo.",
+          "No lo necesitas si no hay nadie que se haga responsable de él. El sistema debe tener un dueño dentro de la empresa: no un desarrollador, sino una persona que decide cómo deben ser las cosas. Sin esa persona, cualquier CRM, propio o ya hecho, se convierte en medio año en un vertedero de fichas.",
+          "Y no lo necesitas si todavía no has probado uno ya hecho. Un mes de trabajo con un producto estándar da una lista de quejas concretas, y esa es la mejor especificación técnica que se le puede llevar a un desarrollador. Sin ella, el desarrollo empieza adivinando."
+        ]
+      },
+      {
+        "heading": "Por dónde empezar",
+        "body": [
+          "Describe en una página el proceso que más te duele: quién hace qué, en qué orden y qué se considera el resultado. Comprueba si encaja sin forzarlo en las entidades de un sistema ya hecho. Si encaja, elige uno ya hecho y vuelve a esta pregunta dentro de un año. Si no encaja, ya sabes qué hay que desarrollar exactamente, y la conversación con el proveedor no empezará de cero.",
+          "Hacemos las dos cosas: diseñamos CRM y plataformas propias y conectamos a los sistemas existentes los servicios que les faltan. Si no tienes claro cuál de los dos caminos es el tuyo, escríbenos: analizaremos el proceso y te diremos con honestidad si te basta con uno ya hecho."
+        ]
+      }
+    ],
+    "takeaways": [
+      "La pregunta «propio o ya hecho» no se decide con una lista de funciones, sino viendo si la entidad principal de tu negocio encaja sin forzarla en el modelo «lead — contacto — oportunidad».",
+      "Un sistema ya hecho gana por lo que rodea a las funciones: funciona hoy y tiene aplicación móvil, integraciones listas y especialistas en el mercado laboral.",
+      "Un CRM propio son decisiones que en el producto estándar ya se tomaron por ti: guardar el dinero en céntimos, prohibir sumar monedas distintas, cifrar las contraseñas en el navegador, el borrado diferido y el siguiente paso obligatorio.",
+      "Desarrollo: desde {price:400000} y cuatro semanas, más un 15–20 % del coste al año para mantenimiento; en el coste del ya hecho hay que contar la suscripción, la implantación, los desarrollos adicionales y el precio de salida.",
+      "Lo más habitual es que la respuesta correcta sea un híbrido: un CRM ya hecho para el embudo más servicios propios para lo que no encaja en él, con un único dueño para cada entidad.",
+      "Si el proceso no está descrito en una página o no hay nadie que se haga responsable del sistema, el desarrollo no ayudará: empieza con uno ya hecho y vuelve a la pregunta dentro de un año."
+    ]
+  },
+  "skolko-stoit-sajt": {
+    "title": "Cuánto cuesta un sitio web en 2026: de qué depende el precio",
+    "excerpt": "Precios reales de una web de presentación, una landing, un sitio corporativo, un sitio B2B y una tienda online: de qué se compone el presupuesto, qué encarece el proyecto, qué no suele estar incluido y cómo comparar las propuestas de los proveedores.",
+    "category": "Sitios web",
+    "lead": "Los precios de desarrollo de un sitio web varían decenas de veces, y no siempre se debe a la codicia de unos y al dumping de otros: bajo la palabra «sitio web» se esconden productos muy distintos. Repasamos por tipos —web de presentación, landing, sitio corporativo, B2B y tienda online— cuánto cuesta cada uno, de qué se compone el precio, qué no suele incluir y cómo leer un presupuesto para no pagar de más ni ahorrar en tu contra.",
+    "metaTitle": "Cuánto cuesta un sitio web en 2026: precios de desarrollo",
+    "metaDescription": "Precios de un sitio web en 2026: presentación, landing, corporativo, B2B y tienda online. Qué compone el presupuesto, qué lo encarece y el coste del soporte.",
+    "sections": [
+      {
+        "heading": "Por qué la misma pregunta recibe respuestas de {price:20000} a {price:1000000}",
+        "body": [
+          "Pregunta a cinco proveedores cuánto cuesta un sitio web y obtendrás cinco respuestas que se diferencian hasta diez veces. Eso no significa necesariamente que alguien haga trampa: bajo la palabra «sitio web» se esconde media docena de productos distintos, y comparar sus precios es como comparar el de una bicicleta con el de un camión solo porque ambos son «transporte».",
+          "Una web de presentación de una sola página con los datos de contacto y un sitio corporativo de veinte páginas integrado con el CRM no se diferencian en volumen de trabajo en unos pocos puntos porcentuales, sino varias veces. Una tienda online añade catálogo, carrito, pago y envío, y cada uno de esos módulos es un proyecto en sí mismo. Un sitio para ventas B2B arrastra listas de precios, calculadoras, áreas privadas para partners e intercambio de datos con 1C, el sistema de contabilidad y gestión más extendido en Rusia.",
+          "Por eso la respuesta honesta a «cuánto cuesta» empieza con otra pregunta: qué sitio y para qué. A continuación, un repaso por tipos con precios reales: de qué se componen, qué no suelen incluir y cómo comparar propuestas para no pagar de más ni ahorrar en tu contra."
+        ]
+      },
+      {
+        "heading": "De qué se compone el precio",
+        "body": [
+          "Un sitio web no es un producto de estantería, sino el trabajo de varios especialistas, y el precio está formado casi por completo por sus horas. Alguien diseña la estructura y el recorrido del visitante, alguien dibuja el diseño, alguien maqueta y programa, alguien escribe los textos, configura las integraciones, prueba en distintos dispositivos y lanza el sitio.",
+          "Cada una de estas etapas puede hacerse rápido con soluciones ya preparadas o con más tiempo y a tu medida. El diseño puede ser la adaptación de una plantilla a tu identidad visual o una maqueta única desde cero. Los textos puedes enviarlos tú o encargarlos con la estructura trabajada. El formulario de contacto puede limitarse a enviar un correo, o puede crear una operación en el CRM con la fuente y la etiqueta de la campaña publicitaria.",
+          "De ahí la regla principal para leer cualquier precio: no depende de la «belleza», sino de cuántas decisiones hay que tomar para tu caso concreto. Cuanto más estándar, más barato y más rápido. Cuanto más particular —lógica, integraciones, contenido—, más caro, y eso no es un recargo, sino horas reales de trabajo.",
+          "Todas las cifras de abajo son el límite inferior, el «desde». El importe final se fija tras el briefing, cuando se conoce el volumen: cuántas páginas, quién pone los textos y con qué sistemas hay que conectarse."
+        ]
+      },
+      {
+        "heading": "Web de presentación: desde {price:29000}",
+        "body": [
+          "Una web de presentación es una sola página que responde a tres preguntas: quién eres, qué haces y cómo contactarte. Servicios, ventajas, contacto, mapa y formulario de solicitud. Es suficiente para un profesional independiente, un estudio pequeño, un consultor o una empresa que solo necesita estar presente en internet y no parecer sospechosa cuando alguien la comprueba.",
+          "Con nosotros, una web de presentación básica sobre una base ya preparada y adaptada a la marca cuesta desde {price:29000} y se hace desde cinco días. La versión con diseño a medida, botones de contacto por mensajería, SEO básico y analítica parte de {price:49000}. Un diseño único con animaciones, redacción e integraciones, desde {price:90000}.",
+          "La principal limitación de una web de presentación es que tiene una sola página. Con ella es casi imposible captar tráfico de búsqueda para distintos servicios: el buscador necesita una página propia para cada consulta. Si piensas atraer clientes desde los buscadores, es un argumento para mirar desde el principio hacia un sitio de varias páginas, o al menos para hacer la web de presentación de forma que luego pueda crecer sin rehacerla desde cero."
+        ]
+      },
+      {
+        "heading": "Landing: desde {price:59000}",
+        "body": [
+          "Una landing también es de una sola página, pero su tarea es otra: no presentar la empresa, sino vender una oferta concreta a quien llega desde un anuncio. De ahí una estructura diferente —oferta, beneficios, objeciones, pruebas, llamada a la acción— y otras exigencias de velocidad y de analítica.",
+          "Una landing básica sobre una base ya preparada, con hasta seis pantallas de contenido, formulario y analítica conectada, parte de {price:59000} y de 7–10 días. Con diseño a medida para la oferta, un quiz o una calculadora para captar solicitudes, integración con el CRM y objetivos configurados para la publicidad, desde {price:98000}. Diseño único, versiones A/B para distintos tipos de tráfico, estructura trabajada y redacción, desde {price:180000}.",
+          "En una landing se ve especialmente bien por qué las integraciones y los objetivos cuestan dinero. Publicidad sin analítica configurada es un presupuesto del que no se puede saber qué parte funcionó. Un quiz en lugar de un formulario de cinco campos suele traer más solicitudes, pero solo si sus resultados llegan al comercial y no se quedan en el correo de alguien."
+        ]
+      },
+      {
+        "heading": "Sitio corporativo y sitio llave en mano: de {price:89000} a {price:400000}",
+        "body": [
+          "Un sitio de varias páginas es el formato principal para una empresa que quiere conseguir clientes desde los buscadores y transmitir solidez a quienes llegan por recomendación. Páginas propias para cada servicio, sobre la empresa, casos, contacto y, a veces, un blog: cada una con su tarea y su consulta de búsqueda.",
+          "Un sitio llave en mano sobre una plantilla ya preparada, con contenido para hasta ocho páginas, cuesta desde {price:89000}. Con diseño a medida, redacción, integración con el CRM y una base de SEO, desde {price:150000}. Un desarrollo único con escenarios complejos, desde {price:280000}.",
+          "El sitio corporativo es la misma categoría, pero con más peso en la marca y una estructura más grande. La versión básica, de hasta siete páginas con contenido, parte de {price:120000} y de diez días. Diseño a medida para la marca, hasta quince páginas con redacción, integración con el CRM y las mensajerías, SEO ampliado y analítica: desde {price:220000} y desde tres semanas. Diseño único, estructura y funcionalidad complejas y soporte tras el lanzamiento: desde {price:400000} y desde cinco semanas.",
+          "La mayor variable aquí es el número de páginas y quién escribe sus textos. Una página de servicio con una estructura pensada, respuestas a las preguntas y ejemplos supone entre medio día y un día de trabajo de redactor por página, y con quince páginas esa línea del presupuesto se convierte fácilmente en la más grande."
+        ]
+      },
+      {
+        "heading": "Sitio B2B: desde {price:180000}",
+        "body": [
+          "Un sitio B2B no le vende a una persona, sino a una empresa, y en él no se compra con un clic. El visitante es un responsable de compras, un ingeniero o un directivo que necesita encontrar rápido las especificaciones, descargar la lista de precios, estimar el coste y pedir una propuesta comercial, y después la decisión la toman cuatro personas en una reunión.",
+          "La versión básica sobre una base ya preparada, con catálogo, listas de precios, formulario para pedir una propuesta comercial e integraciones básicas, parte de {price:180000} y de tres semanas. Con diseño a medida, calculadora de costes, área de partner e integración con el CRM, desde {price:320000}. Lógica de venta compleja, intercambio de datos con 1C y con sistemas internos, portal para distribuidores: desde {price:550000} y desde ocho semanas.",
+          "Un sitio B2B se encarece casi siempre por los sistemas contables. Los precios y el stock que viven en 1C deben mostrarse actualizados en el sitio; si no, los comerciales pasarán cada día explicando a los clientes por qué «en la web el precio es otro». Configurar ese intercambio de forma fiable es un trabajo aparte, y no de los más rápidos."
+        ]
+      },
+      {
+        "heading": "Tienda online: desde {price:190000}",
+        "body": [
+          "La tienda es el tipo de sitio más «pesado», porque no se limita a contar, sino que vende por sí sola: catálogo, filtros, fichas de producto, carrito, proceso de compra, pago, envío, notificaciones y área de cliente. Cada uno de estos módulos debe funcionar sin intervención humana, también de noche y los fines de semana.",
+          "Una tienda básica sobre una base ya preparada, con catálogo de hasta cien productos, carrito, pago online y envío configurado, parte de {price:190000} y de tres semanas. Con diseño a medida y filtros, área de cliente e integración con 1C y el CRM, desde {price:350000}. Catálogo grande, escenarios de marketplace, contabilidad compleja y carga de contenido: desde {price:600000} y desde ocho semanas.",
+          "Conviene recordar aparte que cobrar en Rusia implica una caja registradora online y emitir recibos según la Ley Federal 54-FZ, la ley rusa de cajas registradoras, y que recoger nombres, teléfonos y direcciones conlleva las obligaciones de un responsable del tratamiento de datos personales. No son gastos de desarrollo, pero forman parte del lanzamiento, y es mejor conocerlos antes de llegar a él.",
+          "Y sobre el contenido. Cien fichas con fotos, descripciones y características son un volumen de trabajo que a menudo se subestima más que todo lo demás. Si los productos se cuentan por cientos, conviene exportarlos desde el sistema contable en lugar de cargarlos a mano."
+        ]
+      },
+      {
+        "heading": "Solución ya preparada o desarrollo desde cero",
+        "body": [
+          "En casi todas las categorías, la versión básica se monta sobre una solución ya preparada: una base probada que se adapta a la marca. No es «una plantilla barata sacada de internet», sino una forma de no pagar por inventar lo que se inventó hace tiempo: menús, formularios, diseño adaptable, velocidad de carga.",
+          "Este camino es más rápido y más barato, y encaja perfectamente cuando la tarea es estándar: presentar servicios, recoger solicitudes, mostrar un catálogo. Solo tiene una limitación: todo lo que no sea estándar habrá que encajarlo en una lógica ajena, y llega un momento en que eso sale más caro que hacer algo propio.",
+          "El desarrollo a medida está justificado cuando el sitio es parte de un proceso de negocio y no un escaparate. Una calculadora compleja, un área privada con datos de tus sistemas, una lógica de pedido especial, una carga para la que las soluciones prefabricadas no están pensadas. En ese caso pagas por que el sitio funcione exactamente como funciona tu negocio, y no al revés.",
+          "Para muchos, una estrategia razonable es empezar con una base ya preparada, comprobar que el sitio trae clientes y solo después invertir en lo particular allí donde se toque techo."
+        ]
+      },
+      {
+        "heading": "Qué encarece el proyecto",
+        "body": [
+          "Los textos. La partida más subestimada. Una página que vende necesita estructura, datos y respuestas a las objeciones: es trabajo, no «escribir un par de párrafos». Si no tienes textos propios, su coste debe preverse desde el principio; si no, el lanzamiento se atascará en páginas vacías.",
+          "Integraciones con sistemas sin documentación. Conectar el sitio con un CRM conocido es una tarea clara. Conectarlo con un sistema contable hecho en casa del que ya nadie recuerda cómo funciona es primero una investigación y después un desarrollo.",
+          "La migración desde el sitio anterior. Si el sitio actual tiene posiciones en los buscadores, hay que conservarlas: trasladar el contenido, configurar redirecciones de las direcciones antiguas a las nuevas y comprobar que no se ha perdido nada. Sin esto, durante los primeros meses el sitio nuevo y bonito trae menos que el viejo y feo.",
+          "Varios idiomas, animaciones fuera de lo común, roles de usuario complejos, requisitos de seguridad elevados: cada uno de ellos añade volumen, a veces considerable.",
+          "Y las aprobaciones. Un proyecto en el que cinco personas con opiniones distintas aprueban la maqueta dura más y cuesta más que uno con un único responsable. No es cuestión del carácter del cliente, sino de que cada iteración son horas."
+        ]
+      },
+      {
+        "heading": "Qué no suele estar incluido en el precio",
+        "body": [
+          "Dominio y hosting. Se registran a nombre del cliente y se pagan aparte, y así debe ser: la dirección del sitio tiene que ser tuya, no del proveedor. Para un sitio pequeño son importes casi simbólicos: poco dinero al año por el dominio y una cuota mensual pequeña por el hosting.",
+          "Licencias y servicios de pago: CMS y módulos comerciales, caja registradora online, notificaciones por SMS, mapas de pago, servicios de email marketing. Su coste depende de las soluciones elegidas y del volumen, y va en una línea aparte.",
+          "Fotos y vídeo. Si no tienes material propio, la sesión de fotos o la compra de imágenes se presupuesta aparte. Las fotos de stock de «socios sonrientes» funcionan peor que fotos honestas de tu taller hechas con el móvil.",
+          "Publicidad y posicionamiento. La base de SEO del presupuesto es la base técnica correcta: estructura, metaetiquetas, velocidad, datos estructurados. No es lo mismo que el posicionamiento, que es el trabajo continuo con el contenido y las consultas de búsqueda, empieza después del lanzamiento y se paga aparte."
+        ]
+      },
+      {
+        "heading": "Cuánto cuesta un sitio después del lanzamiento",
+        "body": [
+          "El lanzamiento no es el final de los gastos. Lo mínimo son el dominio y el hosting, y eso es casi nada. Lo demás depende de lo vivo que esté el sitio: si cambian los precios, si salen servicios nuevos, si hay publicidad apuntando a él.",
+          "Si el sitio es estático y cambia una vez cada seis meses, no hace falta soporte continuo: bastan cambios puntuales cuando surjan. Si es una tienda, un portal B2B o un sitio con integraciones, hay que vigilarlo: actualizar el motor y los módulos, comprobar que los formularios llegan, que el intercambio con 1C no se ha detenido y que se hacen las copias de seguridad.",
+          "Con nosotros, el soporte con monitorización, copias de seguridad, cambios menores y una bolsa de horas para tareas cuesta desde {price:40000/mo}; con prioridad y desarrollo de nuevas funciones, desde {price:80000/mo}; un equipo dedicado con garantías de SLA, desde {price:150000/mo}. También es posible un formato puntual, sin cuota mensual.",
+          "Sobre la seguridad, un apunte aparte. Un sitio que lleva años sin actualizarse es la vía de entrada más habitual para un ataque: los módulos obsoletos con vulnerabilidades públicamente conocidas se buscan de forma automática y masiva. Las actualizaciones no son un capricho del proveedor, sino un seguro."
+        ]
+      },
+      {
+        "heading": "Cómo comparar propuestas",
+        "body": [
+          "Compara el contenido, no el total. Una propuesta de {price:80000} y otra de {price:200000} a menudo describen sitios distintos. Pide que desglosen el presupuesto por etapas y mira qué incluye: cuántas páginas, de quién es el diseño, quién escribe los textos, qué integraciones, cuántas rondas de cambios.",
+          "Pregunta a quién pertenecerá el sitio. El código, los accesos al hosting, el panel de administración y el dominio deben estar a tu nombre. Un sitio en una plataforma cerrada del proveedor, que no se puede llevar a otra parte, convierte el cambio de proveedor en un desarrollo nuevo.",
+          "Aclara qué se considera lanzamiento y qué pasará después. ¿Hay un periodo de garantía durante el que los errores se corrigen gratis? ¿Quién hará los cambios dentro de tres meses y por cuánto?",
+          "Y fíjate en las preguntas que te hacen a ti. Un proveedor que te da un precio sin preguntar de dónde vendrán los clientes y qué deben hacer en el sitio vende horas, no resultados."
+        ]
+      },
+      {
+        "heading": "Por qué un sitio barato puede salir más caro",
+        "body": [
+          "Un sitio barato es una elección normal si necesitas validar una idea rápido o simplemente aparecer en internet. Los problemas empiezan cuando se compra como solución permanente y no lo es.",
+          "Escenario típico: un sitio de {price:20000} sin diseño adaptable y con carga lenta. La publicidad que apunta a él se encarece, porque los visitantes desde el móvil se van sin esperar a que cargue. Al cabo de un año se rehace, y se paga por segunda vez, ya el precio completo, además de perder tiempo.",
+          "Otro escenario: un sitio en el constructor del propio proveedor, que no se puede migrar. Funciona mientras pagas, y si cambias de proveedor hay que montarlo de nuevo.",
+          "Lo razonable es ahorrar no en la calidad de la base, sino en el volumen: lanzar menos páginas, pero bien hechas, y ampliar a medida que el sitio empieza a traer clientes. Una web de presentación hecha pensando en el futuro luego se convierte en un sitio completo en lugar de acabar en la basura."
+        ]
+      },
+      {
+        "heading": "Cómo ahorrar sin perder",
+        "body": [
+          "Prepara los materiales de antemano. Textos, fotos, logotipo, datos fiscales, lista de servicios con precios: todo lo que se espera de ti conviene reunirlo antes de empezar. Un proyecto parado a la espera del contenido cuesta dinero a las dos partes.",
+          "Designa a un único responsable. Una persona que recoge los comentarios de todos y toma las decisiones ahorra semanas de aprobaciones.",
+          "Empieza por lo principal. Define qué páginas y funciones hacen falta para las primeras solicitudes y cuáles pueden esperar. La integración con 1C, el área de cliente y el blog suelen tener más sentido en una segunda fase, cuando ya esté claro que el sitio funciona.",
+          "Y no ahorres en analítica. Los objetivos, los contadores y la transmisión correcta de las solicitudes son una parte barata del presupuesto, sin la cual es imposible saber si el sitio se ha amortizado siquiera."
+        ]
+      }
+    ],
+    "takeaways": [
+      "Un «sitio web» son seis productos distintos: web de presentación desde {price:29000}, landing desde {price:59000}, sitio llave en mano desde {price:89000}, corporativo desde {price:120000}, B2B desde {price:180000} y tienda online desde {price:190000}.",
+      "El precio se compone casi por completo de horas de especialistas y crece con el número de decisiones a la medida de tu caso: diseño, textos, integraciones.",
+      "Las principales fuentes de sobrecoste son los textos, las integraciones con sistemas sin documentación, la migración desde el sitio anterior conservando las posiciones y las aprobaciones largas.",
+      "Dominio, hosting, licencias de pago, sesiones de fotos y posicionamiento suelen ir aparte; el dominio y el hosting deben estar a nombre del cliente.",
+      "Las propuestas se comparan por el contenido del trabajo y por quién será el dueño del código y los accesos, no por el importe total.",
+      "Es razonable ahorrar en volumen, no en la calidad de la base: menos páginas al principio, pero pensadas para crecer."
+    ]
+  },
+  "telegram-bot-dlya-biznesa": {
+    "title": "Bot de Telegram para empresas: qué automatiza y cuánto cuesta",
+    "excerpt": "Qué tareas se delegan de verdad a un bot, en qué se diferencia una Mini App de un bot normal, dónde fallan las integraciones con el CRM y los pagos, cuánto cuesta desarrollarlo y mantenerlo, y cuándo una empresa no necesita un bot.",
+    "category": "Automatización",
+    "lead": "Un bot de Telegram parece un sustituto barato de una web y de una app: describes el escenario y recibes solicitudes. En la práctica, la mitad de los bots enmudecen al cabo de un mes, y normalmente no porque estén mal hechos, sino porque se les encargó una tarea que la empresa no tiene. Veamos qué se le encarga de verdad a un bot, en qué se diferencia de una Mini App, cuánto cuesta y cuándo es mejor no hacerlo.",
+    "metaTitle": "Bot de Telegram para empresas: tareas, plazos y precios",
+    "metaDescription": "Qué automatiza un bot de Telegram, en qué se diferencia de una Mini App, dónde fallan las integraciones con CRM y pagos, y cuánto cuesta crearlo y mantenerlo.",
+    "sections": [
+      {
+        "heading": "Qué es un bot desde el punto de vista del negocio",
+        "body": [
+          "Un bot de Telegram es un programa que funciona dentro de una conversación: recibe mensajes y pulsaciones de botones, responde según una lógica definida y se comunica con otros sistemas: el CRM, una hoja de cálculo, el servicio de pagos, tu base de datos. Por defecto no lleva ninguna inteligencia artificial: el bot hace exactamente lo que está previsto en el escenario.",
+          "Su principal ventaja es que vive donde la persona ya está. No hay que instalar una app, inventar una contraseña ni esperar el correo de confirmación. Un clic en el enlace, un botón «Iniciar» y el diálogo ha empezado. En las tareas en las que cada paso de más se lleva la mitad de las consultas, esa es la diferencia decisiva frente a una web, y más aún frente a una app móvil.",
+          "La segunda propiedad es menos evidente, pero define toda la mecánica: el bot solo puede escribir primero a una persona después de que esta se haya dirigido a él. Una base de suscriptores no se puede comprar, importar desde un archivo ni montar con los teléfonos de los clientes. Cada contacto se lo gana el bot por sí mismo, y eso mismo le impide convertirse en un canal de spam.",
+          "De ahí sale una regla sencilla: el bot es bueno donde hay una acción que se repite, como pedir cita, consultar un estado, dejar una solicitud o enviar un informe. Y es malo donde hace falta una única elección compleja que hay que hablar: eso acabará igualmente en una conversación con una persona, y es mejor que el bot lleve hasta ella en tres toques y no en treinta."
+        ]
+      },
+      {
+        "heading": "Cinco tareas que más a menudo se delegan a un bot",
+        "body": [
+          "Recepción de solicitudes. El bot hace tres o cuatro preguntas, recoge el contacto y pasa la solicitud a un comercial o directamente al CRM. El valor no está en el formulario en sí —también lo tienes en la web—, sino en que la persona no sale de la mensajería y responde a las preguntas de una en una, en lugar de enfrentarse a un cuestionario de diez campos.",
+          "Citas y recordatorios. Salón de belleza, clínica, taller mecánico, profesor particular: todo lo que funciona con agenda. El bot muestra los huecos libres, registra la cita y la recuerda con un día de antelación. Aquí el recordatorio es precisamente lo que da el rendimiento económico: reduce las ausencias, y cada ausencia es un hueco vacío en la agenda que ya se ha pagado en alquiler y salarios.",
+          "Estados de pedidos y avisos. «¿Dónde está mi pedido?» es la pregunta más frecuente al soporte de casi cualquier negocio con envíos. Si el estado llega solo, la pregunta ni siquiera surge, y la primera línea deja de dedicarse a recitar lo que pone una hoja de cálculo.",
+          "Respuestas a preguntas habituales. Horario, dirección, condiciones de envío, garantía, documentos. Aquí el bot no sustituye a una persona, sino a la décima repetición de lo mismo. A esta misma capa se suelen conectar las respuestas a preguntas formuladas libremente: cuando la pregunta no coincide con ningún botón, pero la respuesta está en tu base de conocimiento.",
+          "Procesos internos. La parte más infravalorada: peticiones de los empleados a IT o a mantenimiento, aprobaciones, informes desde las obras, recogida de fotos de los montajes. Un bot así no tiene ni marketing ni leads, pero acaba con la correspondencia repartida en diez chats y con el «te lo mandé, mira más arriba»."
+        ]
+      },
+      {
+        "heading": "Bot o Mini App: en qué se diferencian",
+        "body": [
+          "Un bot normal se comunica con mensajes, botones y comandos. Una Mini App es una interfaz completa dentro de Telegram: pantallas, listas, filtros, formularios, carrito, pago. Técnicamente es una aplicación web que se abre directamente en la mensajería, sin navegador y sin instalación.",
+          "La elección es sencilla. Si el escenario es lineal y cabe en cinco a diez pasos, un bot lo hará mejor: es más rápido, más ligero y no necesita diseño. Si hacen falta un catálogo con imágenes, filtros, un área de cliente o un historial de pedidos, entra en juego la Mini App, porque recorrer cien productos a base de botones es imposible.",
+          "Lo más habitual es combinarlos: el bot hace de punto de entrada y de canal de avisos, y la Mini App, de escaparate y área de cliente. El usuario pulsa un botón en el chat, abre la pantalla, hace el pedido y recibe los avisos de vuelta en la conversación.",
+          "Conviene recordar que una Mini App es una aplicación web con todo lo que eso implica. Hay que alojarla en algún sitio, debe cargar rápido en el móvil y comportarse bien con mala conexión. Los requisitos son los mismos que para la versión móvil de una web, y el volumen de trabajo, también."
+        ]
+      },
+      {
+        "heading": "Cómo funciona un bot por dentro",
+        "body": [
+          "Toda la comunicación pasa por la Bot API. El bot se crea en @BotFather, que entrega un token: en esencia, la contraseña del bot. Quien tiene el token es el bot: puede leer los mensajes entrantes y escribir en su nombre. Por eso el token se guarda en los secretos del servidor, no en el código, y menos aún en el repositorio.",
+          "El bot recibe los mensajes de una de dos maneras. Long polling: el propio programa pregunta a Telegram cada cierto tiempo si hay algo nuevo; funciona en cualquier sitio, incluso en una máquina local sin dominio. Webhook: es Telegram quien llama a tu dirección; hace falta un dominio con HTTPS válido, pero a cambio no hay consultas constantes. Para la mayoría de las tareas la diferencia no se nota, pero para depurar la primera opción es mucho más cómoda.",
+          "De aquí se deduce lo principal: el bot necesita un servidor que funcione las 24 horas. Un bot no es un archivo que se «sube al hosting», sino un proceso que tiene que estar vivo a las tres de la madrugada, cuando un cliente decide consultar el estado de su pedido.",
+          "El estado del diálogo también hay que guardarlo en algún sitio. Si el bot recuerda el paso del escenario solo en la memoria RAM, cualquier reinicio —y se produce con cada actualización— deja a la mitad de los usuarios a medio cuestionario. Una implementación correcta guarda el estado en una base de datos, y para la persona el reinicio pasa desapercibido.",
+          "Y sobre los límites. Telegram limita la frecuencia de envío: del orden de treinta mensajes por segundo en general, y bastante menos en los grupos. Un envío masivo a decenas de miles de personas no sale al instante: hay que repartirlo en el tiempo con una cola. Intentar mandarlo todo de golpe acaba en errores y en restricciones temporales para el bot."
+        ]
+      },
+      {
+        "heading": "Integraciones: dónde suelen fallar",
+        "body": [
+          "La integración más frecuente es con el CRM. Una solicitud que llega del bot debe convertirse en una oportunidad de venta con su origen, no en un mensaje en un chat general que alguien verá algún día. Sin eso, el bot se convierte en un canal más que nadie revisa.",
+          "Les siguen en popularidad las hojas de cálculo. Google Sheets va de maravilla para validar una hipótesis en un día y ver las primeras solicitudes. Como almacenamiento permanente son malas: no hay permisos de acceso ni historial, y cualquiera puede ordenar una columna y descuadrar los datos entre sí.",
+          "Pagos, calendarios, almacén, 1C (el software de gestión más extendido en Rusia), empresas de mensajería: todo eso se conecta por API, y ahí empieza el trabajo de verdad. Un servicio ajeno tiene vida propia: cambia el formato de sus respuestas, revoca claves, entra en mantenimiento.",
+          "Una integración no suele fallar en el lanzamiento, cuando todo se revisa, sino tras varios meses de calma. Por eso, en un bot en producción cada llamada externa tiene un reintento en caso de fallo y un aviso al responsable. El peor escenario no es un error, sino el silencio: las solicitudes dejaron de llegar al CRM y se supo dos semanas después, por la facturación.",
+          "Aparte, conviene acordar cuál es la fuente de verdad. Si el bot escribe en el CRM y un comercial edita a mano esa misma oportunidad, hay que decidir de antemano qué datos prevalecen cuando no coinciden. Esta conversación parece aburrida justo hasta el primer conflicto."
+        ]
+      },
+      {
+        "heading": "Pagos dentro de Telegram",
+        "body": [
+          "Hay dos maneras de cobrar. La primera son los pagos integrados de Telegram a través de un proveedor conectado: la persona no sale de la mensajería y el pago se hace en la misma ventana. La segunda es un enlace a una página de pago normal; queda menos fluido, pero se conecta más rápido y no depende de la lista de proveedores compatibles.",
+          "Para bienes digitales y suscripciones dentro de Telegram rige una mecánica aparte: el pago con estrellas (Stars). Las reglas de la plataforma al respecto cambian de vez en cuando, así que el método concreto conviene confirmarlo al arrancar el proyecto, no darlo por hecho a ciegas.",
+          "Elijas lo que elijas, en Rusia cobrar implica una caja registradora online y un recibo fiscal conforme a la Ley Federal 54-FZ, la ley rusa sobre cajas registradoras. Normalmente la fiscalización la resuelve el proveedor de pagos, pero hay que comprobarlo antes del lanzamiento, no después de la primera venta: el recibo es obligación del vendedor, no del desarrollador del bot.",
+          "Y piensa de antemano en las devoluciones. En un bot no son un botón, sino un proceso: quién decide, en qué plazo, cómo se devuelve el dinero y qué ve el cliente mientras tanto. El silencio ante una petición de devolución sale más caro que el propio importe: acaba en las reseñas."
+        ]
+      },
+      {
+        "heading": "Datos personales y la ley rusa 152-FZ",
+        "body": [
+          "En cuanto el bot pregunta el nombre, el teléfono, la dirección o la fecha de nacimiento, está recogiendo datos personales, con todas las obligaciones de un operador de datos personales. Hace falta un consentimiento, hace falta una política de tratamiento accesible, y esos datos deben guardarse en una base de datos situada en territorio ruso.",
+          "Lo práctico es recoger menos. Cada campo de más en el cuestionario no solo resta conversión, sino que suma responsabilidad. Si para pedir cita bastan el nombre y el teléfono, los datos del pasaporte en el bot no hacen falta nunca.",
+          "Mención aparte merece la conversación. Todo lo que la persona envía al bot pasa físicamente por tu servidor y a menudo se queda guardado ahí mismo, en los logs. Fotos de documentos, números de tarjeta enviados «por si acaso», detalles médicos: todo eso se acumula en archivos de texto de los que nadie se acuerda. Conviene limpiar los logs de forma programada y no escribir en ellos el contenido completo de los mensajes."
+        ]
+      },
+      {
+        "heading": "Cuánto cuesta el desarrollo",
+        "body": [
+          "El precio depende de cuatro cosas: cuántos escenarios hay, cuántas integraciones, si hay una interfaz propia y qué carga se espera. Un bot que recibe una solicitud y la deja en el CRM y un bot con área de cliente, pagos y almacén son proyectos distintos, con una diferencia de coste de varias veces, aunque los dos se llamen igual.",
+          "En nuestro caso es así. Un bot básico sobre un escenario ya definido: desde {price:50000} y desde una semana de trabajo; menús, botones, recepción de solicitudes, avisos al chat o al CRM y lanzamiento en tu cuenta. Un paquete que combina Mini App, CRM y pagos: desde {price:110000} y desde dos semanas. Un proyecto con lógica compleja, integraciones a medida, analítica y margen para la carga: desde {price:220000} y desde cuatro semanas.",
+          "Lo que encarece no suele ser «muchos botones», sino la integración con un sistema hecho a medida y sin documentación: primero hay que entender cómo funciona y solo después conectar algo. Un efecto parecido tienen los roles y permisos, cuando el bot tiene varios tipos de usuario, cada uno con su propio conjunto de acciones.",
+          "Sale más barato cuando antes de empezar están listas tres cosas: un escenario claro en una página, los accesos a los sistemas con los que hay que conectarse y una persona de tu lado que responda a las preguntas en un día, no en una semana."
+        ]
+      },
+      {
+        "heading": "Cuánto cuesta mantenerlo",
+        "body": [
+          "El servidor de un bot es barato: a un bot sencillo le basta la máquina virtual más pequeña, con un coste mensual casi simbólico. Una Mini App con imágenes y tráfico saldrá más cara, pero aun así no es la partida de gasto principal.",
+          "La principal son los cambios. La empresa cambia precios, servicios y condiciones, y el escenario tiene que cambiar con ella. Un bot que nadie ha tocado en un año suele contar a los clientes las condiciones del año pasado, y eso es peor que no tener bot.",
+          "Hay también una parte técnica: Telegram evoluciona, la API cambia, las dependencias se quedan obsoletas. Cada año o año y medio hay que entrar en el proyecto para actualizarlo, aunque funcionalmente no haya cambiado nada.",
+          "Y una cuestión que conviene resolver antes del lanzamiento: quién lo arregla si el bot se calla un sábado. La respuesta «supongo que el desarrollador le echará un vistazo» significa estar parado justo el día de más tráfico. La respuesta «soporte por contrato, con respuesta en tantas horas» significa que alguien lo ha pensado."
+        ]
+      },
+      {
+        "heading": "Constructor o desarrollo a medida",
+        "body": [
+          "Los constructores de bots existen, son baratos y para escenarios lineales funcionan bien: montar un cuestionario, entregar un lead magnet, llevar a una persona por un embudo de cinco pasos. Si la tarea es de ese tipo, no tiene sentido empezar un desarrollo desde cero.",
+          "Sus limitaciones también están claras. Solo es posible la lógica que prevé la plataforma; los datos de los clientes están en el servicio, no en tus manos; la cuota mensual crece con la base; no hay dónde encajar una integración no estándar. Y todo el bot depende por completo de lo que le pase a un negocio ajeno.",
+          "El desarrollo a medida hace falta cuando el bot está conectado a tus sistemas, cuando la lógica no cabe en el constructor, cuando importa ser dueño de los datos y del código, o cuando, con una base grande, la factura del constructor ya es comparable al coste del desarrollo.",
+          "La secuencia razonable suele ser esta: validar la demanda con un constructor y, cuando llegues a su techo y quede claro qué necesitas exactamente, llevar la lógica a una solución propia. Para entonces, los requisitos ya los ha escrito la propia práctica, y el proyecto sale más barato que si se diseñara todo por adelantado."
+        ]
+      },
+      {
+        "heading": "Errores frecuentes",
+        "body": [
+          "Un laberinto sin salida. Un bot desde el que no se puede llegar a una persona irrita más que una cola de espera al teléfono. El botón «Hablar con un comercial» tiene que verse en cada paso, no esconderse en el tercer nivel del menú.",
+          "El bot en lugar del proceso. Si no hay nadie para atender las solicitudes, el bot no ayudará: simplemente llevará a más gente, más rápido, al mismo atasco. Tiene sentido automatizar lo que funciona pero ocupa muchas manos.",
+          "Los envíos masivos como único valor. Un suscriptor que solo recibe promociones del bot se da de baja en dos semanas. Una acción útil —el estado del pedido, un recordatorio, la respuesta a una pregunta— mantiene a la persona en el diálogo y hace que un envío ocasional sea oportuno.",
+          "Sin analítica. Sin eventos por cada paso del escenario es imposible saber dónde abandona la gente. Normalmente es una pregunta concreta del cuestionario, mal formulada, y se encuentra en cinco minutos, si se están recogiendo los datos.",
+          "Lanzarlo y olvidarse. Un bot es un servicio, no un regalo. Necesita un responsable por parte del negocio, una revisión periódica de los diálogos y un procedimiento claro para introducir cambios en el escenario."
+        ]
+      },
+      {
+        "heading": "Cuándo no necesitas un bot",
+        "body": [
+          "Cuando hay pocas consultas. Dos o tres solicitudes a la semana salen más baratas de atender a mano: aquí la automatización no se amortizará nunca, y mantenerla habrá que mantenerla igualmente.",
+          "Cuando la venta es compleja y puntual. Equipos que cuestan millones, proyectos de ingeniería, todo lo que se vende hablando y negociando: aquí el bot sirve, como mucho, para concertar rápido una reunión.",
+          "Cuando tu público no está en Telegram. Si tus clientes escriben por WhatsApp o llaman por teléfono, un bot en otra mensajería no creará un flujo por sí solo: atiende la demanda que ya existe, no genera una nueva.",
+          "Cuando no hay proceso. Si dentro de la empresa no está claro quién atiende una consulta y en qué plazo, el bot solo dejará fijada esa indefinición y la hará pública."
+        ]
+      },
+      {
+        "heading": "Por dónde empezar",
+        "body": [
+          "Elige la acción que más se repite y más tiempo le quita al equipo: citas, estados, preguntas habituales, recepción de solicitudes. Cuenta cuántas veces a la semana ocurre y cuántos minutos lleva: ese es el ahorro futuro, con el que luego podrás comparar el resultado.",
+          "Describe el escenario con palabras, en una página: qué escribe la persona, qué responde el bot, dónde termina la automatización y dónde empieza el comercial. Ese documento importa más que cualquier especificación técnica: en él se ve enseguida dónde se desmorona el escenario.",
+          "Decide adónde van los datos y quién responde de ellos. Una solicitud sin destinatario es una solicitud perdida, por muy bien que la haya recogido el bot.",
+          "Y lanza en pequeño. Un solo escenario que funcione y aporte valor desde la primera semana es más útil que veinte botones a la mitad de los cuales no llegará nadie. Ampliar siempre es más fácil que arreglar."
+        ]
+      }
+    ],
+    "takeaways": [
+      "Un bot funciona donde hay una acción que se repite: citas, estado del pedido, preguntas habituales, recepción de solicitudes. Para una venta compleja y puntual no sirve.",
+      "El bot solo puede escribir primero a una persona después de que esta haya iniciado el diálogo: una base de suscriptores no se puede comprar ni importar.",
+      "Un bot es un proceso que corre las 24 horas en un servidor, no un archivo en un hosting: necesita dónde guardar el estado del diálogo, monitorización y un responsable.",
+      "Las integraciones no fallan en el lanzamiento, sino meses después. Sin reintentos ante fallos y sin aviso al responsable, las solicitudes desaparecen en silencio.",
+      "Cobrar implica caja registradora online y recibo fiscal según la Ley 54-FZ; recoger teléfonos, las obligaciones de un operador de datos personales según la Ley 152-FZ.",
+      "Un bot sencillo, desde {price:50000} y una semana; la combinación con Mini App, CRM y pagos, desde {price:110000}. Lo más caro es la integración con un sistema hecho a medida y sin documentación."
+    ]
+  },
+  "audit-bezopasnosti-sajtov": {
+    "title": "Auditoría de seguridad web: qué se revisa y cómo se hace",
+    "excerpt": "Qué se revisa exactamente al buscar vulnerabilidades en un sitio web, en qué se diferencia una auditoría de un pentest y de un escáner, qué se encuentra con más frecuencia y cómo saber si ya te han hackeado.",
+    "category": "Seguridad",
+    "lead": "Un hackeo rara vez se parece al de las películas. Lo habitual es una fuga silenciosa de la base de clientes, spam enviado desde tu dominio o un minero ajeno en el servidor que se descubre por la factura del hosting. Una auditoría de seguridad es la forma de encontrar los agujeros antes de que los encuentre otro. Veamos qué se revisa exactamente y cómo funciona por dentro.",
+    "metaTitle": "Auditoría de seguridad web: qué se revisa y cómo",
+    "metaDescription": "Qué es una auditoría de seguridad web, en qué se diferencia de un pentest y un escáner, qué revisa según OWASP Top 10 y cómo saber si ya te han hackeado.",
+    "sections": [
+      {
+        "heading": "Qué es una auditoría de seguridad",
+        "body": [
+          "Una auditoría de seguridad es una revisión sistemática de un sitio web y de su entorno en busca de vulnerabilidades: errores en el código, configuraciones débiles del servidor, dependencias obsoletas y un manejo descuidado de los datos de los usuarios y de los permisos de acceso.",
+          "La palabra clave es «sistemática». No se trata de lanzar un escáner y entregar su log, sino de mirar el sistema con los ojos de un atacante: qué se puede obtener, hasta dónde se puede avanzar y cuánto le costará eso al propietario. Una vulnerabilidad por sí sola es una abstracción; el valor de la auditoría está en traducirla a consecuencias comprensibles. «Acceso abierto a la copia de seguridad de la base de datos» suena técnico; «cualquiera puede descargarse tu base de clientes entera» se entiende.",
+          "El resultado no es una lista de avisos, sino un documento con prioridades: qué hay que arreglar hoy, qué se puede planificar para un sprint y qué conviene simplemente tener en cuenta."
+        ]
+      },
+      {
+        "heading": "Auditoría, pentest y escáner: en qué se diferencian",
+        "body": [
+          "Tres palabras que se confunden constantemente, aunque cuestan distinto y ofrecen cosas distintas.",
+          "Escaneo automático: un programa recorre el sitio y lo coteja con una base de problemas conocidos: una versión obsoleta del CMS, un puerto abierto, una cabecera que falta, un componente con una vulnerabilidad descrita públicamente. Rápido, barato y a menudo gratuito. La limitación es de fondo: el escáner no entiende el sentido de tu aplicación. Nunca se dará cuenta de que un comercial, al poner en la URL el identificador de otro, ve una operación de otro departamento, porque técnicamente es una petición correcta que devuelve una respuesta correcta.",
+          "Auditoría de seguridad: escaneo más trabajo manual. Un especialista estudia la lógica, los roles y los escenarios, y revisa lo que una máquina no puede revisar. El objetivo es encontrar el mayor número posible de problemas y describir cómo cerrarlos.",
+          "Prueba de penetración (pentest): otro objetivo. No se trata de elaborar una lista completa, sino de demostrar que la protección, en principio, se puede superar. El pentester busca un camino hacia dentro y, cuando encuentra uno, a menudo no dedica tiempo a los demás. Es una prueba de la vulnerabilidad, no un mapa de todos los agujeros.",
+          "Para un sitio que nunca se ha revisado, lo habitual es necesitar una auditoría: da la imagen completa. El pentest tiene más sentido cuando la higiene básica ya está en orden y hay que poner a prueba la solidez de la protección."
+        ]
+      },
+      {
+        "heading": "Cuándo conviene hacer una revisión",
+        "body": [
+          "Antes del lanzamiento. Es más barato encontrar un problema antes de que en el sitio haya usuarios reales y sus datos.",
+          "Después de un desarrollo importante. Una nueva área de cliente, el cobro de pagos, una integración con un servicio externo: cada una de estas funciones añade puntos de entrada que antes no existían.",
+          "Al cambiar de proveedor. Recibes código ajeno y no sabes qué contiene. De paso, es una buena ocasión para comprobar quién sigue teniendo acceso al servidor y al panel de administración.",
+          "Cuando lo exige un socio o un cliente. En licitaciones y contratos corporativos, la revisión de seguridad aparece cada vez más como un punto aparte.",
+          "Después de un incidente. Aquí la auditoría responde no solo a «qué es vulnerable», sino también a «cómo entraron y si siguen dentro».",
+          "Y de forma periódica, si el sitio tiene áreas de cliente, pagos o datos personales. El código cambia, las dependencias envejecen y cada semana se publican vulnerabilidades nuevas: una revisión puntual solo refleja el día en que se hizo."
+        ]
+      },
+      {
+        "heading": "Qué se revisa: el OWASP Top 10",
+        "body": [
+          "La base de la revisión es el OWASP Top 10, la lista de referencia de las clases de vulnerabilidades web más comunes y peligrosas. Se actualiza cada pocos años y sirve como lenguaje común: si un proveedor dice «lo hemos revisado según OWASP», queda claro de qué habla.",
+          "Fallos de control de acceso. La categoría más frecuente y la más subestimada: el usuario obtiene lo que no le corresponde. Lo clásico: poner el identificador de otro en la URL o en la petición, entrar en secciones de administración por enlace directo, modificar registros ajenos.",
+          "Fallos criptográficos. Contraseñas guardadas sin un hash adecuado, datos enviados por HTTP, «cifrado» casero, tokens que no se pueden revocar.",
+          "Inyecciones. Introducción de código ajeno a través de campos de entrada y parámetros de las peticiones: SQL, comandos del sistema operativo, cross-site scripting (XSS). Un clásico del género que sigue ahí.",
+          "Diseño inseguro. El problema no está en una línea de código concreta, sino en el planteamiento: recuperar la contraseña con la pregunta «apellido de soltera de la madre», no limitar el número de intentos, confiar en los datos que llegan del cliente.",
+          "Errores de configuración. Modo de depuración en el servidor de producción, cuentas por defecto, puertos abiertos innecesarios, mensajes de error detallados con la traza de llamadas, directorios internos accesibles.",
+          "Componentes obsoletos. CMS, plugins y librerías con vulnerabilidades descritas públicamente. La categoría más mecánica y, a la vez, la más extendida.",
+          "Fallos de autenticación. Requisitos de contraseña débiles, sesiones que no caducan, falta de segundo factor donde hace falta, cierre de sesión incorrecto.",
+          "Integridad de datos y actualizaciones. Instalación de paquetes y actualizaciones desde fuentes no verificadas, ausencia de firma.",
+          "Registro insuficiente. Si nadie ha visto el ataque, sigue en marcha. Sin registros, después de un incidente no hay forma de saber ni cómo entraron ni qué se llevaron.",
+          "Falsificación de peticiones del lado del servidor (SSRF). La aplicación, a indicación del usuario, accede a direcciones internas a las que no debería poder llegarse desde fuera."
+        ]
+      },
+      {
+        "heading": "Qué se revisa además del código",
+        "body": [
+          "La vulnerabilidad de la aplicación es solo una parte del cuadro. A su alrededor aparecen al menos tantos problemas como en ella.",
+          "Servidor y entorno: versiones del software, puertos y paneles de control expuestos al exterior, acceso a la base de datos desde fuera, permisos de archivos, ejecución con un usuario privilegiado donde no hace falta.",
+          "HTTPS y cabeceras: un certificado vigente y su renovación automática, redirección forzada a HTTPS, cabeceras de seguridad que impiden incrustar la página en un frame ajeno y colar código externo.",
+          "Accesos. Quién puede entrar en el panel de administración, en el servidor, en el repositorio y en el panel del hosting. Las cuentas de empleados que se han ido y de antiguos proveedores son un hallazgo habitual, y normalmente desagradable.",
+          "Copias de seguridad. No solo «si existen», sino también «si se ha probado a restaurarlas» y «dónde están». Una copia accesible por enlace directo desde la raíz del sitio no es una protección, sino una vulnerabilidad más.",
+          "Lo interno y lo olvidado. Subdominios de pruebas, versiones antiguas del sitio, archivos de configuración, la carpeta del sistema de control de versiones sin proteger, páginas de depuración. Los bots automáticos encuentran todo esto en menos de un día desde la publicación."
+        ]
+      },
+      {
+        "heading": "Cómo se desarrolla una auditoría",
+        "body": [
+          "Reconocimiento. Se levanta un mapa: qué tecnologías se usan, dónde están los puntos de entrada, qué roles de usuario hay, qué servicios externos están conectados. Sin esto, la revisión se convierte en dar palos de ciego.",
+          "Escaneo automático. Las herramientas cubren rápido lo habitual. El conjunto estándar: escáneres de vulnerabilidades web como OWASP ZAP o Burp Suite, escáneres de red al estilo de Nmap, comprobación de dependencias y del CMS en busca de vulnerabilidades conocidas, y utilidades específicas para la configuración de HTTPS y las cabeceras.",
+          "Revisión manual. La parte más valiosa y la más larga. El especialista recorre los escenarios con distintos roles, intenta acceder a datos ajenos, manipula parámetros, busca errores en la lógica de negocio y cadenas en las que dos detalles inofensivos por separado se suman en un problema real.",
+          "Revisión de la infraestructura y los accesos: servidor, permisos, copias de seguridad, cuentas.",
+          "Informe. Los hallazgos se recopilan con prioridades y recomendaciones.",
+          "Nueva revisión tras las correcciones. Sin ella, la auditoría se queda en un ejercicio: hay que asegurarse de que el cambio realmente ha cerrado el problema y no se ha limitado a disimular un síntoma."
+        ]
+      },
+      {
+        "heading": "Qué se encuentra con más frecuencia",
+        "body": [
+          "De proyecto en proyecto se repite el mismo conjunto, y el reparto es bastante estable.",
+          "En primer lugar, con mucha diferencia, CMS, plugins y librerías obsoletos. Aparecen casi siempre, porque las actualizaciones se posponen: «si funciona, no lo toques». El problema es que, para una vulnerabilidad descrita públicamente, el método de explotación suele estar a disposición de cualquiera, y quienes buscan estos sitios no son personas, sino bots que recorren internet de arriba abajo.",
+          "En segundo lugar, la falta de límite en el número de intentos de inicio de sesión. Un formulario que permite probar contraseñas sin fin anula cualquier política de complejidad.",
+          "Después vienen los archivos internos olvidados: copias de seguridad de la base de datos en la raíz del sitio, configuraciones con contraseñas, una carpeta `.git` sin proteger desde la que se descarga todo el código fuente, viejas páginas de prueba.",
+          "Luego, el acceso a datos ajenos probando identificadores uno tras otro. Técnicamente es una sola línea sin comprobar; en la práctica, la posibilidad de descargar pedidos o documentos de otros.",
+          "Y con regularidad: modo de depuración en el servidor de producción, cuentas de antiguos empleados, contraseñas en texto plano, falta de HTTPS en algunas páginas, mensajes de error detallados que revelan la estructura de la base de datos.",
+          "La parte tranquilizadora: casi todo lo de esta lista se cierra rápido y sin reescribir el producto. Solo salen caros los errores de arquitectura, y son bastante menos frecuentes."
+        ]
+      },
+      {
+        "heading": "Señales de que el sitio ya ha sido hackeado",
+        "body": [
+          "Un hackeo no siempre se nota. A un atacante cuidadoso le interesa conservar el acceso el mayor tiempo posible, así que no hace cambios llamativos. Deberían ponerte en alerta las siguientes señales.",
+          "Correos desde tu dominio que no has enviado, o la inclusión repentina del dominio en listas de spam: señal típica de que el servidor se usa para envíos masivos.",
+          "Un aumento inexplicable de la carga y de las facturas del hosting. Así es exactamente como se ve un minero ajeno o el tráfico de bots.",
+          "Un aviso del navegador o del buscador de que el sitio no es seguro, un correo del hosting, una caída brusca en los rankings: a menudo el propietario se entera del hackeo justo por aquí, y no por su equipo.",
+          "Páginas que no has creado, sobre todo en otro idioma o sobre apuestas y medicamentos. A veces solo las ven los robots de los buscadores, y no un visitante normal.",
+          "Cuentas de administrador desconocidas, archivos modificados con fechas recientes, tareas nuevas en el programador del servidor.",
+          "Si algo de esto coincide, el orden es el siguiente: hacer una copia del sistema en su estado actual (la necesitarás para averiguar qué pasó), cambiar todas las contraseñas y claves, incluidos los accesos al hosting y a la base de datos, revisar la lista de administradores y solo después restaurar desde una copia de seguridad que sepas que está limpia. Restaurar sin averiguar la causa suele acabar en un nuevo hackeo por la misma puerta."
+        ]
+      },
+      {
+        "heading": "Qué debe incluir el informe",
+        "body": [
+          "El informe es el único resultado tangible de una auditoría, y en él se ve la calidad del trabajo.",
+          "Cada hallazgo se describe igual: qué se encontró, dónde exactamente, cómo reproducirlo, qué riesgo supone y qué hacer en concreto. Sin el paso «cómo reproducirlo», el desarrollador no podrá ni verificar el problema ni asegurarse de haberlo arreglado.",
+          "Los niveles de criticidad no se asignan a ojo, sino según las consecuencias: los críticos se cierran de inmediato, los altos en los próximos días, los medios se planifican y los bajos se tienen en cuenta. Normalmente se usa una escala de puntuación de vulnerabilidades reconocida, para que la prioridad pueda explicarse y no solo anunciarse.",
+          "Aparte, un resumen breve para dirección, sin tecnicismos: cuánto se encontró, qué parte de ello es grave y cuánto tiempo llevará corregirlo.",
+          "Un mal informe se reconoce fácilmente: es la salida del escáner sin procesar, donde la mitad de los puntos no se aplican a tu sitio y las prioridades se han asignado automáticamente."
+        ]
+      },
+      {
+        "heading": "Quién corrige lo encontrado",
+        "body": [
+          "El informe por sí solo no aumenta la seguridad. A partir de ahí hay dos caminos.",
+          "El primero: lo corrige tu equipo. Es más barato y más lógico si tienes desarrolladores y conocen el producto. La tarea del auditor en este caso es estar disponible: explicar lo que no quede claro y, después, comprobar el resultado.",
+          "El segundo: lo corrige quien hizo la revisión. Es más rápido y normalmente más fiable: quien encontró el problema entiende exactamente cómo funciona. En nuestro caso, esto está incluido en la tarifa Ampliada de la auditoría, y las actualizaciones y revisiones periódicas, en el soporte TI.",
+          "En cualquier caso, la nueva revisión es obligatoria. Un cambio que parece correcto a menudo cierra el síntoma y no la causa: por ejemplo, impide introducir un identificador ajeno en el formulario, pero lo sigue permitiendo en una llamada directa a la API."
+        ]
+      },
+      {
+        "heading": "El aspecto legal",
+        "body": [
+          "Una fuga de datos no es solo una cuestión de reputación. Si tu sitio tiene áreas de cliente, formularios de solicitud o tramitación de pedidos, tratas datos personales y estás sujeto a la Ley Federal 152-FZ, la ley rusa de datos personales, con todas las obligaciones de un responsable del tratamiento.",
+          "Desde 2025, las multas por infracciones en este ámbito se han multiplicado, y se ha introducido una responsabilidad específica por la fuga de datos personales, cuya cuantía depende del volumen filtrado. Además, se sanciona por separado no notificar a tiempo el incidente al regulador; es decir, intentar resolverlo en silencio por tu cuenta empeora la situación.",
+          "La conclusión práctica es sencilla: una auditoría cuesta incomparablemente menos que las consecuencias de una fuga, y la higiene básica (actualizaciones, limitación de accesos, cifrado, registro de eventos) es a la vez protección y cumplimiento de la ley."
+        ]
+      },
+      {
+        "heading": "Cómo no llegar a una auditoría de rescate",
+        "body": [
+          "La seguridad es un proceso, no una acción puntual. Entre revisiones completas funciona la rutina, y es la que cierra la mayor parte de lo que encontramos.",
+          "Actualizar con regularidad el CMS, los plugins y las dependencias: así se elimina la categoría de hallazgos más extendida. En nuestro servicio de soporte lo hacemos cada mes.",
+          "Vigilar los accesos: eliminar las cuentas de quienes se han ido, no repartir permisos de administrador por defecto, cambiar las claves cuando se marcha un proveedor.",
+          "Hacer copias de seguridad y comprobar al menos una vez que se puede restaurar a partir de ellas. Una copia sin comprobar es una esperanza, no una copia de seguridad.",
+          "Monitorizar el certificado, la disponibilidad y los registros: la mayoría de los incidentes empiezan pareciendo una anomalía en los gráficos, no un cartel de «te han hackeado».",
+          "Revisar el sitio después de cada lanzamiento importante, no una vez al año cuando surja la ocasión. Función nueva, puntos de entrada nuevos."
+        ]
+      }
+    ],
+    "takeaways": [
+      "El escáner encuentra lo conocido; la auditoría, los errores de lógica y de permisos; el pentest demuestra que se puede entrar. Son tres trabajos distintos.",
+      "El hallazgo más extendido son CMS, plugins y librerías obsoletos; estos sitios los buscan bots que recorren internet de arriba abajo.",
+      "Hay que revisar no solo el código, sino también el servidor, los accesos, las copias de seguridad y los archivos internos olvidados.",
+      "Un buen informe explica cómo reproducir el problema; si no, el desarrollador no podrá ni verificarlo ni asegurarse de haberlo arreglado.",
+      "Tras las correcciones hace falta una nueva revisión: a menudo el cambio cierra el síntoma, no la causa.",
+      "Un sitio con áreas de cliente y formularios de solicitud trata datos personales y, por tanto, está sujeto a la Ley 152-FZ."
+    ]
+  },
+  "razrabotka-messendzherov": {
+    "title": "Desarrollo de mensajerías: cómo funciona un mensajero corporativo",
+    "excerpt": "Una mensajería propia no es una ventana con chats, sino un sistema de entrega de mensajes. Repasamos la arquitectura, el almacenamiento, el cifrado y el despliegue en una red cerrada, y de paso por qué las empresas abandonan Slack y Teams.",
+    "category": "Desarrollo",
+    "lead": "Hoy, desarrollar una mensajería casi siempre significa construir un mensajero corporativo: las empresas abandonan los servicios extranjeros y quieren guardar sus conversaciones en casa. Veamos de qué se compone un sistema así, qué tiene de difícil y por dónde conviene empezar.",
+    "metaTitle": "Desarrollo de mensajerías: arquitectura del chat corporativo",
+    "metaDescription": "Cómo se desarrolla una mensajería corporativa: entrega en tiempo real, almacenamiento y cifrado, Active Directory, red cerrada, etapas y presupuesto.",
+    "sections": [
+      {
+        "heading": "Para qué quiere una empresa su propia mensajería",
+        "body": [
+          "Los servicios ya hechos son cómodos justo hasta que las conversaciones se convierten en un activo. A partir de ahí surgen preguntas que la nube de otro no responde: dónde están físicamente los mensajes, quién tiene acceso a ellos, qué pasa si mañana desconectan el servicio y cómo explicarle a un inspector que tu secreto comercial está guardado en un servidor de otra jurisdicción.",
+          "El segundo motivo son los procesos. En una mensajería normal, las conversaciones viven separadas del trabajo: una solicitud se discute en el chat, pero se registra en otro sistema, y no hay ningún vínculo entre ambos. Una mensajería propia puede integrarse con el sistema de gestión de forma que la aprobación, el aviso de una nueva solicitud y la discusión queden en un mismo lugar.",
+          "El tercero es el control. Un empleado se va y hay que retirarle el acceso, pero conservar sus conversaciones. Llega una inspección y hay que recuperar el historial de una discusión de hace dos años. En un servicio ajeno, esto o es imposible o es posible en sus condiciones.",
+          "De ahí el retrato típico del cliente: una empresa en la que las conversaciones de los empleados forman parte del secreto comercial, una plataforma sectorial en la que la comunicación es parte del producto, o una organización con requisitos sobre dónde se alojan los datos."
+        ]
+      },
+      {
+        "heading": "Sustitución de importaciones: por qué se van justo ahora",
+        "body": [
+          "La ola de peticiones de mensajerías corporativas, parte de la sustitución de importaciones —es decir, el paso a software no extranjero—, no nació de un amor abstracto por el software propio. Algunos servicios extranjeros dejaron de renovar las suscripciones corporativas a empresas rusas, otros limitaron funciones y otros, sencillamente, dejaron de poder pagarse.",
+          "Para una empresa no es una cuestión de comodidad, sino un riesgo operativo: toda la comunicación interna depende de una herramienta que puede apagarse sin previo aviso y sin posibilidad de exportar el historial.",
+          "A esto se suma la capa regulatoria. Si en las conversaciones aparecen datos personales de empleados o clientes, su almacenamiento cae bajo la Ley Federal 152-FZ, la ley rusa de datos personales, y la exigencia de alojar las bases de datos en territorio ruso convierte la elección del servicio en una cuestión jurídica, no de gustos.",
+          "La conclusión práctica: la migración casi nunca es urgente mientras el servicio funciona, y siempre se vuelve urgente el día en que deja de funcionar. Por eso es más sensato planificar la mudanza con antelación, sobre todo porque trasladar el historial de conversaciones ya es una tarea en sí misma."
+        ]
+      },
+      {
+        "heading": "Tres escenarios: no solo el corporativo",
+        "body": [
+          "Bajo «desarrollo de una mensajería» se esconden tres tareas bastante distintas, y confundirlas sale caro.",
+          "Mensajería corporativa: la comunicación interna entre empleados. Requisitos principales: alojamiento en servidores propios, roles y permisos, integración con la cuenta corporativa, posibilidad de administrar y archivar. Los usuarios se conocen de antemano y no hace falta registro.",
+          "Chat dentro de un producto: el intercambio de mensajes como parte de una plataforma, ya sean comprador y vendedor en un marketplace, cliente y proveedor en un servicio o las partes de una operación. Aquí los usuarios son externos y no se conocen entre sí, así que pasan a primer plano la moderación, las denuncias y la protección contra el spam y contra que la operación se cierre fuera de la plataforma.",
+          "Canal con clientes: la comunicación de la empresa con sus compradores en lugar del widget de soporte de otro. Lo clave aquí es el historial de conversaciones, que se queda contigo y se vincula con la ficha del cliente en el CRM.",
+          "Técnicamente, los tres comparten el núcleo: la entrega y el almacenamiento de mensajes. Se separan en lo que rodea a ese núcleo: en el corporativo, la administración y la seguridad; en el de producto, la moderación; en el de clientes, la integración con ventas."
+        ]
+      },
+      {
+        "heading": "De qué se compone una mensajería",
+        "body": [
+          "Aplicaciones cliente: lo que ve el usuario, es decir, la versión web, las aplicaciones para iOS y Android y, a veces, la de escritorio. Se encargan de la interfaz, del almacenamiento local del historial y de seguir funcionando cuando se pierde la conexión.",
+          "Servidor: recibe los mensajes, los reparte entre los destinatarios, guarda el historial y gestiona usuarios y permisos. Es el núcleo, y de él depende que el sistema aguante el crecimiento.",
+          "Transporte en tiempo real: el mecanismo gracias al cual el mensaje aparece al instante en la pantalla del interlocutor, y no después de recargar la página.",
+          "Almacenamiento: la base de mensajes y, aparte, un almacén de archivos. Separarlos es obligatorio: las conversaciones de texto y los adjuntos crecen a ritmos distintos y requieren un tratamiento distinto.",
+          "Notificaciones push: la entrega cuando la aplicación está cerrada. Un detalle delicado para un producto corporativo: en los sistemas móviles, las notificaciones pasan por la infraestructura del fabricante del teléfono, así que en el texto del push no se incluye el contenido del mensaje si es sensible.",
+          "Parte administrativa: gestión de usuarios, roles, canales y políticas de retención. En el escenario corporativo es lo que más a menudo se subestima, y sin ella el sistema no se puede operar."
+        ]
+      },
+      {
+        "heading": "Cómo llega un mensaje al interlocutor",
+        "body": [
+          "Conexión persistente. La base del intercambio en tiempo real es WebSocket: un canal que se mantiene abierto y por el que el servidor puede enviar datos por su cuenta, sin esperar una petición. Donde la conexión es inestable, se añaden mecanismos de respaldo y una reconexión inteligente.",
+          "Cola y confirmaciones. Un mensaje no se considera entregado hasta que el destinatario lo confirma. De ahí los conocidos ticks: enviado, entregado, leído. Detrás no hay un adorno de la interfaz, sino un protocolo que garantiza que el mensaje no se pierda si la conexión se corta a medio camino.",
+          "Orden y duplicados. Dos problemas nada obvios que aparecen con carga real. Los mensajes pueden llegar en un orden distinto al de envío y, si se reenvían tras un corte, duplicarse. Se resuelve con identificadores en el lado del cliente y numeración en el lado del servidor, y hay que preverlo desde el principio: rehacerlo después duele.",
+          "Funcionamiento sin conexión. La aplicación debe poder aceptar un mensaje, mostrarlo como no enviado y entregarlo cuando vuelva la conexión. Para un cliente móvil es una parte obligatoria, no una mejora.",
+          "Llamadas. El audio y el vídeo funcionan con WebRTC: el tráfico va, siempre que sea posible, directamente entre dispositivos. Pero «siempre que sea posible» significa que en una red corporativa con un cortafuegos estricto hará falta un servidor intermedio, y hay que preverlo de antemano."
+        ]
+      },
+      {
+        "heading": "Almacenamiento y cifrado",
+        "body": [
+          "El cifrado en tránsito es el mínimo obligatorio: el canal entre el cliente y el servidor está protegido y nadie puede interceptar las conversaciones por el camino. Está en todas partes y no se discute.",
+          "El cifrado de extremo a extremo es otra historia. Con él, los mensajes solo se descifran en los dispositivos de los interlocutores, y el servidor físicamente no puede leer las conversaciones. Suena a una ventaja indiscutible, pero para un sistema corporativo es un compromiso, no una mejora.",
+          "La cuestión es que, junto con la posibilidad de leer las conversaciones, el servidor pierde todo lo demás: la búsqueda en el historial del lado del servidor, el archivo para inspecciones e investigaciones, la recuperación del historial si se pierde el dispositivo, la moderación. Una empresa obligada a conservar su correspondencia comercial no podrá hacerlo con cifrado de extremo a extremo.",
+          "Por eso, en los productos corporativos se suele elegir una opción intermedia: cifrado del canal y del almacenamiento, acceso por roles, registro de los accesos a los datos y cifrado de extremo a extremo de forma puntual, para chats privados concretos donde de verdad hace falta.",
+          "La respuesta a «¿cómo se hace bien?» no depende de la técnica, sino de en quién tienes que confiar y ante quién tienes que rendir cuentas. Conviene hablarlo antes de empezar el desarrollo, porque rehacer la arquitectura de almacenamiento después es lo más caro de todo."
+        ]
+      },
+      {
+        "heading": "Integraciones imprescindibles",
+        "body": [
+          "Cuenta corporativa. El empleado no debería tener que crear otra contraseña más: el acceso se hace a través del directorio de usuarios existente, ya sea Active Directory, LDAP o el SSO corporativo. De paso, esto resuelve las bajas: el acceso se revoca en un solo lugar.",
+          "Avisos desde los sistemas internos. La función más subestimada y, a la vez, la que más se amortiza: la solicitud del sistema de gestión, el estado de un pedido o la aprobación de un contrato llegan al chat donde la gente ya está, y no al correo, que se abre dos veces al día.",
+          "Bots y flujos automáticos. Respuestas automáticas a preguntas internas habituales, alertas de guardia, recepción de solicitudes de soporte.",
+          "Conexión con el CRM en el escenario de clientes: la conversación se vincula con la ficha del cliente y el gestor ve el historial completo, no los tres últimos mensajes.",
+          "Son precisamente las integraciones las que suelen decidir si el sistema arraiga o no. Una mensajería que solo repite lo que ya ofrece WhatsApp no les sirve a los empleados: al cabo de un mes vuelven a la herramienta de siempre. Arraiga la que tiene algo que las demás no tienen."
+        ]
+      },
+      {
+        "heading": "Dónde se despliega todo esto",
+        "body": [
+          "La nube. Rápida y barata para arrancar; encaja en los escenarios de producto donde no hay requisitos sobre el alojamiento.",
+          "Servidor propio. El compromiso por defecto en el caso corporativo: los datos están contigo, la infraestructura es comprensible y el mantenimiento corre de tu cuenta o de la del proveedor.",
+          "Red cerrada. El sistema funciona en una red sin salida a internet. Es la opción más estricta y cambia el proyecto por completo: las actualizaciones hay que llevarlas a mano, los servicios externos no están disponibles y las notificaciones push móviles tal como las conocemos son imposibles, así que se sustituyen por mecanismos propios. Si la red cerrada figura en los requisitos, hay que mencionarla en la primera reunión, no a mitad del desarrollo."
+        ]
+      },
+      {
+        "heading": "Por dónde empezar y qué no hacer de entrada",
+        "body": [
+          "Una mensajería se construye bien por iteraciones, y la primera versión debe ser aburrida: chats individuales y de grupo, envío de texto y archivos, notificaciones, interfaz web. Eso basta para que la gente empiece a usarla y tú veas qué le falta de verdad.",
+          "Lo que casi siempre se pide al principio y casi siempre conviene aplazar: videollamadas, cifrado de extremo a extremo, aplicaciones de escritorio, permisos de acceso complejos, bots. Cada uno de estos puntos es caro, y casi ninguno se usa en la primera versión.",
+          "Lo que no se puede aplazar, porque rehacerlo a posteriori sale más caro: el esquema de almacenamiento de mensajes, el mecanismo de orden y duplicados, el modelo de roles y permisos y el método de acceso. Son los cimientos.",
+          "Y, aparte, el traslado del historial desde el servicio anterior. Parece un detalle técnico menor, pero en la práctica resulta comparable en volumen al desarrollo de una función independiente, sobre todo si el servicio antiguo entrega la exportación en un formato incómodo."
+        ]
+      },
+      {
+        "heading": "Plazos y presupuesto",
+        "body": [
+          "La primera versión operativa (chats, canales, interfaz web, cuentas y roles) lleva alrededor de mes y medio y cuesta desde {price:200000}.",
+          "Una versión que se puede usar en serio, con intercambio de archivos, clientes móviles para iOS y Android, integraciones con los sistemas internos y administración: de dos a tres meses, desde {price:300000}.",
+          "Un sistema en red cerrada, con mayores exigencias de tolerancia a fallos y evolución según un plan: desde cuatro meses y desde {price:500000}.",
+          "Lo que más influye en la estimación son tres cosas: el número de plataformas (cada cliente móvil es un trabajo aparte), la exigencia de los requisitos de alojamiento y seguridad, y la cantidad de sistemas con los que hay que integrarse. Las tarifas actualizadas y el alcance de los trabajos están en la página del servicio."
+        ]
+      },
+      {
+        "heading": "Errores frecuentes",
+        "body": [
+          "Intentar replicar Telegram. Competir con un producto en el que se han invertido miles de años-persona no tiene sentido ni hace falta: el valor de una mensajería corporativa no está en la riqueza de funciones, sino en que es tuya y conoce tus procesos.",
+          "Dejar la administración para después. Un sistema sin gestión de usuarios y permisos no se puede operar, y añadirla a un producto que ya funciona es incómodo.",
+          "Olvidarse del traslado del historial y de la formación de la gente. Una mensajería técnicamente impecable a la que no se ha pasado a nadie se queda vacía.",
+          "Elegir el cifrado de extremo a extremo por defecto sin comprobar si contradice tus propios requisitos de conservación de las conversaciones.",
+          "Y lo más frecuente: lanzarlo todo a la vez. Un proyecto que se pasa medio año haciéndose «entero» sale cuando la mitad de los requisitos ya se han quedado obsoletos."
+        ]
+      }
+    ],
+    "takeaways": [
+      "Hoy la demanda de mensajerías propias es sobre todo corporativa: la salida de los servicios extranjeros y los requisitos sobre dónde se alojan los datos.",
+      "Todos los escenarios comparten el núcleo, la entrega y el almacenamiento de mensajes; se diferencian en la administración, la moderación y las integraciones.",
+      "El orden de los mensajes, los duplicados, el esquema de almacenamiento y el modelo de permisos se definen desde el principio: rehacerlos es lo más caro.",
+      "El cifrado de extremo a extremo deja al servidor sin búsqueda, archivo ni moderación, por eso en un sistema corporativo es un compromiso, no una mejora.",
+      "Arraiga la mensajería que ofrece lo que no tienen las habituales: avisos y solicitudes desde los sistemas internos.",
+      "La primera versión debe ser aburrida: chats, archivos, notificaciones, web. Las llamadas y el cifrado casi siempre conviene aplazarlos."
+    ]
+  },
+  "parsing-dannyh": {
+    "title": "Parsing de datos: archivos, bases de datos y sitios web",
+    "excerpt": "El parsing no es solo recoger datos de sitios web. Explicamos cómo se leen Excel, PDF y logs, cómo se extraen datos de bases ajenas, qué hacer con las fuentes protegidas y cuánto cuesta todo esto.",
+    "category": "Datos",
+    "lead": "Con la palabra «parsing» se nombran tres tareas distintas: desmontar un archivo, sacar datos de una base ajena y recoger información de un sitio web. Solo tienen una cosa en común: los datos están en una forma incómoda y se necesitan en una cómoda. Repasamos las tres, con ejemplos de lo que suele fallar.",
+    "metaTitle": "Extracción de datos (parsing): archivos, bases y webs",
+    "metaDescription": "Qué es el parsing de datos: CSV, Excel, XML, JSON y PDF, extracción de bases de datos, scraping web, herramientas, límites legales, plazos y precios.",
+    "sections": [
+      {
+        "heading": "Qué es el parsing y para qué lo necesita una empresa",
+        "body": [
+          "El parsing (del inglés parsing, «análisis» o «desglose») es la conversión automática de datos de un formato incómodo a uno cómodo. Un programa, el parser, lee la fuente, encuentra en ella los fragmentos necesarios, los lleva a un formato único y los guarda donde se puede trabajar con ellos: una hoja de cálculo, una base de datos o un CRM.",
+          "La palabra clave aquí es «automática». El mismo trabajo se puede hacer a mano: abrir la lista de precios del proveedor, copiar el nombre del artículo, buscarlo en tu catálogo, escribir el nuevo precio. Con cien artículos, es una tarde. Con cien mil, es un trabajo imposible por principio: mientras recorres el catálogo, los precios del principio ya se habrán quedado desactualizados.",
+          "De ahí los motivos típicos: llenar el catálogo a partir de las listas de precios de los proveedores, actualizar a diario precios y existencias, migrar datos de un sistema antiguo a uno nuevo, reunir exportaciones de varias fuentes en un solo informe, vigilar el mercado. Allí donde los datos llegan con regularidad y en un formato ajeno, el parser no sustituye a un programador, sino a la persona que hasta entonces copiaba celdas."
+        ]
+      },
+      {
+        "heading": "Parsing de archivos: CSV, Excel, XML, JSON, PDF",
+        "body": [
+          "Es la variante más frecuente y, a la vez, la más subestimada. Parece que leer un Excel es cosa de cinco minutos, y con un archivo ordenado es verdad. Los problemas empiezan cuando el archivo lo ha hecho una persona.",
+          "CSV es texto plano con separadores. Las trampas: el separador no siempre es la coma, sino el punto y coma o el tabulador; dentro de los valores aparecen esos mismos caracteres; los saltos de línea se esconden en mitad de un campo. Se lee con las herramientas estándar del lenguaje o con pandas, que interpreta por sí solo la mayoría de los dialectos.",
+          "Excel (XLSX, XLS) es el formato más caprichoso, porque no es una tabla de datos, sino un lienzo para dibujar. Celdas combinadas, encabezados de tres filas, el producto y su referencia en niveles distintos, números guardados como texto, filas vacías como separadores entre secciones. Se lee con openpyxl o pandas, pero la mayor parte del trabajo no se va en la lectura, sino en reconstruir la estructura que el autor tenía en la cabeza.",
+          "XML y JSON se pensaron para máquinas, y con ellos todo suele ser más sencillo: la estructura está descrita de forma explícita. XML se lee con lxml; JSON, con las herramientas estándar del lenguaje. La dificultad aparece con grandes volúmenes: un archivo de varios gigabytes no se puede cargar entero en memoria, así que se procesa en streaming, elemento a elemento.",
+          "PDF es un formato para imprimir, no para datos. No tiene filas ni columnas, sino caracteres con coordenadas en la página. Una persona «ve» la tabla solo porque los caracteres están alineados. Bibliotecas como pdfplumber y PyMuPDF reconstruyen la estructura a partir de esas coordenadas, y con documentos ordenados funcionan bien.",
+          "DBF es una herencia de FoxPro y de los sistemas contables antiguos, y todavía aparece en los intercambios con contabilidad y almacén. Se lee con bibliotecas especializadas; la dificultad principal es la codificación, de la que hablamos más abajo.",
+          "Los logs son archivos de texto con líneas de un mismo formato. Se analizan con expresiones regulares, y aquí el trabajo principal no está en la lectura, sino en la agregación: contar, agrupar, encontrar anomalías."
+        ]
+      },
+      {
+        "heading": "Qué suele fallar al procesar archivos",
+        "body": [
+          "Codificaciones. El texto en ruso de las exportaciones antiguas llega en CP1251 o CP866, mientras que el programa espera por defecto UTF-8, y el resultado son caracteres ilegibles. Es peor cuando la codificación cambia de un archivo a otro: entonces se detecta automáticamente, con bibliotecas como chardet, y aun así se deja la opción de indicarla a mano, porque la detección automática se equivoca con cadenas cortas.",
+          "Celdas combinadas en Excel. Para una persona, una celda combinada significa «este encabezado se aplica a todas las filas de abajo». Para un programa, es un valor en la primera celda y vacío en todas las demás. Hay que reconstruir la lógica: propagar el valor hacia abajo hasta la siguiente celda rellena, distinguir el encabezado de una sección de la fila de un producto.",
+          "Escaneos en lugar de texto en el PDF. El documento parece una tabla, pero por dentro es una imagen. Aquí no sirve ninguna biblioteca de análisis de texto: hace falta OCR, el reconocimiento con Tesseract o con servicios en la nube. Es un nivel de fiabilidad fundamentalmente distinto: el reconocimiento se equivoca con las cifras, confunde el cero con la letra O, y el resultado siempre requiere revisión. Si el proveedor tiene la misma lista de precios en Excel, sale más barato pedírsela que reconocer el escaneo.",
+          "Todos estos casos nos los hemos encontrado en proyectos reales, y la conclusión es una sola: el tiempo no se va en leer el formato, sino en manejar las excepciones. Por eso siempre damos la estimación después de ver los archivos reales, no su descripción."
+        ]
+      },
+      {
+        "heading": "Parsing de bases de datos",
+        "body": [
+          "La segunda gran variante: cuando los datos no están en un archivo, sino en una base de datos ajena u obsoleta. Aquí aparecen tres tipos de tareas.",
+          "Migración. La empresa se muda de un sistema antiguo a uno nuevo y hay que trasladar los datos: clientes, pedidos, productos, historial. La dificultad está en que las estructuras no coinciden: lo que en la base antigua era un solo campo, en la nueva se reparte en tres, y las tablas de referencia hay que emparejarlas a mano.",
+          "Exportación para informes. Los datos existen, pero no se puede llegar a ellos a través de la interfaz: hace falta un corte que el sistema no sabe construir. El parser accede directamente a la base, reúne lo necesario y lo entrega al informe o al sistema de BI.",
+          "Sincronización. Dos sistemas deben ver los mismos datos; por ejemplo, el almacén en el sistema contable y las existencias en el sitio web. Ya no es una exportación puntual, sino un intercambio regular con gestión de conflictos: qué hacer si un registro ha cambiado en ambos sistemas.",
+          "En la práctica hemos trabajado con PostgreSQL, MySQL, MS SQL Server, SQLite y con bases de 1C, el sistema de gestión empresarial más extendido en Rusia. Técnicamente, conectarse a cualquiera de ellas es rutina; toda la dificultad está en entender un esquema ajeno. Nombres de tablas como SC1247 y de campos como SP2891 son lo habitual en 1C, y descifrar una estructura así lleva más tiempo que la propia exportación."
+        ]
+      },
+      {
+        "heading": "Cuando no te dan acceso a la base",
+        "body": [
+          "Una situación frecuente: los datos hacen falta, pero no hay acceso directo a la base. El propietario del sistema no está dispuesto a abrirlo al exterior, el contratista que lo desarrolló no está disponible o la licencia simplemente no prevé conexiones externas.",
+          "Entonces se trabaja con lo que hay. Si el sistema sabe exportar informes, se procesan esas exportaciones, y la tarea se reduce al parsing de archivos descrito más arriba. Si hay una API, aunque no esté documentada, se usa. En último caso, los datos se toman a través de la interfaz web: el programa inicia sesión con una cuenta que tiene acceso legítimo y recorre las mismas pantallas que una persona.",
+          "Esta última opción funciona, pero es la más frágil: se rompe con cualquier actualización de la interfaz. Lo advertimos de antemano y la proponemos cuando los demás caminos están cerrados, y en paralelo recomendamos llegar a un acuerdo para tener un acceso en condiciones, porque en el mantenimiento sale más barato."
+        ]
+      },
+      {
+        "heading": "Parsing de sitios web",
+        "body": [
+          "La tercera variante es la recogida de datos de páginas web. Aquí la fuente no entrega un archivo, y la estructura hay que extraerla del maquetado.",
+          "El caso sencillo: el servidor devuelve el HTML ya montado. El parser descarga la página con un cliente HTTP, analiza el marcado con BeautifulSoup o lxml y extrae los datos mediante selectores: «el precio está en este bloque con esta clase». Para proyectos grandes, con cientos de miles de páginas, se usa el framework Scrapy, que gestiona por sí solo la cola de peticiones, el paralelismo y los reintentos.",
+          "El caso complicado: la página se construye en el navegador. El servidor entrega un esqueleto vacío y el contenido se carga mediante scripts. Entonces se recurre a un navegador headless, Playwright o Selenium: abre la página de verdad, espera a que cargue y devuelve el marcado final. Es más lento y consume más recursos, así que se usa cuando el camino sencillo no funciona.",
+          "Aparte, vale la pena comprobar si la fuente tiene una API oficial. Casi siempre es más rápida, más estable y más legal que analizar el maquetado, y es lo primero que comprobamos al asumir una tarea."
+        ]
+      },
+      {
+        "heading": "Qué hacer si la fuente está cerrada a la extracción",
+        "body": [
+          "Los sitios web se protegen de la recogida masiva: limitan la frecuencia de peticiones, muestran CAPTCHA, exigen iniciar sesión, bloquean por dirección IP. Es un derecho legítimo del propietario: él paga los servidores y puede decidir quién los usa.",
+          "Nuestra postura aquí es sencilla, y la dejamos clara con el cliente desde el principio. Un parser correcto se comporta como un invitado educado: hace pausas entre peticiones, no genera más carga que un visitante normal, se identifica honestamente en las cabeceras, respeta robots.txt y no entra en zonas con inicio de sesión sin permiso del propietario. Con este enfoque, la mayoría de las fuentes se pueden recoger sin ningún truco: los bloqueos suelen saltar ante una recogida agresiva, no ante una cuidadosa.",
+          "Si, en cambio, la fuente está cerrada a propósito (hay CAPTCHA, el acceso es solo para clientes, las condiciones de uso lo prohíben expresamente), lo decimos claramente en lugar de ponernos a esquivar la protección. Eludir medidas técnicas de protección saca la tarea del terreno del desarrollo y la lleva al de los riesgos legales, y además riesgos del cliente: es él quien responde después de los datos recogidos.",
+          "En su lugar, proponemos caminos que funcionan: pedir al propietario un acceso oficial o una exportación, algo que funciona más a menudo de lo que se cree; encontrar los mismos datos en una fuente abierta o en un agregador; comprar una exportación ya hecha. A veces, en el momento, esta respuesta no le gusta al cliente. Pero un proyecto que al cabo de un mes choca con un bloqueo o con una reclamación sale más caro que un sincero «esta fuente no se puede usar, busquemos otra»."
+        ]
+      },
+      {
+        "heading": "Parsing de consultas de búsqueda",
+        "body": [
+          "En el internet ruso, la palabra «parsing» tiene además otro significado: la recogida de consultas de búsqueda, es decir, del conjunto de palabras clave. Técnicamente la tarea se parece, pero su sentido es otro: no se recogen productos, sino lo que la gente busca.",
+          "Las fuentes aquí son los servicios de estadísticas de búsqueda como Yandex Wordstat (de Yandex, el principal buscador de Rusia), las sugerencias del buscador y las bases de palabras clave ya preparadas. El resultado es una lista de formulaciones con su frecuencia, a partir de la cual se construye la estructura del sitio y se planifica el contenido.",
+          "La mayoría de estos servicios tiene API oficiales, y trabajar con ellas es más correcto que extraer los datos de la interfaz: no incumple las condiciones de uso y no se rompe con un rediseño. Seamos honestos: es más una tarea de posicionamiento en buscadores que de desarrollo, y la asumimos dentro de proyectos más grandes, no como un servicio independiente."
+        ]
+      },
+      {
+        "heading": "Por qué se rompen los parsers y cómo evitarlo",
+        "body": [
+          "El parser es casi el único tipo de programa que no se rompe porque se haya cambiado algo en él, sino porque algo ha cambiado fuera. El proveedor modificó el encabezado de la lista de precios, el sitio actualizó su maquetado, en la base apareció un campo nuevo, y la recogida que ayer funcionaba hoy devuelve vacío o, peor aún, basura.",
+          "Evitarlo del todo es imposible, pero se puede conseguir que la avería no sea una catástrofe. Lo primero: validar el resultado a la entrada, no a la salida. El parser sabe qué esperar: si de una lista de precios de diez mil filas llegan cuarenta, si un precio se vuelve negativo, si desaparece la mitad de las columnas, se detiene y avisa en lugar de volcar datos corruptos en la base de producción.",
+          "Lo segundo: alertas. Un fallo silencioso es peor que uno ruidoso: los datos se quedan desactualizados sin que nadie lo note, y se descubre una semana después por la queja de un cliente. Por eso el parser registra cada ejecución en el sistema de monitorización y envía un aviso por Telegram o por correo si algo ha ido mal.",
+          "Lo tercero: anclarse al significado, no a la posición. Una columna de Excel se busca por el nombre del encabezado, no por su número; los datos de una página, por rasgos estables, no por una larga cadena de anidamiento que se romperá con cualquier retoque del diseño.",
+          "Lo cuarto: conservar los originales. Los archivos y las páginas descargados se guardan tal cual, y ante un fallo se ve qué ha cambiado exactamente. Sin eso, hay que investigar a ciegas.",
+          "Lo quinto: degradación gradual. Si de veinte campos no se ha podido procesar uno opcional, lo correcto es guardar los otros diecinueve y marcar el hueco, no tumbar toda la exportación."
+        ]
+      },
+      {
+        "heading": "Límites legales",
+        "body": [
+          "Recoger datos de acceso público es legal en sí mismo, pero hay límites, y conviene conocerlos antes de empezar.",
+          "Datos personales. Nombres, teléfonos, direcciones, correos electrónicos: son datos personales según la Ley Federal 152-FZ, la ley rusa de datos personales, aunque estén publicados abiertamente. Recogerlos te convierte en responsable del tratamiento de datos personales, con todas las obligaciones que eso implica. La regla es sencilla: si la tarea se puede resolver sin datos personales, resuélvela sin ellos.",
+          "Derechos de autor. Los textos, las fotografías y las descripciones están protegidos por derechos de autor, sin importar cómo los hayas obtenido. Recoger descripciones de productos ajenas para análisis interno y publicarlas en tu propio sitio son cosas radicalmente distintas a ojos de la ley.",
+          "Condiciones de uso y robots.txt. El archivo robots.txt no es un documento jurídico, pero expresa la voluntad del propietario, e ignorarlo se convierte en un argumento en tu contra. El acuerdo de usuario del sitio puede prohibir expresamente la recogida automatizada, y eso ya es una relación contractual.",
+          "Carga. Una recogida que entorpece el funcionamiento de un servicio ajeno es otra historia, y está más cerca de una interferencia ilícita que de la inofensiva lectura de páginas abiertas.",
+          "Conclusión práctica: recoge solo lo que de verdad necesita la tarea, no toques datos personales sin una base legal, no publiques contenido ajeno como propio y no generes carga. En los casos dudosos, sale más barato enseñarle la tarea a un abogado que resolver el problema después."
+        ]
+      },
+      {
+        "heading": "Cuánto cuesta y cuánto tarda",
+        "body": [
+          "El coste de un parser no lo determina el volumen de datos, sino el número de excepciones. Recoger un millón de filas de un XML ordenado es más sencillo y más barato que recoger mil de una decena de archivos Excel desastrosos con estructuras distintas.",
+          "Nuestras referencias son estas. Un parser sencillo con una sola fuente y exportación a una hoja de cálculo: desde {price:50000}. Un sistema con varias fuentes, recogida automática programada y exportación a una base de datos o un CRM: desde {price:110000}. Los casos complejos, con fuentes protegidas, arquitectura robusta y monitorización: desde {price:220000}.",
+          "En cuanto a plazos: un parser sencillo suele llevar una o dos semanas; la recogida periódica de varias fuentes, de dos a cuatro semanas; un sistema grande con monitorización, a partir de mes y medio. La mayor parte de ese tiempo no se va en el código, sino en resolver las excepciones de los datos reales.",
+          "Lo que más influye en el precio: el número de fuentes y la variedad de sus formatos; si hace falta un navegador headless; lo sucios que estén los datos de origen; si hay que emparejar tablas de referencia; la frecuencia de actualización y los requisitos de fiabilidad. Por eso no damos una cifra a partir de la descripción de la tarea: primero miramos los archivos o las páginas reales, y solo después hacemos la estimación.",
+          "Y una advertencia sincera: un parser necesita mantenimiento. Las fuentes cambian, y cada pocos meses hay que corregir algo. Un desarrollo puntual sin soporte es un ahorro que termina con que, al cabo de medio año, los datos dejan de actualizarse sin que nadie se entere."
+        ]
+      },
+      {
+        "heading": "Ejemplo: un catálogo de 100 000 artículos",
+        "body": [
+          "Uno de nuestros proyectos: una tienda online de recambios para maquinaria pesada. La tarea era llenar el catálogo: unos cien mil artículos del proveedor, con referencias, características, precios y el conjunto de la máquina al que pertenece cada pieza.",
+          "A mano es imposible: incluso a un minuto por artículo, sale más de un año de trabajo de una persona. Recogimos los datos automáticamente, unificamos referencias y nombres, emparejamos la nomenclatura con las tablas de referencia internas y configuramos la actualización periódica de precios y existencias, para que el catálogo no quedara obsoleto al día siguiente del lanzamiento.",
+          "El grueso del trabajo, como de costumbre, no fue la recogida, sino la normalización: el mismo producto se llamaba de forma distinta en el proveedor y en el cliente, parte de las características estaba metida en la descripción general en texto libre, y algunas referencias se diferenciaban solo por mayúsculas y espacios.",
+          "El resultado: un catálogo en el que el cliente encuentra por sí mismo la pieza que necesita, en lugar de llamar por teléfono para preguntar si hay existencias."
+        ]
+      },
+      {
+        "heading": "Cómo trabajamos",
+        "body": [
+          "Empezamos por los datos reales: te pedimos ejemplos de archivos, acceso a una base de pruebas o enlaces a las páginas. No damos estimaciones a partir de la descripción de la tarea: con demasiada frecuencia la descripción y el contenido no coinciden.",
+          "Después diseñamos: qué campos hacen falta, cómo emparejarlos con tus tablas de referencia, con qué frecuencia actualizar, adónde exportar, qué hacer ante un fallo. Luego desarrollamos y ponemos en marcha la recogida con monitorización, para que te enteres de un problema por el sistema y no por un cliente.",
+          "Entregamos el resultado allí donde se trabaja con él: una hoja de cálculo, una base de datos, un CRM o un intercambio por API con tu sistema, sin copiado manual intermedio."
+        ]
+      }
+    ],
+    "takeaways": [
+      "Se llama parsing a tres tareas distintas: procesar archivos, extraer datos de bases de datos y recoger datos de sitios web.",
+      "El tiempo no se va en leer el formato, sino en manejar las excepciones: codificaciones rotas, celdas combinadas, escaneos en lugar de texto.",
+      "Si la fuente tiene una API o una exportación oficial, siempre son mejores que analizar el maquetado.",
+      "No esquivamos las protecciones contra la extracción: si una fuente está cerrada a propósito, buscamos una vía legal hacia los mismos datos.",
+      "Un parser debe validar el resultado y avisar de los fallos: una avería silenciosa es peor que una ruidosa.",
+      "Los datos personales están sujetos a la ley rusa 152-FZ, aunque estén publicados abiertamente."
+    ]
+  }
+}

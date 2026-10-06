@@ -18,7 +18,7 @@ import {
   formatPostDate,
   type BlogPost,
   type BlogSection,
-} from "@/lib/blog";
+} from "@/lib/blog/types";
 import { ADMIN_REPO, BLOG_JSON_PATH } from "@/lib/admin/github";
 import type { BlogApi, BlogPublishResult } from "@/lib/admin/blog-api";
 import { ADMIN_MODE } from "@/lib/admin/auth";

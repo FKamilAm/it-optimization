@@ -1,0 +1,836 @@
+{
+  "svoya-crm-ili-gotovaya": {
+    "title": "Custom CRM or off-the-shelf: when a ready-made system is enough and when it isn't",
+    "excerpt": "How an off-the-shelf CRM differs from a custom one — not in features but in consequences: the ceilings boxed systems run into, the decisions you will have to make yourself, what development costs and why the right answer is most often not \"or\" but \"and\".",
+    "category": "Development",
+    "lead": "The question \"buy an off-the-shelf CRM or build your own\" is almost never about features. Boxed systems have longer feature lists than any custom build, and on a comparison table the ready-made option always wins. The difference shows up later — when the company's process no longer fits into someone else's data model. Here we look at where that happens, what you will have to decide for yourself and what each path costs.",
+    "metaTitle": "Custom vs off-the-shelf CRM: which to choose, what it costs",
+    "metaDescription": "Off-the-shelf CRM vs custom development: where boxed systems hit a ceiling, what your own CRM costs and when a ready-made one with add-ons is enough.",
+    "sections": [
+      {
+        "heading": "\"We need a CRM\" is not yet a requirement",
+        "body": [
+          "Different companies mean different things by the word CRM. For a sales team it is a deal pipeline and call reminders. For an agency, it is tracking projects, hours and invoices. For a service company, it is requests, field staff and a spare parts warehouse. For a manufacturer, it is orders, shipments and a link to the equipment. All four go by the same word, and that is the first reason the \"custom or off-the-shelf\" comparison goes wrong: people compare not systems but ideas of what a system should do.",
+          "So the conversation should start not with choosing a product but with one question: which process do you want to stop keeping in your head and in chat threads? An answer like \"we are losing enquiries\" points to a pipeline and reminders — exactly what off-the-shelf systems do well. An answer like \"we don't know how much we make on a project, because some of the work is billed in dollars, some in roubles, and we pay contractors after the fact\" points to accounting that a boxed system doesn't offer in the form you need.",
+          "The good news is that the first type of request doesn't need — and shouldn't get — a development project. The bad news is that an off-the-shelf system answers the second type only up to a certain scale, and the boundary is not visible straight away."
+        ]
+      },
+      {
+        "heading": "What an off-the-shelf system really gives you",
+        "body": [
+          "An off-the-shelf CRM wins where it is usually underestimated: not in its features but in everything around them.",
+          "It works today. Not in four weeks, not in three months — tonight, after you sign up and import your contacts from a spreadsheet. For a company that is losing enquiries right now, that outweighs almost any argument about architecture.",
+          "It has a mobile app that somebody maintains. Your own app is a separate project with a separate budget, two app stores, update reviews and a release cycle. It is usually left out of the CRM development estimate, and then it turns out that the sales managers need to work from their phones.",
+          "It has ready-made integrations with telephony, email, messengers, accounting and cash registers. In your own system each of them is several days of work, plus a further number of days before it stops breaking.",
+          "And there are people for it on the job market. A specialist in setting up a widely used CRM can be hired within a week. Someone who knows their way around your own system cannot be hired at all — you can only grow one or keep paying the people who wrote it.",
+          "That is a serious list. It is worth giving up only when you get something in return that a boxed system fundamentally does not have."
+        ]
+      },
+      {
+        "heading": "Three ceilings companies run into",
+        "body": [
+          "The first is the data model. An off-the-shelf system is built around the entities \"lead\", \"contact\", \"company\" and \"deal\". As long as your process maps onto them, all is well. As soon as an entity appears that this model doesn't have, people start imitating it with whatever is at hand: a project becomes a deal with extra fields, a production stage becomes a pipeline stage, a contractor becomes a contact with a tag. Each such substitution works, but adds a rule that exists only in the team's heads. A year later there are a couple of dozen such rules, and a new employee cannot understand why one deal means a sale and another means an installation stage.",
+          "The second is reporting. Reports in off-the-shelf systems are built on the fields the system considers important. When half the meaning lives in custom fields and unwritten agreements, the report starts to lie — not because it calculates incorrectly, but because it calculates the wrong thing. The typical outcome: the data is exported to Excel and counted by hand, which takes you right back to where you started.",
+          "The third is the total cost of ownership over several years. More on that separately below, because it is almost always calculated wrongly.",
+          "Importantly, none of these ceilings is hit in the first month. All three are a consequence of growth, and that is exactly why \"start with an off-the-shelf system\" is almost never a mistake."
+        ]
+      },
+      {
+        "heading": "What \"your own CRM\" really means",
+        "body": [
+          "Your own system is not \"the same thing, just with our fields\". It means taking on decisions that, in an off-the-shelf system, someone has already made for you — decisions you didn't know existed, because they are not visible from the interface.",
+          "We don't know this from articles: we have our own CRM, which we wrote for ourselves and in which we keep leads, clients, projects, tasks and access credentials. Below are five decisions from it. They look like technical trivia, but each one stands behind a specific mistake that otherwise happens without fail."
+        ]
+      },
+      {
+        "heading": "Money: why amounts are stored in minor units",
+        "body": [
+          "Money must not be stored as a fractional number. A computer cannot represent 0.1 and 0.2 exactly — their sum is not 0.3 but differs from it by a vanishingly small amount. On a single operation you won't notice. Across a few thousand rows the report starts to diverge from reality, first by small change, then by noticeable sums, and nobody can work out where the difference came from.",
+          "That is why our system stores every amount as an integer in the currency's smallest unit — kopecks or cents — and whole units appear only on screen and at the moment of entry. The field is called not \"amount\" but \"amount in minor units\", on purpose: if the field had silently changed its meaning, every place where someone forgot to update it would show a value a hundred times too large.",
+          "In an off-the-shelf CRM you don't need to think about this — it has already been done. In your own, you need to think about it before the first thousand rows appear in the database, not after."
+        ]
+      },
+      {
+        "heading": "Two currencies you must not add together",
+        "body": [
+          "We bill some of our work in roubles and some in dollars. The obvious solution is to convert everything into one currency and show a grand total. We deliberately don't.",
+          "To add roubles to dollars you need an exchange rate. The rate changes. That means the total the report showed yesterday will be different tomorrow — even though not a single deal has changed. A total that changes on its own cannot be reconciled with anything, and trust in it disappears after the first mismatch with the accounts department.",
+          "So totals are calculated separately for each currency: two lines instead of one. It is slightly less convenient and completely honest. If a company really needs a single total, then it also needs an exchange rate fixed on the date of each transaction — and that is no longer a field but a separate mechanism, and it has to be designed deliberately."
+        ]
+      },
+      {
+        "heading": "Passwords: why the server must not see them",
+        "body": [
+          "Access credentials inevitably end up in a CRM: hosting, domains, admin panels of client sites, email. The temptation is to keep them in an ordinary field like everything else. The problem is that the database leaves the server every night as a backup, and every such dump is a ready-made list of all the company's passwords.",
+          "Our passwords are encrypted right in the browser, with a key derived from a master passphrase that is never sent to the server. The server stores unreadable text and cannot decrypt it, even in theory. A backup is then worth exactly as much as a random string of characters.",
+          "This decision has a price, and you need to know it in advance: nobody can recover a forgotten master passphrase, including the owner of the server. Searching and checking passwords on the server side is also impossible — that would require the key, and with the key on the server the whole point is lost. This is not a shortcoming; it is the terms of the deal.",
+          "Off-the-shelf systems usually offer a credential store where decryption happens on their side. That is more convenient and protects against a different threat model. Choosing between the two approaches means choosing what exactly you are protecting yourself from, and that choice, too, is yours to make."
+        ]
+      },
+      {
+        "heading": "Deletion that doesn't delete straight away",
+        "body": [
+          "The \"delete\" button in a record-keeping system should almost never delete immediately. People make mistakes, and a project deleted by accident along with its correspondence is a loss that nothing can make up for.",
+          "The standard solution is soft deletion: the record is marked as deleted and disappears from the lists. It has a side effect people forget about: if nothing ever deletes such records for real, they pile up forever and end up in every nightly backup. For client contacts, this directly contradicts Federal Law 152-FZ, Russia's personal data law, which expects personal data to be deleted once the purpose of processing it has been served.",
+          "So for us, deletion is a thirty-day grace period, not a graveyard: for a month the record can be restored from the trash, after which a daily job erases it for good. Notes are deleted together with the record, not before — otherwise a restored project would come back without its discussion, which is almost as bad as not coming back at all."
+        ]
+      },
+      {
+        "heading": "Statuses don't remind anyone of anything",
+        "body": [
+          "The most common reason a deal is lost is not the lack of a CRM but a card quietly sitting in the status \"in correspondence\" for the fourth month running. A status cannot remind anyone of itself: it describes a state, not a commitment.",
+          "That is why the main field on our leads is not the status but the next step: a date and one line saying exactly what needs to be done. An overdue next step is the only thing that puts a lead on the main screen and into the morning digest. The line of description matters as much as the date: the reminder \"call about the estimate — 3 days overdue\" is clear without opening the card, while a bare \"lead overdue\" forces you to open it and try to remember.",
+          "The digest arrives in the team chat in the morning — and doesn't arrive at all if there is nothing to remind anyone of. A daily \"all clear\" teaches people not to open the bot, and then one day they scroll past something important.",
+          "Almost every off-the-shelf system has a reminder mechanism. The question is whether it is mandatory: if the \"next step\" field can be left empty, it will be left empty."
+        ]
+      },
+      {
+        "heading": "What a custom CRM costs",
+        "body": [
+          "With us, CRM development starts at {price:400000} and four weeks — that is a system on a ready-made architecture with the core modules, roles, basic integrations and data migration. Processes built to fit, dashboards, integrations with services and telephony, and team training start at {price:700000} and eight weeks. A complex platform with access rights split by department and designed for high load starts at {price:1200000} and twelve weeks.",
+          "To this you have to honestly add what usually doesn't make it into the development estimate. Changes after launch — in the first months the system changes constantly, because real work always differs from what was described at the start. Hosting and backups. Dependency and security updates. And the most expensive item — the availability of people who can make changes.",
+          "It is worth budgeting around 15–20% of the development cost per year for support. Less than that means the system will age and one day need not changes but a rewrite."
+        ]
+      },
+      {
+        "heading": "What an off-the-shelf system costs over three years",
+        "body": [
+          "The cost of an off-the-shelf system is almost always calculated from the licence price, and that is almost always wrong. You need to add up four things.",
+          "The subscription — usually per user per month, and it grows with the team. Implementation — setting up pipelines, permissions and templates and importing data; that is separate work done by an integrator. Customisation — everything that can't be set up with checkboxes and needs modules or scripts; over time this is the least predictable line item. And migration — the cost of leaving if you ever decide to go.",
+          "The last item is the one people notice last. Data in an off-the-shelf system can be exported, but it is exported in that system's model: deals with stages, fields with internal names, files as a separate archive. The links between entities and the process logic aren't exported at all, because they live in the settings. The longer and more deeply you are in the system, the more it costs to leave.",
+          "Over a one-year horizon, off-the-shelf is almost always cheaper. Over three to five years, for a team that actively customises the system, the gap narrows and sometimes flips. There is no universal answer here — there is arithmetic worth doing with your own numbers."
+        ]
+      },
+      {
+        "heading": "The hybrid that is most often what you need",
+        "body": [
+          "The \"custom or off-the-shelf\" opposition is false more often than it seems. The option that works is usually in the middle: the off-the-shelf CRM stays where it is strong — the pipeline, calls, correspondence, the mobile app — and alongside it you add your own services for whatever doesn't fit its model.",
+          "A client or partner portal with your own calculation logic. Production or field work tracking. A dashboard for a department that needs something other than what the CRM shows. Pricing by your own formula. All of this lives separately and exchanges data with the CRM through an integration.",
+          "This approach has a price — synchronisation. Two systems sharing data will inevitably drift apart unless you decide in advance which one is the master for each entity. The rule is simple and non-negotiable: every entity has exactly one owner, and the others read. A client is created in the CRM and the portal reads it; an order is created in the portal and the CRM reads it. As soon as both sides start writing to the same field, manual reconciliation begins.",
+          "In return, there is less development, the ceiling goes away, and you don't have to move anywhere."
+        ]
+      },
+      {
+        "heading": "How to choose: a short checklist",
+        "body": [
+          "Off-the-shelf is enough if your process is enquiries, calls and deals; if the team is up to 15–20 people; if you need to start within the next few weeks; if you are not prepared to fund development on an ongoing basis.",
+          "A custom system is worth considering if the key entity of your business isn't called a \"deal\" and can't be represented as one without stretching; if half your data lives in custom fields and unwritten agreements; if reports are calculated in Excel anyway; if data cannot leave your infrastructure because of client or regulatory requirements; if you are already paying an integrator so much that the three-year total is comparable to development.",
+          "And separately: if you can't describe your process on one page, neither system will help. Automating an undescribed process gives you an undescribed process that now also has a database."
+        ]
+      },
+      {
+        "heading": "When you don't need a custom CRM",
+        "body": [
+          "You don't need one if the main problem is discipline, not the tool. A system won't make anyone call; it will only show that nobody did.",
+          "You don't need one if the process changes every month. Development fixes the process in code, and fixing something that hasn't settled yet means rewriting it. At this stage an off-the-shelf system, or even a spreadsheet, is more useful.",
+          "You don't need one if nobody is going to be responsible for it. A system needs an owner inside the company — not a developer, but someone who decides how things should be. Without one, any CRM, custom or off-the-shelf, turns into a dumping ground of cards within six months.",
+          "And you don't need one if you haven't tried an off-the-shelf system yet. A month of working in a boxed product gives you a list of specific complaints, and that is the best specification you can bring to a developer. Without it, development starts with guesswork."
+        ]
+      },
+      {
+        "heading": "Where to start",
+        "body": [
+          "Describe the one process that hurts most on a single page: who does what, in what order and what counts as the result. See whether it maps onto the entities of an off-the-shelf system without stretching. If it does, take the off-the-shelf one and come back to this question in a year. If it doesn't, you already know exactly what needs to be developed, and the conversation with a contractor won't start from scratch.",
+          "We do both: we design custom CRMs and platforms, and we connect the missing services to existing systems. If you're not sure which path is yours, write to us — we'll go through your process and tell you honestly if an off-the-shelf system will do."
+        ]
+      }
+    ],
+    "takeaways": [
+      "The \"custom or off-the-shelf\" question is decided not by a feature list but by whether the core entity of your business maps onto the \"lead — contact — deal\" model without stretching.",
+      "An off-the-shelf system wins on what surrounds the features: it works today, and it comes with a mobile app, ready-made integrations and specialists on the job market.",
+      "A custom CRM means the decisions a boxed system has already made for you: storing money in minor units, never adding different currencies together, encrypting passwords in the browser, deferred deletion, a mandatory next step.",
+      "Development starts at {price:400000} and four weeks, plus 15–20% of the cost per year for support; the cost of an off-the-shelf system must include the subscription, implementation, customisation and the price of leaving.",
+      "Most often the right answer is a hybrid: an off-the-shelf CRM for the pipeline plus your own services for whatever doesn't fit into it, with one owner for every entity.",
+      "If the process isn't described on one page or nobody is responsible for the system, development won't help — start with an off-the-shelf system and come back to the question in a year."
+    ]
+  },
+  "skolko-stoit-sajt": {
+    "title": "How much does a website cost in 2026: what goes into the price",
+    "excerpt": "Real prices for a business-card site, landing page, corporate website, B2B site and online store: what makes up the estimate, what drives the cost up, what is usually not included, and how to compare contractors' proposals.",
+    "category": "Websites",
+    "lead": "Website development prices can differ tenfold or more, and that is not always greed on one side and price dumping on the other: the word \"website\" covers very different products. Let's go through them by type — business-card site, landing page, corporate website, B2B and online store — and look at what each costs, what goes into the price, what it usually leaves out, and how to read an estimate so that you neither overpay nor cut costs in a way that hurts you.",
+    "metaTitle": "How much does a website cost in 2026: prices explained",
+    "metaDescription": "Website prices in 2026: business-card site, landing page, corporate, B2B and online store. What makes up the estimate, what raises it and what support costs.",
+    "sections": [
+      {
+        "heading": "Why one question gets answers from {price:20000} to {price:1000000}",
+        "body": [
+          "Ask five contractors how much a website costs and you will get five answers that differ tenfold. That does not necessarily mean someone is cheating: the word \"website\" covers half a dozen different products, and comparing their prices is like comparing the price of a bicycle and a lorry because both count as \"transport\".",
+          "A one-page business-card site with contact details and a twenty-page corporate website integrated with a CRM differ in workload not by a few percent but several times over. An online store adds a catalogue, a basket, payment and delivery — and each of these components is a project in its own right. A site for B2B sales brings price lists, calculators, partner accounts and data exchange with 1C (the accounting system most Russian companies run on) along with it.",
+          "So the honest answer to \"how much does it cost\" starts with a question back: what kind of site, and what for. Below is a breakdown by type with real prices, what makes them up, what they usually leave out, and how to compare proposals so that you neither overpay nor cut costs in a way that hurts you."
+        ]
+      },
+      {
+        "heading": "What makes up the price",
+        "body": [
+          "A website is not a product off the shelf but the work of several specialists, and the price consists almost entirely of their hours. Someone designs the structure and the visitor's journey, someone draws the design, someone codes the layout and programs, someone writes the copy, sets up integrations, tests on different devices and launches.",
+          "Each of these stages can be done quickly using ready-made solutions, or slowly and tailored to you. The design can be an existing template adapted to your brand identity — or a unique layout built from scratch. You can send your own copy, or order copy with the structure worked out. A request form can send an email to your inbox — or create a deal in the CRM with its source and the ad campaign tag.",
+          "Hence the main rule for reading any price: it depends not on \"beauty\" but on the number of decisions that have to be made for your particular task. The more that is standard, the cheaper and faster. The more that is special — logic, integrations, content — the more expensive, and that is not a mark-up but honest time.",
+          "All the figures below are the lower bound, \"from\". The final amount is fixed after the brief, once the scope is clear: how many pages, whose copy, which systems to connect to."
+        ]
+      },
+      {
+        "heading": "Business-card website: from {price:29000}",
+        "body": [
+          "A business-card site is a single page that answers three questions: who you are, what you do and how to reach you. Services, advantages, contacts, a map, a request form. That is enough for a tradesperson, a small studio, a consultant, or a company that simply needs to be present online and not look suspicious when someone checks it out.",
+          "Our basic business-card site on a ready-made solution adapted to your brand costs from {price:29000} and takes from five days. A version with custom design, messenger contact buttons, basic SEO and analytics starts at {price:49000}. A unique design with animations, copywriting and integrations starts at {price:90000}.",
+          "The main limitation of a business-card site is that it is one page. It is almost impossible to attract search traffic for different services with it: a search engine needs a separate page for each query. If search promotion is in your plans, that is an argument for looking at a multi-page site straight away — or at least building the business-card site so that it can be expanded later without starting over."
+        ]
+      },
+      {
+        "heading": "Landing page: from {price:59000}",
+        "body": [
+          "A landing page is also a single page, but its job is different: not to tell people about the company but to sell one specific offer to someone who arrived from an ad. Hence a different structure — offer, benefits, objections, proof, call to action — and different requirements for speed and analytics.",
+          "A basic landing page on a ready-made solution, with up to six content screens, a form and analytics connected, starts at {price:59000} and takes from 7–10 days. With custom design built around the offer, a quiz or request calculator, CRM integration and goals configured for advertising — from {price:98000}. A unique design, A/B versions for different traffic sources, a worked-out structure and copywriting — from {price:180000}.",
+          "A landing page shows especially clearly why integrations and goals cost money. Advertising without proper analytics is a budget of which you cannot say which part actually worked. A quiz instead of a five-field form usually brings in more leads, but only if its results reach a sales manager rather than sitting in someone's inbox."
+        ]
+      },
+      {
+        "heading": "Corporate and end-to-end websites: from {price:89000} to {price:400000}",
+        "body": [
+          "A multi-page site is the main format for a company that wants to win clients from search and look solid to people who come on a recommendation. Separate pages for services, the company, case studies, contacts, sometimes a blog — each with its own job and its own search query.",
+          "An end-to-end website on a ready-made template with content for up to eight pages costs from {price:89000}. With custom design, copywriting, CRM integration and an SEO foundation — from {price:150000}. Bespoke development with complex scenarios — from {price:280000}.",
+          "A corporate website is the same category, but with an emphasis on the brand and a larger structure. The basic version, up to seven pages with content, starts at {price:120000} and takes from ten days. Custom design for your brand, up to fifteen pages with copywriting, integration with a CRM and messengers, extended SEO and analytics — from {price:220000} and from three weeks. Unique design, complex structure and functionality, support after launch — from {price:400000} and from five weeks.",
+          "The biggest variable here is the number of pages and who writes the copy for them. A service page with a well-thought-out structure, answers to questions and examples takes a copywriter half a day to a day each, and with fifteen pages this line of the estimate easily becomes the largest."
+        ]
+      },
+      {
+        "heading": "B2B website: from {price:180000}",
+        "body": [
+          "A B2B site sells not to a person but to a company, and nobody buys on it in one click. The visitor is a procurement specialist, an engineer or a manager who needs to quickly find specifications, download a price list, estimate the cost and request a quote — and then the decision is made by four people in a meeting.",
+          "The basic version on a ready-made solution, with a catalogue, price lists, a quote request form and basic integrations, starts at {price:180000} and takes from three weeks. With custom design, a cost calculator, a partner account and CRM integration — from {price:320000}. Complex deal logic, data exchange with 1C and internal systems, a dealer portal — from {price:550000} and from eight weeks.",
+          "A B2B site almost always gets more expensive because of accounting systems. Prices and stock levels that live in 1C have to be shown on the site up to date, otherwise managers will spend every day explaining to clients why \"the website shows a different price\". Setting up that exchange reliably is a separate and not particularly quick piece of work."
+        ]
+      },
+      {
+        "heading": "Online store: from {price:190000}",
+        "body": [
+          "A store is the \"heaviest\" type of website, because it does not just tell — it sells on its own: catalogue, filters, product pages, basket, checkout, payment, delivery, notifications, customer account. Each of these components has to work without human involvement, including at night and at weekends.",
+          "A basic store on a ready-made solution with a catalogue of up to a hundred products, a basket, online payment and delivery set up starts at {price:190000} and takes from three weeks. With custom design and filters, a customer account and integration with 1C and a CRM — from {price:350000}. A large catalogue, marketplace scenarios, complex inventory accounting and content loading — from {price:600000} and from eight weeks.",
+          "It is also worth remembering that accepting payments in Russia means an online cash register and receipts under 54-FZ (the federal law on cash registers), and collecting names, phone numbers and addresses brings the obligations of a personal data operator. These are not development costs, but they are part of the launch, and it is better to learn about them before it.",
+          "And a word on content. A hundred product pages with photos, descriptions and specifications is a volume of work that is underestimated more often than anything else. If you have hundreds of products, they should be exported from your accounting system rather than typed in by hand."
+        ]
+      },
+      {
+        "heading": "Ready-made solution or development from scratch",
+        "body": [
+          "In almost every category the basic version is built on a ready-made solution — a proven foundation that is adapted to your brand. This is not \"a dirt-cheap template off the internet\" but a way of not paying to reinvent what was invented long ago: menus, forms, responsive layout, loading speed.",
+          "This route is faster and cheaper and works perfectly well when the task is standard: tell people about your services, collect leads, show a catalogue. There is only one limitation — anything non-standard has to be fitted into someone else's logic, and at some point that becomes more expensive than building your own.",
+          "Custom development is justified when the website is part of a business process rather than a shop window. A complex calculator, a personal account with data from your systems, special ordering logic, a load that ready-made solutions are not designed for. Then you are paying for a site that works exactly the way your business is organised, not the other way round.",
+          "A sensible strategy for many is to start with a ready-made foundation, check that the site brings in clients, and only then invest in custom work where you have hit the ceiling."
+        ]
+      },
+      {
+        "heading": "What drives the cost up",
+        "body": [
+          "Copy. The most underestimated item. A page that sells needs structure, facts and answers to objections — that is work, not \"throwing together a couple of paragraphs\". If you have no copy of your own, its cost needs to be budgeted from the start, otherwise the launch will stall on empty pages.",
+          "Integrations with undocumented systems. Connecting a site to a popular CRM is a well-understood task. Connecting it to an in-house accounting system that nobody remembers how it works is research first and development second.",
+          "Moving from an old site. If your current site ranks in search, those rankings need to be preserved: migrate the content, set up redirects from the old URLs to the new ones, check that nothing has been lost. Without this, a beautiful new site brings in less than the ugly old one for its first few months.",
+          "Multiple languages, non-standard animation, complex user roles, heightened security requirements — each of these adds scope, sometimes significantly.",
+          "And approvals. A project where the mock-up is signed off by five people with different opinions takes longer and costs more than one with a single person in charge. This is not about the client's personality but about the fact that every iteration is hours."
+        ]
+      },
+      {
+        "heading": "What is usually not included in the price",
+        "body": [
+          "Domain and hosting. They are registered in the client's name and paid for separately — and rightly so: the site's address should belong to you, not the contractor. For a small site that means a few dollars a year for the domain and a few dollars a month for hosting.",
+          "Paid licences and services: commercial CMSs and modules, an online cash register, SMS notifications, paid maps, mailing services. Their cost depends on the solutions chosen and the volume, and goes on a separate line.",
+          "Photos and video. If you have none of your own, a photo shoot or bought images are budgeted separately. Stock photos of \"smiling partners\" are worse than honest phone photos from your own production floor.",
+          "Advertising and promotion. The SEO foundation in the estimate is the right technical base: structure, meta tags, speed, markup. That is not the same as promotion — ongoing work on content and search queries that happens after launch and is paid for separately."
+        ]
+      },
+      {
+        "heading": "What a website costs after launch",
+        "body": [
+          "Launch is not the end of the spending. The minimum is the domain and hosting, which is pocket change. Beyond that, everything depends on how alive the site is: whether prices change, whether new services come out, whether advertising drives traffic to it.",
+          "If the site is static and changes once every six months, ongoing support is unnecessary — one-off edits as needed will do. If it is a store, a B2B portal or a site with integrations, it needs looking after: updating the engine and modules, checking that form submissions arrive, that the exchange with 1C has not stalled, that backups are being made.",
+          "Support with monitoring, backups, minor edits and a pool of hours for tasks costs from {price:40000/mo} with us; with priority and feature development — from {price:80000/mo}; a dedicated team with SLA guarantees — from {price:150000/mo}. A one-off format with no subscription fee is also possible.",
+          "A separate word on security. A site that has not been updated for years is the most common entry point for a hack: outdated modules with publicly known vulnerabilities are hunted for automatically and at scale. Updates are not a contractor's whim but insurance."
+        ]
+      },
+      {
+        "heading": "How to compare proposals",
+        "body": [
+          "Compare what is included, not the total. A {price:80000} proposal and a {price:200000} proposal often describe different websites. Ask for the estimate to be broken down by stage and look at what it contains: how many pages, whose design, who writes the copy, which integrations, how many rounds of revisions.",
+          "Ask who will own the site. The code, hosting access, the admin panel, the domain — all of it should be registered to you. A site on a contractor's closed platform that cannot be taken away turns a change of contractor into a new development project.",
+          "Clarify what counts as launch and what happens afterwards. Is there a warranty period during which bugs are fixed free of charge? Who makes changes three months later, and for how much?",
+          "And pay attention to the questions they ask you. A contractor who names a price without asking where your clients will come from and what they should do on the site is selling hours, not results."
+        ]
+      },
+      {
+        "heading": "Why a cheap website can end up costing more",
+        "body": [
+          "A cheap site is a perfectly fine choice if you need to test an idea quickly or simply get online. Problems start when it is bought as a permanent solution, which it is not.",
+          "A typical scenario: a {price:20000} site that is not responsive and loads slowly. Advertising it gets more expensive, because visitors on phones leave before it has loaded. A year later it is rebuilt — and you pay a second time, the full price now, and lose time on top.",
+          "Another scenario is a site built on the contractor's own website builder that cannot be moved. It works as long as you keep paying, and when you change contractor it has to be rebuilt from scratch.",
+          "The sensible place to save is not the quality of the foundation but the scope: launch fewer pages, but well made, and expand as the site starts bringing in clients. A business-card site built with the future in mind is later developed into a full website rather than thrown away."
+        ]
+      },
+      {
+        "heading": "How to save without losing out",
+        "body": [
+          "Prepare materials in advance. Copy, photos, logo, company details, a list of services with prices — everything expected from you is best gathered before the start. A project standing idle while it waits for content costs both sides money.",
+          "Appoint one person in charge. Someone who collects feedback from everyone and makes the decisions saves weeks of approvals.",
+          "Start with what matters most. Decide which pages and features are needed for the first leads and which can wait. Integration with 1C, a customer account and a blog are often best left for a second phase, once it is clear that the site works.",
+          "And do not skimp on analytics. Goals, counters and reliable hand-off of leads are an inexpensive part of the estimate, and without them it is impossible to tell whether the site has paid for itself at all."
+        ]
+      }
+    ],
+    "takeaways": [
+      "\"Website\" means six different products: a business-card site from {price:29000}, a landing page from {price:59000}, an end-to-end website from {price:89000}, a corporate site from {price:120000}, B2B from {price:180000}, an online store from {price:190000}.",
+      "The price consists almost entirely of specialists' hours and grows with the number of decisions made for your task: design, copy, integrations.",
+      "The main cost drivers are copy, integrations with undocumented systems, moving from an old site while keeping its search rankings, and lengthy approvals.",
+      "Domain, hosting, paid licences, photo shoots and promotion usually come separately; the domain and hosting should be registered in the client's name.",
+      "Compare proposals by the scope of work and by who will own the code and access, not by the total.",
+      "Save on scope, not on the quality of the foundation: fewer pages at launch, but built to grow."
+    ]
+  },
+  "telegram-bot-dlya-biznesa": {
+    "title": "Telegram bots for business: what they automate and what they cost",
+    "excerpt": "Which jobs a bot really takes on, how a Mini App differs from an ordinary bot, where CRM and payment integrations break, what development and upkeep cost — and when a business does not need a bot at all.",
+    "category": "Automation",
+    "lead": "A Telegram bot looks like a cheap substitute for a website and an app: describe the scenario, get the enquiries. In practice half of all bots go quiet within a month — usually not because they were badly built, but because they were given a job the company does not have. Here is what bots are genuinely given to do, how they differ from a Mini App, what they cost and when you are better off not building one.",
+    "metaTitle": "Telegram bots for business: uses, timelines, prices",
+    "metaDescription": "What a Telegram bot automates, how a Mini App differs from a bot, where CRM and payment integrations break, and what development and upkeep cost.",
+    "sections": [
+      {
+        "heading": "What a bot is, from a business point of view",
+        "body": [
+          "A Telegram bot is a program that works inside a chat: it receives messages and button presses, replies according to set logic and talks to other systems — your CRM, a spreadsheet, a payment service, your database. There is no artificial intelligence in it by default: a bot does exactly what is built into its scenario.",
+          "Its main advantage is that it lives where people already are. No app to install, no password to invent, no confirmation email to wait for. Follow a link, press one \"Start\" button — and the conversation has begun. For tasks where every extra step kills half the enquiries, that is the decisive difference from a website, and even more so from a mobile app.",
+          "The second property is less obvious, but it shapes the whole mechanism: a bot can message a person first only after that person has contacted it. You cannot buy a subscriber base, upload one from a file or assemble one from your clients' phone numbers. The bot earns every contact itself — and that same rule keeps it from turning into a spam channel.",
+          "Hence a simple rule: a bot is good wherever there is a repeated action — booking, checking a status, leaving an enquiry, reporting in. And it is poor where one complex choice needs discussion: that will end in a conversation with a person anyway, and it is better if the bot gets the person there in three touches rather than thirty."
+        ]
+      },
+      {
+        "heading": "Five jobs most often handed to a bot",
+        "body": [
+          "Taking enquiries. The bot asks three or four questions, collects contact details and passes the enquiry to a manager or straight into the CRM. The value is not in the form itself — the website has one too — but in the fact that the person does not leave the messenger and answers the questions one at a time instead of staring at a ten-field questionnaire.",
+          "Bookings and reminders. Beauty salons, clinics, car repair shops, tutors — anything with a schedule. The bot shows free slots, records the booking and sends a reminder a day ahead. The reminder is where the real economics lie: it cuts no-shows, and every no-show is an empty slot in the schedule that you have already paid for in rent and wages.",
+          "Order statuses and notifications. \"Where is my order?\" is the most common support question in almost any business that delivers. If the status arrives on its own, the question simply never comes up, and first-line support stops reading the spreadsheet back to people.",
+          "Answers to routine questions. Opening hours, address, delivery terms, warranty, documents. Here the bot replaces not a person but the tenth repetition of the same answer. The same layer usually handles free-form questions too — when a question does not match a button, but the answer to it is in your knowledge base.",
+          "Internal processes. The most underrated part: staff requests to IT or facilities, approvals, reports from sites, collecting photos from installation jobs. A bot like this has no marketing and no leads — but it does away with correspondence spread across ten chats and \"I sent it to you, scroll up\"."
+        ]
+      },
+      {
+        "heading": "Bot or Mini App: what is the difference",
+        "body": [
+          "An ordinary bot communicates through messages, buttons and commands. A Mini App is a full interface inside Telegram: screens, lists, filters, forms, a basket, payment. Technically it is a web application that opens right inside the messenger, with no browser and nothing to install.",
+          "The choice is simple. If the scenario is linear and fits into five to ten steps, a bot will do the job better: it is faster, lighter and needs no design. If you need a catalogue with pictures, filters, a personal account, order history — that is Mini App territory, because flicking through a hundred products with buttons is impossible.",
+          "Most often the two are combined: the bot acts as the entry point and the notification channel, and the Mini App as the shopfront and the account. The user taps a button in the chat, opens a screen, places an order and gets notifications back in the conversation.",
+          "It is important to remember that a Mini App is a web application, with everything that implies. It has to be hosted somewhere, load quickly on a phone and behave properly on a poor connection. The requirements are the same as for the mobile version of a website, and the amount of work is to match."
+        ]
+      },
+      {
+        "heading": "How a bot works under the hood",
+        "body": [
+          "All communication goes through the Bot API. A bot is created in @BotFather, which issues a token — in effect the bot's password. Whoever holds the token is the bot: they can read incoming messages and write on its behalf. That is why the token is kept in the server's secrets, not in the code, let alone in the repository.",
+          "A bot receives messages in one of two ways. Long polling: the program itself periodically asks Telegram whether there is anything new; it works anywhere, including on a local machine without a domain. Webhook: Telegram knocks on your address itself; you need a domain with valid HTTPS, but there is no constant polling. For most tasks the difference is unnoticeable, but for debugging the first method is far more convenient.",
+          "The key consequence: a bot needs a server running around the clock. A bot is not a file \"uploaded to hosting\" but a process that has to be alive at three in the morning, when a client decides to check their order status.",
+          "The state of the conversation has to be stored somewhere too. If the bot remembers the scenario step only in memory, any restart — and one happens with every update — drops half the users in the middle of a questionnaire. A proper implementation keeps state in a database, and from the user's point of view the restart goes unnoticed.",
+          "And a word about limits. Telegram caps the sending rate — around thirty messages per second in general, and noticeably stricter for groups. A broadcast to tens of thousands of people does not go out instantly; it has to be spread out through a queue. Trying to fire it all at once ends in errors and temporary restrictions on the bot."
+        ]
+      },
+      {
+        "heading": "Integrations: where things usually break",
+        "body": [
+          "The most common integration is the CRM. An enquiry from the bot should become a deal with its source recorded, not a message in a shared chat that someone will notice one day. Without that, the bot turns into yet another channel nobody looks through.",
+          "Next in popularity come spreadsheets. Google Sheets is great for testing a hypothesis in a day and seeing the first enquiries. As permanent storage it is poor: no access rights, no history, and anyone can sort a column and shift the data out of line with the rest.",
+          "Payments, calendars, inventory, 1C (the accounting system most Russian companies run on), delivery services — all of these connect through APIs, and this is where the real work begins. Someone else's service lives its own life: it changes its response format, revokes keys, goes down for maintenance.",
+          "An integration usually breaks not at launch, when everything is being checked, but after several months of quiet. That is why, in a production bot, every external call has a retry on failure and an alert to the person responsible. The worst case is not an error but silence: enquiries stopped reaching the CRM, and you found out two weeks later from your revenue.",
+          "It is also worth agreeing on what the source of truth is. If the bot writes to the CRM while a manager edits the same deal by hand, you need to decide in advance whose data wins when they diverge. This conversation seems tedious right up until the first conflict."
+        ]
+      },
+      {
+        "heading": "Payments inside Telegram",
+        "body": [
+          "There are two ways to take money. The first is Telegram's built-in payments through a connected provider: the person never leaves the messenger, and payment happens in the same window. The second is a link to an ordinary payment page; it looks less smooth, but it is quicker to set up and does not depend on the list of supported providers.",
+          "Digital goods and subscriptions inside Telegram follow separate mechanics — payment in Stars. The platform's rules on this change from time to time, so the specific method is worth confirming at the start of the project rather than building it in blind.",
+          "Whatever you choose, in Russia accepting payment means an online cash register and a receipt under 54-FZ, the Russian law on fiscal receipts. Fiscalisation is usually handled by the payment provider, but you need to check that before launch, not after the first sale: the receipt is the seller's obligation, not the bot developer's.",
+          "And think refunds through in advance. In a bot this is not a button but a process: who makes the decision, within what time frame, how the money is returned and what the client sees along the way. Silence in response to a refund request costs more than the amount itself — it ends up in the reviews."
+        ]
+      },
+      {
+        "heading": "Personal data and 152-FZ",
+        "body": [
+          "As soon as a bot asks for a name, phone number, address or date of birth, it is collecting personal data — with all the obligations of a data operator under Federal Law 152-FZ, Russia's personal data law. You need consent, you need an accessible processing policy, and the data is supposed to be stored in a database located in Russia.",
+          "The practical approach is to collect less. Every extra field in a questionnaire is not only a minus for conversion but a plus for liability. If a name and phone number are enough for a booking, a bot never needs passport details.",
+          "A separate point about the conversations themselves. Everything a person sends the bot physically passes through your server and is often saved there in logs. Photos of documents, card numbers sent \"just in case\", medical details — all of it settles in text files nobody remembers. Logs should be cleaned on a schedule, and full message contents should not be written to them."
+        ]
+      },
+      {
+        "heading": "What development costs",
+        "body": [
+          "The price is made up of four things: how many scenarios, how many integrations, whether there is a custom interface and what load is expected. A bot that takes an enquiry and puts it into the CRM and a bot with a personal account, payments and inventory are different projects, several times apart in cost, even though both go by the same word.",
+          "Here is how it looks with us. A basic bot built to a ready scenario: from {price:50000} and from a week of work — menu, buttons, taking enquiries, notifications to a chat or the CRM, launch on your account. A package combining a Mini App, CRM and payments: from {price:110000} and from two weeks. A project with complex logic, custom integrations, analytics and headroom for load: from {price:220000} and from four weeks.",
+          "What usually drives the price up is not \"lots of buttons\" but integration with an in-house system that has no documentation: first you have to work out how it is built, and only then connect anything. Roles and permissions have a similar effect — when a bot has several types of users, each with their own set of actions.",
+          "It comes out cheaper when three things are ready before the start: a clear one-page scenario, access to the systems it needs to connect to, and a person on your side who answers questions within a day rather than a week."
+        ]
+      },
+      {
+        "heading": "What upkeep costs",
+        "body": [
+          "A server for a bot is inexpensive — a simple bot needs only the smallest virtual machine, which costs just a few dollars a month. A Mini App with images and traffic will cost more, but even so it is not the main expense.",
+          "The main one is changes. A business changes its prices, services and rules, and the scenario has to follow. A bot nobody has touched for a year usually tells clients about last year's terms — and that is worse than having no bot at all.",
+          "There is a technical side too: Telegram evolves, the API changes, dependencies go out of date. Once every year or eighteen months the project needs a round of updates, even if nothing has changed functionally.",
+          "And one question to settle before launch: who fixes the bot if it goes silent on a Saturday? The answer \"the developer will probably take a look\" means downtime on your busiest day. The answer \"support under contract, response within so many hours\" means someone has thought it through."
+        ]
+      },
+      {
+        "heading": "Bot builder or custom development",
+        "body": [
+          "Bot builders exist, they are cheap and for linear scenarios they work perfectly well: put together a questionnaire, hand out a lead magnet, walk a person through a five-step funnel. If that is your task, there is no point starting development from scratch.",
+          "Their limitations are just as clear. The only logic possible is what the platform provides; your clients' data sits with the service, not with you; the subscription fee grows along with your base; there is nowhere to plug in a non-standard integration. And the whole bot depends on whatever happens to someone else's business.",
+          "Development is needed when the bot is tied to your systems, when the logic does not fit into a builder, when owning the data and the code matters — or when the builder's bill for a large base is already comparable to the cost of development.",
+          "A sensible sequence usually goes like this: test demand on a builder, and when you hit its ceiling and it becomes clear exactly what you need, move the logic into a solution of your own. By then practice itself has written the requirements, and the project comes out cheaper than if everything had been designed up front."
+        ]
+      },
+      {
+        "heading": "Common mistakes",
+        "body": [
+          "A maze with no exit. A bot with no way through to a human is more irritating than waiting on hold. The \"Call a manager\" button should be visible at every step, not hidden on the third level of the menu.",
+          "A bot instead of a process. If there is nobody to handle the enquiries, a bot will not help — it will just bring more people to the same bottleneck faster. It makes sense to automate what already works but takes a lot of hands.",
+          "Broadcasts as the only value. A subscriber who gets nothing but promotions from a bot unsubscribes within two weeks. A useful action — an order status, a reminder, an answer to a question — keeps the person in the conversation and makes an occasional broadcast welcome.",
+          "No analytics. Without events for each step of the scenario, there is no way to know where people drop off. Usually it is one specific question in the questionnaire that is worded unclearly, and it takes five minutes to find — if the data is being collected.",
+          "Launch and forget. A bot is a service, not a gift. It needs an owner on the business side, regular review of the conversations and a clear procedure for making changes to the scenario."
+        ]
+      },
+      {
+        "heading": "When you do not need a bot",
+        "body": [
+          "When there are few enquiries. Two or three enquiries a week are cheaper to handle by hand — automation will never pay for itself here, yet it will still need maintaining.",
+          "When the deal is complex and one-off. Equipment costing upwards of {price:1000000}, project work, anything sold through discussion and negotiation — here a bot is useful at most as a quick way to set up a meeting.",
+          "When your audience is not on Telegram. If your clients message you on WhatsApp or phone you, a bot in a different messenger will not create a flow of enquiries by itself — it serves existing demand rather than generating new demand.",
+          "When there is no process. If inside the company it is unclear who handles an enquiry and by when, a bot will only lock that uncertainty in and make it public."
+        ]
+      },
+      {
+        "heading": "Where to start",
+        "body": [
+          "Pick one action that is repeated most often and eats up your staff's time: booking, status, a routine question, taking an enquiry. Count how many times a week it happens and how many minutes it takes — that is your future saving, the baseline you can later measure the result against.",
+          "Describe the scenario in words, on one page: what the person writes, what the bot replies, where automation ends and the manager takes over. A document like this matters more than any technical specification — it shows straight away where the scenario falls apart.",
+          "Decide where the data goes and who is responsible for it. An enquiry with no recipient is a lost enquiry, however nicely the bot collected it.",
+          "And launch narrow. One working scenario that delivers value from the first week is more useful than twenty buttons, half of which nobody will ever reach. Expanding is always easier than fixing."
+        ]
+      }
+    ],
+    "takeaways": [
+      "A bot works where there is a repeated action: booking, order status, a routine question, taking an enquiry. For a complex one-off deal it is useless.",
+      "A bot can message a person first only after that person has started the conversation — a subscriber base cannot be bought or uploaded.",
+      "A bot is a round-the-clock process on a server, not a file on hosting: it needs somewhere to keep conversation state, monitoring and an owner.",
+      "Integrations break not at launch but months later. Without retries on failure and an alert to the person responsible, enquiries vanish silently.",
+      "Taking payments means an online cash register and a receipt under 54-FZ; collecting phone numbers brings the obligations of a personal data operator under 152-FZ.",
+      "A simple bot starts from {price:50000} and a week; a bundle with a Mini App, CRM and payments from {price:110000}. The most expensive part is integration with an in-house system that has no documentation."
+    ]
+  },
+  "audit-bezopasnosti-sajtov": {
+    "title": "Website security audit: what gets checked and how it works",
+    "excerpt": "What exactly is examined when a website is checked for vulnerabilities, how an audit differs from a penetration test and a scanner, what turns up most often, and how to tell that you have already been hacked.",
+    "category": "Security",
+    "lead": "A website hack rarely looks like it does in the films. More often it is a quiet leak of your customer database, spam sent from your domain, or someone else's crypto miner on your server, noticed only through the hosting bill. A security audit is a way to find the holes before someone else does. Below we look at what exactly gets checked and how the process works from the inside.",
+    "metaTitle": "Website security audit: what is checked and how it works",
+    "metaDescription": "What a website security audit is, how it differs from a pentest and a scan, the OWASP Top 10 checks, common findings and signs your site is already hacked.",
+    "sections": [
+      {
+        "heading": "What a security audit is",
+        "body": [
+          "A security audit is a systematic check of a website and its environment for vulnerabilities: errors in the code, weak server settings, outdated dependencies, and careless handling of user data and access rights.",
+          "The key word is \"systematic\". The job is not to run a scanner and hand over its log, but to look at the system through an attacker's eyes: what can be obtained, where you can go from there, and what it will cost the owner. A vulnerability on its own is an abstraction; the value of an audit is that it translates it into clear consequences. \"Access to the database backup is open\" sounds technical; \"anyone can download your entire customer database\" is clear.",
+          "The result is not a list of warnings but a prioritised document: what needs fixing today, what can be scheduled for a sprint, and what simply needs to be noted."
+        ]
+      },
+      {
+        "heading": "Audit, penetration test and scanner: what's the difference",
+        "body": [
+          "Three terms that are constantly confused, even though they cost different amounts and deliver different things.",
+          "Automated scanning: a program crawls the site and checks it against a database of known problems, such as an outdated CMS version, an open port, a missing header or a component with a publicly disclosed vulnerability. It is fast, cheap and often free. The limitation is fundamental: a scanner does not understand what your application means. It will never work out that a manager who puts someone else's ID into the URL can see another department's deal, because technically that is a valid request returning a valid response.",
+          "A security audit is scanning plus manual work: a specialist studies the logic, roles and scenarios and checks what a machine cannot. The goal is to find as many problems as possible and describe how to close them.",
+          "A penetration test (pentest) has a different goal: not to compile a complete list, but to show that the defences can be breached at all. A pentester looks for a way in, and having found one, often doesn't spend time on the rest. It is proof of a vulnerability, not a map of every hole.",
+          "For a site that has never been checked before, an audit is usually what you need: it gives the full picture. A pentest makes more sense once basic hygiene is in place and you need to put the defences to a real test."
+        ]
+      },
+      {
+        "heading": "When to get checked",
+        "body": [
+          "Before launch. It is cheaper to find a problem before the site has real users and their data.",
+          "After a major update. A new customer account area, online payments, an integration with an external service: each such feature adds entry points that weren't there before.",
+          "When you change contractors. You are taking over someone else's code and don't know what is in it. It is also a good reason to check who still has access to the server and the admin panel.",
+          "When a partner or client requires it. In tenders and corporate contracts, a security check increasingly appears as a separate item.",
+          "After an incident. Here the audit answers not only \"what is vulnerable\" but also \"how did they get in, and are they still inside\".",
+          "And regularly, if the site has customer accounts, payments or personal data. Code changes, dependencies age and new vulnerabilities are published every week, so a one-off check reflects only the day it was carried out."
+        ]
+      },
+      {
+        "heading": "What gets checked: the OWASP Top 10",
+        "body": [
+          "The check is built on the OWASP Top 10, the widely accepted list of the most common and dangerous classes of web vulnerabilities. It is updated every few years and serves as a common language: if a contractor says \"we checked against OWASP\", it is clear what they mean.",
+          "Broken access control. The most common and most underestimated category: a user gets something they are not entitled to. The classic examples are substituting someone else's ID in a URL or a request, reaching admin sections via a direct link, and changing other people's records.",
+          "Cryptographic failures. Passwords stored without proper hashing, data sent over HTTP, home-made \"encryption\", tokens that cannot be revoked.",
+          "Injection. Someone else's code slipped in through input fields and request parameters: SQL, operating system commands, cross-site scripting (XSS). A classic of the genre that has not gone anywhere.",
+          "Insecure design. The problem lies not in a specific line of code but in the concept: password recovery via the question \"mother's maiden name\", no limit on the number of attempts, trusting data that came from the client.",
+          "Security misconfiguration. Debug mode on the production server, default accounts, unnecessary open ports, detailed error messages with stack traces, accessible service directories.",
+          "Outdated components. CMSs, plugins and libraries with publicly disclosed vulnerabilities. The most mechanical category, and at the same time the most widespread.",
+          "Authentication failures. Weak password requirements, sessions that never expire, no second factor where one is needed, improper logout.",
+          "Data and update integrity. Installing packages and updates from unverified sources, no signatures.",
+          "Insufficient logging. If nobody saw the attack, it carries on. Without logs, after an incident you will not be able to work out either how they got in or what they managed to take.",
+          "Server-side request forgery (SSRF). At the user's instruction, the application sends requests to internal addresses that should not be reachable from outside."
+        ]
+      },
+      {
+        "heading": "What gets checked besides the code",
+        "body": [
+          "An application vulnerability is only part of the picture. Just as many problems are found around it.",
+          "The server and environment: software versions, ports and control panels exposed to the internet, external access to the database, file permissions, running as a privileged user where that isn't needed.",
+          "HTTPS and headers: a valid certificate and its automatic renewal, a forced redirect to HTTPS, and security headers that stop the page being embedded in someone else's frame and third-party code being injected into it.",
+          "Access. Who can log in to the admin panel, the server, the repository and the hosting control panel. Accounts belonging to former employees and former contractors are a common finding, and usually an unpleasant one.",
+          "Backups. Not only \"do they exist\", but also \"has anyone tried restoring from them\" and \"where are they stored\". A backup available via a direct link from the site root is not protection but an extra vulnerability.",
+          "Service files and forgotten leftovers. Test subdomains, old versions of the site, configuration files, an unprotected version control folder, debug pages. Automated bots find all of these within a day of publication."
+        ]
+      },
+      {
+        "heading": "How an audit works",
+        "body": [
+          "Reconnaissance. A map is drawn up: which technologies are used, where the entry points are, what user roles exist and which external services are connected. Without this, testing turns into random poking.",
+          "Automated scanning. Tools quickly cover the routine issues. The standard set: web vulnerability scanners such as OWASP ZAP or Burp Suite, network scanners along the lines of Nmap, checks of dependencies and the CMS for known vulnerabilities, and separate utilities for HTTPS configuration and headers.",
+          "Manual testing. The most valuable and most time-consuming part. The specialist goes through scenarios as different roles, tries to get hold of other users' data, tampers with parameters, and looks for business logic errors and for chains where two details that are harmless on their own add up to a real problem.",
+          "Infrastructure and access review: the server, permissions, backups and accounts.",
+          "Report. Findings are compiled with priorities and recommendations.",
+          "Retesting after fixes. Without it, the audit remains an exercise: you need to make sure the fix has actually closed the problem rather than masked a symptom."
+        ]
+      },
+      {
+        "heading": "What turns up most often",
+        "body": [
+          "The same set of issues recurs from project to project, and the distribution is fairly stable.",
+          "In first place, by a wide margin, are outdated CMSs, plugins and libraries. They turn up almost every time, because updates get put off on the principle of \"if it works, don't touch it\". The problem is that for a publicly disclosed vulnerability a ready-made exploit is usually freely available, and such sites are found not by people but by bots that sweep the internet one address after another.",
+          "In second place is the lack of any limit on login attempts. A form that lets anyone guess passwords endlessly cancels out any password complexity policy.",
+          "Next come forgotten service files: database backups in the site root, configuration files containing passwords, an unprotected `.git` folder from which the entire source code can be downloaded, old test pages.",
+          "Then comes access to other people's data by iterating through IDs. Technically it is one unchecked line; in practice it is the ability to download other people's orders or documents.",
+          "And regularly: debug mode on the production server, accounts of former employees, passwords stored in plain text, no HTTPS on certain pages, detailed error messages that reveal the database structure.",
+          "The reassuring part: almost everything on this list can be fixed quickly and without rewriting the product. Only architectural mistakes are expensive, and they are noticeably rarer."
+        ]
+      },
+      {
+        "heading": "Signs that your site has already been hacked",
+        "body": [
+          "A hack is by no means always noticeable. A careful attacker wants to keep access for as long as possible, so they avoid making loud changes. The following should raise a red flag.",
+          "Emails from your domain that you didn't send, or your domain suddenly landing on spam blacklists: a typical sign that the server is being used to send out spam.",
+          "An unexplained rise in load and in hosting bills. Someone else's miner or bot traffic looks exactly like this.",
+          "A browser or search engine warning that the site is unsafe, an email from your hosting provider, a sharp drop in rankings: owners often learn about a hack from exactly these, rather than from their own team.",
+          "Pages appearing that you didn't create, especially in another language or about gambling and medicines. Sometimes they are visible only to search engine crawlers and not to ordinary visitors.",
+          "Unfamiliar administrator accounts, modified files with recent dates, new jobs in the server's task scheduler.",
+          "If any of this matches, the order of action is as follows: take a fresh copy of the system in its current state (you will need it for the investigation), change all passwords and keys, including hosting and database access, check the list of administrators, and only then restore from a backup known to be clean. Restoring without finding the cause usually ends in another hack through the same door."
+        ]
+      },
+      {
+        "heading": "What a report should contain",
+        "body": [
+          "The report is the only tangible result of an audit, and it shows the quality of the work.",
+          "Every finding is described the same way: what was found, exactly where, how to reproduce it, what risk it poses and what specifically to do. Without the \"how to reproduce\" step, a developer can neither verify the problem nor confirm that they have fixed it.",
+          "Severity levels are assigned according to consequences, not gut feeling: critical issues are fixed immediately, high ones within the next few days, medium ones are scheduled, and low ones are noted. They usually rely on a widely accepted vulnerability scoring scale, so that the priority can be explained rather than simply declared.",
+          "Separately, there is a short summary for management, free of jargon: how many issues were found, which of them are serious, and how long the fixes will take.",
+          "A bad report is easy to spot: it is an unprocessed scanner dump in which half the items don't apply to your site and the priorities were assigned automatically."
+        ]
+      },
+      {
+        "heading": "Who fixes what was found",
+        "body": [
+          "A report on its own does not make anything more secure. From there, there are two paths.",
+          "The first: your own team fixes it. This is cheaper and makes more sense if you have developers who know the product. The auditor's job here is to stay available: explain anything unclear and then verify the result.",
+          "The second: whoever ran the check fixes it. This is faster and usually more reliable, because the person who found the problem understands exactly how it works. With us, this is included in the extended audit plan, while updates and ongoing checks are part of IT support.",
+          "Either way, retesting is essential. A fix that looks right often closes the symptom rather than the cause: for example, it removes the ability to enter someone else's ID in a form but leaves it open when the API is called directly."
+        ]
+      },
+      {
+        "heading": "The legal side",
+        "body": [
+          "A data leak is not just a matter of reputation. If your site has customer accounts, enquiry forms or checkout, you are processing personal data and fall under Federal Law 152-FZ, Russia's personal data law, with all the obligations of a data operator.",
+          "Fines for violations in this area have risen many times over since 2025, and separate liability has been introduced for personal data leaks, with the amount depending on the volume of data leaked. Late notification of the regulator about an incident is penalised separately, which means that trying to deal with it quietly on your own makes your position worse.",
+          "The practical conclusion is simple: an audit costs incomparably less than the consequences of a leak, and basic hygiene (updates, restricted access, encryption, logging) is both protection and compliance with the law."
+        ]
+      },
+      {
+        "heading": "How to avoid needing a rescue audit",
+        "body": [
+          "Security is a process, not a one-off event. Between full checks, routine work does the job, and it covers most of what we find.",
+          "Update the CMS, plugins and dependencies regularly: this removes the most widespread category of findings. When we provide IT support, we do this monthly.",
+          "Keep track of access: delete the accounts of people who have left, don't hand out administrator rights by default, and change keys after a contractor leaves.",
+          "Make backups and check at least once that you can actually restore from them. An untested backup is a hope, not a backup.",
+          "Keep an eye on the certificate, uptime and logs: most incidents first show up as an anomaly on a graph, not as a message saying \"you've been hacked\".",
+          "Check the site after every major release, not once a year when the occasion arises. A new feature means new entry points."
+        ]
+      }
+    ],
+    "takeaways": [
+      "A scanner finds what is already known, an audit finds logic and access control errors, and a pentest proves that a breach is possible. These are three different jobs.",
+      "The most widespread finding is outdated CMSs, plugins and libraries; such sites are found by bots that sweep the internet one address after another.",
+      "You need to check not only the code but also the server, access, backups and forgotten service files.",
+      "A good report explains how to reproduce the problem; otherwise a developer can neither verify it nor confirm that it has been fixed.",
+      "After fixes, retesting is needed: a fix often closes the symptom rather than the cause.",
+      "A site with customer accounts and enquiry forms processes personal data, which means it falls under 152-FZ."
+    ]
+  },
+  "razrabotka-messendzherov": {
+    "title": "Messenger development: how a corporate messenger works",
+    "excerpt": "Your own messenger is not a window full of chats but a message delivery system. We look at the architecture, storage, encryption and deployment in a closed network, and at why companies are moving off Slack and Teams.",
+    "category": "Development",
+    "lead": "Building a messenger today almost always means building a corporate messenger: companies are moving away from foreign services and want to keep their conversations in-house. Let's look at what such a system is made of, what is hard about it and where it makes sense to start.",
+    "metaTitle": "Messenger development: corporate chat architecture",
+    "metaDescription": "How messengers are built: real-time delivery, storage and encryption, Active Directory, closed-network deployment, stages and budget of a corporate messenger.",
+    "sections": [
+      {
+        "heading": "Why a company needs its own messenger",
+        "body": [
+          "Off-the-shelf services are convenient right up to the moment your conversations become an asset. Then come the questions someone else's cloud does not answer: where the messages physically sit, who has access to them, what happens if the service is switched off tomorrow, and how you explain to an inspector that your trade secrets are stored on a server in another jurisdiction.",
+          "The second motive is processes. In an ordinary messenger, conversation lives apart from the work: a request is discussed in a chat but logged in another system, and there is no link between the two. Your own messenger can be fused with your business system so that approvals, notifications about new requests and the discussion itself all end up in one place.",
+          "The third is control. An employee leaves, and you need to revoke their access but keep their correspondence. An audit arrives, and you need to pull up a discussion from the year before last. In someone else's service this is either impossible or possible only on their terms.",
+          "Hence the typical client: a company where staff correspondence is part of its trade secrets, an industry platform where communication is part of the product, or an organisation with requirements on where its data is hosted."
+        ]
+      },
+      {
+        "heading": "Import substitution: why companies are leaving foreign services now",
+        "body": [
+          "The wave of requests for corporate messengers did not grow out of an abstract love of home-grown software. Some foreign services stopped renewing corporate subscriptions for Russian companies, some restricted features, and some simply became impossible to pay for.",
+          "For a company this is not a question of convenience but an operational risk: all internal communication hinges on a tool that can switch off without warning and without any way to export the history.",
+          "Then there is the regulatory layer. If personal data about employees or clients appears in the conversations, storing it falls under Federal Law 152-FZ, Russia's personal data law, and the requirement to host databases on Russian territory turns the choice of service into a legal question rather than a matter of taste.",
+          "The practical conclusion: a migration is almost never urgent while the service works, and it always becomes urgent the day it stops. So it is wiser to plan the move in advance, all the more so because transferring the message history is a separate task in its own right."
+        ]
+      },
+      {
+        "heading": "Three scenarios, not just corporate",
+        "body": [
+          "\"Messenger development\" covers three rather different tasks, and confusing them is expensive.",
+          "A corporate messenger is for internal communication between employees. The key requirements: hosting on your own servers, roles and permissions, integration with corporate accounts, and the ability to administer and archive. Users are known in advance, so no sign-up is needed.",
+          "A chat inside a product is messaging as part of a platform: buyer and seller on a marketplace, client and contractor on a services platform, the parties to a deal. Here the users are external and strangers to one another, so moderation, complaints, protection against spam and against deals being taken off the platform come to the fore.",
+          "A client channel is how a company talks to its customers instead of through someone else's support widget. The key thing here is the conversation history, which stays with you and is linked to the client's record in your CRM.",
+          "Technically, all three share the same core: delivering and storing messages. Where they differ is in what surrounds that core: for the corporate one it is administration and security, for the product one it is moderation, for the client one it is integration with sales."
+        ]
+      },
+      {
+        "heading": "What a messenger is made of",
+        "body": [
+          "Client apps are what the user sees: a web version, iOS and Android apps, sometimes a desktop app. They handle the interface, local storage of the history and keeping things working when the connection drops.",
+          "The server accepts messages, distributes them to recipients, stores the history, and manages users and permissions. This is the core, and it is what decides whether the system can cope with growth.",
+          "Real-time transport is the mechanism that makes a message appear for the other person immediately rather than after a page refresh.",
+          "Storage means a message database and a separate file store. Keeping them apart is a must: text conversations and attachments grow at different rates and need different handling.",
+          "Push notifications deliver messages when the app is closed. A subtle point for a corporate product: on mobile operating systems, notifications travel through the phone maker's infrastructure, so if a message is sensitive, its content is not put into the push text.",
+          "The admin side covers managing users, roles, channels and retention policies. In the corporate scenario it is the part most often underestimated, and without it the system cannot be run."
+        ]
+      },
+      {
+        "heading": "How a message reaches the other person",
+        "body": [
+          "A persistent connection. Real-time messaging is built on WebSocket: a channel that stays open, so the server can push data into it on its own without waiting for a request. Where the connection is unstable, fallback mechanisms and smart reconnection are added.",
+          "Queues and acknowledgements. A message does not count as delivered until the recipient has confirmed it. Hence the familiar ticks: sent, delivered, read. Behind them is not interface decoration but a protocol that guarantees a message is not lost if the connection breaks halfway.",
+          "Ordering and duplicates. Two non-obvious problems that surface under real load. Messages can arrive in a different order from the one they were sent in, and when resent after a dropped connection they can be duplicated. This is solved with client-side identifiers and server-side numbering, and it has to be built in from the start: reworking it later is painful.",
+          "Working offline. The app must be able to accept a message, show it as unsent and deliver it once the connection is back. For a mobile client this is a mandatory part, not an enhancement.",
+          "Calls. Audio and video run over WebRTC, and where possible the traffic goes directly between devices. But \"where possible\" means that on a corporate network with a strict firewall you will need a relay server, and it has to be planned for in advance."
+        ]
+      },
+      {
+        "heading": "Storage and encryption",
+        "body": [
+          "Transport encryption is the mandatory minimum: the channel between client and server is protected, and the conversation cannot be intercepted in transit. It is everywhere and is not up for discussion.",
+          "End-to-end encryption is another story. With it, messages are decrypted only on the participants' devices, and the server physically cannot read the conversation. It sounds like an unqualified good, but for a corporate system it is a trade-off, not an upgrade.",
+          "The thing is, along with the ability to read conversations the server loses everything else: server-side search through the history, an archive for audits and investigations, history recovery when a device is lost, moderation. A company that is obliged to retain business correspondence cannot do so with end-to-end encryption.",
+          "That is why corporate products usually opt for a middle ground: channel encryption and storage encryption, role-based access, logging of data access, and end-to-end encryption applied selectively, for particular private chats where it is genuinely needed.",
+          "The answer to \"so what is the right way?\" depends not on technology but on whom you have to trust and whom you answer to. This is worth talking through before development starts, because reworking the storage architecture later is the most expensive change of all."
+        ]
+      },
+      {
+        "heading": "Integrations you cannot do without",
+        "body": [
+          "Corporate accounts. An employee should not have to create yet another password: sign-in goes through the existing user directory, whether Active Directory, LDAP or corporate SSO. This also settles the question of people leaving: access is revoked in one place.",
+          "Notifications from internal systems. The most underrated feature, and at the same time the one that pays off best: a request from your business system, an order status or a contract approval arrives in the chat where people already are, not in the email they open twice a day.",
+          "Bots and scenarios. Automatic answers to routine internal questions, on-call alerts, taking in support requests.",
+          "A link to the CRM in the client scenario: the conversation is attached to the client's record, and the manager sees the whole history, not just the last three messages.",
+          "It is the integrations that usually decide whether the system takes root. Employees have no use for a messenger that merely repeats what WhatsApp already does: people go back to the familiar tool within a month. The one that takes root is the one that has something the others do not."
+        ]
+      },
+      {
+        "heading": "Where it all gets deployed",
+        "body": [
+          "The cloud. Quick and cheap to start with, and suited to product scenarios with no requirements on where data is hosted.",
+          "Your own server. The default compromise for the corporate case: the data stays with you, the infrastructure is clear, and maintenance is handled by you or by a contractor.",
+          "A closed network. The system runs on a network with no internet access. This is the strictest option, and it changes the whole project: updates have to be delivered manually, external services are unavailable, and mobile push notifications in their usual form are impossible, so they are replaced by mechanisms of your own. If a closed network is in the requirements, it needs to be raised at the first meeting, not halfway through development."
+        ]
+      },
+      {
+        "heading": "Where to start and what not to do straight away",
+        "body": [
+          "A messenger is best built in iterations, and the first version should be boring: one-to-one and group chats, sending text and files, notifications, a web interface. That is enough for people to start using it and for you to see what they actually lack.",
+          "What people almost always ask for at the start and what is almost always worth postponing: video calls, end-to-end encryption, desktop apps, complex access rights, bots. Each of these is expensive, and almost none of them gets used in the first version.",
+          "What cannot be postponed, because reworking it after the fact costs more: the message storage scheme, the mechanism for ordering and duplicates, the model of roles and permissions, and the sign-in method. This is the foundation.",
+          "And, separately, migrating the history from the old service. The task looks like a technical trifle, but in practice it turns out to be comparable in scope to building a separate feature, especially if the old service exports its data in an awkward format."
+        ]
+      },
+      {
+        "heading": "Timelines and budget",
+        "body": [
+          "A first working version (chats, channels, a web interface, accounts and roles) takes about a month and a half and costs from {price:200000}.",
+          "A version you can use in earnest, with file sharing, iOS and Android mobile clients, integrations with internal systems and administration: two to three months, from {price:300000}.",
+          "A system in a closed network with higher resilience requirements and planned ongoing development: from four months and from {price:500000}.",
+          "Three things affect the estimate most: the number of platforms (each mobile client is a separate piece of work), how strict the hosting and security requirements are, and the number of systems it has to work with. We keep current packages and the scope of work on the service page."
+        ]
+      },
+      {
+        "heading": "Common mistakes",
+        "body": [
+          "Trying to copy Telegram. Competing with a product that has thousands of person-years invested in it is pointless and unnecessary: the value of a corporate messenger lies not in a wealth of features but in the fact that it is yours and knows your processes.",
+          "Leaving administration for later. A system without user and permission management cannot be operated, and bolting it onto a running product is awkward.",
+          "Forgetting about migrating the history and about training people. A technically flawless messenger that nobody has been moved onto stays empty.",
+          "Choosing end-to-end encryption by default without checking whether it conflicts with your own requirements for retaining correspondence.",
+          "And the most common one: launching everything at once. A project that spends six months being built \"in full\" comes out just as half the requirements have gone out of date."
+        ]
+      }
+    ],
+    "takeaways": [
+      "Demand for in-house messengers today is mostly corporate: moving off foreign services and requirements on where data is hosted.",
+      "All scenarios share the same core, delivering and storing messages; they differ in administration, moderation and integrations.",
+      "Message ordering, duplicates, the storage scheme and the permissions model are built in from the start, since reworking them costs the most.",
+      "End-to-end encryption deprives the server of search, an archive and moderation, so in a corporate system it is a trade-off, not an upgrade.",
+      "The messenger that takes root is the one with something the familiar ones lack: notifications and requests from internal systems.",
+      "The first version should be boring: chats, files, notifications, web. Calls and encryption are almost always worth postponing."
+    ]
+  },
+  "parsing-dannyh": {
+    "title": "Data parsing: files, databases and websites",
+    "excerpt": "Parsing isn't just collecting data from websites. We look at how Excel, PDF and log files are read, how data is pulled out of other people's databases, what to do about protected sources and what it all costs.",
+    "category": "Data",
+    "lead": "The word \"parsing\" covers three different jobs: breaking down a file, pulling data out of someone else's database and collecting information from a website. They have one thing in common: the data sits in an awkward form and you need it in a usable one. We'll go through all three, with examples of what usually breaks.",
+    "metaTitle": "Data parsing: files, databases and websites",
+    "metaDescription": "What data parsing is and how it works: CSV, Excel, XML, JSON and PDF files, database extraction, web scraping, tools, legal limits, timelines and cost.",
+    "sections": [
+      {
+        "heading": "What parsing is and why a business needs it",
+        "body": [
+          "Parsing (literally, breaking something down into its parts) is the automatic conversion of data from an awkward format into a usable one. A parser reads the source, finds the fragments you need, brings them to a single format and puts them where they can be worked with: a spreadsheet, a database or a CRM.",
+          "The key word here is \"automatic\". You can do the same job by hand: open the supplier's price list, copy the item name, find it in your own system, type in the new price. With a hundred items that's an evening. With a hundred thousand it's a job that simply cannot be done: by the time you reach the end of the catalogue, the prices at the start will already be out of date.",
+          "Hence the typical reasons: filling a catalogue from supplier price lists, updating prices and stock levels daily, moving data from an old system to a new one, combining exports from several sources into one report, monitoring the market. Wherever data arrives regularly and in someone else's format, a parser replaces not a programmer but the person who used to copy cells."
+        ]
+      },
+      {
+        "heading": "Parsing files: CSV, Excel, XML, JSON, PDF",
+        "body": [
+          "The most common kind, and also the most underestimated. Reading an Excel file looks like a five-minute job, and for a tidy file that's true. The problems start when the file was made by a person.",
+          "CSV is plain text with delimiters. The pitfalls: the delimiter may be a semicolon or a tab rather than a comma; the same characters turn up inside values; line breaks hide in the middle of a field. It is read with the language's standard tools or with pandas, which handles most dialects on its own.",
+          "Excel (XLSX, XLS) is the most temperamental format, because it isn't a data table but a canvas to draw on. Merged cells, a header spread over three rows, a product and its SKU on different levels, numbers saved as text, blank separator rows between sections. It is parsed with openpyxl or pandas, but most of the work goes not into reading but into restoring the structure the author kept in their head.",
+          "XML and JSON were designed for machines, and they are usually the easiest: the structure is stated explicitly. XML is read with lxml, JSON with the language's standard tools. The difficulty comes with large volumes: a file of several gigabytes can't be loaded into memory in one go, so it is parsed as a stream, one element at a time.",
+          "PDF is a format for printing, not for data. It has no rows or columns, only characters with coordinates on the page. A table is \"visible\" to a human only because the characters are lined up. Libraries such as pdfplumber and PyMuPDF rebuild the structure from those coordinates, and on tidy documents this works well.",
+          "DBF is a legacy of FoxPro and old accounting systems, and it still turns up in data exchange with accounting and the warehouse. It is read with specialised libraries; the main difficulty is the encoding, which we cover below.",
+          "Logs are text files whose lines all follow one format. They are parsed with regular expressions, and the main work here is not reading but aggregation: counting, grouping, finding anomalies."
+        ]
+      },
+      {
+        "heading": "What usually breaks when parsing files",
+        "body": [
+          "Encodings. Russian text in old exports comes in CP1251 or CP866, while the program expects UTF-8 by default, and the output is mojibake, garbled characters. It's worse when the encoding changes from file to file: then it is detected automatically, with libraries such as chardet, and you still keep the option of setting it by hand, because auto-detection gets short strings wrong.",
+          "Merged cells in Excel. To a person, a merged cell means \"this heading applies to all the rows below\". To a program it is one value in the first cell and nothing in all the others. You have to restore the logic: carry the value down to the next filled cell, and tell a section heading from a product row.",
+          "Scans instead of text in PDF. The document looks like a table, but inside it is an image. No text-parsing library will help here; you need OCR, recognition with Tesseract or cloud services. That is a fundamentally different level of reliability: recognition makes mistakes with digits, confuses zero with the letter O, and the result always has to be checked. If the supplier has the same price list in Excel, it's cheaper to ask for it than to recognise a scan.",
+          "We have met all of these cases on real projects, and they lead to one conclusion: the time goes not into reading the format but into handling exceptions. That's why we always give an estimate after we've looked at the real files, not at a description of them."
+        ]
+      },
+      {
+        "heading": "Parsing databases",
+        "body": [
+          "The second big kind is when the data sits not in a file but in someone else's database or an outdated one. There are three types of task here.",
+          "Migration. A company is moving from an old system to a new one, and the data has to be transferred: customers, orders, products, history. The difficulty is that the structures don't match: what was one field in the old database is split into three in the new one, and reference data has to be matched by hand.",
+          "Exports for reports. The data exists, but you can't get at it through the interface: you need a slice the system can't produce. The parser queries the database directly, collects what's needed and passes it to a report or a BI system.",
+          "Synchronisation. Two systems must see the same data: for example, warehouse stock in the accounting system and stock levels on the website. This is no longer a one-off export but a regular exchange with conflict handling: what to do if a record has changed in both systems.",
+          "In practice we have worked with PostgreSQL, MySQL, MS SQL Server, SQLite and databases of 1C, Russia's most widespread accounting platform. Technically, connecting to any of them is routine; all the difficulty lies in understanding someone else's schema. Table names like SC1247 and field names like SP2891 are normal for 1C, and working out a structure like that takes longer than the export itself."
+        ]
+      },
+      {
+        "heading": "When you aren't given access to the database",
+        "body": [
+          "A common situation: you need the data, but there is no direct access to the database. The system's owner isn't prepared to open it up to the outside, the contractor who built it can't be reached, or the licence simply doesn't allow external connections.",
+          "Then you work through whatever is available. If the system can export reports, you parse the exports, and the task comes down to the file parsing covered above. If there is an API, even an undocumented one, you use it. As a last resort the data is taken through the web interface: the program logs in under an account with legitimate access and goes through the same screens a person would.",
+          "The last option works, but it is the most fragile: it breaks with any update to the interface. We warn about this in advance and suggest it only when the other routes are closed, and at the same time we advise you to negotiate proper access after all, because it is cheaper to maintain."
+        ]
+      },
+      {
+        "heading": "Parsing websites",
+        "body": [
+          "The third kind is collecting data from web pages. Here the source doesn't hand you a file, and the structure has to be extracted from the markup.",
+          "The simple case: the server returns ready-made HTML. The parser loads the page with an HTTP client, parses the markup with BeautifulSoup or lxml and pulls out the data by selectors: \"the price is in this block with this class\". For large projects with hundreds of thousands of pages, the Scrapy framework is used: it manages the request queue, concurrency and retries itself.",
+          "The hard case: the page is assembled in the browser. The server returns an empty shell, and the content is loaded by scripts. Then a headless browser is used, Playwright or Selenium: it actually opens the page, waits for it to load and returns the final markup. This is slower and needs more resources, so it is used when the simple route doesn't work.",
+          "It's also worth checking whether the source has an official API. It is almost always faster, more stable and more legitimate than parsing the markup, and it's the first thing we check when we take on a job."
+        ]
+      },
+      {
+        "heading": "What to do if the source is closed to collection",
+        "body": [
+          "Websites protect themselves from mass collection: they limit request rates, show a CAPTCHA, require a login, block by IP address. That is the owner's legal right: they pay for the servers and are entitled to decide who uses them.",
+          "Our position here is simple, and we talk it through with the client at the start. A well-behaved parser acts like a polite guest: it pauses between requests, creates no more load than an ordinary visitor, identifies itself honestly in its headers, respects robots.txt and doesn't go behind a login without the owner's permission. With this approach most sources can be collected without any tricks: blocks are usually triggered by aggressive collection, not careful collection.",
+          "If, however, the source is deliberately closed (there's a CAPTCHA, access is for customers only, the terms of use explicitly forbid it), we say so plainly rather than start getting around the protection. Circumventing technical protection measures moves the task out of development and into legal risk, and the risk is the client's: it is the client who is later answerable for the collected data.",
+          "Instead, we offer routes that work: ask the owner for official access or an export (this works more often than people think); find the same data in an open source or from an aggregator; buy a ready-made dataset. Clients sometimes don't like this answer in the moment. But a project that runs into a block or a legal claim a month later costs more than an honest \"we can't take this source, let's look for another one\"."
+        ]
+      },
+      {
+        "heading": "Parsing search queries",
+        "body": [
+          "On the Russian-language internet, \"parsing\" has one more meaning: collecting search queries, that is, keyword research. The technique is similar, but the purpose is different: what you collect is not products but what people search for.",
+          "The sources here are query statistics services such as Yandex Wordstat, the keyword tool of Russia's main search engine, along with search suggestions and ready-made keyword databases. The output is a list of phrases with search volumes, which is used to build the site structure and plan content.",
+          "Most of these services have official APIs, and working through them is the right way rather than scraping the interface: it doesn't breach the terms of use and doesn't break when the site is redesigned. To be honest, this is more an SEO task than a development one, and we take it on as part of larger projects rather than as a separate service."
+        ]
+      },
+      {
+        "heading": "Why parsers break and how to prevent it",
+        "body": [
+          "A parser is just about the only kind of program that breaks not because something was changed in it, but because something changed outside it. The supplier changed the header in the price list, the website updated its layout, a new field appeared in the database, and collection that worked yesterday returns nothing today or, worse, rubbish.",
+          "You can't avoid this entirely, but you can make sure a breakdown isn't a disaster. The first measure is checking the result on the way in, not on the way out. The parser knows what to expect: if forty rows arrive from a price list of ten thousand, if a price turns negative, if half the columns disappear, it stops and reports the problem instead of loading corrupted data into the production database.",
+          "The second is alerts. A silent failure is worse than a loud one: the data quietly goes stale, and you find out a week later from a customer complaint. So the parser logs every run to monitoring and sends a notification to Telegram or by email if something goes wrong.",
+          "The third is anchoring to meaning, not position. A column in Excel is found by its header name, not its number; data on a page is found by stable attributes, not by a long chain of nesting that will break with any design change.",
+          "The fourth is keeping the source material. Downloaded files and pages are stored as they are, so when something fails you can see exactly what changed. Without this you are debugging blind.",
+          "The fifth is graceful degradation. If one optional field out of twenty fails to parse, it is better to write the other nineteen and flag the gap than to bring down the whole export."
+        ]
+      },
+      {
+        "heading": "Legal limits",
+        "body": [
+          "Collecting publicly available data is lawful in itself, but there are limits, and it's worth knowing them before you start.",
+          "Personal data. Names, phone numbers, addresses and email addresses are personal data under Federal Law 152-FZ, Russia's personal data law, even if they are publicly available. Collecting them makes you a personal data operator, with all the obligations that follow. The rule is simple: if the task can be solved without personal data, solve it without.",
+          "Copyright. Texts, photographs and descriptions are protected by copyright regardless of how you obtained them. Collecting someone else's product descriptions for internal analytics and publishing them on your own website are fundamentally different things in the eyes of the law.",
+          "Terms of use and robots.txt. A robots.txt file isn't a legal document, but it expresses the owner's wishes, and ignoring it becomes an argument against you. A website's user agreement may explicitly prohibit automated collection, and that is already a contractual matter.",
+          "Load. Collection that interferes with someone else's service is a separate story, and it is closer to unlawful interference than to harmless reading of public pages.",
+          "The practical conclusion: collect only what the task really needs, don't touch personal data without a legal basis, don't publish other people's content as your own, and don't create load. In borderline cases it's cheaper to show the task to a lawyer than to sort things out afterwards."
+        ]
+      },
+      {
+        "heading": "How much it costs and how long it takes",
+        "body": [
+          "The cost of a parser is determined not by the volume of data but by the number of exceptions. Collecting a million rows from tidy XML is easier and cheaper than collecting a thousand from a dozen messy Excel files with different structures.",
+          "Our guide figures are these. A simple parser with one source and export to a spreadsheet: from {price:50000}. A system with several sources, automatic scheduled collection and export to a database or CRM: from {price:110000}. Complex cases with protected sources, a resilient architecture and monitoring: from {price:220000}.",
+          "As for timelines: a simple parser usually takes one to two weeks, regular collection from several sources two to four weeks, and a large system with monitoring from a month and a half. Most of this time goes not into code but into working through exceptions in the real data.",
+          "What affects the price most: the number of sources and the variety of their formats; whether a headless browser is needed; how dirty the source data is; whether reference data has to be matched; how often it updates and what reliability is required. That's why we don't name a figure from a description of the task: first we look at the real files or pages, and only then do we estimate.",
+          "And a fair warning: a parser needs ongoing support. Sources change, and every few months something has to be fixed. A one-off build without support is a saving that ends with the data quietly ceasing to update six months later."
+        ]
+      },
+      {
+        "heading": "Example: a catalogue of 100,000 items",
+        "body": [
+          "One of our projects was an online shop selling spare parts for heavy machinery. The task was to fill the catalogue: around a hundred thousand items from the supplier, with part numbers, specifications, prices and the machine assemblies they belong to.",
+          "There's no way to do this by hand: even at one minute per item it comes to more than a year of one person's work. We collected the data automatically, brought part numbers and names to a single format, matched the product range against the internal reference data and set up regular price and stock updates, so the catalogue wouldn't go out of date the day after launch.",
+          "The main work, as usual, was not in collection but in normalisation: the same product had different names at the supplier and at the client, some specifications were written into the general text description, and some part numbers differed only in letter case and spaces.",
+          "The result is a catalogue in which customers find the part they need themselves, instead of phoning to check availability."
+        ]
+      },
+      {
+        "heading": "How we work",
+        "body": [
+          "We start with real data: we ask you to send sample files, access to a test database or links to the pages. We don't give an estimate based on a description of the task: too often the description and the actual content differ.",
+          "Next we design: which fields are needed, how to match them with your reference data, how often to update, where to export, what to do if something fails. Then we build and launch collection with monitoring, so you hear about a problem from the system rather than from a customer.",
+          "We deliver the result where it is used: a spreadsheet, a database, a CRM or an API exchange with your system, with no manual copying in between."
+        ]
+      }
+    ],
+    "takeaways": [
+      "Parsing covers three different jobs: breaking down files, extracting data from databases and collecting it from websites.",
+      "The time goes not into reading the format but into handling exceptions: broken encodings, merged cells, scans instead of text.",
+      "If a source has an API or an official export, it is always better than parsing the markup.",
+      "We don't get around anti-collection protection: if a source is deliberately closed, we look for a legal route to the same data.",
+      "A parser must check its results and report failures: a silent breakdown is worse than a loud one.",
+      "Personal data falls under 152-FZ even when it is publicly available."
+    ]
+  }
+}

@@ -7,7 +7,9 @@ import { ArrowLeft, ArrowUpRight, Check, ChevronRight, Clock } from "lucide-reac
 import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { ContactSection } from "@/components/sections/contact-section";
 import { ServiceCard } from "@/components/sections/service-card";
-import { formatPostDate, type BlogPost } from "@/lib/blog";
+// Из types, а не из @/lib/blog: тот тянет за собой репозиторий с текстами
+// всех статей и их переводами, и всё это уехало бы в браузер.
+import { formatPostDate, type BlogPost } from "@/lib/blog/types";
 import { cn } from "@/lib/utils";
 import { usePaths } from "@/i18n/use-paths";
 

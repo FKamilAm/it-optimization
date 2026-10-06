@@ -72,7 +72,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (resolved === "blog") {
     const ruSlug = postRuSlugBySlug(slug, locale);
-    const post = ruSlug ? await getPostBySlug(ruSlug) : undefined;
+    const post = ruSlug ? await getPostBySlug(ruSlug, locale) : undefined;
     if (!post || !ruSlug) notFound();
     return contentMetadata({
       locale,

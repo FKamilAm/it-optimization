@@ -20,6 +20,8 @@ const read = async (p) => JSON.parse(await readFile(join(ROOT, p), "utf8"));
 const services = await read("content/services.json");
 const cases = await read("content/cases.json");
 const privacy = await read("content/privacy.json");
+const posts = await read("content/blog.json");
+const rate = await read("content/rate.json");
 const catalog = await read("content/service-catalog.json");
 const catalogKeys = new Set(catalog.services.map((s) => s.key));
 const categoryTitles = await read("content/translations/service-categories.json");
@@ -128,6 +130,42 @@ for (const locale of ["en", "es"]) {
     if (CYRILLIC.test(JSON.stringify(tr))) note(locale, `кейс ${slug}`, "кириллица");
   }
   console.log(`${locale}: кейсов ${Object.keys(tc).length}/${cases.length}`);
+
+  // ------------------------------------------------------------------ блог
+  // Статья сверяется по разделам, абзацам и выводам: перевод накладывается
+  // целиком, и пропавший абзац — это молча пропавший кусок статьи. Правка
+  // статьи в панели тоже ловится здесь: разошлось число абзацев — перевод
+  // устарел.
+  const tb = await read(`content/translations/blog.${locale}.json`);
+  for (const [slug, tr] of Object.entries(tb)) {
+    const ru = posts.find((p) => p.slug === slug);
+    if (!ru) {
+      note(locale, `статья ${slug}`, "нет в content/blog.json");
+      continue;
+    }
+    if (tr.sections.length !== ru.sections.length) {
+      note(locale, `статья ${slug}`, `разделов ${tr.sections.length} вместо ${ru.sections.length}`);
+    }
+    ru.sections.forEach((section, i) => {
+      const got = tr.sections[i]?.body.length;
+      if (got !== undefined && got !== section.body.length) {
+        note(locale, `статья ${slug}, раздел ${i + 1}`, `абзацев ${got} вместо ${section.body.length}`);
+      }
+    });
+    if (tr.takeaways.length !== ru.takeaways.length) {
+      note(locale, `статья ${slug}`, `выводов ${tr.takeaways.length} вместо ${ru.takeaways.length}`);
+    }
+    const flat = JSON.stringify(tr);
+    if (CYRILLIC.test(flat)) note(locale, `статья ${slug}`, "осталась кириллица");
+    if (/₽/.test(flat)) note(locale, `статья ${slug}`, "рублёвая сумма вместо метки {price:…}");
+    // Мелкая сумма после пересчёта и округления превращается в «$0».
+    for (const [token, amount] of flat.matchAll(/\{price:(\d+)(?:\/mo)?\}/g)) {
+      if (Number(amount) / rate.usd < 25) {
+        note(locale, `статья ${slug}`, `${token} на сайте выйдет как $0 — напишите словами`);
+      }
+    }
+  }
+  console.log(`${locale}: статей ${Object.keys(tb).length}/${posts.length}`);
 
   // ------------------------------------------------------- разделы каталога
   // Раздел заводится в панели, и перевода у него поначалу нет — на /en/ его

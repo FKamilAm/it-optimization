@@ -2,10 +2,9 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { BlogArticle } from "@/components/blog/blog-article";
 import { SiteShell } from "@/components/layout/site-shell";
-import type { Locale } from "@/i18n/config";
+import { BRAND_NAME, type Locale } from "@/i18n/config";
 import { blogPath, homePath, postPath } from "@/i18n/routes";
 import { getAllPosts, otherPosts } from "@/lib/blog";
-import { SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 
 /**
@@ -20,7 +19,7 @@ export async function BlogPostPage({
   locale: Locale;
   ruSlug: string;
 }) {
-  const posts = await getAllPosts();
+  const posts = await getAllPosts(locale);
   const post = posts.find((item) => item.slug === ruSlug);
   if (!post) notFound();
 
@@ -40,10 +39,10 @@ export async function BlogPostPage({
       datePublished: post.publishedAt,
       dateModified: post.updatedAt,
       inLanguage: locale,
-      author: { "@type": "Organization", name: SITE.name, url: siteUrl },
+      author: { "@type": "Organization", name: BRAND_NAME[locale], url: siteUrl },
       publisher: {
         "@type": "Organization",
-        name: SITE.name,
+        name: BRAND_NAME[locale],
         url: siteUrl,
         logo: { "@type": "ImageObject", url: `${siteUrl}/LOGO.svg` },
       },

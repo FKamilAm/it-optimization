@@ -3,6 +3,7 @@ import servicesEs from "../../content/translations/services.es.json";
 import casesEn from "../../content/translations/cases.en.json";
 import casesEs from "../../content/translations/cases.es.json";
 import { DEFAULT_LOCALE, type Locale } from "@/i18n/config";
+import { BLOG_TRANSLATIONS } from "@/lib/blog/translate";
 import { PRIVACY_TRANSLATIONS } from "@/lib/privacy";
 
 /**
@@ -41,12 +42,9 @@ export function isCaseTranslated(slug: string, locale: Locale): boolean {
   return locale === DEFAULT_LOCALE || Boolean(CASES[locale]?.[slug]);
 }
 
-/**
- * Статьи блога пока не переводились вовсе. Когда появятся переводы, здесь
- * будет такая же проверка по таблице, а не правка по месту.
- */
-export function isPostTranslated(_slug: string, locale: Locale): boolean {
-  return locale === DEFAULT_LOCALE;
+/** Статья, добавленная в панели, остаётся закрытой на /en/ и /es/, пока её не переведут. */
+export function isPostTranslated(slug: string, locale: Locale): boolean {
+  return locale === DEFAULT_LOCALE || Boolean(BLOG_TRANSLATIONS[locale]?.[slug]);
 }
 
 export function isPrivacyTranslated(locale: Locale): boolean {

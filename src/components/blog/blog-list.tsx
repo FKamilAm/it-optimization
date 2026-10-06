@@ -6,7 +6,9 @@ import { useTranslations } from "next-intl";
 import { ArrowUpRight, ChevronRight, Clock } from "lucide-react";
 import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { ContactSection } from "@/components/sections/contact-section";
-import { formatPostDate, type BlogPost } from "@/lib/blog";
+// Из types, а не из @/lib/blog: тот тянет за собой репозиторий с текстами
+// всех статей и их переводами, и всё это уехало бы в браузер.
+import { formatPostDate, type BlogPost } from "@/lib/blog/types";
 import { usePaths } from "@/i18n/use-paths";
 
 export function BlogList({ posts }: { posts: BlogPost[] }) {
