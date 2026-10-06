@@ -7,8 +7,9 @@ const HOVER_SELECTOR =
   'a, button, [role="button"], [data-cursor="hover"], [data-cursor="dark"], label, summary, .cursor-target';
 // Elements with an accent-green surface: the cursor turns solid black over them.
 const ACCENT_SELECTOR = '[data-cursor="dark"]';
-// Центр портала на странице 403: кольцо с точкой вместо диска.
-const PORTAL_SELECTOR = '[data-cursor="portal"]';
+// 404: модуль, который можно тянуть. 403: поле сканера.
+const DRAG_SELECTOR = '[data-cursor="drag"]';
+const SCAN_SELECTOR = '[data-cursor="scan"]';
 const TEXT_SELECTOR = 'input, textarea, select, [contenteditable="true"]';
 
 /**
@@ -80,13 +81,14 @@ export function CursorFollower() {
       if (!target || typeof target.closest !== "function") return;
       if (target.closest(TEXT_SELECTOR)) {
         dot.classList.add("is-hidden");
-        dot.classList.remove("is-hover", "is-on-accent", "is-portal");
+        dot.classList.remove("is-hover", "is-on-accent", "is-drag", "is-scan");
         return;
       }
       dot.classList.remove("is-hidden");
       dot.classList.toggle("is-hover", Boolean(target.closest(HOVER_SELECTOR)));
       dot.classList.toggle("is-on-accent", Boolean(target.closest(ACCENT_SELECTOR)));
-      dot.classList.toggle("is-portal", Boolean(target.closest(PORTAL_SELECTOR)));
+      dot.classList.toggle("is-drag", Boolean(target.closest(DRAG_SELECTOR)));
+      dot.classList.toggle("is-scan", Boolean(target.closest(SCAN_SELECTOR)));
     };
 
     const onLeave = () => {

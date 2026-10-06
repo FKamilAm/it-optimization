@@ -6,8 +6,8 @@ import { cn } from "@/lib/utils";
 
 export interface ErrorActionsProps {
   home: { label: string; href: string };
-  /** Вторая ссылка: адрес (услуги) или «назад» по истории браузера. */
-  secondary: { label: string; href?: string; back?: boolean };
+  /** Вторая ссылка: адрес или «назад» по истории браузера. Необязательна. */
+  secondary?: { label: string; href?: string; back?: boolean };
   dark?: boolean;
 }
 
@@ -19,9 +19,13 @@ export interface ErrorActionsProps {
  * делает, хуже кнопки, которая ведёт не совсем туда.
  */
 export function ErrorActions({ home, secondary, dark = false }: ErrorActionsProps) {
+  // Второе действие — такая же крупная кнопка, только контурная: «Назад»
+  // на 403 — полноценный выход, а не мелкая ссылка.
   const secondaryClass = cn(
-    "inline-flex cursor-pointer items-center gap-2 rounded-full px-1 py-2 text-base font-medium underline-offset-4 transition-colors duration-300 hover:underline",
-    dark ? "text-white/70 hover:text-white" : "text-foreground/70 hover:text-foreground",
+    "inline-flex h-14 cursor-pointer items-center justify-center gap-2 rounded-full border px-8 text-base font-medium transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2",
+    dark
+      ? "border-white/25 text-white hover:border-[#b4e02d] hover:text-[#b4e02d] focus-visible:outline-[#b4e02d]"
+      : "border-foreground/20 text-foreground hover:border-foreground focus-visible:outline-accent",
   );
 
   return (
@@ -35,23 +39,32 @@ export function ErrorActions({ home, secondary, dark = false }: ErrorActionsProp
           {home.label}
         </ButtonContent>
       </a>
-      {secondary.back ? (
+      {secondary?.back ? (
         <button
           type="button"
           className={secondaryClass}
           onClick={() => {
-            if (window.history.length > 1) window.history.back();
-            else window.location.href = home.href;
+            if (window.history.length <= 1) {
+              window.location.href = home.href;
+              return;
+            }
+            // Назад может не сработать (страница — первая в своей вкладке
+            // после перехода из другого окна): тогда — на главную.
+            const here = window.location.href;
+            window.history.back();
+            window.setTimeout(() => {
+              if (window.location.href === here) window.location.href = home.href;
+            }, 600);
           }}
         >
           <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           {secondary.label}
         </button>
-      ) : (
+      ) : secondary ? (
         <a href={secondary.href} className={secondaryClass}>
           {secondary.label}
         </a>
-      )}
+      ) : null}
     </div>
   );
 }

@@ -756,15 +756,22 @@
   "errorPages": {
     "notFound": {
       "title": "Page not found",
-      "text": "Looks like this part of the system got lost.",
+      "text": "Looks like one module went missing.",
+      "hint": "Rebuild the system or head back home.",
       "home": "Back home",
-      "services": "Explore services"
+      "restored": "System restored",
+      "navHome": "Home",
+      "navServices": "Services",
+      "navProjects": "Projects"
     },
     "forbidden": {
       "title": "Access restricted",
       "text": "This area exists, but you don't have access to it.",
       "home": "Back home",
-      "back": "Go back"
+      "back": "Go back",
+      "hold": "Hold to access",
+      "denied": "Access denied",
+      "fine": "Fine, take me home"
     }
   }
 }

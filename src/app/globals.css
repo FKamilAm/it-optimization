@@ -456,6 +456,31 @@
     height: 46px;
   }
 
+  /* Над модулем, который можно тянуть (404): диск крупнее, внутри маленькое
+     кольцо — «возьми», но без слова DRAG. Стоит до .is-down: при захвате
+     курсор сжимается, как и положено. */
+  .cursor-follower.is-drag {
+    width: 62px;
+    height: 62px;
+  }
+
+  .cursor-follower::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    border-radius: 9999px;
+    border: 1.5px solid #000000;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .cursor-follower.is-drag::after {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
   .cursor-follower.is-down {
     width: 30px;
     height: 30px;
@@ -469,30 +494,12 @@
     background-color: #b4e02d;
   }
 
-  /* Над порталом 403: диск становится кольцом с точкой внутри — «прицел»,
-     а не надпись. Без текста в курсоре: «LOCKED» читалось бы как угроза. */
-  .cursor-follower.is-portal {
-    width: 58px;
-    height: 58px;
-    background: transparent;
-    border: 1.5px solid #ffffff;
-  }
-
-  .cursor-follower::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 6px;
-    height: 6px;
-    border-radius: 9999px;
-    background: #ffffff;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .cursor-follower.is-portal::after {
-    transform: translate(-50%, -50%) scale(1);
+  /* Над полем сканера (403): курсор — маленькая точка, а «линзой» работает
+     само круглое окно сканера вокруг него. Стоит после .is-hover: кнопка
+     удержания внутри поля — тоже кнопка, но большой диск закрыл бы её кольцо. */
+  .cursor-follower.is-scan {
+    width: 8px;
+    height: 8px;
   }
 
   /* --- Marquee (technologies) --- */
