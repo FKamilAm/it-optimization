@@ -1,0 +1,92 @@
+<svg width="1200" height="750" viewBox="0 0 1200 750" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+  <defs>
+    <linearGradient id="agentBg" x1="0" y1="0" x2="1200" y2="750" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f0f0f"/>
+      <stop offset="1" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <radialGradient id="agentGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop stop-color="#b4e02d" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#b4e02d" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="agentCore" cx="0.5" cy="0.5" r="0.5">
+      <stop stop-color="#d6f57a"/>
+      <stop offset="0.55" stop-color="#b4e02d"/>
+      <stop offset="1" stop-color="#b4e02d" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#agentBg)"/>
+  <g stroke="#ffffff" stroke-opacity="0.05">
+    <path d="M0 150H1200M0 300H1200M0 450H1200M0 600H1200"/>
+    <path d="M150 0V750M300 0V750M450 0V750M600 0V750M750 0V750M900 0V750M1050 0V750"/>
+  </g>
+  <circle cx="600" cy="375" r="360" fill="url(#agentGlow)"/>
+
+  <!-- links: the agent reaches into four systems -->
+  <g stroke="#ffffff" stroke-opacity="0.22" stroke-width="2" stroke-dasharray="6 10">
+    <path d="M530 330C460 300 400 240 352 214"/>
+    <path d="M530 420C460 450 400 510 352 536"/>
+    <path d="M670 330C740 300 800 240 848 214"/>
+    <path d="M670 420C740 450 800 510 848 536"/>
+  </g>
+  <g fill="#b4e02d">
+    <circle cx="440" cy="264" r="5"/>
+    <circle cx="760" cy="486" r="5"/>
+    <circle cx="402" cy="497" r="4" fill-opacity="0.6"/>
+    <circle cx="796" cy="252" r="4" fill-opacity="0.6"/>
+  </g>
+
+  <!-- the agent -->
+  <g>
+    <rect x="510" y="285" width="180" height="180" rx="44" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.18" stroke-width="2"/>
+    <rect x="530" y="305" width="140" height="140" rx="34" fill="#0c0c0c" stroke="#ffffff" stroke-opacity="0.1" stroke-width="2"/>
+    <circle cx="600" cy="375" r="46" fill="url(#agentCore)"/>
+    <circle cx="600" cy="375" r="18" fill="#0c0c0c"/>
+    <circle cx="600" cy="375" r="7" fill="#b4e02d"/>
+    <path d="M600 323V337M600 413V427M548 375H562M638 375H652" stroke="#0c0c0c" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- chat: answers customers -->
+  <g>
+    <rect x="160" y="140" width="200" height="140" rx="26" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.14" stroke-width="2"/>
+    <rect x="186" y="168" width="110" height="30" rx="15" fill="#ffffff" fill-opacity="0.16"/>
+    <rect x="224" y="210" width="110" height="30" rx="15" fill="#b4e02d" fill-opacity="0.85"/>
+    <rect x="186" y="252" width="70" height="10" rx="5" fill="#ffffff" fill-opacity="0.1"/>
+  </g>
+
+  <!-- document: reads invoices and contracts -->
+  <g>
+    <rect x="160" y="470" width="200" height="140" rx="26" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.14" stroke-width="2"/>
+    <path d="M206 494H284L314 524V586H206V494Z" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.3" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M284 494V524H314" stroke="#ffffff" stroke-opacity="0.3" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M224 538H296M224 556H296M224 574H264" stroke="#ffffff" stroke-opacity="0.35" stroke-width="4" stroke-linecap="round"/>
+    <rect x="270" y="566" width="32" height="16" rx="8" fill="#b4e02d" fill-opacity="0.85"/>
+  </g>
+
+  <!-- CRM / database: creates deals -->
+  <g>
+    <rect x="840" y="140" width="200" height="140" rx="26" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.14" stroke-width="2"/>
+    <ellipse cx="940" cy="178" rx="48" ry="14" fill="#ffffff" fill-opacity="0.12" stroke="#ffffff" stroke-opacity="0.35" stroke-width="2"/>
+    <path d="M892 178V242C892 250 913 256 940 256C967 256 988 250 988 242V178" stroke="#ffffff" stroke-opacity="0.35" stroke-width="2"/>
+    <path d="M892 210C892 218 913 224 940 224C967 224 988 218 988 210" stroke="#ffffff" stroke-opacity="0.35" stroke-width="2"/>
+    <circle cx="968" cy="240" r="9" fill="#b4e02d"/>
+  </g>
+
+  <!-- calendar: books and confirms -->
+  <g>
+    <rect x="840" y="470" width="200" height="140" rx="26" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.14" stroke-width="2"/>
+    <rect x="884" y="494" width="112" height="96" rx="16" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.3" stroke-width="2"/>
+    <path d="M884 522H996" stroke="#ffffff" stroke-opacity="0.3" stroke-width="2"/>
+    <path d="M912 486V502M968 486V502" stroke="#ffffff" stroke-opacity="0.45" stroke-width="4" stroke-linecap="round"/>
+    <g fill="#ffffff" fill-opacity="0.2">
+      <rect x="900" y="534" width="14" height="12" rx="3"/>
+      <rect x="922" y="534" width="14" height="12" rx="3"/>
+      <rect x="944" y="534" width="14" height="12" rx="3"/>
+      <rect x="900" y="556" width="14" height="12" rx="3"/>
+      <rect x="944" y="556" width="14" height="12" rx="3"/>
+      <rect x="966" y="556" width="14" height="12" rx="3"/>
+    </g>
+    <rect x="920" y="552" width="22" height="20" rx="5" fill="#b4e02d"/>
+    <path d="M925 562L929 566L937 557" stroke="#0c0c0c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

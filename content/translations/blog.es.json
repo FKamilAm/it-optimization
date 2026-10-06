@@ -1,4 +1,142 @@
 {
+  "ii-agenty-dlya-biznesa": {
+    "title": "Agentes de IA para empresas: qué puedes confiarles ya hoy",
+    "excerpt": "En qué se diferencia un agente de un chatbot, qué tareas se le encargan ya hoy, por qué el modelo se equivoca con total seguridad y cómo detectarlo, qué hacer con los datos personales y cuánto cuesta la implantación.",
+    "category": "Automatización",
+    "lead": "Hace un año, la IA en una empresa significaba un chat al que los empleados copiaban correos. Hoy significa, cada vez más, un agente que lee la solicitud por sí mismo, encuentra la respuesta en la base de conocimiento, crea la oportunidad en el CRM y llama a una persona cuando no está seguro. Vemos qué se le puede encargar de verdad a un agente así, dónde se equivoca, cómo funciona por dentro y cuánto cuesta implantarlo.",
+    "metaTitle": "Agentes de IA para empresas: tareas, riesgos y precios",
+    "metaDescription": "Qué es un agente de IA y en qué se diferencia de un chatbot, qué tareas asume, cómo frenar los errores del modelo, qué exige la ley rusa 152-FZ y cuánto cuesta.",
+    "sections": [
+      {
+        "heading": "Agente, asistente, chatbot: en qué se diferencian",
+        "body": [
+          "Un chatbot normal funciona con un guion: botones, ramas, respuestas escritas de antemano. No entiende una pregunta que no coincide con ningún botón y responde con franqueza «no te he entendido».",
+          "Un asistente basado en un modelo de lenguaje entiende texto libre y responde con sus propias palabras. Pero solo responde: no hace nada en tus sistemas, así que todo el trabajo posterior a la respuesta sigue recayendo en una persona.",
+          "Un agente es el siguiente paso. Se le dan herramientas: buscar un pedido por su número, comprobar el stock en el almacén, crear una oportunidad en el CRM, darle cita a un cliente en un hueco libre. El modelo decide por sí mismo qué herramienta llamar y en qué orden, recibe el resultado y continúa hasta que la tarea está resuelta o hasta que toca llamar a una persona.",
+          "Para el negocio, la diferencia es de fondo. Un asistente ahorra tiempo al redactar la respuesta. Un agente cierra la solicitud entera, y por eso un error del agente sale más caro: no se ha limitado a responder con imprecisión, ha hecho algo."
+        ]
+      },
+      {
+        "heading": "Qué se le encarga ya hoy a un agente",
+        "body": [
+          "Primera línea de soporte. Horario, condiciones de envío, estado del pedido, devoluciones, garantía: preguntas cuyas respuestas están en los documentos y en los sistemas. El agente responde al instante y a cualquier hora, y lo complejo se lo pasa a un empleado con el contexto ya reunido.",
+          "Clasificación de lo entrante. Correos, solicitudes desde la web, mensajes en las mensajerías: el agente determina qué es cada cosa (un pedido, una queja, una pregunta, spam), extrae los contactos y lo esencial, crea la ficha en el CRM y la envía al departamento que corresponde. El comercial no empieza el día ordenando el correo, sino con una lista de tareas ya preparada.",
+          "Trabajo con documentos. Facturas, contratos, actas, especificaciones: el agente localiza los campos necesarios, coteja los importes con la factura del sistema contable y señala las discrepancias. Lo que antes se tecleaba a mano, ahora solo se revisa.",
+          "Apoyo a ventas. Un borrador de propuesta comercial a partir del brief, la respuesta a una objeción típica, un breve resumen de la conversación con el cliente antes de una llamada. La decisión sigue siendo del comercial, pero desaparece la hoja en blanco.",
+          "Búsqueda interna de conocimiento. Normativas internas, instrucciones, proyectos anteriores: el empleado pregunta con sus propias palabras y recibe una respuesta con enlace al documento. Es el escenario más infravalorado: no tiene clientes externos, pero ahorra horas cada semana a cada empleado nuevo."
+        ]
+      },
+      {
+        "heading": "Dónde el agente todavía no da la talla",
+        "body": [
+          "Donde un error cuesta más que el ahorro. Decisiones sobre dinero, redacciones jurídicas, recomendaciones médicas y financieras: el agente puede preparar un borrador, pero quien lo firma debe ser una persona.",
+          "Donde no hay datos. El agente no conoce tus precios, plazos y excepciones hasta que se los das. Si la respuesta solo vive en la cabeza de un comercial veterano, el agente la adivinará, y la adivinará de forma verosímil.",
+          "Donde cada caso es único. Una venta compleja con negociación, un conflicto con un cliente, un pedido fuera de lo habitual. El agente necesita tareas repetitivas: en las poco frecuentes se equivoca más y aporta menos.",
+          "Y donde no hay proceso. Si hoy las solicitudes se pierden porque nadie se encarga de clasificarlas, el agente no ayudará: se limitará a dejarlas con todo cuidado en un sitio donde nadie mira. Primero el proceso, después la automatización."
+        ]
+      },
+      {
+        "heading": "Por qué el modelo se equivoca con total seguridad",
+        "body": [
+          "Un modelo de lenguaje no busca la respuesta en una base de datos: continúa el texto de la forma más probable. Cuando no tiene el dato necesario, completa uno verosímil: una tarifa que no existe, un plazo de entrega inventado, una cláusula de contrato que no está. Y lo dice con el mismo tono seguro que la verdad.",
+          "El remedio principal es anclar las respuestas en documentos. El agente no responde «de memoria», sino a partir de lo que encuentra: primero busca en tu base de conocimiento y después responde ciñéndose estrictamente a lo encontrado, con un enlace a la fuente. Si no encuentra nada, la respuesta correcta es «no lo sé, te paso con un especialista», y eso hay que dejarlo escrito de forma explícita en las instrucciones del agente.",
+          "Lo segundo, un marco estrecho. El agente de soporte de una tienda online no debe opinar de política ni dar consejos de salud. Cuanto más precisamente esté descrito qué hace y qué no hace, menos espacio queda para la fantasía.",
+          "Lo tercero, verificación allí donde la respuesta es estructurada. Si el agente ha extraído de una factura el importe y el número de identificación fiscal, se pueden cotejar automáticamente con el sistema contable. Si ha rellenado una ficha en el CRM, los campos obligatorios los comprueba el código, no la esperanza.",
+          "Los errores seguirán existiendo. El objetivo no es llegar a cero errores, sino que sean raros, visibles y baratos: que lleguen a una persona y no al cliente."
+        ]
+      },
+      {
+        "heading": "De dónde saca el agente sus conocimientos",
+        "body": [
+          "Lo más habitual, de tu base de conocimiento: instrucciones, normativas internas, listas de precios, respuestas a preguntas frecuentes, conversaciones anteriores. Los documentos se dividen en fragmentos, y para cada pregunta el agente encuentra los trozos más adecuados y responde a partir de ellos. Este enfoque se llama RAG, generación aumentada por recuperación.",
+          "El ajuste fino (fine-tuning) del modelo con tus datos hace falta menos de lo que parece. Cambia el estilo y la forma de expresarse, pero añade mal los hechos: los precios y plazos que cambian cada mes hay que sacarlos igualmente de documentos actualizados. Por eso casi siempre se empieza por la búsqueda en la base de conocimiento y el ajuste fino se deja para más adelante, si es que llega a hacer falta.",
+          "La calidad de las respuestas del agente no puede superar la de los documentos. Una lista de precios desfasada en la base es un precio desfasado en la respuesta. Tres versiones de la misma normativa son tres respuestas distintas a la misma pregunta. Poner orden en la base de conocimiento a menudo lleva más tiempo que el propio desarrollo, y es normal.",
+          "La base de conocimiento debe tener un responsable. Una persona que actualiza los documentos cuando cambian los precios y las condiciones, y que revisa a qué preguntas el agente no ha encontrado respuesta. Sin ella, en medio año el agente estará repitiendo con toda cortesía las condiciones del año pasado."
+        ]
+      },
+      {
+        "heading": "Herramientas: cómo el agente actúa, no solo responde",
+        "body": [
+          "Una herramienta es una función de tu sistema que el agente tiene permiso para llamar: buscar un pedido, consultar los huecos libres, crear una solicitud, enviar una notificación. El modelo ve la descripción de la herramienta, decide por sí mismo cuándo llamarla y recibe el resultado.",
+          "Cada herramienta es un acceso. El agente de soporte necesita leer el estado del pedido, pero no cambiar precios ni borrar clientes. Los permisos se conceden al mínimo, justo los que pide el escenario, igual que a un empleado nuevo en periodo de prueba.",
+          "Las acciones irreversibles requieren confirmación. Cancelar un pedido, devolver dinero, enviar un correo a todos los clientes: el agente prepara la acción y una persona pulsa el botón. Es algo más lento e incomparablemente más tranquilo.",
+          "Y todo lo que hace el agente queda registrado: qué pregunta llegó, qué herramientas se llamaron, con qué parámetros, qué respondieron los sistemas. Sin ese registro es imposible tanto analizar un error como demostrar que no lo hubo."
+        ]
+      },
+      {
+        "heading": "Humano en el circuito",
+        "body": [
+          "Un buen agente sabe cuándo parar. Las reglas de traspaso a una persona se escriben de antemano: el cliente está descontento, la pregunta es de dinero, el agente no ha encontrado respuesta, el cliente pide expresamente un operador, la conversación da vueltas en círculo.",
+          "El traspaso no es un «te paso con un operador» seguido de una espera desde cero. El empleado recibe la solicitud con un resumen: quién es el cliente, qué ha preguntado, qué ha comprobado ya el agente y por qué se ha detenido. El cliente no tiene que volver a contarlo todo, y esa es la principal señal de que la automatización se ha hecho para las personas y no en su lugar.",
+          "Al principio conviene tener a la persona más cerca: las primeras semanas, el agente prepara las respuestas y un empleado las revisa y las envía. Así se ve dónde se equivoca el agente, y la base de conocimiento se completa rápido. Cuando la calidad se ha estabilizado, la revisión se mantiene solo para los temas de riesgo.",
+          "Conviene implicar a los empleados en el proyecto desde el principio. El agente les quita la rutina, no los sustituye, y son precisamente ellos quienes mejor saben qué preguntas se repiten y dónde se esconden las excepciones."
+        ]
+      },
+      {
+        "heading": "Datos personales y la ley rusa 152-FZ",
+        "body": [
+          "En cuanto el agente trabaja con solicitudes de clientes, pasan por él datos personales: nombres, teléfonos, direcciones, historial de pedidos. La empresa sigue siendo el operador de esos datos y responde de ellos según la Ley Federal 152-FZ, la ley rusa de datos personales, sea quien sea quien los trate técnicamente.",
+          "Enviar datos al modelo de un servicio extranjero es una transferencia internacional de datos personales: hay que notificarla de antemano a Roskomnadzor, la autoridad rusa de protección de datos, y el propio servicio debe garantizar la protección de los datos. Para muchas empresas es más sencillo elegir el modelo de un proveedor ruso o desplegar un modelo abierto en un servidor propio.",
+          "Elijas lo que elijas, conviene enmascarar lo que sobra. El modelo no necesita un número de pasaporte para responder a una pregunta sobre el envío: los datos sin los que la tarea se resuelve igual pueden sustituirse por marcadores antes del envío y volver a insertarse en la respuesta.",
+          "Y aparte, los registros. Las conversaciones que se guardan para el control de calidad también son datos personales. Necesitan un plazo de conservación claro y una regla de borrado; si no, dentro de un año el registro del agente será la base de clientes más grande y peor protegida de la empresa."
+        ]
+      },
+      {
+        "heading": "Cómo saber si el agente funciona bien",
+        "body": [
+          "Ya antes del lanzamiento se reúne un conjunto de preguntas reales (cincuenta, cien, doscientas) con sus respuestas correctas. Con él se pone a prueba el agente después de cada cambio: una instrucción nueva, documentos nuevos, un cambio de modelo. Sin ese conjunto de evaluación, cualquier mejora es una sensación, no un hecho.",
+          "Las métricas son sencillas. Qué proporción de solicitudes se cierra sin intervención humana. Qué precisión tienen las respuestas, según una revisión por muestreo. Con qué frecuencia el agente pasa la conversación a un empleado y por qué motivos. Cuánto tiempo pasa hasta la respuesta. Y, aparte, las quejas sobre las respuestas del agente.",
+          "Después del lanzamiento, la calidad no se queda quieta. Cambian los precios, aparecen productos nuevos, los clientes empiezan a preguntar por otras cosas. Las preguntas a las que el agente no ha encontrado respuesta son la mejor lista de lo que hay que añadir a la base de conocimiento esta semana.",
+          "Hay que comparar con lo que había antes del agente, no con el ideal. Si antes la respuesta a un mensaje del fin de semana llegaba el lunes y ahora llega en un minuto y es correcta en nueve casos de cada diez, es una ganancia, aunque el décimo caso acabe en manos de una persona."
+        ]
+      },
+      {
+        "heading": "Cuánto cuesta la implantación",
+        "body": [
+          "Un escenario con un solo canal (por ejemplo, un agente de primera línea en Telegram que responde a partir de la base de conocimiento y pasa lo complejo a un empleado): desde {price:90000} y desde dos semanas. Incluye la configuración para tus documentos, las pruebas con preguntas reales y el lanzamiento.",
+          "Varios escenarios con conexión al CRM y a la base de conocimiento, seguimiento de la calidad y acompañamiento después del lanzamiento: desde {price:180000} y desde tres semanas. Es la opción más habitual: el agente no solo responde, sino que también crea oportunidades, actualiza estados y escribe resúmenes para los comerciales.",
+          "Automatización integral (varios agentes conectados entre sí, integraciones complejas con los sistemas contables, analítica): desde {price:350000} y desde cinco semanas. Aquí el plazo casi nunca lo marcan los agentes, sino las integraciones y el orden en los datos.",
+          "Una partida aparte es el mantenimiento. Las llamadas al modelo se pagan por volumen, y con cientos de solicitudes al día es una suma apreciable pero predecible, que se ve ya en el periodo de prueba. Un modelo propio en un servidor propio es más caro al principio y más barato con volúmenes grandes, y lo más importante: los datos no salen a ninguna parte."
+        ]
+      },
+      {
+        "heading": "Servicio ya hecho o desarrollo propio",
+        "body": [
+          "Los servicios ya hechos con un bot de IA se conectan en un día: subes los documentos y obtienes un widget para la web. Para resolver consultas sencillas sobre el sitio, eso suele bastar, y no tiene sentido pagar por un desarrollo.",
+          "Las limitaciones empiezan donde el agente necesita actuar en tus sistemas. Un servicio ya hecho sabe hacer lo que sabe hacer: las integraciones de su catálogo, su lógica de traspaso a una persona, su forma de guardar las conversaciones. Si tu CRM está hecho a medida y los datos no se pueden ceder a un servicio externo, la solución de caja se queda corta enseguida.",
+          "El desarrollo propio es más caro al principio, pero el agente vive en tu perímetro, accede a tus sistemas y obedece tus reglas: qué datos van adónde, quién ve las conversaciones, qué tiene permitido hacer el agente.",
+          "El camino sensato es empezar con un escenario acotado y ver el resultado. Si la tarea se resuelve con una solución de caja, ya tienes la respuesta. Si no, ya sabes qué preguntas llegan, dónde se equivoca el agente y qué falta, y el desarrollo arrancará con la especificación técnica ya lista."
+        ]
+      },
+      {
+        "heading": "Errores frecuentes",
+        "body": [
+          "Empezar por la tecnología y no por la tarea. «Queremos IA» no es una tarea. «Respondemos 300 preguntas iguales a la semana y no llegamos los fines de semana» sí lo es, y además trae de serie una forma de medir el resultado.",
+          "Lanzarlo para todo de golpe. Un agente que debe saber hacerlo todo, del soporte a la contabilidad, lo hace todo igual de mediocre. Un único escenario acotado y bien pulido es más útil que cinco a medio hacer.",
+          "No preparar la base de conocimiento. Un agente que trabaja con documentos contradictorios y desfasados responderá de forma contradictoria y desfasada, y la culpa se la llevará la IA.",
+          "Dar al agente permisos de más. Acceso de escritura donde bastaría con el de lectura y acciones sin confirmación: así un solo error del modelo se convierte en un incidente.",
+          "No medir. Sin un conjunto de preguntas de control y sin métricas, al cabo de un mes es imposible decir si el agente ha mejorado o empeorado, y todas las discusiones sobre la calidad se reducen a impresiones."
+        ]
+      },
+      {
+        "heading": "Por dónde empezar",
+        "body": [
+          "Elige el flujo de solicitudes que más se repite y más tiempo consume: preguntas al soporte, clasificación de solicitudes, revisión de documentos. Calcula cuántas solicitudes de ese tipo hay a la semana y cuántos minutos se dedican a cada una: ese es el ahorro futuro y la métrica principal del proyecto.",
+          "Reúne los conocimientos con los que responderá el agente: documentos, respuestas a preguntas frecuentes, un centenar de solicitudes reales con sus respuestas correctas. Con esas solicitudes se pondrá a prueba el agente antes del lanzamiento y después.",
+          "Define los límites: qué hace el agente por sí solo, qué solo prepara para una persona, en qué casos está obligado a pasar la conversación. Una página con esas reglas importa más que la elección del modelo.",
+          "Y lánzalo junto a las personas. Las primeras semanas, el agente trabaja bajo la supervisión de los empleados, la base de conocimiento se completa a partir de sus fallos y la autonomía la recibe cuando las cifras lo confirman."
+        ]
+      }
+    ],
+    "takeaways": [
+      "Un agente se diferencia de un chatbot y de un asistente en que actúa en tus sistemas: encuentra el pedido, crea la oportunidad, da cita al cliente. Por eso sus errores también salen más caros.",
+      "Lo que mejor se le da a un agente son las tareas repetitivas cuyas respuestas ya están en los documentos: la primera línea de soporte, la clasificación de lo entrante, el trabajo con documentos y la búsqueda en las normativas internas.",
+      "El modelo se equivoca con total seguridad cuando no sabe la respuesta. Se corrige con respuestas ceñidas estrictamente a los documentos encontrados, un marco estrecho, la verificación de los datos estructurados y el derecho a decir «no lo sé».",
+      "Al agente se le conceden los permisos mínimos, las acciones irreversibles las confirma una persona y todo lo que hace el agente queda registrado.",
+      "Enviar datos personales a un modelo extranjero es una transferencia internacional según la Ley 152-FZ. La alternativa es un proveedor ruso o un modelo propio en un servidor propio.",
+      "Un escenario, desde {price:90000} y dos semanas; varios escenarios con CRM y base de conocimiento, desde {price:180000}; la automatización integral, desde {price:350000}. Poner orden en los datos suele llevar más tiempo que el desarrollo."
+    ]
+  },
   "svoya-crm-ili-gotovaya": {
     "title": "¿CRM propio o uno ya hecho? Cuándo basta una solución estándar y cuándo no",
     "excerpt": "En qué se diferencia un CRM ya hecho de uno propio, no por sus funciones sino por sus consecuencias: con qué techos chocan los sistemas estándar, qué decisiones tendrás que tomar tú mismo, cuánto cuesta el desarrollo y por qué la respuesta correcta casi siempre no es «o», sino «y».",

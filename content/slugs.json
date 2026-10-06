@@ -35,6 +35,10 @@
     "support": { "en": "website-support", "es": "soporte-web" }
   },
   "posts": {
+    "ii-agenty-dlya-biznesa": {
+      "en": "ai-agents-for-business",
+      "es": "agentes-de-ia-para-empresas"
+    },
     "svoya-crm-ili-gotovaya": {
       "en": "custom-crm-vs-off-the-shelf",
       "es": "crm-a-medida-o-estandar"

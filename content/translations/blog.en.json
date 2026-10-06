@@ -1,4 +1,142 @@
 {
+  "ii-agenty-dlya-biznesa": {
+    "title": "AI agents for business: what you can trust them with today",
+    "excerpt": "How an agent differs from a chatbot, which tasks companies already hand over to one, why a model makes mistakes with confidence and how to catch them, what to do about personal data — and what a rollout costs.",
+    "category": "Automation",
+    "lead": "A year ago, AI in a company meant a chat window that employees pasted emails into. Today it increasingly means an agent that reads an enquiry by itself, finds the answer in the knowledge base, creates a deal in the CRM and calls in a person when it isn't sure. Here we look at what such an agent can really be trusted with, where it gets things wrong, how it works under the hood and what bringing one in costs.",
+    "metaTitle": "AI agents for business: tasks, risks and costs",
+    "metaDescription": "What an AI agent is and how it differs from a chatbot, which tasks it takes on, how to handle model errors, what 152-FZ requires and what a rollout costs.",
+    "sections": [
+      {
+        "heading": "Agent, assistant, chatbot: what's the difference",
+        "body": [
+          "An ordinary chatbot follows a script: buttons, branches, answers written in advance. It doesn't understand a question that doesn't match any of the buttons, and honestly replies \"I didn't understand\".",
+          "An assistant built on a language model understands free text and answers in its own words. But it only answers: it does nothing in your systems, which means all the work after the answer is still left to a person.",
+          "An agent is the next step. It is given tools: find an order by its number, check what is left in stock, create a deal in the CRM, book a client into a free slot. The model decides for itself which tool to call and in what order, gets the result and carries on until the task is done or until it is time to call in a person.",
+          "For a business, the difference is fundamental. An assistant saves time on wording an answer. An agent closes the whole enquiry — and that is exactly why an agent's mistake costs more: it didn't just give an inaccurate answer, it did something."
+        ]
+      },
+      {
+        "heading": "What companies already hand over to an agent",
+        "body": [
+          "First-line support. Opening hours, delivery terms, order status, returns, warranty — questions whose answers already sit in your documents and systems. The agent answers instantly, around the clock, and passes anything complicated to an employee with the context already gathered.",
+          "Sorting incoming messages. Emails, enquiries from the website, messenger messages: the agent works out what each one is — an order, a complaint, a question, spam — pulls out the contact details and the gist, creates a card in the CRM and sends it to the right department. A manager starts the day not by sorting the inbox but with a ready-made list of tasks.",
+          "Working with documents. Invoices, contracts, completion certificates, specifications: the agent finds the fields it needs, checks the amounts against the invoice in the accounting system and flags any discrepancies. What used to be typed in by hand now only needs checking.",
+          "Helping sales. A draft commercial proposal from a brief, an answer to a typical objection, a short summary of the correspondence with a client before a call. The decision stays with the manager, but the blank page disappears.",
+          "Internal knowledge search. Policies, instructions, past projects: an employee asks in their own words and gets an answer with a link to the document. This is the most underrated scenario — it has no external customers, but it saves every new employee hours every week."
+        ]
+      },
+      {
+        "heading": "Where an agent still falls short",
+        "body": [
+          "Where a mistake costs more than the savings. Decisions about money, legal wording, medical and financial advice — the agent can prepare a draft, but a person has to sign it off.",
+          "Where there is no data. The agent doesn't know your prices, lead times and exceptions until you give them to it. If the answer lives only in the head of an experienced manager, the agent will guess it — and guess plausibly.",
+          "Where every case is unique. A complex deal with negotiations, a conflict with a client, a non-standard order. An agent needs repetitive tasks: on rare ones it makes mistakes more often and brings less benefit.",
+          "And where there is no process. If enquiries get lost today because nobody is responsible for sorting them, an agent won't help — it will neatly file the enquiries away where nobody looks. Process first, automation second."
+        ]
+      },
+      {
+        "heading": "Why a model is confidently wrong",
+        "body": [
+          "A language model doesn't look the answer up in a database — it continues the text in the most probable way. When it doesn't have the fact it needs, it fills in a plausible one: a tariff that doesn't exist, an invented delivery time, a contract clause that isn't there. And it says all this in the same confident tone as the truth.",
+          "The main cure is grounding. The agent answers not \"from memory\" but from the documents it has found: first a search of your knowledge base, then an answer based strictly on what was found, with a link to the source. If nothing turns up, the right answer is \"I don't know, I'm passing this to a specialist\", and that has to be written explicitly into the agent's instructions.",
+          "The second is narrow boundaries. An online shop's support agent has no business discussing politics or giving health advice. The more precisely you describe what it does and what it doesn't do, the less room there is for invention.",
+          "The third is verification wherever the answer is structured. If the agent has pulled the total and the tax ID (INN) from an invoice, they can be checked against the accounting system automatically. If it has filled in a card in the CRM, the required fields are checked by code, not by hope.",
+          "There will still be mistakes. The goal is not zero mistakes but mistakes that are rare, visible and cheap: ones that reach a person rather than a client."
+        ]
+      },
+      {
+        "heading": "Where an agent gets its knowledge",
+        "body": [
+          "Most often, from your knowledge base: instructions, policies, price lists, answers to frequently asked questions, past correspondence. The documents are cut into fragments, and for each question the agent finds the most relevant pieces and answers from them. This approach is called RAG — retrieval-augmented generation.",
+          "Fine-tuning a model on your data is needed less often than it seems. It changes the style and manner, but it is poor at adding facts: prices and lead times that change every month still have to come from up-to-date documents. That is why almost every project starts with a search over the knowledge base and leaves fine-tuning for later — if it is needed at all.",
+          "An agent's answers cannot be better than its documents. An outdated price list in the base means an outdated price in the answer. Three versions of the same policy mean three different answers to one question. Putting the knowledge base in order often takes longer than the development itself, and that is normal.",
+          "The knowledge base needs an owner: someone who updates the documents when prices and terms change, and looks at which questions the agent couldn't find an answer to. Without that person, six months from now the agent will be politely recounting last year's terms."
+        ]
+      },
+      {
+        "heading": "Tools: how an agent acts rather than just answers",
+        "body": [
+          "A tool is a function in your system that the agent is allowed to call: find an order, look up free slots, create a request, send a notification. The model sees a description of the tool, decides for itself when to call it and gets the result.",
+          "Every tool is a form of access. A support agent needs to read an order's status, but it doesn't need to change prices or delete clients. Permissions are granted at the minimum, exactly for the scenario — just as they are for a new employee on probation.",
+          "Irreversible actions require confirmation. Cancelling an order, issuing a refund, sending an email to every client — the agent prepares the action, a person presses the button. It is a little slower and gives you incomparably more peace of mind.",
+          "And everything the agent does is logged: which question came in, which tools were called, with which parameters, what the systems returned. Without such a log you can neither investigate a mistake nor prove that there wasn't one."
+        ]
+      },
+      {
+        "heading": "Human in the loop",
+        "body": [
+          "A good agent knows when to stop. The rules for handing over to a person are written in advance: the client is unhappy, the question is about money, the agent hasn't found an answer, the client explicitly asks for an operator, the conversation is going round in circles.",
+          "A handover is not \"I'm putting you through to an operator\" followed by starting from scratch. The employee receives the enquiry with a summary: who the client is, what they asked, what the agent has already checked and why it stopped. The client doesn't have to explain everything all over again, and that is the main sign that automation has been built for people rather than instead of them.",
+          "At the start it helps to keep a person closer: for the first few weeks the agent prepares answers, and an employee checks and sends them. That way you can see where the agent goes wrong, and the knowledge base fills out quickly. Once the quality has settled, the review is kept only for risky topics.",
+          "It is worth bringing your employees into the project from the very start. The agent takes the routine off their hands rather than replacing them — and they are the ones who know best which questions keep coming up and where the exceptions are hiding."
+        ]
+      },
+      {
+        "heading": "Personal data and 152-FZ",
+        "body": [
+          "As soon as an agent handles client enquiries, personal data passes through it: names, phone numbers, addresses, order history. The company remains the operator of that data and is responsible for it under Federal Law 152-FZ, Russia's personal data law, whoever processes it technically.",
+          "Sending data to a model run by a foreign service is a cross-border transfer of personal data: Roskomnadzor, Russia's data protection authority, has to be notified in advance, and the service itself must ensure the data is protected. For many companies it is simpler to choose a model from a Russian provider or to deploy an open model on their own server.",
+          "Whichever you choose, it is worth masking anything superfluous. A model doesn't need a passport number to answer a question about delivery: data the task can be solved without can be replaced with placeholders before sending and substituted back into the answer.",
+          "And a separate point: the logs. Conversations stored for quality control are personal data too. They need a clear retention period and a deletion rule, otherwise within a year the agent's log will become the largest and least protected client database in the company."
+        ]
+      },
+      {
+        "heading": "How to tell that an agent is working well",
+        "body": [
+          "Before launch, you collect a set of real questions — fifty, a hundred, two hundred — with the correct answers. The agent is tested against it after every change: a new instruction, new documents, a switch of model. Without such an evaluation set, any improvement is a feeling, not a fact.",
+          "The metrics are simple. What share of enquiries is closed without a person. How accurate the answers are, judging by spot checks. How often the agent hands the conversation to an employee, and for what reasons. How long it takes to get an answer. And, separately, complaints about the agent's answers.",
+          "Quality doesn't stand still after launch. Prices change, new products appear, clients start asking about other things. The questions the agent couldn't find an answer to are the best list of what needs adding to the knowledge base this week.",
+          "Compare against how things were before the agent, not against the ideal. If an enquiry sent at the weekend used to get an answer on Monday, and now it gets one within a minute and a correct one nine times out of ten, that is a win — even if the tenth case goes to a person."
+        ]
+      },
+      {
+        "heading": "What a rollout costs",
+        "body": [
+          "One scenario on one channel — for example, a first-line agent in Telegram that answers from the knowledge base and passes complicated cases to an employee — from {price:90000} and from two weeks. That includes setting it up for your documents, testing it on real questions and the launch.",
+          "Several scenarios with integration into the CRM and the knowledge base, quality monitoring and support after launch — from {price:180000} and from three weeks. This is the most common option: the agent not only answers but also creates deals, updates statuses and writes summaries for managers.",
+          "End-to-end automation — several connected agents, complex integrations with accounting systems, analytics — from {price:350000} and from five weeks. Here the timeline is most often set not by the agents but by the integrations and the state of the data.",
+          "Running costs are a separate line item. Calls to the model are paid for by volume, and at hundreds of enquiries a day this is a noticeable but predictable sum, which you can already see during the trial period. Your own model on your own server costs more at the start and less at high volumes — and, most importantly, the data goes nowhere."
+        ]
+      },
+      {
+        "heading": "Off-the-shelf service or custom development",
+        "body": [
+          "Off-the-shelf services with an AI bot connect in a day: you upload your documents and get a widget for your website. For simple help on a website that is often enough, and there is no reason to pay for development.",
+          "The limitations begin where the agent needs to act in your systems. An off-the-shelf service does what it does: the integrations in its catalogue, its own logic for handing over to a person, its own storage of conversations. If your CRM is custom-built and the data cannot be handed to a third-party service, the boxed product runs out of road quickly.",
+          "Custom development costs more at the start, but the agent lives inside your perimeter, works with your systems and obeys your rules: what data goes where, who sees the conversations, what the agent is allowed to do.",
+          "The sensible path is to start with a narrow scenario and look at the result. If a boxed product solves the task, you have your solution. If not, you already know which questions come in, where the agent goes wrong and what is missing — and development will start from a ready-made specification."
+        ]
+      },
+      {
+        "heading": "Common mistakes",
+        "body": [
+          "Starting with the technology rather than the task. \"We want AI\" is not a task. \"We answer 300 identical questions a week and can't keep up at weekends\" is a task, and it comes with a ready way to measure the result.",
+          "Launching on everything at once. An agent that has to do everything — from support to accounting — does everything equally mediocrely. One narrow scenario brought up to standard is more useful than five half-finished ones.",
+          "Not preparing the knowledge base. An agent working from contradictory and outdated documents will give contradictory and outdated answers, and AI will get the blame.",
+          "Giving the agent unnecessary permissions. Write access where read access would have done, and actions without confirmation — that is how a single model error turns into an incident.",
+          "Not measuring. Without a set of test questions and metrics, a month later it is impossible to say whether the agent has got better or worse, and every argument about quality comes down to impressions."
+        ]
+      },
+      {
+        "heading": "Where to start",
+        "body": [
+          "Pick one stream of enquiries that repeats most often and eats up time: support questions, sorting incoming enquiries, checking documents. Count how many such enquiries come in each week and how many minutes each one takes — that is your future saving and the project's main metric.",
+          "Gather the knowledge the agent will answer from: documents, answers to frequently asked questions, a hundred real enquiries with the correct answers. The agent will be tested against these enquiries both before launch and after.",
+          "Describe the boundaries: what the agent does by itself, what it only prepares for a person, and in which cases it must hand the conversation over. One page of such rules matters more than the choice of model.",
+          "And launch alongside people. For the first few weeks the agent works under your employees' supervision, the knowledge base is filled out from its misses, and it gets autonomy when the numbers back that up."
+        ]
+      }
+    ],
+    "takeaways": [
+      "What sets an agent apart from a chatbot or an assistant is that it acts in your systems: it finds an order, creates a deal, books a client. That is also why its mistakes cost more.",
+      "Agents do best at repetitive tasks whose answers are already in documents: first-line support, sorting incoming messages, working with documents, searching internal policies.",
+      "A model is confidently wrong when it doesn't know the answer. The cure is answering strictly from the documents found, narrow boundaries, verification of structured data and the right to say \"I don't know\".",
+      "The agent is given minimal permissions, a person confirms irreversible actions, and everything the agent does is logged.",
+      "Sending personal data to a foreign model is a cross-border transfer under 152-FZ. The alternative is a Russian provider or your own model on your own server.",
+      "One scenario — from {price:90000} and two weeks; several scenarios with CRM and knowledge base — from {price:180000}; end-to-end automation — from {price:350000}. Getting the data in order often takes longer than the development."
+    ]
+  },
   "svoya-crm-ili-gotovaya": {
     "title": "Custom CRM or off-the-shelf: when a ready-made system is enough and when it isn't",
     "excerpt": "How an off-the-shelf CRM differs from a custom one — not in features but in consequences: the ceilings boxed systems run into, the decisions you will have to make yourself, what development costs and why the right answer is most often not \"or\" but \"and\".",
