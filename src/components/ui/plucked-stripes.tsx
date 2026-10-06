@@ -50,6 +50,8 @@ interface PluckedStripesProps {
   radius?: number;
   /** Hard cap so glyphs never visibly break apart, CSS px. */
   maxOffset?: number;
+  /** React to the pointer at all; off for purely decorative copies. */
+  interactive?: boolean;
   /** Also react to touch, not only to a hovering mouse. */
   touch?: boolean;
   /** One pluck sweeping across the art once it appears — shows it is alive. */
@@ -85,6 +87,7 @@ export function PluckedStripes({
   pieceWidth,
   radius = 90,
   maxOffset = 13,
+  interactive: pointerEffects = true,
   touch = false,
   intro = false,
   className,
@@ -104,7 +107,7 @@ export function PluckedStripes({
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const interactive = (canHover || touch) && !reduceMotion;
+    const interactive = pointerEffects && (canHover || touch) && !reduceMotion;
 
     let segments: Segment[] = [];
     let tones: StripeTone[] = [];
@@ -198,7 +201,12 @@ export function PluckedStripes({
     };
 
     const draw = () => {
-      ctx.clearRect(0, 0, dispW, dispH);
+      // Clear in backing pixels: with a fractional CSS width the last column is
+      // only half-cleared, and moving pieces leave a smear there frame by frame.
+      ctx.save();
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.restore();
 
       // Base pass: opaque so 1px overlaps between pieces stay seamless at rest.
       for (let t = 0; t < tones.length; t++) {
@@ -370,7 +378,8 @@ export function PluckedStripes({
       build(art);
       resize();
       setReady(true);
-      if (intro && !reduceMotion) introTimer = window.setTimeout(playIntro, 350);
+      if (intro && pointerEffects && !reduceMotion)
+        introTimer = window.setTimeout(playIntro, 350);
     });
 
     if (interactive) {
@@ -393,7 +402,7 @@ export function PluckedStripes({
         canvas.removeEventListener("pointercancel", onLeave);
       }
     };
-  }, [aspectRatio, pieceWidth, radius, maxOffset, touch, intro]);
+  }, [aspectRatio, pieceWidth, radius, maxOffset, pointerEffects, touch, intro]);
 
   return (
     <div

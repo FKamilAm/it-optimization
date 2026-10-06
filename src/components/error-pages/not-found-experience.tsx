@@ -1,15 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ErrorScreen } from "./error-screen";
-import type { ErrorHeaderProps } from "./error-header";
+import { ErrorScreen, type ErrorScreenProps } from "./error-screen";
 
 type Locale = "ru" | "en" | "es";
 
 export interface NotFoundVariant {
   title: string;
   home: { label: string; href: string };
-  header: ErrorHeaderProps;
+  logo: ErrorScreenProps["logo"];
 }
 
 interface NotFoundExperienceProps {
@@ -42,7 +41,7 @@ export function NotFoundExperience({ variants }: NotFoundExperienceProps) {
 
   return (
     <div data-i18n-pending={ready ? undefined : "true"} lang={locale}>
-      <ErrorScreen code="404" title={v.title} home={v.home} header={v.header} />
+      <ErrorScreen code="404" title={v.title} home={v.home} logo={v.logo} />
     </div>
   );
 }

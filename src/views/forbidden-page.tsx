@@ -6,8 +6,8 @@ import { BRAND_NAME, type Locale } from "@/i18n/config";
 import { homePath } from "@/i18n/routes";
 
 /**
- * Страница 403 — тот же экран, что 404: код из полос, одна строка, кнопка
- * «На главную».
+ * Страница 403 — тот же экран, что 404, зеркально: код из полос, где ноль —
+ * замок, одна строка и кнопка «На главную».
  *
  * Отдельный маршрут (/403/, /en/403/, /es/403/), а не forbidden() из Next:
  * тот требует серверного рантайма, а сайт — статический экспорт. Статическая
@@ -30,7 +30,6 @@ export async function forbiddenMetadata(locale: Locale): Promise<Metadata> {
 
 export async function ForbiddenPage({ locale }: { locale: Locale }) {
   const t = await getTranslations({ locale, namespace: "errorPages.forbidden" });
-  const nav = await getTranslations({ locale, namespace: "nav" });
   const a11y = await getTranslations({ locale, namespace: "a11y" });
   const home = homePath(locale);
 
@@ -39,13 +38,11 @@ export async function ForbiddenPage({ locale }: { locale: Locale }) {
       code="403"
       title={t("title")}
       home={{ label: t("home"), href: home }}
-      header={{
-        home,
-        logoSrc: logoFor(locale).src,
-        logoAlt: BRAND_NAME[locale],
-        logoLabel: a11y("logo"),
-        cta: nav("cta"),
-        ctaHref: `${home}#contact`,
+      logo={{
+        src: logoFor(locale).src,
+        alt: BRAND_NAME[locale],
+        label: a11y("logo"),
+        href: home,
       }}
     />
   );

@@ -18,7 +18,8 @@ import { manrope, unbounded } from "@/views/fonts";
 import "./globals.css";
 
 /**
- * Страница 404 — одна на весь сайт: код из полос, одна строка и «На главную».
+ * Страница 404 — одна на весь сайт: код из полос, где ноль — лупа, одна
+ * строка и «На главную».
  *
  * Корневых макетов два, (ru) и (intl), и обычный not-found.tsx при таком
  * устройстве в экспорт не попадает. global-not-found.tsx (флаг
@@ -43,14 +44,13 @@ export const metadata: Metadata = {
 
 const script = `(function(){var m=/^\\/(${PREFIXED_LOCALES.join("|")})(\\/|$)/.exec(location.pathname);var l=m?m[1]:${JSON.stringify(DEFAULT_LOCALE)};document.documentElement.setAttribute("data-locale",l);document.documentElement.lang=l;})();`;
 
-// На /en/ и /es/ до гидрации шапка и текст скрыты, чтобы не мелькал русский.
-const css = `${PREFIXED_LOCALES.map((l) => `html[data-locale="${l}"] [data-i18n-pending] :is(header,main)`).join(",")}{visibility:hidden}`;
+// На /en/ и /es/ до гидрации текст скрыт, чтобы не мелькал русский.
+const css = `${PREFIXED_LOCALES.map((l) => `html[data-locale="${l}"] [data-i18n-pending] main`).join(",")}{visibility:hidden}`;
 
 export default async function GlobalNotFound() {
   const entries = await Promise.all(
     LOCALES.map(async (locale: Locale): Promise<[Locale, NotFoundVariant]> => {
       const t = await getTranslations({ locale, namespace: "errorPages.notFound" });
-      const nav = await getTranslations({ locale, namespace: "nav" });
       const a11y = await getTranslations({ locale, namespace: "a11y" });
       const home = homePath(locale);
       return [
@@ -58,13 +58,11 @@ export default async function GlobalNotFound() {
         {
           title: t("title"),
           home: { label: t("home"), href: home },
-          header: {
-            home,
-            logoSrc: logoFor(locale).src,
-            logoAlt: BRAND_NAME[locale],
-            logoLabel: a11y("logo"),
-            cta: nav("cta"),
-            ctaHref: `${home}#contact`,
+          logo: {
+            src: logoFor(locale).src,
+            alt: BRAND_NAME[locale],
+            label: a11y("logo"),
+            href: home,
           },
         },
       ];
