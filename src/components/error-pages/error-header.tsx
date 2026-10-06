@@ -1,5 +1,4 @@
 import { ButtonContent, buttonClassName } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 export interface ErrorHeaderProps {
   /** Главная текущего языка — туда ведёт логотип. */
@@ -10,8 +9,6 @@ export interface ErrorHeaderProps {
   logoLabel: string;
   cta: string;
   ctaHref: string;
-  /** Тёмный фон (403): логотип инвертируется, кнопка светлая. */
-  dark?: boolean;
 }
 
 /**
@@ -29,7 +26,6 @@ export function ErrorHeader({
   logoLabel,
   cta,
   ctaHref,
-  dark = false,
 }: ErrorHeaderProps) {
   return (
     <header className="absolute inset-x-0 top-0 z-30">
@@ -41,19 +37,15 @@ export function ErrorHeader({
             alt={logoAlt}
             width={240}
             height={27}
-            className={cn("h-7 w-auto md:h-8", dark && "brightness-0 invert")}
+            className="h-7 w-auto md:h-8"
           />
         </a>
         <a
           href={ctaHref}
           data-cursor="dark"
-          className={buttonClassName(
-            dark ? "inverse" : "primary",
-            "sm",
-            "hidden sm:inline-flex",
-          )}
+          className={buttonClassName("primary", "sm", "hidden sm:inline-flex")}
         >
-          <ButtonContent variant={dark ? "inverse" : "primary"} showArrow>
+          <ButtonContent variant="primary" showArrow>
             {cta}
           </ButtonContent>
         </a>

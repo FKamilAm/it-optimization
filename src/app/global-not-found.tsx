@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import {
   NotFoundExperience,
   type NotFoundVariant,
-} from "@/components/error-pages/not-found/not-found-experience";
+} from "@/components/error-pages/not-found-experience";
 import { CursorFollower } from "@/components/layout/cursor-follower";
 import { logoFor } from "@/components/layout/logo";
 import {
@@ -13,12 +13,12 @@ import {
   PREFIXED_LOCALES,
   type Locale,
 } from "@/i18n/config";
-import { homePath, projectsPath, servicesPath } from "@/i18n/routes";
+import { homePath } from "@/i18n/routes";
 import { manrope, unbounded } from "@/views/fonts";
 import "./globals.css";
 
 /**
- * Страница 404 — одна на весь сайт: «найди потерянный модуль».
+ * Страница 404 — одна на весь сайт: код из полос, одна строка и «На главную».
  *
  * Корневых макетов два, (ru) и (intl), и обычный not-found.tsx при таком
  * устройстве в экспорт не попадает. global-not-found.tsx (флаг
@@ -57,13 +57,7 @@ export default async function GlobalNotFound() {
         locale,
         {
           title: t("title"),
-          text: t("text"),
-          hint: t("hint"),
-          home: t("home"),
-          restored: t("restored"),
-          navHome: t("navHome"),
-          navServices: t("navServices"),
-          navProjects: t("navProjects"),
+          home: { label: t("home"), href: home },
           header: {
             home,
             logoSrc: logoFor(locale).src,
@@ -72,7 +66,6 @@ export default async function GlobalNotFound() {
             cta: nav("cta"),
             ctaHref: `${home}#contact`,
           },
-          links: { home, services: servicesPath(locale), projects: projectsPath(locale) },
         },
       ];
     }),

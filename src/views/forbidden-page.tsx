@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { ErrorActions } from "@/components/error-pages/error-actions";
-import { ErrorHeader } from "@/components/error-pages/error-header";
-import { AccessScanner } from "@/components/error-pages/forbidden/access-scanner";
+import { ErrorScreen } from "@/components/error-pages/error-screen";
 import { logoFor } from "@/components/layout/logo";
 import { BRAND_NAME, type Locale } from "@/i18n/config";
 import { homePath } from "@/i18n/routes";
 
 /**
- * Страница 403 — «сканер доступа»: защищённую область можно исследовать
- * сканером и попытаться открыть удержанием, но система корректно
- * останавливает. Уйти можно сразу — кнопки «На главную» и «Назад» рядом.
+ * Страница 403 — тот же экран, что 404: код из полос, одна строка, кнопка
+ * «На главную».
  *
  * Отдельный маршрут (/403/, /en/403/, /es/403/), а не forbidden() из Next:
  * тот требует серверного рантайма, а сайт — статический экспорт. Статическая
@@ -26,7 +23,7 @@ import { homePath } from "@/i18n/routes";
 export async function forbiddenMetadata(locale: Locale): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: "errorPages.forbidden" });
   return {
-    title: `403 — ${t("title")}`,
+    title: `403 — ${t("meta")}`,
     robots: { index: false, follow: false },
   };
 }
@@ -38,49 +35,18 @@ export async function ForbiddenPage({ locale }: { locale: Locale }) {
   const home = homePath(locale);
 
   return (
-    <div className="e403-page relative isolate min-h-svh overflow-hidden text-white">
-      {/* Фон: сетка, шум и виньетка — всё декоративное скрыто от скринридера. */}
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="e403-grid absolute inset-0" />
-        <div className="e403-noise absolute inset-0" />
-        {/* Мягкий свет из-за поля — фон не просто чёрный. */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_45%_55%_at_68%_50%,rgba(180,224,45,0.07),transparent_70%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_65%_50%,transparent_30%,rgba(0,0,0,0.75)_100%)]" />
-      </div>
-
-      <ErrorHeader
-        dark
-        home={home}
-        logoSrc={logoFor(locale).src}
-        logoAlt={BRAND_NAME[locale]}
-        logoLabel={a11y("logo")}
-        cta={nav("cta")}
-        ctaHref={`${home}#contact`}
-      />
-
-      <main
-        id="main"
-        className="container-premium relative z-10 flex min-h-svh flex-col items-center justify-center gap-10 pt-24 pb-12 lg:grid lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-center lg:gap-12 lg:pt-20"
-      >
-        <div className="order-2 w-full max-w-lg lg:order-1">
-          <p className="font-display text-sm tracking-[0.3em] text-white/35">403</p>
-          <h1 className="heading-section mt-3">{t("title")}</h1>
-          <p className="body-large mt-4 text-white/65">{t("text")}</p>
-          <div className="mt-8">
-            <ErrorActions
-              dark
-              home={{ label: t("home"), href: home }}
-              secondary={{ label: t("back"), back: true }}
-            />
-          </div>
-        </div>
-        <div className="order-1 lg:order-2 lg:justify-self-center">
-          <AccessScanner
-            labels={{ hold: t("hold"), denied: t("denied"), fine: t("fine") }}
-            homeHref={home}
-          />
-        </div>
-      </main>
-    </div>
+    <ErrorScreen
+      code="403"
+      title={t("title")}
+      home={{ label: t("home"), href: home }}
+      header={{
+        home,
+        logoSrc: logoFor(locale).src,
+        logoAlt: BRAND_NAME[locale],
+        logoLabel: a11y("logo"),
+        cta: nav("cta"),
+        ctaHref: `${home}#contact`,
+      }}
+    />
   );
 }

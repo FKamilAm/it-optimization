@@ -755,23 +755,13 @@
   },
   "errorPages": {
     "notFound": {
-      "title": "Página no encontrada",
-      "text": "Parece que falta un módulo.",
-      "hint": "Reconstruye el sistema o vuelve al inicio.",
-      "home": "Volver al inicio",
-      "restored": "Sistema restaurado",
-      "navHome": "Inicio",
-      "navServices": "Servicios",
-      "navProjects": "Proyectos"
+      "title": "Vaya, esta página aún no existe",
+      "home": "Volver al inicio"
     },
     "forbidden": {
-      "title": "Acceso restringido",
-      "text": "Esta sección existe, pero no tienes acceso.",
-      "home": "Volver al inicio",
-      "back": "Volver",
-      "hold": "Mantén para acceder",
-      "denied": "Acceso denegado",
-      "fine": "Vale, volver al inicio"
+      "meta": "Acceso denegado",
+      "title": "Vaya, aquí solo entran los de casa",
+      "home": "Volver al inicio"
     }
   }
 }

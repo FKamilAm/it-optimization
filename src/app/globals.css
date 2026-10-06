@@ -456,31 +456,6 @@
     height: 46px;
   }
 
-  /* Над модулем, который можно тянуть (404): диск крупнее, внутри маленькое
-     кольцо — «возьми», но без слова DRAG. Стоит до .is-down: при захвате
-     курсор сжимается, как и положено. */
-  .cursor-follower.is-drag {
-    width: 62px;
-    height: 62px;
-  }
-
-  .cursor-follower::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 16px;
-    height: 16px;
-    border-radius: 9999px;
-    border: 1.5px solid #000000;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .cursor-follower.is-drag::after {
-    transform: translate(-50%, -50%) scale(1);
-  }
-
   .cursor-follower.is-down {
     width: 30px;
     height: 30px;
@@ -492,14 +467,6 @@
      green and stays fully legible (same see-through feel as the default cursor). */
   .cursor-follower.is-on-accent {
     background-color: #b4e02d;
-  }
-
-  /* Над полем сканера (403): курсор — маленькая точка, а «линзой» работает
-     само круглое окно сканера вокруг него. Стоит после .is-hover: кнопка
-     удержания внутри поля — тоже кнопка, но большой диск закрыл бы её кольцо. */
-  .cursor-follower.is-scan {
-    width: 8px;
-    height: 8px;
   }
 
   /* --- Marquee (technologies) --- */
