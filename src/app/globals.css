@@ -21,9 +21,14 @@
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
   --radius-full: 9999px;
-  --spacing-section: clamp(5rem, 10vw, 8.5rem);
+  /* Резиновые размеры достигают максимума ровно на 1920 — экране, под который
+     собран макет, — а не на 1400–1600, как раньше. Иначе на ноутбуке с рабочей
+     шириной 1280–1536 заголовки и отступы оставались почти «полноразмерными» на
+     экране вчетверо уже и выглядели крупнее, чем на большом мониторе. Формула
+     одна: vw = максимум в px / 19.2. */
+  --spacing-section: clamp(5rem, 7.083vw, 8.5rem);
   --spacing-container: clamp(1.25rem, 4vw, 3rem);
-  --spacing-block: clamp(3.5rem, 6vw, 5rem);
+  --spacing-block: clamp(3.5rem, 4.167vw, 5rem);
   --max-width-container: 1760px;
 }
 
@@ -140,30 +145,54 @@
 
   .heading-display {
     @apply font-medium tracking-[-0.03em] text-balance;
-    font-size: clamp(2.25rem, 5.5vw, 5.5rem);
+    font-size: clamp(2.25rem, 4.583vw, 5.5rem);
     line-height: 1.05;
+  }
+
+  /* Колонка чтения (статья, политика) — фиксированные 896px, а не доля экрана,
+     поэтому и заголовки в ней почти не зависят от ширины окна: растут на
+     телефоне и планшете и останавливаются к ноутбуку. Размеры для всей
+     ширины страницы здесь не годятся: на 1920 заголовок статьи в 88px
+     ломался на четыре строки, политики — на пять, а 56px подзаголовка рвали
+     «чат-бот» пополам. Стоят после .heading-display и .heading-section и
+     перекрывают только размер. */
+  .heading-article {
+    font-size: clamp(2rem, 1.25rem + 2.6vw, 3.25rem);
+    line-height: 1.1;
   }
 
   .heading-section {
     @apply font-semibold tracking-[-0.025em] text-balance;
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-size: clamp(2rem, 2.917vw, 3.5rem);
     line-height: 1.1;
+  }
+
+  .heading-article-section {
+    font-size: clamp(1.625rem, 1rem + 1.6vw, 2.25rem);
+    line-height: 1.2;
   }
 
   .heading-subsection {
     @apply font-medium tracking-[-0.02em];
-    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    font-size: clamp(1.25rem, 1.458vw, 1.75rem);
     line-height: 1.25;
   }
 
   .body-large {
-    font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+    font-size: clamp(1.0625rem, 1.042vw, 1.25rem);
     line-height: 1.6;
   }
 
   .body-base {
-    font-size: clamp(1rem, 1.1vw, 1.125rem);
+    font-size: clamp(1rem, 0.9375vw, 1.125rem);
     line-height: 1.65;
+  }
+
+  /* Крупные цифры: бюджет и срок на странице услуги, цифры отраслей. 48px на
+     1920, пропорционально меньше на ноутбуках, не меньше 30px. */
+  .stat-figure {
+    font-size: clamp(1.875rem, 2.5vw, 3rem);
+    line-height: 1.1;
   }
 
   .label-upper {

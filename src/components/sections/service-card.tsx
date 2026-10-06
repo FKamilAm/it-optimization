@@ -70,7 +70,10 @@ export function ServiceCard({
           <li
             key={tag}
             className={cn(
-              "group-hover:border-accent-foreground/25 group-hover:text-accent-foreground/80 rounded-full border px-3 py-1 text-base transition-colors duration-500",
+              // Тег не ломается внутри рамки («Парсинг открытых / данных» в одной
+              // капсуле читался как поломка): не влезает — переезжает целиком,
+              // а слишком длинный обрезается многоточием, но не рвётся.
+              "group-hover:border-accent-foreground/25 group-hover:text-accent-foreground/80 max-w-full truncate rounded-full border px-3 py-1 text-base transition-colors duration-500",
               isDark
                 ? "border-white/10 text-white/60"
                 : "border-border text-muted-foreground",

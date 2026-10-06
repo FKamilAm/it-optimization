@@ -117,7 +117,7 @@ export function FullscreenMenu({
                       e.preventDefault();
                       handleNavClick(item.href);
                     }}
-                    className="group hover:text-accent inline-flex cursor-pointer items-center gap-4 text-[clamp(2rem,5vw,4.5rem)] leading-none font-semibold tracking-[-0.03em] transition-colors duration-300"
+                    className="group hover:text-accent inline-flex cursor-pointer items-center gap-4 text-[length:clamp(2rem,3.75vw,4.5rem)] leading-none font-semibold tracking-[-0.03em] transition-colors duration-300"
                   >
                     <span className="group-hover:text-accent/60 text-base font-normal tracking-[0.2em] text-white/30 uppercase transition-colors">
                       {String(index + 1).padStart(2, "0")}

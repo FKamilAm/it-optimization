@@ -207,12 +207,15 @@ export function ServicePageContent({
     <section
       key="hero"
       className={cn(
-        "relative flex min-h-svh flex-col justify-center overflow-hidden py-28 md:py-32",
+        // Вертикальный отступ зависит от высоты окна: шапка занимает 80px, и
+        // 104px сверху её хватает, а фиксированные 128px выталкивали кнопки
+        // за край экрана на ноутбуках 1366×768 и 1280×720.
+        "relative flex min-h-svh flex-col justify-center overflow-hidden py-28 md:py-[clamp(6.5rem,13svh,8rem)]",
         lightHero ? "surface-light" : "surface-dark",
       )}
     >
       {heroVariant && (
-        <div className="pointer-events-none relative z-0 mx-auto mb-4 aspect-[4/3] w-[92%] max-w-[460px] md:absolute md:top-1/2 md:right-[-4%] md:mx-0 md:mb-0 md:aspect-auto md:h-[72%] md:w-[62%] md:max-w-none md:-translate-y-1/2 lg:right-[-3%] lg:w-[60%] xl:w-[58%]">
+        <div className="pointer-events-none relative z-0 mx-auto mb-4 aspect-[4/3] w-[92%] max-w-[460px] md:absolute md:top-1/2 md:right-[-4%] md:mx-0 md:mb-0 md:aspect-auto md:h-[min(72%,40.5vw)] md:w-[62%] md:max-w-none md:-translate-y-1/2 lg:right-[-3%] lg:w-[60%] xl:w-[58%]">
           <div
             className={cn(
               "absolute inset-[6%] rounded-full blur-2xl",
@@ -226,7 +229,12 @@ export function ServicePageContent({
       )}
 
       <div className="container-premium relative z-10">
-        <div className={cn("w-full", heroVariant && "md:max-w-[44%] lg:max-w-[46%]")}>
+        <div
+          className={cn(
+            "w-full",
+            heroVariant && "md:max-w-[44%] lg:max-w-[48%] xl:max-w-[50%] 2xl:max-w-[46%]",
+          )}
+        >
           <nav aria-label="breadcrumb" className="mb-10">
             <ol
               className={cn(
@@ -305,7 +313,7 @@ export function ServicePageContent({
                 !lightHero && "sm:flex-row sm:items-end sm:justify-between",
               )}
             >
-              <dl className="flex flex-col gap-6 sm:flex-row sm:gap-12">
+              <dl className="flex flex-col gap-6 sm:flex-row sm:flex-wrap sm:gap-x-12">
                 <div className="flex flex-col gap-1">
                   <dt
                     className={cn(
@@ -317,7 +325,7 @@ export function ServicePageContent({
                   </dt>
                   <dd
                     className={cn(
-                      "text-3xl font-semibold md:text-5xl",
+                      "stat-figure font-semibold whitespace-nowrap",
                       lightHero ? "text-foreground" : "text-white",
                     )}
                   >
@@ -335,7 +343,7 @@ export function ServicePageContent({
                   </dt>
                   <dd
                     className={cn(
-                      "text-3xl font-semibold md:text-5xl",
+                      "stat-figure font-semibold whitespace-nowrap",
                       lightHero ? "text-foreground" : "text-white",
                     )}
                   >
@@ -344,11 +352,14 @@ export function ServicePageContent({
                 </div>
               </dl>
 
+              {/* Три кнопки в ряд занимают 645px при отступах 32px — на ноутбуках
+                  шире колонки, и третья переносилась, выталкивая первый экран за
+                  край окна. С 1024 до 1536 отступы 20px, колонка чуть шире. */}
               <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Button
                   variant={lightHero ? "primary" : "inverse"}
                   size="lg"
-                  className="w-full sm:w-auto"
+                  className="w-full sm:w-auto lg:px-5 2xl:px-8"
                   onClick={() => openContactModal()}
                 >
                   {c("ctaPrimary")}
@@ -358,7 +369,7 @@ export function ServicePageContent({
                     type="button"
                     onClick={() => scrollToSection("#tariffs")}
                     className={cn(
-                      "hover:border-accent hover:text-accent inline-flex h-14 w-full cursor-pointer items-center justify-center gap-2 rounded-full border px-8 text-base font-medium transition-colors duration-300 sm:w-auto",
+                      "hover:border-accent hover:text-accent inline-flex h-14 w-full cursor-pointer items-center justify-center gap-2 rounded-full border px-8 text-base font-medium transition-colors duration-300 sm:w-auto lg:px-5 2xl:px-8",
                       lightHero
                         ? "border-foreground/20 text-foreground"
                         : "border-white/20 text-white",
@@ -370,7 +381,7 @@ export function ServicePageContent({
                 <a
                   href={paths.services}
                   className={cn(
-                    "hover:border-accent hover:text-accent inline-flex h-14 w-full cursor-pointer items-center justify-center gap-2 rounded-full border px-8 text-base font-medium transition-colors duration-300 sm:w-auto",
+                    "hover:border-accent hover:text-accent inline-flex h-14 w-full cursor-pointer items-center justify-center gap-2 rounded-full border px-8 text-base font-medium transition-colors duration-300 sm:w-auto lg:px-5 2xl:px-8",
                     lightHero
                       ? "border-foreground/20 text-foreground"
                       : "border-white/20 text-white",
@@ -711,7 +722,7 @@ export function ServicePageContent({
                   </span>
                 )}
                 <h3 className="heading-subsection text-foreground">{tier.name}</h3>
-                <p className="text-foreground mt-5 text-3xl font-semibold md:text-4xl">
+                <p className="text-foreground mt-5 text-3xl font-semibold whitespace-nowrap md:text-[length:clamp(1.875rem,1.875vw,2.25rem)]">
                   {tier.price}
                 </p>
                 <p className="text-muted-foreground mt-2 text-sm">

@@ -41,7 +41,7 @@ export async function PrivacyPage({ locale }: { locale: Locale }) {
           </nav>
 
           <div className="mx-auto max-w-4xl">
-            <h1 className="heading-display">{t("title")}</h1>
+            <h1 className="heading-display heading-article">{t("title")}</h1>
             <p className="text-muted-foreground mt-6 text-sm">
               {t("updated")} {updatedLabel}
             </p>
@@ -55,7 +55,9 @@ export async function PrivacyPage({ locale }: { locale: Locale }) {
           <div className="mx-auto flex max-w-4xl flex-col gap-12">
             {sections.map((section) => (
               <section key={section.heading}>
-                <h2 className="heading-section text-foreground">{section.heading}</h2>
+                <h2 className="heading-section heading-article-section text-foreground">
+                  {section.heading}
+                </h2>
                 <div className="mt-6 flex flex-col gap-5">
                   {section.blocks.map((block, index) =>
                     block.type === "list" ? (

@@ -22,13 +22,19 @@ export function HeroSection() {
     >
       {/* 3D logo. On mobile it's a normal-flow block shown FIRST and enlarged, so
           it never overlaps the heading; on md+ it becomes the absolute accent on
-          the right. (Static silver fallback on mobile / when WebGL is off.) */}
-      <div className="pointer-events-none relative z-0 mx-auto aspect-[19/10] w-[94%] max-w-[460px] md:absolute md:top-[16%] md:right-0 md:left-auto md:mx-0 md:aspect-auto md:h-[70%] md:w-[54%] md:max-w-none lg:right-[1%] lg:w-[50%]">
+          the right. (Static silver fallback on mobile / when WebGL is off.)
+          Height is capped by width too (39.4vw = 70% of 1080 at 1920): on a
+          taller-than-16:9 window like 1440×900 a pure 70% made the logo grow
+          relative to the heading and run into it. */}
+      <div className="pointer-events-none relative z-0 mx-auto aspect-[19/10] w-[94%] max-w-[460px] md:absolute md:top-[16%] md:right-0 md:left-auto md:mx-0 md:aspect-auto md:h-[min(70%,39.4vw)] md:w-[54%] md:max-w-none lg:right-[1%] lg:w-[50%]">
         <div className="absolute inset-[6%] rounded-full bg-[radial-gradient(circle_at_50%_42%,rgba(148,163,184,0.30),transparent_70%)] blur-2xl" />
         <HeroLogo className="h-full w-full" />
       </div>
 
-      <div className="container-premium relative z-10 pt-8 pb-12 md:py-[var(--spacing-section)]">
+      {/* No top padding on md+: the section already clears the header with pt-36
+          and pins the content to the bottom. A second top padding only pushed
+          the buttons below the fold on 1280×720 and 1366×768 laptops. */}
+      <div className="container-premium relative z-10 pt-8 pb-12 md:pt-0 md:pb-[var(--spacing-section)]">
         {/* Аккредитация — над заголовком, а не в подвале одной строкой: это
             первое, что проверяет заказчик, выбирая подрядчика. Плашка ведёт на
             саму выписку из реестра, чтобы слова было чем подтвердить. */}

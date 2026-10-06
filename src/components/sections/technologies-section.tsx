@@ -59,8 +59,8 @@ function MarqueeRow({ duration }: { duration: string }) {
               // so they don't dominate the marquee next to short logos.
               const sizeClass =
                 tech.length >= 11
-                  ? "text-2xl sm:text-3xl md:text-4xl"
-                  : "text-3xl sm:text-4xl md:text-5xl";
+                  ? "text-2xl sm:text-3xl md:text-[length:clamp(1.875rem,1.875vw,2.25rem)]"
+                  : "text-3xl sm:text-4xl md:text-[length:clamp(2.25rem,2.5vw,3rem)]";
               return (
                 <span
                   key={`${groupIndex}-${tech}`}

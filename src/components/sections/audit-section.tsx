@@ -96,7 +96,7 @@ function StackCard({
             <span className="text-accent text-sm font-medium tracking-[0.2em] uppercase md:text-base">
               {number}
             </span>
-            <h3 className="text-2xl font-semibold tracking-[-0.025em] text-white md:text-3xl lg:text-[2.5rem] lg:leading-[1.15]">
+            <h3 className="text-2xl font-semibold tracking-[-0.025em] text-white md:text-3xl lg:text-[length:clamp(1.875rem,2.083vw,2.5rem)] lg:leading-[1.15]">
               {title}
             </h3>
             <p className="body-large text-white/70">{description}</p>

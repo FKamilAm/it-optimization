@@ -74,7 +74,7 @@ export function BlogArticle({
               </div>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="heading-display mt-6">{post.title}</h1>
+              <h1 className="heading-display heading-article mt-6">{post.title}</h1>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="body-large text-muted-foreground mt-8">{post.lead}</p>
@@ -135,7 +135,9 @@ export function BlogArticle({
               {sections.map((section, index) => (
                 <Reveal key={section.heading}>
                   <section id={`section-${index}`} className="scroll-mt-28">
-                    <h2 className="heading-section text-foreground">{section.heading}</h2>
+                    <h2 className="heading-section heading-article-section text-foreground">
+                      {section.heading}
+                    </h2>
                     <div className="mt-6 flex flex-col gap-5">
                       {section.body.map((paragraph, i) => (
                         <p key={i} className="body-large text-muted-foreground">

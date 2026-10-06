@@ -85,7 +85,7 @@ export function IndustriesSection() {
                 >
                   <AnimatedCounter
                     value={t(valueKey)}
-                    className="font-display text-accent text-3xl leading-none font-bold tracking-tight sm:text-4xl md:text-5xl"
+                    className="font-display text-accent text-3xl leading-none font-bold tracking-tight sm:text-4xl md:text-[length:clamp(2.25rem,2.5vw,3rem)]"
                   />
                   <span className="mt-3 text-sm tracking-[0.14em] text-white/45 uppercase">
                     {t(labelKey)}

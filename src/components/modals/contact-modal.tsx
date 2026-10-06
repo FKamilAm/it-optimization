@@ -92,7 +92,7 @@ export function ContactModal({ open, service, onClose }: ContactModalProps) {
               <div className="flex flex-col gap-4 pr-10">
                 <h2
                   id="contact-modal-title"
-                  className="text-[1.75rem] leading-tight font-semibold tracking-[-0.02em] md:text-4xl"
+                  className="text-[1.75rem] leading-tight font-semibold tracking-[-0.02em] md:text-[length:clamp(1.75rem,1.875vw,2.25rem)]"
                 >
                   {title}
                 </h2>
