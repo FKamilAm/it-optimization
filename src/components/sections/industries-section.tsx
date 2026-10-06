@@ -99,7 +99,7 @@ export function IndustriesSection() {
               shift lives on the wrapper because the chart's own transform is
               driven by its idle GSAP float. */}
           <div className="hidden lg:block lg:-translate-x-8 xl:-translate-x-16">
-            <AnimatedGrowthChart className="mx-auto w-full max-w-[520px]" />
+            <AnimatedGrowthChart className="mx-auto w-full max-w-[32.5rem]" />
           </div>
         </div>
       </div>

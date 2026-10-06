@@ -34,7 +34,7 @@ export function ServiceCard({
   const pageSlug = SERVICE_PAGES[serviceKey];
 
   const cardClassName = cn(
-    "group relative flex h-full min-h-[280px] cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border p-8 duration-500 md:p-10",
+    "group relative flex h-full min-h-[280px] cursor-pointer lg:min-h-[min(280px,14.583vw)] flex-col justify-between overflow-hidden rounded-2xl border p-8 duration-500 md:p-10",
     "transition-[border-color,box-shadow,background-color] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
     isDark
       ? "border-white/10 bg-surface text-surface-foreground hover:border-accent"

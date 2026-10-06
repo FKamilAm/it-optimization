@@ -81,7 +81,7 @@ function StackCard({
               bright/glowing on a solid-black frame; mix-blend-screen drops that black
               into the card background so only the illustration shows (no dark box).
               object-contain keeps the whole illustration visible without cropping. */}
-          <div className="relative aspect-[4/3] overflow-hidden md:aspect-auto md:h-full md:min-h-[480px]">
+          <div className="relative aspect-[4/3] overflow-hidden md:aspect-auto md:h-full md:min-h-[min(480px,25vw)]">
             <Image
               src={image}
               alt=""

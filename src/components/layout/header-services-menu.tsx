@@ -178,7 +178,7 @@ export function HeaderServicesMenu({ dark, onNavigate }: HeaderServicesMenuProps
             : "invisible -translate-y-1 opacity-0",
         )}
       >
-        <div className="border-border bg-background w-[940px] max-w-[92vw] overflow-hidden rounded-2xl border p-2 shadow-[0_24px_60px_rgba(0,0,0,0.12)]">
+        <div className="border-border bg-background w-[58.75rem] max-w-[92vw] overflow-hidden rounded-2xl border p-2 shadow-[0_24px_60px_rgba(0,0,0,0.12)]">
           {/* grid-flow-col + grid-rows-4: колонки читаются сверху вниз, поэтому
               каждая из трёх — своя группа (сайты, продукты, автоматизация), а
               не случайный срез общего списка. */}

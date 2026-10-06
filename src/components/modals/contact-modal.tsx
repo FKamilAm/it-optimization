@@ -72,7 +72,7 @@ export function ContactModal({ open, service, onClose }: ContactModalProps) {
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             data-lenis-prevent
-            className="bg-background relative z-10 flex max-h-[92vh] w-full max-w-[1000px] flex-col overflow-y-auto overscroll-contain rounded-[2rem] shadow-[0_32px_80px_rgba(0,0,0,0.2)] lg:grid lg:aspect-video lg:max-h-none lg:grid-cols-[1.1fr_0.9fr] lg:overflow-hidden"
+            className="bg-background relative z-10 flex max-h-[92vh] w-full max-w-[62.5rem] flex-col overflow-y-auto overscroll-contain rounded-[2rem] shadow-[0_32px_80px_rgba(0,0,0,0.2)] lg:grid lg:aspect-video lg:max-h-none lg:grid-cols-[1.1fr_0.9fr] lg:overflow-hidden"
           >
             <button
               type="button"

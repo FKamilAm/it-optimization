@@ -40,7 +40,7 @@ export function ProcessSection() {
     <section id="process" className="surface-dark section-padding relative">
       <div className="container-premium relative z-10">
         <div className="grid items-start gap-16 lg:grid-cols-[38%_62%] lg:gap-24">
-          <aside className="lg:sticky lg:top-[120px] lg:h-fit lg:self-start">
+          <aside className="lg:sticky lg:top-[7.5rem] lg:h-fit lg:self-start">
             <h2 className="heading-section max-w-md">{t("title")}</h2>
             <p className="body-base mt-5 max-w-md text-white/60">{t("description")}</p>
 
