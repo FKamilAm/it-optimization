@@ -140,6 +140,7 @@
   "svoya-crm-ili-gotovaya": {
     "title": "Custom CRM or off-the-shelf: when a ready-made system is enough and when it isn't",
     "excerpt": "How an off-the-shelf CRM differs from a custom one — not in features but in consequences: the ceilings boxed systems run into, the decisions you will have to make yourself, what development costs and why the right answer is most often not \"or\" but \"and\".",
+    "cover": "/blog/post-svoya-crm-ili-gotovaya-en-b72f92ca.webp",
     "category": "Development",
     "lead": "The question \"buy an off-the-shelf CRM or build your own\" is almost never about features. Boxed systems have longer feature lists than any custom build, and on a comparison table the ready-made option always wins. The difference shows up later — when the company's process no longer fits into someone else's data model. Here we look at where that happens, what you will have to decide for yourself and what each path costs.",
     "metaTitle": "Custom vs off-the-shelf CRM: which to choose, what it costs",

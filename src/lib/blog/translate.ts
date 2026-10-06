@@ -12,7 +12,9 @@ import type { BlogPost, BlogSection } from "./types";
  * PostgreSQL, и её правит /panel. Перевод принадлежит переводу, а не контенту.
  *
  * Переводится только то, что человек читает. Слуг (он же идентификатор),
- * обложка, даты, время чтения и связь с услугами — одни на все языки.
+ * даты, время чтения и связь с услугами — одни на все языки. Обложка тоже
+ * общая, кроме случая, когда на ней нарисован текст: тогда перевод задаёт
+ * свою (`cover`), иначе английский читатель увидит русские надписи.
  *
  * Суммы в переводе записаны метками `{price:150000}`: доллары считаются из
  * рублей по курсу ЦБ на момент сборки, как на страницах услуг, — второй
@@ -26,6 +28,8 @@ import type { BlogPost, BlogSection } from "./types";
 interface PostTranslation {
   title: string;
   excerpt: string;
+  /** Своя обложка — только если на общей нарисован русский текст. */
+  cover?: string;
   category: string;
   lead: string;
   metaTitle: string;
@@ -52,6 +56,7 @@ export function translatePost(post: BlogPost, locale: Locale): BlogPost {
     ...post,
     title: text(t.title),
     excerpt: text(t.excerpt),
+    cover: t.cover ?? post.cover,
     category: t.category,
     lead: text(t.lead),
     metaTitle: text(t.metaTitle),

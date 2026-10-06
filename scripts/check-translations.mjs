@@ -11,6 +11,7 @@
  * нет. Поэтому проверка отдельная.
  */
 import { readFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -154,6 +155,9 @@ for (const locale of ["en", "es"]) {
     });
     if (tr.takeaways.length !== ru.takeaways.length) {
       note(locale, `статья ${slug}`, `выводов ${tr.takeaways.length} вместо ${ru.takeaways.length}`);
+    }
+    if (tr.cover && !existsSync(join(ROOT, "public", tr.cover))) {
+      note(locale, `статья ${slug}`, `обложки ${tr.cover} нет в public/`);
     }
     const flat = JSON.stringify(tr);
     if (CYRILLIC.test(flat)) note(locale, `статья ${slug}`, "осталась кириллица");

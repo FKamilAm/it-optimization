@@ -140,6 +140,7 @@
   "svoya-crm-ili-gotovaya": {
     "title": "¿CRM propio o uno ya hecho? Cuándo basta una solución estándar y cuándo no",
     "excerpt": "En qué se diferencia un CRM ya hecho de uno propio, no por sus funciones sino por sus consecuencias: con qué techos chocan los sistemas estándar, qué decisiones tendrás que tomar tú mismo, cuánto cuesta el desarrollo y por qué la respuesta correcta casi siempre no es «o», sino «y».",
+    "cover": "/blog/post-svoya-crm-ili-gotovaya-en-b72f92ca.webp",
     "category": "Desarrollo",
     "lead": "La pregunta «¿usamos un CRM ya hecho o desarrollamos el nuestro?» casi nunca va de funciones. Las listas de prestaciones de los sistemas estándar son más largas que las de cualquier desarrollo a medida, y en una tabla comparativa el producto ya hecho gana siempre. La diferencia aparece más tarde, cuando los procesos de la empresa dejan de caber en un modelo de datos ajeno. Vemos dónde ocurre eso, qué tendrás que resolver por tu cuenta y cuánto cuesta cada camino.",
     "metaTitle": "CRM propio o ya hecho: qué elegir y cuánto cuesta",
