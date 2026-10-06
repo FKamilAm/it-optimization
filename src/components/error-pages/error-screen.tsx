@@ -40,7 +40,7 @@ export function ErrorScreen({ code, title, home, logo }: ErrorScreenProps) {
 
       <main
         id="main"
-        className="relative flex h-full items-center justify-center [--dw:min(90vw,calc((100svh_-_12rem)/0.66))] md:[--dw:min(75vw,100rem,calc((100svh_-_8rem)/0.62))]"
+        className="relative flex h-full items-center justify-center [--dw:min(90vw,calc((100svh_-_12rem)/0.78))] md:[--dw:min(75vw,100rem,calc((100svh_-_7rem)/0.6))]"
       >
         <div className="w-(--dw)">
           {/* Под логотипом на телефоне — место для дужки замка: цифры там
@@ -48,7 +48,7 @@ export function ErrorScreen({ code, title, home, logo }: ErrorScreenProps) {
           <a
             href={logo.href}
             aria-label={logo.label}
-            className="relative z-10 mb-[calc(var(--dw)*0.2)] block w-40 md:mb-[calc(var(--dw)*0.03)] md:w-[max(7.5rem,calc(var(--dw)*0.275))]"
+            className="relative z-10 mb-[calc(var(--dw)*0.24)] block w-40 md:mb-[calc(var(--dw)*0.07)] md:w-[max(7.5rem,calc(var(--dw)*0.275))]"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -83,7 +83,7 @@ export function ErrorScreen({ code, title, home, logo }: ErrorScreenProps) {
               между строкой и кнопкой. */}
           <div
             className={cn(
-              "pointer-events-none relative z-10 mt-[calc(var(--dw)*0.22)] flex flex-col items-start gap-5 md:mt-[calc(var(--dw)*0.025)] md:flex-row md:items-center md:justify-between md:gap-8",
+              "pointer-events-none relative z-10 mt-[calc(var(--dw)*0.24)] flex flex-col items-start gap-7 md:mt-[calc(var(--dw)*0.07)] md:flex-row md:items-center md:justify-between md:gap-8",
               code === "403" && "md:flex-row-reverse",
             )}
           >

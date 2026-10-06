@@ -28,7 +28,7 @@ export const BAND_ASPECT = 3.7;
  * цифрами, рукоятка лупы опускается под них.
  */
 export const BAND_ABOVE = 0.56;
-export const BAND_BELOW = 0.72;
+export const BAND_BELOW = 0.45;
 
 /** Высота полосы цифр в px исходника; всё остальное — от неё. */
 const BAND_H = 500;
@@ -102,25 +102,31 @@ async function typesetStripes({
   size = Math.min(size, fitWidth);
   const m = measure(size);
   const textH = m.ascent + m.descent;
+  // Стекло лупы — круг в высоту цифр, а не овал нуля из шрифта: овальное
+  // стекло с толстой рукояткой читалось совсем не как лупа.
+  const widths = m.widths.map((w, i) =>
+    glyphs[i] === "0" && emblem === "search" ? textH : w,
+  );
   // Промежуток добирает остаток ширины: цифры встают ровно от края до края,
   // и текст с кнопкой под ними выравниваются по их краям.
-  const gap = glyphs.length > 1 ? (width - sum(m.widths)) / (glyphs.length - 1) : 0;
+  const gap = glyphs.length > 1 ? (width - sum(widths)) / (glyphs.length - 1) : 0;
   const top = BAND_H * above + (BAND_H - textH) / 2;
 
   // Каждая цифра — своим чистым каналом, чтобы потом узнать, чья полоса.
   const channels = ["#ff0000", "#00ff00", "#0000ff"];
-  let x = glyphs.length > 1 ? 0 : (width - m.widths[0]) / 2;
+  let x = glyphs.length > 1 ? 0 : (width - widths[0]) / 2;
   glyphs.forEach((g, i) => {
     const color = channels[i % channels.length];
-    const box = { x, y: top, w: m.widths[i], h: textH };
+    const box = { x, y: top, w: widths[i], h: textH };
     if (g === "0" && emblem === "lock") {
       drawLock(ctx, box, color);
+    } else if (g === "0" && emblem === "search") {
+      drawMagnifier(ctx, box, color);
     } else {
       ctx.fillStyle = color;
       ctx.fillText(g, x + m.metrics[i].actualBoundingBoxLeft, top + m.ascent);
-      if (g === "0" && emblem === "search") drawHandle(ctx, box, color);
     }
-    x += m.widths[i] + gap;
+    x += widths[i] + gap;
   });
   const { data } = ctx.getImageData(0, 0, width, height);
 
@@ -183,29 +189,30 @@ interface Box {
 }
 
 /**
- * Рукоятка лупы: толстый брусок из правого нижнего края нуля наружу, под
- * углом, с круглым концом. Начинается внутри кольца — там они сливаются.
+ * Лупа на месте нуля: круглое кольцо в высоту цифр и тонкая прямая рукоятка
+ * под 45° из правого нижнего края. Рукоятка начинается посреди кольца — там
+ * они сливаются — и заканчивается прямым срезом: скруглённый толстый конец
+ * делал значок похожим на что угодно, кроме лупы.
  */
-function drawHandle(ctx: CanvasRenderingContext2D, o: Box, color: string) {
+function drawMagnifier(ctx: CanvasRenderingContext2D, o: Box, color: string) {
   const cx = o.x + o.w / 2;
   const cy = o.y + o.h / 2;
-  const angle = (47 * Math.PI) / 180;
-  const dx = Math.cos(angle);
-  const dy = Math.sin(angle);
-  // Где луч из центра выходит за овал нуля.
-  const edge = 1 / Math.hypot(dx / (o.w / 2), dy / (o.h / 2));
-  const from = edge * 0.8;
-  const to = edge + o.h * 0.72;
-  const t = o.h * 0.36;
+  const outer = o.h / 2;
+  const ring = o.h * 0.23;
+  ctx.fillStyle = color;
 
+  ctx.beginPath();
+  ctx.arc(cx, cy, outer, 0, Math.PI * 2);
+  ctx.arc(cx, cy, outer - ring, 0, Math.PI * 2, true);
+  ctx.fill();
+
+  const t = o.h * 0.2;
+  const from = outer - ring / 2;
+  const to = outer + o.h * 0.55;
   ctx.save();
   ctx.translate(cx, cy);
-  ctx.rotate(angle);
-  ctx.fillStyle = color;
+  ctx.rotate(Math.PI / 4);
   ctx.fillRect(from, -t / 2, to - from, t);
-  ctx.beginPath();
-  ctx.arc(to, 0, t / 2, 0, Math.PI * 2);
-  ctx.fill();
   ctx.restore();
 }
 
