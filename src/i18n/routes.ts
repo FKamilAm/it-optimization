@@ -120,6 +120,11 @@ export const postPath = (ruSlug: string, locale: Locale) =>
 export const privacyPath = (locale: Locale) =>
   localePath(locale, `/${segment("privacy", locale)}/`);
 
+/** Страница 403: /403/, /en/403/, /es/403/ — см. views/forbidden-page.tsx. */
+export const FORBIDDEN_SEGMENT = "403";
+export const forbiddenPath = (locale: Locale) =>
+  localePath(locale, `/${FORBIDDEN_SEGMENT}/`);
+
 /**
  * Все адреса одной страницы — для hreflang: поисковику надо сказать, что
  * `/uslugi/razrabotka-crm/` и `/en/services/crm-development/` это одна
@@ -140,6 +145,7 @@ type Resolved =
   | { kind: "section"; section: Section }
   | { kind: "service"; key: string }
   | { kind: "post"; ruSlug: string }
+  | { kind: "forbidden" }
   | { kind: "unknown" };
 
 /**
@@ -155,6 +161,10 @@ export function resolvePath(pathname: string): { locale: Locale; page: Resolved 
   const parts = path.split("/").filter(Boolean);
 
   if (parts.length === 0) return { locale, page: { kind: "home" } };
+  // Страница 403 — один адрес на все языки, без перевода сегмента.
+  if (parts.length === 1 && parts[0] === FORBIDDEN_SEGMENT) {
+    return { locale, page: { kind: "forbidden" } };
+  }
 
   const section = sectionBySegment(parts[0], locale);
   if (!section) return { locale, page: { kind: "unknown" } };
@@ -193,6 +203,8 @@ export function translatePath(pathname: string, target: Locale): string {
       return servicePath(page.key, target);
     case "post":
       return postPath(page.ruSlug, target);
+    case "forbidden":
+      return forbiddenPath(target);
     default:
       return homePath(target);
   }

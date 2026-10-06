@@ -541,7 +541,8 @@
     "servicesSubtitle": "Understanding it yourself is one thing; getting it built and working is another. These are the areas where we solve the problems this article is about.",
     "ctaTitle": "Need help with a project like this?",
     "ctaSubtitle": "Describe the problem — we will look at it free of charge and propose a way of working, a price and a timeline.",
-    "readingTime": "{minutes} min"
+    "readingTime": "{minutes} min",
+    "coverAiNote": "Cover image generated with AI"
   },
   "technologies": {
     "eyebrow": "Stack",
@@ -745,15 +746,25 @@
     "next": "Next case study",
     "goTo": "Case study {number}"
   },
-  "notFound": {
-    "title": "Page not found",
-    "home": "Back to homepage"
-  },
   "accreditation": {
     "badge": "State-accredited IT company · Ministry of Digital Development of Russia",
     "badgeHint": "Open the extract from the register of accredited IT companies (PDF, in Russian)",
     "label": "Accreditation",
     "record": "Ministry of Digital Development of Russia, register entry No. {number} of {date}",
     "document": "Register extract (PDF, in Russian)"
+  },
+  "errorPages": {
+    "notFound": {
+      "title": "Page not found",
+      "text": "Looks like this part of the system got lost.",
+      "home": "Back home",
+      "services": "Explore services"
+    },
+    "forbidden": {
+      "title": "Access restricted",
+      "text": "This area exists, but you don't have access to it.",
+      "home": "Back home",
+      "back": "Go back"
+    }
   }
 }

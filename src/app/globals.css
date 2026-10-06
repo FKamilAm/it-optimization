@@ -469,6 +469,32 @@
     background-color: #b4e02d;
   }
 
+  /* Над порталом 403: диск становится кольцом с точкой внутри — «прицел»,
+     а не надпись. Без текста в курсоре: «LOCKED» читалось бы как угроза. */
+  .cursor-follower.is-portal {
+    width: 58px;
+    height: 58px;
+    background: transparent;
+    border: 1.5px solid #ffffff;
+  }
+
+  .cursor-follower::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: #ffffff;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .cursor-follower.is-portal::after {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
   /* --- Marquee (technologies) --- */
   .marquee {
     display: flex;

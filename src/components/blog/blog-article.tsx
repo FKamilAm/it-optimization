@@ -3,7 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { ArrowLeft, ArrowUpRight, Check, ChevronRight, Clock } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Check,
+  ChevronRight,
+  Clock,
+  Sparkles,
+} from "lucide-react";
 import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { ContactSection } from "@/components/sections/contact-section";
 import { ServiceCard } from "@/components/sections/service-card";
@@ -83,16 +90,24 @@ export function BlogArticle({
 
           {cover && (
             <Reveal delay={0.15}>
-              <div className="border-border bg-surface relative mx-auto mt-12 aspect-[16/9] w-full max-w-5xl overflow-hidden rounded-2xl border">
-                <Image
-                  src={cover}
-                  alt={post.title}
-                  fill
-                  sizes="(max-width: 896px) 100vw, 896px"
-                  className="object-cover"
-                  priority
-                />
-              </div>
+              {/* Обложки статей сгенерированы нейросетью — честнее сказать об
+                  этом прямо под картинкой, чем оставить читателя гадать. */}
+              <figure className="mx-auto mt-12 w-full max-w-5xl">
+                <div className="border-border bg-surface relative aspect-[16/9] w-full overflow-hidden rounded-2xl border">
+                  <Image
+                    src={cover}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 896px) 100vw, 896px"
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+                <figcaption className="text-muted-foreground mt-3 flex items-center gap-1.5 text-sm">
+                  <Sparkles className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                  {t("coverAiNote")}
+                </figcaption>
+              </figure>
             </Reveal>
           )}
         </div>

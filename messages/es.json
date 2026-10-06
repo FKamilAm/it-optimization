@@ -541,7 +541,8 @@
     "servicesSubtitle": "Una cosa es entenderlo y otra tenerlo construido y funcionando. Estas son las áreas en las que resolvemos los problemas de los que habla este artículo.",
     "ctaTitle": "¿Necesitas ayuda con un proyecto así?",
     "ctaSubtitle": "Cuéntanos el problema: lo estudiamos sin coste y te proponemos una forma de trabajar, un precio y unos plazos.",
-    "readingTime": "{minutes} min"
+    "readingTime": "{minutes} min",
+    "coverAiNote": "Imagen de portada generada con IA"
   },
   "technologies": {
     "eyebrow": "Stack",
@@ -745,15 +746,25 @@
     "next": "Caso siguiente",
     "goTo": "Caso {number}"
   },
-  "notFound": {
-    "title": "Página no encontrada",
-    "home": "Volver al inicio"
-  },
   "accreditation": {
     "badge": "Empresa de TI acreditada · Ministerio de Desarrollo Digital de Rusia",
     "badgeHint": "Abrir el extracto del registro de empresas de TI acreditadas (PDF, en ruso)",
     "label": "Acreditación",
     "record": "Ministerio de Desarrollo Digital de Rusia, registro n.º {number} del {date}",
     "document": "Extracto del registro (PDF, en ruso)"
+  },
+  "errorPages": {
+    "notFound": {
+      "title": "Página no encontrada",
+      "text": "Parece que esta parte del sistema se perdió.",
+      "home": "Volver al inicio",
+      "services": "Ver servicios"
+    },
+    "forbidden": {
+      "title": "Acceso restringido",
+      "text": "Esta sección existe, pero no tienes acceso.",
+      "home": "Volver al inicio",
+      "back": "Volver"
+    }
   }
 }

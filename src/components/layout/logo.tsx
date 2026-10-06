@@ -1,5 +1,5 @@
 import { useLocale } from "next-intl";
-import { DEFAULT_LOCALE } from "@/i18n/config";
+import { DEFAULT_LOCALE, type Locale } from "@/i18n/config";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
@@ -21,8 +21,14 @@ const LOGOS = {
   other: { src: "/LOGO-en.svg", width: 222 },
 } as const;
 
+/** Файл логотипа для языка — там, где useLocale недоступен (страница 404). */
+export function logoFor(locale: Locale) {
+  return locale === DEFAULT_LOCALE ? LOGOS.ru : LOGOS.other;
+}
+
 export function Logo({ className, companyName = "IT-Optimization" }: LogoProps) {
-  const logo = useLocale() === DEFAULT_LOCALE ? LOGOS.ru : LOGOS.other;
+  const locale = useLocale();
+  const logo = logoFor(locale === DEFAULT_LOCALE ? DEFAULT_LOCALE : "en");
 
   return (
     <img

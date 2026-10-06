@@ -2,8 +2,8 @@ import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type ButtonVariant = "primary" | "secondary" | "ghost" | "outline" | "inverse";
-type ButtonSize = "sm" | "md" | "lg";
+export type ButtonVariant = "primary" | "secondary" | "ghost" | "outline" | "inverse";
+export type ButtonSize = "sm" | "md" | "lg";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
@@ -37,7 +37,29 @@ const sizes: Record<ButtonSize, string> = {
   lg: "h-14 px-8 text-base",
 };
 
-function ButtonContent({
+/**
+ * Классы кнопки — для ссылок, которые должны выглядеть и вести себя как
+ * Button (переход на главную со страниц ошибок): та же заливка акцентом снизу
+ * при наведении, без отдельной анимации.
+ */
+export function buttonClassName(
+  variant: ButtonVariant = "primary",
+  size: ButtonSize = "md",
+  className?: string,
+) {
+  return cn(
+    "group/btn inline-flex cursor-pointer items-center justify-center rounded-full font-medium",
+    "transition-[color,background-color,border-color,transform] duration-300 ease-out",
+    "hover:scale-[1.02] active:scale-[0.99] motion-reduce:transform-none motion-reduce:hover:scale-100",
+    "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100",
+    "focus-visible:outline-2 focus-visible:outline-offset-2",
+    variants[variant],
+    sizes[size],
+    className,
+  );
+}
+
+export function ButtonContent({
   children,
   showArrow,
   variant,
@@ -78,16 +100,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         data-cursor={cursorHint}
-        className={cn(
-          "group/btn inline-flex cursor-pointer items-center justify-center rounded-full font-medium",
-          "transition-[color,background-color,border-color,transform] duration-300 ease-out",
-          "hover:scale-[1.02] active:scale-[0.99] motion-reduce:transform-none motion-reduce:hover:scale-100",
-          "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100",
-          "focus-visible:outline-2 focus-visible:outline-offset-2",
-          variants[variant],
-          sizes[size],
-          className,
-        )}
+        className={buttonClassName(variant, size, className)}
         {...props}
       >
         <ButtonContent showArrow={autoArrow} variant={variant}>

@@ -203,6 +203,8 @@ function resolve(url) {
   let locale = "ru";
   if (parts[0] === "en" || parts[0] === "es") locale = parts.shift();
   if (parts.length === 0) return { kind: "home" };
+  // 403 — один сегмент на все языки, как в FORBIDDEN_SEGMENT из i18n/routes.
+  if (parts.length === 1 && parts[0] === "403") return { kind: "forbidden" };
   const section = Object.keys(SEG).find((s) => SEG[s][locale] === parts[0]);
   if (!section) return { kind: "unknown" };
   if (parts.length === 1) return { kind: "section", section };
@@ -222,6 +224,7 @@ function build(page, l) {
   if (page.kind === "section") return `${prefix(l)}/${SEG[page.section][l]}/`;
   if (page.kind === "service") return `${prefix(l)}/${SEG.services[l]}/${serviceSlug(page.key, l)}/`;
   if (page.kind === "post") return `${prefix(l)}/${SEG.blog[l]}/${postSlug(page.ru, l)}/`;
+  if (page.kind === "forbidden") return `${prefix(l)}/403/`;
   return `${prefix(l)}/`;
 }
 

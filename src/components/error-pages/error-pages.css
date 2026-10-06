@@ -1,0 +1,405 @@
+/*
+ * Страницы ошибок: материалы сцены 404 и портал 403.
+ *
+ * Отдельным файлом, а не в globals.css: эти правила нужны двум страницам, и
+ * App Router подключит их только туда, где импортированы компоненты.
+ * Анимируются только transform и opacity; blur — на считанных элементах.
+ */
+
+/* ------------------------------------------------------------------ 404 */
+
+.e404-page {
+  background-color: #f1f1ee;
+}
+
+/* Тонкая сетка — едва заметная, как миллиметровка под чертежом. */
+.e404-grid {
+  background-image:
+    linear-gradient(rgba(10, 10, 10, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 10, 10, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 30%, transparent 100%);
+}
+
+.e404-piece {
+  position: absolute;
+  border-radius: clamp(6px, 0.8vw, 14px);
+}
+
+/* Стекло: полупрозрачное, со светлой гранью и мягкой тенью. */
+.e404-glass {
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.32) 55%,
+    rgba(255, 255, 255, 0.6) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow:
+    inset 0 1px 0 #ffffff,
+    inset 0 -14px 28px rgba(10, 10, 10, 0.07),
+    0 22px 44px -18px rgba(10, 10, 10, 0.35);
+  backdrop-filter: blur(6px);
+}
+
+/* Чёрный хром: блик по диагонали и тяжёлая тень. */
+.e404-metal {
+  background: linear-gradient(
+    155deg,
+    #4d4d4d 0%,
+    #141414 34%,
+    #303030 50%,
+    #0b0b0b 70%,
+    #222222 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.3),
+    0 26px 46px -16px rgba(10, 10, 10, 0.55);
+}
+
+.e404-graphite {
+  background: linear-gradient(160deg, #2c2c2c, #141414);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 20px 40px -18px rgba(10, 10, 10, 0.5);
+}
+
+/* Каркас: тонкий контур с диагональю — модуль, от которого остался чертёж. */
+.e404-wire {
+  border: 1px solid rgba(10, 10, 10, 0.5);
+  background-image: linear-gradient(
+    135deg,
+    transparent calc(50% - 0.5px),
+    rgba(10, 10, 10, 0.28) 50%,
+    transparent calc(50% + 0.5px)
+  );
+}
+
+/* Пустое место недостающей детали — пунктир, без заливки. */
+.e404-ghost {
+  border: 1px dashed rgba(10, 10, 10, 0.4);
+  background: rgba(10, 10, 10, 0.02);
+}
+
+/* Единственный светящийся элемент: внутренний контур «0». */
+.e404-glow {
+  border: 1.5px solid #b4e02d;
+  box-shadow:
+    0 0 14px rgba(180, 224, 45, 0.65),
+    inset 0 0 14px rgba(180, 224, 45, 0.35);
+}
+
+.e404-line {
+  background: rgba(10, 10, 10, 0.32);
+}
+
+/* Появление: конструкция почти собрана — модули проявляются с небольшим
+   сдвигом. CSS, а не JS: без скрипта страница всё равно собирается. */
+@keyframes e404-assemble {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.e404-assemble {
+  animation: e404-assemble 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ------------------------------------------------------------------ 403 */
+
+.e403-page {
+  background-color: #080808;
+}
+
+.e403-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 65% 60% at 65% 50%, #000 20%, transparent 100%);
+}
+
+/* Шум — SVG-текстура одним фоном, без canvas. */
+.e403-noise {
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.e403-portal {
+  --portal-size: clamp(260px, min(40vw, 64svh), 640px);
+  width: var(--portal-size);
+  height: var(--portal-size);
+}
+
+/* Внешнее кольцо — чёрный хром. */
+.e403-ring-outer {
+  border-radius: 9999px;
+  background: conic-gradient(
+    from 210deg,
+    #0c0c0c,
+    #3b3b3b 12%,
+    #111111 26%,
+    #2a2a2a 40%,
+    #0a0a0a 55%,
+    #454545 68%,
+    #121212 82%,
+    #0c0c0c
+  );
+  mask: radial-gradient(circle, transparent 61.5%, #000 62%);
+  box-shadow: 0 50px 90px -30px rgba(0, 0, 0, 0.9);
+}
+
+/* Подсветка контура при проходе сканера: тот же период, что у линии. */
+.e403-ring-edge {
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.e403-ring-edge::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid #b4e02d;
+  opacity: 0;
+  animation: e403-edge 5s ease-in-out infinite;
+}
+
+@keyframes e403-edge {
+  0%,
+  8% {
+    opacity: 0;
+  }
+  18% {
+    opacity: 0.55;
+  }
+  34%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Среднее кольцо — дымчатое стекло, разрезанное на восемь панелей. */
+.e403-ring-middle {
+  border-radius: 9999px;
+  background:
+    repeating-conic-gradient(
+      from 22.5deg,
+      transparent 0deg 44deg,
+      rgba(0, 0, 0, 0.75) 44deg 45deg
+    ),
+    radial-gradient(circle, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02) 70%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  mask: radial-gradient(circle, transparent 72%, #000 72.5%);
+}
+
+/* Свет за створками: виден только в щелях. */
+.e403-core {
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    #d9f57a 0%,
+    #b4e02d 30%,
+    rgba(180, 224, 45, 0.35) 55%,
+    transparent 72%
+  );
+  opacity: 0.75;
+  filter: blur(6px);
+  transition:
+    opacity 0.45s ease,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.e403-aperture[data-state="open"] .e403-core {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+/* Створки: четыре четверти дымчатого стекла и металла. */
+.e403-aperture {
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.e403-shutter {
+  position: absolute;
+  width: calc(50% - 2px);
+  height: calc(50% - 2px);
+  background: linear-gradient(145deg, #262626 0%, #0d0d0d 55%, #1b1b1b 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.e403-shutter[data-q="tl"] {
+  left: 0;
+  top: 0;
+}
+.e403-shutter[data-q="tr"] {
+  right: 0;
+  top: 0;
+}
+.e403-shutter[data-q="bl"] {
+  left: 0;
+  bottom: 0;
+}
+.e403-shutter[data-q="br"] {
+  right: 0;
+  bottom: 0;
+}
+
+/* «Почти пустили»: створки расходятся на 9px и сходятся обратно. */
+.e403-aperture[data-state="open"] .e403-shutter[data-q="tl"] {
+  transform: translate(-7px, -7px);
+}
+.e403-aperture[data-state="open"] .e403-shutter[data-q="tr"] {
+  transform: translate(7px, -7px);
+}
+.e403-aperture[data-state="open"] .e403-shutter[data-q="bl"] {
+  transform: translate(-7px, 7px);
+}
+.e403-aperture[data-state="open"] .e403-shutter[data-q="br"] {
+  transform: translate(7px, 7px);
+}
+
+/* Датчик в центре — не замок и не скважина: тёмная линза с кольцом. */
+.e403-lens {
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 30%, #2b2b2b, #050505 70%);
+  border: 1px solid rgba(180, 224, 45, 0.45);
+  box-shadow:
+    0 0 0 6px rgba(8, 8, 8, 0.9),
+    0 0 22px rgba(180, 224, 45, 0.25);
+}
+
+/* Сканер: тонкая линия сверху вниз раз в 5 секунд. */
+.e403-scan-clip {
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.e403-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #b4e02d 20%,
+    #d9f57a 50%,
+    #b4e02d 80%,
+    transparent
+  );
+  box-shadow: 0 0 18px 3px rgba(180, 224, 45, 0.55);
+  opacity: 0;
+  animation: e403-scan 5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes e403-scan {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  4% {
+    opacity: 0.9;
+  }
+  30% {
+    opacity: 0.9;
+  }
+  34% {
+    transform: translateY(var(--portal-size));
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(var(--portal-size));
+    opacity: 0;
+  }
+}
+
+/* Импульс после закрытия: 0 → 0.7 → 0 за 450ms. */
+.e403-pulse {
+  border-radius: 9999px;
+  border: 2px solid #b4e02d;
+  box-shadow: 0 0 30px rgba(180, 224, 45, 0.5);
+  opacity: 0;
+}
+
+.e403-pulse.is-pulsing {
+  animation: e403-pulse 0.45s ease-out;
+}
+
+@keyframes e403-pulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  40% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+/* Насечки по кругу — техническая шкала, медленно идёт на телефоне. */
+.e403-ticks {
+  animation: e403-spin 90s linear infinite;
+}
+
+@keyframes e403-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* На телефоне вместо наведения — тихое «дыхание» света. */
+@media (pointer: coarse) {
+  .e403-core {
+    animation: e403-breathe 6s ease-in-out infinite;
+  }
+}
+
+@keyframes e403-breathe {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+/* Число 403 — техническая маркировка, а не главный объект. */
+.e403-mark {
+  font-size: clamp(72px, 9vw, 160px);
+  opacity: 0.1;
+  line-height: 0.8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .e404-assemble,
+  .e403-scan,
+  .e403-ring-edge::after,
+  .e403-ticks,
+  .e403-core,
+  .e403-pulse.is-pulsing {
+    animation: none !important;
+  }
+  .e403-scan {
+    display: none;
+  }
+  .e403-shutter,
+  .e403-core {
+    transition: none;
+  }
+}
