@@ -63,11 +63,13 @@ export function FullscreenMenu({
     window.setTimeout(() => scrollToSection(href), 450);
   };
 
-  // Section anchors + the dedicated Projects page (replaces industries/solutions).
+  // Section anchors + the dedicated pages. «Услуги» ведут в каталог /uslugi/, а
+  // не к блоку на главной: там витрина из четырёх направлений, а человек,
+  // открывший меню, ищет весь список — как и по пункту «Услуги» в шапке.
   const menuItems = [
     { key: "home", href: `${sectionPrefix}#home`, page: false },
     { key: "process", href: `${sectionPrefix}#process`, page: false },
-    { key: "services", href: `${sectionPrefix}#services`, page: false },
+    { key: "services", href: paths.services, page: true },
     { key: "projects", href: paths.projects, page: true },
     { key: "blog", href: paths.blog, page: true },
     { key: "faq", href: `${sectionPrefix}#faq`, page: false },
