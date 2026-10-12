@@ -7,7 +7,8 @@ import { Reveal, StaggerReveal } from "@/components/animations/reveal";
 import { ContactSection } from "@/components/sections/contact-section";
 import { ServiceCard } from "@/components/sections/service-card";
 import { FaqAccordion, type FaqItem } from "@/components/ui/faq-accordion";
-import { FilterChips, type FilterChipOption } from "@/components/ui/filter-chips";
+import { FilterChips } from "@/components/ui/filter-chips";
+import { FilterSelect, type FilterOption } from "@/components/ui/filter-select";
 import { SERVICE_CATEGORY_NAV, SERVICE_NAV, categoryTitle } from "@/lib/constants";
 import { usePaths } from "@/i18n/use-paths";
 
@@ -36,12 +37,13 @@ export function ServicesHubContent() {
   // раздел заводится в панели, и подпись должна заводиться там же. Переводы
   // подписей — в content/translations/service-categories.json (categoryTitle).
   // Разделы из одних черновиков `SERVICE_CATEGORY_NAV` уже отбросил.
-  const options = useMemo<FilterChipOption[]>(
+  const options = useMemo<FilterOption[]>(
     () => [
-      { value: null, label: t("filterAll") },
+      { value: null, label: t("filterAll"), count: SERVICE_NAV.length },
       ...SERVICE_CATEGORY_NAV.map((category) => ({
         value: category.key,
         label: categoryTitle(category.key, paths.locale),
+        count: category.services.length,
       })),
     ],
     [t, paths.locale],
@@ -87,15 +89,32 @@ export function ServicesHubContent() {
           </Reveal>
 
           {options.length > 2 && (
-            <Reveal delay={0.1}>
-              <FilterChips
-                label={t("filterLabel")}
-                options={options}
-                value={filter}
-                onChange={setFilter}
-                className="mt-10 md:mt-12"
-              />
-            </Reveal>
+            // Слой задаётся здесь, а не внутри Reveal: у .reveal есть transform,
+            // а он сам создаёт stacking context — без этого открытый список
+            // уезжает под карточки.
+            <div className="relative z-40 mt-10 md:mt-12">
+              <Reveal delay={0.1}>
+                {/* На телефоне — выпадающий список, как на /proekty: ряд кнопок
+                    там складывается в несколько строк и сдвигает сам каталог
+                    за край экрана. С планшета кнопки помещаются в одну-две
+                    строки и остаются на виду. */}
+                <FilterSelect
+                  label={t("filterLabel")}
+                  options={options}
+                  value={filter}
+                  onChange={setFilter}
+                  showCounts={false}
+                  className="min-w-0 md:hidden"
+                />
+                <FilterChips
+                  label={t("filterLabel")}
+                  options={options}
+                  value={filter}
+                  onChange={setFilter}
+                  className="hidden md:flex"
+                />
+              </Reveal>
+            </div>
           )}
 
           {/* key по фильтру — чтобы карточки заново проявлялись при смене
