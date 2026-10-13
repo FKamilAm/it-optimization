@@ -1,4 +1,151 @@
 {
+  "importozameshchenie-po": {
+    "title": "Replacing foreign software in Russia: where to start and how to keep working",
+    "excerpt": "Who is required by law to move to Russian software and who has simply run out of time, what to replace first, why projects break on compatibility and on people — and what the move costs.",
+    "category": "Infrastructure",
+    "lead": "For a long time, import substitution was a job for state companies and banks. Now it reaches those the law asks nothing of: licences cannot be renewed, updates no longer arrive, and a client asks what its contractor's systems run on. Here we look at who has to make the move, where to begin, where it usually breaks and what it costs — in a way that lets the company keep working throughout.",
+    "metaTitle": "Moving to Russian software: plan, risks and costs",
+    "metaDescription": "Who is legally required to switch to Russian software, what to replace first, how to check compatibility, run a pilot and what the move costs.",
+    "sections": [
+      {
+        "heading": "Who the law obliges and who it doesn't",
+        "body": [
+          "The strictest rules apply to critical information infrastructure, or CII. That covers banks, telecoms, energy, transport, healthcare, industry and several other sectors. Since 1 September 2025 the law has directly required significant CII facilities to be moved to Russian software from the official register.",
+          "The baseline deadline for significant facilities is 1 January 2028. For certain cases the government is discussing later dates — for instance, where no Russian replacement exists yet. So the deadline for your own system should be checked against the resolution currently in force and your sector's plan, not against a news item from a year ago.",
+          "For government bodies and state-owned companies, foreign software on significant facilities has been banned since 1 January 2025. And in procurement they must choose programs from the register whenever a suitable one is there.",
+          "The law does not oblige other businesses to switch. But if you supply a state company or bid in tenders, the requirements arrive in the contract: the client is entitled to ask what your systems run on and where its data is kept."
+        ]
+      },
+      {
+        "heading": "Why companies switch when nobody makes them",
+        "body": [
+          "Licences. Many foreign vendors stopped sales and support in Russia in 2022. Renewing a subscription or buying licences for new employees through official channels is often impossible, and grey schemes mean paying with no guarantees and no right to demand anything.",
+          "Updates. A program without updates works as it did before, but every vulnerability found in it stays open for good. For Windows 10, for example, free security updates ended on 14 October 2025, and with each month such a computer on the network becomes an easier target.",
+          "Shutdowns. A cloud service can be switched off with one button on the other side, and this is no longer theory: in 2024 some foreign enterprise services were cut off for Russian organisations at short notice. Mail, calendars and documents in someone else's cloud are the most fragile part of the infrastructure.",
+          "And planning. A move started in advance goes in stages and to a plan. A move after a system fails happens over a weekend and however it turns out. The difference in cost between the two is severalfold."
+        ]
+      },
+      {
+        "heading": "The register of Russian software: why look at it",
+        "body": [
+          "The register is kept by the Ministry of Digital Development and it is public: any program can be looked up by name or rights holder. For those the law obliges, it is the only list of what is allowed — a program outside the register does not legally count as Russian, whatever the developer's company is called.",
+          "For everyone else the register is useful as a filter. An entry means the rights holder is Russian, the product can be bought officially, and support can be obtained under a contract and paid for in roubles.",
+          "But an entry in the register does not mean the program will suit you. The register says nothing about whether it will open your files, work with your label printer or have enough features for your accounting team. That can only be checked on your own tasks.",
+          "Certificates from FSTEC and the FSB are a separate matter. Certified editions are needed where information protection rules demand them: in government systems, on significant CII facilities, in some systems holding personal data. Whether you need them is decided before purchase: such an edition costs more and is updated more slowly."
+        ]
+      },
+      {
+        "heading": "Where to start: an inventory",
+        "body": [
+          "The move does not begin with choosing an operating system. It begins with a list. Which programs are installed on computers and servers, who actually uses them, which licences there are and until what date, what depends on what.",
+          "The list usually turns out longer than expected. Spreadsheet macros without which the month cannot be closed. Software for a machine tool written in 2011. A banking client with its key on a USB stick. An add-on to the accounting system whose author nobody remembers.",
+          "Hardware gets its own line: printers, scanners, tills, data collection terminals, electronic signature tokens. The new system needs a driver, and it is better to learn there isn't one before buying licences than on the day the warehouse moves.",
+          "The result of the inventory is a table where every program has an owner, a rating of importance and a decision: replace, leave as it is, or drop. The third option comes up more often than you'd think: a noticeable share of what is installed has not been used by anyone for a long time."
+        ]
+      },
+      {
+        "heading": "What to replace first",
+        "body": [
+          "Not everything at once, and not what is most visible. The order is set by risk, not by habit: first whatever faces the internet and is no longer updated.",
+          "The first wave is mail, remote access, security tools and backups. A breached mail server, or ransomware with no working backup, stops the whole company, while replacing these touches employees' habits the least.",
+          "The second is servers and what runs on them: the user directory, file storage, virtualisation, databases. Technically this is the hardest part, and the least noticeable to people if it is done carefully.",
+          "The third is workstations: the operating system and the office suite. There is less technical risk here and more human risk, so they are moved department by department and only after a pilot.",
+          "Highly specialised programs come last — or never. If there is no replacement, it is more honest to leave a few machines on the old system in an isolated network segment than to halt production for the sake of ticking a box."
+        ]
+      },
+      {
+        "heading": "What replaces what, class by class",
+        "body": [
+          "Operating systems. Astra Linux, RED OS, ALT and ROSA are all Linux-based and all in the register. They differ in the software bundled with them, the tools for managing a fleet of machines and whether certified editions exist.",
+          "Office and mail. MyOffice and R7-Office open familiar documents and spreadsheets; the difficulties begin with macros and complex layouts. For mail and calendars there are both server products and cloud services from Russian providers.",
+          "The user directory. What Active Directory does in the Windows world: accounts, groups, policies. The replacements are ALD Pro, RED ADM and Alt Domain. For a while they can run alongside the old domain, and that is a normal way to migrate.",
+          "Virtualisation, databases, backup, video calls. Each class has several mature products, and the choice should rest not on advertising but on what already works at companies of your size with your set of systems."
+        ]
+      },
+      {
+        "heading": "Where the move breaks: compatibility",
+        "body": [
+          "On programs that do not exist for the new system. There are three options. Find an equivalent. Run the old program in a compatibility layer — some Windows applications work that way, but not all and not always reliably. Or leave an island: a few machines or a terminal server on the old system that people log into only for that program.",
+          "On files. A simple document will open anywhere. A twenty-sheet spreadsheet with macros, pivot tables and links to other files may not. Such files are found during the inventory and checked one by one: some are rewritten, some are moved into the accounting system, where they belonged long ago.",
+          "On electronic signatures and banks. The cryptographic provider, the browser plug-in, the banking client, filing reports — each has its own requirements for the system and the browser. Almost all of it exists for Russian operating systems, but it is not set up in five minutes, which is why accounting is checked first.",
+          "And on the accounting system. The 1C server and the database beneath it move well, but every customised configuration has external add-ons, data exchanges and print forms. Listing them is a mandatory part of the survey."
+        ]
+      },
+      {
+        "heading": "Domain and mail: what the user never sees",
+        "body": [
+          "Changing the user directory is the most critical part of the project. Logging into a computer, access to folders, printers, mail and often the accounting system all hang on it. So the new directory is first deployed next to the old one, and departments are moved into it one at a time.",
+          "Access rights are worth rebuilding rather than copying. Over the years they have accumulated former employees, shared folders \"for everyone\" and exceptions nobody can explain. A migration is a rare moment when order can be restored along the way.",
+          "Mail is moved so that nobody loses a single message: mailboxes, calendars, shared addresses, forwarding rules, archives. For a while the old and new servers work together, and mail arrives whether an employee has been moved yet or not.",
+          "And all this time a backup must be working — of both the old environment and the new. One proven by a restore, not merely configured."
+        ]
+      },
+      {
+        "heading": "A pilot with real people",
+        "body": [
+          "Before the mass rollout, the new environment is set up for 5–10 employees from different departments. Not the most loyal ones and not the IT staff, but ordinary people: an accountant, a sales manager, a warehouse worker, a director.",
+          "The pilot lasts from two to four weeks and has to cover the end of a month. That is when the reports, reconciliations and print forms that nobody touches on ordinary days come to the surface.",
+          "The outcome of a pilot is not \"everything works\" but a list: what got in the way, what turned out to be incompatible, what took extra time. Settings and instructions are refined from it, and sometimes the chosen product is changed — which is far cheaper than changing it after buying it for the whole company.",
+          "The main technical result is a workstation image. When the system, programs, settings and access rights are deployed to a computer automatically, moving a department takes a day rather than a week."
+        ]
+      },
+      {
+        "heading": "Moving in stages, with a rollback plan",
+        "body": [
+          "Departments are moved one by one, starting with those that have the simplest set of programs. Each stage takes the previous one's mistakes into account, and a mixed fleet — part of the company on the new system, part on the old — is a normal state for several months.",
+          "Every stage has a maintenance window and a rollback plan. The old environment is not switched off until the new one has been checked: if something goes wrong, the department returns to its previous setup within hours instead of being restored from backups over days.",
+          "Critical steps are rehearsed. Moving a database or a mail server is first done on a copy, with the time measured and the result checked. On the night of the real move there should be no surprises.",
+          "After each stage come a couple of weeks of observation: load, errors, requests from employees. The next department starts when the previous one has stopped calling."
+        ]
+      },
+      {
+        "heading": "People: why projects fail on something other than technology",
+        "body": [
+          "An employee for whom everything looks different on Monday morning, and to whom nothing was explained, has every right to be angry. Most failed migrations are not about incompatible software but about a department that quietly goes back to the old way because the new one gets in the way of work.",
+          "Simple things help. Warn people in advance and explain why. Hand out a short cheat sheet: where the files are now, how to print, how to open an old document. In the first week, seat someone nearby who answers questions straight away.",
+          "Don't change everything in one day. A new system, a new office suite and new mail at once are three stresses instead of one. The office suite and mail can be changed earlier, while still on the old system, and then the change of the operating system itself passes almost unnoticed.",
+          "And start with the managers. If the director has stayed on the old laptop \"as an exception\", everyone understands that the project is optional."
+        ]
+      },
+      {
+        "heading": "What it costs and how long it takes",
+        "body": [
+          "Moving workstations to a Russian operating system, with a compatibility audit, a pilot, a single image and migration of users' data — from {price:150000} and from three weeks. With domain infrastructure, policies, mass deployment by department and training — from {price:280000} and from five weeks.",
+          "Moving the server side — databases and mail, with a rehearsal on a copy and replacement of systems that are out of support — from {price:220000} and from five weeks. A move with no interruption to work and a staged transfer of departments — from {price:400000} and from eight weeks.",
+          "Licences are counted separately, and what is worth counting is not the purchase price but three years of ownership: the licences themselves, vendor support, training, the administrator's time. Often what surfaced during the inventory costs more than the software: rewritten macros and new peripherals.",
+          "As for timing, a company with 30–50 workstations and one office goes from inventory to the last department in three to six months. It is rarely faster, and almost always at the expense of a skipped pilot.",
+          "After the move the system needs an owner: updates, backups, new employees, requests. Support under an agreement with a fixed response time starts from {price:30000/mo}."
+        ]
+      },
+      {
+        "heading": "Common mistakes",
+        "body": [
+          "Starting with the purchase. Licences for the whole company bought before the pilot are the most expensive way to find out that the product doesn't fit.",
+          "Moving everyone over a weekend. On Monday the administrator will have a hundred equally urgent requests, and the company will not have a single department working normally.",
+          "Forgetting about peripherals and macros. The system went in without a single error, yet the warehouse cannot print labels and accounting cannot close the month.",
+          "Changing the system but not how it is managed. A hundred computers on a new OS with no directory, policies or centralised updates are the same patchwork as before, only unfamiliar.",
+          "Leaving no way back. The old environment was switched off on the day of the move — and the very first serious problem turns from a rollback into an outage."
+        ]
+      },
+      {
+        "heading": "Where to start this week",
+        "body": [
+          "Make a list of the programs and services the company uses every day, and mark which of them are no longer updated and which live in a foreign cloud. That is a risk map, and it is useful even if the move begins a year from now.",
+          "Check the backups — by restoring, not by reading the report. It is the only insurance in case one of the marked systems fails before its turn comes.",
+          "Pick five people from different departments for the future pilot and ask which programs and files they cannot work without. The answers almost always differ from what the administrator knows.",
+          "And appoint someone responsible. Not for the technology but for the project as a whole: deadlines, the order of departments, decisions on disputed programs. Without that person the move drags on for years and stops at the first unhappy department."
+        ]
+      }
+    ],
+    "takeaways": [
+      "The law requires significant critical-infrastructure facilities (baseline deadline: 1 January 2028), government bodies and state-owned companies to move to Russian software. For other businesses the requirements more often come from clients.",
+      "Companies switch without being obliged to: licences cannot be renewed, there are no security updates, a foreign cloud service may be cut off, and an emergency move costs several times more than a planned one.",
+      "Start with an inventory, not with choosing a system. Mail, remote access, security and backups are replaced first, then servers, then workstations.",
+      "The move breaks on compatibility: specialised programs, macros, electronic signatures, peripherals. There are three ways to handle what is incompatible — an equivalent, a compatibility layer, or an island on the old system.",
+      "A pilot with 5–10 ordinary employees, a department-by-department move and an old environment that is not switched off until the new one is checked are what separate a planned project from an outage.",
+      "Moving workstations to a Russian OS — from {price:150000} and three weeks; moving servers and mail — from {price:220000}; support after the move — from {price:30000/mo}. A company with 30–50 workstations covers the whole path in three to six months."
+    ]
+  },
   "ii-agenty-dlya-biznesa": {
     "title": "AI agents for business: what you can trust them with today",
     "excerpt": "How an agent differs from a chatbot, which tasks companies already hand over to one, why a model makes mistakes with confidence and how to catch them, what to do about personal data — and what a rollout costs.",

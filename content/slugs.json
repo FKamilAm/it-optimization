@@ -35,6 +35,10 @@
     "support": { "en": "website-support", "es": "soporte-web" }
   },
   "posts": {
+    "importozameshchenie-po": {
+      "en": "moving-to-russian-software",
+      "es": "pasar-al-software-ruso"
+    },
     "ii-agenty-dlya-biznesa": {
       "en": "ai-agents-for-business",
       "es": "agentes-de-ia-para-empresas"

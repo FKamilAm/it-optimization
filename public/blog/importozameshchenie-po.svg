@@ -1,0 +1,65 @@
+<svg width="1200" height="750" viewBox="0 0 1200 750" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+  <defs>
+    <linearGradient id="swapBg" x1="0" y1="0" x2="1200" y2="750" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f0f0f"/>
+      <stop offset="1" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <radialGradient id="swapGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop stop-color="#b4e02d" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#b4e02d" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#swapBg)"/>
+  <g stroke="#ffffff" stroke-opacity="0.05">
+    <path d="M0 150H1200M0 300H1200M0 450H1200M0 600H1200"/>
+    <path d="M150 0V750M300 0V750M450 0V750M600 0V750M750 0V750M900 0V750M1050 0V750"/>
+  </g>
+  <circle cx="850" cy="375" r="340" fill="url(#swapGlow)"/>
+
+  <!-- old stack: grey, being taken apart -->
+  <g stroke="#ffffff" stroke-opacity="0.28" stroke-width="2">
+    <rect x="170" y="210" width="300" height="74" rx="14" fill="#ffffff" fill-opacity="0.04"/>
+    <rect x="170" y="302" width="300" height="74" rx="14" fill="#ffffff" fill-opacity="0.04"/>
+    <rect x="170" y="394" width="300" height="74" rx="14" fill="#ffffff" fill-opacity="0.04" stroke-dasharray="8 10"/>
+    <rect x="170" y="486" width="300" height="74" rx="14" stroke-dasharray="8 10" stroke-opacity="0.16"/>
+  </g>
+  <g fill="#ffffff" fill-opacity="0.3">
+    <circle cx="206" cy="247" r="7"/>
+    <circle cx="206" cy="339" r="7"/>
+    <rect x="232" y="241" width="120" height="12" rx="6"/>
+    <rect x="232" y="333" width="150" height="12" rx="6"/>
+    <rect x="232" y="425" width="96" height="12" rx="6" fill-opacity="0.16"/>
+  </g>
+
+  <!-- the move: one block at a time -->
+  <g stroke="#b4e02d" stroke-width="3" stroke-linecap="round">
+    <path d="M510 431H660" stroke-dasharray="4 14"/>
+    <path d="M642 413L662 431L642 449"/>
+  </g>
+  <g stroke="#ffffff" stroke-opacity="0.22" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 14">
+    <path d="M510 523H660"/>
+  </g>
+
+  <!-- new stack: same shelves, already running -->
+  <g stroke="#b4e02d" stroke-width="2.5">
+    <rect x="700" y="210" width="330" height="74" rx="14" fill="#b4e02d" fill-opacity="0.1"/>
+    <rect x="700" y="302" width="330" height="74" rx="14" fill="#b4e02d" fill-opacity="0.1"/>
+    <rect x="700" y="394" width="330" height="74" rx="14" fill="#b4e02d" fill-opacity="0.18"/>
+  </g>
+  <rect x="700" y="486" width="330" height="74" rx="14" stroke="#ffffff" stroke-opacity="0.2" stroke-width="2" stroke-dasharray="8 10"/>
+  <g fill="#b4e02d">
+    <circle cx="738" cy="247" r="8"/>
+    <circle cx="738" cy="339" r="8"/>
+    <circle cx="738" cy="431" r="8"/>
+  </g>
+  <g fill="#ffffff" fill-opacity="0.75">
+    <rect x="766" y="241" width="140" height="12" rx="6"/>
+    <rect x="766" y="333" width="176" height="12" rx="6"/>
+    <rect x="766" y="425" width="112" height="12" rx="6"/>
+  </g>
+  <g stroke="#b4e02d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M968 247l10 10 18-20"/>
+    <path d="M968 339l10 10 18-20"/>
+  </g>
+</svg>

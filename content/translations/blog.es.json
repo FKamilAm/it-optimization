@@ -1,4 +1,151 @@
 {
+  "importozameshchenie-po": {
+    "title": "Sustituir el software extranjero en Rusia: por dónde empezar sin parar el trabajo",
+    "excerpt": "A quién obliga la ley a pasar al software ruso y a quién simplemente le ha llegado la hora, qué cambiar primero, por qué los proyectos se rompen por la compatibilidad y por las personas, y cuánto cuesta la transición.",
+    "category": "Infraestructura",
+    "lead": "Durante mucho tiempo la sustitución de importaciones fue asunto de las empresas estatales y los bancos. Ahora llega también a quienes la ley no obliga a nada: las licencias no se pueden renovar, las actualizaciones ya no llegan y el cliente pregunta con qué trabaja su proveedor. Veamos a quién le es obligatoria la transición, por dónde empezarla, dónde suele romperse y cuánto cuesta, de modo que la empresa siga trabajando todo ese tiempo.",
+    "metaTitle": "Pasar al software ruso: plan, riesgos y precios",
+    "metaDescription": "A quién obliga la ley a pasar al software ruso, qué cambiar primero, cómo comprobar la compatibilidad, hacer un piloto y cuánto cuesta la transición.",
+    "sections": [
+      {
+        "heading": "A quién obliga la ley y a quién no",
+        "body": [
+          "Las exigencias más duras son para la infraestructura crítica de información, la KII. Son los bancos, las telecomunicaciones, la energía, el transporte, la sanidad, la industria y algunos sectores más. Desde el 1 de septiembre de 2025 la ley exige expresamente pasar los objetos significativos de la KII a software ruso incluido en el registro oficial.",
+          "El plazo base para los objetos significativos es el 1 de enero de 2028. Para ciertos casos el Gobierno estudia fechas posteriores, por ejemplo cuando todavía no existe un sustituto ruso. Por eso el plazo de tu propio sistema hay que comprobarlo en la resolución vigente y en el plan de tu sector, y no en una noticia de hace un año.",
+          "A los organismos públicos y a las empresas con participación estatal el software extranjero en los objetos significativos les está prohibido desde el 1 de enero de 2025. Y en sus compras deben elegir programas del registro siempre que haya uno adecuado.",
+          "Al resto de las empresas la ley no las obliga a cambiar. Pero si eres proveedor de una empresa estatal o participas en licitaciones, las exigencias llegan en el contrato: el cliente tiene derecho a preguntar con qué funcionan tus sistemas y dónde se guardan sus datos."
+        ]
+      },
+      {
+        "heading": "Por qué cambian quienes no están obligados",
+        "body": [
+          "Las licencias. Muchos fabricantes extranjeros dejaron de vender y dar soporte en Rusia en 2022. Renovar una suscripción o comprar licencias para nuevos empleados por vía oficial suele ser imposible, y los esquemas grises significan pagar sin garantías y sin derecho a exigir nada.",
+          "Las actualizaciones. Un programa sin actualizaciones funciona como antes, pero cada vulnerabilidad que se le descubre queda abierta para siempre. En Windows 10, por ejemplo, las actualizaciones de seguridad gratuitas terminaron el 14 de octubre de 2025, y cada mes ese equipo en la red es un blanco más fácil.",
+          "Las desconexiones. Un servicio en la nube se puede apagar con un botón desde el otro lado, y ya no es teoría: en 2024 parte de los servicios corporativos extranjeros se cortaron a las organizaciones rusas con muy poco aviso. El correo, los calendarios y los documentos en una nube ajena son la parte más frágil de la infraestructura.",
+          "Y la planificación. Una transición iniciada con tiempo avanza por etapas y según un plan. Una transición tras el fallo de un sistema se hace en un fin de semana y como salga. La diferencia de precio entre ambas es de varias veces."
+        ]
+      },
+      {
+        "heading": "El registro de software ruso: para qué consultarlo",
+        "body": [
+          "El registro lo lleva el Ministerio de Desarrollo Digital y es público: cualquier programa se puede comprobar por su nombre o por su titular. Para quienes están obligados por ley es la única lista de lo permitido: un programa que no figura en el registro no se considera ruso a efectos legales, se llame como se llame la empresa desarrolladora.",
+          "A los demás el registro les sirve de filtro. Una entrada significa que el titular es ruso, que el producto se puede comprar oficialmente y que el soporte se obtiene por contrato y en rublos.",
+          "Pero figurar en el registro no significa que el programa te sirva. El registro no dice nada sobre si abrirá tus archivos, si funcionará con tu impresora de etiquetas ni si sus funciones le bastarán a contabilidad. Eso solo se comprueba con tus propias tareas.",
+          "Los certificados del FSTEC y del FSB son tema aparte. Las ediciones certificadas hacen falta donde lo exige la protección de la información: en los sistemas estatales, en los objetos significativos de la KII y en parte de los sistemas con datos personales. Si las necesitas se decide antes de comprar: una edición así cuesta más y se actualiza más despacio."
+        ]
+      },
+      {
+        "heading": "Por dónde empezar: el inventario",
+        "body": [
+          "La transición no empieza por elegir un sistema operativo, sino por una lista. Qué programas hay en los equipos y servidores, quién los usa de verdad, qué licencias hay y hasta qué fecha, qué depende de qué.",
+          "La lista suele salir más larga de lo esperado. Macros en hojas de cálculo sin las que no se cierra el mes. Un programa para una máquina escrito en 2011. Un cliente bancario con la clave en una memoria USB. Un complemento del sistema contable cuyo autor nadie recuerda.",
+          "En línea aparte va el equipamiento: impresoras, escáneres, cajas, terminales de recogida de datos, tokens de firma electrónica. El nuevo sistema necesita un controlador, y es mejor saber que no existe antes de comprar las licencias que el día en que se traslada el almacén.",
+          "El resultado del inventario es una tabla en la que cada programa tiene un responsable, una valoración de su importancia y una decisión: sustituir, dejar como está o descartar. La tercera opción aparece más de lo que parece: una parte notable de lo instalado hace tiempo que no la usa nadie."
+        ]
+      },
+      {
+        "heading": "Qué cambiar primero",
+        "body": [
+          "No todo a la vez ni lo que más se ve. El orden lo marca el riesgo, no la costumbre: primero lo que está expuesto a internet y ya no se actualiza.",
+          "La primera tanda son el correo, el acceso remoto, las herramientas de protección y las copias de seguridad. Un servidor de correo vulnerado o un ransomware sin una copia de seguridad que funcione paran la empresa entera, y su sustitución es la que menos toca los hábitos de los empleados.",
+          "La segunda son los servidores y lo que se apoya en ellos: el directorio de usuarios, el almacenamiento de archivos, la virtualización, las bases de datos. Es la parte más difícil técnicamente y la menos visible para la gente si se hace con cuidado.",
+          "La tercera son los puestos de trabajo: el sistema operativo y el paquete ofimático. Aquí hay menos riesgo técnico y más riesgo humano, por eso se pasan departamento por departamento y solo después de un piloto.",
+          "Los programas muy especializados, al final o nunca. Si no hay sustituto, es más honesto dejar unas pocas máquinas con el sistema anterior en un segmento de red aislado que parar la producción para cumplir el expediente."
+        ]
+      },
+      {
+        "heading": "Con qué se sustituye, clase por clase",
+        "body": [
+          "Sistemas operativos. Astra Linux, RED OS, ALT y ROSA: todos basados en Linux y todos en el registro. Se diferencian en los programas que incluyen, en las herramientas para gestionar el parque de equipos y en si tienen ediciones certificadas.",
+          "Ofimática y correo. MyOffice y R7-Office abren los documentos y hojas de cálculo habituales; las dificultades empiezan con las macros y las maquetaciones complejas. Para el correo y los calendarios hay tanto productos de servidor como servicios en la nube de proveedores rusos.",
+          "El directorio de usuarios. Lo que en el mundo Windows hace Active Directory: cuentas, grupos, políticas. Los sustitutos son ALD Pro, RED ADM y Alt Domain. Durante un tiempo pueden funcionar junto al dominio anterior, y es un esquema de transición normal.",
+          "Virtualización, bases de datos, copias de seguridad, videollamadas. En cada clase hay varios productos maduros, y conviene elegir no por la publicidad, sino por lo que ya funciona en empresas de tu tamaño y con tu conjunto de sistemas."
+        ]
+      },
+      {
+        "heading": "Dónde se rompe la transición: la compatibilidad",
+        "body": [
+          "En los programas que no existen para el nuevo sistema. Hay tres opciones. Encontrar un equivalente. Ejecutar el programa anterior en una capa de compatibilidad: parte de las aplicaciones de Windows funcionan así, pero no todas ni siempre de forma estable. O dejar una isla: unas pocas máquinas o un servidor de terminales con el sistema anterior, al que se entra solo por ese programa.",
+          "En los archivos. Un documento sencillo se abrirá en cualquier parte. Una hoja de cálculo de veinte pestañas con macros, tablas dinámicas y vínculos a otros archivos, no necesariamente. Esos archivos se localizan en el inventario y se comprueban uno a uno: unos se reescriben y otros se llevan al sistema contable, donde debían estar hace tiempo.",
+          "En la firma electrónica y los bancos. El proveedor criptográfico, el complemento del navegador, el cliente bancario, la presentación de informes: cada uno tiene sus requisitos de sistema y de navegador. Casi todo existe para los sistemas operativos rusos, pero no se configura en cinco minutos, y por eso contabilidad se comprueba primero.",
+          "Y en el sistema contable. El servidor de 1C y la base de datos que tiene debajo se trasladan bien, pero cada configuración adaptada tiene complementos externos, intercambios de datos y formularios de impresión. Su relación es parte obligatoria del estudio previo."
+        ]
+      },
+      {
+        "heading": "Dominio y correo: lo que el usuario no ve",
+        "body": [
+          "Cambiar el directorio de usuarios es la parte más delicada del proyecto. De él dependen el inicio de sesión en el equipo, el acceso a las carpetas, las impresoras, el correo y, a menudo, el sistema contable. Por eso el nuevo directorio se despliega primero junto al antiguo y los departamentos se pasan a él de uno en uno.",
+          "Los permisos de acceso conviene reconstruirlos, no copiarlos. Con los años han acumulado empleados que ya no están, carpetas compartidas «para todos» y excepciones cuyo motivo nadie recuerda. El traslado es un momento poco frecuente en el que se puede poner orden de paso.",
+          "El correo se traslada de modo que nadie pierda un solo mensaje: buzones, calendarios, direcciones compartidas, reglas de reenvío, archivos. Durante un tiempo el servidor antiguo y el nuevo funcionan a la vez, y los mensajes llegan tanto si al empleado ya lo han pasado como si aún no.",
+          "Y todo ese tiempo tiene que funcionar una copia de seguridad, tanto del entorno antiguo como del nuevo. Comprobada con una restauración, no solo configurada."
+        ]
+      },
+      {
+        "heading": "Un piloto con personas reales",
+        "body": [
+          "Antes del paso masivo, el nuevo entorno se instala a 5–10 empleados de distintos departamentos. No a los más leales ni a los informáticos, sino a gente corriente: un contable, un comercial, un mozo de almacén, un directivo.",
+          "El piloto dura de dos a cuatro semanas y debe abarcar un fin de mes. Es entonces cuando salen a la luz los informes, las conciliaciones y los formularios de impresión que nadie usa en los días normales.",
+          "El resultado del piloto no es «todo funciona», sino una lista: qué estorbaba, qué resultó incompatible, en qué se perdía tiempo. Con ella se ajustan la configuración y las instrucciones, y a veces se cambia el producto elegido, lo que sale mucho más barato que cambiarlo después de comprarlo para toda la empresa.",
+          "El principal resultado técnico es la imagen del puesto de trabajo. Cuando el sistema, los programas, la configuración y los accesos se despliegan en el equipo automáticamente, pasar un departamento lleva un día y no una semana."
+        ]
+      },
+      {
+        "heading": "Transición por etapas y plan de vuelta atrás",
+        "body": [
+          "Se pasa por departamentos, empezando por los que tienen el conjunto de programas más sencillo. Cada etapa tiene en cuenta los errores de la anterior, y un parque mixto —parte de la empresa en el sistema nuevo y parte en el antiguo— es un estado normal durante varios meses.",
+          "Cada etapa tiene una ventana de trabajos y un plan de vuelta atrás. El entorno antiguo no se apaga hasta que el nuevo está comprobado: si algo sale mal, el departamento vuelve a su forma de trabajar anterior en horas, en vez de restaurarse desde copias durante días.",
+          "Lo crítico se ensaya. El traslado de una base de datos o de un servidor de correo se hace primero sobre una copia, midiendo el tiempo y comprobando el resultado. La noche del traslado real no debe haber sorpresas.",
+          "Después de cada etapa vienen un par de semanas de observación: carga, errores, solicitudes de los empleados. El siguiente departamento se empieza cuando el anterior ha dejado de llamar."
+        ]
+      },
+      {
+        "heading": "Las personas: por qué los proyectos no fracasan por la técnica",
+        "body": [
+          "Un empleado al que el lunes por la mañana todo le parece distinto y a quien nadie le ha explicado nada tiene todo el derecho a enfadarse. La mayoría de las transiciones fallidas no se deben a un software incompatible, sino a un departamento que vuelve en silencio a lo antiguo porque lo nuevo le impide trabajar.",
+          "Ayuda lo sencillo. Avisar con antelación y explicar para qué. Dar una chuleta breve: dónde están ahora los archivos, cómo se imprime, cómo se abre un documento antiguo. La primera semana, sentar cerca a alguien que responda a las preguntas en el momento.",
+          "No cambiarlo todo el mismo día. Un sistema nuevo, un paquete ofimático nuevo y un correo nuevo a la vez son tres tensiones en lugar de una. La ofimática y el correo se pueden cambiar antes, todavía con el sistema anterior, y entonces el cambio del propio sistema operativo pasará casi inadvertido.",
+          "Y empezar por los directivos. Si el director se ha quedado con el portátil de antes «como excepción», todos entienden que el proyecto es opcional."
+        ]
+      },
+      {
+        "heading": "Cuánto cuesta y cuánto dura",
+        "body": [
+          "Pasar los puestos de trabajo a un sistema operativo ruso, con auditoría de compatibilidad, piloto, imagen única y traslado de los datos de los usuarios: desde {price:150000} y desde tres semanas. Con infraestructura de dominio, políticas, despliegue masivo por departamentos y formación: desde {price:280000} y desde cinco semanas.",
+          "El traslado de la parte de servidores —bases de datos y correo, con ensayo sobre una copia y sustitución de los sistemas sin soporte—: desde {price:220000} y desde cinco semanas. Un traslado sin interrumpir el trabajo y con paso gradual de los departamentos: desde {price:400000} y desde ocho semanas.",
+          "Las licencias se cuentan aparte, y lo que conviene calcular no es el precio de compra, sino tres años de propiedad: las propias licencias, el soporte del fabricante, la formación, el trabajo del administrador. A menudo sale más caro que el software lo que afloró en el inventario: macros reescritas y periféricos nuevos.",
+          "En cuanto a los plazos, una empresa con 30–50 puestos de trabajo y una sola oficina recorre el camino desde el inventario hasta el último departamento en un plazo de tres a seis meses. Rara vez es más rápido, y casi siempre a costa de un piloto que se saltó.",
+          "Tras la transición el sistema necesita un responsable: actualizaciones, copias de seguridad, nuevos empleados, solicitudes. El mantenimiento según un reglamento con tiempo de respuesta fijo cuesta desde {price:30000/mo}."
+        ]
+      },
+      {
+        "heading": "Errores frecuentes",
+        "body": [
+          "Empezar por la compra. Las licencias para toda la empresa compradas antes del piloto son la forma más cara de descubrir que el producto no sirve.",
+          "Pasar a todos en un fin de semana. El lunes el administrador tendrá cien solicitudes igual de urgentes, y la empresa, ni un solo departamento que trabaje con normalidad.",
+          "Olvidarse de los periféricos y las macros. El sistema se instaló sin un solo error, pero el almacén no imprime etiquetas y contabilidad no puede cerrar el mes.",
+          "Cambiar el sistema, pero no su gestión. Cien equipos con un sistema operativo nuevo sin directorio, políticas ni actualizaciones centralizadas son el mismo desorden de antes, solo que desconocido.",
+          "No dejar camino de vuelta. El entorno antiguo se apagó el día del traslado, y el primer problema serio pasa de ser una vuelta atrás a ser una avería."
+        ]
+      },
+      {
+        "heading": "Por dónde empezar esta semana",
+        "body": [
+          "Haz una lista de los programas y servicios que la empresa usa a diario y marca cuáles ya no se actualizan y cuáles viven en una nube extranjera. Es un mapa de riesgos, y resulta útil aunque la transición empiece dentro de un año.",
+          "Comprueba las copias de seguridad restaurándolas, no leyendo el informe. Es el único seguro por si alguno de los sistemas marcados falla antes de que le llegue el turno.",
+          "Elige a cinco personas de distintos departamentos para el futuro piloto y pregúntales sin qué programas y archivos no pueden trabajar. Las respuestas casi siempre difieren de lo que sabe el administrador.",
+          "Y nombra a un responsable. No de la técnica, sino del proyecto en su conjunto: plazos, orden de los departamentos, decisiones sobre los programas en discusión. Sin él la transición se alarga durante años y se detiene en el primer departamento descontento."
+        ]
+      }
+    ],
+    "takeaways": [
+      "La ley obliga a pasar al software ruso a los objetos significativos de la infraestructura crítica (plazo base: 1 de enero de 2028), a los organismos públicos y a las empresas con participación estatal. Al resto de las empresas las exigencias les llegan más a menudo de sus clientes.",
+      "Se cambia también sin obligación: las licencias no se pueden renovar, no hay actualizaciones de seguridad, un servicio extranjero en la nube puede cortarse y un traslado de emergencia cuesta varias veces más que uno planificado.",
+      "Se empieza por el inventario, no por elegir un sistema. Primero se cambian el correo, el acceso remoto, la protección y las copias de seguridad; después los servidores y, por último, los puestos de trabajo.",
+      "La transición se rompe por la compatibilidad: programas especializados, macros, firma electrónica, periféricos. Para lo incompatible hay tres caminos: un equivalente, una capa de compatibilidad o una isla con el sistema anterior.",
+      "Un piloto con 5–10 empleados corrientes, el paso por departamentos y un entorno antiguo que no se apaga hasta comprobar el nuevo son lo que distingue un proyecto planificado de una avería.",
+      "Pasar los puestos de trabajo a un sistema operativo ruso: desde {price:150000} y tres semanas; trasladar servidores y correo: desde {price:220000}; mantenimiento posterior: desde {price:30000/mo}. Una empresa con 30–50 puestos recorre todo el camino en un plazo de tres a seis meses."
+    ]
+  },
   "ii-agenty-dlya-biznesa": {
     "title": "Agentes de IA para empresas: qué puedes confiarles ya hoy",
     "excerpt": "En qué se diferencia un agente de un chatbot, qué tareas se le encargan ya hoy, por qué el modelo se equivoca con total seguridad y cómo detectarlo, qué hacer con los datos personales y cuánto cuesta la implantación.",
