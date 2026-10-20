@@ -2,6 +2,7 @@
   "uchetnaya-sistema-dlya-biznesa": {
     "title": "A business system instead of spreadsheets: when Excel stops coping and what to implement",
     "excerpt": "The signs that it is time to swap spreadsheets for a system, how an ERP differs from a CRM, how to choose between an off-the-shelf product and custom development, migrate the data and launch the system so people actually use it — and what it costs.",
+    "cover": "/blog/uchetnaya-sistema-dlya-biznesa.svg",
     "category": "Business systems",
     "lead": "Almost every business starts keeping records in spreadsheets, and for a long time that is the right call: fast, free and clear to everyone. But there comes a point when the spreadsheets eat more time than they save, and nobody can answer a simple question like \"how much did we make on this client\" without two days of reconciliation. Here we look at how to tell that point has come, which system to choose, how to migrate the data and launch without chaos — and what it all costs.",
     "metaTitle": "Business system instead of Excel: choice, rollout, costs",
