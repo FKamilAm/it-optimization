@@ -1,4 +1,143 @@
 {
+  "personalnye-dannye-152-fz": {
+    "title": "Datos personales según la ley rusa 152-FZ: qué debe hacer una empresa y cuánto cuesta una filtración",
+    "excerpt": "Quién se considera operador de datos personales, qué documentos y notificaciones son obligatorios, cómo obtener el consentimiento, qué falla en los formularios de tu web, qué hacer el primer día tras una filtración y qué multas rigen desde 2025.",
+    "category": "Seguridad",
+    "lead": "Hasta hace poco, incumplir la ley rusa de datos personales le costaba a una empresa decenas de miles de rublos, y muchas dejaban el tema para más adelante. Desde el 30 de mayo de 2025, la primera filtración puede costar millones y la segunda, un porcentaje de la facturación. Veamos a quién se aplica la ley federal 152-FZ, qué mínimo de documentos y medidas necesita cualquier empresa, dónde se cometen más errores y qué hacer si los datos ya se han filtrado.",
+    "metaTitle": "La ley rusa 152-FZ: obligaciones, filtraciones y multas",
+    "metaDescription": "Quién es operador de datos personales según la 152-FZ, qué documentos y notificaciones son obligatorios, cómo obtener el consentimiento y qué hacer ante una filtración.",
+    "sections": [
+      {
+        "heading": "Operador es casi cualquier empresa",
+        "body": [
+          "Un operador de datos personales es quien los recoge, los guarda o los trata de cualquier otro modo. Un formulario de solicitud en la web con nombre y teléfono, una base de clientes en un CRM, la gestión de personal, los suscriptores de un boletín, las grabaciones de llamadas: basta con cualquiera de ellos para que la ley afecte a tu empresa.",
+          "El tamaño no exime. La ley se aplica por igual a un banco y a un salón de manicura que acepta citas por su web, a una sociedad limitada y a un autónomo. La diferencia está solo en la escala de las medidas, no en si hacen falta.",
+          "El responsable de los datos es el operador, aunque técnicamente los trate otro: un CRM en la nube, un servicio de envíos, una gestoría, el contratista que mantiene la web. El trabajo se puede delegar; la responsabilidad, no."
+        ]
+      },
+      {
+        "heading": "Qué se considera dato personal",
+        "body": [
+          "Cualquier información que permita identificar a una persona concreta. Nombre y apellidos, teléfono, correo electrónico, dirección, fotografía, un número de contrato junto a un nombre: todo eso son datos personales, estén en una base de datos o en una hoja de cálculo en el escritorio de un comercial.",
+          "Aparte están las categorías especiales: salud, creencias, origen étnico, antecedentes penales. Solo pueden tratarse en un conjunto reducido de casos y con una protección reforzada. Aún más estricto es el régimen de la biometría: imágenes del rostro, la voz o las huellas dactilares cuando sirven para establecer la identidad.",
+          "Los datos de los empleados también son datos personales, y a menudo se olvidan. Pasaportes, números de la seguridad social, datos familiares y bajas médicas pasan años en el departamento de personal y reciben menos atención que la base de clientes."
+        ]
+      },
+      {
+        "heading": "El mínimo obligatorio",
+        "body": [
+          "Una notificación a Roskomnadzor, el regulador, de que se ha empezado a tratar datos. La presentan casi todos: quedan pocas excepciones, e incluso una empresa que solo trata los datos de sus propios empleados debe notificarlo. Si la notificación se ha presentado se puede comprobar en el registro público de operadores de la web de Roskomnadzor.",
+          "Una política de tratamiento de datos personales. Si recoges datos a través de una web, la política debe estar publicada en ella y describir lo que realmente haces, no lo que traía una plantilla.",
+          "Documentos internos: la orden que designa al responsable del tratamiento, el reglamento de tratamiento, la lista de quienes tienen acceso, el procedimiento de destrucción de datos. Los empleados con acceso deben firmar que los conocen.",
+          "Y los consentimientos, allí donde sin ellos el tratamiento sería ilegal. Hablamos de ellos más abajo, porque es justo aquí donde las reglas cambiaron en 2025."
+        ]
+      },
+      {
+        "heading": "El consentimiento: cuándo hace falta y cómo obtenerlo",
+        "body": [
+          "No siempre hace falta. Si tratas los datos de un cliente para cumplir un contrato con él, o los de un empleado conforme a la legislación laboral, ya existe una base legal. El consentimiento es necesario cuando no la hay: boletines, marketing, cuestionarios, publicar una reseña con nombre y foto.",
+          "Desde el 1 de septiembre de 2025, el consentimiento debe ser un documento aparte. Una cláusula en un contrato o en las condiciones de uso ya no sirve: el consentimiento escondido dentro de otro documento se considera inválido.",
+          "El silencio y la inacción no cuentan como consentimiento. La casilla del formulario no debe venir marcada de antemano, y la persona debe entender a qué da su conformidad: qué datos, con qué fin, por cuánto tiempo y cómo retirar el consentimiento.",
+          "Un fin, un consentimiento. Si un cuestionario recoge datos tanto para un contrato como para un boletín, un texto general sobre «cualquier tratamiento» no protegerá a la empresa en una inspección."
+        ]
+      },
+      {
+        "heading": "La web: donde más se falla",
+        "body": [
+          "Formularios sin consentimiento o con la casilla ya marcada. Es lo primero que encuentran las inspecciones y lo más fácil de corregir: una casilla aparte con enlaces al texto del consentimiento y a la política.",
+          "Una política copiada de otra web. Menciona procesos que no tienes y omite los que sí tienes, y en una inspección un documento así juega en tu contra.",
+          "Formularios y servicios que envían los datos al extranjero. Un creador de formularios extranjero, un CRM extranjero, un widget de chat o un servicio de envíos con servidores fuera de Rusia: desde el 1 de julio de 2025 está prohibido recoger datos de ciudadanos rusos directamente en bases extranjeras.",
+          "Los contadores de analítica y las cookies. Si permiten identificar a una persona, también son tratamiento de datos personales: conviene mencionarlos en la política y avisar al visitante con un banner, en lugar de hacer como si no existieran."
+        ]
+      },
+      {
+        "heading": "Localización: los datos de los rusos, en Rusia",
+        "body": [
+          "Al recoger datos personales de ciudadanos rusos, su registro, almacenamiento y actualización deben hacerse en bases de datos situadas en Rusia. Esto vale no solo para los servidores propios, sino también para los servicios en la nube: lo que importa es dónde está físicamente la base, no dónde está registrada la empresa proveedora.",
+          "Los datos ya recogidos se pueden enviar al extranjero, pero es un procedimiento aparte: la transferencia internacional exige notificarlo a Roskomnadzor antes de empezar. Un caso típico es un servicio de envíos extranjero, una telefonía en la nube o un modelo de IA en el extranjero que recibe las consultas de los clientes.",
+          "Incumplir la localización le cuesta a una empresa de 1 a 6 millones de rublos, y si se repite, de 6 a 18 millones. Por eso, lo primero al poner orden es hacer una lista de todos los servicios a los que llegan datos y comprobar dónde están los servidores de cada uno."
+        ]
+      },
+      {
+        "heading": "La protección: qué significa «tomar medidas»",
+        "body": [
+          "La ley no exige solo guardar los datos, sino protegerlos. La base es un modelo de amenazas: de qué te proteges, quién podría llegar a los datos y cómo. De él depende el nivel de protección del sistema —hay cuatro—, y del nivel depende el conjunto de medidas obligatorias.",
+          "Las medidas en sí no suelen ser nada exótico: control de accesos, registro de quién ve qué, antivirus, actualizaciones, copias de seguridad, registros de inicio de sesión, cifrado de los canales de comunicación. La mayoría de las filtraciones no se producen por falta de un sistema de protección caro, sino por una base abierta, una contraseña compartida o un acceso que nunca se revocó.",
+          "Las herramientas de protección certificadas no las necesitan todos ni siempre. Si te hacen falta lo deciden el modelo de amenazas y el nivel de protección, no el miedo a una inspección. Comprar software certificado sin un modelo de amenazas es una forma habitual de gastar el presupuesto y dejar abierto el riesgo real."
+        ]
+      },
+      {
+        "heading": "Personas y accesos",
+        "body": [
+          "Las filtraciones empiezan más a menudo por las personas que por un ataque. Un comercial exporta la base de clientes a una hoja de cálculo y se la envía a su correo personal. Un empleado que ya se fue sigue entrando en el CRM un mes más. Todo el departamento conoce la contraseña del panel de administración de la web.",
+          "Cada uno, acceso solo a lo que necesita para su trabajo. Exportar toda la base se permite a pocos, y deja rastro en el registro. Los accesos de quien se va se revocan el día de su salida, no cuando alguien se acuerda.",
+          "Los contratistas que ven los datos los tratan por encargo tuyo. Su contrato debe recoger los fines, la lista de acciones con los datos y la obligación de protegerlos. Un desarrollador web con acceso a la base de solicitudes también es uno de ellos.",
+          "Y la formación. Una hora sobre cómo es un correo de phishing y por qué la base de clientes no se reenvía por mensajería cuesta menos que cualquier multa."
+        ]
+      },
+      {
+        "heading": "Una filtración: el primer día",
+        "body": [
+          "Si los datos se han filtrado, la empresa tiene 24 horas para notificarlo a Roskomnadzor: qué ha pasado, cuáles son las causas y el daño presumibles, qué medidas se han tomado y quién se encarga de la comunicación. En 72 horas hay que hacer una investigación interna y comunicar sus resultados, incluidas las personas cuyas acciones provocaron la filtración.",
+          "No notificarlo es una infracción aparte, con una multa de 1 a 3 millones de rublos. Se suma a la multa por la propia filtración, así que ocultar un incidente es la peor estrategia posible.",
+          "El procedimiento se escribe de antemano, no el día del incidente: quién decide, quién aísla el sistema, quién prepara la notificación, de dónde sale la lista de datos afectados. Cuando la cuenta va por horas, no hay tiempo para aclarar quién se encarga de qué."
+        ]
+      },
+      {
+        "heading": "Las multas desde el 30 de mayo de 2025",
+        "body": [
+          "Por no presentar la notificación de inicio del tratamiento, de 100 000 a 300 000 rublos. Por infracciones relacionadas con el consentimiento, hasta 700 000 rublos. Es la parte baja de la escala, y son justo las infracciones más fáciles de encontrar con solo abrir la web de una empresa.",
+          "Por una filtración, la multa depende de su escala: de 3 a 5 millones de rublos si afecta a entre mil y diez mil personas, de 5 a 10 millones si son hasta cien mil, de 10 a 15 millones si son más de cien mil. Por una filtración de datos biométricos, de 15 a 20 millones.",
+          "Una segunda filtración se castiga con una multa proporcional a la facturación: del 1 al 3 % de los ingresos del año anterior, pero no menos de 20 millones ni más de 500 millones de rublos. Para una empresa pequeña puede ser una cifra comparable a su beneficio anual.",
+          "Desde diciembre de 2024 existe además responsabilidad penal por la recogida, el almacenamiento, el uso y la transmisión ilegales de datos personales. Va dirigida sobre todo a quienes comercian con bases de datos, pero también alcanza al empleado que se lleva la base de clientes."
+        ]
+      },
+      {
+        "heading": "Una inspección: qué te preguntarán",
+        "body": [
+          "Lo que más suele atraer la atención del regulador es la queja de un cliente, una filtración o una base de la empresa encontrada en acceso público. Roskomnadzor también revisa las webs por su cuenta: un formulario sin consentimiento y una web sin política se ven desde fuera sin necesidad de pedir nada.",
+          "Te pedirán documentos: la notificación, la política, las órdenes, el reglamento, los consentimientos, los contratos con contratistas, el modelo de amenazas. Y los compararán con la realidad: qué datos se recogen de verdad, dónde se guardan, quién tiene acceso.",
+          "Lo peor en una inspección no es que falte un documento, sino uno que contradice la práctica. Una política que dice «guardamos los datos tres años» junto a una base de diez años le señala al inspector exactamente dónde mirar."
+        ]
+      },
+      {
+        "heading": "Cuánto cuesta poner orden",
+        "body": [
+          "El análisis de los datos que recoges, la notificación a Roskomnadzor, la política y los consentimientos: desde {price:80000} y desde dos semanas. Esto cierra las infracciones más visibles, las que se ven desde la web.",
+          "Con modelo de amenazas y nivel de protección, reglamentos internos, revisión de la web y sus formularios y formación de los responsables: desde {price:150000} y desde cuatro semanas. Es la opción tras la cual una empresa no tiene que avergonzarse de sus documentos en una inspección.",
+          "La parte técnica se valora aparte. Una auditoría de seguridad de la información que revise accesos, vulnerabilidades y copias de seguridad: desde {price:150000} y desde tres semanas. La implantación de protección para puestos de trabajo, correo y acceso remoto: desde {price:200000} y desde tres semanas.",
+          "Para comparar: la multa por una primera filtración de los datos de mil clientes empieza en 3 millones de rublos, y eso sin contar el coste de la investigación, los clientes que se van y el tiempo de la dirección."
+        ]
+      },
+      {
+        "heading": "Errores frecuentes",
+        "body": [
+          "Una plantilla en vez de una descripción de tus propios procesos. Un documento de internet no te protege en una inspección; indica dónde buscar discrepancias.",
+          "El consentimiento dentro de un contrato. Desde septiembre de 2025 no es válido, y muchas empresas tienen cientos de contratos con esa cláusula.",
+          "Datos en servicios extranjeros que nadie recuerda: un formulario de encuesta antiguo, un servicio de envíos, una hoja de cálculo compartida en una nube extranjera.",
+          "Seguridad en papel sin la técnica. Un juego perfecto de órdenes no salva de una filtración, ni de la multa por ella, si la base de clientes tiene una contraseña compartida.",
+          "Creer que a una empresa pequeña no la tocarán. La queja de un cliente o una hoja de cálculo encontrada en la red son motivo suficiente, y el tamaño de la empresa apenas influye en la multa por una filtración."
+        ]
+      },
+      {
+        "heading": "Por dónde empezar esta semana",
+        "body": [
+          "Búscate en el registro de operadores de la web de Roskomnadzor. Si no hay notificación, es lo primero que hay que corregir, y una de las correcciones más baratas.",
+          "Apunta dónde guarda la empresa datos personales: la web, el CRM, el correo, contabilidad, personal, hojas de cálculo, mensajería, servicios de envíos. Al lado de cada uno, anota dónde están sus servidores.",
+          "Abre tu web con los ojos de un inspector: ¿hay política?, ¿hay un consentimiento aparte en cada formulario?, ¿alguna casilla viene marcada?, ¿adónde van los datos de los formularios?",
+          "Y repasa los accesos: quién ve la base de clientes, quién puede exportarla, si quedan cuentas de antiguos empleados y de contratistas con los que ya no trabajas."
+        ]
+      }
+    ],
+    "takeaways": [
+      "Casi cualquier empresa es operadora de datos personales: las solicitudes de la web, un CRM, la gestión de personal y los boletines ya son tratamiento. La responsabilidad sigue siendo de la empresa aunque los datos los trate un contratista o un servicio en la nube.",
+      "El mínimo obligatorio es una notificación a Roskomnadzor, una política en la web, órdenes y reglamentos internos, y consentimientos allí donde no hay otra base legal para el tratamiento.",
+      "Desde el 1 de septiembre de 2025 el consentimiento es un documento aparte, y desde el 1 de julio de 2025 no se pueden recoger datos de rusos directamente en bases extranjeras.",
+      "Tras una filtración hay 24 horas para notificarlo a Roskomnadzor y 72 horas para comunicar los resultados de la investigación. No notificarlo cuesta de 1 a 3 millones de rublos además de la multa por la filtración.",
+      "La multa por una filtración va de 3 a 15 millones de rublos según el número de personas afectadas; por una segunda, del 1 al 3 % de la facturación, pero no menos de 20 millones. También hay responsabilidad penal por el comercio ilegal de datos.",
+      "Documentos, notificación, política y consentimientos: desde {price:80000} y dos semanas; con modelo de amenazas, reglamentos y revisión de la web: desde {price:150000}. La protección técnica y las auditorías se valoran aparte."
+    ]
+  },
   "importozameshchenie-po": {
     "title": "Sustituir el software extranjero en Rusia: por dónde empezar sin parar el trabajo",
     "excerpt": "A quién obliga la ley a pasar al software ruso y a quién simplemente le ha llegado la hora, qué cambiar primero, por qué los proyectos se rompen por la compatibilidad y por las personas, y cuánto cuesta la transición.",

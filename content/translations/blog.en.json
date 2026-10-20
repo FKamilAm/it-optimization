@@ -1,4 +1,143 @@
 {
+  "personalnye-dannye-152-fz": {
+    "title": "Personal data under Russia's 152-FZ: what a business must do and what a leak costs",
+    "excerpt": "Who counts as a personal data operator, which documents and notifications are mandatory, how to obtain consent, what is wrong with the forms on your website, what to do in the first day after a leak — and the fines in force since 2025.",
+    "category": "Security",
+    "lead": "Until recently, breaking Russia's personal data law cost a company tens of thousands of roubles, and many put the subject off. Since 30 May 2025, a first leak can cost millions and a repeat one a percentage of revenue. Here we look at who Federal Law 152-FZ applies to, what minimum of documents and measures every company needs, where mistakes are most common and what to do if data has already leaked.",
+    "metaTitle": "Russia's 152-FZ for business: duties, leaks and fines",
+    "metaDescription": "Who counts as a personal data operator under 152-FZ, which documents and notifications are mandatory, how to obtain consent and what to do after a leak.",
+    "sections": [
+      {
+        "heading": "Almost every company is an operator",
+        "body": [
+          "A personal data operator is anyone who collects, stores or otherwise processes personal data. A request form on the website with a name and phone number, a customer base in a CRM, HR records, newsletter subscribers, call recordings — any one of these is enough for the law to apply to your company.",
+          "Size is no exemption. The law applies equally to a bank and to a nail salon taking bookings through its website, to a limited company and to a sole trader. The only difference is the scale of the measures, not whether they are needed at all.",
+          "The operator is responsible for the data even when someone else processes it technically: a cloud CRM, a mailing service, an accounting firm, the contractor who maintains the website. The work can be handed over; the responsibility cannot."
+        ]
+      },
+      {
+        "heading": "What counts as personal data",
+        "body": [
+          "Any information that can identify a specific person. Surname and first name, phone number, email, address, photo, a contract number next to a name — all of this is personal data, whether it sits in a database or in a spreadsheet on a manager's desktop.",
+          "Special categories are separate: health, beliefs, ethnicity, criminal record. They may be processed only in a narrow set of cases and with stronger protection. Biometrics have an even stricter regime — images of the face, the voice, fingerprints, when they are used to establish identity.",
+          "Employees' data is personal data too, and it is often forgotten. Passports, social insurance numbers, family details and sick notes sit in the HR department for years and get less attention than the customer base."
+        ]
+      },
+      {
+        "heading": "The mandatory minimum",
+        "body": [
+          "A notification to Roskomnadzor, the regulator, that processing has begun. Almost everyone files one: few exemptions remain, and even a company that processes only its own employees' data must notify the regulator. Whether a notification has been filed can be checked in the public register of operators on Roskomnadzor's website.",
+          "A personal data processing policy. If you collect data through a website, the policy must be published there — and describe what you actually do, not what was in a template.",
+          "Internal documents: an order appointing the person responsible for processing, regulations on processing, a list of those with access, a procedure for destroying data. Employees with access must sign to confirm they have read them.",
+          "And consents — wherever processing would be unlawful without them. More on those below, because this is where the rules changed in 2025."
+        ]
+      },
+      {
+        "heading": "Consent: when it is needed and how to obtain it",
+        "body": [
+          "Consent is not always needed. If you process a customer's data to perform a contract with them, or an employee's data under labour law, a legal basis already exists. Consent is required where there is no such basis: newsletters, marketing, questionnaires, publishing a review with a name and photo.",
+          "Since 1 September 2025, consent must be a separate document. A clause in a contract or in user terms no longer works: consent hidden inside another document is considered invalid.",
+          "Silence and inaction do not count as consent. The checkbox in a form must not be ticked in advance, and the person must understand what they are agreeing to: which data, for what purpose, for how long and how to withdraw consent.",
+          "One purpose, one consent. If a questionnaire collects data both for a contract and for a newsletter, a general text covering \"any processing\" will not protect the company during an inspection."
+        ]
+      },
+      {
+        "heading": "The website: where mistakes are most common",
+        "body": [
+          "Forms without consent, or with the checkbox already ticked. This is the first thing inspections find and the easiest to fix: a separate checkbox with links to the consent text and to the policy.",
+          "A policy copied from someone else's website. It mentions processes you don't have and omits the ones you do — and during an inspection such a document works against you.",
+          "Forms and services that send data abroad. A foreign form builder, a foreign CRM, a chat widget or mailing service with servers outside Russia — since 1 July 2025, collecting Russian citizens' data straight into foreign databases has been prohibited.",
+          "Analytics counters and cookies. If they can identify a person, this is personal data processing too: they should be mentioned in the policy and visitors warned with a banner, rather than pretending they don't exist."
+        ]
+      },
+      {
+        "heading": "Localisation: Russians' data stays in Russia",
+        "body": [
+          "When personal data of Russian citizens is collected, recording, storing and updating it must take place in databases located in Russia. This applies not only to your own servers but to cloud services as well: what matters is where the database physically sits, not where the provider company is registered.",
+          "Data already collected may be sent abroad, but that is a separate procedure: cross-border transfer requires notifying Roskomnadzor before it begins. A typical case is a foreign mailing service, cloud telephony or an AI model abroad that receives customer enquiries.",
+          "Breaching localisation costs a company RUB 1–6 million, a repeat breach RUB 6–18 million. So the first step in getting things in order is to list every service that receives data and check where each one's servers are."
+        ]
+      },
+      {
+        "heading": "Protection: what \"taking measures\" means",
+        "body": [
+          "The law requires not just storing data but protecting it. The foundation is a threat model: what you are protecting against, who could reach the data and how. It determines the system's protection level — there are four — and the level determines the set of mandatory measures.",
+          "The measures themselves are mostly nothing exotic: access control, a record of who sees what, antivirus, updates, backups, login logs, encrypted communication channels. Most leaks happen not because an expensive protection system is missing but because of an open database, a shared password or access that was never revoked.",
+          "Certified security tools are not needed by everyone or always. Whether you need them is decided by the threat model and the protection level, not by fear of an inspection. Buying certified software without a threat model is a common way to spend the budget and leave the real risk open."
+        ]
+      },
+      {
+        "heading": "People and access",
+        "body": [
+          "Leaks start with people more often than with hacking. A manager exports the customer base to a spreadsheet and emails it to a personal address. An employee who has left keeps logging into the CRM for another month. The whole department knows the password to the website's admin panel.",
+          "Everyone gets access only to what they need for their work. Exporting the whole base is allowed to a few, and it leaves a trace in the log. A departing employee's access is revoked on the day they leave, not whenever someone remembers.",
+          "Contractors who see the data are processing it on your instructions. Their contract must state the purposes, the list of actions with the data and the obligation to protect it. A website developer with access to the database of requests is such a contractor too.",
+          "And training. An hour on what a phishing email looks like and why the customer base must not be forwarded in a messenger costs less than any fine."
+        ]
+      },
+      {
+        "heading": "A leak: the first day",
+        "body": [
+          "If data has leaked, the company has 24 hours to notify Roskomnadzor: what happened, the presumed causes and harm, the measures taken and who is responsible for liaising. Within 72 hours an internal investigation must be carried out and its results reported, including the people whose actions led to the leak.",
+          "Failing to notify is a separate offence, with a fine of RUB 1–3 million. It is added to the fine for the leak itself, which makes hiding an incident the worst possible strategy.",
+          "The procedure is written in advance, not on the day of the incident: who makes decisions, who isolates the system, who prepares the notification, where to get the list of affected data. When the clock is counting hours, there is no time to work out who is responsible for what."
+        ]
+      },
+      {
+        "heading": "Fines since 30 May 2025",
+        "body": [
+          "For failing to file a notification that processing has begun — RUB 100,000–300,000. For breaches involving consent — up to RUB 700,000. This is the lower end of the scale, and these are exactly the breaches that are easiest to find simply by opening a company's website.",
+          "For a leak, the fine depends on its scale: RUB 3–5 million if one to ten thousand people are affected, RUB 5–10 million for up to a hundred thousand, RUB 10–15 million for more than a hundred thousand. For a leak of biometric data — RUB 15–20 million.",
+          "A repeat leak is punished with a turnover-based fine: 1–3% of the previous year's revenue, but no less than RUB 20 million and no more than RUB 500 million. For a small company this can be comparable to a year's profit.",
+          "Since December 2024 there has also been criminal liability for the unlawful collection, storage, use and transfer of personal data. It is aimed first of all at those who trade in databases, but it also covers an employee who walks away with the customer base."
+        ]
+      },
+      {
+        "heading": "An inspection: what they will ask",
+        "body": [
+          "The regulator's attention is most often triggered by a customer complaint, a leak, or a company's database found publicly accessible. Roskomnadzor also checks websites on its own: a form without consent and a site without a policy are visible from outside without any request.",
+          "They will ask for documents: the notification, the policy, orders, regulations, consents, contracts with contractors, the threat model. And they will compare them with reality — which data is actually collected, where it is stored, who has access.",
+          "The worst thing at an inspection is not a missing document but one that contradicts practice. A policy stating \"we keep data for three years\" next to a database going back ten years shows the inspector exactly where to look."
+        ]
+      },
+      {
+        "heading": "What it costs to get things in order",
+        "body": [
+          "A review of the data you collect, the notification to Roskomnadzor, the policy and the consents — from {price:80000} and from two weeks. This closes the most visible breaches, the ones that can be seen from the website.",
+          "With a threat model and protection level, internal regulations, a check of the website and its forms, and training for the people responsible — from {price:150000} and from four weeks. This is the option after which a company need not be embarrassed by its documents at an inspection.",
+          "The technical side is priced separately. An information security audit covering access rights, vulnerabilities and backups — from {price:150000} and from three weeks. Deploying protection for workstations, mail and remote access — from {price:200000} and from three weeks.",
+          "For comparison: the fine for a first leak of a thousand customers' data starts at RUB 3 million, and that is before the cost of the investigation, the customers who leave and management's time."
+        ]
+      },
+      {
+        "heading": "Common mistakes",
+        "body": [
+          "A template instead of a description of your own processes. A document from the internet does not protect you at an inspection; it shows where to look for discrepancies.",
+          "Consent inside a contract. Since September 2025 it has been invalid, and many companies have hundreds of contracts with such a clause.",
+          "Data in foreign services nobody remembers: an old survey form, a mailing service, a shared spreadsheet in a foreign cloud.",
+          "Paper security without the technical kind. A perfect set of orders does not help against a leak, or the fine for it, when the customer base has a shared password.",
+          "Believing a small company will be left alone. One customer's complaint or a spreadsheet found online is reason enough, and a company's size barely affects the fine for a leak."
+        ]
+      },
+      {
+        "heading": "Where to start this week",
+        "body": [
+          "Look yourself up in the register of operators on Roskomnadzor's website. If there is no notification, that is the first thing to fix — and one of the cheapest fixes.",
+          "Write down where the company keeps personal data: the website, CRM, mail, accounting, HR, spreadsheets, messengers, mailing services. Next to each, note where that service's servers are.",
+          "Open your website through an inspector's eyes: is there a policy, is there a separate consent in every form, are any checkboxes ticked in advance, where does the data from the forms go.",
+          "And go through access rights: who sees the customer base, who can export it, whether accounts remain for former employees and for contractors you no longer work with."
+        ]
+      }
+    ],
+    "takeaways": [
+      "Almost any company is a personal data operator: website requests, a CRM, HR records and newsletters are all processing. Responsibility stays with the company even when a contractor or a cloud service processes the data.",
+      "The mandatory minimum is a notification to Roskomnadzor, a policy on the website, internal orders and regulations, and consents wherever there is no other legal basis for processing.",
+      "Since 1 September 2025 consent must be a separate document, and since 1 July 2025 Russians' data may not be collected straight into foreign databases.",
+      "After a leak there are 24 hours to notify Roskomnadzor and 72 hours to report the investigation's results. Failing to notify costs RUB 1–3 million on top of the fine for the leak itself.",
+      "The fine for a leak is RUB 3–15 million depending on how many people are affected; for a repeat leak, 1–3% of revenue but no less than RUB 20 million. There is also criminal liability for unlawful trade in data.",
+      "Documents, notification, policy and consents — from {price:80000} and two weeks; with a threat model, regulations and a website check — from {price:150000}. Technical protection and audits are priced separately."
+    ]
+  },
   "importozameshchenie-po": {
     "title": "Replacing foreign software in Russia: where to start and how to keep working",
     "excerpt": "Who is required by law to move to Russian software and who has simply run out of time, what to replace first, why projects break on compatibility and on people — and what the move costs.",

@@ -35,6 +35,10 @@
     "support": { "en": "website-support", "es": "soporte-web" }
   },
   "posts": {
+    "personalnye-dannye-152-fz": {
+      "en": "personal-data-law-russia",
+      "es": "ley-de-datos-personales-rusia"
+    },
     "importozameshchenie-po": {
       "en": "moving-to-russian-software",
       "es": "pasar-al-software-ruso"
