@@ -22,7 +22,7 @@ Utility scripts (run manually, not part of normal dev):
 
 - `node scripts/generate-og.mjs` — composites `public/LOGO.svg` onto a 1200×630 canvas → `public/og-image.webp` (also runs automatically before every build).
 - `node scripts/convert-cases.mjs` — converts new PNGs in `public/cases/` to WebP and deletes the PNGs.
-- `python scripts/ftp-upload.py` — uploads `out/` to reg.ru hosting over FTP (needs `FTP_PASSWORD` env var). This is the deploy step; `.github/workflows/deploy.yml` runs exactly this on every push to `main` (secret `FTP_PASSWORD`), which is what makes the /panel panel self-publishing. Running it locally still works and is interchangeable.
+- `python scripts/ftp-upload.py` — uploads `out/` to reg.ru hosting over FTP (needs `FTP_PASSWORD` env var). This is the deploy step; `.github/workflows/deploy.yml` runs exactly this on every push to `main` (secret `FTP_PASSWORD`), which is what makes the /panel panel self-publishing. Running it locally still works and is interchangeable. Uploading alone never deletes anything, so after the upload it prunes the data-driven sections — `blog`, `uslugi` and their `en`/`es` twins, one level deep — of whatever the fresh build no longer has: before that, a post deleted or renamed in /panel kept answering 200 at its old address forever. Nothing outside those sections is touched (search-engine verification files, documents uploaded by hand), and the CRM deploy, which sets `FTP_LOCAL_ROOT`, prunes nothing unless `FTP_PRUNE_DIRS` says so.
 
 ## Architecture
 
