@@ -1,141 +1,142 @@
 {
-  "personalnye-dannye-152-fz": {
-    "title": "Datos personales según la ley rusa 152-FZ: qué debe hacer una empresa y cuánto cuesta una filtración",
-    "excerpt": "Quién se considera operador de datos personales, qué documentos y notificaciones son obligatorios, cómo obtener el consentimiento, qué falla en los formularios de tu web, qué hacer el primer día tras una filtración y qué multas rigen desde 2025.",
-    "category": "Seguridad",
-    "lead": "Hasta hace poco, incumplir la ley rusa de datos personales le costaba a una empresa decenas de miles de rublos, y muchas dejaban el tema para más adelante. Desde el 30 de mayo de 2025, la primera filtración puede costar millones y la segunda, un porcentaje de la facturación. Veamos a quién se aplica la ley federal 152-FZ, qué mínimo de documentos y medidas necesita cualquier empresa, dónde se cometen más errores y qué hacer si los datos ya se han filtrado.",
-    "metaTitle": "La ley rusa 152-FZ: obligaciones, filtraciones y multas",
-    "metaDescription": "Quién es operador de datos personales según la 152-FZ, qué documentos y notificaciones son obligatorios, cómo obtener el consentimiento y qué hacer ante una filtración.",
+  "uchetnaya-sistema-dlya-biznesa": {
+    "title": "Un sistema de gestión en lugar de hojas de cálculo: cuándo Excel ya no basta y qué implantar",
+    "excerpt": "Las señales de que toca cambiar las hojas de cálculo por un sistema, en qué se diferencia un ERP de un CRM, cómo elegir entre un producto estándar y un desarrollo a medida, migrar los datos y poner en marcha el sistema para que de verdad se use, y cuánto cuesta.",
+    "category": "Sistemas empresariales",
+    "lead": "Casi todas las empresas empiezan llevando sus registros en hojas de cálculo, y durante mucho tiempo es la decisión correcta: rápido, gratis y comprensible para todos. Pero llega un momento en que las hojas consumen más tiempo del que ahorran, y nadie puede responder a una pregunta sencilla como «cuánto hemos ganado con este cliente» sin dos días de conciliaciones. Veamos cómo saber que ese momento ha llegado, qué sistema elegir, cómo migrar los datos y arrancar sin caos, y cuánto cuesta todo ello.",
+    "metaTitle": "Un sistema de gestión en lugar de Excel: elección y precios",
+    "metaDescription": "Cuándo cambiar las hojas de cálculo por un sistema de gestión, en qué se diferencia de un CRM, cómo elegir producto, migrar los datos y arrancar sin caos.",
     "sections": [
       {
-        "heading": "Operador es casi cualquier empresa",
+        "heading": "Señales de que las hojas de cálculo ya no dan abasto",
         "body": [
-          "Un operador de datos personales es quien los recoge, los guarda o los trata de cualquier otro modo. Un formulario de solicitud en la web con nombre y teléfono, una base de clientes en un CRM, la gestión de personal, los suscriptores de un boletín, las grabaciones de llamadas: basta con cualquiera de ellos para que la ley afecte a tu empresa.",
-          "El tamaño no exime. La ley se aplica por igual a un banco y a un salón de manicura que acepta citas por su web, a una sociedad limitada y a un autónomo. La diferencia está solo en la escala de las medidas, no en si hacen falta.",
-          "El responsable de los datos es el operador, aunque técnicamente los trate otro: un CRM en la nube, un servicio de envíos, una gestoría, el contratista que mantiene la web. El trabajo se puede delegar; la responsabilidad, no."
+          "Las versiones se separan. El comercial tiene una hoja de pedidos, el almacén otra y el contable una tercera, y cada uno considera la suya la buena. Antes de cualquier decisión importante hay que cuadrarlas primero, a mano y con errores.",
+          "Lo mismo está escrito de formas distintas. Un cliente con tres grafías, un producto con dos nombres, un proveedor con una errata en sus datos fiscales. Un informe por cliente o por producto hay que montarlo buscando y a ojo.",
+          "El stock de la hoja no coincide con el del almacén, y el informe de ventas del mes tarda dos días en prepararse. Las fórmulas en las que se apoya todo solo las entiende una persona, y sus vacaciones son un riesgo para toda la empresa.",
+          "Y el acceso funciona a todo o nada. Los precios de compra los ve cualquiera a quien le hayan reenviado el archivo, y no hay forma de saber quién cambió una cifra ni cuándo."
         ]
       },
       {
-        "heading": "Qué se considera dato personal",
+        "heading": "Un sistema de gestión y un CRM no son lo mismo",
         "body": [
-          "Cualquier información que permita identificar a una persona concreta. Nombre y apellidos, teléfono, correo electrónico, dirección, fotografía, un número de contrato junto a un nombre: todo eso son datos personales, estén en una base de datos o en una hoja de cálculo en el escritorio de un comercial.",
-          "Aparte están las categorías especiales: salud, creencias, origen étnico, antecedentes penales. Solo pueden tratarse en un conjunto reducido de casos y con una protección reforzada. Aún más estricto es el régimen de la biometría: imágenes del rostro, la voz o las huellas dactilares cuando sirven para establecer la identidad.",
-          "Los datos de los empleados también son datos personales, y a menudo se olvidan. Pasaportes, números de la seguridad social, datos familiares y bajas médicas pasan años en el departamento de personal y reciben menos atención que la base de clientes."
+          "Un sistema de gestión, o ERP, registra lo que pasa con la mercancía, el dinero y los recursos: compras, almacén, ventas, producción, cuentas con clientes y proveedores y, a menudo, también la contabilidad. Todo en una sola base y mediante documentos: un envío contabilizado reduce el stock por sí solo y aumenta por sí solo lo que debe el cliente.",
+          "Un CRM registra los clientes y las oportunidades hasta la venta: solicitudes, llamadas, correspondencia, el embudo. Normalmente no tiene stock ni costes, e intentar llevar un almacén en un CRM es como llevar las ventas en un programa de contabilidad.",
+          "Muchas empresas necesitan los dos, conectados por una integración: una oportunidad cerrada en el CRM se convierte en un pedido en el sistema de gestión; la mercancía enviada aparece como estado para el comercial. Lo clave es decidir de antemano qué sistema responde de qué datos, para que la verdad no vuelva a partirse en dos."
         ]
       },
       {
-        "heading": "El mínimo obligatorio",
+        "heading": "Primero el proceso, después el sistema",
         "body": [
-          "Una notificación a Roskomnadzor, el regulador, de que se ha empezado a tratar datos. La presentan casi todos: quedan pocas excepciones, e incluso una empresa que solo trata los datos de sus propios empleados debe notificarlo. Si la notificación se ha presentado se puede comprobar en el registro público de operadores de la web de Roskomnadzor.",
-          "Una política de tratamiento de datos personales. Si recoges datos a través de una web, la política debe estar publicada en ella y describir lo que realmente haces, no lo que traía una plantilla.",
-          "Documentos internos: la orden que designa al responsable del tratamiento, el reglamento de tratamiento, la lista de quienes tienen acceso, el procedimiento de destrucción de datos. Los empleados con acceso deben firmar que los conocen.",
-          "Y los consentimientos, allí donde sin ellos el tratamiento sería ilegal. Hablamos de ellos más abajo, porque es justo aquí donde las reglas cambiaron en 2025."
+          "Un sistema consolida un proceso, sea como sea ese proceso. Si hoy un pedido pasa por cinco manos y se pierde en dos sitios, tras la implantación se perderá en dos sitios del programa, solo que más caro.",
+          "Por eso se empieza por describirlo: cómo va un pedido desde la solicitud hasta el cobro, cómo entra la mercancía, cómo se cuenta el dinero, quién introduce qué y quién usa qué. Basta con un esquema de una página y una lista de los documentos sin los que la empresa no puede trabajar.",
+          "A menudo ya en esta fase se descubre que la mitad de las hojas existen solo porque otras dos no están conectadas. Y que parte de los problemas se resuelven con un acuerdo dentro de la empresa, no con un programa."
         ]
       },
       {
-        "heading": "El consentimiento: cuándo hace falta y cómo obtenerlo",
+        "heading": "Producto estándar, solución sectorial o desarrollo a medida",
         "body": [
-          "No siempre hace falta. Si tratas los datos de un cliente para cumplir un contrato con él, o los de un empleado conforme a la legislación laboral, ya existe una base legal. El consentimiento es necesario cuando no la hay: boletines, marketing, cuestionarios, publicar una reseña con nombre y foto.",
-          "Desde el 1 de septiembre de 2025, el consentimiento debe ser un documento aparte. Una cláusula en un contrato o en las condiciones de uso ya no sirve: el consentimiento escondido dentro de otro documento se considera inválido.",
-          "El silencio y la inacción no cuentan como consentimiento. La casilla del formulario no debe venir marcada de antemano, y la persona debe entender a qué da su conformidad: qué datos, con qué fin, por cuánto tiempo y cómo retirar el consentimiento.",
-          "Un fin, un consentimiento. Si un cuestionario recoge datos tanto para un contrato como para un boletín, un texto general sobre «cualquier tratamiento» no protegerá a la empresa en una inspección."
+          "Los sistemas estándar —1C, Odoo, SAP Business One, Microsoft Dynamics y decenas más— ya resuelven la gestión habitual: almacén, compras, ventas, dinero. Implantarlos es más rápido y barato, y es fácil encontrar especialistas.",
+          "Las soluciones sectoriales —para restauración, sanidad, fabricación, construcción— llegan ya preparadas para sus particularidades, así que hay menos que configurar. La contrapartida es menos libertad si tu proceso se aparta del estándar del sector.",
+          "El desarrollo a medida se justifica cuando el proceso es único y es justo lo que te distingue de la competencia, mientras que un sistema estándar habría que rehacerlo. Cuesta más al principio, pero el sistema hace exactamente lo que necesitas.",
+          "Una regla sencilla: si las adaptaciones pesan más que la funcionalidad estándar, el producto elegido no es el adecuado; sale más barato elegir otro o desarrollar el tuyo."
         ]
       },
       {
-        "heading": "La web: donde más se falla",
+        "heading": "Nube o servidor propio",
         "body": [
-          "Formularios sin consentimiento o con la casilla ya marcada. Es lo primero que encuentran las inspecciones y lo más fácil de corregir: una casilla aparte con enlaces al texto del consentimiento y a la política.",
-          "Una política copiada de otra web. Menciona procesos que no tienes y omite los que sí tienes, y en una inspección un documento así juega en tu contra.",
-          "Formularios y servicios que envían los datos al extranjero. Un creador de formularios extranjero, un CRM extranjero, un widget de chat o un servicio de envíos con servidores fuera de Rusia: desde el 1 de julio de 2025 está prohibido recoger datos de ciudadanos rusos directamente en bases extranjeras.",
-          "Los contadores de analítica y las cookies. Si permiten identificar a una persona, también son tratamiento de datos personales: conviene mencionarlos en la política y avisar al visitante con un banner, en lugar de hacer como si no existieran."
+          "La versión en la nube arranca antes: no hace falta servidor, el proveedor se encarga de las actualizaciones y las copias de seguridad, y se puede trabajar desde cualquier sitio. Pagas una suscripción y el coste es fácil de calcular de antemano.",
+          "Un servidor propio da más libertad para adaptar y control total sobre los datos, pero la administración, las actualizaciones y las copias pasan a ser cosa tuya. Tiene sentido cuando hay muchas adaptaciones o cuando los datos no pueden quedarse en un proveedor externo.",
+          "Antes de elegir conviene comprobar dos cosas. ¿Permite la versión en la nube las adaptaciones e integraciones que necesitas? ¿Y qué exigen las leyes de tu país sobre dónde se guardan los datos de clientes y empleados?"
         ]
       },
       {
-        "heading": "Localización: los datos de los rusos, en Rusia",
+        "heading": "Cómo elegir: preguntas al sistema",
         "body": [
-          "Al recoger datos personales de ciudadanos rusos, su registro, almacenamiento y actualización deben hacerse en bases de datos situadas en Rusia. Esto vale no solo para los servidores propios, sino también para los servicios en la nube: lo que importa es dónde está físicamente la base, no dónde está registrada la empresa proveedora.",
-          "Los datos ya recogidos se pueden enviar al extranjero, pero es un procedimiento aparte: la transferencia internacional exige notificarlo a Roskomnadzor antes de empezar. Un caso típico es un servicio de envíos extranjero, una telefonía en la nube o un modelo de IA en el extranjero que recibe las consultas de los clientes.",
-          "Incumplir la localización le cuesta a una empresa de 1 a 6 millones de rublos, y si se repite, de 6 a 18 millones. Por eso, lo primero al poner orden es hacer una lista de todos los servicios a los que llegan datos y comprobar dónde están los servidores de cada uno."
+          "¿Cubre tus cinco procesos principales de serie, sin adaptaciones? Hay que comprobarlo en una demostración con tus datos y tus casos, no en la presentación del vendedor.",
+          "¿Se conecta con lo que ya tienes: la web, los marketplaces, el banco, la caja, la telefonía, el CRM? Un intercambio ya preparado con el servicio que necesitas ahorra semanas de desarrollo.",
+          "¿Cuánto cuesta en tres años, no en el primer mes: licencias o suscripción, implantación, adaptaciones, soporte, formación de personal nuevo? Un sistema barato con adaptaciones caras suele salir más caro que uno caro que ya lo tiene todo.",
+          "¿Y puedes llevarte tus datos? Un sistema del que no se pueden exportar los maestros y el historial de operaciones en un formato abierto te ata a él más que cualquier contrato."
         ]
       },
       {
-        "heading": "La protección: qué significa «tomar medidas»",
+        "heading": "La migración de datos, lo más infravalorado",
         "body": [
-          "La ley no exige solo guardar los datos, sino protegerlos. La base es un modelo de amenazas: de qué te proteges, quién podría llegar a los datos y cómo. De él depende el nivel de protección del sistema —hay cuatro—, y del nivel depende el conjunto de medidas obligatorias.",
-          "Las medidas en sí no suelen ser nada exótico: control de accesos, registro de quién ve qué, antivirus, actualizaciones, copias de seguridad, registros de inicio de sesión, cifrado de los canales de comunicación. La mayoría de las filtraciones no se producen por falta de un sistema de protección caro, sino por una base abierta, una contraseña compartida o un acceso que nunca se revocó.",
-          "Las herramientas de protección certificadas no las necesitan todos ni siempre. Si te hacen falta lo deciden el modelo de amenazas y el nivel de protección, no el miedo a una inspección. Comprar software certificado sin un modelo de amenazas es una forma habitual de gastar el presupuesto y dejar abierto el riesgo real."
+          "Los maestros —productos, clientes, proveedores— se limpian antes de migrar, no después. Duplicados, grafías distintas, artículos obsoletos: lo que entre en el nuevo sistema se quedará en él mucho tiempo y estropeará los informes desde el primer día.",
+          "Los saldos se migran a una fecha concreta —normalmente el inicio de un mes o un trimestre— y se contrastan con la realidad: el almacén con un inventario, las cuentas con la confirmación de clientes y proveedores. Es mejor encontrar una discrepancia antes del arranque que en el primer informe.",
+          "El historial de operaciones se migra con la profundidad acordada. A veces bastan los saldos y las oportunidades abiertas; otras hace falta un año de ventas para el análisis. Migrar diez años de todo rara vez compensa: los datos antiguos pueden quedarse en un archivo y consultarse allí.",
+          "En la práctica, limpiar los datos lleva a menudo más tiempo que configurar el propio sistema. Es normal, y conviene incluirlo en el plan desde el principio."
         ]
       },
       {
-        "heading": "Personas y accesos",
+        "heading": "Permisos y roles",
         "body": [
-          "Las filtraciones empiezan más a menudo por las personas que por un ataque. Un comercial exporta la base de clientes a una hoja de cálculo y se la envía a su correo personal. Un empleado que ya se fue sigue entrando en el CRM un mes más. Todo el departamento conoce la contraseña del panel de administración de la web.",
-          "Cada uno, acceso solo a lo que necesita para su trabajo. Exportar toda la base se permite a pocos, y deja rastro en el registro. Los accesos de quien se va se revocan el día de su salida, no cuando alguien se acuerda.",
-          "Los contratistas que ven los datos los tratan por encargo tuyo. Su contrato debe recoger los fines, la lista de acciones con los datos y la obligación de protegerlos. Un desarrollador web con acceso a la base de solicitudes también es uno de ellos.",
-          "Y la formación. Una hora sobre cómo es un correo de phishing y por qué la base de clientes no se reenvía por mensajería cuesta menos que cualquier multa."
+          "Un vendedor necesita una pantalla —el pedido y el stock—, un contable todo el módulo financiero y un directivo los informes. Cuanto menos ve un empleado de lo que no le hace falta, más rápido trabaja y menos errores introduce.",
+          "Los permisos también resuelven cuestiones de confianza. Quién ve los precios de compra y los márgenes, quién puede cambiar precios, quién borra documentos y quién los registra con fecha atrasada: eso se resuelve configurando roles, no pidiendo que se tenga «más cuidado».",
+          "A diferencia de una hoja de cálculo, el sistema recuerda quién cambió qué y cuándo. Una discusión del tipo «yo no lo introduje así» se resuelve en un minuto, y un documento modificado con fecha atrasada se ve enseguida."
         ]
       },
       {
-        "heading": "Una filtración: el primer día",
+        "heading": "Integraciones: el sistema no vive solo",
         "body": [
-          "Si los datos se han filtrado, la empresa tiene 24 horas para notificarlo a Roskomnadzor: qué ha pasado, cuáles son las causas y el daño presumibles, qué medidas se han tomado y quién se encarga de la comunicación. En 72 horas hay que hacer una investigación interna y comunicar sus resultados, incluidas las personas cuyas acciones provocaron la filtración.",
-          "No notificarlo es una infracción aparte, con una multa de 1 a 3 millones de rublos. Se suma a la multa por la propia filtración, así que ocultar un incidente es la peor estrategia posible.",
-          "El procedimiento se escribe de antemano, no el día del incidente: quién decide, quién aísla el sistema, quién prepara la notificación, de dónde sale la lista de datos afectados. Cuando la cuenta va por horas, no hay tiempo para aclarar quién se encarga de qué."
+          "Los pedidos de la web y de los marketplaces, los extractos bancarios, los tiques de caja, las llamadas, las oportunidades del CRM: todo debe llegar a la gestión por sí solo. Sin integraciones, la introducción manual simplemente se muda de la hoja al sistema, y se pierde la mitad del beneficio.",
+          "Para cada intercambio se decide de antemano qué se transmite, en qué dirección, con qué frecuencia y qué sistema manda. Un stock en la web que se actualiza una vez al día significa pedidos de mercancía que ya no existe.",
+          "Las integraciones necesitan vigilancia. Un intercambio que dejó de funcionar en silencio el viernes se descubre el lunes en forma de cien pedidos que no llegaron. Una monitorización con avisos sale mucho más barata."
         ]
       },
       {
-        "heading": "Las multas desde el 30 de mayo de 2025",
+        "heading": "Arrancar área por área",
         "body": [
-          "Por no presentar la notificación de inicio del tratamiento, de 100 000 a 300 000 rublos. Por infracciones relacionadas con el consentimiento, hasta 700 000 rublos. Es la parte baja de la escala, y son justo las infracciones más fáciles de encontrar con solo abrir la web de una empresa.",
-          "Por una filtración, la multa depende de su escala: de 3 a 5 millones de rublos si afecta a entre mil y diez mil personas, de 5 a 10 millones si son hasta cien mil, de 10 a 15 millones si son más de cien mil. Por una filtración de datos biométricos, de 15 a 20 millones.",
-          "Una segunda filtración se castiga con una multa proporcional a la facturación: del 1 al 3 % de los ingresos del año anterior, pero no menos de 20 millones ni más de 500 millones de rublos. Para una empresa pequeña puede ser una cifra comparable a su beneficio anual.",
-          "Desde diciembre de 2024 existe además responsabilidad penal por la recogida, el almacenamiento, el uso y la transmisión ilegales de datos personales. Va dirigida sobre todo a quienes comercian con bases de datos, pero también alcanza al empleado que se lleva la base de clientes."
+          "No se arranca todo a la vez. Primero un área —por ejemplo, ventas—, después el almacén y luego las compras o la producción. Cada etapa tiene en cuenta los errores de la anterior, y los empleados no se ahogan en cambios.",
+          "La fecha de paso se fija al inicio de un periodo: un mes o un trimestre. Así es más fácil cuadrar los saldos y no se reparte un mismo periodo contable entre dos formas de llevar los registros.",
+          "Trabajar en paralelo en las hojas y en el sistema es aceptable una o dos semanas, no más. Si se alarga, la empresa vuelve a tener dos verdades, y los empleados eligen la de siempre.",
+          "El primer cierre de mes en el nuevo sistema se hace con acompañamiento. Es entonces cuando salen a la luz los informes, las conciliaciones y los documentos que nadie usa en los días normales."
         ]
       },
       {
-        "heading": "Una inspección: qué te preguntarán",
+        "heading": "Personas y formación",
         "body": [
-          "Lo que más suele atraer la atención del regulador es la queja de un cliente, una filtración o una base de la empresa encontrada en acceso público. Roskomnadzor también revisa las webs por su cuenta: un formulario sin consentimiento y una web sin política se ven desde fuera sin necesidad de pedir nada.",
-          "Te pedirán documentos: la notificación, la política, las órdenes, el reglamento, los consentimientos, los contratos con contratistas, el modelo de amenazas. Y los compararán con la realidad: qué datos se recogen de verdad, dónde se guardan, quién tiene acceso.",
-          "Lo peor en una inspección no es que falte un documento, sino uno que contradice la práctica. Una política que dice «guardamos los datos tres años» junto a una base de diez años le señala al inspector exactamente dónde mirar."
+          "La formación se da por roles, no en una charla general. Un mozo de almacén no necesita saber cómo se cierra el mes, ni un contable cómo se prepara un pedido en el almacén. Cada uno aprende sus pantallas y sus operaciones, con sus tareas reales.",
+          "Las instrucciones se escriben para tus procesos en lugar de resumir el manual del fabricante. Una chuleta breve sobre «cómo registrar una devolución» es más útil que doscientas páginas de documentación.",
+          "La empresa necesita un usuario clave: un empleado que conozca el sistema mejor que nadie, responda a las preguntas de sus compañeros y recoja peticiones. Sin él, cada detalle se convierte en una incidencia para el proveedor.",
+          "Y las hojas antiguas se cierran. «Las dejamos por si acaso» casi siempre acaba con el trabajo volviendo en silencio a Excel."
         ]
       },
       {
-        "heading": "Cuánto cuesta poner orden",
+        "heading": "Cuánto cuesta y cuánto dura",
         "body": [
-          "El análisis de los datos que recoges, la notificación a Roskomnadzor, la política y los consentimientos: desde {price:80000} y desde dos semanas. Esto cierra las infracciones más visibles, las que se ven desde la web.",
-          "Con modelo de amenazas y nivel de protección, reglamentos internos, revisión de la web y sus formularios y formación de los responsables: desde {price:150000} y desde cuatro semanas. Es la opción tras la cual una empresa no tiene que avergonzarse de sus documentos en una inspección.",
-          "La parte técnica se valora aparte. Una auditoría de seguridad de la información que revise accesos, vulnerabilidades y copias de seguridad: desde {price:150000} y desde tres semanas. La implantación de protección para puestos de trabajo, correo y acceso remoto: desde {price:200000} y desde tres semanas.",
-          "Para comparar: la multa por una primera filtración de los datos de mil clientes empieza en 3 millones de rublos, y eso sin contar el coste de la investigación, los clientes que se van y el tiempo de la dirección."
+          "La implantación de una configuración estándar con análisis de procesos, migración de maestros y saldos, configuración de permisos y formación: desde {price:150000} y desde cuatro semanas.",
+          "Con migración de datos desde sistemas anteriores, configuración de documentos e informes, integración con la web y el banco y acompañamiento durante el primer periodo contable: desde {price:290000} y desde siete semanas. Es la opción más habitual.",
+          "Varias sociedades y almacenes, caja, telefonía, marketplaces, adaptaciones a tus procesos: desde {price:550000} y desde doce semanas.",
+          "Cambios puntuales en un sistema que ya funciona —un informe, un formulario de impresión, una exportación—: desde {price:25000} y desde tres días. Una integración con un servicio: desde {price:50000} y desde una semana. Las licencias o la suscripción del propio sistema se pagan aparte."
         ]
       },
       {
         "heading": "Errores frecuentes",
         "body": [
-          "Una plantilla en vez de una descripción de tus propios procesos. Un documento de internet no te protege en una inspección; indica dónde buscar discrepancias.",
-          "El consentimiento dentro de un contrato. Desde septiembre de 2025 no es válido, y muchas empresas tienen cientos de contratos con esa cláusula.",
-          "Datos en servicios extranjeros que nadie recuerda: un formulario de encuesta antiguo, un servicio de envíos, una hoja de cálculo compartida en una nube extranjera.",
-          "Seguridad en papel sin la técnica. Un juego perfecto de órdenes no salva de una filtración, ni de la multa por ella, si la base de clientes tiene una contraseña compartida.",
-          "Creer que a una empresa pequeña no la tocarán. La queja de un cliente o una hoja de cálculo encontrada en la red son motivo suficiente, y el tamaño de la empresa apenas influye en la multa por una filtración."
+          "Comprar el sistema antes de describir los procesos. Elegir por una presentación, sin tus propios casos, es el camino más habitual hacia adaptaciones que cuestan más que la licencia.",
+          "Migrar la basura. Los duplicados y errores de las hojas, trasladados tal cual, hacen que el nuevo sistema sea tan poco fiable como el anterior, solo que más caro de arreglar.",
+          "Arrancarlo todo a la vez. Cuando cambian a la vez las ventas, el almacén y la contabilidad, ante el primer problema nadie sabe dónde buscar la causa, y no funciona nada.",
+          "Adaptarlo hasta dejarlo irreconocible. Un sistema con la mitad de lo estándar reescrito deja de actualizarse y se queda congelado para siempre en su versión actual.",
+          "No nombrar un responsable. Sin alguien a cargo dentro de la empresa, en un año el sistema se rodea de hojas paralelas y todo vuelve al punto de partida."
         ]
       },
       {
         "heading": "Por dónde empezar esta semana",
         "body": [
-          "Búscate en el registro de operadores de la web de Roskomnadzor. Si no hay notificación, es lo primero que hay que corregir, y una de las correcciones más baratas.",
-          "Apunta dónde guarda la empresa datos personales: la web, el CRM, el correo, contabilidad, personal, hojas de cálculo, mensajería, servicios de envíos. Al lado de cada uno, anota dónde están sus servidores.",
-          "Abre tu web con los ojos de un inspector: ¿hay política?, ¿hay un consentimiento aparte en cada formulario?, ¿alguna casilla viene marcada?, ¿adónde van los datos de los formularios?",
-          "Y repasa los accesos: quién ve la base de clientes, quién puede exportarla, si quedan cuentas de antiguos empleados y de contratistas con los que ya no trabajas."
+          "Haz una lista de las hojas de cálculo en las que la empresa lleva sus registros y anota quién mantiene cada una y quién la usa. Es el mapa de lo que hay que sustituir.",
+          "Apunta tres informes que la dirección querría ver cada semana y que ahora se preparan a mano. Es el criterio principal con el que después sabrás si la implantación ha salido bien.",
+          "Dibuja el recorrido de un pedido —desde la solicitud hasta el cobro y el envío— con todas las hojas y personas por las que pasa. Los puntos en los que los datos se vuelven a teclear a mano son justo lo que el sistema debe eliminar.",
+          "Y calcula cuántas horas al mes se van en conciliaciones, tablas resumen y búsqueda de errores. Multiplicadas por el coste de una hora, muestran cuánto paga ya la empresa por no tener un sistema."
         ]
       }
     ],
     "takeaways": [
-      "Casi cualquier empresa es operadora de datos personales: las solicitudes de la web, un CRM, la gestión de personal y los boletines ya son tratamiento. La responsabilidad sigue siendo de la empresa aunque los datos los trate un contratista o un servicio en la nube.",
-      "El mínimo obligatorio es una notificación a Roskomnadzor, una política en la web, órdenes y reglamentos internos, y consentimientos allí donde no hay otra base legal para el tratamiento.",
-      "Desde el 1 de septiembre de 2025 el consentimiento es un documento aparte, y desde el 1 de julio de 2025 no se pueden recoger datos de rusos directamente en bases extranjeras.",
-      "Tras una filtración hay 24 horas para notificarlo a Roskomnadzor y 72 horas para comunicar los resultados de la investigación. No notificarlo cuesta de 1 a 3 millones de rublos además de la multa por la filtración.",
-      "La multa por una filtración va de 3 a 15 millones de rublos según el número de personas afectadas; por una segunda, del 1 al 3 % de la facturación, pero no menos de 20 millones. También hay responsabilidad penal por el comercio ilegal de datos.",
-      "Documentos, notificación, política y consentimientos: desde {price:80000} y dos semanas; con modelo de amenazas, reglamentos y revisión de la web: desde {price:150000}. La protección técnica y las auditorías se valoran aparte."
+      "Toca cambiar las hojas de cálculo por un sistema cuando las versiones se separan, los maestros están llenos de duplicados, el stock no cuadra con el almacén y el informe del mes tarda días.",
+      "Un sistema de gestión registra la mercancía, el dinero y los recursos; un CRM, los clientes y las oportunidades hasta la venta. Muchas empresas necesitan los dos, conectados por una integración y con la responsabilidad sobre cada dato acordada de antemano.",
+      "Un producto estándar es más rápido y barato, uno sectorial se ajusta mejor a las particularidades y el desarrollo a medida conviene a un proceso único. Si las adaptaciones pesan más que lo estándar, la elección fue errónea.",
+      "Limpiar y migrar los datos suele llevar más tiempo que la configuración: los maestros se limpian antes de migrar y los saldos se cuadran a la fecha de paso.",
+      "Se arranca área por área desde el inicio de un periodo, el trabajo en paralelo con hojas se limita a un par de semanas, se forma por roles y se nombra un usuario clave dentro de la empresa.",
+      "Una configuración estándar: desde {price:150000} y cuatro semanas; con migración de datos e integraciones: desde {price:290000}; proyectos complejos: desde {price:550000}. Adaptaciones: desde {price:25000}; integraciones: desde {price:50000}."
     ]
   },
   "importozameshchenie-po": {

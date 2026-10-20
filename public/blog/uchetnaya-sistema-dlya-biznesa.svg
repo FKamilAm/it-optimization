@@ -1,0 +1,68 @@
+<svg width="1200" height="750" viewBox="0 0 1200 750" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+  <defs>
+    <linearGradient id="erpBg" x1="0" y1="0" x2="1200" y2="750" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f0f0f"/>
+      <stop offset="1" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <radialGradient id="erpGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop stop-color="#b4e02d" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#b4e02d" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#erpBg)"/>
+  <g stroke="#ffffff" stroke-opacity="0.05">
+    <path d="M0 150H1200M0 300H1200M0 450H1200M0 600H1200"/>
+    <path d="M150 0V750M300 0V750M450 0V750M600 0V750M750 0V750M900 0V750M1050 0V750"/>
+  </g>
+  <circle cx="860" cy="375" r="330" fill="url(#erpGlow)"/>
+
+  <!-- spreadsheets: three copies that no longer agree -->
+  <g stroke="#ffffff" stroke-opacity="0.18" stroke-width="2">
+    <rect x="150" y="250" width="300" height="260" rx="16" fill="#ffffff" fill-opacity="0.02" transform="rotate(-6 300 380)"/>
+    <rect x="160" y="240" width="300" height="260" rx="16" fill="#ffffff" fill-opacity="0.03" transform="rotate(3 310 370)"/>
+  </g>
+  <g stroke="#ffffff" stroke-opacity="0.3" stroke-width="2">
+    <rect x="170" y="230" width="300" height="260" rx="16" fill="#111111"/>
+    <path d="M170 282H470M170 334H470M170 386H470M170 438H470M270 230V490M370 230V490"/>
+  </g>
+  <g fill="#ffffff" fill-opacity="0.32">
+    <rect x="188" y="300" width="62" height="12" rx="6"/>
+    <rect x="288" y="300" width="50" height="12" rx="6"/>
+    <rect x="188" y="352" width="70" height="12" rx="6"/>
+    <rect x="388" y="404" width="56" height="12" rx="6"/>
+  </g>
+  <rect x="284" y="346" width="70" height="24" rx="4" stroke="#ff6b4a" stroke-opacity="0.7" stroke-width="2" stroke-dasharray="5 6"/>
+
+  <!-- the move into one system -->
+  <g stroke="#b4e02d" stroke-width="3" stroke-linecap="round">
+    <path d="M510 375H640" stroke-dasharray="4 14"/>
+    <path d="M622 357L642 375L622 393"/>
+  </g>
+
+  <!-- the system: modules around one database -->
+  <g stroke="#b4e02d" stroke-opacity="0.5" stroke-width="2">
+    <path d="M840 362L830 295M880 362L890 295M840 398L830 455M880 398L890 455"/>
+  </g>
+  <g stroke="#b4e02d" stroke-width="2.5" fill="#b4e02d" fill-opacity="0.1">
+    <rect x="690" y="205" width="140" height="90" rx="18"/>
+    <rect x="890" y="205" width="140" height="90" rx="18"/>
+    <rect x="690" y="455" width="140" height="90" rx="18"/>
+    <rect x="890" y="455" width="140" height="90" rx="18"/>
+  </g>
+  <g fill="#ffffff" fill-opacity="0.75">
+    <rect x="714" y="238" width="70" height="12" rx="6"/>
+    <rect x="914" y="238" width="88" height="12" rx="6"/>
+    <rect x="714" y="488" width="80" height="12" rx="6"/>
+    <rect x="914" y="488" width="64" height="12" rx="6"/>
+  </g>
+  <g fill="#ffffff" fill-opacity="0.3">
+    <rect x="714" y="260" width="48" height="10" rx="5"/>
+    <rect x="914" y="260" width="56" height="10" rx="5"/>
+    <rect x="714" y="510" width="44" height="10" rx="5"/>
+    <rect x="914" y="510" width="60" height="10" rx="5"/>
+  </g>
+  <path d="M814 355V395C814 403 834 409 860 409C886 409 906 403 906 395V355" fill="#1c2410" stroke="#b4e02d" stroke-width="2.5"/>
+  <path d="M814 375C814 383 834 389 860 389C886 389 906 383 906 375" stroke="#b4e02d" stroke-width="2.5"/>
+  <ellipse cx="860" cy="355" rx="46" ry="14" fill="#b4e02d"/>
+</svg>
