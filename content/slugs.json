@@ -35,6 +35,10 @@
     "support": { "en": "website-support", "es": "soporte-web" }
   },
   "posts": {
+    "redizajn-sajta": {
+      "en": "website-redesign-without-losing-seo",
+      "es": "rediseno-web-sin-perder-posicionamiento"
+    },
     "uchetnaya-sistema-dlya-biznesa": {
       "en": "when-excel-is-not-enough",
       "es": "cuando-excel-no-basta"

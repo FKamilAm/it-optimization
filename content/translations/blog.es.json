@@ -1,4 +1,147 @@
 {
+  "redizajn-sajta": {
+    "title": "Rediseño web: cuándo toca y cómo no perder posiciones en los buscadores",
+    "excerpt": "Las señales de que una web necesita un rediseño y cuándo bastan unos ajustes, por dónde empezar, qué hunde las posiciones en los buscadores y cómo conservarlas, cómo lanzar la web renovada y cuánto cuesta.",
+    "category": "Diseño",
+    "lead": "Un rediseño suele empezar con la pregunta «cómo será el nuevo diseño» y terminar con «dónde están las solicitudes». La web nueva se ve mejor que la antigua, pero al cabo de un mes resulta que la mitad de las páginas han desaparecido de los buscadores y los formularios pierden contactos. Veamos cuándo hace falta de verdad un rediseño, por dónde empezar, qué suele hundir las posiciones y cómo hacer la renovación para que la web no solo sea más bonita, sino también más útil.",
+    "metaTitle": "Rediseño web: cuándo hace falta y cómo no perder el SEO",
+    "metaDescription": "Cuándo una web necesita un rediseño y cuándo bastan ajustes, por dónde empezar, qué hunde el posicionamiento, cómo conservar el tráfico al lanzarla y cuánto cuesta.",
+    "sections": [
+      {
+        "heading": "Cuándo hace falta de verdad un rediseño",
+        "body": [
+          "La web es incómoda en el móvil. Hoy la mayoría de las visitas llegan desde el teléfono, y si en una pantalla pequeña el texto es diminuto, los botones cuestan de pulsar y el formulario se sale por el borde, ningún contenido la salvará.",
+          "La empresa ha cambiado y la web no. Hay servicios nuevos, otro público, la empresa ha crecido más allá del nicho en el que empezó, y la web sigue contando cómo era hace tres años.",
+          "Los números dicen que la web pierde gente. Una gran parte de visitas que se van desde la primera página, visitas cortas, pocas solicitudes con un tráfico razonable: señal de que el problema está en la propia web, no en la publicidad.",
+          "Y la técnica no deja crecer. La web es lenta, la plataforma está anticuada y ya no se actualiza, y para añadir una página nueva hace falta un programador cada vez. En ese caso, el nuevo diseño es también la ocasión de poner orden en aquello sobre lo que funciona la web."
+        ]
+      },
+      {
+        "heading": "Cuándo no hace falta",
+        "body": [
+          "«Estamos cansados del diseño» es un motivo débil. Casi siempre está cansado el propietario, que ve la web cada día, no el cliente que la abre por primera vez.",
+          "Que un competidor haya renovado su web tampoco es motivo. Si la tuya trae solicitudes, su nuevo diseño no te quita nada, y una reconstrucción por moda sí podría quitártelo.",
+          "Si el problema está en el tráfico o en la propia oferta, el nuevo aspecto no lo resolverá. Una web bonita sin visitas sigue sin solicitudes, y una oferta floja con otro envoltorio sigue siendo floja.",
+          "A menudo bastan ajustes puntuales: una nueva primera pantalla, la oferta reescrita, una carga más rápida, un formulario arreglado, precios claros. Es más rápido y barato que un rediseño completo, y el efecto puede ser comparable."
+        ]
+      },
+      {
+        "heading": "Renovar el aspecto, rediseñar la estructura o migrar",
+        "body": [
+          "Bajo la palabra «rediseño» se esconden tres trabajos distintos. La renovación visual mantiene la estructura y las páginas y cambia el aspecto: tipografías, colores, bloques, fotografías. Es la opción más segura para el posicionamiento.",
+          "Rediseñar la estructura cambia la arquitectura: qué páginas hay, cómo se enlazan, qué ve una persona y en qué orden hasta la solicitud. Es más profundo y más útil, pero afecta a las direcciones de las páginas y a los textos, y por tanto a los buscadores.",
+          "Migrar a una nueva plataforma cambia aquello sobre lo que funciona la web. Se suele combinar con el rediseño, lo cual es razonable, pero es donde más riesgos hay.",
+          "La regla es sencilla: cuanto más profundos son los cambios, más detallado debe ser el plan para conservar lo que ya funciona."
+        ]
+      },
+      {
+        "heading": "Empezar por los datos, no por las imágenes",
+        "body": [
+          "Lo primero es averiguar qué funciona ahora en la web. Qué páginas traen visitas desde los buscadores y cuáles de ellas traen solicitudes. No se pueden perder, y cualquier conversación sobre la nueva estructura empieza por ellas.",
+          "Después: con qué búsquedas encuentran la web, de dónde llega la gente, desde qué dispositivos, en qué páginas se va. Se ve en la analítica y en las herramientas para propietarios de webs: Google Search Console y Yandex Webmaster.",
+          "Las grabaciones de sesiones y los mapas de clics muestran lo que no se ve en los números: dónde busca la gente un botón que no existe y hasta dónde lee una página.",
+          "Y una conversación con el equipo comercial. Qué preguntas repiten los clientes, qué les convence y qué les frena. Las respuestas a esas preguntas deben estar en la web, y el nuevo diseño debe darles un lugar visible."
+        ]
+      },
+      {
+        "heading": "Qué hunde las posiciones en los buscadores",
+        "body": [
+          "Cambiar las direcciones sin redirecciones. El buscador conoce una página por su dirección; si la dirección cambia y la antigua responde «página no encontrada», las posiciones acumuladas desaparecen con ella.",
+          "Páginas eliminadas y texto recortado. Una página que traía tráfico no entró en la nueva estructura. O el texto se sustituyó por imágenes bonitas y tres líneas, y el buscador ya no tiene por qué mostrarla.",
+          "Títulos y metaetiquetas perdidos. La nueva plantilla pone por defecto el mismo título en todas las páginas, y la web desaparece de los resultados de búsquedas en las que llevaba años siendo visible.",
+          "Una web cerrada a los buscadores. La versión de pruebas se bloquea para la indexación, y ese bloqueo pasa a la web real junto con todo lo demás. Es uno de los errores de lanzamiento más frecuentes y más frustrantes.",
+          "Y la velocidad. El vídeo de fondo, las animaciones pesadas y las imágenes enormes hacen lenta la web, y los buscadores tienen en cuenta la velocidad de carga."
+        ]
+      },
+      {
+        "heading": "Direcciones de las páginas y redirecciones",
+        "body": [
+          "Lo mejor es no cambiar las direcciones si no es necesario. Si la estructura permite conservar las antiguas, la nueva página simplemente ocupa el lugar de la anterior y el buscador apenas lo nota.",
+          "Si las direcciones cambian, se prepara una tabla de correspondencias: dirección antigua y dirección nueva, para cada página que tuviera tráfico o enlaces externos. Con ella se configuran redirecciones permanentes, el código 301, que indica al buscador que la página se ha mudado para siempre.",
+          "Redirigirlo todo a la página de inicio no vale. El buscador lo interpreta casi como un borrado, y quien llega por un enlace a un artículo concreto acaba en la portada y se va.",
+          "Tras el lanzamiento se revisa la tabla: cada dirección antigua debe llevar a su nueva página en un solo salto, sin cadenas de varias redirecciones."
+        ]
+      },
+      {
+        "heading": "El contenido: conservar lo que funciona",
+        "body": [
+          "Los textos de las páginas que posicionan bien se trasladan en su sentido. Se pueden reescribir y acortar, pero el tema, las formulaciones clave y las respuestas a las preguntas de los visitantes deben mantenerse.",
+          "Los títulos de las páginas, las descripciones para los resultados de búsqueda y los datos estructurados se trasladan y se mejoran, no se empiezan de cero. Sobre todo en las páginas que ya traen tráfico.",
+          "Las imágenes reciben descripciones, y las páginas nuevas, enlaces desde las que ya existen. El buscador tarda en encontrar las secciones nuevas que no están conectadas con nada.",
+          "Un nuevo diseño es una buena ocasión para quitar lo que sobra: noticias antiguas, duplicados y páginas sin visitas. Pero la decisión se toma con datos, no a ojo, y las páginas eliminadas que tenían tráfico también reciben redirecciones."
+        ]
+      },
+      {
+        "heading": "Primero el móvil",
+        "body": [
+          "El diseño se plantea primero para el móvil y después se amplía al ordenador. Al revés sale peor: un diseño ancho hay que comprimirlo, y en una pantalla pequeña acaba siendo un amasijo.",
+          "La velocidad se comprueba en móviles reales y con internet móvil, no en el ordenador de trabajo del diseñador. Los buscadores la valoran con tres indicadores: lo rápido que aparece el contenido principal, lo rápido que la página responde a un toque y si el diseño salta mientras carga.",
+          "La animación está bien mientras no estorbe. Una entrada vistosa de los bloques que hace aparecer el botón de solicitud a los tres segundos sale más cara de lo que parece en la presentación."
+        ]
+      },
+      {
+        "heading": "Un sistema de diseño en lugar de un juego de maquetas",
+        "body": [
+          "Las maquetas de páginas sueltas se quedan anticuadas con la primera página nueva que no incluían. Un sistema de diseño es un conjunto de reglas y de componentes listos: la retícula, las tipografías, los colores, los botones, las tarjetas, los formularios con todos sus estados.",
+          "Las páginas nuevas se montan con esos componentes en horas, en lugar de dibujarse de cero durante semanas. Y un año después la web sigue viéndose coherente, no como un conjunto de páginas hechas en años distintos por personas distintas.",
+          "El archivo con las maquetas y la biblioteca de componentes se queda en la empresa. Aunque más adelante se ocupe de la web otro equipo, no tendrá que empezar de cero."
+        ]
+      },
+      {
+        "heading": "La versión de pruebas y el lanzamiento",
+        "body": [
+          "La nueva web se monta en una dirección de pruebas cerrada: acceso con contraseña e indexación bloqueada. Allí mismo se prueba en dispositivos reales y se recorre todo el camino del visitante hasta la solicitud.",
+          "Antes del lanzamiento, una lista breve de comprobaciones: el bloqueo de indexación está quitado, robots.txt y el mapa del sitio están en su sitio, las redirecciones funcionan, la analítica y los objetivos están configurados, los formularios llegan a quien los atiende.",
+          "Se lanza un día tranquilo: no un viernes por la tarde ni en plena temporada. La versión antigua se guarda entera, para poder recuperarla en minutos si surge un problema grave.",
+          "Y justo después del lanzamiento se abre la web con los ojos de un cliente: la portada, los servicios clave, el formulario, el teléfono de la cabecera, las páginas a las que lleva la publicidad."
+        ]
+      },
+      {
+        "heading": "Las primeras semanas tras el lanzamiento",
+        "body": [
+          "Las oscilaciones de posiciones en las primeras semanas son normales: el buscador necesita tiempo para volver a rastrear la web y relacionar las direcciones nuevas con las antiguas. Si las redirecciones y los textos están en su sitio, las posiciones vuelven, y a menudo mejoran.",
+          "Cada día se revisan los informes de Search Console y Webmaster: errores de rastreo, páginas «no encontradas», páginas excluidas de la búsqueda. Cada error que aparece se corrige al momento, no se acumula para fin de mes.",
+          "Se compara con el periodo anterior al lanzamiento, teniendo en cuenta la estacionalidad: tráfico, solicitudes, conversión de las páginas clave. Sin una analítica configurada de antemano no hay con qué comparar, y las discusiones sobre el éxito del rediseño se convierten en un intercambio de impresiones."
+        ]
+      },
+      {
+        "heading": "Cuánto cuesta y cuánto dura",
+        "body": [
+          "El diseño de hasta cinco páginas, con prototipos de las pantallas clave, adaptación a móvil y tableta y entrega de las maquetas a desarrollo: desde {price:60000} y desde dos semanas.",
+          "Un sistema de diseño: investigación y escenarios de usuario, hasta quince pantallas, retícula, tipografía, colores y una biblioteca de componentes con todos sus estados: desde {price:140000} y desde cuatro semanas.",
+          "Una web llave en mano con diseño a medida, contenidos, integraciones y una base para los buscadores: desde {price:150000} y desde tres semanas.",
+          "La parte técnica para los buscadores —títulos y metaetiquetas, datos estructurados, revisión de la indexación, de robots.txt y del mapa del sitio—: desde {price:40000} y desde una semana. Conviene incluirla en cualquier tipo de rediseño: es lo que más a menudo decide si la web conserva sus posiciones."
+        ]
+      },
+      {
+        "heading": "Errores frecuentes",
+        "body": [
+          "Empezar por las maquetas sin mirar la analítica. El nuevo diseño sale bonito, pero se construye alrededor de páginas que no necesita nadie y pierde las que traían clientes.",
+          "Cambiar las direcciones sin tabla de redirecciones. El camino más corto hacia el desplome del tráfico tras el lanzamiento.",
+          "Tirar los textos en nombre de un diseño «limpio». El minimalismo está bien mientras la página responde a las preguntas del visitante. Cuando no lo hace, se van tanto el visitante como el buscador.",
+          "Lanzar la web con la indexación bloqueada. Un error de una línea que a veces se descubre semanas después, cuando el tráfico ya ha caído.",
+          "Cambiarlo todo a la vez —diseño, textos, estructura y plataforma— y después no entender qué ha influido exactamente en el resultado."
+        ]
+      },
+      {
+        "heading": "Por dónde empezar esta semana",
+        "body": [
+          "Exporta de la analítica las veinte páginas que traen más visitas y solicitudes. Es la lista de lo que la nueva web tiene que conservar.",
+          "Mira en Search Console o Webmaster con qué búsquedas encuentran la web. De paso verás con cuáles no la encuentran, aunque deberían.",
+          "Abre la web en tu propio móvil y recorre el camino del cliente: desde la primera pantalla hasta una solicitud enviada. Apunta cada sitio en el que tuviste que buscar, esperar o ampliar el texto.",
+          "Y formula el objetivo en una frase: qué debe cambiar tras el rediseño —más solicitudes, otro público, menos trabajo manual con la web—. Con esa frase sabrás después si el proyecto ha salido bien."
+        ]
+      }
+    ],
+    "takeaways": [
+      "Un rediseño hace falta cuando la web es incómoda en el móvil, la empresa ha cambiado, los números muestran que se pierden visitas o la técnica impide crecer. Estar cansado del diseño o la renovación de un competidor son motivos débiles, y a menudo bastan ajustes puntuales.",
+      "El trabajo empieza por los datos: qué páginas traen tráfico y solicitudes, con qué búsquedas encuentran la web, dónde se van los visitantes, qué preguntan los clientes.",
+      "Las posiciones se hunden por direcciones cambiadas sin redirecciones, páginas y textos eliminados, metaetiquetas perdidas, la indexación bloqueada tras el lanzamiento y una carga lenta.",
+      "Si las direcciones cambian, cada página con tráfico recibe una redirección permanente 301 a su nueva versión, no a la portada.",
+      "Se diseña primero para el móvil, se construye con un sistema de diseño, se lanza un día tranquilo conservando la versión antigua y las primeras semanas se revisan a diario los errores en Search Console y Webmaster.",
+      "Diseño de hasta cinco páginas: desde {price:60000} y dos semanas; sistema de diseño: desde {price:140000}; web llave en mano con diseño a medida: desde {price:150000}; parte técnica para los buscadores: desde {price:40000}."
+    ]
+  },
   "uchetnaya-sistema-dlya-biznesa": {
     "title": "Un sistema de gestión en lugar de hojas de cálculo: cuándo Excel ya no basta y qué implantar",
     "excerpt": "Las señales de que toca cambiar las hojas de cálculo por un sistema, en qué se diferencia un ERP de un CRM, cómo elegir entre un producto estándar y un desarrollo a medida, migrar los datos y poner en marcha el sistema para que de verdad se use, y cuánto cuesta.",

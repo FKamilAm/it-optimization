@@ -1,4 +1,147 @@
 {
+  "redizajn-sajta": {
+    "title": "Website redesign: when it is time and how to keep your search rankings",
+    "excerpt": "The signs that a website needs a redesign and when targeted fixes are enough, where to start, what breaks search rankings and how to keep them, how to launch the updated site — and what it costs.",
+    "category": "Design",
+    "lead": "A redesign usually begins with the question \"what will the new design look like\" and ends with \"where did the enquiries go\". The new site looks better than the old one, but a month later it turns out half the pages have dropped out of search and the forms are losing requests. Here we look at when a redesign is really needed, where to start, what most often breaks search rankings, and how to carry out the update so the site becomes not just better-looking but more useful.",
+    "metaTitle": "Website redesign: when you need it and how to keep SEO",
+    "metaDescription": "When a website needs a redesign and when fixes are enough, where to start, what breaks search rankings, how to keep traffic at launch and what it costs.",
+    "sections": [
+      {
+        "heading": "When a redesign is really needed",
+        "body": [
+          "The site is awkward on a phone. Most visitors today arrive on mobile, and if the text is tiny on a small screen, the buttons are hard to tap and the form slides off the edge, no amount of content will save it.",
+          "The business has changed and the site hasn't. There are new services, a different audience, the company has outgrown the niche it started in — and the site keeps describing what it was three years ago.",
+          "The numbers say the site is losing people. A high share of visitors leaving from the first page, short visits, few enquiries despite decent traffic — a sign that the problem is the site itself, not the advertising.",
+          "And the technology holds growth back. The site is slow, the platform is outdated and no longer updated, and adding a new page needs a developer every time. In that case a new design is also a reason to sort out what the site runs on."
+        ]
+      },
+      {
+        "heading": "When a redesign isn't needed",
+        "body": [
+          "\"We're tired of the design\" is a weak reason. More often it is the owner who is tired of it, seeing the site every day — not the client opening it for the first time.",
+          "A competitor updating their site isn't a reason either. If yours brings in enquiries, their new design takes nothing from you, while a rebuild for the sake of fashion might.",
+          "If the problem is traffic or the offer itself, new visuals won't solve it. A beautiful site with no visitors still gets no enquiries, and a weak offer in new packaging is still weak.",
+          "Targeted fixes are often enough: a new first screen, a rewritten offer, faster loading, a repaired form, clear prices. That is quicker and cheaper than a full redesign, and the effect can be comparable."
+        ]
+      },
+      {
+        "heading": "Refresh the visuals, restructure or migrate",
+        "body": [
+          "The word \"redesign\" covers three different jobs. A visual refresh keeps the structure and the pages and changes the look: fonts, colours, blocks, photos. This is the safest option for search rankings.",
+          "Restructuring changes the architecture: which pages exist, how they connect, what a person sees and in what order on the way to an enquiry. It goes deeper and is more useful, but it affects page addresses and texts — and therefore search.",
+          "Migrating to a new platform changes what the site runs on. It is often combined with a redesign, which is sensible, but this is where the risks are greatest.",
+          "The rule is simple: the deeper the changes, the more detailed the plan for keeping what already works needs to be."
+        ]
+      },
+      {
+        "heading": "Start with data, not with pictures",
+        "body": [
+          "The first step is finding out what works on the site right now. Which pages bring in visitors from search, and which of them bring in enquiries. They must not be lost, and any conversation about a new structure starts with them.",
+          "Next: which queries the site is found by, where people come from, on which devices, on which pages they leave. This is visible in analytics and in the tools for site owners — Google Search Console and Yandex Webmaster.",
+          "Session recordings and click maps show what the numbers don't: where people look for a button that isn't there, and how far down a page they read.",
+          "And a conversation with the sales team. What questions do clients ask again and again, what convinces them and what stops them? The answers to those questions belong on the site, and the new design should give them a prominent place."
+        ]
+      },
+      {
+        "heading": "What breaks search rankings",
+        "body": [
+          "Changing addresses without redirects. A search engine knows a page by its address; if the address changes and the old one answers \"page not found\", the rankings it built up disappear with it.",
+          "Deleted pages and cut text. A page that brought in traffic didn't make it into the new structure. Or the text was replaced with beautiful images and three lines — and the search engine has nothing left to show it for.",
+          "Lost titles and meta tags. The new template puts the same title on every page by default, and the site vanishes from results for queries it was visible for over the years.",
+          "A site closed to search. The test version is blocked from indexing — and that block moves to the live site along with everything else. It is one of the most common and most frustrating launch mistakes.",
+          "And speed. Background video, heavy animations and huge images make a site slow, and search engines take loading speed into account."
+        ]
+      },
+      {
+        "heading": "Page addresses and redirects",
+        "body": [
+          "The best option is not to change addresses unless you have to. If the structure allows the old addresses to be kept, the new page simply takes the old one's place, and the search engine barely notices.",
+          "If addresses do change, a mapping table is drawn up: old address to new address, for every page that had traffic or external links. Permanent redirects are set up from it — code 301, which tells the search engine the page has moved for good.",
+          "Redirecting everything to the home page is not an option. A search engine treats that almost as a deletion, and a person who followed a link to a specific article lands on the home page and leaves.",
+          "After launch the table is checked: every old address must lead to its own new page in a single hop, without chains of several redirects."
+        ]
+      },
+      {
+        "heading": "Content: keep what works",
+        "body": [
+          "The texts of pages that rank well are carried over in substance. They can be rewritten and shortened, but the topic, the key phrasing and the answers to visitors' questions must stay.",
+          "Page titles, descriptions for search results and structured data are carried over and improved, not started from scratch. Especially on pages that already bring in traffic.",
+          "Images get descriptions, and new pages get links from existing ones. A search engine finds new sections slowly when they are connected to nothing.",
+          "A new design is a good occasion to clear out what isn't needed: outdated news, duplicates and pages with no visitors. But the decision rests on data, not on a hunch, and removed pages that had traffic get redirects too."
+        ]
+      },
+      {
+        "heading": "Phone first",
+        "body": [
+          "The design is drawn for the phone first and then expanded to the desktop. The other way round works worse: a wide layout has to be squeezed, and on a small screen it turns into a jumble.",
+          "Speed is checked on real phones and mobile internet, not on the designer's work computer. Search engines judge it by three measures: how quickly the main content appears, how quickly the page responds to a tap, and whether the layout jumps while it loads.",
+          "Animation is good as long as it doesn't get in the way. A pretty entrance for the blocks that makes the enquiry button appear after three seconds costs more than it looks in the presentation."
+        ]
+      },
+      {
+        "heading": "A design system instead of a set of mock-ups",
+        "body": [
+          "Mock-ups of individual pages go out of date with the very first new page they didn't include. A design system is a set of rules and ready-made components: the grid, fonts, colours, buttons, cards, forms with all their states.",
+          "New pages are assembled from these components in hours rather than drawn from scratch over weeks. And a year later the site still looks coherent, not like a collection of pages made in different years by different people.",
+          "The file with the mock-ups and the component library stays with the company. Even if another team takes over the site later, it won't have to start from zero."
+        ]
+      },
+      {
+        "heading": "The test version and the launch",
+        "body": [
+          "The new site is built on a closed test address: password access, indexing blocked. That is also where it is tested on real devices and the whole visitor journey to an enquiry is walked through.",
+          "Before launch there is a short checklist: the indexing block is lifted, robots.txt and the sitemap are in place, redirects work, analytics and goals are set up, forms reach the people who handle them.",
+          "The launch happens on a quiet day: not on a Friday evening and not at the height of the season. The old version is kept in full, so that if something serious goes wrong it can be restored in minutes.",
+          "And straight after launch the site is opened through a client's eyes: the home page, the key services, the form, the phone number in the header, the pages that the advertising leads to."
+        ]
+      },
+      {
+        "heading": "The first weeks after launch",
+        "body": [
+          "Ranking fluctuations in the first weeks are normal: the search engine needs time to recrawl the site and link the new addresses to the old ones. If the redirects and texts are in place, the rankings return, and often grow.",
+          "Search Console and Webmaster reports are checked every day: crawl errors, \"not found\" pages, pages excluded from search. Every error found is fixed straight away, not saved up for the end of the month.",
+          "Results are compared with the period before launch, allowing for seasonality: traffic, enquiries, conversion on the key pages. Without analytics set up in advance there is nothing to compare with, and arguments about whether the redesign succeeded turn into an exchange of impressions."
+        ]
+      },
+      {
+        "heading": "What it costs and how long it takes",
+        "body": [
+          "Design of up to five pages, with prototypes of the key screens, layouts for phone and tablet and hand-over of the mock-ups to development — from {price:60000} and from two weeks.",
+          "A design system: research and user scenarios, up to fifteen screens, grid, typography, colours and a component library with all states — from {price:140000} and from four weeks.",
+          "A turnkey site with a custom design, content, integrations and a foundation for search — from {price:150000} and from three weeks.",
+          "The technical side for search — titles and meta tags, structured data, checks of indexing, robots.txt and the sitemap — from {price:40000} and from one week. It is worth including in any kind of redesign: it is most often what decides whether the site keeps its rankings."
+        ]
+      },
+      {
+        "heading": "Common mistakes",
+        "body": [
+          "Starting with mock-ups without looking at the analytics. The new design turns out beautiful but is built around pages nobody needs, and it loses the ones that brought in clients.",
+          "Changing addresses without a redirect table. The shortest route to a traffic collapse after launch.",
+          "Throwing out the text for the sake of a \"clean\" design. Minimalism is fine as long as the page answers the visitor's questions. When it doesn't, both the visitor and the search engine leave.",
+          "Launching the site with indexing blocked. A one-line mistake that is sometimes noticed only weeks later, when the traffic has already fallen.",
+          "Changing everything at once — design, texts, structure and platform — and then not understanding what exactly affected the result."
+        ]
+      },
+      {
+        "heading": "Where to start this week",
+        "body": [
+          "Export from your analytics the twenty pages that bring in the most visitors and enquiries. That is the list of what the new site must keep.",
+          "Look in Search Console or Webmaster at which queries the site is found by. You will also see which ones it isn't found by, although it should be.",
+          "Open the site on your own phone and walk the client's path: from the first screen to a submitted enquiry. Write down every place where you had to search, wait or zoom in on the text.",
+          "And state the goal in one sentence: what should change after the redesign — more enquiries, a different audience, less manual work on the site. That sentence is how you will later tell whether the project succeeded."
+        ]
+      }
+    ],
+    "takeaways": [
+      "A redesign is needed when the site is awkward on a phone, the business has changed, the numbers show visitors being lost or the technology holds growth back. Being tired of the design or a competitor's update are weak reasons, and targeted fixes are often enough.",
+      "The work starts with data: which pages bring traffic and enquiries, which queries the site is found by, where visitors leave, what clients ask.",
+      "Search rankings are broken by changed addresses without redirects, deleted pages and texts, lost meta tags, indexing left blocked after launch, and slow loading.",
+      "If addresses change, every page with traffic gets a permanent 301 redirect to its new version, not to the home page.",
+      "Design for the phone first, build from a design system, launch on a quiet day with the old version kept, and check Search Console and Webmaster for errors every day in the first weeks.",
+      "Design of up to five pages — from {price:60000} and two weeks; a design system — from {price:140000}; a turnkey site with a custom design — from {price:150000}; the technical side for search — from {price:40000}."
+    ]
+  },
   "uchetnaya-sistema-dlya-biznesa": {
     "title": "A business system instead of spreadsheets: when Excel stops coping and what to implement",
     "excerpt": "The signs that it is time to swap spreadsheets for a system, how an ERP differs from a CRM, how to choose between an off-the-shelf product and custom development, migrate the data and launch the system so people actually use it — and what it costs.",
